@@ -42,6 +42,10 @@ class TimekeepingShiftGroup {
   static ShiftCreateCall shiftCreateCall = ShiftCreateCall();
   static ShiftUpdateCall shiftUpdateCall = ShiftUpdateCall();
   static ShiftConfigsCall shiftConfigsCall = ShiftConfigsCall();
+  static ShiftConfigsCreateCall shiftConfigsCreateCall =
+      ShiftConfigsCreateCall();
+  static ShiftConfigsUpdateCall shiftConfigsUpdateCall =
+      ShiftConfigsUpdateCall();
 }
 
 class ShiftListCall {
@@ -254,6 +258,71 @@ class ShiftConfigsCall {
         'fields[]':
             "name, branchs.id,branchs.name, departments.id, departments.name, staffs.id, staffs.user_id.first_name, shifts.id, shifts.shifts_id.id, shifts.shifts_id.name, shifts.shifts_id.start_time, shifts.shifts_id.end_time, shifts.shifts_id.normal, id, status, enable, user_created, date_created, address_id, organization_id",
       },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ShiftConfigsCreateCall {
+  Future<ApiCallResponse> call({
+    dynamic requestJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = TimekeepingShiftGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final request = _serializeJson(requestJson);
+    final ffApiRequestBody = request;
+    return ApiManager.instance.makeApiCall(
+      callName: 'ShiftConfigsCreate',
+      apiUrl: '$baseUrl/items/shift_configs',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ShiftConfigsUpdateCall {
+  Future<ApiCallResponse> call({
+    dynamic requestJson,
+    String? id = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = TimekeepingShiftGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final request = _serializeJson(requestJson);
+    final ffApiRequestBody = request;
+    return ApiManager.instance.makeApiCall(
+      callName: 'ShiftConfigsUpdate',
+      apiUrl: '$baseUrl/items/shift_configs/$id',
+      callType: ApiCallType.PATCH,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -3804,7 +3873,7 @@ class StaffGetOneCall {
       },
       params: {
         'fields':
-            "sort, id, title, user_id.role, status, organization_id.id, organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar, staff_lessions.id, staff_lessions.status, staff_tests.id, staff_tests.status, tasks.tasks_id.status, tasks.tasks_id.over_deadline, staff_tests.percent_correct, staff_programs.program_id.name, staff_programs.status, staff_programs.date_created, staff_programs.deadline, staff_programs.program_id.lessions, staff_lessions.lession_id.name, staff_lessions.program_id.name, staff_lessions.status, staff_lessions.date_created, staff_lessions.deadline, staff_lessions.date_start, staff_tests.test_id.name, staff_tests.lession_id.name, staff_tests.pass, staff_tests.date_start, staff_tests.date_end, staff_tests.percent_correct, staff_tests.test_id.good_score, staff_tests.score, staff_tests.total_correct, staff_tests.total_incorrect, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current, skills.id, skills.skills_id.id, skills.skills_id.name, current_step_id.id, current_step_id.name, tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files, date_created, tasks.tasks_id.workflow_id.name, tasks.tasks_id.workflow_id.id, tasks.tasks_id.date_created, tasks.tasks_id.date_start, tasks.tasks_id.date_end, tasks.tasks_id.action_type, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files.directus_files_id.filename_download,description,slogan,tasks.tasks_id.submit_staff_id.id,staff_programs.program_id.certificate_id.id,staff_programs.program_id.certificate_id.name, staff_programs.program_id.certificate_id.code,staff_programs.date_updated, notifications.notifications_id.data, notifications.notifications_id.contents, notifications.notifications_id.status, notifications.notifications_id.user_created",
+            "sort, id, title, user_id.role, status, organization_id.id, organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar, staff_lessions.id, staff_lessions.status, staff_tests.id, staff_tests.status, tasks.tasks_id.status, tasks.tasks_id.over_deadline, staff_tests.percent_correct, staff_programs.program_id.name, staff_programs.status, staff_programs.date_created, staff_programs.deadline, staff_programs.program_id.lessions, staff_lessions.lession_id.name, staff_lessions.program_id.name, staff_lessions.status, staff_lessions.date_created, staff_lessions.deadline, staff_lessions.date_start, staff_tests.test_id.name, staff_tests.lession_id.name, staff_tests.pass, staff_tests.date_start, staff_tests.date_end, staff_tests.percent_correct, staff_tests.test_id.good_score, staff_tests.score, staff_tests.total_correct, staff_tests.total_incorrect, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current, skills.id, skills.skills_id.id, skills.skills_id.name, current_step_id.id, current_step_id.name, tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files, date_created, tasks.tasks_id.workflow_id.name, tasks.tasks_id.workflow_id.id, tasks.tasks_id.date_created, tasks.tasks_id.date_start, tasks.tasks_id.date_end, tasks.tasks_id.action_type, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files.directus_files_id.filename_download,description,slogan,tasks.tasks_id.submit_staff_id.id,staff_programs.program_id.certificate_id.id,staff_programs.program_id.certificate_id.name, staff_programs.program_id.certificate_id.code,staff_programs.date_updated, notifications.id, notifications.date_created,  notifications.data, notifications.contents, notifications.status, notifications.user_created",
         'filter': filter,
       },
       returnBody: true,
@@ -5480,6 +5549,8 @@ class NotificationsGroup {
     'Authorization': 'Bearer [accessToken]',
   };
   static GetNotificationsCall getNotificationsCall = GetNotificationsCall();
+  static UpdateStatusNotificationCall updateStatusNotificationCall =
+      UpdateStatusNotificationCall();
 }
 
 class GetNotificationsCall {
@@ -5512,7 +5583,190 @@ class GetNotificationsCall {
   }
 }
 
+class UpdateStatusNotificationCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+    String? status = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = NotificationsGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "status": "$status"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'UpdateStatusNotification',
+      apiUrl: '$baseUrl/items/notifications/$id',
+      callType: ApiCallType.PATCH,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 /// End Notifications Group Code
+
+/// Start TimeKeeping Group Code
+
+class TimeKeepingGroup {
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api-dev.pexnic.com';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer [accessToken]',
+  };
+  static TimeKeepingCreatedCall timeKeepingCreatedCall =
+      TimeKeepingCreatedCall();
+}
+
+class TimeKeepingCreatedCall {
+  Future<ApiCallResponse> call({
+    dynamic requesDataJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = TimeKeepingGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final requesData = _serializeJson(requesDataJson);
+    final ffApiRequestBody = requesData;
+    return ApiManager.instance.makeApiCall(
+      callName: 'TimeKeepingCreated',
+      apiUrl: '$baseUrl/items/address',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End TimeKeeping Group Code
+
+/// Start Address Group Code
+
+class AddressGroup {
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api-dev.pexnic.com';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer [accessToken]',
+  };
+  static ListDistrictCall listDistrictCall = ListDistrictCall();
+  static ListCityCall listCityCall = ListCityCall();
+  static ListWardCall listWardCall = ListWardCall();
+}
+
+class ListDistrictCall {
+  Future<ApiCallResponse> call({
+    String? accessToken = '',
+  }) async {
+    final baseUrl = AddressGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ListDistrict',
+      apiUrl: '$baseUrl/items/districts',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ListCityCall {
+  Future<ApiCallResponse> call({
+    String? accessToken = '',
+  }) async {
+    final baseUrl = AddressGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ListCity',
+      apiUrl: '$baseUrl/items/cities',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ListWardCall {
+  Future<ApiCallResponse> call({
+    String? accessToken = '',
+  }) async {
+    final baseUrl = AddressGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ListWard',
+      apiUrl: '$baseUrl/items/wards',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End Address Group Code
 
 class ApiPagingParams {
   int nextPageNumber = 0;

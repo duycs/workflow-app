@@ -24,8 +24,6 @@ class LessonListHomepageModel
           int index, Function(EmployeeLessonListStruct) updateFn) =>
       listLesson[index] = updateFn(listLesson[index]);
 
-  String status = '';
-
   String? dateStartList = '0';
 
   String? dateEndList = '0';
@@ -75,14 +73,13 @@ class LessonListHomepageModel
 
     apiResultList = await LessonGroup.employeeLessonListCall.call(
       accessToken: FFAppState().accessToken,
-      filter: functions.filterListLessonAdmin(
+      filter: functions.filterListLessonUser(
           FFAppState().staffid,
           getJsonField(
             FFAppState().staffLogin,
             r'''$.organization_id''',
           ).toString().toString(),
           nameSearchTextController.text,
-          status,
           dateStartList,
           dateEndList,
           widget!.statusLesson,

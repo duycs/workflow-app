@@ -8,6 +8,16 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class TimekeepingShiftListModel
     extends FlutterFlowModel<TimekeepingShiftListWidget> {
+  ///  Local state fields for this page.
+
+  String nameSearch = '';
+
+  String dateStart = '';
+
+  String dateEnd = '';
+
+  String statusSearch = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -33,6 +43,22 @@ class TimekeepingShiftListModel
   }
 
   /// Additional helper methods.
+  Future waitForOnePageForListView({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
   PagingController<ApiPagingParams, dynamic> setListViewController(
     Function(ApiPagingParams) apiCall,
   ) {
@@ -78,20 +104,4 @@ class TimekeepingShiftListModel
               : null,
         );
       });
-
-  Future waitForOnePageForListView({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete =
-          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
 }

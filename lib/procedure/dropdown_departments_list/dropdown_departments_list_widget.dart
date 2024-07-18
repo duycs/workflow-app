@@ -756,10 +756,10 @@ class _DropdownDepartmentsListWidgetState
                             setState(() {});
                           }
 
-                          Navigator.pop(context);
                           await widget.callback?.call(
                             _model.callBackData,
                           );
+                          Navigator.pop(context);
                         },
                         text: 'Xác nhận',
                         options: FFButtonOptions(

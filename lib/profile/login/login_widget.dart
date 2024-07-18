@@ -38,77 +38,54 @@ class _LoginWidgetState extends State<LoginWidget> {
         'wf_token',
       );
       if (_model.checkEmailWf == true) {
-        _model.checkWfToken = await actions.getReTokenUser(
-          'wf_token',
+        _model.biometricAccessToken = await actions.secureStorageGet(
+          FFAppConstants.BiometricTokenKey,
         );
-        _model.apiResultRefreshTokenLogin =
-            await AuthenGroup.refreshTokenCall.call(
-          refreshToken: _model.checkWfToken,
-        );
-
-        if ((_model.apiResultRefreshTokenLogin?.succeeded ?? true)) {
-          FFAppState().accessToken = LoginResourceDataStruct.maybeFromMap(
-                  (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
-              .data
-              .accessToken;
-          FFAppState().refreshToken = LoginResourceDataStruct.maybeFromMap(
-                  (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
-              .data
-              .refreshToken;
-          FFAppState().expires = LoginResourceDataStruct.maybeFromMap(
-                  (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
-              .data
-              .expires;
+        if (_model.biometricAccessToken != null &&
+            _model.biometricAccessToken != '') {
+          FFAppState().accessToken = _model.biometricAccessToken!;
+          FFAppState().refreshToken = '';
+          FFAppState().expires = FFAppConstants.BiometricTokenExpires;
           FFAppState().dataTimeStartToken =
               (DateTime.now().microsecondsSinceEpoch / 1000).round() +
-                  LoginResourceDataStruct.maybeFromMap(
-                          (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
-                      .data
-                      .expires;
+                  FFAppConstants.BiometricTokenExpires;
           FFAppState().update(() {});
-          await actions.saveInfoUser(
-            'wf_token',
-            getJsonField(
-              (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''),
-              r'''$.data.refresh_token''',
-            ).toString().toString(),
-          );
           await _model.getUserMe(context);
           setState(() {});
-          _model.apiResultGetStaffIdReWfLogin =
+          _model.apiResultGetStaffBiometric =
               await UserGroup.getStaffIdCall.call(
             accessToken: FFAppState().accessToken,
             userId: FFAppState().user.id,
           );
 
-          if ((_model.apiResultGetStaffIdReWfLogin?.succeeded ?? true)) {
+          if ((_model.apiResultGetStaffBiometric?.succeeded ?? true)) {
             FFAppState().staffid = getJsonField(
-              (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+              (_model.apiResultGetStaffBiometric?.jsonBody ?? ''),
               r'''$.staff.id''',
             ).toString().toString();
             FFAppState().staffLogin = getJsonField(
-              (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+              (_model.apiResultGetStaffBiometric?.jsonBody ?? ''),
               r'''$.staff''',
             );
             FFAppState().staffDepartment = getJsonField(
-              (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+              (_model.apiResultGetStaffBiometric?.jsonBody ?? ''),
               r'''$.department''',
             );
             FFAppState().staffBranch = getJsonField(
-              (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+              (_model.apiResultGetStaffBiometric?.jsonBody ?? ''),
               r'''$.branch''',
             );
             FFAppState().staffOrganization = getJsonField(
-              (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+              (_model.apiResultGetStaffBiometric?.jsonBody ?? ''),
               r'''$.organization''',
             );
             FFAppState().Author = getJsonField(
-              (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+              (_model.apiResultGetStaffBiometric?.jsonBody ?? ''),
               r'''$.organization.authors[0]''',
             );
             setState(() {});
 
-            context.pushNamed(
+            context.goNamed(
               'Home',
               extra: <String, dynamic>{
                 kTransitionInfoKey: const TransitionInfo(
@@ -122,16 +99,106 @@ class _LoginWidgetState extends State<LoginWidget> {
             await actions.checkNofiLoad(
               context,
             );
+            return;
           } else {
             return;
           }
         } else {
-          _model.isLoad = true;
-          setState(() {});
-          return;
-        }
+          _model.checkWfToken = await actions.getReTokenUser(
+            'wf_token',
+          );
+          _model.apiResultRefreshTokenLogin =
+              await AuthenGroup.refreshTokenCall.call(
+            refreshToken: _model.checkWfToken,
+          );
 
-        return;
+          if ((_model.apiResultRefreshTokenLogin?.succeeded ?? true)) {
+            FFAppState().accessToken = LoginResourceDataStruct.maybeFromMap(
+                    (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
+                .data
+                .accessToken;
+            FFAppState().refreshToken = LoginResourceDataStruct.maybeFromMap(
+                    (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
+                .data
+                .refreshToken;
+            FFAppState().expires = LoginResourceDataStruct.maybeFromMap(
+                    (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
+                .data
+                .expires;
+            FFAppState().dataTimeStartToken =
+                (DateTime.now().microsecondsSinceEpoch / 1000).round() +
+                    LoginResourceDataStruct.maybeFromMap(
+                            (_model.apiResultRefreshTokenLogin?.jsonBody ??
+                                ''))!
+                        .data
+                        .expires;
+            FFAppState().update(() {});
+            await actions.saveInfoUser(
+              'wf_token',
+              getJsonField(
+                (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''),
+                r'''$.data.refresh_token''',
+              ).toString().toString(),
+            );
+            await _model.getUserMe(context);
+            setState(() {});
+            _model.apiResultGetStaffIdReWfLogin =
+                await UserGroup.getStaffIdCall.call(
+              accessToken: FFAppState().accessToken,
+              userId: FFAppState().user.id,
+            );
+
+            if ((_model.apiResultGetStaffIdReWfLogin?.succeeded ?? true)) {
+              FFAppState().staffid = getJsonField(
+                (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+                r'''$.staff.id''',
+              ).toString().toString();
+              FFAppState().staffLogin = getJsonField(
+                (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+                r'''$.staff''',
+              );
+              FFAppState().staffDepartment = getJsonField(
+                (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+                r'''$.department''',
+              );
+              FFAppState().staffBranch = getJsonField(
+                (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+                r'''$.branch''',
+              );
+              FFAppState().staffOrganization = getJsonField(
+                (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+                r'''$.organization''',
+              );
+              FFAppState().Author = getJsonField(
+                (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+                r'''$.organization.authors[0]''',
+              );
+              setState(() {});
+
+              context.goNamed(
+                'Home',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
+
+              await actions.checkNofiLoad(
+                context,
+              );
+              return;
+            } else {
+              return;
+            }
+          } else {
+            _model.isLoad = true;
+            setState(() {});
+            return;
+          }
+        }
       } else {
         _model.checkWfEmail = await actions.getReTokenUser(
           'wf_email',
@@ -821,14 +888,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                         '') {
                                                                   _model.signature =
                                                                       await actions
-                                                                          .biometricCreateSignature(
-                                                                    FFAppState()
-                                                                        .user
-                                                                        .email,
-                                                                  );
+                                                                          .biometricCreateSignature();
                                                                   shouldSetState =
                                                                       true;
-                                                                  _model.apiResultvlloginSTH1 =
+                                                                  _model.apiResultLoginBiometric =
                                                                       await STHLoginAcountsGroup
                                                                           .loginBiometricVerificationCall
                                                                           .call(
@@ -839,11 +902,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                   shouldSetState =
                                                                       true;
                                                                   if ((_model
-                                                                          .apiResultvlloginSTH1
+                                                                          .apiResultLoginBiometric
                                                                           ?.succeeded ??
                                                                       true)) {
                                                                     if (getJsonField(
-                                                                          (_model.apiResultvlloginSTH1?.jsonBody ??
+                                                                          (_model.apiResultLoginBiometric?.jsonBody ??
                                                                               ''),
                                                                           r'''$.errors''',
                                                                         ) !=
@@ -876,14 +939,23 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                           .saveInfoUser(
                                                                         'wf_token',
                                                                         getJsonField(
-                                                                          (_model.apiResultvlloginSTH1?.jsonBody ??
+                                                                          (_model.apiResultLoginBiometric?.jsonBody ??
                                                                               ''),
                                                                           r'''$.data.refresh_token''',
                                                                         ).toString(),
                                                                       );
+                                                                      await actions
+                                                                          .secureStorageSet(
+                                                                        FFAppConstants
+                                                                            .BiometricTokenKey,
+                                                                        LoginResourceDataStruct.maybeFromMap((_model.apiResultLoginBiometric?.jsonBody ??
+                                                                                ''))!
+                                                                            .data
+                                                                            .accessToken,
+                                                                      );
                                                                       _model
                                                                           .loginData = LoginResourceDataStruct.maybeFromMap((_model
-                                                                              .apiResultvlloginSTH1
+                                                                              .apiResultLoginBiometric
                                                                               ?.jsonBody ??
                                                                           ''));
                                                                       setState(

@@ -92,57 +92,56 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ),
               ),
             ),
-            if (FFAppState().IsInDevelopment)
-              Builder(
-                builder: (context) => InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    await showDialog(
-                      context: context,
-                      builder: (dialogContext) {
-                        return Dialog(
-                          elevation: 0,
-                          insetPadding: EdgeInsets.zero,
-                          backgroundColor: Colors.transparent,
-                          alignment: const AlignmentDirectional(0.0, 0.0)
-                              .resolve(Directionality.of(context)),
-                          child: SizedBox(
-                            height: MediaQuery.sizeOf(context).height * 1.0,
-                            width: MediaQuery.sizeOf(context).width * 1.0,
-                            child: const NotificationWidget(),
-                          ),
-                        );
-                      },
-                    ).then((value) => setState(() {}));
-                  },
-                  child: badges.Badge(
-                    badgeContent: Text(
-                      '1',
-                      style: FlutterFlowTheme.of(context).titleSmall.override(
-                            fontFamily: 'Nunito Sans',
-                            color: Colors.white,
-                            letterSpacing: 0.0,
-                          ),
-                    ),
-                    showBadge: true,
-                    shape: badges.BadgeShape.circle,
-                    badgeColor: FlutterFlowTheme.of(context).primary,
-                    elevation: 4.0,
-                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                    position: badges.BadgePosition.topEnd(),
-                    animationType: badges.BadgeAnimationType.scale,
-                    toAnimate: true,
-                    child: FaIcon(
-                      FontAwesomeIcons.bell,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 24.0,
-                    ),
+            Builder(
+              builder: (context) => InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (dialogContext) {
+                      return Dialog(
+                        elevation: 0,
+                        insetPadding: EdgeInsets.zero,
+                        backgroundColor: Colors.transparent,
+                        alignment: const AlignmentDirectional(0.0, 0.0)
+                            .resolve(Directionality.of(context)),
+                        child: SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          child: const NotificationWidget(),
+                        ),
+                      );
+                    },
+                  ).then((value) => setState(() {}));
+                },
+                child: badges.Badge(
+                  badgeContent: Text(
+                    '1',
+                    style: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Nunito Sans',
+                          color: Colors.white,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                  showBadge: true,
+                  shape: badges.BadgeShape.circle,
+                  badgeColor: FlutterFlowTheme.of(context).primary,
+                  elevation: 4.0,
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                  position: badges.BadgePosition.topEnd(),
+                  animationType: badges.BadgeAnimationType.scale,
+                  toAnimate: true,
+                  child: FaIcon(
+                    FontAwesomeIcons.bell,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 24.0,
                   ),
                 ),
               ),
+            ),
           ].divide(const SizedBox(width: 16.0)),
         ),
         actions: const [],

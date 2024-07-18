@@ -49,8 +49,6 @@
 	<string>Ứng dụng cần quyền truy cập vào micro để bạn có thể ghi âm giọng nói hoặc ghi âm khi quay video. Việc này có thể giúp bạn tạo video và ghi âm cho bài học của mình.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Ứng dụng cần quyền truy cập vào thư viện ảnh để bạn có thể chọn và tải lên ảnh từ thiết bị của mình. Ví dụ: chọn ảnh từ thư viện để làm ảnh hồ sơ.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Ứng dụng cần quyền truy cập vào vị trí của bạn khi sử dụng ứng dụng để cung cấp các dịch vụ dựa trên vị trí. Ví dụ: check-in theo location.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
@@ -63,6 +61,8 @@
 	<string>Ứng dụng cần quyền truy cập vào Face ID để xác thực danh tính của bạn một cách an toàn và tiện lợi khi đăng nhập vào ứng dụng.</string>
 	<key>NSBiometricUsageDescription</key>
 	<string>Ứng dụng cần quyền truy cập vào sinh trắc học để xác thực.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>Ứng dụng cần quyền truy cập vào vị trí của bạn khi sử dụng ứng dụng để cung cấp các dịch vụ dựa trên vị trí. Ví dụ: check-in theo location.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

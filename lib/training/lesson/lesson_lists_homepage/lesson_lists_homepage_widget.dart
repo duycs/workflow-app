@@ -3872,7 +3872,6 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
                                         child: FilterLessonHomePageWidget(
-                                          status: _model.status,
                                           dateStart: _model.dateStartList,
                                           dateEnd: _model.dateEndList,
                                           lessonFavoriteStatus:
@@ -3882,13 +3881,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                           statusDateHistory: '',
                                           programsId: _model.programsAllId,
                                           checkPrograms: 'programs',
-                                          callBack: (status,
-                                              dateStart,
+                                          callBack: (dateStart,
                                               dateEnd,
                                               lessonStatus,
                                               lessonFavoriteStatus,
                                               programsId) async {
-                                            _model.status = status!;
                                             _model.dateStartList =
                                                 dateTimeFormat(
                                               'yyyy-MM-dd',

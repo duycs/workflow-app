@@ -9,7 +9,29 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+
+Future<void> callApi(String id, String accessToken, String status) async {
+  final url = Uri.parse('https://workflow-api-dev.pexnic.com/items/staffs/$id');
+  final response = await http.patch(
+    url,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $accessToken',
+    },
+    body: json.encode({'status': status}),
+  );
+
+  if (response.statusCode == 200) {
+    print('API call successful');
+  } else {
+    print('Failed to call API: ${response.statusCode}');
+  }
+}
 
 Future checkNofiLoad(BuildContext context) async {
   // Add your function code here!
@@ -31,6 +53,7 @@ Future checkNofiLoad(BuildContext context) async {
         case "2":
           {
             context.pushNamed('TaskListWait');
+            callApi("notiId", '${FFAppState().accessToken}', 'archived');
             return;
           }
         case "3":
@@ -102,6 +125,7 @@ class NotiData {
   NotiData(this.id);
 
   factory NotiData.fromJson(Map json) {
+    var notiId = NotiData(json?['id']);
     return NotiData(json?['id']);
   }
 }

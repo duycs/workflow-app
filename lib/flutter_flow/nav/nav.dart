@@ -1136,7 +1136,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'TimeKeeping',
           path: '/timeKeeping',
-          builder: (context, params) => const TimeKeepingWidget(),
+          builder: (context, params) => TimeKeepingWidget(
+            checkShowFilter: params.getParam(
+              'checkShowFilter',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'TimekeepingLocationList',
@@ -1161,7 +1166,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'TimekeepingUpdate',
           path: '/timekeepingUpdate',
-          builder: (context, params) => const TimekeepingUpdateWidget(),
+          builder: (context, params) => TimekeepingUpdateWidget(
+            itemDetail: params.getParam(
+              'itemDetail',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: ShiftConfigsStruct.fromSerializableMap,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

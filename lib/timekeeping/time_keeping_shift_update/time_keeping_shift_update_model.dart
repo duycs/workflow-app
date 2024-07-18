@@ -20,14 +20,6 @@ class TimeKeepingShiftUpdateModel
   FocusNode? nameFocusNode;
   TextEditingController? nameTextController;
   String? Function(BuildContext, String?)? nameTextControllerValidator;
-  String? _nameTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Vui lòng nhập tên ca làm việc!';
-    }
-
-    return null;
-  }
-
   DateTime? datePicked1;
   DateTime? datePicked2;
   // State field(s) for RadioButton widget.
@@ -38,9 +30,7 @@ class TimeKeepingShiftUpdateModel
   ApiCallResponse? apiResultShiftUpdate;
 
   @override
-  void initState(BuildContext context) {
-    nameTextControllerValidator = _nameTextControllerValidator;
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {

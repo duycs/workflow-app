@@ -352,7 +352,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                           filter: '{\"_and\":[${'{\"organization_id\":{\"_eq\":\"${getJsonField(
                             FFAppState().staffLogin,
                             r'''$.organization_id''',
-                          ).toString()}\"}}'}${_model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_icontains\":\"${_model.status}\"}}' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
+                          ).toString()}\"}}'}${_model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_icontains\":\"${_model.status}\"}}' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
                               return DateTime.parse(var1)
                                   .add(const Duration(days: 1))
                                   .toString();

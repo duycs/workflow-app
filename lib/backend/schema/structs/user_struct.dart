@@ -15,6 +15,7 @@ class UserStruct extends BaseStruct {
     String? role,
     int? enableBiometric,
     List<StaffListStruct>? staffs,
+    String? publicKey,
   })  : _id = id,
         _firstName = firstName,
         _lastName = lastName,
@@ -23,7 +24,8 @@ class UserStruct extends BaseStruct {
         _status = status,
         _role = role,
         _enableBiometric = enableBiometric,
-        _staffs = staffs;
+        _staffs = staffs,
+        _publicKey = publicKey;
 
   // "id" field.
   String? _id;
@@ -95,6 +97,13 @@ class UserStruct extends BaseStruct {
 
   bool hasStaffs() => _staffs != null;
 
+  // "public_key" field.
+  String? _publicKey;
+  String get publicKey => _publicKey ?? '';
+  set publicKey(String? val) => _publicKey = val;
+
+  bool hasPublicKey() => _publicKey != null;
+
   static UserStruct fromMap(Map<String, dynamic> data) => UserStruct(
         id: data['id'] as String?,
         firstName: data['first_name'] as String?,
@@ -108,6 +117,7 @@ class UserStruct extends BaseStruct {
           data['staffs'],
           StaffListStruct.fromMap,
         ),
+        publicKey: data['public_key'] as String?,
       );
 
   static UserStruct? maybeFromMap(dynamic data) =>
@@ -123,6 +133,7 @@ class UserStruct extends BaseStruct {
         'role': _role,
         'enable_biometric': _enableBiometric,
         'staffs': _staffs?.map((e) => e.toMap()).toList(),
+        'public_key': _publicKey,
       }.withoutNulls;
 
   @override
@@ -163,6 +174,10 @@ class UserStruct extends BaseStruct {
           _staffs,
           ParamType.DataStruct,
           isList: true,
+        ),
+        'public_key': serializeParam(
+          _publicKey,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -214,6 +229,11 @@ class UserStruct extends BaseStruct {
           true,
           structBuilder: StaffListStruct.fromSerializableMap,
         ),
+        publicKey: deserializeParam(
+          data['public_key'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -231,7 +251,8 @@ class UserStruct extends BaseStruct {
         status == other.status &&
         role == other.role &&
         enableBiometric == other.enableBiometric &&
-        listEquality.equals(staffs, other.staffs);
+        listEquality.equals(staffs, other.staffs) &&
+        publicKey == other.publicKey;
   }
 
   @override
@@ -244,7 +265,8 @@ class UserStruct extends BaseStruct {
         status,
         role,
         enableBiometric,
-        staffs
+        staffs,
+        publicKey
       ]);
 }
 
@@ -257,6 +279,7 @@ UserStruct createUserStruct({
   String? status,
   String? role,
   int? enableBiometric,
+  String? publicKey,
 }) =>
     UserStruct(
       id: id,
@@ -267,4 +290,5 @@ UserStruct createUserStruct({
       status: status,
       role: role,
       enableBiometric: enableBiometric,
+      publicKey: publicKey,
     );

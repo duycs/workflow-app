@@ -22,7 +22,7 @@ Future<String?> biometricCreatePublicKey() async {
   final storage = FlutterSecureStorage();
   const publicKeyKey = 'biometric_public_key';
   const privateKeyKey = 'biometric_private_key';
-  const refreshTokenKey = 'wf_token';
+  const emailKey = 'wf_email';
 
   try {
     AsymmetricKeyPair<PublicKey, PrivateKey> keyPair =
@@ -36,13 +36,13 @@ Future<String?> biometricCreatePublicKey() async {
     await storage.write(key: publicKeyKey, value: publicKeyPem);
     await storage.write(key: privateKeyKey, value: privateKeyPem);
 
-    // Lấy refresh_token từ SharedPreferences
+    // Lấy email từ SharedPreferences
     final prefs = await SharedPreferences.getInstance();
-    final refreshToken = prefs.getString('wf_token');
+    final email = prefs.getString('wf_email');
 
-    // Lưu refresh_token vào FlutterSecureStorage
-    if (refreshToken != null) {
-      await storage.write(key: refreshTokenKey, value: refreshToken);
+    // Lưu email vào FlutterSecureStorage
+    if (email != null) {
+      await storage.write(key: emailKey, value: email);
     }
 
     return base64.encode(utf8.encode(publicKeyPem));

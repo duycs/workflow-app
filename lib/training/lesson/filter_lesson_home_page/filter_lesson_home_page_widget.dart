@@ -14,7 +14,6 @@ class FilterLessonHomePageWidget extends StatefulWidget {
   const FilterLessonHomePageWidget({
     super.key,
     required this.callBack,
-    String? status,
     String? dateStart,
     String? dateEnd,
     String? lessonFavoriteStatus,
@@ -23,8 +22,7 @@ class FilterLessonHomePageWidget extends StatefulWidget {
     String? statusDateHistory,
     String? programsId,
     String? checkPrograms,
-  })  : status = status ?? '',
-        dateStart = dateStart ?? '',
+  })  : dateStart = dateStart ?? '',
         dateEnd = dateEnd ?? '',
         lessonFavoriteStatus = lessonFavoriteStatus ?? '',
         statusLoveFilter = statusLoveFilter ?? '',
@@ -34,13 +32,11 @@ class FilterLessonHomePageWidget extends StatefulWidget {
         checkPrograms = checkPrograms ?? '';
 
   final Future Function(
-      String? status,
       DateTime? dateStart,
       DateTime? dateEnd,
       String? lessonStatus,
       String? lessonFavoriteStatus,
       String? programsId)? callBack;
-  final String status;
   final String dateStart;
   final String dateEnd;
   final String lessonFavoriteStatus;
@@ -369,55 +365,6 @@ class _FilterLessonHomePageWidgetState
                       ),
                     ),
                   ),
-                if ('2' == '1')
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                    child: FlutterFlowDropDown<String>(
-                      controller: _model.dropDownStatusValueController ??=
-                          FormFieldController<String>(
-                        _model.dropDownStatusValue ??=
-                            widget.status != ''
-                                ? () {
-                                    if (widget.status == 'published') {
-                                      return '2';
-                                    } else if (widget.status == 'draft') {
-                                      return '1';
-                                    } else {
-                                      return null;
-                                    }
-                                  }()
-                                : null,
-                      ),
-                      options: List<String>.from(['1', '2']),
-                      optionLabels: const ['Không hoạt động', 'Hoạt động'],
-                      onChanged: (val) =>
-                          setState(() => _model.dropDownStatusValue = val),
-                      width: double.infinity,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Nunito Sans',
-                                letterSpacing: 0.0,
-                              ),
-                      hintText: 'Trạng thái hoạt động bài học',
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 24.0,
-                      ),
-                      fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 2.0,
-                      borderColor: FlutterFlowTheme.of(context).alternate,
-                      borderWidth: 2.0,
-                      borderRadius: 8.0,
-                      margin:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
-                      hidesUnderline: true,
-                      isOverButton: true,
-                      isSearchable: false,
-                      isMultiSelect: false,
-                    ),
-                  ),
                 if ((widget.statusLoveFilter == '') ||
                     (widget.statusLoveFilter != 'love'))
                   Container(
@@ -533,7 +480,6 @@ class _FilterLessonHomePageWidgetState
                             _model.lessonFavoritStatus = '';
                             setState(() {});
                             await widget.callBack?.call(
-                              '',
                               _model.dateStartCPN,
                               _model.dateEndCPN,
                               '',
@@ -572,15 +518,6 @@ class _FilterLessonHomePageWidgetState
                         child: FFButtonWidget(
                           onPressed: () async {
                             await widget.callBack?.call(
-                              () {
-                                if (_model.dropDownStatusValue == '1') {
-                                  return 'draft';
-                                } else if (_model.dropDownStatusValue == '2') {
-                                  return 'published';
-                                } else {
-                                  return 'noData';
-                                }
-                              }(),
                               () {
                                 if (_model.dateStart != null) {
                                   return _model.dateStart;
