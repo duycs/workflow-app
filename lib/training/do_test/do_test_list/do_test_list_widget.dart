@@ -1,12 +1,18 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/do_test/filter_do_test/filter_do_test_widget.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'do_test_list_model.dart';
@@ -79,7 +85,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
               context.goNamed(
                 'Profile',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -97,7 +103,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -109,10 +115,10 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (widget.lessionId == null || widget.lessionId == '')
+                if (widget!.lessionId == null || widget!.lessionId == '')
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 8.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 8.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -123,9 +129,10 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                             focusNode: _model.textFieldFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.textController',
-                              const Duration(milliseconds: 500),
+                              Duration(milliseconds: 500),
                               () async {
-                                if (_model.textController.text != '') {
+                                if (_model.textController.text != null &&
+                                    _model.textController.text != '') {
                                   _model.filter =
                                       '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
                                   setState(() {});
@@ -189,9 +196,9 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
                                   .primaryBackground,
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 0.0),
-                              prefixIcon: const Icon(
+                              prefixIcon: Icon(
                                 Icons.search_sharp,
                                 size: 24.0,
                               ),
@@ -199,7 +206,9 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                   ? InkWell(
                                       onTap: () async {
                                         _model.textController?.clear();
-                                        if (_model.textController.text != '') {
+                                        if (_model.textController.text !=
+                                                null &&
+                                            _model.textController.text != '') {
                                           _model.filter =
                                               '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
                                           setState(() {});
@@ -288,13 +297,16 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                     ),
                   ),
                 if (() {
-                  if (_model.textController.text != '') {
+                  if (_model.textController.text != null &&
+                      _model.textController.text != '') {
                     return true;
-                  } else if ((_model.dateStartFilter != '') &&
+                  } else if ((_model.dateStartFilter != null &&
+                          _model.dateStartFilter != '') &&
                       (_model.dateStartFilter != '') &&
                       (_model.dateStartFilter != ' ')) {
                     return true;
-                  } else if ((_model.dateEndFilter != '') &&
+                  } else if ((_model.dateEndFilter != null &&
+                          _model.dateEndFilter != '') &&
                       (_model.dateEndFilter != '') &&
                       (_model.dateEndFilter != ' ')) {
                     return true;
@@ -304,7 +316,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                 }())
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     child: Text(
                       '#Kết quả tìm kiếm theo bộ lọc',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -319,23 +331,23 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: PagedListView<ApiPagingParams, dynamic>.separated(
                         pagingController: _model.setListViewController(
                           (nextPageMarker) =>
                               DoTestGroup.staffsTestsListCall.call(
                             accessToken: FFAppState().accessToken,
                             filter:
-                                '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${widget.staffId != null && widget.staffId != '' ? widget.staffId : FFAppState().staffid}\"}}}${_model.textController.text != '' ? ',{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${(_model.dateStartFilter != '') && (_model.dateStartFilter != ' ') ? ',{\"date_start\":{\"_gte\":\"${_model.dateStartFilter}\"}}' : ' '}${(_model.dateEndFilter != '') && (_model.dateEndFilter != ' ') ? ',{\"date_start\":{\"_lte\":\"${(String var1) {
+                                '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${widget!.staffId != null && widget!.staffId != '' ? widget!.staffId : FFAppState().staffid}\"}}}${_model.textController.text != null && _model.textController.text != '' ? ',{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${(_model.dateStartFilter != null && _model.dateStartFilter != '') && (_model.dateStartFilter != ' ') ? ',{\"date_start\":{\"_gte\":\"${_model.dateStartFilter}\"}}' : ' '}${(_model.dateEndFilter != null && _model.dateEndFilter != '') && (_model.dateEndFilter != ' ') ? ',{\"date_start\":{\"_lte\":\"${(String var1) {
                                     return DateTime.parse(var1)
-                                        .add(const Duration(days: 1))
+                                        .add(Duration(days: 1))
                                         .toString();
                                   }(_model.dateEndFilter)}\"}}' : ' '}${() {
-                              if ((widget.status != null) &&
-                                  (widget.status == 0)) {
+                              if ((widget!.status != null) &&
+                                  (widget!.status == 0)) {
                                 return ',{\"pass\":{\"_eq\":\"0\"}}';
-                              } else if ((widget.status != null) &&
-                                  (widget.status == 1)) {
+                              } else if ((widget!.status != null) &&
+                                  (widget!.status == 1)) {
                                 return ',{\"pass\":{\"_eq\":\"1\"}}';
                               } else {
                                 return ' ';
@@ -350,7 +362,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                         shrinkWrap: true,
                         reverse: false,
                         scrollDirection: Axis.vertical,
-                        separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                        separatorBuilder: (_, __) => SizedBox(height: 10.0),
                         builderDelegate: PagedChildBuilderDelegate<dynamic>(
                           // Customize what your widget looks like when it's loading the first page.
                           firstPageProgressIndicatorBuilder: (_) => Center(
@@ -376,8 +388,8 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                               ),
                             ),
                           ),
-                          noItemsFoundIndicatorBuilder: (_) => const Center(
-                            child: SizedBox(
+                          noItemsFoundIndicatorBuilder: (_) => Center(
+                            child: Container(
                               width: double.infinity,
                               child: DataNotFoundWidget(),
                             ),
@@ -387,7 +399,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                 .listViewPagingController!
                                 .itemList![dataListIndex];
                             return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -427,12 +439,12 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                         ParamType.String,
                                       ),
                                       'lessionId': serializeParam(
-                                        widget.lessionId,
+                                        widget!.lessionId,
                                         ParamType.String,
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -448,7 +460,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 8.0, 8.0, 10.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -490,7 +502,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 4.0, 8.0, 4.0),
                                                 child: RichText(
@@ -569,7 +581,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -589,12 +601,12 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                         ),
                                               ),
                                             ),
-                                            if ((((dataListItem.testId.goodScore).compareTo(double.parse(dataListItem.percentCorrect))).toString() ==
+                                            if (('${((dataListItem.testId.goodScore).compareTo(double.parse(dataListItem.percentCorrect))).toString()}' ==
                                                     '0') ||
-                                                (((dataListItem.testId.goodScore).compareTo(double.parse(dataListItem.percentCorrect))).toString() ==
+                                                ('${((dataListItem.testId.goodScore).compareTo(double.parse(dataListItem.percentCorrect))).toString()}' ==
                                                     '-1'))
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Container(
                                                   decoration: BoxDecoration(
@@ -602,16 +614,16 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                         BorderRadius.circular(
                                                             100.0),
                                                     border: Border.all(
-                                                      color: const Color(0xFF38B647),
+                                                      color: Color(0xFF38B647),
                                                       width: 1.0,
                                                     ),
                                                   ),
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(6.0, 2.0,
                                                                 6.0, 2.0),
                                                     child: Text(
@@ -624,7 +636,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF38B647),
                                                             fontSize: 14.0,
                                                             letterSpacing: 0.0,
@@ -633,10 +645,10 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            if (((dataListItem.testId.goodScore).compareTo(double.parse(dataListItem.percentCorrect))).toString() ==
+                                            if ('${((dataListItem.testId.goodScore).compareTo(double.parse(dataListItem.percentCorrect))).toString()}' ==
                                                 '1')
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Container(
                                                   decoration: BoxDecoration(
@@ -652,11 +664,11 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                     ),
                                                   ),
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(6.0, 2.0,
                                                                 6.0, 2.0),
                                                     child: Text(
@@ -681,7 +693,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                   ),
                                                 ),
                                               ),
-                                          ].divide(const SizedBox(width: 4.0)),
+                                          ].divide(SizedBox(width: 4.0)),
                                         ),
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -742,7 +754,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                                         .normal,
                                                               ),
                                                     ),
-                                                    const TextSpan(
+                                                    TextSpan(
                                                       text: '/',
                                                       style: TextStyle(),
                                                     ),
@@ -771,7 +783,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 4.0)),
+                                          ].divide(SizedBox(width: 4.0)),
                                         ),
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -838,9 +850,9 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                             FontWeight.normal,
                                                       ),
                                             ),
-                                          ].divide(const SizedBox(width: 4.0)),
+                                          ].divide(SizedBox(width: 4.0)),
                                         ),
-                                      ].divide(const SizedBox(height: 4.0)),
+                                      ].divide(SizedBox(height: 4.0)),
                                     ),
                                   ),
                                 ),

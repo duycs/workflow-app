@@ -1,15 +1,19 @@
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/procedure/alert_staff_check_departments/alert_staff_check_departments_widget.dart';
 import '/procedure/dropdown_departments_list/dropdown_departments_list_widget.dart';
 import '/procedure/dropdown_user_list/dropdown_user_list_widget.dart';
 import '/timekeeping/time_keeping_select_date/time_keeping_select_date_widget.dart';
 import '/timekeeping/timekeeping_shift/timekeeping_shift_widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'timekeeping_create_model.dart';
 export 'timekeeping_create_model.dart';
@@ -78,11 +82,11 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
           ),
           title: Row(
             mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: Text(
-                  'Tạo cấu hình chấm công',
+                  'Tạo cấu hình',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Nunito Sans',
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -102,7 +106,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                         !_model.formKey.currentState!.validate()) {
                       return;
                     }
-                    if (_model.staffSelectList.isNotEmpty) {
+                    if (_model.staffSelectList.length > 0) {
                       _model.checkStaffs = [];
                       setState(() {});
                       while (_model.loop < _model.staffSelectList.length) {
@@ -111,7 +115,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     e.id ==
                                     _model.staffSelectList[_model.loop].staffsId
                                         .id)
-                                .toList().isNotEmpty) {
+                                .toList()
+                                .length >
+                            0) {
                           _model.addToCheckStaffs(CheckUpdateStepStruct(
                             firstName: _model.staffSelectList[_model.loop]
                                 .staffsId.userId.firstName,
@@ -125,7 +131,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                       }
                       _model.loop = 0;
                       setState(() {});
-                      if (_model.checkStaffs.isNotEmpty) {
+                      if (_model.checkStaffs.length > 0) {
                         await showModalBottomSheet(
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,
@@ -159,7 +165,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                         ..staffs = _model.staffSelectList
                             .map((e) => e.staffsId.id)
                             .toList()
-                        ..name = _model.nameTextController.text,
+                        ..name = _model.nameTextController.text
+                        ..enable =
+                            _model.radioButtonValue == 'Áp dụng ngay' ? 1 : 0,
                     );
                     setState(() {});
                     await showDialog(
@@ -169,7 +177,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           elevation: 0,
                           insetPadding: EdgeInsets.zero,
                           backgroundColor: Colors.transparent,
-                          alignment: const AlignmentDirectional(0.0, 0.0)
+                          alignment: AlignmentDirectional(0.0, 0.0)
                               .resolve(Directionality.of(context)),
                           child: GestureDetector(
                             onTap: () => _model.unfocusNode.canRequestFocus
@@ -217,7 +225,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                 context.pushNamed(
                                   'TimekeepingList',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -243,14 +251,14 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -259,7 +267,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 12.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(2.0, 12.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -352,7 +360,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                   if ('1' == '2')
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                          EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                       child: RichText(
                         textScaler: MediaQuery.of(context).textScaler,
                         text: TextSpan(
@@ -437,7 +445,66 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(2.0, 12.0, 0.0, 4.0),
+                    child: RichText(
+                      textScaler: MediaQuery.of(context).textScaler,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'Áp dụng',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                          TextSpan(
+                            text: '*',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).error,
+                            ),
+                          )
+                        ],
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                    ),
+                  ),
+                  FlutterFlowRadioButton(
+                    options: ['Áp dụng ngay', 'Áp dụng sau'].toList(),
+                    onChanged: (val) => setState(() {}),
+                    controller: _model.radioButtonValueController ??=
+                        FormFieldController<String>('Áp dụng sau'),
+                    optionHeight: 32.0,
+                    textStyle:
+                        FlutterFlowTheme.of(context).labelMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              letterSpacing: 0.0,
+                            ),
+                    selectedTextStyle:
+                        FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              letterSpacing: 0.0,
+                            ),
+                    textPadding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 24.0, 0.0),
+                    buttonPosition: RadioButtonPosition.left,
+                    direction: Axis.horizontal,
+                    radioButtonColor: FlutterFlowTheme.of(context).primary,
+                    inactiveRadioButtonColor:
+                        FlutterFlowTheme.of(context).secondaryText,
+                    toggleable: false,
+                    horizontalAlignment: WrapAlignment.start,
+                    verticalAlignment: WrapCrossAlignment.start,
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -516,7 +583,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             : FlutterFlowTheme.of(context).info,
                         dense: true,
                         controlAffinity: ListTileControlAffinity.leading,
-                        shape: const RoundedRectangleBorder(
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0.0),
                             bottomRight: Radius.circular(0.0),
@@ -636,7 +703,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                         checkColor: FlutterFlowTheme.of(context).info,
                         dense: true,
                         controlAffinity: ListTileControlAffinity.leading,
-                        shape: const RoundedRectangleBorder(
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(8.0),
                             bottomRight: Radius.circular(8.0),
@@ -648,7 +715,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -724,7 +791,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           : FlutterFlowTheme.of(context).info,
                       dense: true,
                       controlAffinity: ListTileControlAffinity.leading,
-                      shape: const RoundedRectangleBorder(
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(0.0),
                           bottomRight: Radius.circular(0.0),
@@ -785,7 +852,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                         checkColor: FlutterFlowTheme.of(context).info,
                         dense: true,
                         controlAffinity: ListTileControlAffinity.leading,
-                        shape: const RoundedRectangleBorder(
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0.0),
                             bottomRight: Radius.circular(0.0),
@@ -848,7 +915,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           : FlutterFlowTheme.of(context).info,
                       dense: true,
                       controlAffinity: ListTileControlAffinity.leading,
-                      shape: const RoundedRectangleBorder(
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(0.0),
                           bottomRight: Radius.circular(0.0),
@@ -910,7 +977,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           : FlutterFlowTheme.of(context).info,
                       dense: true,
                       controlAffinity: ListTileControlAffinity.leading,
-                      shape: const RoundedRectangleBorder(
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(8.0),
                           bottomRight: Radius.circular(8.0),
@@ -929,7 +996,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                   if ('1' == '2')
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                          EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                       child: RichText(
                         textScaler: MediaQuery.of(context).textScaler,
                         text: TextSpan(
@@ -979,7 +1046,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                   : FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
-                                child: const TimeKeepingSelectDateWidget(),
+                                child: TimeKeepingSelectDateWidget(),
                               ),
                             );
                           },
@@ -994,7 +1061,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1023,7 +1090,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -1060,7 +1127,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: GestureDetector(
                                 onTap: () => _model.unfocusNode.canRequestFocus
@@ -1117,7 +1184,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1146,7 +1213,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
                     child: FlutterFlowChoiceChips(
                       options: _model.departmentSelectList
                           .map((e) => e.departmentsId.name)
@@ -1202,7 +1269,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -1239,7 +1306,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: GestureDetector(
                                 onTap: () => _model.unfocusNode.canRequestFocus
@@ -1271,7 +1338,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1300,7 +1367,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                     child: Text(
                       '*Lưu ý: Không chọn nhân viên thuộc bộ phận đã chọn ở trên',
                       maxLines: 2,
@@ -1314,7 +1381,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 0.0, 0.0),
                     child: Builder(
                       builder: (context) {
                         final staffs = _model.staffSelectList.toList();
@@ -1325,7 +1392,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: staffs.length,
-                          separatorBuilder: (_, __) => const SizedBox(height: 2.0),
+                          separatorBuilder: (_, __) => SizedBox(height: 2.0),
                           itemBuilder: (context, staffsIndex) {
                             final staffsItem = staffs[staffsIndex];
                             return Container(
@@ -1335,14 +1402,14 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 4.0, 0.0, 4.0),
                                         child: Text(
                                           staffsItem.staffsId.userId.firstName,
@@ -1384,7 +1451,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                       },
                     ),
                   ),
-                ].addToEnd(const SizedBox(height: 32.0)),
+                ].addToEnd(SizedBox(height: 32.0)),
               ),
             ),
           ),

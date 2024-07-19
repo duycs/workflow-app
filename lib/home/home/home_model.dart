@@ -1,8 +1,19 @@
 import '/components/nav_bar_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/notification/notification/notification_widget.dart';
+import '/training/author/author_sign_up/author_sign_up_widget.dart';
 import 'home_widget.dart' show HomeWidget;
+import 'package:badges/badges.dart' as badges;
+import 'package:smooth_page_indicator/smooth_page_indicator.dart'
+    as smooth_page_indicator;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HomeModel extends FlutterFlowModel<HomeWidget> {
   ///  Local state fields for this page.

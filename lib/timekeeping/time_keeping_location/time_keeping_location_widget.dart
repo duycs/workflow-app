@@ -6,9 +6,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
+import '/timekeeping/time_keeping_location_update/time_keeping_location_update_widget.dart';
+import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'time_keeping_location_model.dart';
@@ -45,9 +48,9 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.addressId != null && widget.addressId != '') {
+      if (widget!.addressId != null && widget!.addressId != '') {
         _model.locationSelect = AddressListStruct(
-          id: widget.addressId,
+          id: widget!.addressId,
         );
         setState(() {});
       } else {
@@ -70,24 +73,24 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 1.0),
+      alignment: AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(0.0),
             topRight: Radius.circular(0.0),
           ),
         ),
-        alignment: const AlignmentDirectional(0.0, 1.0),
+        alignment: AlignmentDirectional(0.0, 1.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -124,23 +127,50 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       if (_model.locationSelect != null) {
+                        var confirmDialogResponse = await showDialog<bool>(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('Xác nhận'),
+                                  content: Text('Bạn chắc chắn muốn lưu?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: Text('Hủy'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: Text('Xác nhận'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ) ??
+                            false;
+                        if (!confirmDialogResponse) {
+                          return;
+                        }
                         await widget.callback?.call(
                           _model.locationSelect?.id,
                           0,
                         );
                       } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Vui lòng chọn vị trí',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                            ),
-                            duration: const Duration(milliseconds: 4000),
-                            backgroundColor: FlutterFlowTheme.of(context).error,
-                          ),
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              content: Text('Vui lòng chọn Vị trí!'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('Ok'),
+                                ),
+                              ],
+                            );
+                          },
                         );
                         return;
                       }
@@ -149,9 +179,9 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                     options: FFButtonOptions(
                       height: 40.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -160,7 +190,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -194,7 +224,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                       shrinkWrap: true,
                       reverse: false,
                       scrollDirection: Axis.vertical,
-                      separatorBuilder: (_, __) => const SizedBox(height: 1.0),
+                      separatorBuilder: (_, __) => SizedBox(height: 4.0),
                       builderDelegate: PagedChildBuilderDelegate<dynamic>(
                         // Customize what your widget looks like when it's loading the first page.
                         firstPageProgressIndicatorBuilder: (_) => Center(
@@ -221,7 +251,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                           ),
                         ),
                         noItemsFoundIndicatorBuilder: (_) =>
-                            const DataNotFoundWidget(),
+                            DataNotFoundWidget(),
                         itemBuilder: (context, _, locationListIndex) {
                           final locationListItem = _model
                               .listViewPagingController!
@@ -237,7 +267,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                               children: [
                                 Theme(
                                   data: ThemeData(
-                                    checkboxTheme: const CheckboxThemeData(
+                                    checkboxTheme: CheckboxThemeData(
                                       visualDensity: VisualDensity.compact,
                                       materialTapTargetSize:
                                           MaterialTapTargetSize.shrinkWrap,
@@ -299,20 +329,55 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                         ListTileControlAffinity.trailing,
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 0.0, 12.0),
-                                  child: Text(
-                                    'Chỉnh sửa',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                Builder(
+                                  builder: (context) => Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 0.0, 12.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: Container(
+                                                height: double.infinity,
+                                                width: double.infinity,
+                                                child:
+                                                    TimeKeepingLocationUpdateWidget(
+                                                  item: locationListItem,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => setState(() {}));
+                                      },
+                                      child: Text(
+                                        'Chỉnh sửa',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Divider(
@@ -330,7 +395,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                   Builder(
                     builder: (context) => Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           await showDialog(
@@ -340,9 +405,9 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: const AlignmentDirectional(0.0, 0.0)
+                                alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: SizedBox(
+                                child: Container(
                                   height: double.infinity,
                                   width: double.infinity,
                                   child: TimeKeepingLocationCreatedWidget(
@@ -362,15 +427,15 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                           ).then((value) => setState(() {}));
                         },
                         text: 'Thêm địa chỉ',
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.add_home_outlined,
                           size: 24.0,
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -380,7 +445,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),

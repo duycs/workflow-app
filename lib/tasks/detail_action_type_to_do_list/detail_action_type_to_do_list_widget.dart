@@ -2,6 +2,8 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'detail_action_type_to_do_list_model.dart';
 export 'detail_action_type_to_do_list_model.dart';
 
@@ -65,10 +67,10 @@ class _DetailActionTypeToDoListWidgetState
           ),
           child: Checkbox(
             value: _model.checkboxValue ??=
-                widget.listData?.operationsId.status == 'done',
-            onChanged: (((widget.data?.status == 'todo') &&
-                        (widget.data?.current == 0)) ||
-                    (widget.data?.status == 'done'))
+                widget!.listData?.operationsId?.status == 'done',
+            onChanged: (((widget!.data?.status == 'todo') &&
+                        (widget!.data?.current == 0)) ||
+                    (widget!.data?.status == 'done'))
                 ? null
                 : (newValue) async {
                     setState(() => _model.checkboxValue = newValue!);
@@ -77,17 +79,17 @@ class _DetailActionTypeToDoListWidgetState
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                title: const Text('Xác nhận đã thực hiện?'),
+                                title: Text('Xác nhận đã thực hiện?'),
                                 actions: [
                                   TextButton(
                                     onPressed: () => Navigator.pop(
                                         alertDialogContext, false),
-                                    child: const Text('Đóng'),
+                                    child: Text('Đóng'),
                                   ),
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext, true),
-                                    child: const Text('Xác nhận'),
+                                    child: Text('Xác nhận'),
                                   ),
                                 ],
                               );
@@ -96,13 +98,13 @@ class _DetailActionTypeToDoListWidgetState
                           false;
                       if (confirmDialogResponse) {
                         await widget.callback?.call(
-                          widget.listData?.operationsId.id,
+                          widget!.listData?.operationsId?.id,
                           'done',
                         );
                       } else {
                         setState(() {
                           _model.checkboxValue =
-                              widget.listData?.operationsId.status == 'done';
+                              widget!.listData?.operationsId?.status == 'done';
                         });
                       }
                     } else {
@@ -110,17 +112,17 @@ class _DetailActionTypeToDoListWidgetState
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                title: const Text('Bạn chắc không?'),
+                                title: Text('Bạn chắc không?'),
                                 actions: [
                                   TextButton(
                                     onPressed: () => Navigator.pop(
                                         alertDialogContext, false),
-                                    child: const Text('Không'),
+                                    child: Text('Không'),
                                   ),
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext, true),
-                                    child: const Text('Có'),
+                                    child: Text('Có'),
                                   ),
                                 ],
                               );
@@ -129,7 +131,7 @@ class _DetailActionTypeToDoListWidgetState
                           false;
                       if (confirmDialogResponse) {
                         await widget.callback?.call(
-                          widget.listData?.operationsId.id,
+                          widget!.listData?.operationsId?.id,
                           'published',
                         );
                       } else {
@@ -144,16 +146,16 @@ class _DetailActionTypeToDoListWidgetState
               color: FlutterFlowTheme.of(context).secondaryText,
             ),
             activeColor: FlutterFlowTheme.of(context).primary,
-            checkColor: (((widget.data?.status == 'todo') &&
-                        (widget.data?.current == 0)) ||
-                    (widget.data?.status == 'done'))
+            checkColor: (((widget!.data?.status == 'todo') &&
+                        (widget!.data?.current == 0)) ||
+                    (widget!.data?.status == 'done'))
                 ? null
                 : FlutterFlowTheme.of(context).info,
           ),
         ),
         Expanded(
           child: Text(
-            widget.listData!.operationsId.content,
+            widget!.listData!.operationsId.content,
             maxLines: 5,
             style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'Nunito Sans',

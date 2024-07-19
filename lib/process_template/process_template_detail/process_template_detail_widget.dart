@@ -5,10 +5,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'process_template_detail_model.dart';
 export 'process_template_detail_model.dart';
@@ -46,7 +48,7 @@ class _ProcessTemplateDetailWidgetState
         _model.apiResultm7u =
             await ProcedureTemplateGroup.workflowsOneCall.call(
           accessToken: FFAppState().accessToken,
-          id: widget.id,
+          id: widget!.id,
         );
 
         if ((_model.apiResultm7u?.succeeded ?? true)) {
@@ -129,34 +131,34 @@ class _ProcessTemplateDetailWidgetState
           ),
           actions: [
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                 child: Container(
                   width: 100.0,
                   height: 100.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       var confirmDialogResponse = await showDialog<bool>(
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                content: const Text(
+                                content: Text(
                                     'Bạn có chắc chắn thêm vào quy trình!'),
                                 actions: [
                                   TextButton(
                                     onPressed: () => Navigator.pop(
                                         alertDialogContext, false),
-                                    child: const Text('Không'),
+                                    child: Text('Không'),
                                   ),
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext, true),
-                                    child: const Text('Có'),
+                                    child: Text('Có'),
                                   ),
                                 ],
                               );
@@ -167,14 +169,14 @@ class _ProcessTemplateDetailWidgetState
                         _model.apiResulthxs =
                             await ProcedureTemplateGroup.workflowCopyCall.call(
                           accessToken: FFAppState().accessToken,
-                          workflowId: widget.id,
+                          workflowId: widget!.id,
                         );
 
                         if ((_model.apiResulthxs?.succeeded ?? true)) {
                           context.pushNamed(
                             'ProcessTemplateList',
                             extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
+                              kTransitionInfoKey: TransitionInfo(
                                 hasTransition: true,
                                 transitionType: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
@@ -191,7 +193,7 @@ class _ProcessTemplateDetailWidgetState
                                       FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
-                              duration: const Duration(milliseconds: 4000),
+                              duration: Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).secondary,
                             ),
@@ -206,7 +208,7 @@ class _ProcessTemplateDetailWidgetState
                                       FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
-                              duration: const Duration(milliseconds: 4000),
+                              duration: Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).error,
                             ),
@@ -217,16 +219,16 @@ class _ProcessTemplateDetailWidgetState
                       setState(() {});
                     },
                     text: 'Áp dụng',
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.exit_to_app_sharp,
                       size: 15.0,
                     ),
                     options: FFButtonOptions(
                       height: 36.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -235,7 +237,7 @@ class _ProcessTemplateDetailWidgetState
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -254,7 +256,7 @@ class _ProcessTemplateDetailWidgetState
           child: Visibility(
             visible: _model.isLoad == true,
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0),
               child: SingleChildScrollView(
                 primary: false,
                 child: Column(
@@ -263,7 +265,7 @@ class _ProcessTemplateDetailWidgetState
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                       child: Container(
                         width: double.infinity,
                         height: 50.0,
@@ -276,7 +278,7 @@ class _ProcessTemplateDetailWidgetState
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               10.0, 5.0, 10.0, 5.0),
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -285,7 +287,7 @@ class _ProcessTemplateDetailWidgetState
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 20.0, 0.0),
                                   child: FaIcon(
                                     FontAwesomeIcons.projectDiagram,
@@ -314,7 +316,7 @@ class _ProcessTemplateDetailWidgetState
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                       child: Text(
                         'Sơ đồ quy trình',
                         style: FlutterFlowTheme.of(context)
@@ -340,14 +342,14 @@ class _ProcessTemplateDetailWidgetState
                           itemBuilder: (context, listViewIndex) {
                             final listViewItem = listView[listViewIndex];
                             return Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   if (listViewIndex > 0)
-                                    const Padding(
+                                    Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           25.0, 0.0, 0.0, 0.0),
                                       child: Row(
@@ -371,10 +373,10 @@ class _ProcessTemplateDetailWidgetState
                                       Expanded(
                                         child: Stack(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       40.0, 0.0, 0.0, 0.0),
                                               child: Container(
@@ -387,36 +389,36 @@ class _ProcessTemplateDetailWidgetState
                                                           ? true
                                                           : false;
                                                     }(listViewIndex)) {
-                                                      return const Color(0xFF3ABEF9);
+                                                      return Color(0xFF3ABEF9);
                                                     } else if ((int var1) {
                                                       return var1 % 5 == 1
                                                           ? true
                                                           : false;
                                                     }(listViewIndex)) {
-                                                      return const Color(0xFF26355D);
+                                                      return Color(0xFF26355D);
                                                     } else if ((int var1) {
                                                       return var1 % 5 == 2
                                                           ? true
                                                           : false;
                                                     }(listViewIndex)) {
-                                                      return const Color(0xFF059212);
+                                                      return Color(0xFF059212);
                                                     } else if ((int var1) {
                                                       return var1 % 5 == 3
                                                           ? true
                                                           : false;
                                                     }(listViewIndex)) {
-                                                      return const Color(0xFFFF407D);
+                                                      return Color(0xFFFF407D);
                                                     } else if ((int var1) {
                                                       return var1 % 5 == 4
                                                           ? true
                                                           : false;
                                                     }(listViewIndex)) {
-                                                      return const Color(0xFF7E8EF1);
+                                                      return Color(0xFF7E8EF1);
                                                     } else {
-                                                      return const Color(0x00000000);
+                                                      return Color(0x00000000);
                                                     }
                                                   }(),
-                                                  boxShadow: const [
+                                                  boxShadow: [
                                                     BoxShadow(
                                                       blurRadius: 4.0,
                                                       color: Color(0x33000000),
@@ -427,7 +429,7 @@ class _ProcessTemplateDetailWidgetState
                                                     )
                                                   ],
                                                   borderRadius:
-                                                      const BorderRadius.only(
+                                                      BorderRadius.only(
                                                     bottomLeft:
                                                         Radius.circular(30.0),
                                                     bottomRight:
@@ -438,7 +440,7 @@ class _ProcessTemplateDetailWidgetState
                                                         Radius.circular(30.0),
                                                   ),
                                                 ),
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Row(
                                                   mainAxisSize:
@@ -447,7 +449,7 @@ class _ProcessTemplateDetailWidgetState
                                                     Expanded(
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     30.0,
                                                                     0.0,
@@ -478,7 +480,7 @@ class _ProcessTemplateDetailWidgetState
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 0.0, 0.0, 0.0),
                                               child: Container(
                                                 width: 55.0,
@@ -487,7 +489,7 @@ class _ProcessTemplateDetailWidgetState
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBtnText,
-                                                  boxShadow: const [
+                                                  boxShadow: [
                                                     BoxShadow(
                                                       blurRadius: 4.0,
                                                       color: Color(0x6814181B),
@@ -532,7 +534,7 @@ class _ProcessTemplateDetailWidgetState
                                                                     : false;
                                                               }(
                                                                   listViewIndex)) {
-                                                                return const Color(
+                                                                return Color(
                                                                     0xFF3ABEF9);
                                                               } else if ((int
                                                                       var1) {
@@ -543,7 +545,7 @@ class _ProcessTemplateDetailWidgetState
                                                                     : false;
                                                               }(
                                                                   listViewIndex)) {
-                                                                return const Color(
+                                                                return Color(
                                                                     0xFF26355D);
                                                               } else if ((int
                                                                       var1) {
@@ -554,7 +556,7 @@ class _ProcessTemplateDetailWidgetState
                                                                     : false;
                                                               }(
                                                                   listViewIndex)) {
-                                                                return const Color(
+                                                                return Color(
                                                                     0xFF059212);
                                                               } else if ((int
                                                                       var1) {
@@ -565,7 +567,7 @@ class _ProcessTemplateDetailWidgetState
                                                                     : false;
                                                               }(
                                                                   listViewIndex)) {
-                                                                return const Color(
+                                                                return Color(
                                                                     0xFFFF407D);
                                                               } else if ((int
                                                                   var1) {
@@ -575,10 +577,10 @@ class _ProcessTemplateDetailWidgetState
                                                                     ? true
                                                                     : false;
                                                               }(listViewIndex)) {
-                                                                return const Color(
+                                                                return Color(
                                                                     0xFF7E8EF1);
                                                               } else {
-                                                                return const Color(
+                                                                return Color(
                                                                     0x00000000);
                                                               }
                                                             }(),
@@ -589,7 +591,7 @@ class _ProcessTemplateDetailWidgetState
                                                           ),
                                                     ),
                                                     Text(
-                                                      (listViewIndex + 1).toString(),
+                                                      '${(listViewIndex + 1).toString()}',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
@@ -605,7 +607,7 @@ class _ProcessTemplateDetailWidgetState
                                                                     : false;
                                                               }(
                                                                   listViewIndex)) {
-                                                                return const Color(
+                                                                return Color(
                                                                     0xFF3ABEF9);
                                                               } else if ((int
                                                                       var1) {
@@ -616,7 +618,7 @@ class _ProcessTemplateDetailWidgetState
                                                                     : false;
                                                               }(
                                                                   listViewIndex)) {
-                                                                return const Color(
+                                                                return Color(
                                                                     0xFF26355D);
                                                               } else if ((int
                                                                       var1) {
@@ -627,7 +629,7 @@ class _ProcessTemplateDetailWidgetState
                                                                     : false;
                                                               }(
                                                                   listViewIndex)) {
-                                                                return const Color(
+                                                                return Color(
                                                                     0xFF059212);
                                                               } else if ((int
                                                                       var1) {
@@ -638,7 +640,7 @@ class _ProcessTemplateDetailWidgetState
                                                                     : false;
                                                               }(
                                                                   listViewIndex)) {
-                                                                return const Color(
+                                                                return Color(
                                                                     0xFFFF407D);
                                                               } else if ((int
                                                                   var1) {
@@ -648,10 +650,10 @@ class _ProcessTemplateDetailWidgetState
                                                                     ? true
                                                                     : false;
                                                               }(listViewIndex)) {
-                                                                return const Color(
+                                                                return Color(
                                                                     0xFF7E8EF1);
                                                               } else {
-                                                                return const Color(
+                                                                return Color(
                                                                     0x00000000);
                                                               }
                                                             }(),
@@ -673,7 +675,7 @@ class _ProcessTemplateDetailWidgetState
                                   if (listViewIndex ==
                                       (_model.stepList.length - 1))
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 30.0, 0.0, 0.0),
                                       child: Container(
                                         width: 100.0,

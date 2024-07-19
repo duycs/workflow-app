@@ -1,10 +1,23 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
+import '/timekeeping/time_keeping_location_detail/time_keeping_location_detail_widget.dart';
+import '/timekeeping/time_keeping_location_update/time_keeping_location_update_widget.dart';
+import '/backend/schema/structs/index.dart';
+import 'dart:async';
 import 'timekeeping_location_list_widget.dart'
     show TimekeepingLocationListWidget;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 
 class TimekeepingLocationListModel
     extends FlutterFlowModel<TimekeepingLocationListWidget> {
@@ -69,7 +82,7 @@ class TimekeepingLocationListModel
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.isNotEmpty)
+          (pageItems.length > 0)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,
@@ -78,4 +91,20 @@ class TimekeepingLocationListModel
               : null,
         );
       });
+
+  Future waitForOnePageForListView({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
 }

@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/news_feed/newsfeed_edit/newsfeed_edit_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'action_newsfeed_detail_model.dart';
 export 'action_newsfeed_detail_model.dart';
 
@@ -67,7 +69,7 @@ class _ActionNewsfeedDetailWidgetState
       height: 120.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             blurRadius: 4.0,
             color: Color(0x2B202529),
@@ -80,7 +82,7 @@ class _ActionNewsfeedDetailWidgetState
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+        padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -92,7 +94,7 @@ class _ActionNewsfeedDetailWidgetState
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
+              padding: EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
               child: ListView(
                 padding: EdgeInsets.zero,
                 primary: false,
@@ -102,12 +104,6 @@ class _ActionNewsfeedDetailWidgetState
                   MouseRegion(
                     opaque: false,
                     cursor: MouseCursor.defer ?? MouseCursor.defer,
-                    onEnter: ((event) async {
-                      setState(() => _model.mouseRegionHovered1 = true);
-                    }),
-                    onExit: ((event) async {
-                      setState(() => _model.mouseRegionHovered1 = false);
-                    }),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -125,7 +121,7 @@ class _ActionNewsfeedDetailWidgetState
                             return Padding(
                               padding: MediaQuery.viewInsetsOf(context),
                               child: NewsfeedEditWidget(
-                                newsFeedData: widget.newsFeedList!,
+                                newsFeedData: widget!.newsFeedList!,
                                 callback: () async {
                                   _model.var1 = true;
                                   setState(() {});
@@ -139,7 +135,7 @@ class _ActionNewsfeedDetailWidgetState
                         setState(() {});
                       },
                       child: Container(
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: ListTile(
                           leading: Icon(
                             Icons.edit_sharp,
@@ -162,16 +158,16 @@ class _ActionNewsfeedDetailWidgetState
                         ),
                       ),
                     ),
+                    onEnter: ((event) async {
+                      setState(() => _model.mouseRegionHovered1 = true);
+                    }),
+                    onExit: ((event) async {
+                      setState(() => _model.mouseRegionHovered1 = false);
+                    }),
                   ),
                   MouseRegion(
                     opaque: false,
                     cursor: MouseCursor.defer ?? MouseCursor.defer,
-                    onEnter: ((event) async {
-                      setState(() => _model.mouseRegionHovered2 = true);
-                    }),
-                    onExit: ((event) async {
-                      setState(() => _model.mouseRegionHovered2 = false);
-                    }),
                     child: Visibility(
                       visible: '1111' == '2',
                       child: InkWell(
@@ -184,12 +180,12 @@ class _ActionNewsfeedDetailWidgetState
                             'NewsfeedDetail',
                             queryParameters: {
                               'newsfeedId': serializeParam(
-                                widget.newsFeedList?.id,
+                                widget!.newsFeedList?.id,
                                 ParamType.String,
                               ),
                             }.withoutNulls,
                             extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
+                              kTransitionInfoKey: TransitionInfo(
                                 hasTransition: true,
                                 transitionType: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
@@ -203,7 +199,7 @@ class _ActionNewsfeedDetailWidgetState
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 12.0, 0.0),
                               child: Icon(
                                 Icons.info_outline,
@@ -213,7 +209,7 @@ class _ActionNewsfeedDetailWidgetState
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 8.0),
                                 child: Text(
                                   'Xem chi tiết',
@@ -230,6 +226,12 @@ class _ActionNewsfeedDetailWidgetState
                         ),
                       ),
                     ),
+                    onEnter: ((event) async {
+                      setState(() => _model.mouseRegionHovered2 = true);
+                    }),
+                    onExit: ((event) async {
+                      setState(() => _model.mouseRegionHovered2 = false);
+                    }),
                   ),
                 ],
               ),

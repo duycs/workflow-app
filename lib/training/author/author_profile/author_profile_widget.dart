@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
@@ -9,11 +10,15 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/training/author/update_author/update_author_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'author_profile_model.dart';
 export 'author_profile_model.dart';
@@ -142,14 +147,14 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                               ),
                             ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 16.0, 0.0, 0.0),
                             child: FlutterFlowIconButton(
                               borderColor: Colors.transparent,
                               borderRadius: 30.0,
                               borderWidth: 1.0,
                               buttonSize: 60.0,
-                              fillColor: const Color(0x90FFFFFF),
+                              fillColor: Color(0x90FFFFFF),
                               icon: Icon(
                                 Icons.arrow_back_rounded,
                                 color: FlutterFlowTheme.of(context).primaryText,
@@ -159,7 +164,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                 context.pushNamed(
                                   'Profile',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -173,7 +178,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                       ),
                       if (_model.author != null)
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.0, 16.0, 0.0),
                           child: Text(
                             _model.author!.alias,
@@ -187,7 +192,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                           ),
                         ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -207,6 +212,12 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                               },
                             ),
                             if (formatNumber(
+                                      _model.programs.length,
+                                      formatType: FormatType.decimal,
+                                      decimalType: DecimalType.commaDecimal,
+                                    ) !=
+                                    null &&
+                                formatNumber(
                                       _model.programs.length,
                                       formatType: FormatType.decimal,
                                       decimalType: DecimalType.commaDecimal,
@@ -245,7 +256,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                             ),
                             if (_model.author?.orderCount != null)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 28.0, 0.0),
                                 child: Text(
                                   '${formatNumber(
@@ -270,11 +281,11 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                         Container(
                           width: double.infinity,
                           height: MediaQuery.sizeOf(context).height * 1.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Column(
                             children: [
                               Align(
-                                alignment: const Alignment(0.0, 0),
+                                alignment: Alignment(0.0, 0),
                                 child: TabBar(
                                   labelColor:
                                       FlutterFlowTheme.of(context).primaryText,
@@ -296,7 +307,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                           ),
                                   indicatorColor:
                                       FlutterFlowTheme.of(context).primaryText,
-                                  tabs: const [
+                                  tabs: [
                                     Tab(
                                       text: 'Khóa học',
                                     ),
@@ -331,7 +342,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                         if (_model.programs.isNotEmpty)
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 24.0),
                                               child: PagedListView<
@@ -358,7 +369,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                 reverse: false,
                                                 scrollDirection: Axis.vertical,
                                                 separatorBuilder: (_, __) =>
-                                                    const SizedBox(height: 8.0),
+                                                    SizedBox(height: 8.0),
                                                 builderDelegate:
                                                     PagedChildBuilderDelegate<
                                                         dynamic>(
@@ -400,7 +411,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                   ),
                                                   noItemsFoundIndicatorBuilder:
                                                       (_) =>
-                                                          const DataNotFoundWidget(),
+                                                          DataNotFoundWidget(),
                                                   itemBuilder: (context, _,
                                                       programListIndex) {
                                                     final programListItem = _model
@@ -409,7 +420,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                         programListIndex];
                                                     return Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   12.0,
@@ -439,7 +450,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                             extra: <String,
                                                                 dynamic>{
                                                               kTransitionInfoKey:
-                                                                  const TransitionInfo(
+                                                                  TransitionInfo(
                                                                 hasTransition:
                                                                     true,
                                                                 transitionType:
@@ -504,7 +515,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                               fontWeight: FontWeight.w600,
                                                                             ),
                                                                       ),
-                                                                    ].divide(const SizedBox(
+                                                                    ].divide(SizedBox(
                                                                         width:
                                                                             4.0)),
                                                                   ),
@@ -557,7 +568,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                                 fontStyle: FontStyle.italic,
                                                                               ),
                                                                         ),
-                                                                        const TextSpan(
+                                                                        TextSpan(
                                                                           text:
                                                                               'đ',
                                                                           style:
@@ -568,7 +579,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                                 FontStyle.italic,
                                                                           ),
                                                                         ),
-                                                                        const TextSpan(
+                                                                        TextSpan(
                                                                           text:
                                                                               ' ',
                                                                           style:
@@ -588,7 +599,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                                 DecimalType.commaDecimal,
                                                                           ),
                                                                           style:
-                                                                              const TextStyle(
+                                                                              TextStyle(
                                                                             color:
                                                                                 Color(0xFFFF0000),
                                                                             fontSize:
@@ -599,7 +610,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                                 FontStyle.italic,
                                                                           ),
                                                                         ),
-                                                                        const TextSpan(
+                                                                        TextSpan(
                                                                           text:
                                                                               'đ',
                                                                           style:
@@ -629,7 +640,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -667,14 +678,14 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                               0.0,
                                                                         ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     height:
                                                                         2.0)),
                                                               ),
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           8.0,
@@ -684,7 +695,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                 width: 100.0,
                                                                 height: 100.0,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: InkWell(
                                                                   splashColor:
                                                                       Colors
@@ -747,7 +758,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                 ),
                                                               ),
                                                             ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               width: 8.0)),
                                                         ),
                                                       ),
@@ -758,9 +769,9 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                             ),
                                           ),
                                         if ((_model.programs.isNotEmpty) ||
-                                            (_model.programs.isEmpty))
+                                            (_model.programs.length == 0))
                                           Padding(
-                                            padding: const EdgeInsets.all(16.0),
+                                            padding: EdgeInsets.all(16.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
                                                 context.pushNamed(
@@ -773,7 +784,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        const TransitionInfo(
+                                                        TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -785,18 +796,18 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                 );
                                               },
                                               text: 'Thêm khóa học',
-                                              icon: const Icon(
+                                              icon: Icon(
                                                 Icons.add,
                                                 size: 15.0,
                                               ),
                                               options: FFButtonOptions(
                                                 width: 150.0,
                                                 height: 40.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 16.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -814,7 +825,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                                 elevation: 3.0,
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -828,18 +839,18 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                     Visibility(
                                       visible: _model.author != null,
                                       child: Padding(
-                                        padding: const EdgeInsets.all(24.0),
+                                        padding: EdgeInsets.all(24.0),
                                         child: Builder(
                                           builder: (context) {
                                             final domainList = _model
                                                     .author?.domains
-                                                    .toList() ??
+                                                    ?.toList() ??
                                                 [];
 
                                             return GridView.builder(
                                               padding: EdgeInsets.zero,
                                               gridDelegate:
-                                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                                  SliverGridDelegateWithFixedCrossAxisCount(
                                                 crossAxisCount: 2,
                                                 crossAxisSpacing: 20.0,
                                                 childAspectRatio: 1.0,
@@ -852,7 +863,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                 final domainListItem =
                                                     domainList[domainListIndex];
                                                 return Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 20.0),
                                                   child: InkWell(
@@ -892,7 +903,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -918,12 +929,12 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                       ),
                                                       child: Stack(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 1.0),
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Container(
                                                               width: double
@@ -942,16 +953,16 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                             context)
                                                                         .primaryText
                                                                   ],
-                                                                  stops: const [
+                                                                  stops: [
                                                                     0.0,
                                                                     1.0
                                                                   ],
                                                                   begin:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           -1.0),
                                                                   end:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0,
                                                                           1.0),
                                                                 ),
@@ -964,7 +975,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -1018,7 +1029,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                         if (_model.author != null)
                                           Flexible(
                                             child: Padding(
-                                              padding: const EdgeInsets.all(16.0),
+                                              padding: EdgeInsets.all(16.0),
                                               child: SingleChildScrollView(
                                                 primary: false,
                                                 child: Column(
@@ -1029,7 +1040,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   0.0,
@@ -1066,7 +1077,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     16.0,
                                                                     16.0,
@@ -1089,7 +1100,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   16.0,
@@ -1126,7 +1137,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     16.0,
                                                                     16.0,
@@ -1150,7 +1161,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   16.0,
@@ -1172,7 +1183,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   8.0,
@@ -1287,8 +1298,8 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                     ),
                                                   ]
                                                       .divide(
-                                                          const SizedBox(height: 4.0))
-                                                      .addToEnd(const SizedBox(
+                                                          SizedBox(height: 4.0))
+                                                      .addToEnd(SizedBox(
                                                           height: 32.0)),
                                                 ),
                                               ),
@@ -1296,7 +1307,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                           ),
                                         Builder(
                                           builder: (context) => Padding(
-                                            padding: const EdgeInsets.all(16.0),
+                                            padding: EdgeInsets.all(16.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
                                                 await showDialog(
@@ -1309,7 +1320,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -1325,7 +1336,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                             : FocusScope.of(
                                                                     context)
                                                                 .unfocus(),
-                                                        child: SizedBox(
+                                                        child: Container(
                                                           height:
                                                               double.infinity,
                                                           width:
@@ -1341,7 +1352,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                 .description,
                                                             domains: _model
                                                                 .author?.domains
-                                                                .map((e) => e
+                                                                ?.map((e) => e
                                                                     .domainsId
                                                                     .id)
                                                                 .toList(),
@@ -1349,7 +1360,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                 .author!.id,
                                                             domainIds: _model
                                                                 .author?.domains
-                                                                .map(
+                                                                ?.map(
                                                                     (e) => e.id)
                                                                 .toList(),
                                                             callBack: () async {
@@ -1371,18 +1382,18 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                     (value) => setState(() {}));
                                               },
                                               text: 'Chỉnh sửa',
-                                              icon: const Icon(
+                                              icon: Icon(
                                                 Icons.edit,
                                                 size: 15.0,
                                               ),
                                               options: FFButtonOptions(
                                                 width: 150.0,
                                                 height: 40.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -1399,7 +1410,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                                 elevation: 3.0,
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -1449,7 +1460,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                       ),
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Khoá học',
                                           style: FlutterFlowTheme.of(context)
@@ -1504,7 +1515,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                       ),
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Lĩnh vực',
                                           style: FlutterFlowTheme.of(context)
@@ -1559,7 +1570,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                       ),
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Profile',
                                           style: FlutterFlowTheme.of(context)
@@ -1598,7 +1609,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                       if ((_model.checkClick == '1') &&
                           (_model.programs.isNotEmpty))
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 24.0),
                           child:
                               PagedListView<ApiPagingParams, dynamic>.separated(
@@ -1618,7 +1629,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                             shrinkWrap: true,
                             reverse: false,
                             scrollDirection: Axis.vertical,
-                            separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                            separatorBuilder: (_, __) => SizedBox(height: 8.0),
                             builderDelegate: PagedChildBuilderDelegate<dynamic>(
                               // Customize what your widget looks like when it's loading the first page.
                               firstPageProgressIndicatorBuilder: (_) => Center(
@@ -1645,13 +1656,13 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                 ),
                               ),
                               noItemsFoundIndicatorBuilder: (_) =>
-                                  const DataNotFoundWidget(),
+                                  DataNotFoundWidget(),
                               itemBuilder: (context, _, programListIndex) {
                                 final programListItem = _model
                                     .listViewPagingController2!
                                     .itemList![programListIndex];
                                 return Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 8.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -1668,7 +1679,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
+                                          kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -1741,7 +1752,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                               FontWeight.w600,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(width: 4.0)),
+                                                ].divide(SizedBox(width: 4.0)),
                                               ),
                                               Text(
                                                 'Đã bán ${formatNumber(
@@ -1791,7 +1802,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                 .italic,
                                                           ),
                                                     ),
-                                                    const TextSpan(
+                                                    TextSpan(
                                                       text: 'đ',
                                                       style: TextStyle(
                                                         fontSize: 12.0,
@@ -1799,7 +1810,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                             FontStyle.italic,
                                                       ),
                                                     ),
-                                                    const TextSpan(
+                                                    TextSpan(
                                                       text: ' ',
                                                       style: TextStyle(
                                                         fontSize: 12.0,
@@ -1816,7 +1827,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                         decimalType: DecimalType
                                                             .commaDecimal,
                                                       ),
-                                                      style: const TextStyle(
+                                                      style: TextStyle(
                                                         color:
                                                             Color(0xFFFF0000),
                                                         fontSize: 11.0,
@@ -1827,7 +1838,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                             FontStyle.italic,
                                                       ),
                                                     ),
-                                                    const TextSpan(
+                                                    TextSpan(
                                                       text: 'đ',
                                                       style: TextStyle(
                                                         color:
@@ -1853,7 +1864,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 4.0),
                                                 child: Text(
@@ -1882,17 +1893,17 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(height: 2.0)),
+                                            ].divide(SizedBox(height: 2.0)),
                                           ),
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 0.0, 8.0),
                                           child: Container(
                                             width: 100.0,
                                             height: 100.0,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
                                               focusColor: Colors.transparent,
@@ -1954,7 +1965,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 8.0)),
+                                      ].divide(SizedBox(width: 8.0)),
                                     ),
                                   ),
                                 );
@@ -1965,9 +1976,9 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                       if ((_model.checkLoad == true) &&
                           (_model.checkClick == '1'))
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: EdgeInsets.all(16.0),
                             child: FFButtonWidget(
                               onPressed: () async {
                                 context.pushNamed(
@@ -1979,7 +1990,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -1988,16 +1999,16 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                 );
                               },
                               text: 'Thêm khóa học',
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.add,
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
                                 width: 150.0,
                                 height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -2009,7 +2020,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -2025,16 +2036,16 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                 .secondaryBackground,
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: EdgeInsets.all(16.0),
                             child: Builder(
                               builder: (context) {
                                 final domainList =
-                                    _model.author?.domains.toList() ?? [];
+                                    _model.author?.domains?.toList() ?? [];
 
                                 return GridView.builder(
                                   padding: EdgeInsets.zero,
                                   gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                      SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                     crossAxisSpacing: 20.0,
                                     childAspectRatio: 1.0,
@@ -2047,7 +2058,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                     final domainListItem =
                                         domainList[domainListIndex];
                                     return Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 20.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -2077,7 +2088,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  const TransitionInfo(
+                                                  TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -2100,10 +2111,10 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                           ),
                                           child: Stack(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 1.0),
+                                                AlignmentDirectional(0.0, 1.0),
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Container(
                                                   width: double.infinity,
@@ -2118,11 +2129,11 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                 context)
                                                             .primaryText
                                                       ],
-                                                      stops: const [0.0, 1.0],
+                                                      stops: [0.0, 1.0],
                                                       begin:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, -1.0),
-                                                      end: const AlignmentDirectional(
+                                                      end: AlignmentDirectional(
                                                           0, 1.0),
                                                     ),
                                                     borderRadius:
@@ -2132,7 +2143,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         10.0, 0.0, 10.0, 16.0),
                                                 child: Text(
@@ -2168,13 +2179,13 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                         ),
                       if ((_model.checkClick == '3') && (_model.author != null))
                         Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: EdgeInsets.all(16.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Tên tác giả',
@@ -2198,7 +2209,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 16.0, 16.0, 16.0),
                                   child: Text(
                                     _model.author!.alias,
@@ -2213,7 +2224,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 16.0, 0.0, 0.0),
                                 child: Text(
                                   'Giới thiệu về tôi',
@@ -2238,7 +2249,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 16.0, 16.0, 16.0),
                                   child: Text(
                                     _model.author!.description,
@@ -2253,7 +2264,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 16.0, 0.0, 0.0),
                                 child: Text(
                                   'Lĩnh vực chính',
@@ -2266,7 +2277,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 0.0),
                                 child: FlutterFlowChoiceChips(
                                   options: _model.author!.domains
@@ -2335,16 +2346,16 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                   wrapped: true,
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 4.0)),
+                            ].divide(SizedBox(height: 4.0)),
                           ),
                         ),
                       if ((_model.checkClick == '3') &&
                           (_model.checkLoad == true))
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 1.0),
+                          alignment: AlignmentDirectional(0.0, 1.0),
                           child: Builder(
                             builder: (context) => Padding(
-                              padding: const EdgeInsets.all(16.0),
+                              padding: EdgeInsets.all(16.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   await showDialog(
@@ -2355,7 +2366,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: GestureDetector(
@@ -2366,7 +2377,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                       _model.unfocusNode)
                                               : FocusScope.of(context)
                                                   .unfocus(),
-                                          child: SizedBox(
+                                          child: Container(
                                             height: double.infinity,
                                             width: double.infinity,
                                             child: UpdateAuthorWidget(
@@ -2375,11 +2386,11 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                               description:
                                                   _model.author!.description,
                                               domains: _model.author?.domains
-                                                  .map((e) => e.domainsId.id)
+                                                  ?.map((e) => e.domainsId.id)
                                                   .toList(),
                                               id: _model.author!.id,
                                               domainIds: _model.author?.domains
-                                                  .map((e) => e.id)
+                                                  ?.map((e) => e.id)
                                                   .toList(),
                                               callBack: () async {
                                                 await _model
@@ -2398,16 +2409,16 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                   ).then((value) => setState(() {}));
                                 },
                                 text: 'Chỉnh sửa',
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.edit,
                                   size: 15.0,
                                 ),
                                 options: FFButtonOptions(
                                   width: 150.0,
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -2419,7 +2430,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 3.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -2436,13 +2447,13 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
             if ((_model.author == null) && ('1' == '2'))
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 4.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 4.0),
                   child: Container(
                     width: double.infinity,
                     height: 140.0,
-                    decoration: const BoxDecoration(),
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: SizedBox(
+                    decoration: BoxDecoration(),
+                    alignment: AlignmentDirectional(0.0, 0.0),
+                    child: Container(
                       width: double.infinity,
                       height: double.infinity,
                       child: custom_widgets.LoadingPageWidget(

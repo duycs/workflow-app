@@ -22,11 +22,9 @@ import '/custom_code/actions/biometric_create_public_key.dart' as create_block;
 Future<String?> biometricGetPublicKey() async {
   final storage = FlutterSecureStorage();
   const publicKeyKey = 'biometric_public_key';
-  const emailKey = 'wf_email';
 
   try {
     String? publicKeyPem = await storage.read(key: publicKeyKey);
-    String? email = await storage.read(key: emailKey);
 
     if (publicKeyPem == null) {
       print('Không tồn tại public key.');

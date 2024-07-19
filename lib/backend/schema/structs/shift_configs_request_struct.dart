@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_getters_setters
 
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -13,13 +14,15 @@ class ShiftConfigsRequestStruct extends BaseStruct {
     List<ShiftsIdShiftConfigsRequestStruct>? shifts,
     String? name,
     String? organizationId,
+    int? enable,
   })  : _status = status,
         _addressId = addressId,
         _departments = departments,
         _staffs = staffs,
         _shifts = shifts,
         _name = name,
-        _organizationId = organizationId;
+        _organizationId = organizationId,
+        _enable = enable;
 
   // "status" field.
   String? _status;
@@ -83,6 +86,15 @@ class ShiftConfigsRequestStruct extends BaseStruct {
 
   bool hasOrganizationId() => _organizationId != null;
 
+  // "enable" field.
+  int? _enable;
+  int get enable => _enable ?? 0;
+  set enable(int? val) => _enable = val;
+
+  void incrementEnable(int amount) => enable = enable + amount;
+
+  bool hasEnable() => _enable != null;
+
   static ShiftConfigsRequestStruct fromMap(Map<String, dynamic> data) =>
       ShiftConfigsRequestStruct(
         status: data['status'] as String?,
@@ -95,6 +107,7 @@ class ShiftConfigsRequestStruct extends BaseStruct {
         ),
         name: data['name'] as String?,
         organizationId: data['organization_id'] as String?,
+        enable: castToType<int>(data['enable']),
       );
 
   static ShiftConfigsRequestStruct? maybeFromMap(dynamic data) => data is Map
@@ -109,6 +122,7 @@ class ShiftConfigsRequestStruct extends BaseStruct {
         'shifts': _shifts?.map((e) => e.toMap()).toList(),
         'name': _name,
         'organization_id': _organizationId,
+        'enable': _enable,
       }.withoutNulls;
 
   @override
@@ -143,6 +157,10 @@ class ShiftConfigsRequestStruct extends BaseStruct {
         'organization_id': serializeParam(
           _organizationId,
           ParamType.String,
+        ),
+        'enable': serializeParam(
+          _enable,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -185,6 +203,11 @@ class ShiftConfigsRequestStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        enable: deserializeParam(
+          data['enable'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -200,12 +223,21 @@ class ShiftConfigsRequestStruct extends BaseStruct {
         listEquality.equals(staffs, other.staffs) &&
         listEquality.equals(shifts, other.shifts) &&
         name == other.name &&
-        organizationId == other.organizationId;
+        organizationId == other.organizationId &&
+        enable == other.enable;
   }
 
   @override
-  int get hashCode => const ListEquality().hash(
-      [status, addressId, departments, staffs, shifts, name, organizationId]);
+  int get hashCode => const ListEquality().hash([
+        status,
+        addressId,
+        departments,
+        staffs,
+        shifts,
+        name,
+        organizationId,
+        enable
+      ]);
 }
 
 ShiftConfigsRequestStruct createShiftConfigsRequestStruct({
@@ -213,10 +245,12 @@ ShiftConfigsRequestStruct createShiftConfigsRequestStruct({
   String? addressId,
   String? name,
   String? organizationId,
+  int? enable,
 }) =>
     ShiftConfigsRequestStruct(
       status: status,
       addressId: addressId,
       name: name,
       organizationId: organizationId,
+      enable: enable,
     );

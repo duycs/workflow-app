@@ -11,6 +11,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_model.dart';
 export 'home_model.dart';
@@ -68,7 +69,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 width: 35.0,
                 height: 35.0,
                 clipBehavior: Clip.antiAlias,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 child: Image.network(
@@ -106,12 +107,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                         elevation: 0,
                         insetPadding: EdgeInsets.zero,
                         backgroundColor: Colors.transparent,
-                        alignment: const AlignmentDirectional(0.0, 0.0)
+                        alignment: AlignmentDirectional(0.0, 0.0)
                             .resolve(Directionality.of(context)),
-                        child: SizedBox(
+                        child: Container(
                           height: MediaQuery.sizeOf(context).height * 1.0,
                           width: MediaQuery.sizeOf(context).width * 1.0,
-                          child: const NotificationWidget(),
+                          child: NotificationWidget(),
                         ),
                       );
                     },
@@ -130,7 +131,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   shape: badges.BadgeShape.circle,
                   badgeColor: FlutterFlowTheme.of(context).primary,
                   elevation: 4.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                   position: badges.BadgePosition.topEnd(),
                   animationType: badges.BadgeAnimationType.scale,
                   toAnimate: true,
@@ -142,19 +143,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ),
               ),
             ),
-          ].divide(const SizedBox(width: 16.0)),
+          ].divide(SizedBox(width: 16.0)),
         ),
-        actions: const [],
+        actions: [],
         centerTitle: false,
         elevation: 1.0,
       ),
       body: Stack(
-        alignment: const AlignmentDirectional(0.0, 1.0),
+        alignment: AlignmentDirectional(0.0, 1.0),
         children: [
           Align(
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 0.0, 0.0),
               child: SingleChildScrollView(
                 primary: false,
                 child: Column(
@@ -163,8 +164,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 12.0, 20.0, 0.0),
-                      child: SizedBox(
+                          EdgeInsetsDirectional.fromSTEB(20.0, 12.0, 20.0, 0.0),
+                      child: Container(
                         width: double.infinity,
                         height: 150.0,
                         child: CarouselSlider(
@@ -185,7 +186,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 context.pushNamed(
                                   'ProfileCPN',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -216,7 +217,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -245,9 +246,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                             scrollDirection: Axis.horizontal,
                             autoPlay: true,
                             autoPlayAnimationDuration:
-                                const Duration(milliseconds: 800),
+                                Duration(milliseconds: 800),
                             autoPlayInterval:
-                                const Duration(milliseconds: (800 + 4000)),
+                                Duration(milliseconds: (800 + 4000)),
                             autoPlayCurve: Curves.linear,
                             pauseAutoPlayInFiniteScroll: true,
                             onPageChanged: (index, _) =>
@@ -258,7 +259,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ),
                     if (FFAppState().marketOn == true)
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 30.0, 20.0, 10.0),
                         child: Text(
                           'Marketplace',
@@ -273,11 +274,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                       ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                       child: Container(
                         height: 150.0,
-                        decoration: const BoxDecoration(),
-                        child: SizedBox(
+                        decoration: BoxDecoration(),
+                        child: Container(
                           width: double.infinity,
                           height: 500.0,
                           child: Stack(
@@ -289,7 +290,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 scrollDirection: Axis.horizontal,
                                 children: [
                                   Stack(
-                                    alignment: const AlignmentDirectional(1.0, 1.0),
+                                    alignment: AlignmentDirectional(1.0, 1.0),
                                     children: [
                                       if (FFAppState().marketOn == true)
                                         ClipRRect(
@@ -303,7 +304,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           ),
                                         ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 8.0, 8.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -313,7 +314,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               CrossAxisAlignment.end,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 8.0),
                                               child: FFButtonWidget(
                                                 onPressed: () async {
@@ -321,7 +322,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     'MarketPlace',
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -333,17 +334,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   );
                                                 },
                                                 text: 'Khám phá ngay',
-                                                icon: const Icon(
+                                                icon: Icon(
                                                   Icons.open_in_new_outlined,
                                                   size: 24.0,
                                                 ),
                                                 options: FFButtonOptions(
                                                   height: 36.0,
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 0.0, 16.0, 0.0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -363,7 +364,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                                   elevation: 3.0,
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -374,112 +375,135 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               ),
                                             ),
                                             if (false)
-                                              FlutterFlowIconButton(
-                                                borderRadius: 12.0,
-                                                borderWidth: 1.0,
-                                                buttonSize: 40.0,
-                                                fillColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                                icon: Icon(
-                                                  Icons.open_in_new_outlined,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  size: 24.0,
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 8.0),
+                                                child: FlutterFlowIconButton(
+                                                  borderRadius: 12.0,
+                                                  borderWidth: 1.0,
+                                                  buttonSize: 40.0,
+                                                  fillColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryBackground,
+                                                  icon: Icon(
+                                                    Icons.open_in_new_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    size: 24.0,
+                                                  ),
+                                                  onPressed: () async {
+                                                    context.pushNamed(
+                                                      'MarketPlace',
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          duration: Duration(
+                                                              milliseconds: 0),
+                                                        ),
+                                                      },
+                                                    );
+                                                  },
                                                 ),
-                                                onPressed: () async {
-                                                  context.pushNamed(
-                                                    'MarketPlace',
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          const TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .fade,
-                                                        duration: Duration(
-                                                            milliseconds: 0),
-                                                      ),
-                                                    },
-                                                  );
-                                                },
                                               ),
                                             if ((FFAppState().user.role !=
                                                     '3755a98d-f064-45cd-80e4-5084ab1dd2c4') &&
                                                 (FFAppState().Author == null))
                                               Builder(
-                                                builder: (context) =>
-                                                    FFButtonWidget(
-                                                  onPressed: () async {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder: (dialogContext) {
-                                                        return Dialog(
-                                                          elevation: 0,
-                                                          insetPadding:
-                                                              EdgeInsets.zero,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          alignment: const AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                          child: SizedBox(
-                                                            height: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .height *
-                                                                1.0,
-                                                            width: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .width *
-                                                                1.0,
-                                                            child:
-                                                                const AuthorSignUpWidget(),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ).then((value) =>
-                                                        setState(() {}));
-                                                  },
-                                                  text: 'Đăng ký quyền tác giả',
-                                                  icon: const FaIcon(
-                                                    FontAwesomeIcons
-                                                        .fileSignature,
-                                                    size: 22.0,
-                                                  ),
-                                                  options: FFButtonOptions(
-                                                    height: 36.0,
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 0.0,
-                                                                16.0, 0.0),
-                                                    iconPadding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          color: Colors.white,
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            50.0),
+                                                builder: (context) => Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 8.0),
+                                                  child: FFButtonWidget(
+                                                    onPressed: () async {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (dialogContext) {
+                                                          return Dialog(
+                                                            elevation: 0,
+                                                            insetPadding:
+                                                                EdgeInsets.zero,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            alignment: AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                            child: Container(
+                                                              height: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .height *
+                                                                  1.0,
+                                                              width: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .width *
+                                                                  1.0,
+                                                              child:
+                                                                  AuthorSignUpWidget(),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          setState(() {}));
+                                                    },
+                                                    text:
+                                                        'Đăng ký quyền tác giả',
+                                                    icon: FaIcon(
+                                                      FontAwesomeIcons
+                                                          .fileSignature,
+                                                      size: 22.0,
+                                                    ),
+                                                    options: FFButtonOptions(
+                                                      height: 36.0,
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  0.0,
+                                                                  16.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50.0),
+                                                    ),
                                                   ),
                                                 ),
                                               ),
@@ -492,7 +516,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     'AuthorProfile',
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -504,18 +528,18 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   );
                                                 },
                                                 text: 'Quản lý tác giả',
-                                                icon: const FaIcon(
+                                                icon: FaIcon(
                                                   FontAwesomeIcons
                                                       .fileSignature,
                                                   size: 22.0,
                                                 ),
                                                 options: FFButtonOptions(
                                                   height: 35.0,
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 0.0, 16.0, 0.0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -538,7 +562,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           50.0),
                                                 ),
                                               ),
-                                          ].divide(const SizedBox(height: 8.0)),
+                                          ],
                                         ),
                                       ),
                                     ],
@@ -564,9 +588,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 ],
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 1.0),
+                                alignment: AlignmentDirectional(-1.0, 1.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 16.0),
                                   child:
                                       smooth_page_indicator.SmoothPageIndicator(
@@ -578,7 +602,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       await _model.pageViewController!
                                           .animateToPage(
                                         i,
-                                        duration: const Duration(milliseconds: 500),
+                                        duration: Duration(milliseconds: 500),
                                         curve: Curves.ease,
                                       );
                                       setState(() {});
@@ -610,7 +634,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         (FFAppState().user.role ==
                             'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 30.0, 20.0, 10.0),
                         child: Text(
                           'Đào tạo',
@@ -629,7 +653,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         (FFAppState().user.role ==
                             'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -659,7 +683,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -677,12 +701,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     border: Border.all(
                                       color: _model.checkColorBorder == '1'
                                           ? FlutterFlowTheme.of(context).primary
-                                          : const Color(0x00000000),
+                                          : Color(0x00000000),
                                     ),
                                   ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -707,7 +731,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(const SizedBox(height: 2.0)),
+                                      ].divide(SizedBox(height: 2.0)),
                                     ),
                                   ),
                                 ),
@@ -734,7 +758,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -752,12 +776,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     border: Border.all(
                                       color: _model.checkColorBorder == '2'
                                           ? FlutterFlowTheme.of(context).primary
-                                          : const Color(0x00000000),
+                                          : Color(0x00000000),
                                     ),
                                   ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -782,7 +806,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(const SizedBox(height: 2.0)),
+                                      ].divide(SizedBox(height: 2.0)),
                                     ),
                                   ),
                                 ),
@@ -809,7 +833,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -827,12 +851,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     border: Border.all(
                                       color: _model.checkColorBorder == '3'
                                           ? FlutterFlowTheme.of(context).primary
-                                          : const Color(0x00000000),
+                                          : Color(0x00000000),
                                     ),
                                   ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -857,7 +881,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(const SizedBox(height: 2.0)),
+                                      ].divide(SizedBox(height: 2.0)),
                                     ),
                                   ),
                                 ),
@@ -878,7 +902,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   context.pushNamed(
                                     'QuestionList',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -896,12 +920,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     border: Border.all(
                                       color: _model.checkColorBorder == '4'
                                           ? FlutterFlowTheme.of(context).primary
-                                          : const Color(0x00000000),
+                                          : Color(0x00000000),
                                     ),
                                   ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -926,7 +950,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(const SizedBox(height: 2.0)),
+                                      ].divide(SizedBox(height: 2.0)),
                                     ),
                                   ),
                                 ),
@@ -947,7 +971,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   context.pushNamed(
                                     'CertificateList',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -965,12 +989,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     border: Border.all(
                                       color: _model.checkColorBorder == '5'
                                           ? FlutterFlowTheme.of(context).primary
-                                          : const Color(0x00000000),
+                                          : Color(0x00000000),
                                     ),
                                   ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -995,17 +1019,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(const SizedBox(height: 2.0)),
+                                      ].divide(SizedBox(height: 2.0)),
                                     ),
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 12.0)),
+                            ].divide(SizedBox(width: 12.0)),
                           ),
                         ),
                       ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
+                      padding: EdgeInsetsDirectional.fromSTEB(
                           20.0, 30.0, 20.0, 10.0),
                       child: Text(
                         'Công việc',
@@ -1019,7 +1043,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1049,7 +1073,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -1087,7 +1111,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                            ].divide(const SizedBox(height: 4.0)),
+                            ].divide(SizedBox(height: 4.0)),
                           ),
                           Column(
                             mainAxisSize: MainAxisSize.max,
@@ -1108,7 +1132,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   context.pushNamed(
                                     'ProcedurePublishedList',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -1146,7 +1170,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                            ].divide(const SizedBox(height: 4.0)),
+                            ].divide(SizedBox(height: 4.0)),
                           ),
                           Column(
                             mainAxisSize: MainAxisSize.max,
@@ -1167,7 +1191,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   context.pushNamed(
                                     'WorkResultList',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -1210,13 +1234,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                 ],
                               ),
-                            ].divide(const SizedBox(height: 4.0)),
+                            ].divide(SizedBox(height: 4.0)),
                           ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
+                      padding: EdgeInsetsDirectional.fromSTEB(
                           20.0, 30.0, 20.0, 10.0),
                       child: Text(
                         'Quy trình',
@@ -1230,7 +1254,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -1251,7 +1275,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 context.pushNamed(
                                   'ProcedureList',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -1266,11 +1290,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   border: Border.all(
                                     color: _model.checkColorBorder == '9'
                                         ? FlutterFlowTheme.of(context).primary
-                                        : const Color(0x00000000),
+                                        : Color(0x00000000),
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 10.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1306,7 +1330,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             .secondaryText,
                                         size: 24.0,
                                       ),
-                                    ].divide(const SizedBox(width: 4.0)),
+                                    ].divide(SizedBox(width: 4.0)),
                                   ),
                                 ),
                               ),
@@ -1329,7 +1353,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 context.pushNamed(
                                   'ProcessTemplateList',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -1344,11 +1368,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   border: Border.all(
                                     color: _model.checkColorBorder == '10'
                                         ? FlutterFlowTheme.of(context).primary
-                                        : const Color(0x00000000),
+                                        : Color(0x00000000),
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 10.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1384,18 +1408,18 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             .secondaryText,
                                         size: 24.0,
                                       ),
-                                    ].divide(const SizedBox(width: 4.0)),
+                                    ].divide(SizedBox(width: 4.0)),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 12.0)),
+                        ].divide(SizedBox(width: 12.0)),
                       ),
                     ),
                     if (FFAppState().IsInDevelopment)
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 30.0, 20.0, 10.0),
                         child: Text(
                           'Chấm công',
@@ -1410,7 +1434,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                       ),
                     if (FFAppState().IsInDevelopment)
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1433,7 +1457,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   context.pushNamed(
                                     'TimeKeeping',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -1453,9 +1477,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               .primaryBackground,
                                     ),
                                   ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         4.0, 12.0, 4.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -1482,7 +1506,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(const SizedBox(height: 2.0)),
+                                      ].divide(SizedBox(height: 2.0)),
                                     ),
                                   ),
                                 ),
@@ -1510,7 +1534,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     context.pushNamed(
                                       'TimekeepingList',
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -1532,9 +1556,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 .primaryBackground,
                                       ),
                                     ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           4.0, 12.0, 4.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1561,7 +1585,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ].divide(const SizedBox(height: 2.0)),
+                                        ].divide(SizedBox(height: 2.0)),
                                       ),
                                     ),
                                   ),
@@ -1589,7 +1613,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     context.pushNamed(
                                       'TimekeepingLocationList',
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -1611,9 +1635,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 .primaryBackground,
                                       ),
                                     ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           4.0, 12.0, 4.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1640,7 +1664,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ].divide(const SizedBox(height: 2.0)),
+                                        ].divide(SizedBox(height: 2.0)),
                                       ),
                                     ),
                                   ),
@@ -1668,7 +1692,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     context.pushNamed(
                                       'TimekeepingShiftList',
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -1690,9 +1714,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 .primaryBackground,
                                       ),
                                     ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           4.0, 12.0, 4.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1719,7 +1743,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ].divide(const SizedBox(height: 2.0)),
+                                        ].divide(SizedBox(height: 2.0)),
                                       ),
                                     ),
                                   ),
@@ -1747,7 +1771,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     context.pushNamed(
                                       'TimekeepingReport',
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -1769,9 +1793,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 .primaryBackground,
                                       ),
                                     ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           4.0, 12.0, 4.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1798,26 +1822,26 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ].divide(const SizedBox(height: 2.0)),
+                                        ].divide(SizedBox(height: 2.0)),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                          ].divide(const SizedBox(width: 12.0)),
+                          ].divide(SizedBox(width: 12.0)),
                         ),
                       ),
-                  ].addToEnd(const SizedBox(height: 110.0)),
+                  ].addToEnd(SizedBox(height: 110.0)),
                 ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
             child: wrapWithModel(
               model: _model.navBarModel,
               updateCallback: () => setState(() {}),
-              child: const NavBarWidget(
+              child: NavBarWidget(
                 selectedPageIndex: 3,
               ),
             ),

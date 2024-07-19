@@ -1,8 +1,11 @@
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'certificate_model.dart';
 export 'certificate_model.dart';
@@ -11,7 +14,7 @@ class CertificateWidget extends StatefulWidget {
   const CertificateWidget({
     super.key,
     String? program,
-  }) : program = program ?? '';
+  }) : this.program = program ?? '';
 
   final String program;
 
@@ -66,7 +69,7 @@ class _CertificateWidgetState extends State<CertificateWidget>
     context.watch<FFAppState>();
 
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: EdgeInsets.all(12.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -77,7 +80,7 @@ class _CertificateWidgetState extends State<CertificateWidget>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
               child: Icon(
                 Icons.menu_book_outlined,
                 color: FlutterFlowTheme.of(context).secondaryText,
@@ -85,7 +88,7 @@ class _CertificateWidgetState extends State<CertificateWidget>
               ).animateOnPageLoad(animationsMap['iconOnPageLoadAnimation']!),
             ),
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Text(
                 'Chứng chỉ hoàn thành',
                 textAlign: TextAlign.center,
@@ -106,7 +109,7 @@ class _CertificateWidgetState extends State<CertificateWidget>
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 18.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 18.0),
               child: Text(
                 'CHỨNG NHẬN',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -126,9 +129,9 @@ class _CertificateWidgetState extends State<CertificateWidget>
                   ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 3.0, 0.0, 36.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 3.0, 0.0, 36.0),
               child: Text(
-                'Chương trình đào tạo: ${widget.program}',
+                'Chương trình đào tạo: ${widget!.program}',
                 textAlign: TextAlign.center,
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Nunito Sans',
@@ -138,7 +141,7 @@ class _CertificateWidgetState extends State<CertificateWidget>
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,7 +160,7 @@ class _CertificateWidgetState extends State<CertificateWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 3.0, 0.0, 0.0),
                           child: Text(
                             'Admin bộ phận: ${getJsonField(
@@ -191,7 +194,7 @@ class _CertificateWidgetState extends State<CertificateWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 3.0, 0.0, 0.0),
                           child: Text(
                             'Admin tổ chức:${getJsonField(
@@ -211,7 +214,7 @@ class _CertificateWidgetState extends State<CertificateWidget>
                       ],
                     ),
                   ),
-                ].divide(const SizedBox(width: 15.0)),
+                ].divide(SizedBox(width: 15.0)),
               ),
             ),
           ],

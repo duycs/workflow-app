@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'popup_update_profile_model.dart';
 export 'popup_update_profile_model.dart';
 
@@ -55,7 +57,7 @@ class _PopupUpdateProfileWidgetState extends State<PopupUpdateProfileWidget> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -83,12 +85,12 @@ class _PopupUpdateProfileWidgetState extends State<PopupUpdateProfileWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: wrapWithModel(
                       model: _model.mobileEditorDisplayComponentModel,
                       updateCallback: () => setState(() {}),
                       child: MobileEditorDisplayComponentWidget(
-                        content: widget.content!,
+                        content: widget!.content!,
                       ),
                     ),
                   ),

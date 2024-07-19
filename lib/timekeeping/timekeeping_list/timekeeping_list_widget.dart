@@ -1,13 +1,17 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/choice_chip_shift_cofigs_widget.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'timekeeping_list_model.dart';
@@ -59,7 +63,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
             context.pushNamed(
               'TimekeepingCreate',
               extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
+                kTransitionInfoKey: TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.fade,
                   duration: Duration(milliseconds: 0),
@@ -92,7 +96,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
               context.pushNamed(
                 'Home',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -110,7 +114,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -120,7 +124,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,7 +135,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                         focusNode: _model.textFieldFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.textController',
-                          const Duration(milliseconds: 1000),
+                          Duration(milliseconds: 1000),
                           () => setState(() {}),
                         ),
                         autofocus: false,
@@ -150,7 +154,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
@@ -180,9 +184,9 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 0.0, 0.0),
-                          prefixIcon: const Icon(
+                          prefixIcon: Icon(
                             Icons.search_sharp,
                             size: 24.0,
                           ),
@@ -230,7 +234,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
               Expanded(
                 child: Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: PagedListView<ApiPagingParams, dynamic>.separated(
                     pagingController: _model.setListViewController(
                       (nextPageMarker) =>
@@ -245,12 +249,17 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                         limit: 20,
                       ),
                     ),
-                    padding: EdgeInsets.zero,
+                    padding: EdgeInsets.fromLTRB(
+                      0,
+                      0,
+                      0,
+                      68.0,
+                    ),
                     primary: false,
                     shrinkWrap: true,
                     reverse: false,
                     scrollDirection: Axis.vertical,
-                    separatorBuilder: (_, __) => const SizedBox(height: 6.0),
+                    separatorBuilder: (_, __) => SizedBox(height: 8.0),
                     builderDelegate: PagedChildBuilderDelegate<dynamic>(
                       // Customize what your widget looks like when it's loading the first page.
                       firstPageProgressIndicatorBuilder: (_) => Center(
@@ -276,7 +285,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                           ),
                         ),
                       ),
-                      noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
+                      noItemsFoundIndicatorBuilder: (_) => DataNotFoundWidget(),
                       itemBuilder: (context, _, shiftCofigsListIndex) {
                         final shiftCofigsListItem = _model
                             .listViewPagingController!
@@ -289,8 +298,14 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                           onTap: () async {
                             context.pushNamed(
                               'TimekeepingDetail',
+                              queryParameters: {
+                                'itemDetail': serializeParam(
+                                  shiftCofigsListItem,
+                                  ParamType.DataStruct,
+                                ),
+                              }.withoutNulls,
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: const TransitionInfo(
+                                kTransitionInfoKey: TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
@@ -305,13 +320,13 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                               borderRadius: BorderRadius.circular(12.0),
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 4.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 4.0),
                                     child: Slidable(
                                       endActionPane: ActionPane(
@@ -335,7 +350,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      const TransitionInfo(
+                                                      TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -380,7 +395,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 4.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -389,7 +404,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 8.0, 0.0),
                                           child: Icon(
                                             Icons.timer_sharp,
@@ -401,7 +416,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 4.0, 0.0),
                                             child: Text(
                                               'Chấm công bằng: ',
@@ -418,7 +433,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 4.0, 0.0),
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -431,9 +446,9 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                               ),
                                             ),
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 2.0, 8.0, 2.0),
                                               child: Text(
                                                 'Vân tay',
@@ -465,9 +480,9 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                               ),
                                             ),
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 2.0, 8.0, 2.0),
                                               child: Text(
                                                 'Vị trí',
@@ -489,7 +504,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -498,7 +513,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 8.0, 0.0),
                                           child: FaIcon(
                                             FontAwesomeIcons.usersCog,
@@ -509,7 +524,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 4.0, 0.0),
                                           child: Text(
                                             'Bộ phận: ',
@@ -537,7 +552,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 12.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -546,7 +561,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 8.0, 0.0),
                                           child: Icon(
                                             Icons.face_sharp,
@@ -557,7 +572,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 4.0, 0.0),
                                           child: Text(
                                             'Nhân viên: ',
@@ -591,7 +606,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                   ),
                                   if ('1' == '2')
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 16.0, 12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -600,7 +615,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: Icon(
                                               Icons.date_range,
@@ -612,7 +627,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 4.0, 0.0),
                                               child: Text(
                                                 'Ngày chốt chấm công: ',
@@ -639,7 +654,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                         ],
                                       ),
                                     ),
-                                ].divide(const SizedBox(height: 4.0)),
+                                ].divide(SizedBox(height: 4.0)),
                               ),
                             ),
                           ),

@@ -4,9 +4,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
@@ -88,7 +90,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             context.goNamed(
               'Home',
               extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
+                kTransitionInfoKey: TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.fade,
                   duration: Duration(milliseconds: 0),
@@ -103,6 +105,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           } else {
             _model.isLoad = true;
             setState(() {});
+            return;
           }
         } else {
           _model.checkWfToken = await actions.getReTokenUser(
@@ -179,7 +182,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               context.goNamed(
                 'Home',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -248,7 +251,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             child: Stack(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(32.0),
+                  padding: EdgeInsets.all(32.0),
                   child: Container(
                     width: double.infinity,
                     height: 230.0,
@@ -256,10 +259,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: BorderRadius.circular(16.0),
                     ),
-                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 48.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 48.0),
                       child: Text(
                         'ComOS',
                         style:
@@ -272,29 +275,29 @@ class _LoginWidgetState extends State<LoginWidget> {
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 170.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 170.0, 0.0, 0.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding: EdgeInsets.all(12.0),
                             child: Container(
                               width: double.infinity,
                               height: MediaQuery.sizeOf(context).width >= 768.0
                                   ? 530.0
                                   : 630.0,
-                              constraints: const BoxConstraints(
+                              constraints: BoxConstraints(
                                 maxWidth: 570.0,
                               ),
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                boxShadow: const [
+                                boxShadow: [
                                   BoxShadow(
                                     blurRadius: 4.0,
                                     color: Color(0x33000000),
@@ -315,14 +318,14 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 16.0, 0.0, 0.0),
                                     child: Container(
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         shape: BoxShape.rectangle,
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 0.0),
                                         child: Text(
                                           'Đăng nhập',
@@ -341,9 +344,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: const AlignmentDirectional(0.0, -1.0),
+                                    alignment: AlignmentDirectional(0.0, -1.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 32.0, 24.0, 0.0),
                                       child: SingleChildScrollView(
                                         primary: false,
@@ -365,7 +368,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                       ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 4.0, 0.0, 24.0),
                                               child: Text(
@@ -392,10 +395,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 16.0),
-                                                    child: SizedBox(
+                                                    child: Container(
                                                       width: double.infinity,
                                                       child: TextFormField(
                                                         controller: _model
@@ -403,7 +406,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                         focusNode: _model
                                                             .emailAddressFocusNode,
                                                         autofocus: false,
-                                                        autofillHints: const [
+                                                        autofillHints: [
                                                           AutofillHints.email
                                                         ],
                                                         obscureText: false,
@@ -481,7 +484,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                   .of(context)
                                                               .secondaryBackground,
                                                           contentPadding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       24.0,
                                                                       24.0,
@@ -510,10 +513,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 16.0),
-                                                    child: SizedBox(
+                                                    child: Container(
                                                       width: double.infinity,
                                                       child: TextFormField(
                                                         controller: _model
@@ -521,7 +524,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                         focusNode: _model
                                                             .passwordFocusNode,
                                                         autofocus: false,
-                                                        autofillHints: const [
+                                                        autofillHints: [
                                                           AutofillHints.password
                                                         ],
                                                         obscureText: !_model
@@ -600,7 +603,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                   .of(context)
                                                               .secondaryBackground,
                                                           contentPadding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       24.0,
                                                                       24.0,
@@ -653,7 +656,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -674,7 +677,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -695,7 +698,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                               extra: <String,
                                                                   dynamic>{
                                                                 kTransitionInfoKey:
-                                                                    const TransitionInfo(
+                                                                    TransitionInfo(
                                                                   hasTransition:
                                                                       true,
                                                                   transitionType:
@@ -734,13 +737,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 8.0)),
+                                                        SizedBox(width: 8.0)),
                                                   ),
                                                 ],
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 16.0),
                                               child: Row(
@@ -753,7 +756,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                     flex: 3,
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
@@ -776,14 +779,14 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                               double.infinity,
                                                           height: 55.0,
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
                                                                       0.0,
                                                                       0.0),
                                                           iconPadding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -808,7 +811,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                   ),
                                                           elevation: 3.0,
                                                           borderSide:
-                                                              const BorderSide(
+                                                              BorderSide(
                                                             color: Colors
                                                                 .transparent,
                                                             width: 1.0,
@@ -830,11 +833,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                       flex: 1,
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       0.0,
@@ -861,12 +864,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                             ),
                                                             onPressed:
                                                                 () async {
-                                                              var shouldSetState =
+                                                              var _shouldSetState =
                                                                   false;
                                                               _model.loginauthencateUssingBV =
                                                                   await actions
                                                                       .authenticateUsingBiometrics();
-                                                              shouldSetState =
+                                                              _shouldSetState =
                                                                   true;
                                                               if (_model
                                                                       .loginauthencateUssingBV ==
@@ -881,7 +884,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                         .getReTokenUser(
                                                                   'wf_email',
                                                                 );
-                                                                shouldSetState =
+                                                                _shouldSetState =
                                                                     true;
                                                                 if (_model.checkWfEmailBV !=
                                                                         null &&
@@ -890,7 +893,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                   _model.signature =
                                                                       await actions
                                                                           .biometricCreateSignature();
-                                                                  shouldSetState =
+                                                                  _shouldSetState =
                                                                       true;
                                                                   _model.apiResultLoginBiometric =
                                                                       await STHLoginAcountsGroup
@@ -900,7 +903,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                         .signature,
                                                                   );
 
-                                                                  shouldSetState =
+                                                                  _shouldSetState =
                                                                       true;
                                                                   if ((_model
                                                                           .apiResultLoginBiometric
@@ -925,15 +928,14 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                             ),
                                                                           ),
                                                                           duration:
-                                                                              const Duration(milliseconds: 4000),
+                                                                              Duration(milliseconds: 4000),
                                                                           backgroundColor:
                                                                               FlutterFlowTheme.of(context).error,
                                                                         ),
                                                                       );
-                                                                      if (shouldSetState) {
+                                                                      if (_shouldSetState)
                                                                         setState(
                                                                             () {});
-                                                                      }
                                                                       return;
                                                                     } else {
                                                                       await actions
@@ -997,7 +999,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                             .id,
                                                                       );
 
-                                                                      shouldSetState =
+                                                                      _shouldSetState =
                                                                           true;
                                                                       if ((_model
                                                                               .apiResultGetStaffIdSTH
@@ -1054,17 +1056,15 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                           ).toString(),
                                                                         );
                                                                       } else {
-                                                                        if (shouldSetState) {
+                                                                        if (_shouldSetState)
                                                                           setState(
                                                                               () {});
-                                                                        }
                                                                         return;
                                                                       }
 
-                                                                      if (shouldSetState) {
+                                                                      if (_shouldSetState)
                                                                         setState(
                                                                             () {});
-                                                                      }
                                                                       return;
                                                                     }
                                                                   } else {
@@ -1082,41 +1082,58 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                           ),
                                                                         ),
                                                                         duration:
-                                                                            const Duration(milliseconds: 4000),
+                                                                            Duration(milliseconds: 4000),
                                                                         backgroundColor:
                                                                             FlutterFlowTheme.of(context).error,
                                                                       ),
                                                                     );
-                                                                    if (shouldSetState) {
+                                                                    if (_shouldSetState)
                                                                       setState(
                                                                           () {});
-                                                                    }
                                                                     return;
                                                                   }
                                                                 } else {
-                                                                  if (shouldSetState) {
+                                                                  if (_shouldSetState)
                                                                     setState(
                                                                         () {});
-                                                                  }
                                                                   return;
                                                                 }
                                                               } else {
-                                                                if (shouldSetState) {
+                                                                await showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'Thông báo'),
+                                                                      content: Text(
+                                                                          'Bạn vui lòng đăng nhập vào ứng dụng và kích hoạt tính năng đăng nhập bằng Sinh trắc học để thực hiện thao tác này.'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                );
+                                                                if (_shouldSetState)
                                                                   setState(
                                                                       () {});
-                                                                }
                                                                 return;
                                                               }
 
-                                                              if (shouldSetState) {
+                                                              if (_shouldSetState)
                                                                 setState(() {});
-                                                              }
                                                             },
                                                           ),
                                                         ),
                                                       ),
                                                     ),
-                                                ].divide(const SizedBox(width: 8.0)),
+                                                ].divide(SizedBox(width: 8.0)),
                                               ),
                                             ),
                                           ],

@@ -1,11 +1,23 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_place_picker.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/place.dart';
+import 'dart:io';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'time_keeping_location_update_widget.dart'
     show TimeKeepingLocationUpdateWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class TimeKeepingLocationUpdateModel
     extends FlutterFlowModel<TimeKeepingLocationUpdateWidget> {
@@ -43,6 +55,7 @@ class TimeKeepingLocationUpdateModel
 
   ///  State fields for stateful widgets in this component.
 
+  final formKey = GlobalKey<FormState>();
   // State field(s) for DropDown widget.
   String? dropDownValue1;
   FormFieldController<String>? dropDownValueController1;
@@ -56,12 +69,28 @@ class TimeKeepingLocationUpdateModel
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
   String? Function(BuildContext, String?)? textController1Validator;
+  String? _textController1Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Vui lòng nhập địa chỉ cụ thể';
+    }
+
+    return null;
+  }
+
   // State field(s) for PlacePicker widget.
-  FFPlace placePickerValue = const FFPlace();
+  FFPlace placePickerValue = FFPlace();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  String? _textController2Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Vui lòng nhập phạm vi áp dụng';
+    }
+
+    return null;
+  }
+
   // Stores action output result for [Custom Action - getCurrentLocationStruct] action in Button widget.
   List<double>? checkLocationTimeKeepingUpdate;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
@@ -70,7 +99,10 @@ class TimeKeepingLocationUpdateModel
   ApiCallResponse? apiResulttrf;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    textController1Validator = _textController1Validator;
+    textController2Validator = _textController2Validator;
+  }
 
   @override
   void dispose() {
@@ -94,9 +126,9 @@ class TimeKeepingLocationUpdateModel
       accessToken: FFAppState().accessToken,
     );
 
-    if ((apiResultGetListDataCity.succeeded ?? true)) {
+    if ((apiResultGetListDataCity?.succeeded ?? true)) {
       listCity = ListDataCityStruct.maybeFromMap(
-              (apiResultGetListDataCity.jsonBody ?? ''))!
+              (apiResultGetListDataCity?.jsonBody ?? ''))!
           .data
           .toList()
           .cast<ListCityStruct>();
@@ -115,9 +147,9 @@ class TimeKeepingLocationUpdateModel
       accessToken: FFAppState().accessToken,
     );
 
-    if ((apiResultDistricts.succeeded ?? true)) {
+    if ((apiResultDistricts?.succeeded ?? true)) {
       listDistricts = (getJsonField(
-        (apiResultDistricts.jsonBody ?? ''),
+        (apiResultDistricts?.jsonBody ?? ''),
         r'''$.data''',
         true,
       )!
@@ -143,9 +175,9 @@ class TimeKeepingLocationUpdateModel
       accessToken: FFAppState().accessToken,
     );
 
-    if ((apiResultDataWards.succeeded ?? true)) {
+    if ((apiResultDataWards?.succeeded ?? true)) {
       listWards = (getJsonField(
-        (apiResultDataWards.jsonBody ?? ''),
+        (apiResultDataWards?.jsonBody ?? ''),
         r'''$.data''',
         true,
       )!

@@ -7,9 +7,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'branch_detail_model.dart';
 export 'branch_detail_model.dart';
@@ -99,7 +101,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
             context.pushNamed(
               'BranchList',
               extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
+                kTransitionInfoKey: TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.fade,
                   duration: Duration(milliseconds: 0),
@@ -117,7 +119,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                 letterSpacing: 0.0,
               ),
         ),
-        actions: const [],
+        actions: [],
         centerTitle: false,
         elevation: 1.0,
       ),
@@ -133,7 +135,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                   Flexible(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
@@ -148,9 +150,9 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: Container(
                                     width: double.infinity,
@@ -163,9 +165,9 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                             .primaryBackground,
                                       ),
                                     ),
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 24.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -176,7 +178,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Tên chi nhánh: ',
@@ -192,7 +194,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 12.0, 0.0),
                                             child: Container(
                                               width: double.infinity,
@@ -203,14 +205,14 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                                 borderRadius:
                                                     BorderRadius.circular(10.0),
                                               ),
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   -1.0, 0.0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 16.0, 8.0, 16.0),
                                                 child: Text(
-                                                  widget.name!,
+                                                  widget!.name!,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -223,16 +225,16 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(height: 4.0)),
+                                        ].divide(SizedBox(height: 4.0)),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: Container(
                                     width: double.infinity,
@@ -245,7 +247,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                             .primaryBackground,
                                       ),
                                     ),
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -255,7 +257,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Mã chi nhánh:',
@@ -270,7 +272,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 12.0, 0.0),
                                           child: Container(
                                             width: double.infinity,
@@ -282,13 +284,13 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             alignment:
-                                                const AlignmentDirectional(-1.0, 0.0),
+                                                AlignmentDirectional(-1.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       8.0, 16.0, 8.0, 16.0),
                                               child: Text(
-                                                widget.code!,
+                                                widget!.code!,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -301,15 +303,15 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(height: 4.0)),
+                                      ].divide(SizedBox(height: 4.0)),
                                     ),
                                   ),
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: Container(
                                     width: double.infinity,
@@ -322,7 +324,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                             .primaryBackground,
                                       ),
                                     ),
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -332,7 +334,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Mô tả:',
@@ -347,7 +349,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 12.0, 0.0),
                                           child: Container(
                                             width: double.infinity,
@@ -358,14 +360,14 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                               borderRadius:
                                                   BorderRadius.circular(10.0),
                                             ),
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 -1.0, -1.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       8.0, 16.0, 8.0, 16.0),
                                               child: Text(
-                                                widget.description!,
+                                                widget!.description!,
                                                 maxLines: 2,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -379,14 +381,14 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(height: 4.0)),
+                                      ].divide(SizedBox(height: 4.0)),
                                     ),
                                   ),
                                 ),
                               ),
                               if (_model.departmentList.isNotEmpty)
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
                                     decoration: BoxDecoration(
@@ -398,7 +400,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                             .primaryBackground,
                                       ),
                                     ),
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Visibility(
                                       visible: _model.departmentList.isNotEmpty,
                                       child: Column(
@@ -410,7 +412,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Danh sách bộ phận:',
@@ -427,15 +429,15 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                           if ((_model.departmentList
                                                   .where((e) =>
                                                       e.branchId.id ==
-                                                      widget.id)
+                                                      widget!.id)
                                                   .toList()
                                                   .isNotEmpty) ==
                                               false)
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         12.0, 0.0, 12.0, 0.0),
                                                 child: Container(
@@ -453,13 +455,13 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                                             .departmentList
                                                             .where((e) =>
                                                                 e.branchId.id ==
-                                                                widget.id)
+                                                                widget!.id)
                                                             .toList()
                                                             .isNotEmpty) ==
                                                         false,
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   12.0,
                                                                   16.0,
@@ -489,12 +491,12 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                           if ((_model.departmentList
                                                   .where((e) =>
                                                       e.branchId.id ==
-                                                      widget.id)
+                                                      widget!.id)
                                                   .toList()
                                                   .isNotEmpty) ==
                                               true)
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 12.0, 0.0),
                                               child: Builder(
@@ -503,7 +505,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                                       _model.departmentList
                                                           .where((e) =>
                                                               e.branchId.id ==
-                                                              widget.id)
+                                                              widget!.id)
                                                           .toList()
                                                           .map((e) => e.name)
                                                           .toList();
@@ -518,7 +520,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                                         itemDepartmentName
                                                             .length,
                                                     separatorBuilder: (_, __) =>
-                                                        const SizedBox(height: 6.0),
+                                                        SizedBox(height: 6.0),
                                                     itemBuilder: (context,
                                                         itemDepartmentNameIndex) {
                                                       final itemDepartmentNameItem =
@@ -537,11 +539,11 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                                                       8.0),
                                                         ),
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 -1.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       10.0,
@@ -575,7 +577,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                                               ),
                                                               Expanded(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           0.0,
@@ -605,15 +607,15 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                                 },
                                               ),
                                             ),
-                                        ].divide(const SizedBox(height: 4.0)),
+                                        ].divide(SizedBox(height: 4.0)),
                                       ),
                                     ),
                                   ),
                                 ),
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: Container(
                                     width: double.infinity,
@@ -626,12 +628,12 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                             .primaryBackground,
                                       ),
                                     ),
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                   ),
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -643,7 +645,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                           .primaryBackground,
                                     ),
                                   ),
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -651,7 +653,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             12.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           'Trạng thái',
@@ -665,7 +667,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             12.0, 4.0, 12.0, 24.0),
                                         child: Container(
                                           width: double.infinity,
@@ -677,7 +679,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                                 BorderRadius.circular(10.0),
                                           ),
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: FlutterFlowRadioButton(
                                             options: [
                                               'Hoạt động',
@@ -689,7 +691,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                             controller: _model
                                                     .radioButtonValueController ??=
                                                 FormFieldController<String>(
-                                                    widget.status ==
+                                                    widget!.status ==
                                                             'published'
                                                         ? 'Hoạt động'
                                                         : 'Không hoạt động'),
@@ -729,17 +731,17 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 4.0)),
+                            ].divide(SizedBox(height: 4.0)),
                           ),
                         ),
                       ),
                     ),
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(0.0, 0.05),
+                    alignment: AlignmentDirectional(0.0, 0.05),
                     child: Builder(
                       builder: (context) => Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 24.0, 0.0, 24.0),
                         child: FFButtonWidget(
                           onPressed: () async {
@@ -750,16 +752,16 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                  alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
                                   child: BranchUpdateWidget(
-                                    id: widget.id,
-                                    name: widget.name,
-                                    code: widget.code,
-                                    description: widget.description,
-                                    codeList: widget.codeListitem,
-                                    status: widget.status,
-                                    nameList: widget.itemNameList,
+                                    id: widget!.id,
+                                    name: widget!.name,
+                                    code: widget!.code,
+                                    description: widget!.description,
+                                    codeList: widget!.codeListitem,
+                                    status: widget!.status,
+                                    nameList: widget!.itemNameList,
                                   ),
                                 );
                               },
@@ -769,9 +771,9 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                           options: FFButtonOptions(
                             width: 270.0,
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -784,7 +786,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                   fontWeight: FontWeight.w500,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -798,7 +800,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                 ],
               ),
             if ((_model.departmentList.isNotEmpty) == false)
-              SizedBox(
+              Container(
                 width: double.infinity,
                 height: double.infinity,
                 child: custom_widgets.LoadingPageWidget(
