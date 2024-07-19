@@ -379,7 +379,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 5.0, 8.0, 0.0),
+                                        8.0, 5.0, 8.0, 6.0),
                                     child: Container(
                                       height: 35.0,
                                       decoration: BoxDecoration(
