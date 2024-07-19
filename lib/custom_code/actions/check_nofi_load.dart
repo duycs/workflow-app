@@ -56,7 +56,6 @@ Future checkNofiLoad(BuildContext context) async {
       switch (payload.screen) {
         case "2":
           {
-            print("${NotiData}");
             context.pushNamed('TaskListWait');
 
             callApi('${payload.data.id}');
@@ -64,24 +63,18 @@ Future checkNofiLoad(BuildContext context) async {
           }
         case "3":
           {
-            print("${NotiData}");
-
             context.pushNamed('StudyProgramListUser');
             callApi('${payload.data.id}');
             return;
           }
         case "4":
           {
-            print("${NotiData}");
-
             context.pushNamed('StudyProgramListUser');
             callApi('${payload.data.id}');
             return;
           }
         case "5":
           {
-            print("${NotiData}");
-
             context.pushNamed(
               'LessonDetail',
               queryParameters: {
@@ -96,16 +89,12 @@ Future checkNofiLoad(BuildContext context) async {
           }
         case "8":
           {
-            print("${NotiData}");
-
             context.pushNamed('OrderList');
             callApi('${payload.data.id}');
             return;
           }
         default:
           {
-            print("${NotiData}");
-
             context.pushNamed(
               'TaskList',
               extra: <String, dynamic>{

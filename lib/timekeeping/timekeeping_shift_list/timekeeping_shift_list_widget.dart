@@ -305,7 +305,7 @@ class _TimekeepingShiftListWidgetState
                             '{\"_and\":[{},{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                           FFAppState().staffOrganization,
                           r'''$.id''',
-                        ).toString()}\"}}}${_model.nameSearch != null && _model.nameSearch != '' ? ',{\"name\":{\"_eq\":${_model.nameSearch}\"}}' : ''}${_model.dateStartCheckIn != null && _model.dateStartCheckIn != '' ? ',{\"start_time\":{\"_gte\":\"${_model.dateStartCheckIn}\"}}' : ''}${_model.dateEndCheckIn != null && _model.dateEndCheckIn != '' ? ',{\"date_created\":{\"_lt\":\"${_model.dateEndCheckIn}\"}}' : ''}${_model.checkOutDateStart != null && _model.checkOutDateStart != '' ? ',{\"end_time\":{\"_gte\":\"${_model.dateStartCheckIn}\"}}' : ''}${_model.checkOutDateEnd != null && _model.checkOutDateEnd != '' ? ',{\"end_time\":{\"_lt\":\"${_model.dateEndCheckIn}\"}}' : ''}]}',
+                        ).toString()}\"}}}${_model.nameSearch != null && _model.nameSearch != '' ? ',{\"name\":{\"_eq\":\"${_model.nameSearch}\"}}' : ''}${_model.dateStartCheckIn != null && _model.dateStartCheckIn != '' ? ',{\"start_time\":{\"_gte\":\"${_model.dateStartCheckIn}\"}}' : ''}${_model.dateEndCheckIn != null && _model.dateEndCheckIn != '' ? ',{\"date_created\":{\"_lt\":\"${_model.dateEndCheckIn}\"}}' : ''}${_model.checkOutDateStart != null && _model.checkOutDateStart != '' ? ',{\"end_time\":{\"_gte\":\"${_model.dateStartCheckIn}\"}}' : ''}${_model.checkOutDateEnd != null && _model.checkOutDateEnd != '' ? ',{\"end_time\":{\"_lt\":\"${_model.dateEndCheckIn}\"}}' : ''}]}',
                         offset: nextPageMarker.nextPageNumber * 20,
                       ),
                     ),
