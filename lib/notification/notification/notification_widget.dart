@@ -430,7 +430,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                         0.0, 8.0, 0.0, 4.0),
                                                 child: Text(
                                                   dateTimeFormat(
-                                                    'dd/MM/yyyy',
+                                                    'HH:mm, dd/MM/yyyy',
                                                     functions.stringToDateTime(
                                                         getJsonField(
                                                       listItem,

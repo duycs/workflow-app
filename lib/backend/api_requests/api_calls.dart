@@ -256,7 +256,7 @@ class ShiftConfigsCall {
         'limit': limit,
         'sort': "-date_created",
         'fields[]':
-            "name, branchs.id,branchs.name, departments.id, departments.name, staffs.id, staffs.user_id.first_name, shifts.id, shifts.shifts_id.id, shifts.shifts_id.name, shifts.shifts_id.start_time, shifts.shifts_id.end_time, shifts.shifts_id.normal, id, status, enable, user_created, date_created, address_id, organization_id",
+            "name, branchs.id,branchs.name, departments.id, departments.name, staffs.id, staffs.user_id.first_name, shifts.id, shifts.shifts_id.id, shifts.shifts_id.name, shifts.shifts_id.start_time, shifts.shifts_id.end_time, shifts.shifts_id.normal, id, status, enable, user_created, date_created, address_id, organization_id, address_id.id, address_id.detail, departments.staffs.id, departments.staffs.user_id.first_name,staffs.department_id, staffs.id, staffs.user_id.first_name ",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -5633,6 +5633,8 @@ class TimeKeepingGroup {
   };
   static TimeKeepingCreatedCall timeKeepingCreatedCall =
       TimeKeepingCreatedCall();
+  static TimeKeepingLocationUpdateCall timeKeepingLocationUpdateCall =
+      TimeKeepingLocationUpdateCall();
 }
 
 class TimeKeepingCreatedCall {
@@ -5650,6 +5652,39 @@ class TimeKeepingCreatedCall {
       callName: 'TimeKeepingCreated',
       apiUrl: '$baseUrl/items/address',
       callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class TimeKeepingLocationUpdateCall {
+  Future<ApiCallResponse> call({
+    dynamic requesDataJson,
+    String? id = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = TimeKeepingGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final requesData = _serializeJson(requesDataJson);
+    final ffApiRequestBody = requesData;
+    return ApiManager.instance.makeApiCall(
+      callName: 'TimeKeepingLocationUpdate',
+      apiUrl: '$baseUrl/items/address/$id',
+      callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $accessToken',

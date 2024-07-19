@@ -62,6 +62,12 @@ class TimeKeepingLocationUpdateModel
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  // Stores action output result for [Custom Action - getCurrentLocationStruct] action in Button widget.
+  List<double>? checkLocationTimeKeepingUpdate;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? checkTokenTimeKeepingLocationUpdate;
+  // Stores action output result for [Backend Call - API (TimeKeepingLocationUpdate)] action in Button widget.
+  ApiCallResponse? apiResulttrf;
 
   @override
   void initState(BuildContext context) {}

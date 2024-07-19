@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
 import '/timekeeping/time_keeping_location_detail/time_keeping_location_detail_widget.dart';
+import '/timekeeping/time_keeping_location_update/time_keeping_location_update_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -363,8 +364,8 @@ class _TimekeepingLocationListWidgetState
                                                     : FocusScope.of(context)
                                                         .unfocus(),
                                                 child:
-                                                    TimeKeepingLocationCreatedWidget(
-                                                  callBack: (id) async {},
+                                                    TimeKeepingLocationUpdateWidget(
+                                                  item: addressListItem,
                                                 ),
                                               ),
                                             );

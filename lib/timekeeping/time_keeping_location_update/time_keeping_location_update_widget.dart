@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -6,8 +7,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'time_keeping_location_update_model.dart';
 export 'time_keeping_location_update_model.dart';
 
@@ -49,10 +53,12 @@ class _TimeKeepingLocationUpdateWidgetState
       setState(() {});
     });
 
-    _model.textController1 ??= TextEditingController();
+    _model.textController1 ??=
+        TextEditingController(text: widget.item?.detail);
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
+    _model.textController2 ??=
+        TextEditingController(text: widget.item?.meterRange.toString());
     _model.textFieldFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -67,6 +73,8 @@ class _TimeKeepingLocationUpdateWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
@@ -155,7 +163,8 @@ class _TimeKeepingLocationUpdateWidgetState
                       FlutterFlowDropDown<String>(
                         controller: _model.dropDownValueController1 ??=
                             FormFieldController<String>(
-                          _model.dropDownValue1 ??= widget.item?.id,
+                          _model.dropDownValue1 ??=
+                              widget.item?.wardId.districtId.cityId.id,
                         ),
                         options: List<String>.from(
                             _model.listCity.map((e) => e.id).toList()),
@@ -510,10 +519,108 @@ class _TimeKeepingLocationUpdateWidgetState
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
               child: FFButtonWidget(
-                onPressed: () {
-                  print('Button pressed ...');
+                onPressed: () async {
+                  var shouldSetState = false;
+                  _model.checkLocationTimeKeepingUpdate =
+                      await actions.getCurrentLocationStruct();
+                  shouldSetState = true;
+                  if ((_model.checkLocationTimeKeepingUpdate != null &&
+                          (_model.checkLocationTimeKeepingUpdate)!
+                              .isNotEmpty) ==
+                      true) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Chỉnh sửa thành công',
+                          style: TextStyle(
+                            color: FlutterFlowTheme.of(context).primaryText,
+                          ),
+                        ),
+                        duration: const Duration(milliseconds: 4000),
+                        backgroundColor: FlutterFlowTheme.of(context).secondary,
+                      ),
+                    );
+                  } else {
+                    await showDialog(
+                      context: context,
+                      builder: (alertDialogContext) {
+                        return AlertDialog(
+                          title: const Text('Vui lòng bật định vị để tiếp tục.'),
+                          actions: [
+                            TextButton(
+                              onPressed: () =>
+                                  Navigator.pop(alertDialogContext),
+                              child: const Text('Ok'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                    if (shouldSetState) setState(() {});
+                    return;
+                  }
+
+                  _model.checkTokenTimeKeepingLocationUpdate =
+                      await action_blocks.tokenReload(context);
+                  shouldSetState = true;
+                  if (!_model.checkTokenTimeKeepingLocationUpdate!) {
+                    setState(() {});
+                    if (shouldSetState) setState(() {});
+                    return;
+                  }
+                  _model.apiResulttrf =
+                      await TimeKeepingGroup.timeKeepingLocationUpdateCall.call(
+                    id: widget.item?.id,
+                    accessToken: FFAppState().accessToken,
+                    requesDataJson: <String, dynamic>{
+                      'status': 'published',
+                      'detail': _model.textController1.text,
+                      'meter_range': _model.textController2.text,
+                      'ward_id': <String, dynamic>{
+                        'id': 'b591559f-56ea-4744-94cc-fa9d263b44d0',
+                        'name': _model.dropDownValue3,
+                      },
+                      'district_id': <String, dynamic>{
+                        'id': '87fa611d-0812-4f2c-ae75-83d9a9fdfcfd',
+                        'name': _model.dropDownValue2,
+                      },
+                      'city_id': <String, dynamic>{
+                        'id': '839dfb39-fe33-4c09-b910-c269b4d77d2f',
+                        'name': _model.dropDownValue1,
+                      },
+                      'location': <String, dynamic>{
+                        'map': getJsonField(
+                          <String, List<dynamic>>{
+                            'coordinates':
+                                _model.checkLocationTimeKeepingUpdate!,
+                          },
+                          r'''$.map''',
+                        ),
+                      },
+                    },
+                  );
+
+                  shouldSetState = true;
+                  if (!(_model.apiResulttrf?.succeeded ?? true)) {
+                    await showDialog(
+                      context: context,
+                      builder: (alertDialogContext) {
+                        return AlertDialog(
+                          title: const Text('Chỉnh sửa thất bại!'),
+                          actions: [
+                            TextButton(
+                              onPressed: () =>
+                                  Navigator.pop(alertDialogContext),
+                              child: const Text('Ok'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
+                  if (shouldSetState) setState(() {});
                 },
-                text: 'Lưu địa chỉ mới',
+                text: 'Chỉnh sửa địa chỉ ',
                 icon: const Icon(
                   Icons.save_alt,
                   size: 24.0,

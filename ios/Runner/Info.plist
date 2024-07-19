@@ -62,7 +62,7 @@
 	<key>NSBiometricUsageDescription</key>
 	<string>Ứng dụng cần quyền truy cập vào sinh trắc học để xác thực.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>Ứng dụng cần quyền truy cập vào vị trí của bạn khi sử dụng ứng dụng để cung cấp các dịch vụ dựa trên vị trí. Ví dụ: check-in theo location.</string>
+  <string>Ứng dụng cần quyền truy cập vào vị trí của bạn khi sử dụng ứng dụng để cung cấp các dịch vụ dựa trên vị trí. Ví dụ: check-in theo location.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

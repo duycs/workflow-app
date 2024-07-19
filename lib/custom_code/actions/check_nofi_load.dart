@@ -59,6 +59,7 @@ Future checkNofiLoad(BuildContext context) async {
         case "3":
           {
             context.pushNamed('StudyProgramListUser');
+            callApi("notiId", '${FFAppState().accessToken}', 'archived');
             return;
           }
         case "4":
@@ -77,11 +78,13 @@ Future checkNofiLoad(BuildContext context) async {
                 ),
               }.withoutNulls,
             );
+            callApi("notiId", '${FFAppState().accessToken}', 'archived');
             return;
           }
         case "8":
           {
             context.pushNamed('OrderList');
+            callApi("notiId", '${FFAppState().accessToken}', 'archived');
             return;
           }
         default:
@@ -96,6 +99,7 @@ Future checkNofiLoad(BuildContext context) async {
                 ),
               },
             );
+            callApi("notiId", '${FFAppState().accessToken}', 'archived');
             return;
           }
       }
