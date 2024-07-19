@@ -23,11 +23,9 @@ import 'package:basic_utils/basic_utils.dart';
 Future<String?> biometricGetPublicKey() async {
   final storage = FlutterSecureStorage();
   const publicKeyKey = 'biometric_public_key';
-  const emailKey = 'wf_email';
 
   try {
     String? publicKeyPem = await storage.read(key: publicKeyKey);
-    String? email = await storage.read(key: emailKey);
 
     if (publicKeyPem == null) {
       print('Không tồn tại public key.');

@@ -5,6 +5,7 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'certificate2_download_model.dart';
 export 'certificate2_download_model.dart';
@@ -62,7 +63,7 @@ class _Certificate2DownloadWidgetState
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
       child: Stack(
-        alignment: const AlignmentDirectional(0.0, 0.0),
+        alignment: AlignmentDirectional(0.0, 0.0),
         children: [
           Opacity(
             opacity: 0.3,
@@ -84,7 +85,7 @@ class _Certificate2DownloadWidgetState
                 ),
                 Container(
                   width: 100.0,
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Text(
                     'Công ty TNHH A fgrfgfdg fgdfsgfds gfdgdfg gvsdfg sdfgsdg fdgsfds ',
                     textAlign: TextAlign.center,
@@ -100,17 +101,17 @@ class _Certificate2DownloadWidgetState
             ),
           ),
           Stack(
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.0, 0.0),
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Text(
                         'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -130,7 +131,7 @@ class _Certificate2DownloadWidgetState
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 6.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 6.0),
                       child: Text(
                         'Chứng nhận',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -144,7 +145,7 @@ class _Certificate2DownloadWidgetState
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
                       child: Text(
                         FFAppState().user.firstName,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -157,7 +158,7 @@ class _Certificate2DownloadWidgetState
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
                       child: Text(
                         'Chức vụ:\"${getJsonField(
                           FFAppState().staffLogin,
@@ -172,7 +173,7 @@ class _Certificate2DownloadWidgetState
                       ),
                     ),
                     Text(
-                      'Đã hoàn thành \"${widget.program}\"',
+                      'Đã hoàn thành \"${widget!.program}\"',
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Nunito Sans',
@@ -184,11 +185,11 @@ class _Certificate2DownloadWidgetState
                     Text(
                       'Từ ngày ${dateTimeFormat(
                         'dd-MM-yyyy',
-                        functions.stringToDateTime(widget.dateStart),
+                        functions.stringToDateTime(widget!.dateStart),
                         locale: FFLocalizations.of(context).languageCode,
                       )} đến ngày ${dateTimeFormat(
                         'dd-MM-yyyy',
-                        functions.stringToDateTime(widget.dateEnd),
+                        functions.stringToDateTime(widget!.dateEnd),
                         locale: FFLocalizations.of(context).languageCode,
                       )}',
                       textAlign: TextAlign.center,
@@ -200,27 +201,27 @@ class _Certificate2DownloadWidgetState
                             fontStyle: FontStyle.italic,
                           ),
                     ),
-                  ].divide(const SizedBox(height: 3.0)),
+                  ].divide(SizedBox(height: 3.0)),
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(1.0, 1.0),
+                alignment: AlignmentDirectional(1.0, 1.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 5.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 5.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       await actions.screenCertificate1(
                         context,
                         'Stack',
-                        widget.program!,
+                        widget!.program!,
                         dateTimeFormat(
                           'dd-MM-yyyy',
-                          functions.stringToDateTime(widget.dateStart),
+                          functions.stringToDateTime(widget!.dateStart),
                           locale: FFLocalizations.of(context).languageCode,
                         ),
                         dateTimeFormat(
                           'dd-MM-yyyy',
-                          functions.stringToDateTime(widget.dateEnd),
+                          functions.stringToDateTime(widget!.dateEnd),
                           locale: FFLocalizations.of(context).languageCode,
                         ),
                         '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
@@ -239,16 +240,16 @@ class _Certificate2DownloadWidgetState
                       );
                     },
                     text: 'Ảnh',
-                    icon: const FaIcon(
+                    icon: FaIcon(
                       FontAwesomeIcons.fileExport,
                       size: 12.0,
                     ),
                     options: FFButtonOptions(
                       height: 20.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -259,7 +260,7 @@ class _Certificate2DownloadWidgetState
                                 fontWeight: FontWeight.normal,
                               ),
                       elevation: 3.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

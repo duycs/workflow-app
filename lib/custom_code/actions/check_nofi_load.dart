@@ -12,18 +12,22 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
-Future<void> callApi(String id, String accessToken, String status) async {
-  final url = Uri.parse('https://workflow-api-dev.pexnic.com/items/staffs/$id');
+Future<void> callApi(String id) async {
+  final prefs = await SharedPreferences.getInstance();
+  final accessToken = prefs.getString('accessToken') ?? '';
+
+  final url =
+      Uri.parse('https://workflow-api-dev.pexnic.com/items/notifications/$id');
   final response = await http.patch(
     url,
     headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $accessToken',
     },
-    body: json.encode({'status': status}),
+    body: json.encode({'status': 'archived'}),
   );
 
   if (response.statusCode == 200) {
@@ -52,23 +56,32 @@ Future checkNofiLoad(BuildContext context) async {
       switch (payload.screen) {
         case "2":
           {
+            print("${NotiData}");
             context.pushNamed('TaskListWait');
-            callApi("notiId", '${FFAppState().accessToken}', 'archived');
+
+            callApi('${payload.data.id}');
             return;
           }
         case "3":
           {
+            print("${NotiData}");
+
             context.pushNamed('StudyProgramListUser');
-            callApi("notiId", '${FFAppState().accessToken}', 'archived');
+            callApi('${payload.data.id}');
             return;
           }
         case "4":
           {
+            print("${NotiData}");
+
             context.pushNamed('StudyProgramListUser');
+            callApi('${payload.data.id}');
             return;
           }
         case "5":
           {
+            print("${NotiData}");
+
             context.pushNamed(
               'LessonDetail',
               queryParameters: {
@@ -78,17 +91,21 @@ Future checkNofiLoad(BuildContext context) async {
                 ),
               }.withoutNulls,
             );
-            callApi("notiId", '${FFAppState().accessToken}', 'archived');
+            callApi('${payload.data.id}');
             return;
           }
         case "8":
           {
+            print("${NotiData}");
+
             context.pushNamed('OrderList');
-            callApi("notiId", '${FFAppState().accessToken}', 'archived');
+            callApi('${payload.data.id}');
             return;
           }
         default:
           {
+            print("${NotiData}");
+
             context.pushNamed(
               'TaskList',
               extra: <String, dynamic>{
@@ -99,7 +116,7 @@ Future checkNofiLoad(BuildContext context) async {
                 ),
               },
             );
-            callApi("notiId", '${FFAppState().accessToken}', 'archived');
+            callApi('${payload.data.id}');
             return;
           }
       }
@@ -129,7 +146,6 @@ class NotiData {
   NotiData(this.id);
 
   factory NotiData.fromJson(Map json) {
-    var notiId = NotiData(json?['id']);
     return NotiData(json?['id']);
   }
 }

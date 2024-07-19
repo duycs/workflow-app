@@ -1,11 +1,24 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_choice_chips.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/procedure/alert_staff_check_departments/alert_staff_check_departments_widget.dart';
+import '/procedure/dropdown_departments_list/dropdown_departments_list_widget.dart';
+import '/procedure/dropdown_user_list/dropdown_user_list_widget.dart';
+import '/timekeeping/time_keeping_select_date/time_keeping_select_date_widget.dart';
+import '/timekeeping/timekeeping_shift/timekeeping_shift_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'timekeeping_update_widget.dart' show TimekeepingUpdateWidget;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
   ///  Local state fields for this page.
@@ -126,6 +139,8 @@ class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
   FocusNode? descriptionFocusNode;
   TextEditingController? descriptionTextController;
   String? Function(BuildContext, String?)? descriptionTextControllerValidator;
+  // State field(s) for RadioButton widget.
+  FormFieldController<String>? radioButtonValueController;
   // State field(s) for CheckboxListTile widget.
   bool? checkboxListTileValue1;
   // State field(s) for CheckboxListTile widget.
@@ -171,9 +186,9 @@ class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
     while (loop < item!.length) {
       addToStaffSelectList(StaffsStepStruct(
         staffsId: StaffIdStruct(
-          id: (item[loop]).id,
+          id: (item?[loop])?.id,
           userId: UserIdStruct(
-            firstName: (item[loop]).userId.firstName,
+            firstName: (item?[loop])?.userId?.firstName,
           ),
         ),
       ));
@@ -198,7 +213,7 @@ class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
         requestJson: request?.toMap(),
       );
 
-      if ((apiResultShiftConfigsUpdate.succeeded ?? true)) {
+      if ((apiResultShiftConfigsUpdate?.succeeded ?? true)) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -207,7 +222,7 @@ class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).secondary,
           ),
         );
@@ -220,7 +235,7 @@ class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -230,4 +245,7 @@ class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
       return;
     }
   }
+
+  /// Additional helper methods.
+  String? get radioButtonValue => radioButtonValueController?.value;
 }

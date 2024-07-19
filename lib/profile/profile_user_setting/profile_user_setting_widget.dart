@@ -7,10 +7,11 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/profile/confirm_password/confirm_password_widget.dart';
 import '/training/do_test/delete_account/delete_account_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'profile_user_setting_model.dart';
 export 'profile_user_setting_model.dart';
@@ -36,8 +37,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.biometricPublicKey = await actions.biometricGetPublicKey();
-      if (functions.stringToBase64(_model.biometricPublicKey!) ==
-          FFAppState().user.publicKey) {
+      if (_model.biometricPublicKey == FFAppState().user.publicKey) {
         _model.isSetPublicKeyInSecureStorage = true;
         setState(() {});
       } else {
@@ -92,7 +92,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -122,29 +122,28 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                               Builder(
                                 builder: (context) => SwitchListTile.adaptive(
                                   value: _model.switchListTileValue ??=
-                                      (FFAppState().user.enableBiometric.toString() ==
+                                      ('${FFAppState().user.enableBiometric.toString()}' ==
                                               '1') &&
                                           _model.isSetPublicKeyInSecureStorage,
                                   onChanged: (_model.load == true)
                                       ? null
                                       : (newValue) async {
                                           setState(() => _model
-                                              .switchListTileValue = newValue);
-                                          if (newValue) {
-                                            var shouldSetState = false;
+                                              .switchListTileValue = newValue!);
+                                          if (newValue!) {
+                                            var _shouldSetState = false;
                                             _model.authenticateUsingBiometriceSetting1 =
                                                 await actions
                                                     .authenticateUsingBiometricsSetting();
-                                            shouldSetState = true;
+                                            _shouldSetState = true;
                                             if (_model
                                                     .authenticateUsingBiometriceSetting1 ==
                                                 true) {
                                               _model.load = true;
                                               setState(() {});
                                             } else {
-                                              if (shouldSetState) {
+                                              if (_shouldSetState)
                                                 setState(() {});
-                                              }
                                               return;
                                             }
 
@@ -157,7 +156,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -188,22 +187,21 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                               _model.checktokenReloadBiometricsSetting =
                                                   await action_blocks
                                                       .tokenReload(context);
-                                              shouldSetState = true;
+                                              _shouldSetState = true;
                                               if (_model
                                                   .checktokenReloadBiometricsSetting!) {
                                                 _model.dataSetting = null;
                                                 setState(() {});
                                               } else {
                                                 setState(() {});
-                                                if (shouldSetState) {
+                                                if (_shouldSetState)
                                                   setState(() {});
-                                                }
                                                 return;
                                               }
 
                                               _model.publicKey = await actions
                                                   .biometricCreatePublicKey();
-                                              shouldSetState = true;
+                                              _shouldSetState = true;
                                               _model.updateDataSettingStruct(
                                                 (e) => e
                                                   ..enableBiometric = 1
@@ -226,7 +224,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                     FFAppState().accessToken,
                                               );
 
-                                              shouldSetState = true;
+                                              _shouldSetState = true;
                                               if ((_model
                                                       .apiResultUpdateBiometric
                                                       ?.succeeded ??
@@ -242,7 +240,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                       FFAppState().accessToken,
                                                 );
 
-                                                shouldSetState = true;
+                                                _shouldSetState = true;
                                                 if ((_model.apiResultUpdateUser
                                                         ?.succeeded ??
                                                     true)) {
@@ -260,15 +258,15 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                         (alertDialogContext) {
                                                       return AlertDialog(
                                                         title:
-                                                            const Text('Thông báo'),
-                                                        content: const Text(
+                                                            Text('Thông báo'),
+                                                        content: Text(
                                                             'Bạn đã kích hoạt đăng nhập bằng sinh trắc học thành công!'),
                                                         actions: [
                                                           TextButton(
                                                             onPressed: () =>
                                                                 Navigator.pop(
                                                                     alertDialogContext),
-                                                            child: const Text('Ok'),
+                                                            child: Text('Ok'),
                                                           ),
                                                         ],
                                                       );
@@ -288,7 +286,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                                 .primaryText,
                                                       ),
                                                     ),
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 4000),
                                                     backgroundColor:
                                                         FlutterFlowTheme.of(
@@ -313,7 +311,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                               .primaryText,
                                                     ),
                                                   ),
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
@@ -321,37 +319,34 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                           .error,
                                                 ),
                                               );
-                                              if (shouldSetState) {
+                                              if (_shouldSetState)
                                                 setState(() {});
-                                              }
                                               return;
                                             }
 
-                                            if (shouldSetState) {
+                                            if (_shouldSetState)
                                               setState(() {});
-                                            }
                                           } else {
-                                            var shouldSetState = false;
+                                            var _shouldSetState = false;
                                             _model.authenticateUsingBiometriceSettingLoadOff1 =
                                                 await actions
                                                     .authenticateUsingBiometricsSetting();
-                                            shouldSetState = true;
+                                            _shouldSetState = true;
                                             if (_model
                                                     .authenticateUsingBiometriceSettingLoadOff1 ==
                                                 true) {
                                               _model.load = true;
                                               setState(() {});
                                             } else {
-                                              if (shouldSetState) {
+                                              if (_shouldSetState)
                                                 setState(() {});
-                                              }
                                               return;
                                             }
 
                                             _model.checktokenReloadBiometricsSetting3 =
                                                 await action_blocks
                                                     .tokenReload(context);
-                                            shouldSetState = true;
+                                            _shouldSetState = true;
                                             if (_model
                                                 .checktokenReloadBiometricsSetting3!) {
                                               _model.dataSetting = null;
@@ -359,12 +354,11 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                               _model.deleteBiometricKeyPair =
                                                   await actions
                                                       .biometricDeleteKeyPair();
-                                              shouldSetState = true;
+                                              _shouldSetState = true;
                                             } else {
                                               setState(() {});
-                                              if (shouldSetState) {
+                                              if (_shouldSetState)
                                                 setState(() {});
-                                              }
                                               return;
                                             }
 
@@ -389,7 +383,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                   FFAppState().accessToken,
                                             );
 
-                                            shouldSetState = true;
+                                            _shouldSetState = true;
                                             if ((_model
                                                     .apiResultUpdateBiometric1
                                                     ?.succeeded ??
@@ -404,7 +398,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                     FFAppState().accessToken,
                                               );
 
-                                              shouldSetState = true;
+                                              _shouldSetState = true;
                                               if ((_model
                                                       .apiResultUpdateUserCopy
                                                       ?.succeeded ??
@@ -431,7 +425,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                               .primaryText,
                                                     ),
                                                   ),
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
@@ -443,9 +437,8 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
 
                                             _model.load = false;
                                             setState(() {});
-                                            if (shouldSetState) {
+                                            if (_shouldSetState)
                                               setState(() {});
-                                            }
                                           }
                                         },
                                   title: Text(
@@ -483,7 +476,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             36.0, 18.0, 36.0, 0.0),
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 1.0,
@@ -507,22 +500,22 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                         : FocusScope.of(context).unfocus(),
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
-                                      child: const DeleteAccountWidget(),
+                                      child: DeleteAccountWidget(),
                                     ),
                                   );
                                 },
                               ).then((value) => safeSetState(() {}));
                             },
                             text: 'Xóa tài khoản',
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.remove_circle,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).noColor,
                               textStyle: FlutterFlowTheme.of(context)
@@ -544,8 +537,8 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                         ),
                       ),
                     ]
-                        .addToStart(const SizedBox(height: 16.0))
-                        .addToEnd(const SizedBox(height: 16.0)),
+                        .addToStart(SizedBox(height: 16.0))
+                        .addToEnd(SizedBox(height: 16.0)),
                   ),
                 ),
               ),

@@ -1,10 +1,20 @@
 import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'lesson_detail_widget.dart' show LessonDetailWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
   ///  Local state fields for this page.
@@ -60,9 +70,9 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
       filter: '{\"_and\":[{\"id\":{\"_eq\":\"${widget!.idLesson}\"}}]}',
     );
 
-    if ((apiResultGetCommment.succeeded ?? true)) {
+    if ((apiResultGetCommment?.succeeded ?? true)) {
       list = getJsonField(
-        (apiResultGetCommment.jsonBody ?? ''),
+        (apiResultGetCommment?.jsonBody ?? ''),
         r'''$.data[0].comments''',
         true,
       )!
@@ -71,7 +81,7 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetCommment.jsonBody ?? ''),
+        jsonErrors: (apiResultGetCommment?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -82,7 +92,7 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -101,15 +111,15 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
       filter: '{\"_and\":[{\"id\":{\"_eq\":\"${widget!.idLesson}\"}}]}',
     );
 
-    if ((apiResultGetDetail.succeeded ?? true)) {
+    if ((apiResultGetDetail?.succeeded ?? true)) {
       listDetail = getJsonField(
-        (apiResultGetDetail.jsonBody ?? ''),
+        (apiResultGetDetail?.jsonBody ?? ''),
         r'''$.data[0]''',
       );
     } else {
       checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetDetail.jsonBody ?? ''),
+        jsonErrors: (apiResultGetDetail?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock1!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -120,7 +130,7 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -142,9 +152,9 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
       ).toString().toString()}\"}}]}',
     );
 
-    if ((apiResultHeart.succeeded ?? true)) {
+    if ((apiResultHeart?.succeeded ?? true)) {
       listStaffIdHeart = getJsonField(
-        (apiResultHeart.jsonBody ?? ''),
+        (apiResultHeart?.jsonBody ?? ''),
         r'''$.data[0].reacts''',
         true,
       )!
@@ -153,7 +163,7 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
     } else {
       checkRefreshTokenBlock2 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultHeart.jsonBody ?? ''),
+        jsonErrors: (apiResultHeart?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock2!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -164,7 +174,7 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

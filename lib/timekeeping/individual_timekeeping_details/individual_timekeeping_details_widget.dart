@@ -1,11 +1,18 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'individual_timekeeping_details_model.dart';
 export 'individual_timekeeping_details_model.dart';
 
 class IndividualTimekeepingDetailsWidget extends StatefulWidget {
-  const IndividualTimekeepingDetailsWidget({super.key});
+  const IndividualTimekeepingDetailsWidget({
+    super.key,
+    this.dateFilter,
+  });
+
+  final String? dateFilter;
 
   @override
   State<IndividualTimekeepingDetailsWidget> createState() =>
@@ -49,12 +56,12 @@ class _IndividualTimekeepingDetailsWidgetState
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
             child: Container(
               width: double.infinity,
-              decoration: const BoxDecoration(),
+              decoration: BoxDecoration(),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -74,9 +81,9 @@ class _IndividualTimekeepingDetailsWidgetState
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Text(
-                        'Chấm công ngày 01/07/2024',
+                        'Chấm công ngày ${widget!.dateFilter}',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Nunito Sans',
                               fontSize: 18.0,
@@ -84,13 +91,13 @@ class _IndividualTimekeepingDetailsWidgetState
                             ),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 10.0)),
+                  ].divide(SizedBox(width: 10.0)),
                 ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: EdgeInsets.all(12.0),
             child: Container(
               width: double.infinity,
               decoration: BoxDecoration(
@@ -104,7 +111,7 @@ class _IndividualTimekeepingDetailsWidgetState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -129,7 +136,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                   fontWeight: FontWeight.w600,
                                 ),
                           ),
-                        ].divide(const SizedBox(width: 5.0)),
+                        ].divide(SizedBox(width: 5.0)),
                       ),
                     ),
                   ),
@@ -139,7 +146,7 @@ class _IndividualTimekeepingDetailsWidgetState
                     color: FlutterFlowTheme.of(context).alternate,
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                     child: Text(
                       'Ca 1',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -151,7 +158,7 @@ class _IndividualTimekeepingDetailsWidgetState
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -172,11 +179,11 @@ class _IndividualTimekeepingDetailsWidgetState
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
-                      ].divide(const SizedBox(width: 3.0)),
+                      ].divide(SizedBox(width: 3.0)),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -194,7 +201,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                     fontWeight: FontWeight.normal,
                                   ),
                         ),
-                      ].divide(const SizedBox(width: 3.0)),
+                      ].divide(SizedBox(width: 3.0)),
                     ),
                   ),
                   Row(
@@ -203,7 +210,7 @@ class _IndividualTimekeepingDetailsWidgetState
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               5.0, 0.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -239,7 +246,7 @@ class _IndividualTimekeepingDetailsWidgetState
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               5.0, 0.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -274,10 +281,10 @@ class _IndividualTimekeepingDetailsWidgetState
                     ],
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(1.0, 1.0),
+                    alignment: AlignmentDirectional(1.0, 1.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -325,10 +332,10 @@ class _IndividualTimekeepingDetailsWidgetState
                   if (_model.checkShow == '1')
                     Container(
                       width: double.infinity,
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -343,10 +350,10 @@ class _IndividualTimekeepingDetailsWidgetState
                                   size: 24.0,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    'Lịch sử checkIn, checkut',
+                                    'Lịch sử checkIn, checkOut',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -365,139 +372,246 @@ class _IndividualTimekeepingDetailsWidgetState
                               color: FlutterFlowTheme.of(context).alternate,
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 5.0, 0.0, 5.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        5.0, 0.0, 0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Icon(
-                                          Icons.access_time,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 5.0, 8.0, 0.0),
+                                    child: Container(
+                                      height: 35.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        border: Border.all(
                                           color: FlutterFlowTheme.of(context)
-                                              .success,
-                                          size: 24.0,
+                                              .alternate,
                                         ),
-                                        Text(
-                                          'Vào ca:  ',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        Text(
-                                          '07:55',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                      ],
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text(
+                                            'Vào ca',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  fontSize: 16.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                          Text(
+                                            'Ra ca',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  fontSize: 16.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        5.0, 0.0, 0.0, 0.0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 0.0, 8.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Icon(
-                                          Icons.access_time,
-                                          color: FlutterFlowTheme.of(context)
-                                              .success,
-                                          size: 24.0,
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.access_time,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .success,
+                                                  size: 20.0,
+                                                ),
+                                                Text(
+                                                  'Vào ca:  ',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  '07:55',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.access_time,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .success,
+                                                  size: 20.0,
+                                                ),
+                                                Text(
+                                                  'Vào ca:  ',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  '07:55',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.access_time,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .success,
+                                                  size: 20.0,
+                                                ),
+                                                Text(
+                                                  'Vào ca:  ',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  '07:55',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ].divide(SizedBox(height: 2.0)),
                                         ),
-                                        Text(
-                                          'Vào ca:  ',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        Text(
-                                          '08:01',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        5.0, 0.0, 0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Icon(
-                                          Icons.access_time,
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiary,
-                                          size: 24.0,
-                                        ),
-                                        Text(
-                                          'Ra ca:  ',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        Text(
-                                          '11:58',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        5.0, 0.0, 0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Icon(
-                                          Icons.access_time,
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiary,
-                                          size: 24.0,
-                                        ),
-                                        Text(
-                                          'Ra ca:  ',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        Text(
-                                          '12:05',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.access_time,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .tertiary,
+                                                  size: 20.0,
+                                                ),
+                                                Text(
+                                                  'Ra ca:  ',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  '11:58',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.access_time,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .tertiary,
+                                                  size: 20.0,
+                                                ),
+                                                Text(
+                                                  'Ra ca:  ',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  '11:58',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ].divide(SizedBox(height: 2.0)),
                                         ),
                                       ],
                                     ),

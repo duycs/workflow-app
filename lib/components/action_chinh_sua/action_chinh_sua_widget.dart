@@ -7,6 +7,7 @@ import '/training/study_program/add_department/add_department_widget.dart';
 import '/training/study_program/study_program_edit/study_program_edit_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'action_chinh_sua_model.dart';
 export 'action_chinh_sua_model.dart';
@@ -23,7 +24,7 @@ class ActionChinhSuaWidget extends StatefulWidget {
     this.itemLession,
     this.idProgram,
     required this.checkCodeCertificate,
-  }) : checkMarket = checkMarket ?? true;
+  }) : this.checkMarket = checkMarket ?? true;
 
   final StudyProgramListStruct? dataDetail;
   final Future Function()? callBackList2;
@@ -55,7 +56,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.checkPage = widget.checkpage!;
+      _model.checkPage = widget!.checkpage!;
       setState(() {});
       while ('1' == '1') {
         setState(() {});
@@ -77,10 +78,10 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
               return Padding(
                 padding: MediaQuery.viewInsetsOf(context),
                 child: StudyProgramEditWidget(
-                  dataDetail: widget.dataDetail,
-                  itemLessions: widget.itemLessions,
-                  itemPrograms: widget.itemProgram,
-                  itemLession: widget.itemLession,
+                  dataDetail: widget!.dataDetail,
+                  itemLessions: widget!.itemLessions,
+                  itemPrograms: widget!.itemProgram,
+                  itemLession: widget!.itemLession,
                   callBackList1: () async {
                     _model.triggerRefreshList = true;
                     setState(() {});
@@ -114,12 +115,12 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 1.0),
+      alignment: AlignmentDirectional(0.0, 1.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x2B202529),
@@ -129,7 +130,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
               ),
             )
           ],
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
@@ -137,7 +138,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -150,14 +151,14 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
                 child: ListView(
                   padding: EdgeInsets.zero,
                   primary: false,
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   children: [
-                    if (widget.checkpage != 'studyProgramDetail')
+                    if (widget!.checkpage != 'studyProgramDetail')
                       Container(
                         decoration: BoxDecoration(
                           color: _model.setColor == 5
@@ -180,12 +181,12 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                               'StudyProgramDetail',
                               queryParameters: {
                                 'studyProgramList': serializeParam(
-                                  widget.dataDetail,
+                                  widget!.dataDetail,
                                   ParamType.DataStruct,
                                 ),
                               }.withoutNulls,
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: const TransitionInfo(
+                                kTransitionInfoKey: TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
@@ -218,7 +219,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                           ),
                         ),
                       ),
-                    if (widget.checkpage != 'studyProgramDetail')
+                    if (widget!.checkpage != 'studyProgramDetail')
                       Container(
                         decoration: BoxDecoration(
                           color: _model.setColor == 1
@@ -227,7 +228,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                                   .secondaryBackground,
                         ),
                         child: Visibility(
-                          visible: widget.dataDetail?.userCreated.id ==
+                          visible: widget!.dataDetail?.userCreated?.id ==
                               FFAppState().user.id,
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -246,7 +247,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                                   return Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
                                     child: StudyProgramEditWidget(
-                                      dataDetail: widget.dataDetail,
+                                      dataDetail: widget!.dataDetail,
                                       callBackList1: () async {
                                         _model.triggerRefreshList = true;
                                         setState(() {});
@@ -292,7 +293,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                             : FlutterFlowTheme.of(context).secondaryBackground,
                       ),
                       child: Visibility(
-                        visible: widget.dataDetail?.status == 'published',
+                        visible: widget!.dataDetail?.status == 'published',
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -311,7 +312,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                                 return Padding(
                                   padding: MediaQuery.viewInsetsOf(context),
                                   child: AddDepartmentWidget(
-                                    detail: widget.dataDetail!,
+                                    detail: widget!.dataDetail!,
                                     callBack: () async {
                                       _model.triggerRefreshList = true;
                                       setState(() {});
@@ -356,28 +357,28 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                             : FlutterFlowTheme.of(context).secondaryBackground,
                       ),
                       child: Visibility(
-                        visible: (widget.dataDetail?.template == 0) &&
+                        visible: (widget!.dataDetail?.template == 0) &&
                             (getJsonField(
                                   FFAppState().staffOrganization,
                                   r'''$.authors[0]''',
                                 ) !=
                                 null) &&
-                            ((widget.dataDetail?.authorId == null ||
-                                    widget.dataDetail?.authorId == '') ||
-                                ((widget.dataDetail?.authorId != null &&
-                                        widget.dataDetail?.authorId != '') &&
-                                    (widget.dataDetail?.authorId ==
+                            ((widget!.dataDetail?.authorId == null ||
+                                    widget!.dataDetail?.authorId == '') ||
+                                ((widget!.dataDetail?.authorId != null &&
+                                        widget!.dataDetail?.authorId != '') &&
+                                    (widget!.dataDetail?.authorId ==
                                         getJsonField(
                                           FFAppState().staffOrganization,
                                           r'''$.authors[0]''',
                                         ).toString()))) &&
-                            (widget.dataDetail?.copyrightOrganizationId ==
+                            (widget!.dataDetail?.copyrightOrganizationId ==
                                     null ||
-                                widget.dataDetail?.copyrightOrganizationId ==
+                                widget!.dataDetail?.copyrightOrganizationId ==
                                     '') &&
                             (FFAppState().marketOn == true) &&
-                            (widget.dataDetail?.status == 'published') &&
-                            (widget.dataDetail?.version == 0),
+                            (widget!.dataDetail?.status == 'published') &&
+                            (widget!.dataDetail?.version == 0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -395,14 +396,14 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                                 return Padding(
                                   padding: MediaQuery.viewInsetsOf(context),
                                   child: AddProgramMarketWidget(
-                                    id: widget.dataDetail!.id,
-                                    price: widget.dataDetail?.price,
-                                    version: widget.dataDetail?.version,
-                                    checkPage: widget.checkpage,
-                                    nameLession: widget.dataDetail?.lessions
-                                        .map((e) => e.lessionsId.name)
+                                    id: widget!.dataDetail!.id,
+                                    price: widget!.dataDetail?.price,
+                                    version: widget!.dataDetail?.version,
+                                    checkPage: widget!.checkpage,
+                                    nameLession: widget!.dataDetail?.lessions
+                                        ?.map((e) => e.lessionsId.name)
                                         .toList(),
-                                    lessions: widget.dataDetail,
+                                    lessions: widget!.dataDetail,
                                   ),
                                 );
                               },
@@ -444,28 +445,28 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                             : FlutterFlowTheme.of(context).secondaryBackground,
                       ),
                       child: Visibility(
-                        visible: (widget.dataDetail?.template == 0) &&
+                        visible: (widget!.dataDetail?.template == 0) &&
                             (getJsonField(
                                   FFAppState().staffOrganization,
                                   r'''$.authors[0]''',
                                 ) !=
                                 null) &&
-                            ((widget.dataDetail?.authorId == null ||
-                                    widget.dataDetail?.authorId == '') ||
-                                ((widget.dataDetail?.authorId != null &&
-                                        widget.dataDetail?.authorId != '') &&
-                                    (widget.dataDetail?.authorId ==
+                            ((widget!.dataDetail?.authorId == null ||
+                                    widget!.dataDetail?.authorId == '') ||
+                                ((widget!.dataDetail?.authorId != null &&
+                                        widget!.dataDetail?.authorId != '') &&
+                                    (widget!.dataDetail?.authorId ==
                                         getJsonField(
                                           FFAppState().staffOrganization,
                                           r'''$.authors[0]''',
                                         ).toString()))) &&
-                            (widget.dataDetail?.copyrightOrganizationId ==
+                            (widget!.dataDetail?.copyrightOrganizationId ==
                                     null ||
-                                widget.dataDetail?.copyrightOrganizationId ==
+                                widget!.dataDetail?.copyrightOrganizationId ==
                                     '') &&
-                            (widget.dataDetail!.version > 0) &&
+                            (widget!.dataDetail!.version > 0) &&
                             (FFAppState().marketOn == true) &&
-                            (widget.dataDetail?.status == 'published'),
+                            (widget!.dataDetail?.status == 'published'),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -483,16 +484,16 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                                 return Padding(
                                   padding: MediaQuery.viewInsetsOf(context),
                                   child: AddProgramMarketWidget(
-                                    id: widget.dataDetail!.id,
-                                    price: widget.dataDetail?.price,
-                                    version: widget.dataDetail?.version,
-                                    checkPage: widget.checkpage,
-                                    nameLession: widget.dataDetail?.lessions
-                                        .map((e) => e.lessionsId.name)
+                                    id: widget!.dataDetail!.id,
+                                    price: widget!.dataDetail?.price,
+                                    version: widget!.dataDetail?.version,
+                                    checkPage: widget!.checkpage,
+                                    nameLession: widget!.dataDetail?.lessions
+                                        ?.map((e) => e.lessionsId.name)
                                         .toList(),
-                                    lessions: widget.dataDetail,
-                                    category: widget.dataDetail?.categoryId,
-                                    domain: widget.dataDetail?.domainId,
+                                    lessions: widget!.dataDetail,
+                                    category: widget!.dataDetail?.categoryId,
+                                    domain: widget!.dataDetail?.domainId,
                                   ),
                                 );
                               },
@@ -553,14 +554,14 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                  alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: SizedBox(
+                                  child: Container(
                                     height: double.infinity,
                                     width: double.infinity,
                                     child: ListCertiWidget(
-                                      idProgram: widget.idProgram,
-                                      checkCodeCertificate: widget
+                                      idProgram: widget!.idProgram,
+                                      checkCodeCertificate: widget!
                                           .dataDetail!.certificateId.code,
                                     ),
                                   ),

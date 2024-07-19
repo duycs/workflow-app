@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -8,10 +9,13 @@ import '/training/order/invite_user/invite_user_widget.dart';
 import '/training/study_program/company_review/company_review_widget.dart';
 import '/training/study_program/filter_study_program_market/filter_study_program_market_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'study_program_list_market_model.dart';
@@ -96,13 +100,13 @@ class _StudyProgramListMarketWidgetState
                 size: 30.0,
               ),
               onPressed: () async {
-                if (widget.checkback == 'market') {
+                if (widget!.checkback == 'market') {
                   context.safePop();
                 } else {
                   context.pushNamed(
                     'Profile',
                     extra: <String, dynamic>{
-                      kTransitionInfoKey: const TransitionInfo(
+                      kTransitionInfoKey: TransitionInfo(
                         hasTransition: true,
                         transitionType: PageTransitionType.fade,
                         duration: Duration(milliseconds: 0),
@@ -127,18 +131,18 @@ class _StudyProgramListMarketWidgetState
                 ),
               ],
             ),
-            actions: const [],
+            actions: [],
             centerTitle: true,
             elevation: 1.0,
           ),
           body: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 12.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -148,7 +152,7 @@ class _StudyProgramListMarketWidgetState
                           focusNode: _model.textFieldNameSearchFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textFieldNameSearchTextController',
-                            const Duration(milliseconds: 500),
+                            Duration(milliseconds: 500),
                             () async {
                               _model.nameSearch =
                                   _model.textFieldNameSearchTextController.text;
@@ -208,9 +212,9 @@ class _StudyProgramListMarketWidgetState
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
-                            prefixIcon: const Icon(
+                            prefixIcon: Icon(
                               Icons.search_sharp,
                             ),
                             suffixIcon: _model
@@ -325,10 +329,10 @@ class _StudyProgramListMarketWidgetState
                 if ('${(_model.nameSearch != null && _model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.lessionsNameSearch != null && _model.lessionsNameSearch != '') && (_model.lessionsNameSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${_model.lessionsNameSearch}\"}}}}' : ' '}${(_model.dateStartSearch != null && _model.dateStartSearch != '') && (_model.dateStartSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSearch}\"}}}}' : ' '}${(_model.dateEndSearch != null && _model.dateEndSearch != '') && (_model.dateEndSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${_model.dateEndSearch}\"}}}}' : ' '}' !=
                     '    ')
                   Align(
-                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    alignment: AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                       child: Text(
                         '#Kết quả hiển thị theo bộ lọc',
                         style:
@@ -343,7 +347,7 @@ class _StudyProgramListMarketWidgetState
                   ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                     child: PagedListView<ApiPagingParams, dynamic>.separated(
                       pagingController: _model.setListViewController1(
                         (nextPageMarker) =>
@@ -353,19 +357,19 @@ class _StudyProgramListMarketWidgetState
                           limit: 20,
                           filter: '{\"_and\":[{}${(_model.nameSearch != null && _model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.lessionsNameSearch != null && _model.lessionsNameSearch != '') && (_model.lessionsNameSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${_model.lessionsNameSearch}\"}}}}' : ' '}${(_model.dateStartSearch != null && _model.dateStartSearch != '') && (_model.dateStartSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSearch}\"}}}}' : ' '}${(_model.dateEndSearch != null && _model.dateEndSearch != '') && (_model.dateEndSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
                               return DateTime.parse(var1)
-                                  .add(const Duration(days: 1))
+                                  .add(Duration(days: 1))
                                   .toString();
                             }(_model.dateEndSearch!)}\"}}}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
                             FFAppState().staffLogin,
                             r'''$.organization_id''',
                           ).toString()}\"}}'}${',{\"template\":{\"_eq\":\"0\"}}'},{\"copyright_organization_id\":{\"_nnull\":true}}${() {
-                            if ((widget.checkpage != null &&
-                                    widget.checkpage != '') &&
-                                (widget.checkpage == 'private1')) {
+                            if ((widget!.checkpage != null &&
+                                    widget!.checkpage != '') &&
+                                (widget!.checkpage == 'private1')) {
                               return ',{\"private\":{\"_eq\":1}}';
-                            } else if ((widget.checkpage != null &&
-                                    widget.checkpage != '') &&
-                                (widget.checkpage == 'private0')) {
+                            } else if ((widget!.checkpage != null &&
+                                    widget!.checkpage != '') &&
+                                (widget!.checkpage == 'private0')) {
                               return ',{\"private\":{\"_eq\":0}}';
                             } else {
                               return ' ';
@@ -378,7 +382,7 @@ class _StudyProgramListMarketWidgetState
                       shrinkWrap: true,
                       reverse: false,
                       scrollDirection: Axis.vertical,
-                      separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                      separatorBuilder: (_, __) => SizedBox(height: 10.0),
                       builderDelegate: PagedChildBuilderDelegate<dynamic>(
                         // Customize what your widget looks like when it's loading the first page.
                         firstPageProgressIndicatorBuilder: (_) => Center(
@@ -404,8 +408,8 @@ class _StudyProgramListMarketWidgetState
                             ),
                           ),
                         ),
-                        noItemsFoundIndicatorBuilder: (_) => const Center(
-                          child: SizedBox(
+                        noItemsFoundIndicatorBuilder: (_) => Center(
+                          child: Container(
                             width: double.infinity,
                             child: DataNotFoundWidget(),
                           ),
@@ -415,13 +419,13 @@ class _StudyProgramListMarketWidgetState
                               .listViewPagingController1!
                               .itemList![dataListViewIndex];
                           return Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 2.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 12.0, 4.0),
                                   child: Container(
                                     width: double.infinity,
@@ -434,7 +438,7 @@ class _StudyProgramListMarketWidgetState
                                               .primaryBackground
                                           : FlutterFlowTheme.of(context)
                                               .secondaryBackground,
-                                      boxShadow: const [
+                                      boxShadow: [
                                         BoxShadow(
                                           blurRadius: 2.0,
                                           color: Color(0x33000000),
@@ -447,7 +451,7 @@ class _StudyProgramListMarketWidgetState
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           5.0, 12.0, 5.0, 12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -481,11 +485,11 @@ class _StudyProgramListMarketWidgetState
                                           Expanded(
                                             flex: 2,
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   -1.0, 0.0),
                                               child: Container(
                                                 width: double.infinity,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -503,7 +507,7 @@ class _StudyProgramListMarketWidgetState
                                                         Expanded(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -534,7 +538,7 @@ class _StudyProgramListMarketWidgetState
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   1.0, 0.0),
                                                           child: InkWell(
                                                             splashColor: Colors
@@ -622,17 +626,17 @@ class _StudyProgramListMarketWidgetState
                                                                         .primaryText,
                                                                     size: 14.0,
                                                                   ),
-                                                              ].divide(const SizedBox(
+                                                              ].divide(SizedBox(
                                                                   width: 8.0)),
                                                             ),
                                                           ),
                                                         ),
                                                       ].divide(
-                                                          const SizedBox(width: 8.0)),
+                                                          SizedBox(width: 8.0)),
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -650,13 +654,13 @@ class _StudyProgramListMarketWidgetState
                                                             size: 20.0,
                                                           ),
                                                           Text(
-                                                            '${valueOrDefault<String>(
+                                                            '${'${valueOrDefault<String>(
                                                               dataListViewItem
                                                                   .lessions
                                                                   .length
                                                                   .toString(),
                                                               '0',
-                                                            )} bài học',
+                                                            )} bài học'}',
                                                             maxLines: 2,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
@@ -668,13 +672,13 @@ class _StudyProgramListMarketWidgetState
                                                                       0.0,
                                                                 ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             width: 4.0)),
                                                       ),
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   2.0,
@@ -723,7 +727,7 @@ class _StudyProgramListMarketWidgetState
                                                                           0.0,
                                                                     ),
                                                               ),
-                                                            ].divide(const SizedBox(
+                                                            ].divide(SizedBox(
                                                                 width: 4.0)),
                                                           ),
                                                           Text(
@@ -765,7 +769,7 @@ class _StudyProgramListMarketWidgetState
                                                                       0.0,
                                                                 ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             width: 4.0)),
                                                       ),
                                                     ),
@@ -829,7 +833,7 @@ class _StudyProgramListMarketWidgetState
                                                                       () {}));
                                                             },
                                                             text: 'Đánh giá',
-                                                            icon: const Icon(
+                                                            icon: Icon(
                                                               Icons.star,
                                                               size: 15.0,
                                                             ),
@@ -837,14 +841,14 @@ class _StudyProgramListMarketWidgetState
                                                                 FFButtonOptions(
                                                               height: 31.0,
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -871,7 +875,7 @@ class _StudyProgramListMarketWidgetState
                                                                       ),
                                                               elevation: 3.0,
                                                               borderSide:
-                                                                  const BorderSide(
+                                                                  BorderSide(
                                                                 color: Colors
                                                                     .transparent,
                                                                 width: 1.0,
@@ -905,7 +909,7 @@ class _StudyProgramListMarketWidgetState
                                                                       backgroundColor:
                                                                           Colors
                                                                               .transparent,
-                                                                      alignment: const AlignmentDirectional(
+                                                                      alignment: AlignmentDirectional(
                                                                               0.0,
                                                                               0.0)
                                                                           .resolve(
@@ -916,7 +920,7 @@ class _StudyProgramListMarketWidgetState
                                                                             ? FocusScope.of(context).requestFocus(_model.unfocusNode)
                                                                             : FocusScope.of(context).unfocus(),
                                                                         child:
-                                                                            SizedBox(
+                                                                            Container(
                                                                           height:
                                                                               MediaQuery.sizeOf(context).height * 1.0,
                                                                           width:
@@ -935,21 +939,21 @@ class _StudyProgramListMarketWidgetState
                                                                         () {}));
                                                               },
                                                               text: 'Chia sẻ',
-                                                              icon: const Icon(
+                                                              icon: Icon(
                                                                 Icons.ios_share,
                                                                 size: 15.0,
                                                               ),
                                                               options:
                                                                   FFButtonOptions(
                                                                 height: 32.0,
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         0.0,
                                                                         16.0,
                                                                         0.0),
                                                                 iconPadding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -975,7 +979,7 @@ class _StudyProgramListMarketWidgetState
                                                                               .normal,
                                                                     ),
                                                                 borderSide:
-                                                                    const BorderSide(
+                                                                    BorderSide(
                                                                   color: Colors
                                                                       .transparent,
                                                                   width: 1.0,
@@ -988,14 +992,14 @@ class _StudyProgramListMarketWidgetState
                                                             ),
                                                           ),
                                                       ].divide(
-                                                          const SizedBox(width: 8.0)),
+                                                          SizedBox(width: 8.0)),
                                                     ),
                                                   ],
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 4.0)),
+                                        ].divide(SizedBox(width: 4.0)),
                                       ),
                                     ),
                                   ),
@@ -1019,7 +1023,7 @@ class _StudyProgramListMarketWidgetState
                                                   dataListTestsViewIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 12.0, 4.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -1062,7 +1066,7 @@ class _StudyProgramListMarketWidgetState
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        const TransitionInfo(
+                                                        TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -1083,7 +1087,7 @@ class _StudyProgramListMarketWidgetState
                                                           8.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(6.0),
+                                                  padding: EdgeInsets.all(6.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -1179,7 +1183,7 @@ class _StudyProgramListMarketWidgetState
                                                                             .normal,
                                                                   ),
                                                             ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               height: 4.0)),
                                                         ),
                                                       ),
@@ -1230,7 +1234,7 @@ class _StudyProgramListMarketWidgetState
                                                             extra: <String,
                                                                 dynamic>{
                                                               kTransitionInfoKey:
-                                                                  const TransitionInfo(
+                                                                  TransitionInfo(
                                                                 hasTransition:
                                                                     true,
                                                                 transitionType:
@@ -1249,14 +1253,14 @@ class _StudyProgramListMarketWidgetState
                                                           width: 70.0,
                                                           height: 30.0,
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       12.0,
                                                                       0.0,
                                                                       12.0,
                                                                       0.0),
                                                           iconPadding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1284,7 +1288,7 @@ class _StudyProgramListMarketWidgetState
                                                                   ),
                                                           elevation: 3.0,
                                                           borderSide:
-                                                              const BorderSide(
+                                                              BorderSide(
                                                             color: Colors
                                                                 .transparent,
                                                             width: 1.0,
@@ -1305,7 +1309,7 @@ class _StudyProgramListMarketWidgetState
                                                         size: 24.0,
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 8.0)),
+                                                        SizedBox(width: 8.0)),
                                                   ),
                                                 ),
                                               ),
@@ -1334,7 +1338,7 @@ class _StudyProgramListMarketWidgetState
                                                   dataListLessionsViewIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 12.0, 4.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -1359,7 +1363,7 @@ class _StudyProgramListMarketWidgetState
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        const TransitionInfo(
+                                                        TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -1380,7 +1384,7 @@ class _StudyProgramListMarketWidgetState
                                                           8.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(6.0),
+                                                  padding: EdgeInsets.all(6.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.min,
@@ -1544,14 +1548,14 @@ class _StudyProgramListMarketWidgetState
                                                                   FFButtonOptions(
                                                                 width: 70.0,
                                                                 height: 30.0,
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         12.0,
                                                                         0.0,
                                                                         12.0,
                                                                         0.0),
                                                                 iconPadding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1578,7 +1582,7 @@ class _StudyProgramListMarketWidgetState
                                                                     ),
                                                                 elevation: 3.0,
                                                                 borderSide:
-                                                                    const BorderSide(
+                                                                    BorderSide(
                                                                   color: Colors
                                                                       .transparent,
                                                                   width: 1.0,
@@ -1602,7 +1606,7 @@ class _StudyProgramListMarketWidgetState
                                                         size: 24.0,
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 8.0)),
+                                                        SizedBox(width: 8.0)),
                                                   ),
                                                 ),
                                               ),

@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/training/certificate/certificate1_zoom/certificate1_zoom_widget.dart';
 import '/training/certificate/certificate2_zoom/certificate2_zoom_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'certificate_list_study_program_model.dart';
 export 'certificate_list_study_program_model.dart';
 
@@ -58,12 +60,12 @@ class _CertificateListStudyProgramWidgetState
             color: FlutterFlowTheme.of(context).secondaryBackground,
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,15 +99,15 @@ class _CertificateListStudyProgramWidgetState
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (widget.programdetail?.certificateId.id ==
+                      if (widget!.programdetail?.certificateId?.id ==
                           '1ff8e3e4-fc53-4fe6-819a-db98d4785ef3')
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               10.0, 6.0, 10.0, 6.0),
                           child: Container(
                             decoration: BoxDecoration(
@@ -115,23 +117,23 @@ class _CertificateListStudyProgramWidgetState
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   6.0, 6.0, 6.0, 6.0),
                               child: wrapWithModel(
                                 model: _model.certificate1ZoomModel,
                                 updateCallback: () => setState(() {}),
                                 updateOnChange: true,
-                                child: const Certificate1ZoomWidget(
+                                child: Certificate1ZoomWidget(
                                   check: 'studyProgram',
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      if (widget.programdetail?.certificateId.id ==
+                      if (widget!.programdetail?.certificateId?.id ==
                           '22e2144b-e206-4bf6-a22e-110088325e14')
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               10.0, 6.0, 10.0, 6.0),
                           child: Container(
                             decoration: BoxDecoration(
@@ -141,17 +143,17 @@ class _CertificateListStudyProgramWidgetState
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   6.0, 6.0, 6.0, 6.0),
                               child: wrapWithModel(
                                 model: _model.certificate2ZoomModel,
                                 updateCallback: () => setState(() {}),
-                                child: const Certificate2ZoomWidget(),
+                                child: Certificate2ZoomWidget(),
                               ),
                             ),
                           ),
                         ),
-                    ].divide(const SizedBox(height: 5.0)),
+                    ].divide(SizedBox(height: 5.0)),
                   ),
                 ),
               ],

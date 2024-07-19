@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'certificate1_zoom_model.dart';
 export 'certificate1_zoom_model.dart';
@@ -48,23 +49,23 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: double.infinity,
         height: 200.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
         ),
-        alignment: const AlignmentDirectional(0.0, 0.0),
+        alignment: AlignmentDirectional(0.0, 0.0),
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(10.0),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: Stack(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   children: [
                     Stack(
                       children: [
@@ -73,7 +74,7 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
                             Opacity(
                               opacity: 0.3,
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Icon(
                                   Icons.emoji_events_rounded,
                                   color: FlutterFlowTheme.of(context).warning,
@@ -82,9 +83,9 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -111,7 +112,7 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
                                           ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 6.0, 0.0, 6.0),
                                       child: Text(
                                         'Chứng nhận',
@@ -129,7 +130,7 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 2.0),
                                       child: Text(
                                         'Tên nhân viên',
@@ -144,7 +145,7 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 2.0),
                                       child: Text(
                                         'Chức vụ: \"Nhân viên\"',
@@ -185,7 +186,7 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
                                     ),
                                     if ('1' == '2')
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 6.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -194,7 +195,7 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
                                           children: [
                                             Expanded(
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, -1.0),
                                                 child: FaIcon(
                                                   FontAwesomeIcons.medal,
@@ -208,7 +209,7 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
                                             Expanded(
                                               child: Container(
                                                 height: 50.0,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -258,17 +259,17 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
                                           ],
                                         ),
                                       ),
-                                  ].divide(const SizedBox(height: 3.0)),
+                                  ].divide(SizedBox(height: 3.0)),
                                 ),
                               ),
                             ),
                           ],
                         ),
-                        if (widget.check != 'studyProgram')
+                        if (widget!.check != 'studyProgram')
                           Align(
-                            alignment: const AlignmentDirectional(1.0, 1.0),
+                            alignment: AlignmentDirectional(1.0, 1.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 5.0, 0.0),
                               child: FlutterFlowIconButton(
                                 borderColor: FlutterFlowTheme.of(context)
@@ -293,7 +294,7 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
                       ],
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(1.0, -1.0),
+                      alignment: AlignmentDirectional(1.0, -1.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -310,7 +311,7 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
                           ),
                           Container(
                             width: 50.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               'Công ty TNHH A',
                               textAlign: TextAlign.center,

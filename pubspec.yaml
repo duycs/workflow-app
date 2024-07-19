@@ -106,6 +106,7 @@ dependencies:
   sqflite: 2.2.6
   stop_watch_timer: 3.0.2
   styled_divider: 1.0.4
+  table_calendar: ^3.0.4
   timeago: 3.6.1
   url_launcher: 6.2.5
   url_launcher_android: 6.3.0
@@ -124,6 +125,7 @@ dependencies:
 dependency_overrides:
   device_info_plus: 10.1.0
   http: 1.2.1
+  intl: ^0.19.0
   package_info_plus: 8.0.0
   package_info_plus_platform_interface: 3.0.0
   uuid: ^4.0.0

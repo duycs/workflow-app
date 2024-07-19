@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'profile_staff_new_model.dart';
 export 'profile_staff_new_model.dart';
@@ -65,14 +67,14 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
-        constraints: const BoxConstraints(
+        constraints: BoxConstraints(
           maxHeight: 700.0,
         ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 12.0,
               color: Color(0x33000000),
@@ -85,7 +87,7 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
           borderRadius: BorderRadius.circular(0.0),
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -98,7 +100,7 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                     child: Text(
                       'Thông tin nhân viên',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -125,7 +127,7 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
+                padding: EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -137,7 +139,7 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(2.0),
+                        padding: EdgeInsets.all(2.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -150,7 +152,7 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                                 type: PageTransitionType.fade,
                                 child: FlutterFlowExpandedImageView(
                                   image: Image.network(
-                                    '${FFAppConstants.ApiBaseUrl}/assets/${widget.image}?access_token=${FFAppState().accessToken}',
+                                    '${FFAppConstants.ApiBaseUrl}/assets/${widget!.image}?access_token=${FFAppState().accessToken}',
                                     fit: BoxFit.contain,
                                     errorBuilder:
                                         (context, error, stackTrace) =>
@@ -161,7 +163,7 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                                   ),
                                   allowRotation: false,
                                   tag:
-                                      '${FFAppConstants.ApiBaseUrl}/assets/${widget.image}?access_token=${FFAppState().accessToken}',
+                                      '${FFAppConstants.ApiBaseUrl}/assets/${widget!.image}?access_token=${FFAppState().accessToken}',
                                   useHeroAnimation: true,
                                 ),
                               ),
@@ -169,12 +171,12 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                           },
                           child: Hero(
                             tag:
-                                '${FFAppConstants.ApiBaseUrl}/assets/${widget.image}?access_token=${FFAppState().accessToken}',
+                                '${FFAppConstants.ApiBaseUrl}/assets/${widget!.image}?access_token=${FFAppState().accessToken}',
                             transitionOnUserGestures: true,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12.0),
                               child: Image.network(
-                                '${FFAppConstants.ApiBaseUrl}/assets/${widget.image}?access_token=${FFAppState().accessToken}',
+                                '${FFAppConstants.ApiBaseUrl}/assets/${widget!.image}?access_token=${FFAppState().accessToken}',
                                 width: 100.0,
                                 height: 100.0,
                                 fit: BoxFit.cover,
@@ -194,13 +196,13 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              widget.name!,
+                              widget!.name!,
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
@@ -210,10 +212,10 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                                   ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 4.0, 0.0, 0.0),
                               child: Text(
-                                widget.email!,
+                                widget!.email!,
                                 style: FlutterFlowTheme.of(context)
                                     .bodySmall
                                     .override(
@@ -235,13 +237,13 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -256,13 +258,13 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         12.0, 12.0, 0.0, 12.0),
                                     child: Text(
                                       'Chức vụ:',
@@ -280,10 +282,10 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           12.0, 12.0, 0.0, 12.0),
                                       child: Text(
-                                        widget.role!,
+                                        widget!.role!,
                                         style: FlutterFlowTheme.of(context)
                                             .bodySmall
                                             .override(
@@ -304,7 +306,7 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -319,13 +321,13 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         12.0, 12.0, 0.0, 12.0),
                                     child: Text(
                                       'Ngày sinh:',
@@ -343,13 +345,13 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           12.0, 12.0, 0.0, 12.0),
                                       child: Text(
                                         dateTimeFormat(
                                           'dd/MM/yyyy',
                                           functions.stringToDateTime(
-                                              widget.ngaySinh),
+                                              widget!.ngaySinh),
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
                                         ),
@@ -372,7 +374,7 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -387,13 +389,13 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         12.0, 12.0, 0.0, 12.0),
                                     child: Text(
                                       'Giới tính:',
@@ -411,13 +413,13 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           12.0, 12.0, 0.0, 12.0),
                                       child: Text(
                                         () {
-                                          if (widget.gender == 'male') {
+                                          if (widget!.gender == 'male') {
                                             return 'Nam';
-                                          } else if (widget.gender ==
+                                          } else if (widget!.gender ==
                                               'female') {
                                             return 'Nữ';
                                           } else {
@@ -443,7 +445,7 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 16.0),
                           child: Container(
                             width: double.infinity,
@@ -458,13 +460,13 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         12.0, 12.0, 0.0, 12.0),
                                     child: Text(
                                       'SĐT:',
@@ -482,14 +484,14 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           12.0, 12.0, 0.0, 12.0),
                                       child: Text(
-                                        (widget.phone != 'null') &&
-                                                (widget.phone !=
+                                        (widget!.phone != 'null') &&
+                                                (widget!.phone !=
                                                     'undefined') &&
-                                                (widget.phone != '')
-                                            ? widget.phone!
+                                                (widget!.phone != '')
+                                            ? widget!.phone!
                                             : '',
                                         style: FlutterFlowTheme.of(context)
                                             .bodySmall
@@ -509,7 +511,7 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                             ),
                           ),
                         ),
-                      ].divide(const SizedBox(height: 16.0)),
+                      ].divide(SizedBox(height: 16.0)),
                     ),
                   ),
                 ),
