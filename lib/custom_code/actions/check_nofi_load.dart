@@ -15,10 +15,10 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
-Future<void> callApi(String id) async {
+Future callApi(String id) async {
   final prefs = await SharedPreferences.getInstance();
   final accessToken = prefs.getString('accessToken') ?? '';
-
+  print("accessToken:${accessToken}");
   final url =
       Uri.parse('https://workflow-api-dev.pexnic.com/items/notifications/$id');
   final response = await http.patch(
@@ -27,7 +27,7 @@ Future<void> callApi(String id) async {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $accessToken',
     },
-    body: json.encode({'status': 'archived'}),
+    body: jsonEncode(<String, String>{'status': 'archived'}),
   );
 
   if (response.statusCode == 200) {
@@ -35,16 +35,17 @@ Future<void> callApi(String id) async {
   } else {
     print('Failed to call API: ${response.statusCode}');
   }
+  // Add your function code here!
 }
 
-Future checkNofiLoad(BuildContext context) async {
+Future<void> checkNofiLoad(BuildContext context) async {
   // Add your function code here!
   OneSignal.initialize("014e851d-ca32-4c5e-840e-236166738a06");
 
   Future<Map<String, String>> tagsFuture = OneSignal.User.getTags();
 
   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    OneSignal.Notifications.addClickListener((event) {
+    OneSignal.Notifications.addClickListener((event) async {
       // lấy thông báo
       var additionalData = event.notification.additionalData;
       print("additionalData: $additionalData");
@@ -57,20 +58,21 @@ Future checkNofiLoad(BuildContext context) async {
         case "2":
           {
             context.pushNamed('TaskListWait');
-
-            callApi('${payload.data.id}');
+            await callApi(payload.data.id);
             return;
           }
         case "3":
           {
             context.pushNamed('StudyProgramListUser');
-            callApi('${payload.data.id}');
+            await callApi(payload.data.id);
+
             return;
           }
         case "4":
           {
             context.pushNamed('StudyProgramListUser');
-            callApi('${payload.data.id}');
+            await callApi(payload.data.id);
+
             return;
           }
         case "5":
@@ -84,13 +86,15 @@ Future checkNofiLoad(BuildContext context) async {
                 ),
               }.withoutNulls,
             );
-            callApi('${payload.data.id}');
+            await callApi(payload.data.id);
+
             return;
           }
         case "8":
           {
             context.pushNamed('OrderList');
-            callApi('${payload.data.id}');
+            await callApi(payload.data.id);
+
             return;
           }
         default:
@@ -105,7 +109,8 @@ Future checkNofiLoad(BuildContext context) async {
                 ),
               },
             );
-            callApi('${payload.data.id}');
+            await callApi(payload.data.id);
+
             return;
           }
       }

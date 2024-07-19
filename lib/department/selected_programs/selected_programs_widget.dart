@@ -1,11 +1,8 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'selected_programs_model.dart';
 export 'selected_programs_model.dart';
 
@@ -15,7 +12,7 @@ class SelectedProgramsWidget extends StatefulWidget {
     this.callBack,
     bool? itemCheck,
     this.status,
-  }) : this.itemCheck = itemCheck ?? false;
+  }) : itemCheck = itemCheck ?? false;
 
   final Future Function(bool? check)? callBack;
   final bool itemCheck;
@@ -41,7 +38,7 @@ class _SelectedProgramsWidgetState extends State<SelectedProgramsWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.check = widget!.itemCheck;
+      _model.check = widget.itemCheck;
       setState(() {});
     });
 
@@ -60,7 +57,7 @@ class _SelectedProgramsWidgetState extends State<SelectedProgramsWidget> {
     return ToggleIcon(
       onPressed: () async {
         setState(() => _model.check = !_model.check);
-        if (widget!.status == 'published') {
+        if (widget.status == 'published') {
           await widget.callBack?.call(
             _model.check,
           );
@@ -75,7 +72,7 @@ class _SelectedProgramsWidgetState extends State<SelectedProgramsWidget> {
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
               ),
-              duration: Duration(milliseconds: 4000),
+              duration: const Duration(milliseconds: 4000),
               backgroundColor: FlutterFlowTheme.of(context).error,
             ),
           );

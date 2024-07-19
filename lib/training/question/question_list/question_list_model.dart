@@ -1,27 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/question/filter_question/filter_question_widget.dart';
-import '/training/question/question_create/question_create_widget.dart';
-import '/training/question/question_menu/question_menu_widget.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'question_list_widget.dart' show QuestionListWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
 
 class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
   ///  Local state fields for this page.
@@ -78,15 +63,15 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
       apiResultQuestionListSearch = await QuestionGroup.questionListCall.call(
         accessToken: FFAppState().accessToken,
         filter:
-            '{\"_and\":[{}${(nameSearch != null && nameSearch != '') && (nameSearch != ' ') ? ',{\"content\":{\"_icontains\":\"${nameSearch}\"}}' : ' '}${(status != null && status != '') && (status != ' ') ? ',{\"status\":{\"_eq\":\"${status}\"}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
+            '{\"_and\":[{}${(nameSearch != '') && (nameSearch != ' ') ? ',{\"content\":{\"_icontains\":\"$nameSearch\"}}' : ' '}${(status != '') && (status != ' ') ? ',{\"status\":{\"_eq\":\"$status\"}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
           FFAppState().staffLogin,
           r'''$.organization_id''',
         ).toString().toString()}\"}}'}]}',
       );
 
-      if ((apiResultQuestionListSearch?.succeeded ?? true)) {
+      if ((apiResultQuestionListSearch.succeeded ?? true)) {
         dataList = (getJsonField(
-          (apiResultQuestionListSearch?.jsonBody ?? ''),
+          (apiResultQuestionListSearch.jsonBody ?? ''),
           r'''$.data''',
           true,
         )!
@@ -105,7 +90,7 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -123,7 +108,7 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -170,7 +155,7 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

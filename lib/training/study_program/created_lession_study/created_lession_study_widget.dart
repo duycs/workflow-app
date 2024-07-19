@@ -12,12 +12,10 @@ import '/rich_text_editor/mobile_editor_component/mobile_editor_component_widget
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/training/lesson/quiz_creation_lesson/quiz_creation_lesson_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'created_lession_study_model.dart';
 export 'created_lession_study_model.dart';
@@ -91,12 +89,12 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
           key: _model.formKey,
           autovalidateMode: AutovalidateMode.disabled,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -128,7 +126,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
@@ -136,7 +134,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: TextFormField(
                               controller: _model.nameTextController,
@@ -201,7 +199,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: TextFormField(
                               controller: _model.descriptionTextController,
@@ -271,7 +269,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: Text(
                               'Bài thi',
@@ -289,7 +287,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 3.0, 0.0, 0.0),
                                   child: FlutterFlowDropDown<String>(
                                     controller: _model.testIdValueController ??=
@@ -342,7 +340,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                         FlutterFlowTheme.of(context).alternate,
                                     borderWidth: 0.5,
                                     borderRadius: 8.0,
-                                    margin: EdgeInsetsDirectional.fromSTEB(
+                                    margin: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 4.0, 16.0, 4.0),
                                     hidesUnderline: true,
                                     isOverButton: true,
@@ -372,9 +370,9 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                             });
                                             setState(() {
                                               _model.testIdValueController
-                                                  ?.value = testId!.id;
+                                                  ?.value = testId.id;
                                             });
-                                            _model.testId = testId!.id;
+                                            _model.testId = testId.id;
                                             setState(() {});
                                           },
                                         ),
@@ -383,15 +381,15 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                   ).then((value) => safeSetState(() {}));
                                 },
                                 text: 'Bài thi',
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.add,
                                   size: 15.0,
                                 ),
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 10.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -404,17 +402,17 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                         fontWeight: FontWeight.normal,
                                       ),
                                   elevation: 3.0,
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 5.0)),
+                            ].divide(const SizedBox(width: 5.0)),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -434,7 +432,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 8.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -494,7 +492,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                               BorderRadius.circular(0.0),
                                         ),
                                         contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 8.0, 0.0, 8.0, 0.0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -522,7 +520,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                         ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                           if (_model.checkValiTime == true)
@@ -539,7 +537,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                   ),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -571,7 +569,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                 Expanded(
                                   flex: 1,
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         5.0, 0.0, 5.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -579,7 +577,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                       focusNode: _model.estimateInDayFocusNode,
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.estimateInDayTextController',
-                                        Duration(milliseconds: 2000),
+                                        const Duration(milliseconds: 2000),
                                         () async {
                                           _model.checkDay = int.tryParse(_model
                                               .estimateInDayTextController
@@ -641,7 +639,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                               BorderRadius.circular(0.0),
                                         ),
                                         contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 8.0, 0.0, 8.0, 0.0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -669,12 +667,10 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                         ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                           if (((_model.estimateInDayTextController.text !=
-                                          null &&
-                                      _model.estimateInDayTextController.text !=
                                           '') &&
                                   (int.parse(_model
                                           .estimateInDayTextController.text) <
@@ -694,7 +690,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                   ),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -708,13 +704,12 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      if (_model.uploadedLocalFile1 != null &&
-                                          (_model.uploadedLocalFile1.bytes
+                                      if ((_model.uploadedLocalFile1.bytes
                                                   ?.isNotEmpty ??
                                               false))
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
@@ -727,8 +722,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (_model.uploadedLocalFile1 == null ||
-                                          (_model.uploadedLocalFile1.bytes
+                                      if ((_model.uploadedLocalFile1.bytes
                                                   ?.isEmpty ??
                                               true))
                                         Container(
@@ -746,7 +740,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                             ),
                                           ),
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'Chưa có dữ liệu!',
                                             style: FlutterFlowTheme.of(context)
@@ -811,16 +805,16 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                       setState(() {});
                                     },
                                     text: 'Ảnh',
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.add,
                                       size: 18.0,
                                     ),
                                     options: FFButtonOptions(
                                       height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 16.0, 0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -834,7 +828,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -842,7 +836,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           if (_model.checkValidateImage == true)
@@ -859,7 +853,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                   ),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -869,7 +863,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                 Expanded(
                                   flex: 3,
                                   child: Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    alignment: const AlignmentDirectional(-1.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -887,8 +881,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                               fit: BoxFit.cover,
                                             ),
                                           ),
-                                        if (_model.uploadedLocalFile2 == null ||
-                                            (_model.uploadedLocalFile2.bytes
+                                        if ((_model.uploadedLocalFile2.bytes
                                                     ?.isEmpty ??
                                                 true))
                                           Container(
@@ -907,7 +900,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                               ),
                                             ),
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Text(
                                               'Chưa có dữ liệu!',
                                               style:
@@ -920,8 +913,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                                       ),
                                             ),
                                           ),
-                                        if (_model.uploadedLocalFile2 != null &&
-                                            (_model.uploadedLocalFile2.bytes
+                                        if ((_model.uploadedLocalFile2.bytes
                                                     ?.isNotEmpty ??
                                                 false))
                                           Container(
@@ -940,7 +932,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                               ),
                                             ),
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Text(
                                               'Tải Video thành công!',
                                               style: FlutterFlowTheme.of(
@@ -1008,16 +1000,16 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                       setState(() {});
                                     },
                                     text: ' Video',
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.add,
                                       size: 18.0,
                                     ),
                                     options: FFButtonOptions(
                                       height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           26.0, 0.0, 26.0, 0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -1031,7 +1023,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -1039,11 +1031,11 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1057,13 +1049,12 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      if (_model.uploadedLocalFile3 == null ||
-                                          (_model.uploadedLocalFile3.bytes
+                                      if ((_model.uploadedLocalFile3.bytes
                                                   ?.isEmpty ??
                                               true))
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Container(
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -1071,7 +1062,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                                   BorderRadius.circular(0.0),
                                             ),
                                             alignment:
-                                                AlignmentDirectional(-1.0, 0.0),
+                                                const AlignmentDirectional(-1.0, 0.0),
                                             child: Visibility(
                                               visible: '1' == '2',
                                               child: FlutterFlowPdfViewer(
@@ -1084,8 +1075,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (_model.uploadedLocalFile3 == null ||
-                                          (_model.uploadedLocalFile3.bytes
+                                      if ((_model.uploadedLocalFile3.bytes
                                                   ?.isEmpty ??
                                               true))
                                         Container(
@@ -1103,7 +1093,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                             ),
                                           ),
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'Chưa có dữ liệu!',
                                             style: FlutterFlowTheme.of(context)
@@ -1114,8 +1104,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                                 ),
                                           ),
                                         ),
-                                      if (_model.uploadedLocalFile3 != null &&
-                                          (_model.uploadedLocalFile3.bytes
+                                      if ((_model.uploadedLocalFile3.bytes
                                                   ?.isNotEmpty ??
                                               false))
                                         Container(
@@ -1133,7 +1122,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                             ),
                                           ),
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'Tải file thành công!',
                                             style: FlutterFlowTheme.of(context)
@@ -1205,16 +1194,16 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                       setState(() {});
                                     },
                                     text: 'File',
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.add,
                                       size: 18.0,
                                     ),
                                     options: FFButtonOptions(
                                       height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           26.0, 0.0, 26.0, 0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -1228,7 +1217,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -1236,11 +1225,11 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: Text(
                               'Nội dung',
@@ -1264,7 +1253,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                 color: FlutterFlowTheme.of(context).noColor,
                               ),
                             ),
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Builder(
                               builder: (context) => InkWell(
                                 splashColor: Colors.transparent,
@@ -1280,10 +1269,10 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0)
+                                            const AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: Container(
+                                        child: SizedBox(
                                           height: MediaQuery.sizeOf(context)
                                                   .height *
                                               1.0,
@@ -1316,7 +1305,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                           .alternate,
                                     ),
                                   ),
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
                                     child: Row(
@@ -1377,7 +1366,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                           ),
                           if (_model.checkValiContent == true)
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 20.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -1406,28 +1395,26 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                 content: _model.content!.toString(),
                               ),
                             ),
-                        ].divide(SizedBox(height: 6.0)),
+                        ].divide(const SizedBox(height: 6.0)),
                       ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      var _shouldSetState = false;
+                      var shouldSetState = false;
                       if (_model.formKey.currentState == null ||
                           !_model.formKey.currentState!.validate()) {
                         return;
                       }
                       if ((_model.content != null) &&
-                          (_model.durationHoursTextController.text != null &&
-                              _model.durationHoursTextController.text != '')) {
+                          (_model.durationHoursTextController.text != '')) {
                         _model.checkValiContent = false;
                         _model.checkValiTime = false;
                         setState(() {});
-                        if (_model.uploadedLocalFile1 != null &&
-                            (_model.uploadedLocalFile1.bytes?.isNotEmpty ??
+                        if ((_model.uploadedLocalFile1.bytes?.isNotEmpty ??
                                 false)) {
                           await _model.getUploadImage(context);
                           setState(() {});
@@ -1436,30 +1423,27 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                         } else {
                           _model.checkValidateImage = true;
                           setState(() {});
-                          if (_shouldSetState) setState(() {});
+                          if (shouldSetState) setState(() {});
                           return;
                         }
 
-                        if (_model.uploadedLocalFile2 != null &&
-                            (_model.uploadedLocalFile2.bytes?.isNotEmpty ??
+                        if ((_model.uploadedLocalFile2.bytes?.isNotEmpty ??
                                 false)) {
                           await _model.getDataUploadVideo(context);
                           setState(() {});
                         }
-                        if (_model.uploadedLocalFile3 != null &&
-                            (_model.uploadedLocalFile3.bytes?.isNotEmpty ??
+                        if ((_model.uploadedLocalFile3.bytes?.isNotEmpty ??
                                 false)) {
                           await _model.getDataUploadFile(context);
                           setState(() {});
                         }
-                        if (_model.estimateInDayTextController.text != null &&
-                            _model.estimateInDayTextController.text != '') {
+                        if (_model.estimateInDayTextController.text != '') {
                           if (int.parse(
                                   _model.estimateInDayTextController.text) >
                               0) {
                             _model.checkReloadTokenCreatedLession2 =
                                 await action_blocks.tokenReload(context);
-                            _shouldSetState = true;
+                            shouldSetState = true;
                             if (_model.checkReloadTokenCreatedLession2!) {
                               _model.apiResultCreatedLession2 =
                                   await LessonGroup.postLessonCall.call(
@@ -1471,11 +1455,11 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                       _model.descriptionTextController.text,
                                   'content': _model.content,
                                   'image_cover':
-                                      _model.image != null && _model.image != ''
+                                      _model.image != ''
                                           ? _model.image
                                           : null,
                                   'video':
-                                      _model.video != null && _model.video != ''
+                                      _model.video != ''
                                           ? _model.video
                                           : null,
                                   'duration_hours':
@@ -1485,14 +1469,10 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                       ? _model.testIdValue
                                       : null,
                                   'file':
-                                      _model.file != null && _model.file != ''
+                                      _model.file != ''
                                           ? _model.file
                                           : null,
-                                  'estimate_in_day': _model
-                                                  .estimateInDayTextController
-                                                  .text !=
-                                              null &&
-                                          _model.estimateInDayTextController
+                                  'estimate_in_day': _model.estimateInDayTextController
                                                   .text !=
                                               ''
                                       ? _model.estimateInDayTextController.text
@@ -1500,7 +1480,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                 },
                               );
 
-                              _shouldSetState = true;
+                              shouldSetState = true;
                               if ((_model.apiResultCreatedLession2?.succeeded ??
                                   true)) {
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -1512,7 +1492,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                             .primaryText,
                                       ),
                                     ),
-                                    duration: Duration(milliseconds: 4000),
+                                    duration: const Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
@@ -1531,14 +1511,14 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                               }
                             } else {
                               FFAppState().update(() {});
-                              if (_shouldSetState) setState(() {});
+                              if (shouldSetState) setState(() {});
                               return;
                             }
                           }
                         } else {
                           _model.checkReloadTokenCreatedLession1 =
                               await action_blocks.tokenReload(context);
-                          _shouldSetState = true;
+                          shouldSetState = true;
                           if (_model.checkReloadTokenCreatedLession1!) {
                             _model.apiResultCreatedLession1 =
                                 await LessonGroup.postLessonCall.call(
@@ -1550,11 +1530,11 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                     _model.descriptionTextController.text,
                                 'content': _model.content,
                                 'image_cover':
-                                    _model.image != null && _model.image != ''
+                                    _model.image != ''
                                         ? _model.image
                                         : null,
                                 'video':
-                                    _model.video != null && _model.video != ''
+                                    _model.video != ''
                                         ? _model.video
                                         : null,
                                 'duration_hours':
@@ -1563,14 +1543,10 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                         _model.testIdValue != ''
                                     ? _model.testIdValue
                                     : null,
-                                'file': _model.file != null && _model.file != ''
+                                'file': _model.file != ''
                                     ? _model.file
                                     : null,
-                                'estimate_in_day': _model
-                                                .estimateInDayTextController
-                                                .text !=
-                                            null &&
-                                        _model.estimateInDayTextController
+                                'estimate_in_day': _model.estimateInDayTextController
                                                 .text !=
                                             ''
                                     ? _model.estimateInDayTextController.text
@@ -1578,7 +1554,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                               },
                             );
 
-                            _shouldSetState = true;
+                            shouldSetState = true;
                             if ((_model.apiResultCreatedLession1?.succeeded ??
                                 true)) {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -1590,7 +1566,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                           .primaryText,
                                     ),
                                   ),
-                                  duration: Duration(milliseconds: 4000),
+                                  duration: const Duration(milliseconds: 4000),
                                   backgroundColor:
                                       FlutterFlowTheme.of(context).secondary,
                                 ),
@@ -1609,7 +1585,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                             }
                           } else {
                             FFAppState().update(() {});
-                            if (_shouldSetState) setState(() {});
+                            if (shouldSetState) setState(() {});
                             return;
                           }
                         }
@@ -1617,21 +1593,21 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                         _model.checkValiContent = true;
                         _model.checkValiTime = true;
                         setState(() {});
-                        if (_shouldSetState) setState(() {});
+                        if (shouldSetState) setState(() {});
                         return;
                       }
 
-                      if (_shouldSetState) setState(() {});
+                      if (shouldSetState) setState(() {});
                     },
                     text: 'Lưu',
                     options: FFButtonOptions(
                       width: double.infinity,
                       height: 40.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFF33BA45),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF33BA45),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Nunito Sans',
@@ -1639,7 +1615,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

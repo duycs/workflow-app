@@ -1,13 +1,10 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/report_popup/report_popup_widget.dart';
 import '/timekeeping/timekeeping_management_list/timekeeping_management_list_widget.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'timekeeping_report_model.dart';
 export 'timekeeping_report_model.dart';
 
@@ -73,7 +70,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -89,13 +86,13 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 12.0, 10.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(10.0, 12.0, 10.0, 0.0),
                       child: Container(
                         width: 100.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 1.0,
                               color: Color(0x33000000),
@@ -108,7 +105,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                           borderRadius: BorderRadius.circular(4.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,7 +127,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -141,7 +138,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 5.0),
                                                 child: Text(
@@ -180,7 +177,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 5.0),
                                                 child: Text(
@@ -219,7 +216,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 5.0),
                                                 child: Text(
@@ -266,7 +263,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 20.0),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
@@ -290,14 +287,14 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 12.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 1.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -371,7 +368,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
-                                            child: ReportPopupWidget(),
+                                            child: const ReportPopupWidget(),
                                           ),
                                         );
                                       },
@@ -402,7 +399,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 12.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -415,7 +412,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 4.0,
                                           color: Color(0x33000000),
@@ -427,7 +424,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                       ],
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       'MON',
                                       textAlign: TextAlign.center,
@@ -448,7 +445,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 4.0,
                                           color: Color(0x33000000),
@@ -460,7 +457,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                       ],
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       'TUE',
                                       textAlign: TextAlign.center,
@@ -481,7 +478,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 4.0,
                                           color: Color(0x33000000),
@@ -493,7 +490,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                       ],
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       'WED',
                                       textAlign: TextAlign.center,
@@ -514,7 +511,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 4.0,
                                           color: Color(0x33000000),
@@ -526,7 +523,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                       ],
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       'THU',
                                       textAlign: TextAlign.center,
@@ -547,7 +544,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 4.0,
                                           color: Color(0x33000000),
@@ -559,7 +556,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                       ],
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       'FRI',
                                       textAlign: TextAlign.center,
@@ -580,7 +577,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 4.0,
                                           color: Color(0x33000000),
@@ -592,7 +589,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                       ],
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       'SAT',
                                       textAlign: TextAlign.center,
@@ -613,7 +610,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 4.0,
                                           color: Color(0x33000000),
@@ -625,7 +622,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                       ],
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       'SUN',
                                       textAlign: TextAlign.center,
@@ -639,11 +636,11 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 10.0)),
+                              ].divide(const SizedBox(width: 10.0)),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 12.0, 12.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -665,7 +662,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  AlignmentDirectional(0.0, 0.0)
+                                                  const AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -677,7 +674,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                                             _model.unfocusNode)
                                                     : FocusScope.of(context)
                                                         .unfocus(),
-                                                child: Container(
+                                                child: const SizedBox(
                                                   height: double.infinity,
                                                   width: double.infinity,
                                                   child:
@@ -696,7 +693,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                               BorderRadius.circular(8.0),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           '1',
                                           textAlign: TextAlign.center,
@@ -723,7 +720,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '2',
                                       textAlign: TextAlign.center,
@@ -747,7 +744,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '3',
                                       textAlign: TextAlign.center,
@@ -771,7 +768,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '4',
                                       textAlign: TextAlign.center,
@@ -795,7 +792,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '5',
                                       textAlign: TextAlign.center,
@@ -819,7 +816,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '6',
                                       textAlign: TextAlign.center,
@@ -843,7 +840,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '7',
                                       textAlign: TextAlign.center,
@@ -860,11 +857,11 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 4.0, 12.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -876,7 +873,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '8',
                                       textAlign: TextAlign.center,
@@ -900,7 +897,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '9',
                                       textAlign: TextAlign.center,
@@ -925,7 +922,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '10',
                                       textAlign: TextAlign.center,
@@ -949,7 +946,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '11',
                                       textAlign: TextAlign.center,
@@ -973,7 +970,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '12',
                                       textAlign: TextAlign.center,
@@ -997,7 +994,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '13',
                                       textAlign: TextAlign.center,
@@ -1021,7 +1018,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '14',
                                       textAlign: TextAlign.center,
@@ -1036,11 +1033,11 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 4.0, 12.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1054,7 +1051,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '22',
                                       textAlign: TextAlign.center,
@@ -1078,7 +1075,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '23',
                                       textAlign: TextAlign.center,
@@ -1102,7 +1099,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '24',
                                       textAlign: TextAlign.center,
@@ -1126,7 +1123,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '25',
                                       textAlign: TextAlign.center,
@@ -1150,7 +1147,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '26',
                                       textAlign: TextAlign.center,
@@ -1174,7 +1171,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '27',
                                       textAlign: TextAlign.center,
@@ -1198,7 +1195,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '28',
                                       textAlign: TextAlign.center,
@@ -1213,11 +1210,11 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 4.0, 12.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1231,7 +1228,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '15',
                                       textAlign: TextAlign.center,
@@ -1255,7 +1252,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '16',
                                       textAlign: TextAlign.center,
@@ -1279,7 +1276,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '17',
                                       textAlign: TextAlign.center,
@@ -1303,7 +1300,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '18',
                                       textAlign: TextAlign.center,
@@ -1327,7 +1324,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '19',
                                       textAlign: TextAlign.center,
@@ -1351,7 +1348,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '20',
                                       textAlign: TextAlign.center,
@@ -1375,7 +1372,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '21',
                                       textAlign: TextAlign.center,
@@ -1390,11 +1387,11 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 4.0, 12.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1408,7 +1405,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '29',
                                       textAlign: TextAlign.center,
@@ -1432,7 +1429,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '30',
                                       textAlign: TextAlign.center,
@@ -1456,7 +1453,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '31',
                                       textAlign: TextAlign.center,
@@ -1478,7 +1475,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '',
                                       textAlign: TextAlign.center,
@@ -1500,7 +1497,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '',
                                       textAlign: TextAlign.center,
@@ -1522,7 +1519,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '',
                                       textAlign: TextAlign.center,
@@ -1544,7 +1541,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '',
                                       textAlign: TextAlign.center,
@@ -1559,16 +1556,16 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                         ],
                       ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 5.0, 8.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 5.0, 8.0, 0.0),
                       child: Container(
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -1594,7 +1591,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: ReportPopupWidget(),
+                                        child: const ReportPopupWidget(),
                                       ),
                                     );
                                   },
@@ -1631,7 +1628,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: ReportPopupWidget(),
+                                        child: const ReportPopupWidget(),
                                       ),
                                     );
                                   },
@@ -1651,8 +1648,8 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                     Builder(
                       builder: (context) => Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 5.0, 8.0, 0.0),
-                        child: Container(
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 5.0, 8.0, 0.0),
+                        child: SizedBox(
                           width: double.infinity,
                           height: MediaQuery.sizeOf(context).height * 0.5,
                           child: custom_widgets.Calendar(
@@ -1667,7 +1664,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
                                     child: GestureDetector(
                                       onTap: () => _model
@@ -1675,7 +1672,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           ? FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
-                                      child: Container(
+                                      child: SizedBox(
                                         height: double.infinity,
                                         width: double.infinity,
                                         child: TimekeepingManagementListWidget(
@@ -1691,7 +1688,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                         ),
                       ),
                     ),
-                  ].addToEnd(SizedBox(height: 24.0)),
+                  ].addToEnd(const SizedBox(height: 24.0)),
                 ),
               ),
             ],

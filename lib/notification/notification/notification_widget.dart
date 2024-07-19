@@ -3,11 +3,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'notification_model.dart';
 export 'notification_model.dart';
@@ -85,9 +85,9 @@ class _NotificationWidgetState extends State<NotificationWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Align(
-            alignment: AlignmentDirectional(1.0, 0.0),
+            alignment: const AlignmentDirectional(1.0, 0.0),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 16.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 16.0),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30.0,
@@ -111,7 +111,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -135,7 +135,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                           final list = _model.notiList.toList();
 
                           return ListView.separated(
-                            padding: EdgeInsets.fromLTRB(
+                            padding: const EdgeInsets.fromLTRB(
                               0,
                               4.0,
                               0,
@@ -145,11 +145,11 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemCount: list.length,
-                            separatorBuilder: (_, __) => SizedBox(height: 8.0),
+                            separatorBuilder: (_, __) => const SizedBox(height: 8.0),
                             itemBuilder: (context, listIndex) {
                               final listItem = list[listIndex];
                               return Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -157,91 +157,16 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    _model.checkTokenNotiStatus =
-                                        await action_blocks
-                                            .tokenReload(context);
-                                    if (_model.checkTokenNotiStatus!) {
-                                      _model.apiResultbz5 =
-                                          await NotificationsGroup
-                                              .updateStatusNotificationCall
-                                              .call(
-                                        accessToken: FFAppState().accessToken,
-                                        id: getJsonField(
-                                          listItem,
-                                          r'''$.id''',
-                                        ).toString(),
-                                        status: 'archived',
-                                      );
-
-                                      if ((_model.apiResultbz5?.succeeded ??
-                                          true)) {
-                                        if ('${getJsonField(
-                                              functions
-                                                  .stringToJson(getJsonField(
-                                                listItem,
-                                                r'''$.data''',
-                                              ).toString()),
-                                              r'''$.screen''',
-                                            ).toString()}' ==
-                                            '1') {
-                                          context.goNamed('TaskList');
-                                        } else if ('${getJsonField(
-                                              functions
-                                                  .stringToJson(getJsonField(
-                                                listItem,
-                                                r'''$.data''',
-                                              ).toString()),
-                                              r'''$.screen''',
-                                            ).toString()}' ==
-                                            '2') {
-                                          context.goNamed('TaskListWait');
-                                        } else if ('${getJsonField(
-                                              functions
-                                                  .stringToJson(getJsonField(
-                                                listItem,
-                                                r'''$.data''',
-                                              ).toString()),
-                                              r'''$.screen''',
-                                            ).toString()}' ==
-                                            '3') {
-                                          context
-                                              .goNamed('StudyProgramListUser');
-                                        } else if ('${getJsonField(
-                                              functions
-                                                  .stringToJson(getJsonField(
-                                                listItem,
-                                                r'''$.data''',
-                                              ).toString()),
-                                              r'''$.screen''',
-                                            ).toString()}' ==
-                                            '4') {
-                                          context
-                                              .goNamed('StudyProgramListUser');
-                                        } else if ('${getJsonField(
-                                              functions
-                                                  .stringToJson(getJsonField(
-                                                listItem,
-                                                r'''$.data''',
-                                              ).toString()),
-                                              r'''$.screen''',
-                                            ).toString()}' ==
-                                            '5') {
-                                          context
-                                              .goNamed('LessonLists_Homepage');
-                                        }
-                                      }
-                                    } else {
-                                      setState(() {});
-                                    }
-
-                                    setState(() {});
+                                    await actions.callApi(
+                                      context,
+                                    );
                                   },
                                   child: Container(
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 1.0,
                                           color: Color(0x33000000),
@@ -259,29 +184,29 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(12.0),
+                                      padding: const EdgeInsets.all(12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          if (('${getJsonField(
+                                          if ((getJsonField(
                                                     functions.stringToJson(
                                                         getJsonField(
                                                       listItem,
                                                       r'''$.data''',
                                                     ).toString()),
                                                     r'''$.screen''',
-                                                  ).toString()}' ==
+                                                  ).toString() ==
                                                   '3') ||
-                                              ('${getJsonField(
+                                              (getJsonField(
                                                     functions.stringToJson(
                                                         getJsonField(
                                                       listItem,
                                                       r'''$.data''',
                                                     ).toString()),
                                                     r'''$.screen''',
-                                                  ).toString()}' ==
+                                                  ).toString() ==
                                                   '4'))
                                             Container(
                                               width: 32.0,
@@ -306,23 +231,23 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                 size: 16.0,
                                               ),
                                             ),
-                                          if (('${getJsonField(
+                                          if ((getJsonField(
                                                     functions.stringToJson(
                                                         getJsonField(
                                                       listItem,
                                                       r'''$.data''',
                                                     ).toString()),
                                                     r'''$.screen''',
-                                                  ).toString()}' ==
+                                                  ).toString() ==
                                                   '1') ||
-                                              ('${getJsonField(
+                                              (getJsonField(
                                                     functions.stringToJson(
                                                         getJsonField(
                                                       listItem,
                                                       r'''$.data''',
                                                     ).toString()),
                                                     r'''$.screen''',
-                                                  ).toString()}' ==
+                                                  ).toString() ==
                                                   '2'))
                                             Container(
                                               width: 32.0,
@@ -347,14 +272,14 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                 size: 16.0,
                                               ),
                                             ),
-                                          if ('${getJsonField(
+                                          if (getJsonField(
                                                 functions
                                                     .stringToJson(getJsonField(
                                                   listItem,
                                                   r'''$.data''',
                                                 ).toString()),
                                                 r'''$.screen''',
-                                              ).toString()}' ==
+                                              ).toString() ==
                                               '5')
                                             Container(
                                               width: 32.0,
@@ -381,7 +306,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                             ),
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 4.0, 0.0),
                                               child: Column(
@@ -416,7 +341,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -453,7 +378,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 8.0,
                                                                 0.0, 4.0),
                                                     child: Text(
@@ -461,10 +386,10 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                         'HH:mm, dd/MM/yyyy',
                                                         functions
                                                             .stringToDateTime(
-                                                                '${getJsonField(
+                                                                getJsonField(
                                                           listItem,
                                                           r'''$.date_created''',
-                                                        ).toString()}'),
+                                                        ).toString()),
                                                         locale:
                                                             FFLocalizations.of(
                                                                     context)
@@ -489,10 +414,10 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                               ),
                                             ),
                                           ),
-                                          if ('${getJsonField(
+                                          if (getJsonField(
                                                 listItem,
                                                 r'''$.status''',
-                                              ).toString()}' !=
+                                              ).toString() !=
                                               'archived')
                                             Container(
                                               width: 12.0,
@@ -522,7 +447,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                       ),
                       if (_model.isLoad == true)
                         Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             height: MediaQuery.sizeOf(context).height * 1.0,
@@ -530,7 +455,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                               color: FlutterFlowTheme.of(context)
                                   .primaryBackground,
                             ),
-                            child: Container(
+                            child: SizedBox(
                               width: double.infinity,
                               height: double.infinity,
                               child: custom_widgets.LoadingPageWidget(

@@ -4,12 +4,10 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'operations_list_popup_model.dart';
 export 'operations_list_popup_model.dart';
@@ -75,7 +73,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                   color: FlutterFlowTheme.of(context).primaryText,
                 ),
               ),
-              duration: Duration(milliseconds: 4000),
+              duration: const Duration(milliseconds: 4000),
               backgroundColor: FlutterFlowTheme.of(context).error,
             ),
           );
@@ -116,15 +114,15 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
     return Visibility(
       visible: _model.isLoad == true,
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
           width: double.infinity,
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: double.infinity,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -137,7 +135,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -146,7 +144,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -179,7 +177,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -190,7 +188,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                             focusNode: _model.textNameFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.textNameTextController',
-                              Duration(milliseconds: 2000),
+                              const Duration(milliseconds: 2000),
                               () => setState(() {}),
                             ),
                             autofocus: false,
@@ -238,9 +236,9 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 0.0, 0.0),
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.search_rounded,
                               ),
                               suffixIcon: _model
@@ -250,7 +248,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                         _model.textNameTextController?.clear();
                                         setState(() {});
                                       },
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.clear,
                                         size: 22,
                                       ),
@@ -274,11 +272,11 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                     constraints: BoxConstraints(
                       maxHeight: MediaQuery.sizeOf(context).height * 0.8,
                     ),
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: Column(
                       children: [
                         Align(
-                          alignment: Alignment(0.0, 0),
+                          alignment: const Alignment(0.0, 0),
                           child: TabBar(
                             labelColor:
                                 FlutterFlowTheme.of(context).primaryText,
@@ -298,8 +296,8 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                 ),
                             indicatorColor:
                                 FlutterFlowTheme.of(context).primary,
-                            padding: EdgeInsets.all(4.0),
-                            tabs: [
+                            padding: const EdgeInsets.all(4.0),
+                            tabs: const [
                               Tab(
                                 text: 'Tạo mới',
                               ),
@@ -321,15 +319,14 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                 children: [
                                   if (_model.isLoad == true)
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           10.0, 0.0, 10.0, 0.0),
                                       child: Builder(
                                         builder: (context) {
                                           final operationsListNew = _model
                                               .operationList
                                               .where((e) =>
-                                                  (e.flowId == null ||
-                                                      e.flowId == '') &&
+                                                  (e.flowId == '') &&
                                                   (e.name
                                                       .toLowerCase()
                                                       .contains(_model
@@ -348,10 +345,10 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                   operationsListNew[
                                                       operationsListNewIndex];
                                               return Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 5.0, 0.0, 5.0),
                                                   child: InkWell(
@@ -376,7 +373,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .secondaryBackground,
-                                                        boxShadow: [
+                                                        boxShadow: const [
                                                           BoxShadow(
                                                             blurRadius: 1.0,
                                                             color: Color(
@@ -389,7 +386,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     10.0,
                                                                     5.0,
@@ -407,7 +404,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       -1.0,
                                                                       0.0),
                                                               child: Text(
@@ -434,7 +431,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                                 children: [
                                                                   Align(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             -1.0,
                                                                             0.0),
                                                                     child: Text(
@@ -502,22 +499,19 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                     ),
                                   if ((_model.operationList
                                               .where((e) =>
-                                                  (e.flowId == null ||
-                                                      e.flowId == '') &&
+                                                  (e.flowId == '') &&
                                                   (e.name
                                                       .toLowerCase()
                                                       .contains(_model
                                                           .textNameTextController
                                                           .text
                                                           .toLowerCase())))
-                                              .toList()
-                                              .length <=
-                                          0) &&
+                                              .toList().isEmpty) &&
                                       (_model.isLoad == true))
                                     Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 100.0, 0.0, 50.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -534,7 +528,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                               size: 55.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 15.0, 0.0, 0.0),
                                               child: Text(
@@ -562,15 +556,14 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                 children: [
                                   if (_model.isLoad == true)
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           10.0, 0.0, 10.0, 0.0),
                                       child: Builder(
                                         builder: (context) {
                                           final operationsListDefault = _model
                                               .operationList
                                               .where((e) =>
-                                                  (e.flowId != null &&
-                                                      e.flowId != '') &&
+                                                  (e.flowId != '') &&
                                                   (e.flowId != 'null') &&
                                                   (e.name.contains(_model
                                                       .textNameTextController
@@ -588,7 +581,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                   operationsListDefault[
                                                       operationsListDefaultIndex];
                                               return Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 5.0, 0.0, 5.0),
                                                 child: InkWell(
@@ -612,7 +605,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                       color: FlutterFlowTheme
                                                               .of(context)
                                                           .secondaryBackground,
-                                                      boxShadow: [
+                                                      boxShadow: const [
                                                         BoxShadow(
                                                           blurRadius: 1.0,
                                                           color:
@@ -625,7 +618,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10.0,
                                                                   5.0,
@@ -725,20 +718,17 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                     ),
                                   if ((_model.operationList
                                               .where((e) =>
-                                                  (e.flowId != null &&
-                                                      e.flowId != '') &&
+                                                  (e.flowId != '') &&
                                                   (e.flowId != 'null') &&
                                                   (e.name.contains(_model
                                                       .textNameTextController
                                                       .text)))
-                                              .toList()
-                                              .length <=
-                                          0) &&
+                                              .toList().isEmpty) &&
                                       (_model.isLoad == true))
                                     Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 100.0, 0.0, 50.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -755,7 +745,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                               size: 55.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 15.0, 0.0, 0.0),
                                               child: Text(

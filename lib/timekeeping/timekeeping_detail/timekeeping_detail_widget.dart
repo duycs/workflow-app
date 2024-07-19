@@ -6,10 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'timekeeping_detail_model.dart';
 export 'timekeeping_detail_model.dart';
 
@@ -81,7 +78,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -93,7 +90,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -101,7 +98,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               2.0, 12.0, 0.0, 4.0),
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,
@@ -130,7 +127,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                         ),
                         Container(
                           width: 100.0,
-                          constraints: BoxConstraints(
+                          constraints: const BoxConstraints(
                             minHeight: 50.0,
                           ),
                           decoration: BoxDecoration(
@@ -139,7 +136,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 8.0, 8.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -153,9 +150,9 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                 Expanded(
                                   child: Text(
                                     valueOrDefault<String>(
-                                      widget!.itemDetail?.name != null &&
-                                              widget!.itemDetail?.name != ''
-                                          ? widget!.itemDetail?.name
+                                      widget.itemDetail?.name != null &&
+                                              widget.itemDetail?.name != ''
+                                          ? widget.itemDetail?.name
                                           : 'Chưa cập nhật',
                                       'Chưa cập nhật',
                                     ),
@@ -167,13 +164,13 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                         ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                         ),
                         if ('1' == '2')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 2.0, 24.0, 0.0, 4.0),
                             child: RichText(
                               textScaler: MediaQuery.of(context).textScaler,
@@ -202,7 +199,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                         if ('1' == '2')
                           Container(
                             width: 100.0,
-                            constraints: BoxConstraints(
+                            constraints: const BoxConstraints(
                               minHeight: 50.0,
                             ),
                             decoration: BoxDecoration(
@@ -211,7 +208,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 8.0, 8.0, 8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -233,12 +230,12 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                           ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 4.0)),
+                                ].divide(const SizedBox(width: 4.0)),
                               ),
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               2.0, 12.0, 0.0, 4.0),
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,
@@ -271,7 +268,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                               ('1' == '1') ? null : (val) => setState(() {}),
                           controller: _model.radioButtonValueController ??=
                               FormFieldController<String>(
-                                  widget!.itemDetail?.enable == 1
+                                  widget.itemDetail?.enable == 1
                                       ? 'Đang áp dụng'
                                       : 'Chưa áp dụng'),
                           optionHeight: 32.0,
@@ -285,7 +282,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
-                          textPadding: EdgeInsetsDirectional.fromSTEB(
+                          textPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 24.0, 0.0),
                           buttonPosition: RadioButtonPosition.left,
                           direction: Axis.horizontal,
@@ -298,7 +295,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                           verticalAlignment: WrapCrossAlignment.start,
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               2.0, 24.0, 0.0, 4.0),
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,
@@ -509,7 +506,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               2.0, 24.0, 0.0, 4.0),
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,
@@ -784,7 +781,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                         ),
                         if ('1' == '2')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 2.0, 24.0, 0.0, 4.0),
                             child: RichText(
                               textScaler: MediaQuery.of(context).textScaler,
@@ -820,7 +817,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -842,12 +839,12 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                           ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 4.0)),
+                                ].divide(const SizedBox(width: 4.0)),
                               ),
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               2.0, 24.0, 0.0, 4.0),
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,
@@ -876,7 +873,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                         Builder(
                           builder: (context) {
                             final shifts =
-                                widget!.itemDetail?.shifts?.toList() ?? [];
+                                widget.itemDetail?.shifts.toList() ?? [];
 
                             return ListView.separated(
                               padding: EdgeInsets.zero,
@@ -885,7 +882,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                               scrollDirection: Axis.vertical,
                               itemCount: shifts.length,
                               separatorBuilder: (_, __) =>
-                                  SizedBox(height: 8.0),
+                                  const SizedBox(height: 8.0),
                               itemBuilder: (context, shiftsIndex) {
                                 final shiftsItem = shifts[shiftsIndex];
                                 return Column(
@@ -893,7 +890,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           4.0, 0.0, 0.0, 0.0),
                                       child: RichText(
                                         textScaler:
@@ -913,9 +910,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                                       ),
                                             ),
                                             TextSpan(
-                                              text: shiftsItem.shiftsId.name !=
-                                                          null &&
-                                                      shiftsItem
+                                              text: shiftsItem
                                                               .shiftsId.name !=
                                                           ''
                                                   ? shiftsItem.shiftsId.name
@@ -923,18 +918,13 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                               style: TextStyle(
                                                 color: shiftsItem.shiftsId
                                                                 .name !=
-                                                            null &&
-                                                        shiftsItem.shiftsId
-                                                                .name !=
                                                             ''
                                                     ? FlutterFlowTheme.of(
                                                             context)
                                                         .primaryText
-                                                    : Color(0x6D57636C),
+                                                    : const Color(0x6D57636C),
                                                 fontSize:
-                                                    shiftsItem.shiftsId.name !=
-                                                                null &&
-                                                            shiftsItem.shiftsId
+                                                    shiftsItem.shiftsId
                                                                     .name !=
                                                                 ''
                                                         ? 14.0
@@ -968,7 +958,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                                   BorderRadius.circular(8.0),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 8.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1000,10 +990,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                                                 ),
                                                           ),
                                                           TextSpan(
-                                                            text: shiftsItem.shiftsId
-                                                                            .startTime !=
-                                                                        null &&
-                                                                    shiftsItem
+                                                            text: shiftsItem
                                                                             .shiftsId
                                                                             .startTime !=
                                                                         ''
@@ -1011,7 +998,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                                                     .shiftsId
                                                                     .startTime
                                                                 : ' ',
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w600,
@@ -1031,7 +1018,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                                       ),
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                           ),
@@ -1048,7 +1035,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                                   BorderRadius.circular(8.0),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 8.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1083,10 +1070,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                                                 ),
                                                           ),
                                                           TextSpan(
-                                                            text: shiftsItem.shiftsId
-                                                                            .endTime !=
-                                                                        null &&
-                                                                    shiftsItem
+                                                            text: shiftsItem
                                                                             .shiftsId
                                                                             .endTime !=
                                                                         ''
@@ -1094,7 +1078,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                                                     .shiftsId
                                                                     .endTime
                                                                 : ' ',
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w600,
@@ -1114,12 +1098,12 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                                       ),
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 10.0)),
+                                      ].divide(const SizedBox(width: 10.0)),
                                     ),
                                   ],
                                 );
@@ -1128,7 +1112,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                           },
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               2.0, 24.0, 0.0, 4.0),
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,
@@ -1156,7 +1140,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                         ),
                         Container(
                           width: double.infinity,
-                          constraints: BoxConstraints(
+                          constraints: const BoxConstraints(
                             minHeight: 60.0,
                           ),
                           decoration: BoxDecoration(
@@ -1165,7 +1149,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 8.0, 8.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1181,12 +1165,12 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      widget!.itemDetail?.addressId?.detail !=
+                                      widget.itemDetail?.addressId.detail !=
                                                   null &&
-                                              widget!.itemDetail?.addressId
-                                                      ?.detail !=
+                                              widget.itemDetail?.addressId
+                                                      .detail !=
                                                   ''
-                                          ? widget!.itemDetail!.addressId.detail
+                                          ? widget.itemDetail!.addressId.detail
                                           : ' ',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -1196,10 +1180,10 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                           ),
                                     ),
                                     Text(
-                                      widget!.itemDetail?.addressId
-                                                  ?.meterRange !=
+                                      widget.itemDetail?.addressId
+                                                  .meterRange !=
                                               null
-                                          ? '${widget!.itemDetail?.addressId?.meterRange?.toString()} m'
+                                          ? '${widget.itemDetail?.addressId.meterRange.toString()} m'
                                           : ' ',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -1213,12 +1197,12 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                     ),
                                   ],
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               2.0, 24.0, 0.0, 4.0),
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,
@@ -1244,9 +1228,9 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                             ),
                           ),
                         ),
-                        if (widget!.itemDetail?.departments?.length == 0)
+                        if (widget.itemDetail?.departments.isEmpty)
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 2.0, 4.0, 0.0, 4.0),
                             child: RichText(
                               textScaler: MediaQuery.of(context).textScaler,
@@ -1276,10 +1260,10 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 6.0, 0.0, 0.0),
                           child: FlutterFlowChoiceChips(
-                            options: widget!.itemDetail!.departments
+                            options: widget.itemDetail!.departments
                                 .map((e) => e.name)
                                 .toList()
                                 .map((label) => ChipData(label))
@@ -1338,7 +1322,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               2.0, 24.0, 0.0, 4.0),
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,
@@ -1364,9 +1348,9 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                             ),
                           ),
                         ),
-                        if (widget!.itemDetail?.staffs?.length == 0)
+                        if (widget.itemDetail?.staffs.isEmpty)
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 2.0, 4.0, 0.0, 4.0),
                             child: RichText(
                               textScaler: MediaQuery.of(context).textScaler,
@@ -1398,7 +1382,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                         Builder(
                           builder: (context) {
                             final staffs =
-                                widget!.itemDetail?.staffs?.toList() ?? [];
+                                widget.itemDetail?.staffs.toList() ?? [];
 
                             return ListView.separated(
                               padding: EdgeInsets.zero,
@@ -1406,7 +1390,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                               scrollDirection: Axis.vertical,
                               itemCount: staffs.length,
                               separatorBuilder: (_, __) =>
-                                  SizedBox(height: 2.0),
+                                  const SizedBox(height: 2.0),
                               itemBuilder: (context, staffsIndex) {
                                 final staffsItem = staffs[staffsIndex];
                                 return Container(
@@ -1417,7 +1401,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                                     borderRadius: BorderRadius.circular(20.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         8.0, 6.0, 8.0, 6.0),
                                     child: Text(
                                       staffsItem.userId.firstName,
@@ -1436,25 +1420,25 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                             );
                           },
                         ),
-                      ].addToEnd(SizedBox(height: 32.0)),
+                      ].addToEnd(const SizedBox(height: 32.0)),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     context.pushNamed(
                       'TimekeepingUpdate',
                       queryParameters: {
                         'itemDetail': serializeParam(
-                          widget!.itemDetail,
+                          widget.itemDetail,
                           ParamType.DataStruct,
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -1463,16 +1447,16 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                     );
                   },
                   text: 'Chỉnh sửa',
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.edit_outlined,
                     size: 15.0,
                   ),
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Nunito Sans',
@@ -1480,7 +1464,7 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

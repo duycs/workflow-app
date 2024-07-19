@@ -6,8 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'update_study_model.dart';
 export 'update_study_model.dart';
 
@@ -50,16 +48,16 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 750.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -72,7 +70,7 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -111,19 +109,19 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
                         FormFieldController<String>(
                       _model.dropDownValue ??= '',
                     ),
-                    options: List<String>.from(widget!.programList!
+                    options: List<String>.from(widget.programList!
                         .map((e) => e.programsId.id)
                         .toList()),
-                    optionLabels: widget!.programList!
+                    optionLabels: widget.programList!
                         .map((e) => e.programsId.name)
                         .toList(),
                     onChanged: (val) async {
                       setState(() => _model.dropDownValue = val);
-                      _model.addToProgramsDerpartmen(widget!.programList![
+                      _model.addToProgramsDerpartmen(widget.programList![
                           (List<String> ids, String id) {
                         return ids.indexWhere((value) => value == id);
                       }(
-                              widget!.programList!
+                              widget.programList!
                                   .map((e) => e.programsId.id)
                                   .toList(),
                               _model.dropDownValue!)]);
@@ -147,7 +145,7 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
                     borderWidth: 2.0,
                     borderRadius: 8.0,
                     margin:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                     hidesUnderline: true,
                     isOverButton: true,
                     isSearchable: false,
@@ -173,7 +171,7 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
                           final itemsProgramsItem =
                               itemsPrograms[itemsProgramsIndex];
                           return Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: Container(
                               width: double.infinity,
@@ -190,7 +188,7 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           itemsProgramsItem.programsId.name,
@@ -228,7 +226,7 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -241,9 +239,9 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
                             text: 'Đóng',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -273,11 +271,11 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
                             text: 'Xác nhận',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF33BA45),
+                              color: const Color(0xFF33BA45),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -287,7 +285,7 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -295,10 +293,10 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
                     ),
                   ),
-                ].divide(SizedBox(height: 8.0)),
+                ].divide(const SizedBox(height: 8.0)),
               ),
             ),
           ),

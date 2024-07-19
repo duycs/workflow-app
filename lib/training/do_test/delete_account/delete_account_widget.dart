@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'delete_account_model.dart';
 export 'delete_account_model.dart';
@@ -48,13 +47,13 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -67,7 +66,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -79,7 +78,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.warning_rounded,
                         color: Color(0xFFDF0714),
                         size: 24.0,
@@ -108,7 +107,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                           Navigator.pop(context);
                         },
                       ),
-                    ].divide(SizedBox(width: 4.0)),
+                    ].divide(const SizedBox(width: 4.0)),
                   ),
                   Text(
                     'Toàn bộ dữ liệu sẽ bị xóa và không thể khôi phục',
@@ -119,29 +118,29 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FFButtonWidget(
                           onPressed: () async {
-                            var _shouldSetState = false;
+                            var shouldSetState = false;
                             var confirmDialogResponse = await showDialog<bool>(
                                   context: context,
                                   builder: (alertDialogContext) {
                                     return AlertDialog(
-                                      content: Text('Xóa tài khoản vĩnh viễn'),
+                                      content: const Text('Xóa tài khoản vĩnh viễn'),
                                       actions: [
                                         TextButton(
                                           onPressed: () => Navigator.pop(
                                               alertDialogContext, false),
-                                          child: Text('Hủy'),
+                                          child: const Text('Hủy'),
                                         ),
                                         TextButton(
                                           onPressed: () => Navigator.pop(
                                               alertDialogContext, true),
-                                          child: Text('Xác nhận'),
+                                          child: const Text('Xác nhận'),
                                         ),
                                       ],
                                     );
@@ -150,12 +149,12 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                                 false;
                             if (!confirmDialogResponse) {
                               Navigator.pop(context);
-                              if (_shouldSetState) setState(() {});
+                              if (shouldSetState) setState(() {});
                               return;
                             }
                             _model.delateAccount =
                                 await action_blocks.tokenReload(context);
-                            _shouldSetState = true;
+                            shouldSetState = true;
                             if (_model.delateAccount!) {
                               _model.apiResultDeleteAccount =
                                   await UserGroup.deleteAccountCall.call(
@@ -163,7 +162,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                                 userId: FFAppState().user.id,
                               );
 
-                              _shouldSetState = true;
+                              shouldSetState = true;
                               if ((_model.apiResultDeleteAccount?.succeeded ??
                                   true)) {
                                 FFAppState().accessToken = '';
@@ -192,7 +191,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                                             .primaryText,
                                       ),
                                     ),
-                                    duration: Duration(milliseconds: 4000),
+                                    duration: const Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
@@ -207,20 +206,20 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                                             .secondaryBackground,
                                       ),
                                     ),
-                                    duration: Duration(milliseconds: 4000),
+                                    duration: const Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).error,
                                   ),
                                 );
                                 Navigator.pop(context);
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
 
                               context.goNamed(
                                 'Login',
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
+                                  kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -229,20 +228,20 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                               );
                             } else {
                               setState(() {});
-                              if (_shouldSetState) setState(() {});
+                              if (shouldSetState) setState(() {});
                               return;
                             }
 
-                            if (_shouldSetState) setState(() {});
+                            if (shouldSetState) setState(() {});
                           },
                           text: 'Xóa tài khoản',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFFDF0714),
+                            color: const Color(0xFFDF0714),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -251,7 +250,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -261,7 +260,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                       ],
                     ),
                   ),
-                ].divide(SizedBox(height: 8.0)),
+                ].divide(const SizedBox(height: 8.0)),
               ),
             ),
           ),

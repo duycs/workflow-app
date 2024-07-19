@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'check_box_toggle_model.dart';
 export 'check_box_toggle_model.dart';
 
@@ -40,7 +38,7 @@ class _CheckBoxToggleWidgetState extends State<CheckBoxToggleWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.check = widget!.checkParam!;
+      _model.check = widget.checkParam!;
       setState(() {});
     });
 
@@ -66,7 +64,7 @@ class _CheckBoxToggleWidgetState extends State<CheckBoxToggleWidget> {
       value: _model.check,
       onIcon: Icon(
         Icons.check_box,
-        color: widget!.color != null && widget!.color != ''
+        color: widget.color != null && widget.color != ''
             ? FlutterFlowTheme.of(context).primary
             : FlutterFlowTheme.of(context).secondary,
         size: 24.0,

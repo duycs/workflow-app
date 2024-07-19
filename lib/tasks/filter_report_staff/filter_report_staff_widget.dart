@@ -8,10 +8,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'filter_report_staff_model.dart';
 export 'filter_report_staff_model.dart';
@@ -140,12 +138,12 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -155,7 +153,7 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
               ),
             )
           ],
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
@@ -163,7 +161,7 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -171,7 +169,7 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -207,7 +205,7 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                     if ('1' == '2')
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -223,7 +221,7 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                                   ),
                             ),
                             FlutterFlowChoiceChips(
-                              options: [
+                              options: const [
                                 ChipData('Hoạt động'),
                                 ChipData('Không hoạt động')
                               ],
@@ -271,14 +269,14 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                               controller: _model.statusValueController ??=
                                   FormFieldController<List<String>>(
                                 [
-                                  widget!.status != null && widget!.status != ''
-                                      ? widget!.status!
+                                  widget.status != null && widget.status != ''
+                                      ? widget.status!
                                       : ' '
                                 ],
                               ),
                               wrapped: true,
                             ),
-                          ].divide(SizedBox(height: 4.0)),
+                          ].divide(const SizedBox(height: 4.0)),
                         ),
                       ),
                     if (FFAppState().user.role ==
@@ -298,14 +296,14 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                                 ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: FlutterFlowDropDown<String>(
                               controller: _model.branchValueController ??=
                                   FormFieldController<String>(
-                                _model.branchValue ??= widget!.branch != null &&
-                                        widget!.branch != ''
-                                    ? widget!.branch
+                                _model.branchValue ??= widget.branch != null &&
+                                        widget.branch != ''
+                                    ? widget.branch
                                     : '1',
                               ),
                               options: List<String>.from(
@@ -379,7 +377,7 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 2.0,
                               borderRadius: 8.0,
-                              margin: EdgeInsetsDirectional.fromSTEB(
+                              margin: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 4.0, 16.0, 4.0),
                               hidesUnderline: true,
                               isOverButton: true,
@@ -387,7 +385,7 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                               isMultiSelect: false,
                             ),
                           ),
-                        ].divide(SizedBox(height: 4.0)),
+                        ].divide(const SizedBox(height: 4.0)),
                       ),
                     if ((FFAppState().user.role ==
                             '82073000-1ba2-43a4-a55c-459d17c23b68') ||
@@ -411,9 +409,9 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                             controller: _model.departmentValueController ??=
                                 FormFieldController<String>(
                               _model.departmentValue ??=
-                                  widget!.department != null &&
-                                          widget!.department != ''
-                                      ? widget!.department
+                                  widget.department != null &&
+                                          widget.department != ''
+                                      ? widget.department
                                       : '1',
                             ),
                             options: List<String>.from(_model.departmentList
@@ -456,19 +454,19 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                             borderColor: FlutterFlowTheme.of(context).alternate,
                             borderWidth: 2.0,
                             borderRadius: 8.0,
-                            margin: EdgeInsetsDirectional.fromSTEB(
+                            margin: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 4.0, 16.0, 4.0),
                             hidesUnderline: true,
                             isOverButton: true,
                             isSearchable: true,
                             isMultiSelect: false,
                           ),
-                        ].divide(SizedBox(height: 4.0)),
+                        ].divide(const SizedBox(height: 4.0)),
                       ),
-                  ].divide(SizedBox(height: 8.0)),
+                  ].divide(const SizedBox(height: 8.0)),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -507,7 +505,7 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                                   } else {
                                     return ' ';
                                   }
-                                }()}${widget!.filterSearch != null && widget!.filterSearch != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${widget!.filterSearch}\"}}}' : ' '}]}',
+                                }()}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}]}',
                               );
 
                               if ((_model.apiResultClearFilter?.succeeded ??
@@ -536,9 +534,9 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -582,11 +580,11 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF33BA45),
+                            color: const Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -596,7 +594,7 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -604,10 +602,10 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

@@ -1,32 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found_row_new/data_not_found_row_new_widget.dart';
-import '/flutter_flow/flutter_flow_button_tabbar.dart';
-import '/flutter_flow/flutter_flow_charts.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/tasks/export_excel_get_one/export_excel_get_one_widget.dart';
-import '/tasks/filter_report_staff_detail/filter_report_staff_detail_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/custom_code/actions/index.dart' as actions;
-import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'report_staff_detail_widget.dart' show ReportStaffDetailWidget;
-import 'package:aligned_dialog/aligned_dialog.dart';
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
 
 class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
   ///  Local state fields for this page.
@@ -165,12 +145,12 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
         staffId: widget!.staffId,
       );
 
-      if ((apiResultGetOneStaff?.succeeded ?? true)) {
+      if ((apiResultGetOneStaff.succeeded ?? true)) {
         staff = StaffListStruct.maybeFromMap(getJsonField(
-          (apiResultGetOneStaff?.jsonBody ?? ''),
+          (apiResultGetOneStaff.jsonBody ?? ''),
           r'''$.data''',
         ));
-        jsonExport = (apiResultGetOneStaff?.jsonBody ?? '');
+        jsonExport = (apiResultGetOneStaff.jsonBody ?? '');
         while (loop! < 3) {
           updateListPercentAtIndex(
             loop!,
@@ -211,7 +191,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
             loop!,
             (_) => () {
               if (loop == 0) {
-                return (staff?.staffPrograms?.length == 0
+                return (staff?.staffPrograms.isEmpty
                     ? 0.0
                     : (double.parse((staff!.staffPrograms
                                 .where((e) => e.status == 'draft')
@@ -220,7 +200,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
                             staff!.staffPrograms.length)
                         .toStringAsFixed(2))));
               } else if (loop == 1) {
-                return (staff?.staffPrograms?.length == 0
+                return (staff?.staffPrograms.isEmpty
                     ? 0.0
                     : (double.parse((staff!.staffPrograms
                                 .where((e) => e.status == 'inprogress')
@@ -229,7 +209,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
                             staff!.staffPrograms.length)
                         .toStringAsFixed(2))));
               } else {
-                return (staff?.staffPrograms?.length == 0
+                return (staff?.staffPrograms.isEmpty
                     ? 0.0
                     : (double.parse((staff!.staffPrograms
                                 .where((e) => e.status == 'done')
@@ -248,7 +228,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
             loop!,
             (_) => () {
               if (loop == 0) {
-                return (staff?.staffLessions?.length == 0
+                return (staff?.staffLessions.isEmpty
                     ? 0.0
                     : (double.parse((staff!.staffLessions
                                 .where((e) => e.status == 'draft')
@@ -257,7 +237,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
                             staff!.staffLessions.length)
                         .toStringAsFixed(2))));
               } else if (loop == 1) {
-                return (staff?.staffLessions?.length == 0
+                return (staff?.staffLessions.isEmpty
                     ? 0.0
                     : (double.parse((staff!.staffLessions
                                 .where((e) => e.status == 'inprogress')
@@ -266,7 +246,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
                             staff!.staffLessions.length)
                         .toStringAsFixed(2))));
               } else {
-                return (staff?.staffLessions?.length == 0
+                return (staff?.staffLessions.isEmpty
                     ? 0.0
                     : (double.parse((staff!.staffLessions
                                 .where((e) => e.status == 'done')
@@ -299,9 +279,9 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
         filter: filterRequest,
       );
 
-      if ((apiResultGetOneStaff?.succeeded ?? true)) {
+      if ((apiResultGetOneStaff.succeeded ?? true)) {
         staff = StaffListStruct.maybeFromMap(getJsonField(
-          (apiResultGetOneStaff?.jsonBody ?? ''),
+          (apiResultGetOneStaff.jsonBody ?? ''),
           r'''$.data''',
         ));
         while (loop! < 3) {
@@ -353,7 +333,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -393,7 +373,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

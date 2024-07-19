@@ -1,25 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/order/invite_user/invite_user_widget.dart';
-import '/training/study_program/company_review/company_review_widget.dart';
-import '/training/study_program/filter_study_program_market/filter_study_program_market_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'study_program_list_market_widget.dart'
     show StudyProgramListMarketWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
 
 class StudyProgramListMarketModel
     extends FlutterFlowModel<StudyProgramListMarketWidget> {
@@ -94,14 +82,14 @@ class StudyProgramListMarketModel
         accessToken: FFAppState().accessToken,
       );
 
-      if ((apiResultStudyProgramListSearch?.succeeded ?? true)) {
+      if ((apiResultStudyProgramListSearch.succeeded ?? true)) {
         dataList = StudyProgramListDataStruct.maybeFromMap(
-                (apiResultStudyProgramListSearch?.jsonBody ?? ''))!
+                (apiResultStudyProgramListSearch.jsonBody ?? ''))!
             .data
             .toList()
             .cast<StudyProgramListStruct>();
         meta = StudyProgramListDataStruct.maybeFromMap(
-                (apiResultStudyProgramListSearch?.jsonBody ?? ''))
+                (apiResultStudyProgramListSearch.jsonBody ?? ''))
             ?.meta;
         checkShow = null;
       } else {
@@ -113,7 +101,7 @@ class StudyProgramListMarketModel
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -133,7 +121,7 @@ class StudyProgramListMarketModel
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController1?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -174,7 +162,7 @@ class StudyProgramListMarketModel
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController1?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

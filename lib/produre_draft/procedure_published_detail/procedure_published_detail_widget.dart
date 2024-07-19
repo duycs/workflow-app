@@ -2,15 +2,10 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/procedure_step_menu/procedure_step_menu_widget.dart';
-import 'dart:math';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'procedure_published_detail_model.dart';
 export 'procedure_published_detail_model.dart';
 
@@ -56,8 +51,8 @@ class _ProcedurePublishedDetailWidgetState
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 30.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 30.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -120,7 +115,7 @@ class _ProcedurePublishedDetailWidgetState
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 1.0,
         ),
@@ -129,7 +124,7 @@ class _ProcedurePublishedDetailWidgetState
           child: Column(
             children: [
               Align(
-                alignment: Alignment(0.0, 0),
+                alignment: const Alignment(0.0, 0),
                 child: TabBar(
                   labelColor: FlutterFlowTheme.of(context).primary,
                   unselectedLabelColor:
@@ -138,10 +133,10 @@ class _ProcedurePublishedDetailWidgetState
                         fontFamily: 'Nunito Sans',
                         letterSpacing: 0.0,
                       ),
-                  unselectedLabelStyle: TextStyle(),
+                  unselectedLabelStyle: const TextStyle(),
                   indicatorColor: FlutterFlowTheme.of(context).primary,
-                  padding: EdgeInsets.all(4.0),
-                  tabs: [
+                  padding: const EdgeInsets.all(4.0),
+                  tabs: const [
                     Tab(
                       text: 'Thông tin chung',
                     ),
@@ -164,14 +159,14 @@ class _ProcedurePublishedDetailWidgetState
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 12.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -179,7 +174,7 @@ class _ProcedurePublishedDetailWidgetState
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Text(
                                           'Tiêu đề:',
                                           style: FlutterFlowTheme.of(context)
@@ -207,7 +202,7 @@ class _ProcedurePublishedDetailWidgetState
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -215,7 +210,7 @@ class _ProcedurePublishedDetailWidgetState
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Text(
                                           'Mô tả:',
                                           style: FlutterFlowTheme.of(context)
@@ -243,7 +238,7 @@ class _ProcedurePublishedDetailWidgetState
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -270,10 +265,10 @@ class _ProcedurePublishedDetailWidgetState
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -289,7 +284,7 @@ class _ProcedurePublishedDetailWidgetState
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(SizedBox(width: 4.0)),
+                                            ].divide(const SizedBox(width: 4.0)),
                                           ),
                                         ),
                                       ),
@@ -297,7 +292,7 @@ class _ProcedurePublishedDetailWidgetState
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -329,7 +324,7 @@ class _ProcedurePublishedDetailWidgetState
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -354,10 +349,10 @@ class _ProcedurePublishedDetailWidgetState
                                               BorderRadius.circular(32.0),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -373,7 +368,7 @@ class _ProcedurePublishedDetailWidgetState
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(SizedBox(width: 4.0)),
+                                            ].divide(const SizedBox(width: 4.0)),
                                           ),
                                         ),
                                       ),
@@ -381,14 +376,14 @@ class _ProcedurePublishedDetailWidgetState
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
                                         width: 60.0,
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Text(
                                           'Bộ phận:',
                                           style: FlutterFlowTheme.of(context)
@@ -413,10 +408,10 @@ class _ProcedurePublishedDetailWidgetState
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Text(
                                             'Marketing',
@@ -432,11 +427,11 @@ class _ProcedurePublishedDetailWidgetState
                                           ),
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 8.0)),
+                                    ].divide(const SizedBox(width: 8.0)),
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -461,10 +456,10 @@ class _ProcedurePublishedDetailWidgetState
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -480,15 +475,15 @@ class _ProcedurePublishedDetailWidgetState
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(SizedBox(width: 4.0)),
+                                            ].divide(const SizedBox(width: 4.0)),
                                           ),
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 16.0)),
+                                    ].divide(const SizedBox(width: 16.0)),
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 16.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -513,7 +508,7 @@ class _ProcedurePublishedDetailWidgetState
                                                 .secondaryText,
                                             size: 24.0,
                                           ),
-                                        ].divide(SizedBox(height: 8.0)),
+                                        ].divide(const SizedBox(height: 8.0)),
                                       ),
                                       Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -537,15 +532,15 @@ class _ProcedurePublishedDetailWidgetState
                                                         .secondaryText,
                                                 size: 24.0,
                                               ),
-                                            ].divide(SizedBox(width: 2.0)),
+                                            ].divide(const SizedBox(width: 2.0)),
                                           ),
-                                        ].divide(SizedBox(height: 8.0)),
+                                        ].divide(const SizedBox(height: 8.0)),
                                       ),
-                                    ].divide(SizedBox(width: 16.0)),
+                                    ].divide(const SizedBox(width: 16.0)),
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -553,10 +548,10 @@ class _ProcedurePublishedDetailWidgetState
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 8.0, 0.0),
                                         child: Container(
-                                          decoration: BoxDecoration(),
+                                          decoration: const BoxDecoration(),
                                           child: Text(
                                             'Nhắc trước khi chạy:',
                                             style: FlutterFlowTheme.of(context)
@@ -589,7 +584,7 @@ class _ProcedurePublishedDetailWidgetState
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ].divide(SizedBox(width: 2.0)),
+                                        ].divide(const SizedBox(width: 2.0)),
                                       ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -612,7 +607,7 @@ class _ProcedurePublishedDetailWidgetState
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ].divide(SizedBox(width: 2.0)),
+                                        ].divide(const SizedBox(width: 2.0)),
                                       ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -635,13 +630,13 @@ class _ProcedurePublishedDetailWidgetState
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ].divide(SizedBox(width: 2.0)),
+                                        ].divide(const SizedBox(width: 2.0)),
                                       ),
-                                    ].divide(SizedBox(width: 8.0)),
+                                    ].divide(const SizedBox(width: 8.0)),
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -649,7 +644,7 @@ class _ProcedurePublishedDetailWidgetState
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Text(
                                           'Ảnh đại diện:',
                                           style: FlutterFlowTheme.of(context)
@@ -662,7 +657,7 @@ class _ProcedurePublishedDetailWidgetState
                                       ),
                                       Stack(
                                         alignment:
-                                            AlignmentDirectional(1.0, -1.0),
+                                            const AlignmentDirectional(1.0, -1.0),
                                         children: [
                                           ClipRRect(
                                             borderRadius:
@@ -679,20 +674,20 @@ class _ProcedurePublishedDetailWidgetState
                                     ],
                                   ),
                                 ),
-                                Divider(
+                                const Divider(
                                   height: 24.0,
                                   thickness: 1.0,
                                   color: Color(0xFFE0E3E7),
                                 ).animateOnPageLoad(animationsMap[
                                     'dividerOnPageLoadAnimation']!),
-                              ].divide(SizedBox(height: 4.0)),
+                              ].divide(const SizedBox(height: 4.0)),
                             ),
                           ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: SingleChildScrollView(
                         primary: false,
                         child: Column(
@@ -700,7 +695,7 @@ class _ProcedurePublishedDetailWidgetState
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
                                 'Sơ đồ quy trình',
@@ -734,7 +729,7 @@ class _ProcedurePublishedDetailWidgetState
                               scrollDirection: Axis.vertical,
                               children: [
                                 Container(
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -776,14 +771,14 @@ class _ProcedurePublishedDetailWidgetState
                                                       .primaryText,
                                                 ),
                                               ),
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(8.0),
                                                     child: Text(
                                                       '1',
                                                       maxLines: 2,
@@ -800,7 +795,7 @@ class _ProcedurePublishedDetailWidgetState
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   8.0,
@@ -842,13 +837,13 @@ class _ProcedurePublishedDetailWidgetState
                                                           isGlobal: false,
                                                           avoidOverflow: true,
                                                           targetAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
                                                                           context)),
                                                           followerAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -871,7 +866,7 @@ class _ProcedurePublishedDetailWidgetState
                                                                             context)
                                                                         .unfocus(),
                                                                 child:
-                                                                    Container(
+                                                                    SizedBox(
                                                                   height: 150.0,
                                                                   width: 250.0,
                                                                   child:
@@ -901,7 +896,7 @@ class _ProcedurePublishedDetailWidgetState
                                   ),
                                 ),
                                 Container(
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -943,14 +938,14 @@ class _ProcedurePublishedDetailWidgetState
                                                       .primaryText,
                                                 ),
                                               ),
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(8.0),
                                                     child: Text(
                                                       '2',
                                                       maxLines: 2,
@@ -967,7 +962,7 @@ class _ProcedurePublishedDetailWidgetState
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   8.0,
@@ -1009,13 +1004,13 @@ class _ProcedurePublishedDetailWidgetState
                                                           isGlobal: false,
                                                           avoidOverflow: true,
                                                           targetAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
                                                                           context)),
                                                           followerAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -1038,7 +1033,7 @@ class _ProcedurePublishedDetailWidgetState
                                                                             context)
                                                                         .unfocus(),
                                                                 child:
-                                                                    Container(
+                                                                    SizedBox(
                                                                   height: 150.0,
                                                                   width: 250.0,
                                                                   child:
@@ -1068,7 +1063,7 @@ class _ProcedurePublishedDetailWidgetState
                                   ),
                                 ),
                                 Container(
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -1110,14 +1105,14 @@ class _ProcedurePublishedDetailWidgetState
                                                       .primaryText,
                                                 ),
                                               ),
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(8.0),
                                                     child: Text(
                                                       '3',
                                                       maxLines: 2,
@@ -1134,7 +1129,7 @@ class _ProcedurePublishedDetailWidgetState
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   8.0,
@@ -1176,13 +1171,13 @@ class _ProcedurePublishedDetailWidgetState
                                                           isGlobal: false,
                                                           avoidOverflow: true,
                                                           targetAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
                                                                           context)),
                                                           followerAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -1205,7 +1200,7 @@ class _ProcedurePublishedDetailWidgetState
                                                                             context)
                                                                         .unfocus(),
                                                                 child:
-                                                                    Container(
+                                                                    SizedBox(
                                                                   height: 150.0,
                                                                   width: 250.0,
                                                                   child:

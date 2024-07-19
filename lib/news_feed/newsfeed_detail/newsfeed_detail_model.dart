@@ -1,32 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_swipeable_stack.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_video_player.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/upload_data.dart';
-import '/news_feed/action_newsfeed_detail/action_newsfeed_detail_widget.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/custom_code/actions/index.dart' as actions;
-import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'newsfeed_detail_widget.dart' show NewsfeedDetailWidget;
-import 'package:smooth_page_indicator/smooth_page_indicator.dart'
-    as smooth_page_indicator;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 
 class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
   ///  Local state fields for this page.
@@ -104,9 +83,9 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
         id: widget!.newsfeedId,
       );
 
-      if ((apiResultGetOneNewsfeed?.succeeded ?? true)) {
+      if ((apiResultGetOneNewsfeed.succeeded ?? true)) {
         newsfeedItem = NewsfeedListStruct.maybeFromMap(getJsonField(
-          (apiResultGetOneNewsfeed?.jsonBody ?? ''),
+          (apiResultGetOneNewsfeed.jsonBody ?? ''),
           r'''$.data''',
         ));
       }
@@ -131,7 +110,7 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
         newsId: newsId,
       );
 
-      if (!(apiResultReactDetail?.succeeded ?? true)) {
+      if (!(apiResultReactDetail.succeeded ?? true)) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -140,7 +119,7 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -166,7 +145,7 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
         id: reactId,
       );
 
-      if (!(apiResultReactDeleteDetail?.succeeded ?? true)) {
+      if (!(apiResultReactDeleteDetail.succeeded ?? true)) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -175,7 +154,7 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -197,9 +176,9 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
         file: uploadedLocalFile1,
       );
 
-      if ((apiResultPostData?.succeeded ?? true)) {
+      if ((apiResultPostData.succeeded ?? true)) {
         uploadImage = getJsonField(
-          (apiResultPostData?.jsonBody ?? ''),
+          (apiResultPostData.jsonBody ?? ''),
           r'''$.data.id''',
         ).toString().toString();
       }
@@ -220,9 +199,9 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
         file: uploadedLocalFile2,
       );
 
-      if ((apiResultPostDataVideo?.succeeded ?? true)) {
+      if ((apiResultPostDataVideo.succeeded ?? true)) {
         uploadVideo = getJsonField(
-          (apiResultPostDataVideo?.jsonBody ?? ''),
+          (apiResultPostDataVideo.jsonBody ?? ''),
           r'''$.data.id''',
         ).toString().toString();
       }
@@ -243,9 +222,9 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
         file: uploadedLocalFile3,
       );
 
-      if ((apiResultPostDataVideo?.succeeded ?? true)) {
+      if ((apiResultPostDataVideo.succeeded ?? true)) {
         uploadFile = getJsonField(
-          (apiResultPostDataVideo?.jsonBody ?? ''),
+          (apiResultPostDataVideo.jsonBody ?? ''),
           r'''$.data.id''',
         ).toString().toString();
       }
@@ -267,10 +246,10 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
           'status': 'published',
           'content': textController.text,
           'image':
-              uploadImage != null && uploadImage != '' ? uploadImage : null,
+              uploadImage != '' ? uploadImage : null,
           'video':
-              uploadVideo != null && uploadVideo != '' ? uploadVideo : null,
-          'file': uploadFile != null && uploadFile != '' ? uploadFile : null,
+              uploadVideo != '' ? uploadVideo : null,
+          'file': uploadFile != '' ? uploadFile : null,
           'news_id': newsfeedItem?.id,
           'staff_id': getJsonField(
             FFAppState().staffLogin,
@@ -279,7 +258,7 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
         },
       );
 
-      if ((apiResultPostDataComment?.succeeded ?? true)) {}
+      if ((apiResultPostDataComment.succeeded ?? true)) {}
     } else {
       FFAppState().update(() {});
       return;
@@ -301,7 +280,7 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
         id: id,
       );
 
-      if ((apiResultDeleteComment?.succeeded ?? true)) {}
+      if ((apiResultDeleteComment.succeeded ?? true)) {}
     } else {
       FFAppState().update(() {});
       return;

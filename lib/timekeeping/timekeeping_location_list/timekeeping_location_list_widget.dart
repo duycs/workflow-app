@@ -1,19 +1,14 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
 import '/timekeeping/time_keeping_location_detail/time_keeping_location_detail_widget.dart';
 import '/timekeeping/time_keeping_location_update/time_keeping_location_update_widget.dart';
-import '/backend/schema/structs/index.dart';
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'timekeeping_location_list_model.dart';
@@ -72,14 +67,14 @@ class _TimekeepingLocationListWidgetState
                     elevation: 0,
                     insetPadding: EdgeInsets.zero,
                     backgroundColor: Colors.transparent,
-                    alignment: AlignmentDirectional(0.0, 0.0)
+                    alignment: const AlignmentDirectional(0.0, 0.0)
                         .resolve(Directionality.of(context)),
                     child: GestureDetector(
                       onTap: () => _model.unfocusNode.canRequestFocus
                           ? FocusScope.of(context)
                               .requestFocus(_model.unfocusNode)
                           : FocusScope.of(context).unfocus(),
-                      child: Container(
+                      child: SizedBox(
                         height: double.infinity,
                         width: double.infinity,
                         child: TimeKeepingLocationCreatedWidget(
@@ -129,7 +124,7 @@ class _TimekeepingLocationListWidgetState
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -141,7 +136,7 @@ class _TimekeepingLocationListWidgetState
               if ('1' == '2')
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,7 +147,7 @@ class _TimekeepingLocationListWidgetState
                           focusNode: _model.textFieldFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController',
-                            Duration(milliseconds: 1000),
+                            const Duration(milliseconds: 1000),
                             () => setState(() {}),
                           ),
                           autofocus: false,
@@ -173,7 +168,7 @@ class _TimekeepingLocationListWidgetState
                                   letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Color(0x00000000),
                                 width: 1.0,
                               ),
@@ -203,9 +198,9 @@ class _TimekeepingLocationListWidgetState
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.search_sharp,
                               size: 24.0,
                             ),
@@ -254,11 +249,11 @@ class _TimekeepingLocationListWidgetState
               Expanded(
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: PagedListView<ApiPagingParams, dynamic>.separated(
                     pagingController: _model.setListViewController(
                       (nextPageMarker) =>
-                          TimekeepingShiftGroup.addressListCall.call(
+                          TimekeepingShiftConfigsGroup.addressListCall.call(
                         accessToken: FFAppState().accessToken,
                         limit: 20,
                         offset: nextPageMarker.nextPageNumber * 20,
@@ -274,7 +269,7 @@ class _TimekeepingLocationListWidgetState
                     shrinkWrap: true,
                     reverse: false,
                     scrollDirection: Axis.vertical,
-                    separatorBuilder: (_, __) => SizedBox(height: 10.0),
+                    separatorBuilder: (_, __) => const SizedBox(height: 10.0),
                     builderDelegate: PagedChildBuilderDelegate<dynamic>(
                       // Customize what your widget looks like when it's loading the first page.
                       firstPageProgressIndicatorBuilder: (_) => Center(
@@ -300,7 +295,7 @@ class _TimekeepingLocationListWidgetState
                           ),
                         ),
                       ),
-                      noItemsFoundIndicatorBuilder: (_) => DataNotFoundWidget(),
+                      noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
                       itemBuilder: (context, _, addressListIndex) {
                         final addressListItem = _model.listViewPagingController!
                             .itemList![addressListIndex];
@@ -311,7 +306,7 @@ class _TimekeepingLocationListWidgetState
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -331,7 +326,7 @@ class _TimekeepingLocationListWidgetState
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: AlignmentDirectional(
+                                            alignment: const AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
@@ -343,7 +338,7 @@ class _TimekeepingLocationListWidgetState
                                                           _model.unfocusNode)
                                                   : FocusScope.of(context)
                                                       .unfocus(),
-                                              child: Container(
+                                              child: SizedBox(
                                                 height: double.infinity,
                                                 width: double.infinity,
                                                 child:
@@ -380,7 +375,7 @@ class _TimekeepingLocationListWidgetState
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -411,7 +406,7 @@ class _TimekeepingLocationListWidgetState
                                         ],
                                       ),
                                       child: ListTile(
-                                        leading: Icon(
+                                        leading: const Icon(
                                           Icons.location_on_outlined,
                                         ),
                                         title: Text(
@@ -455,7 +450,7 @@ class _TimekeepingLocationListWidgetState
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     'Khoảng cách áp dụng: ${formatNumber(

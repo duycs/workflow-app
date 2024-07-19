@@ -1,25 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
-import '/rich_text_editor/mobile_editor_component/mobile_editor_component_widget.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
-import '/training/lesson/quiz_creation_lesson/quiz_creation_lesson_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'created_lession_study_widget.dart' show CreatedLessionStudyWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class CreatedLessionStudyModel
     extends FlutterFlowModel<CreatedLessionStudyWidget> {
@@ -161,9 +148,9 @@ class CreatedLessionStudyModel
         ).toString().toString()}\"}}]}',
       );
 
-      if ((apiResutDataTesst?.succeeded ?? true)) {
+      if ((apiResutDataTesst.succeeded ?? true)) {
         dataTest = TestListDataStruct.maybeFromMap(
-                (apiResutDataTesst?.jsonBody ?? ''))!
+                (apiResutDataTesst.jsonBody ?? ''))!
             .data
             .toList()
             .cast<TestListStruct>();
@@ -185,9 +172,9 @@ class CreatedLessionStudyModel
         file: uploadedLocalFile1,
       );
 
-      if ((apiResultUploadFileImage?.succeeded ?? true)) {
+      if ((apiResultUploadFileImage.succeeded ?? true)) {
         image = getJsonField(
-          (apiResultUploadFileImage?.jsonBody ?? ''),
+          (apiResultUploadFileImage.jsonBody ?? ''),
           r'''$.data.id''',
         ).toString().toString();
       } else {
@@ -199,7 +186,7 @@ class CreatedLessionStudyModel
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).secondary,
           ),
         );
@@ -218,9 +205,9 @@ class CreatedLessionStudyModel
     if (checkReloadTockenUploadVideo!) {
       apiResultUploadVideoLession = await UploadFileGroup.uploadFileCall.call();
 
-      if ((apiResultUploadVideoLession?.succeeded ?? true)) {
+      if ((apiResultUploadVideoLession.succeeded ?? true)) {
         video = getJsonField(
-          (apiResultUploadVideoLession?.jsonBody ?? ''),
+          (apiResultUploadVideoLession.jsonBody ?? ''),
           r'''$.data.id''',
         ).toString().toString();
       }
@@ -241,9 +228,9 @@ class CreatedLessionStudyModel
         file: uploadedLocalFile3,
       );
 
-      if ((apiResultq1c?.succeeded ?? true)) {
+      if ((apiResultq1c.succeeded ?? true)) {
         file = getJsonField(
-          (apiResultq1c?.jsonBody ?? ''),
+          (apiResultq1c.jsonBody ?? ''),
           r'''$.data.id''',
         ).toString().toString();
       }
@@ -265,19 +252,18 @@ class CreatedLessionStudyModel
           'name': nameTextController.text,
           'description': descriptionTextController.text,
           'content': input,
-          'image_cover': image != null && image != '' ? image : null,
-          'video': video != null && video != '' ? video : null,
+          'image_cover': image != '' ? image : null,
+          'video': video != '' ? video : null,
           'duration_hours': durationHoursTextController.text,
           'test_id': testIdValue,
-          'file': file != null && file != '' ? file : null,
-          'estimate_in_day': estimateInDayTextController.text != null &&
-                  estimateInDayTextController.text != ''
+          'file': file != '' ? file : null,
+          'estimate_in_day': estimateInDayTextController.text != ''
               ? estimateInDayTextController.text
               : '',
         },
       );
 
-      if ((apiResultCreatedLession?.succeeded ?? true)) {
+      if ((apiResultCreatedLession.succeeded ?? true)) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -286,12 +272,12 @@ class CreatedLessionStudyModel
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).secondary,
           ),
         );
         dataListLession = LessonsStruct.maybeFromMap(getJsonField(
-          (apiResultCreatedLession?.jsonBody ?? ''),
+          (apiResultCreatedLession.jsonBody ?? ''),
           r'''$.data''',
         ));
       }

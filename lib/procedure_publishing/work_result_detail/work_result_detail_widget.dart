@@ -1,9 +1,6 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure_publishing/checkbox_work_result/checkbox_work_result_widget.dart';
 import '/procedure_publishing/result_work_grid_view/result_work_grid_view_widget.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
@@ -13,7 +10,6 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'work_result_detail_model.dart';
 export 'work_result_detail_model.dart';
@@ -95,7 +91,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -104,19 +100,18 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              if (_model.list.length > 0)
+              if (_model.list.isNotEmpty)
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
                         child: Text(
-                          _model.list.first.workflowId.name != null &&
-                                  _model.list.first.workflowId.name != ''
+                          _model.list.first.workflowId.name != ''
                               ? _model.list.first.workflowId.name
                               : ' ',
                           style:
@@ -130,7 +125,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                         ),
                       ),
                       Text(
-                        'Lần chạy thứ: ${widget!.publishedCount != null ? widget!.publishedCount?.toString() : ' '}',
+                        'Lần chạy thứ: ${widget.publishedCount != null ? widget.publishedCount?.toString() : ' '}',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Nunito Sans',
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -159,9 +154,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                           ),
                           Expanded(
                             child: Text(
-                              _model.list.first.createdUserId.firstName !=
-                                          null &&
-                                      _model.list.first.createdUserId
+                              _model.list.first.createdUserId
                                               .firstName !=
                                           ''
                                   ? _model.list.first.createdUserId.firstName
@@ -177,13 +170,13 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                   ),
                             ),
                           ),
-                        ].divide(SizedBox(width: 8.0)),
+                        ].divide(const SizedBox(width: 8.0)),
                       ),
                     ],
                   ),
                 ),
               Container(
-                decoration: BoxDecoration(),
+                decoration: const BoxDecoration(),
                 child: Builder(
                   builder: (context) {
                     final dataList = _model.list.toList();
@@ -194,22 +187,22 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: dataList.length,
-                      separatorBuilder: (_, __) => SizedBox(height: 16.0),
+                      separatorBuilder: (_, __) => const SizedBox(height: 16.0),
                       itemBuilder: (context, dataListIndex) {
                         final dataListItem = dataList[dataListIndex];
                         return Stack(
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 20.0, 20.0, 20.0),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .primaryBackground,
-                                    borderRadius: BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                       bottomLeft: Radius.circular(20.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(0.0),
@@ -221,7 +214,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(16.0),
                                     child: SingleChildScrollView(
                                       primary: false,
                                       child: Column(
@@ -231,7 +224,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 0.0, 8.0),
                                             child: Text(
                                               dataListItem.name,
@@ -277,7 +270,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                       height: 40.0,
                                                       clipBehavior:
                                                           Clip.antiAlias,
-                                                      decoration: BoxDecoration(
+                                                      decoration: const BoxDecoration(
                                                         shape: BoxShape.circle,
                                                       ),
                                                       child: Image.network(
@@ -322,13 +315,13 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                               ),
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                               if (dataListItem.operations.first
                                                       .operationsId.result ==
                                                   'submit_text')
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Container(
@@ -350,15 +343,9 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsets.all(8.0),
+                                                          const EdgeInsets.all(8.0),
                                                       child: Text(
                                                         dataListItem
-                                                                        .operations
-                                                                        .first
-                                                                        .operationsId
-                                                                        .result !=
-                                                                    null &&
-                                                                dataListItem
                                                                         .operations
                                                                         .first
                                                                         .operationsId
@@ -390,9 +377,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                           .operations
                                                           .first
                                                           .operationsId
-                                                          .files
-                                                          .length >
-                                                      0))
+                                                          .files.isNotEmpty))
                                                 Container(
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
@@ -421,9 +406,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                               .operations
                                                               .first
                                                               .operationsId
-                                                              .files
-                                                              .length >
-                                                          0) &&
+                                                              .files.isNotEmpty) &&
                                                       (dataListItem
                                                               .actionType ==
                                                           'upload_file')))
@@ -450,19 +433,17 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                           .operations
                                                                           .first
                                                                           .operationsId
-                                                                          .files
-                                                                          .length >
-                                                                      0) &&
+                                                                          .files.isNotEmpty) &&
                                                                   (dataListItem
                                                                           .actionType ==
                                                                       'upload_file')),
                                                           child: Align(
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           8.0,
@@ -539,7 +520,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                               }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)) ==
                                                                               'pdf')
                                                                             Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
+                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
                                                                               child: ClipRRect(
                                                                                 borderRadius: BorderRadius.circular(8.0),
                                                                                 child: Image.asset(
@@ -553,7 +534,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                           Expanded(
                                                                             child:
                                                                                 Align(
-                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                              alignment: const AlignmentDirectional(-1.0, 0.0),
                                                                               child: Text(
                                                                                 fileItemsItem.directusFilesId.filenameDownload,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -589,7 +570,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                                         elevation: 0,
                                                                                         insetPadding: EdgeInsets.zero,
                                                                                         backgroundColor: Colors.transparent,
-                                                                                        alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                        alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                         child: GestureDetector(
                                                                                           onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
                                                                                           child: PopupSeeMoreWidget(
@@ -618,9 +599,9 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                             ),
                                                                             onPressed:
                                                                                 () async {
-                                                                              var _shouldSetState = false;
+                                                                              var shouldSetState = false;
                                                                               _model.checktokenReloadDowloadFile = await action_blocks.tokenReload(context);
-                                                                              _shouldSetState = true;
+                                                                              shouldSetState = true;
                                                                               if (_model.checktokenReloadDowloadFile!) {
                                                                                 await actions.downloadFile(
                                                                                   '${FFAppConstants.ApiBaseUrl}/assets/${fileItemsItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
@@ -629,17 +610,18 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                                 );
                                                                               } else {
                                                                                 setState(() {});
-                                                                                if (_shouldSetState) setState(() {});
+                                                                                if (shouldSetState) setState(() {});
                                                                                 return;
                                                                               }
 
-                                                                              if (_shouldSetState)
+                                                                              if (shouldSetState) {
                                                                                 setState(() {});
+                                                                              }
                                                                             },
                                                                           ),
                                                                         ],
                                                                       );
-                                                                    }).divide(SizedBox(
+                                                                    }).divide(const SizedBox(
                                                                         height:
                                                                             4.0)),
                                                                   );
@@ -693,7 +675,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                       .operationsId
                                                       .result,
                                                 ),
-                                            ].divide(SizedBox(height: 8.0)),
+                                            ].divide(const SizedBox(height: 8.0)),
                                           ),
                                         ],
                                       ),
@@ -703,14 +685,14 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 8.0, 0.0, 0.0),
                               child: Container(
                                 width: 40.0,
                                 height: 40.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).secondary,
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                       blurRadius: 4.0,
                                       color: Color(0x33000000),
@@ -722,7 +704,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                   ],
                                   borderRadius: BorderRadius.circular(90.0),
                                 ),
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Text(
                                   'B${dataListItem.number.toString()}',
                                   textAlign: TextAlign.center,
@@ -746,7 +728,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                   },
                 ),
               ),
-            ].divide(SizedBox(height: 8.0)),
+            ].divide(const SizedBox(height: 8.0)),
           ),
         ),
       ),

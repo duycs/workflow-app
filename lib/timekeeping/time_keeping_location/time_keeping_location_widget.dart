@@ -7,11 +7,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
 import '/timekeeping/time_keeping_location_update/time_keeping_location_update_widget.dart';
-import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'time_keeping_location_model.dart';
@@ -48,9 +46,9 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget!.addressId != null && widget!.addressId != '') {
+      if (widget.addressId != null && widget.addressId != '') {
         _model.locationSelect = AddressListStruct(
-          id: widget!.addressId,
+          id: widget.addressId,
         );
         setState(() {});
       } else {
@@ -73,24 +71,24 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(0.0),
             topRight: Radius.circular(0.0),
           ),
         ),
-        alignment: AlignmentDirectional(0.0, 1.0),
+        alignment: const AlignmentDirectional(0.0, 1.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -131,18 +129,18 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                               context: context,
                               builder: (alertDialogContext) {
                                 return AlertDialog(
-                                  title: Text('Xác nhận'),
-                                  content: Text('Bạn chắc chắn muốn lưu?'),
+                                  title: const Text('Xác nhận'),
+                                  content: const Text('Bạn chắc chắn muốn lưu?'),
                                   actions: [
                                     TextButton(
                                       onPressed: () => Navigator.pop(
                                           alertDialogContext, false),
-                                      child: Text('Hủy'),
+                                      child: const Text('Hủy'),
                                     ),
                                     TextButton(
                                       onPressed: () => Navigator.pop(
                                           alertDialogContext, true),
-                                      child: Text('Xác nhận'),
+                                      child: const Text('Xác nhận'),
                                     ),
                                   ],
                                 );
@@ -161,12 +159,12 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                           context: context,
                           builder: (alertDialogContext) {
                             return AlertDialog(
-                              content: Text('Vui lòng chọn Vị trí!'),
+                              content: const Text('Vui lòng chọn Vị trí!'),
                               actions: [
                                 TextButton(
                                   onPressed: () =>
                                       Navigator.pop(alertDialogContext),
-                                  child: Text('Ok'),
+                                  child: const Text('Ok'),
                                 ),
                               ],
                             );
@@ -179,9 +177,9 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                     options: FFButtonOptions(
                       height: 40.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -190,7 +188,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -209,7 +207,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                     child: PagedListView<ApiPagingParams, dynamic>.separated(
                       pagingController: _model.setListViewController(
                         (nextPageMarker) =>
-                            TimekeepingShiftGroup.addressListCall.call(
+                            TimekeepingShiftConfigsGroup.addressListCall.call(
                           filter:
                               '{\"_and\":[{\"status\":{\"_eq\":\"published\"}},{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                             FFAppState().staffOrganization,
@@ -224,7 +222,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                       shrinkWrap: true,
                       reverse: false,
                       scrollDirection: Axis.vertical,
-                      separatorBuilder: (_, __) => SizedBox(height: 4.0),
+                      separatorBuilder: (_, __) => const SizedBox(height: 4.0),
                       builderDelegate: PagedChildBuilderDelegate<dynamic>(
                         // Customize what your widget looks like when it's loading the first page.
                         firstPageProgressIndicatorBuilder: (_) => Center(
@@ -251,7 +249,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                           ),
                         ),
                         noItemsFoundIndicatorBuilder: (_) =>
-                            DataNotFoundWidget(),
+                            const DataNotFoundWidget(),
                         itemBuilder: (context, _, locationListIndex) {
                           final locationListItem = _model
                               .listViewPagingController!
@@ -267,7 +265,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                               children: [
                                 Theme(
                                   data: ThemeData(
-                                    checkboxTheme: CheckboxThemeData(
+                                    checkboxTheme: const CheckboxThemeData(
                                       visualDensity: VisualDensity.compact,
                                       materialTapTargetSize:
                                           MaterialTapTargetSize.shrinkWrap,
@@ -331,7 +329,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                 ),
                                 Builder(
                                   builder: (context) => Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 0.0, 12.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -348,11 +346,11 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  AlignmentDirectional(0.0, 0.0)
+                                                  const AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: Container(
+                                              child: SizedBox(
                                                 height: double.infinity,
                                                 width: double.infinity,
                                                 child:
@@ -395,7 +393,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                   Builder(
                     builder: (context) => Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           await showDialog(
@@ -405,9 +403,9 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: AlignmentDirectional(0.0, 0.0)
+                                alignment: const AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: Container(
+                                child: SizedBox(
                                   height: double.infinity,
                                   width: double.infinity,
                                   child: TimeKeepingLocationCreatedWidget(
@@ -427,15 +425,15 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                           ).then((value) => setState(() {}));
                         },
                         text: 'Thêm địa chỉ',
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.add_home_outlined,
                           size: 24.0,
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -445,7 +443,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),

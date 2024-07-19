@@ -41,9 +41,7 @@ class _CalendarState extends State<Calendar> {
   void initState() {
     super.initState();
     _selectedDay = DateTime.now();
-    _focusedDay = widget.date ??
-        DateTime
-            .now(); // Sử dụng widget.date nếu có, ngược lại là ngày hiện tại
+    _focusedDay = widget.date ?? DateTime.now();
     _events = {};
     _selectedEvents = [];
   }
@@ -58,7 +56,7 @@ class _CalendarState extends State<Calendar> {
       initialDate: _focusedDay,
       firstDate: DateTime.utc(1),
       lastDate: DateTime.utc(9999),
-      locale: Locale('vi', 'VN'), // Đặt locale thành tiếng Việt
+      locale: Locale('vi', 'VN'),
     );
     if (picked != null && picked != _focusedDay) {
       setState(() {
@@ -117,7 +115,7 @@ class _CalendarState extends State<Calendar> {
         ),
         Expanded(
           child: TableCalendar(
-            locale: 'vi_VN', // Đặt locale thành tiếng Việt
+            locale: 'vi_VN',
             firstDay: DateTime.utc(1),
             lastDay: DateTime.utc(9999),
             focusedDay: _focusedDay,
@@ -151,15 +149,14 @@ class _CalendarState extends State<Calendar> {
               titleCentered: true,
               leftChevronVisible: false,
               rightChevronVisible: false,
-              formatButtonShowsNext: false, // Ẩn nút định dạng
-              titleTextFormatter: (date, locale) => '', // Ẩn tiêu đề tháng năm
+              formatButtonShowsNext: false,
+              titleTextFormatter: (date, locale) => '',
             ),
             daysOfWeekStyle: DaysOfWeekStyle(
               weekendStyle: TextStyle().copyWith(color: Colors.red),
               weekdayStyle: TextStyle().copyWith(color: Colors.black),
             ),
-            startingDayOfWeek:
-                StartingDayOfWeek.monday, // Bắt đầu tuần từ thứ Hai
+            startingDayOfWeek: StartingDayOfWeek.monday,
           ),
         ),
       ],

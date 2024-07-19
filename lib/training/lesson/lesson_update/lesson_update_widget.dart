@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
@@ -15,7 +14,6 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'lesson_update_model.dart';
 export 'lesson_update_model.dart';
@@ -50,7 +48,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
       setState(() {});
       _model.isLoad = true;
       _model.content = getJsonField(
-        widget!.items,
+        widget.items,
         r'''$.content''',
       );
       setState(() {});
@@ -58,38 +56,38 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
 
     _model.nameTextController ??= TextEditingController(
         text: getJsonField(
-      widget!.items,
+      widget.items,
       r'''$.name''',
     ).toString().toString());
     _model.nameFocusNode ??= FocusNode();
 
     _model.descriptionTextController ??= TextEditingController(
         text: getJsonField(
-      widget!.items,
+      widget.items,
       r'''$.description''',
     ).toString().toString());
     _model.descriptionFocusNode ??= FocusNode();
 
     _model.durationHoursTextController ??= TextEditingController(
         text: getJsonField(
-      widget!.items,
+      widget.items,
       r'''$.duration_hours''',
     ).toString().toString());
     _model.durationHoursFocusNode ??= FocusNode();
 
     _model.estimateInDayTextController ??= TextEditingController(
         text: (getJsonField(
-                      widget!.items,
+                      widget.items,
                       r'''$.estimate_in_day''',
                     ) !=
                     null) &&
-                ('${getJsonField(
-                      widget!.items,
+                (getJsonField(
+                      widget.items,
                       r'''$.estimate_in_day''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     '0')
             ? getJsonField(
-                widget!.items,
+                widget.items,
                 r'''$.estimate_in_day''',
               ).toString().toString()
             : '');
@@ -148,7 +146,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 1.0,
         ),
@@ -159,7 +157,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -167,7 +165,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 16.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.nameTextController,
@@ -293,12 +291,12 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                         ),
                         if ('1' == '2')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: FlutterFlowDropDown<String>(
                               controller: _model.dropDownValueController ??=
                                   FormFieldController<String>(null),
-                              options: ['Option 1'],
+                              options: const ['Option 1'],
                               onChanged: (val) =>
                                   setState(() => _model.dropDownValue = val),
                               width: 300.0,
@@ -324,7 +322,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                   .primaryBackground,
                               borderWidth: 1.0,
                               borderRadius: 8.0,
-                              margin: EdgeInsetsDirectional.fromSTEB(
+                              margin: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 4.0, 16.0, 4.0),
                               hidesUnderline: true,
                               isOverButton: true,
@@ -333,7 +331,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Text(
                             'Bài thi',
@@ -351,18 +349,18 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 3.0, 0.0, 0.0),
                                 child: FlutterFlowDropDown<String>(
                                   controller: _model.testIdValueController ??=
                                       FormFieldController<String>(
                                     _model.testIdValue ??= getJsonField(
-                                              widget!.items,
+                                              widget.items,
                                               r'''$.test_id''',
                                             ) !=
                                             null
                                         ? getJsonField(
-                                            widget!.items,
+                                            widget.items,
                                             r'''$.test_id''',
                                           ).toString()
                                         : _model.testId,
@@ -410,7 +408,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       .primaryBackground,
                                   borderWidth: 1.0,
                                   borderRadius: 8.0,
-                                  margin: EdgeInsetsDirectional.fromSTEB(
+                                  margin: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 4.0, 16.0, 4.0),
                                   hidesUnderline: true,
                                   isOverButton: true,
@@ -421,7 +419,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                             ),
                             Builder(
                               builder: (context) => Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     5.0, 0.0, 0.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
@@ -432,7 +430,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           elevation: 0,
                                           insetPadding: EdgeInsets.zero,
                                           backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
+                                          alignment: const AlignmentDirectional(
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
@@ -444,7 +442,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                         _model.unfocusNode)
                                                 : FocusScope.of(context)
                                                     .unfocus(),
-                                            child: Container(
+                                            child: SizedBox(
                                               height: MediaQuery.sizeOf(context)
                                                       .height *
                                                   1.0,
@@ -461,9 +459,9 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                   });
                                                   setState(() {
                                                     _model.testIdValueController
-                                                        ?.value = testId!.id;
+                                                        ?.value = testId.id;
                                                   });
-                                                  _model.testId = testId!.id;
+                                                  _model.testId = testId.id;
                                                   setState(() {});
                                                 },
                                               ),
@@ -474,15 +472,15 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                     ).then((value) => setState(() {}));
                                   },
                                   text: 'Bài thi',
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add,
                                     size: 15.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         10.0, 0.0, 10.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -495,7 +493,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           fontWeight: FontWeight.normal,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -507,7 +505,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -527,7 +525,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -586,7 +584,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                             BorderRadius.circular(0.0),
                                       ),
                                       contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               8.0, 0.0, 8.0, 0.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -614,11 +612,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -648,7 +646,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 5.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -656,7 +654,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                     focusNode: _model.estimateInDayFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.estimateInDayTextController',
-                                      Duration(milliseconds: 2000),
+                                      const Duration(milliseconds: 2000),
                                       () async {
                                         _model.checkTime = int.tryParse(_model
                                             .estimateInDayTextController.text);
@@ -716,7 +714,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                             BorderRadius.circular(0.0),
                                       ),
                                       contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               8.0, 0.0, 8.0, 0.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -744,7 +742,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                         ),
                         if ((_model.checkTime != null) &&
@@ -762,14 +760,14 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                 ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   'Trạng thái bài học:',
@@ -788,10 +786,10 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                 onChanged: (val) => setState(() {}),
                                 controller: _model
                                         .radioButtonStatusValueController ??=
-                                    FormFieldController<String>('${getJsonField(
-                                              widget!.items,
+                                    FormFieldController<String>(getJsonField(
+                                              widget.items,
                                               r'''$.status''',
-                                            ).toString()}' ==
+                                            ).toString() ==
                                             'published'
                                         ? 'Hoạt động'
                                         : 'Không hoạt động'),
@@ -808,7 +806,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
-                                textPadding: EdgeInsetsDirectional.fromSTEB(
+                                textPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 10.0, 0.0),
                                 buttonPosition: RadioButtonPosition.left,
                                 direction: Axis.horizontal,
@@ -824,7 +822,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -838,12 +836,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     if ((getJsonField(
-                                              widget!.items,
+                                              widget.items,
                                               r'''$.image_cover''',
                                             ) !=
                                             null) &&
-                                        (_model.uploadedLocalFile1 == null ||
-                                            (_model.uploadedLocalFile1.bytes
+                                        ((_model.uploadedLocalFile1.bytes
                                                     ?.isEmpty ??
                                                 true)))
                                       ClipRRect(
@@ -851,7 +848,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
                                           '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                                            widget!.items,
+                                            widget.items,
                                             r'''$.image_cover''',
                                           ).toString()}?access_token=${FFAppState().accessToken}',
                                           width: 200.0,
@@ -859,8 +856,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           fit: BoxFit.cover,
                                         ),
                                       ),
-                                    if (_model.uploadedLocalFile1 != null &&
-                                        (_model.uploadedLocalFile1.bytes
+                                    if ((_model.uploadedLocalFile1.bytes
                                                 ?.isNotEmpty ??
                                             false))
                                       ClipRRect(
@@ -875,12 +871,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                         ),
                                       ),
                                     if ((getJsonField(
-                                              widget!.items,
+                                              widget.items,
                                               r'''$.image_cover''',
                                             ) ==
                                             null) &&
-                                        (_model.uploadedLocalFile1 == null ||
-                                            (_model.uploadedLocalFile1.bytes
+                                        ((_model.uploadedLocalFile1.bytes
                                                     ?.isEmpty ??
                                                 true)))
                                       Container(
@@ -895,7 +890,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Chưa có dữ liệu!',
                                           style: FlutterFlowTheme.of(context)
@@ -962,15 +957,15 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                     setState(() {});
                                   },
                                   text: 'Ảnh',
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add,
                                     size: 18.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         26.0, 0.0, 26.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -983,7 +978,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           fontWeight: FontWeight.normal,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -991,11 +986,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1021,12 +1016,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                         ),
                                       ),
                                     if ((getJsonField(
-                                              widget!.items,
+                                              widget.items,
                                               r'''$.video''',
                                             ) ==
                                             null) &&
-                                        (_model.uploadedLocalFile2 == null ||
-                                            (_model.uploadedLocalFile2.bytes
+                                        ((_model.uploadedLocalFile2.bytes
                                                     ?.isEmpty ??
                                                 true)))
                                       Container(
@@ -1041,7 +1035,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Chưa có dữ liệu!',
                                           style: FlutterFlowTheme.of(context)
@@ -1057,19 +1051,18 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                         ),
                                       ),
                                     if ((getJsonField(
-                                              widget!.items,
+                                              widget.items,
                                               r'''$.video''',
                                             ) !=
                                             null) &&
-                                        (_model.uploadedLocalFile2 == null ||
-                                            (_model.uploadedLocalFile2.bytes
+                                        ((_model.uploadedLocalFile2.bytes
                                                     ?.isEmpty ??
                                                 true)))
                                       Container(
                                         width: 200.0,
                                         height: 50.0,
                                         decoration: BoxDecoration(
-                                          color: Color(0x5D39D2C0),
+                                          color: const Color(0x5D39D2C0),
                                           borderRadius:
                                               BorderRadius.circular(25.0),
                                           border: Border.all(
@@ -1078,7 +1071,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Đã có dữ liệu!',
                                           style: FlutterFlowTheme.of(context)
@@ -1093,8 +1086,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                               ),
                                         ),
                                       ),
-                                    if (_model.uploadedLocalFile2 != null &&
-                                        (_model.uploadedLocalFile2.bytes
+                                    if ((_model.uploadedLocalFile2.bytes
                                                 ?.isNotEmpty ??
                                             false))
                                       Container(
@@ -1111,7 +1103,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Tải Video thành công!',
                                           style: FlutterFlowTheme.of(context)
@@ -1177,15 +1169,15 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                     setState(() {});
                                   },
                                   text: 'Video',
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add,
                                     size: 18.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         26.0, 0.0, 26.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -1198,7 +1190,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           fontWeight: FontWeight.normal,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -1206,11 +1198,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1224,12 +1216,12 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            const AlignmentDirectional(-1.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
@@ -1243,13 +1235,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                 height: 110.0,
                                                 horizontalScroll: false,
                                               ),
-                                            if ((_model.uploadedLocalFile3 ==
-                                                        null ||
-                                                    (_model.uploadedLocalFile3
+                                            if (((_model.uploadedLocalFile3
                                                             .bytes?.isEmpty ??
                                                         true)) &&
                                                 (getJsonField(
-                                                      widget!.items,
+                                                      widget.items,
                                                       r'''$.file''',
                                                     ) ==
                                                     null))
@@ -1267,7 +1257,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                         .secondaryText,
                                                   ),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'Chưa có dữ liệu!',
@@ -1287,13 +1277,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                       ),
                                                 ),
                                               ),
-                                            if ((_model.uploadedLocalFile3 ==
-                                                        null ||
-                                                    (_model.uploadedLocalFile3
+                                            if (((_model.uploadedLocalFile3
                                                             .bytes?.isEmpty ??
                                                         true)) &&
                                                 (getJsonField(
-                                                      widget!.items,
+                                                      widget.items,
                                                       r'''$.file''',
                                                     ) !=
                                                     null))
@@ -1301,7 +1289,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                 width: 200.0,
                                                 height: 50.0,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0x5D39D2C0),
+                                                  color: const Color(0x5D39D2C0),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           25.0),
@@ -1311,7 +1299,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                         .success,
                                                   ),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'Đã có dữ liệu!',
@@ -1331,9 +1319,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                       ),
                                                 ),
                                               ),
-                                            if (_model.uploadedLocalFile3 !=
-                                                    null &&
-                                                (_model.uploadedLocalFile3.bytes
+                                            if ((_model.uploadedLocalFile3.bytes
                                                         ?.isNotEmpty ??
                                                     false))
                                               Container(
@@ -1352,7 +1338,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                         .success,
                                                   ),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'Tải File thành công!',
@@ -1417,15 +1403,15 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                     setState(() {});
                                   },
                                   text: 'File',
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add,
                                     size: 18.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         26.0, 0.0, 26.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -1438,7 +1424,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           fontWeight: FontWeight.normal,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -1446,11 +1432,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 12.0),
                           child: Text(
                             'Nội dung',
@@ -1464,13 +1450,13 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 12.0),
                           child: Container(
                             width: double.infinity,
                             height: 45.0,
-                            decoration: BoxDecoration(),
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            decoration: const BoxDecoration(),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Builder(
                               builder: (context) => InkWell(
                                 splashColor: Colors.transparent,
@@ -1486,7 +1472,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0)
+                                            const AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: GestureDetector(
@@ -1497,7 +1483,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                       _model.unfocusNode)
                                               : FocusScope.of(context)
                                                   .unfocus(),
-                                          child: Container(
+                                          child: SizedBox(
                                             height: MediaQuery.sizeOf(context)
                                                     .height *
                                                 1.0,
@@ -1531,7 +1517,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           .alternate,
                                     ),
                                   ),
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
                                     child: Row(
@@ -1543,7 +1529,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 5.0, 0.0),
                                           child: Icon(
                                             Icons.edit_note,
@@ -1578,48 +1564,40 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                               content: _model.content!.toString(),
                             ),
                           ),
-                      ].divide(SizedBox(height: 6.0)),
+                      ].divide(const SizedBox(height: 6.0)),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (_model.uploadedLocalFile2 != null &&
-                        (_model.uploadedLocalFile2.bytes?.isNotEmpty ??
+                    if ((_model.uploadedLocalFile2.bytes?.isNotEmpty ??
                             false)) {
                       await _model.uploadFileVideo(context);
                       setState(() {});
                     }
-                    if (_model.uploadedLocalFile1 != null &&
-                        (_model.uploadedLocalFile1.bytes?.isNotEmpty ??
+                    if ((_model.uploadedLocalFile1.bytes?.isNotEmpty ??
                             false)) {
                       await _model.uploadFileImage(context);
                       setState(() {});
                     }
-                    if (_model.uploadedLocalFile3 != null &&
-                        (_model.uploadedLocalFile3.bytes?.isNotEmpty ??
+                    if ((_model.uploadedLocalFile3.bytes?.isNotEmpty ??
                             false)) {
                       await _model.uploadFileFile(context);
                       setState(() {});
                     }
-                    if ((_model.nameTextController.text != null &&
-                            _model.nameTextController.text != '') &&
-                        (_model.descriptionTextController.text != null &&
-                            _model.descriptionTextController.text != '') &&
-                        (_model.durationHoursTextController.text != null &&
-                            _model.durationHoursTextController.text != '') &&
-                        ((_model.uploadImage != null &&
-                                _model.uploadImage != '') ||
+                    if ((_model.nameTextController.text != '') &&
+                        (_model.descriptionTextController.text != '') &&
+                        (_model.durationHoursTextController.text != '') &&
+                        ((_model.uploadImage != '') ||
                             (getJsonField(
-                                  widget!.items,
+                                  widget.items,
                                   r'''$.image_cover''',
                                 ) !=
                                 null))) {
-                      if (_model.estimateInDayTextController.text != null &&
-                          _model.estimateInDayTextController.text != '') {
+                      if (_model.estimateInDayTextController.text != '') {
                         if (int.parse(_model.estimateInDayTextController.text) >
                             0) {
                           await _model.updateLesson(context);
@@ -1634,7 +1612,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       .secondaryBackground,
                                 ),
                               ),
-                              duration: Duration(milliseconds: 4000),
+                              duration: const Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).error,
                             ),
@@ -1654,7 +1632,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                   .secondaryBackground,
                             ),
                           ),
-                          duration: Duration(milliseconds: 4000),
+                          duration: const Duration(milliseconds: 4000),
                           backgroundColor: FlutterFlowTheme.of(context).error,
                         ),
                       );
@@ -1665,10 +1643,10 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                     width: double.infinity,
                     height: 40.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: Color(0xFF33BA45),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFF33BA45),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Nunito Sans',
                           color:
@@ -1677,7 +1655,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Color(0xFF33BA45),
                       width: 1.0,
                     ),

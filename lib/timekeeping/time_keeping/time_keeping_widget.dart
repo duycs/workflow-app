@@ -8,10 +8,8 @@ import '/timekeeping/individual_timekeeping_details/individual_timekeeping_detai
 import '/timekeeping/time_keeping_checkout/time_keeping_checkout_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/scheduler.dart';
 import 'time_keeping_model.dart';
 export 'time_keeping_model.dart';
 
@@ -36,6 +34,14 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TimeKeepingModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await _model.getTimekeepings(context);
+      setState(() {});
+      _model.isLoad = true;
+      setState(() {});
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -70,11 +76,20 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.pushNamed(
+                'Home',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
             },
           ),
           title: Text(
-            widget!.checkShowFilter == 'adminReport'
+            widget.checkShowFilter == 'adminReport'
                 ? 'Báo cáo chấm công theo tháng'
                 : 'Chấm công cá nhân',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -84,7 +99,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -93,15 +108,15 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              if (widget!.checkShowFilter == 'adminReport')
+              if (widget.checkShowFilter == 'adminReport')
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 0.0),
                   child: Container(
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController ??=
                           FormFieldController<String>(null),
-                      options: ['Nguyễn Văn A', 'Nguyễn Thị B'],
+                      options: const ['Nguyễn Văn A', 'Nguyễn Thị B'],
                       onChanged: (val) =>
                           setState(() => _model.dropDownValue = val),
                       width: double.infinity,
@@ -124,7 +139,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                       borderWidth: 2.0,
                       borderRadius: 8.0,
                       margin:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                       hidesUnderline: true,
                       isOverButton: true,
                       isSearchable: false,
@@ -132,11 +147,11 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                     ),
                   ),
                 ),
-              if (((widget!.checkShowFilter == 'adminReport') &&
+              if (((widget.checkShowFilter == 'adminReport') &&
                       (_model.dropDownValue != null &&
                           _model.dropDownValue != '')) ||
-                  ((widget!.checkShowFilter == null ||
-                          widget!.checkShowFilter == '') &&
+                  ((widget.checkShowFilter == null ||
+                          widget.checkShowFilter == '') &&
                       (_model.dropDownValue == null ||
                           _model.dropDownValue == '')))
                 Expanded(
@@ -145,14 +160,14 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             10.0, 12.0, 10.0, 0.0),
                         child: Container(
                           width: 100.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 blurRadius: 1.0,
                                 color: Color(0x33000000),
@@ -165,7 +180,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                             borderRadius: BorderRadius.circular(4.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,31 +207,31 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                             ),
-                                            TextSpan(
+                                            const TextSpan(
                                               text: '< ',
                                               style: TextStyle(
                                                 fontSize: 13.0,
                                               ),
                                             ),
-                                            TextSpan(
+                                            const TextSpan(
                                               text: '04/10/2023',
                                               style: TextStyle(
                                                 fontSize: 13.0,
                                               ),
                                             ),
-                                            TextSpan(
+                                            const TextSpan(
                                               text: '-',
                                               style: TextStyle(
                                                 fontSize: 13.0,
                                               ),
                                             ),
-                                            TextSpan(
+                                            const TextSpan(
                                               text: '09/07/2024',
                                               style: TextStyle(
                                                 fontSize: 13.0,
                                               ),
                                             ),
-                                            TextSpan(
+                                            const TextSpan(
                                               text: ' >',
                                               style: TextStyle(
                                                 fontSize: 13.0,
@@ -232,7 +247,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 12.0),
                                         child: Text(
                                           '100',
@@ -305,7 +320,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 20.0),
                                       child: ClipRRect(
                                         borderRadius:
@@ -344,7 +359,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 12.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -394,7 +409,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 0.0, 12.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -408,7 +423,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 4.0,
                                             color: Color(0x33000000),
@@ -421,7 +436,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         'MON',
                                         textAlign: TextAlign.center,
@@ -442,7 +457,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 4.0,
                                             color: Color(0x33000000),
@@ -455,7 +470,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         'TUE',
                                         textAlign: TextAlign.center,
@@ -476,7 +491,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 4.0,
                                             color: Color(0x33000000),
@@ -489,7 +504,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         'WED',
                                         textAlign: TextAlign.center,
@@ -510,7 +525,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 4.0,
                                             color: Color(0x33000000),
@@ -523,7 +538,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         'THU',
                                         textAlign: TextAlign.center,
@@ -544,7 +559,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 4.0,
                                             color: Color(0x33000000),
@@ -557,7 +572,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         'FRI',
                                         textAlign: TextAlign.center,
@@ -578,7 +593,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 4.0,
                                             color: Color(0x33000000),
@@ -591,7 +606,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         'SAT',
                                         textAlign: TextAlign.center,
@@ -612,7 +627,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 4.0,
                                             color: Color(0x33000000),
@@ -625,7 +640,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         'SUN',
                                         textAlign: TextAlign.center,
@@ -639,11 +654,11 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 10.0)),
+                                ].divide(const SizedBox(width: 10.0)),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 12.0, 12.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -664,7 +679,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -677,7 +692,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                               .unfocusNode)
                                                       : FocusScope.of(context)
                                                           .unfocus(),
-                                                  child: Container(
+                                                  child: SizedBox(
                                                     height: MediaQuery.sizeOf(
                                                                 context)
                                                             .height *
@@ -687,7 +702,9 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                             .width *
                                                         0.9,
                                                     child:
-                                                        IndividualTimekeepingDetailsWidget(),
+                                                        const IndividualTimekeepingDetailsWidget(
+                                                      dateFilter: '',
+                                                    ),
                                                   ),
                                                 ),
                                               );
@@ -704,7 +721,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             '1',
                                             textAlign: TextAlign.center,
@@ -734,7 +751,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '2',
                                         textAlign: TextAlign.center,
@@ -762,7 +779,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '3',
                                         textAlign: TextAlign.center,
@@ -790,7 +807,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '4',
                                         textAlign: TextAlign.center,
@@ -818,7 +835,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '5',
                                         textAlign: TextAlign.center,
@@ -846,7 +863,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '6',
                                         textAlign: TextAlign.center,
@@ -874,7 +891,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '7',
                                         textAlign: TextAlign.center,
@@ -892,11 +909,11 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 4.0)),
+                                ].divide(const SizedBox(width: 4.0)),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 4.0, 12.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -911,7 +928,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '8',
                                         textAlign: TextAlign.center,
@@ -939,7 +956,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '9',
                                         textAlign: TextAlign.center,
@@ -966,7 +983,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '10',
                                         textAlign: TextAlign.center,
@@ -991,7 +1008,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '11',
                                         textAlign: TextAlign.center,
@@ -1016,7 +1033,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '12',
                                         textAlign: TextAlign.center,
@@ -1041,7 +1058,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '13',
                                         textAlign: TextAlign.center,
@@ -1066,7 +1083,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '14',
                                         textAlign: TextAlign.center,
@@ -1081,11 +1098,11 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 4.0)),
+                                ].divide(const SizedBox(width: 4.0)),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 4.0, 12.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -1100,7 +1117,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '15',
                                         textAlign: TextAlign.center,
@@ -1125,7 +1142,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '16',
                                         textAlign: TextAlign.center,
@@ -1150,7 +1167,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '17',
                                         textAlign: TextAlign.center,
@@ -1175,7 +1192,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '18',
                                         textAlign: TextAlign.center,
@@ -1200,7 +1217,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '19',
                                         textAlign: TextAlign.center,
@@ -1225,7 +1242,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '20',
                                         textAlign: TextAlign.center,
@@ -1250,7 +1267,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '21',
                                         textAlign: TextAlign.center,
@@ -1265,11 +1282,11 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 4.0)),
+                                ].divide(const SizedBox(width: 4.0)),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 4.0, 12.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -1284,7 +1301,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '22',
                                         textAlign: TextAlign.center,
@@ -1309,7 +1326,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '23',
                                         textAlign: TextAlign.center,
@@ -1334,7 +1351,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '24',
                                         textAlign: TextAlign.center,
@@ -1359,7 +1376,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '25',
                                         textAlign: TextAlign.center,
@@ -1384,7 +1401,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '26',
                                         textAlign: TextAlign.center,
@@ -1409,7 +1426,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '27',
                                         textAlign: TextAlign.center,
@@ -1434,7 +1451,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '28',
                                         textAlign: TextAlign.center,
@@ -1449,11 +1466,11 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 4.0)),
+                                ].divide(const SizedBox(width: 4.0)),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 4.0, 12.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -1468,7 +1485,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '29',
                                         textAlign: TextAlign.center,
@@ -1493,7 +1510,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '30',
                                         textAlign: TextAlign.center,
@@ -1518,7 +1535,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '31',
                                         textAlign: TextAlign.center,
@@ -1541,7 +1558,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '',
                                         textAlign: TextAlign.center,
@@ -1564,7 +1581,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '',
                                         textAlign: TextAlign.center,
@@ -1587,7 +1604,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '',
                                         textAlign: TextAlign.center,
@@ -1610,7 +1627,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '',
                                         textAlign: TextAlign.center,
@@ -1625,57 +1642,56 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 4.0)),
+                                ].divide(const SizedBox(width: 4.0)),
                               ),
                             ),
                           ],
                         ),
-                      Builder(
-                        builder: (context) => Container(
-                          width: double.infinity,
-                          height: MediaQuery.sizeOf(context).height * 0.5,
-                          child: custom_widgets.Calendar(
+                      if (_model.isLoad == true)
+                        Builder(
+                          builder: (context) => SizedBox(
                             width: double.infinity,
                             height: MediaQuery.sizeOf(context).height * 0.5,
-                            date: getCurrentTimestamp,
-                            action: (date) async {
-                              await showDialog(
-                                context: context,
-                                builder: (dialogContext) {
-                                  return Dialog(
-                                    elevation: 0,
-                                    insetPadding: EdgeInsets.zero,
-                                    backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
-                                        .resolve(Directionality.of(context)),
-                                    child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: Container(
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                0.6,
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                0.9,
-                                        child:
-                                            IndividualTimekeepingDetailsWidget(
-                                          dateFilter: date,
+                            child: custom_widgets.CalendarUser(
+                              width: double.infinity,
+                              height: MediaQuery.sizeOf(context).height * 0.5,
+                              json: _model.itemTimekeepings,
+                              date: getCurrentTimestamp,
+                              action: (date) async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: SizedBox(
+                                          height: double.infinity,
+                                          width: double.infinity,
+                                          child:
+                                              IndividualTimekeepingDetailsWidget(
+                                            dateFilter: date,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                },
-                              ).then((value) => setState(() {}));
-                            },
+                                    );
+                                  },
+                                ).then((value) => setState(() {}));
+                              },
+                            ),
                           ),
                         ),
-                      ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 32.0, 12.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1707,7 +1723,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                        TextSpan(
+                                        const TextSpan(
                                           text: '5',
                                           style: TextStyle(),
                                         )
@@ -1720,7 +1736,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                           ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 2.0)),
+                                ].divide(const SizedBox(width: 2.0)),
                               ),
                             ),
                             Expanded(
@@ -1750,7 +1766,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                        TextSpan(
+                                        const TextSpan(
                                           text: '1',
                                           style: TextStyle(),
                                         )
@@ -1763,14 +1779,14 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                           ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 2.0)),
+                                ].divide(const SizedBox(width: 2.0)),
                               ),
                             ),
                           ],
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 8.0, 12.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1802,7 +1818,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                        TextSpan(
+                                        const TextSpan(
                                           text: '1',
                                           style: TextStyle(),
                                         )
@@ -1815,7 +1831,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                           ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 2.0)),
+                                ].divide(const SizedBox(width: 2.0)),
                               ),
                             ),
                             Expanded(
@@ -1844,7 +1860,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                        TextSpan(
+                                        const TextSpan(
                                           text: '1',
                                           style: TextStyle(),
                                         )
@@ -1857,14 +1873,14 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                           ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 2.0)),
+                                ].divide(const SizedBox(width: 2.0)),
                               ),
                             ),
                           ],
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 8.0, 12.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1896,7 +1912,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                        TextSpan(
+                                        const TextSpan(
                                           text: '1',
                                           style: TextStyle(),
                                         )
@@ -1909,7 +1925,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                           ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 2.0)),
+                                ].divide(const SizedBox(width: 2.0)),
                               ),
                             ),
                             Expanded(
@@ -1920,6 +1936,8 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                     width: 20.0,
                                     height: 20.0,
                                     decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
                                       borderRadius: BorderRadius.circular(4.0),
                                       border: Border.all(
                                         color: FlutterFlowTheme.of(context)
@@ -1941,7 +1959,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                        TextSpan(
+                                        const TextSpan(
                                           text: '0',
                                           style: TextStyle(),
                                         )
@@ -1954,33 +1972,33 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                           ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 2.0)),
+                                ].divide(const SizedBox(width: 2.0)),
                               ),
                             ),
                           ],
                         ),
                       ),
-                    ].addToEnd(SizedBox(height: 24.0)),
+                    ].addToEnd(const SizedBox(height: 24.0)),
                   ),
                 ),
-              if (widget!.checkShowFilter != 'adminReport')
+              if (widget.checkShowFilter != 'adminReport')
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 16.0),
+                      const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 16.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            var _shouldSetState = false;
+                            var shouldSetState = false;
                             _model.authenticateBiometicsTimeKeeping =
                                 await actions
                                     .authenticateUsingBiometricsSetting();
-                            _shouldSetState = true;
+                            shouldSetState = true;
                             if (_model.authenticateBiometicsTimeKeeping !=
                                 true) {
-                              if (_shouldSetState) setState(() {});
+                              if (shouldSetState) setState(() {});
                               return;
                             }
                             _model.timeKeepingLocation =
@@ -1989,7 +2007,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                               105.8344615,
                               100.0,
                             );
-                            _shouldSetState = true;
+                            shouldSetState = true;
                             if (_model.timeKeepingLocation ==
                                 'Chấm công thành công!') {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -2001,7 +2019,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                           .primaryText,
                                     ),
                                   ),
-                                  duration: Duration(milliseconds: 4000),
+                                  duration: const Duration(milliseconds: 4000),
                                   backgroundColor:
                                       FlutterFlowTheme.of(context).secondary,
                                 ),
@@ -2016,25 +2034,25 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                           .primaryText,
                                     ),
                                   ),
-                                  duration: Duration(milliseconds: 4000),
+                                  duration: const Duration(milliseconds: 4000),
                                   backgroundColor:
                                       FlutterFlowTheme.of(context).error,
                                 ),
                               );
                             }
 
-                            if (_shouldSetState) setState(() {});
+                            if (shouldSetState) setState(() {});
                           },
                           text: 'Chấm công vào',
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.fingerprint,
                             size: 24.0,
                           ),
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).secondary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -2047,7 +2065,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -2066,7 +2084,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
                                     child: GestureDetector(
                                       onTap: () => _model
@@ -2074,22 +2092,22 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                           ? FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
-                                      child: TimeKeepingCheckoutWidget(),
+                                      child: const TimeKeepingCheckoutWidget(),
                                     ),
                                   );
                                 },
                               ).then((value) => setState(() {}));
                             },
                             text: 'Chấm công ra',
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.fingerprint,
                               size: 24.0,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -2102,7 +2120,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -2111,7 +2129,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 8.0)),
+                    ].divide(const SizedBox(width: 8.0)),
                   ),
                 ),
             ],
