@@ -495,16 +495,21 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                             12.0),
                                                                         child:
                                                                             Text(
-                                                                          valueOrDefault<String>(
-                                                                                    _model.data?.hotline,
-                                                                                    'Loading',
-                                                                                  ) !=
-                                                                                  'undefined'
+                                                                          (valueOrDefault<String>(
+                                                                                        _model.data?.hotline,
+                                                                                        'Loading',
+                                                                                      ) !=
+                                                                                      'undefined') ||
+                                                                                  (valueOrDefault<String>(
+                                                                                        _model.data?.hotline,
+                                                                                        'Loading',
+                                                                                      ) !=
+                                                                                      '')
                                                                               ? valueOrDefault<String>(
                                                                                   _model.data?.hotline,
                                                                                   'Loading',
                                                                                 )
-                                                                              : ' ',
+                                                                              : 'Vui lòng cập nhật',
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
@@ -669,16 +674,21 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                             12.0),
                                                                         child:
                                                                             Text(
-                                                                          valueOrDefault<String>(
-                                                                                    _model.data?.address,
-                                                                                    'Loading',
-                                                                                  ) !=
-                                                                                  'undefined'
+                                                                          (valueOrDefault<String>(
+                                                                                        _model.data?.address,
+                                                                                        'Loading',
+                                                                                      ) !=
+                                                                                      'undefined') ||
+                                                                                  (valueOrDefault<String>(
+                                                                                        _model.data?.address,
+                                                                                        'Loading',
+                                                                                      ) !=
+                                                                                      '')
                                                                               ? valueOrDefault<String>(
                                                                                   _model.data?.address,
                                                                                   'Loading',
                                                                                 )
-                                                                              : ' ',
+                                                                              : ' Vui lòng cập nhật',
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(

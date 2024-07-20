@@ -298,6 +298,7 @@ class _DoActionTypeUploadFileWidgetState
                             ),
                             onPressed: () async {
                               _model.removeAtIndexFromListFileId(dataIndex);
+                              _model.isShow = true;
                               setState(() {});
                             },
                           ),
@@ -458,6 +459,7 @@ class _DoActionTypeUploadFileWidgetState
                                 onPressed: () async {
                                   _model.removeAtIndexFromListFileUpload(
                                       dataUploadIndex);
+                                  _model.isShow = true;
                                   setState(() {});
                                 },
                               ),
@@ -470,6 +472,19 @@ class _DoActionTypeUploadFileWidgetState
                 }),
               );
             },
+          ),
+        if (_model.isShow == true)
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+            child: Text(
+              'Lưu để cập nhật dữ liệu mới nhất',
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Nunito Sans',
+                    color: FlutterFlowTheme.of(context).error,
+                    letterSpacing: 0.0,
+                    fontStyle: FontStyle.italic,
+                  ),
+            ),
           ),
         Row(
           mainAxisSize: MainAxisSize.max,
@@ -512,6 +527,7 @@ class _DoActionTypeUploadFileWidgetState
 
                 if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
                   _model.addToListFileUpload(_model.uploadedLocalFile);
+                  _model.isShow = true;
                   setState(() {});
                 }
               },
@@ -600,6 +616,7 @@ class _DoActionTypeUploadFileWidgetState
                   );
                   _model.listFileUpload = [];
                   _model.listFileId = [];
+                  _model.isShow = false;
                   setState(() {});
 
                   setState(() {});

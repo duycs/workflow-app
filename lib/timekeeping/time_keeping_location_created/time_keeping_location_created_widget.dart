@@ -634,7 +634,7 @@ class _TimeKeepingLocationCreatedWidgetState
                         return;
                       }
                       _model.apiResultTimeKeepingCreated =
-                          await TimeKeepingGroup.timeKeepingCreatedCall.call(
+                          await LocationGroup.locationCreatedCall.call(
                         accessToken: FFAppState().accessToken,
                         requesDataJson: <String, dynamic>{
                           'status': 'published',

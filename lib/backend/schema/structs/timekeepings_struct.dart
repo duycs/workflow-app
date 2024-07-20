@@ -13,10 +13,10 @@ class TimekeepingsStruct extends BaseStruct {
     String? userUpdated,
     String? dateUpdated,
     String? organizationId,
-    String? shiftConfigId,
     String? type,
     List<ShiftdaysStruct>? shiftDays,
     StaffListStruct? staffId,
+    ShiftConfigsStruct? shiftConfigId,
   })  : _id = id,
         _status = status,
         _userCreated = userCreated,
@@ -24,10 +24,10 @@ class TimekeepingsStruct extends BaseStruct {
         _userUpdated = userUpdated,
         _dateUpdated = dateUpdated,
         _organizationId = organizationId,
-        _shiftConfigId = shiftConfigId,
         _type = type,
         _shiftDays = shiftDays,
-        _staffId = staffId;
+        _staffId = staffId,
+        _shiftConfigId = shiftConfigId;
 
   // "id" field.
   String? _id;
@@ -78,13 +78,6 @@ class TimekeepingsStruct extends BaseStruct {
 
   bool hasOrganizationId() => _organizationId != null;
 
-  // "shift_config_id" field.
-  String? _shiftConfigId;
-  String get shiftConfigId => _shiftConfigId ?? '';
-  set shiftConfigId(String? val) => _shiftConfigId = val;
-
-  bool hasShiftConfigId() => _shiftConfigId != null;
-
   // "type" field.
   String? _type;
   String get type => _type ?? '';
@@ -114,6 +107,18 @@ class TimekeepingsStruct extends BaseStruct {
 
   bool hasStaffId() => _staffId != null;
 
+  // "shift_config_id" field.
+  ShiftConfigsStruct? _shiftConfigId;
+  ShiftConfigsStruct get shiftConfigId =>
+      _shiftConfigId ?? ShiftConfigsStruct();
+  set shiftConfigId(ShiftConfigsStruct? val) => _shiftConfigId = val;
+
+  void updateShiftConfigId(Function(ShiftConfigsStruct) updateFn) {
+    updateFn(_shiftConfigId ??= ShiftConfigsStruct());
+  }
+
+  bool hasShiftConfigId() => _shiftConfigId != null;
+
   static TimekeepingsStruct fromMap(Map<String, dynamic> data) =>
       TimekeepingsStruct(
         id: data['id'] as String?,
@@ -123,13 +128,13 @@ class TimekeepingsStruct extends BaseStruct {
         userUpdated: data['user_updated'] as String?,
         dateUpdated: data['date_updated'] as String?,
         organizationId: data['organization_id'] as String?,
-        shiftConfigId: data['shift_config_id'] as String?,
         type: data['type'] as String?,
         shiftDays: getStructList(
           data['shift_days'],
           ShiftdaysStruct.fromMap,
         ),
         staffId: StaffListStruct.maybeFromMap(data['staff_id']),
+        shiftConfigId: ShiftConfigsStruct.maybeFromMap(data['shift_config_id']),
       );
 
   static TimekeepingsStruct? maybeFromMap(dynamic data) => data is Map
@@ -144,10 +149,10 @@ class TimekeepingsStruct extends BaseStruct {
         'user_updated': _userUpdated,
         'date_updated': _dateUpdated,
         'organization_id': _organizationId,
-        'shift_config_id': _shiftConfigId,
         'type': _type,
         'shift_days': _shiftDays?.map((e) => e.toMap()).toList(),
         'staff_id': _staffId?.toMap(),
+        'shift_config_id': _shiftConfigId?.toMap(),
       }.withoutNulls;
 
   @override
@@ -180,10 +185,6 @@ class TimekeepingsStruct extends BaseStruct {
           _organizationId,
           ParamType.String,
         ),
-        'shift_config_id': serializeParam(
-          _shiftConfigId,
-          ParamType.String,
-        ),
         'type': serializeParam(
           _type,
           ParamType.String,
@@ -195,6 +196,10 @@ class TimekeepingsStruct extends BaseStruct {
         ),
         'staff_id': serializeParam(
           _staffId,
+          ParamType.DataStruct,
+        ),
+        'shift_config_id': serializeParam(
+          _shiftConfigId,
           ParamType.DataStruct,
         ),
       }.withoutNulls;
@@ -236,11 +241,6 @@ class TimekeepingsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        shiftConfigId: deserializeParam(
-          data['shift_config_id'],
-          ParamType.String,
-          false,
-        ),
         type: deserializeParam(
           data['type'],
           ParamType.String,
@@ -258,6 +258,12 @@ class TimekeepingsStruct extends BaseStruct {
           false,
           structBuilder: StaffListStruct.fromSerializableMap,
         ),
+        shiftConfigId: deserializeStructParam(
+          data['shift_config_id'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: ShiftConfigsStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -274,10 +280,10 @@ class TimekeepingsStruct extends BaseStruct {
         userUpdated == other.userUpdated &&
         dateUpdated == other.dateUpdated &&
         organizationId == other.organizationId &&
-        shiftConfigId == other.shiftConfigId &&
         type == other.type &&
         listEquality.equals(shiftDays, other.shiftDays) &&
-        staffId == other.staffId;
+        staffId == other.staffId &&
+        shiftConfigId == other.shiftConfigId;
   }
 
   @override
@@ -289,10 +295,10 @@ class TimekeepingsStruct extends BaseStruct {
         userUpdated,
         dateUpdated,
         organizationId,
-        shiftConfigId,
         type,
         shiftDays,
-        staffId
+        staffId,
+        shiftConfigId
       ]);
 }
 
@@ -304,9 +310,9 @@ TimekeepingsStruct createTimekeepingsStruct({
   String? userUpdated,
   String? dateUpdated,
   String? organizationId,
-  String? shiftConfigId,
   String? type,
   StaffListStruct? staffId,
+  ShiftConfigsStruct? shiftConfigId,
 }) =>
     TimekeepingsStruct(
       id: id,
@@ -316,7 +322,7 @@ TimekeepingsStruct createTimekeepingsStruct({
       userUpdated: userUpdated,
       dateUpdated: dateUpdated,
       organizationId: organizationId,
-      shiftConfigId: shiftConfigId,
       type: type,
       staffId: staffId ?? StaffListStruct(),
+      shiftConfigId: shiftConfigId ?? ShiftConfigsStruct(),
     );

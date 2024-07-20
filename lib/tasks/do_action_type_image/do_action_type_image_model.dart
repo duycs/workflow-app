@@ -27,6 +27,8 @@ class DoActionTypeImageModel extends FlutterFlowModel<DoActionTypeImageWidget> {
 
   int loop = 0;
 
+  bool isShow = false;
+
   ///  State fields for stateful widgets in this component.
 
   bool isDataUploading = false;

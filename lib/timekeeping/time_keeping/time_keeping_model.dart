@@ -8,16 +8,7 @@ import 'package:flutter/material.dart';
 class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
   ///  Local state fields for this page.
 
-  List<dynamic> itemTimekeepings = [];
-  void addToItemTimekeepings(dynamic item) => itemTimekeepings.add(item);
-  void removeFromItemTimekeepings(dynamic item) =>
-      itemTimekeepings.remove(item);
-  void removeAtIndexFromItemTimekeepings(int index) =>
-      itemTimekeepings.removeAt(index);
-  void insertAtIndexInItemTimekeepings(int index, dynamic item) =>
-      itemTimekeepings.insert(index, item);
-  void updateItemTimekeepingsAtIndex(int index, Function(dynamic) updateFn) =>
-      itemTimekeepings[index] = updateFn(itemTimekeepings[index]);
+  dynamic itemTimekeepings;
 
   bool isLoad = false;
 
@@ -34,6 +25,15 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
           int index, Function(TimekeepingsStruct) updateFn) =>
       timeKeepingList[index] = updateFn(timeKeepingList[index]);
 
+  DateTime? dateStart;
+
+  DateTime? dateEnd;
+
+  LocationStruct? request;
+  void updateRequestStruct(Function(LocationStruct) updateFn) {
+    updateFn(request ??= LocationStruct());
+  }
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -44,6 +44,22 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
   bool? authenticateBiometicsTimeKeeping;
   // Stores action output result for [Custom Action - timeKeepingLocation] action in Button widget.
   String? timeKeepingLocation;
+  // Stores action output result for [Custom Action - getCurrentLocationStruct] action in Button widget.
+  List<double>? getLocation;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? apiCheckin;
+  // Stores action output result for [Backend Call - API (CheckIn)] action in Button widget.
+  ApiCallResponse? apiResulCheckin;
+  // Stores action output result for [Custom Action - authenticateUsingBiometricsSetting] action in Button widget.
+  bool? authenticateBiometicsTimeKeepingCheckOut;
+  // Stores action output result for [Custom Action - timeKeepingLocation] action in Button widget.
+  String? timeKeepingLocationCheckOut;
+  // Stores action output result for [Custom Action - getCurrentLocationStruct] action in Button widget.
+  List<double>? getLocationCheckOut;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? apiCheckOut;
+  // Stores action output result for [Backend Call - API (CheckIn)] action in Button widget.
+  ApiCallResponse? apiResulCheckOut;
 
   @override
   void initState(BuildContext context) {}
@@ -61,17 +77,19 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
         await GroupTimekeepingsGroup.getTimekeepingsCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}}]}',
+          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}]}',
     );
 
     if ((apiResultGetTimekeepings.succeeded ?? true)) {
       itemTimekeepings = getJsonField(
         (apiResultGetTimekeepings.jsonBody ?? ''),
         r'''$.data''',
-        true,
-      )!
+      );
+      timeKeepingList = TimekeepingsListDataStruct.maybeFromMap(
+              (apiResultGetTimekeepings.jsonBody ?? ''))!
+          .data
           .toList()
-          .cast<dynamic>();
+          .cast<TimekeepingsStruct>();
     }
   }
 }

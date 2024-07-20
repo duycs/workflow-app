@@ -38,7 +38,6 @@ class TimekeepingShiftConfigsGroup {
   };
   static ShiftListCall shiftListCall = ShiftListCall();
   static AddressListCall addressListCall = AddressListCall();
-  static CityListCall cityListCall = CityListCall();
   static ShiftCreateCall shiftCreateCall = ShiftCreateCall();
   static ShiftUpdateCall shiftUpdateCall = ShiftUpdateCall();
   static ShiftConfigsCall shiftConfigsCall = ShiftConfigsCall();
@@ -132,38 +131,6 @@ class AddressListCall {
   static final interceptors = [
     CheckTokenCallAPI(),
   ];
-}
-
-class CityListCall {
-  Future<ApiCallResponse> call({
-    int? limit = 5000,
-    int? offset = 0,
-    String? accessToken = '',
-  }) async {
-    final baseUrl = TimekeepingShiftConfigsGroup.getBaseUrl(
-      accessToken: accessToken,
-    );
-
-    return ApiManager.instance.makeApiCall(
-      callName: 'CityList',
-      apiUrl: '$baseUrl/items/cities',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'limit': limit,
-        'offset': offset,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
-    );
-  }
 }
 
 class ShiftCreateCall {
@@ -5620,9 +5587,9 @@ class UpdateStatusNotificationCall {
 
 /// End Notifications Group Code
 
-/// Start TimeKeeping Group Code
+/// Start Location Group Code
 
-class TimeKeepingGroup {
+class LocationGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
@@ -5631,25 +5598,23 @@ class TimeKeepingGroup {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
   };
-  static TimeKeepingCreatedCall timeKeepingCreatedCall =
-      TimeKeepingCreatedCall();
-  static TimeKeepingLocationUpdateCall timeKeepingLocationUpdateCall =
-      TimeKeepingLocationUpdateCall();
+  static LocationCreatedCall locationCreatedCall = LocationCreatedCall();
+  static LocationUpdateCall locationUpdateCall = LocationUpdateCall();
 }
 
-class TimeKeepingCreatedCall {
+class LocationCreatedCall {
   Future<ApiCallResponse> call({
     dynamic requesDataJson,
     String? accessToken = '',
   }) async {
-    final baseUrl = TimeKeepingGroup.getBaseUrl(
+    final baseUrl = LocationGroup.getBaseUrl(
       accessToken: accessToken,
     );
 
     final requesData = _serializeJson(requesDataJson);
     final ffApiRequestBody = requesData;
     return ApiManager.instance.makeApiCall(
-      callName: 'TimeKeepingCreated',
+      callName: 'LocationCreated',
       apiUrl: '$baseUrl/items/address',
       callType: ApiCallType.POST,
       headers: {
@@ -5669,20 +5634,20 @@ class TimeKeepingCreatedCall {
   }
 }
 
-class TimeKeepingLocationUpdateCall {
+class LocationUpdateCall {
   Future<ApiCallResponse> call({
     dynamic requesDataJson,
     String? id = '',
     String? accessToken = '',
   }) async {
-    final baseUrl = TimeKeepingGroup.getBaseUrl(
+    final baseUrl = LocationGroup.getBaseUrl(
       accessToken: accessToken,
     );
 
     final requesData = _serializeJson(requesDataJson);
     final ffApiRequestBody = requesData;
     return ApiManager.instance.makeApiCall(
-      callName: 'TimeKeepingLocationUpdate',
+      callName: 'LocationUpdate',
       apiUrl: '$baseUrl/items/address/$id',
       callType: ApiCallType.PATCH,
       headers: {
@@ -5702,7 +5667,7 @@ class TimeKeepingLocationUpdateCall {
   }
 }
 
-/// End TimeKeeping Group Code
+/// End Location Group Code
 
 /// Start Address Group Code
 
@@ -5816,6 +5781,8 @@ class GroupTimekeepingsGroup {
   };
   static GetTimekeepingsCall getTimekeepingsCall = GetTimekeepingsCall();
   static GetShiftDaysCall getShiftDaysCall = GetShiftDaysCall();
+  static CheckInCall checkInCall = CheckInCall();
+  static CheckOutCall checkOutCall = CheckOutCall();
 }
 
 class GetTimekeepingsCall {
@@ -5843,7 +5810,7 @@ class GetTimekeepingsCall {
           'limit': limit,
           'offset': offset,
           'fields[]':
-              "id, status, date_created, organization_id, day_number, shift_config_id, staff_id.department_id.name, type,shift_days.id, shift_days.staff_id, shift_days.day_number, shift_days.shift_id.name, shift_days.shift_id.start_time,  shift_days.shift_id.end_time,shift_days.shift_checks.id, shift_days.shift_checks.checkin, shift_days.shift_checks.checkout, shift_days.shift_checks.location",
+              "shift_config_id.address_id.meter_range, shift_config_id.address_id.location, id, status, date_created, organization_id, day_number, shift_config_id, staff_id.department_id.name, type,shift_days.id, shift_days.staff_id,staff_id.id, shift_days.day_number, shift_days.shift_id.name, shift_days.shift_id.start_time,  shift_days.shift_id.end_time,shift_days.shift_checks.id, shift_days.shift_checks.checkin, shift_days.shift_checks.checkout, shift_days.shift_checks.location",
         },
         returnBody: true,
         encodeBodyUtf8: false,
@@ -5903,6 +5870,70 @@ class GetShiftDaysCall {
   static final interceptors = [
     CheckTokenCallAPI(),
   ];
+}
+
+class CheckInCall {
+  Future<ApiCallResponse> call({
+    dynamic requestJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = GroupTimekeepingsGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final request = _serializeJson(requestJson);
+    final ffApiRequestBody = request;
+    return ApiManager.instance.makeApiCall(
+      callName: 'CheckIn',
+      apiUrl: '$baseUrl/flows/trigger/6046aa85-f460-4d57-b645-c4b8dd4e6e3d',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class CheckOutCall {
+  Future<ApiCallResponse> call({
+    dynamic requestJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = GroupTimekeepingsGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final request = _serializeJson(requestJson);
+    final ffApiRequestBody = request;
+    return ApiManager.instance.makeApiCall(
+      callName: 'CheckOut',
+      apiUrl: '$baseUrl/flows/trigger/df2a197e-dca1-412e-a0b9-50c514e8c2a9',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 /// End GroupTimekeepings Group Code

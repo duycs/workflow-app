@@ -45,6 +45,8 @@ class DoActionTypeUploadFileModel
           int index, Function(FFUploadedFile) updateFn) =>
       listFileUpload[index] = updateFn(listFileUpload[index]);
 
+  bool isShow = false;
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Action Block - tokenReload] action in IconButton widget.

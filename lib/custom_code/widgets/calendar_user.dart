@@ -10,9 +10,6 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:table_calendar/table_calendar.dart';
-import 'package:intl/intl.dart';
-
 class CalendarUser extends StatefulWidget {
   const CalendarUser({
     super.key,
@@ -21,6 +18,7 @@ class CalendarUser extends StatefulWidget {
     this.action,
     this.date,
     this.json,
+    this.dateUpdate,
   });
 
   final double? width;
@@ -28,17 +26,34 @@ class CalendarUser extends StatefulWidget {
   final Future Function(String? date)? action;
   final DateTime? date;
   final List<dynamic>? json;
+  final Future Function(DateTime? dateStart, DateTime? dateEnd)? dateUpdate;
 
   @override
   State<CalendarUser> createState() => _CalendarUserState();
 }
 
 class _CalendarUserState extends State<CalendarUser> {
-  late Map<DateTime, List<dynamic>> _events;
-  late List<dynamic> _selectedEvents;
-  late DateTime _selectedDay;
-  late DateTime _focusedDay;
-  final Map<String, Color> statusColors = {
+  DateTime selectedDate = DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.date != null) {
+      selectedDate = widget.date!;
+    }
+    _updateDateRange();
+  }
+
+  void _updateDateRange() async {
+    DateTime dateStart = DateTime(selectedDate.year, selectedDate.month, 1);
+    DateTime dateEnd = DateTime(selectedDate.year, selectedDate.month + 1, 1);
+
+    if (widget.dateUpdate != null) {
+      await widget.dateUpdate!(dateStart, dateEnd);
+    }
+  }
+
+  Map<String, Color> statusColors = {
     "0": Color(0xFFE0E3E7),
     "1": Color(0xFF4B39EF),
     "2": Color(0xFF39D2C0),
@@ -47,202 +62,229 @@ class _CalendarUserState extends State<CalendarUser> {
     "5": Color(0xFF57636C),
   };
 
-  @override
-  void initState() {
-    super.initState();
-    _selectedDay = DateTime.now();
-    _focusedDay = widget.date ?? DateTime.now();
-    _events = _decodeEvents(widget.json ?? []);
-    _selectedEvents = _getEventsForDay(_selectedDay);
-  }
-
-  Map<DateTime, List<dynamic>> _decodeEvents(List<dynamic> json) {
-    Map<DateTime, List<dynamic>> events = {};
-    for (var item in json) {
-      DateTime date = DateTime.parse(item['date_created']).toLocal();
-      if (!events.containsKey(date)) {
-        events[date] = [];
+  Color getColorForDate(DateTime date) {
+    for (var entry in widget.json ?? []) {
+      DateTime dateCreated = DateTime.parse(entry['date_created']);
+      if (dateCreated.year == date.year &&
+          dateCreated.month == date.month &&
+          dateCreated.day == date.day) {
+        String status = entry['status'];
+        return statusColors[status] ?? Colors.white;
       }
-      events[date]!.add(item);
     }
-    return events;
+    return Colors.white;
   }
 
-  List<dynamic> _getEventsForDay(DateTime day) {
-    return _events[day] ?? [];
+  Color getTextColorForDate(DateTime date) {
+    for (var entry in widget.json ?? []) {
+      DateTime dateCreated = DateTime.parse(entry['date_created']);
+      if (dateCreated.year == date.year &&
+          dateCreated.month == date.month &&
+          dateCreated.day == date.day) {
+        return Colors.white;
+      }
+    }
+    return Colors.black;
   }
 
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _focusedDay,
-      firstDate: DateTime.utc(1),
-      lastDate: DateTime.utc(9999),
-      locale: Locale('vi', 'VN'),
-    );
-    if (picked != null && picked != _focusedDay) {
-      setState(() {
-        _selectedDay = picked;
-        _focusedDay = picked;
-        _selectedEvents = _getEventsForDay(picked);
-      });
-    }
+  void _nextMonth() {
+    setState(() {
+      selectedDate = DateTime(selectedDate.year, selectedDate.month + 1, 1);
+      _updateDateRange();
+    });
+  }
+
+  void _prevMonth() {
+    setState(() {
+      selectedDate = DateTime(selectedDate.year, selectedDate.month - 1, 1);
+      _updateDateRange();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                icon: Icon(Icons.chevron_left),
-                onPressed: () {
-                  setState(() {
-                    _focusedDay = DateTime(
-                      _focusedDay.year,
-                      _focusedDay.month - 1,
-                    );
-                  });
-                },
-              ),
-              Text(
-                DateFormat('MM-yyyy', 'vi').format(_focusedDay),
-                style: TextStyle(fontSize: 16.0),
-              ),
-              Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.today),
-                    onPressed: () => _selectDate(context),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.chevron_right),
-                    onPressed: () {
-                      setState(() {
-                        _focusedDay = DateTime(
-                          _focusedDay.year,
-                          _focusedDay.month + 1,
-                        );
-                      });
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: TableCalendar(
-            locale: 'vi_VN',
-            firstDay: DateTime.utc(1),
-            lastDay: DateTime.utc(9999),
-            focusedDay: _focusedDay,
-            selectedDayPredicate: (day) => false,
-            eventLoader: _getEventsForDay,
-            onDaySelected: (selectedDay, focusedDay) {
-              setState(() {
-                _selectedDay = selectedDay;
-                _focusedDay = focusedDay;
-                _selectedEvents = _getEventsForDay(selectedDay);
-              });
+    DateTime firstDayOfMonth =
+        DateTime(selectedDate.year, selectedDate.month, 1);
+    DateTime lastDayOfMonth =
+        DateTime(selectedDate.year, selectedDate.month + 1, 0);
+    DateTime firstDisplayDay = firstDayOfMonth
+        .subtract(Duration(days: (firstDayOfMonth.weekday - 1 + 7) % 7));
+    DateTime lastDisplayDay =
+        lastDayOfMonth.add(Duration(days: 7 - lastDayOfMonth.weekday));
 
-              String formattedDate =
-                  DateFormat('dd/MM/yyyy').format(selectedDay);
-              if (widget.action != null) {
-                widget.action!(formattedDate);
-              }
-            },
-            calendarStyle: CalendarStyle(
-              defaultTextStyle: TextStyle(color: Colors.black),
-              weekendTextStyle: TextStyle(color: Colors.black),
-              outsideTextStyle: TextStyle(color: Colors.black),
-              todayDecoration: BoxDecoration(
-                color: Colors.transparent,
-              ),
-              markerDecoration: BoxDecoration(
-                shape: BoxShape.circle,
-              ),
-            ),
-            headerStyle: HeaderStyle(
-              formatButtonVisible: false,
-              titleCentered: true,
-              leftChevronVisible: false,
-              rightChevronVisible: false,
-              formatButtonShowsNext: false,
-              titleTextFormatter: (date, locale) => '',
-            ),
-            daysOfWeekStyle: DaysOfWeekStyle(
-              weekendStyle: TextStyle().copyWith(color: Colors.red),
-              weekdayStyle: TextStyle().copyWith(color: Colors.black),
-            ),
-            startingDayOfWeek: StartingDayOfWeek.monday,
-            calendarBuilders: CalendarBuilders(
-              defaultBuilder: (context, date, _) {
-                List<dynamic> events = _getEventsForDay(date);
-                if (events.isNotEmpty && events.first is Map) {
-                  Map<String, dynamic> event =
-                      events.first as Map<String, dynamic>;
-                  String status = event['status'];
-                  Color? color = statusColors[status];
-                  return Container(
-                    margin: EdgeInsets.all(4.0),
-                    decoration: BoxDecoration(
-                      color: color,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      date.day.toString(),
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  );
-                } else {
-                  return Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      date.day.toString(),
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  );
-                }
-              },
-              todayBuilder: (context, date, _) {
-                List<dynamic> events = _getEventsForDay(date);
-                if (events.isNotEmpty && events.first is Map) {
-                  Map<String, dynamic> event =
-                      events.first as Map<String, dynamic>;
-                  String status = event['status'];
-                  Color? color = statusColors[status];
-                  return Container(
-                    margin: EdgeInsets.all(4.0),
-                    decoration: BoxDecoration(
-                      color: color,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      date.day.toString(),
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  );
-                } else {
-                  return Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      date.day.toString(),
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  );
-                }
-              },
+    return Container(
+      width: widget.width,
+      height: widget.height,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.arrow_back_ios),
+                  onPressed: _prevMonth,
+                ),
+                Text(
+                  'Tháng ${selectedDate.month}/${selectedDate.year}',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.arrow_forward_ios),
+                  onPressed: _nextMonth,
+                ),
+              ],
             ),
           ),
-        ),
-      ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                for (var day in [
+                  'MON',
+                  'TUE',
+                  'WED',
+                  'THU',
+                  'FRI',
+                  'SAT',
+                  'SUN'
+                ])
+                  Container(
+                    width:
+                        (MediaQuery.of(context).size.width - 20 - (6 * 8)) / 7,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 4,
+                          color: Color(0x33000000),
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      day,
+                      textAlign: TextAlign.center,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Nunito Sans',
+                            letterSpacing: 0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: GridView.builder(
+              padding: EdgeInsets.all(8.0),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 7,
+                childAspectRatio: 1,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+              itemBuilder: (context, index) {
+                DateTime date = firstDisplayDay.add(Duration(days: index));
+                bool isCurrentMonth = date.month == selectedDate.month;
+
+                return GestureDetector(
+                  onTap: () async {
+                    await widget.action?.call(date.toIso8601String());
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: getColorForDate(date),
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x33000000),
+                          blurRadius: 4,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        '${date.day}',
+                        style: TextStyle(
+                          color: isCurrentMonth
+                              ? getTextColorForDate(date)
+                              : Colors.black.withOpacity(0.3),
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              itemCount: lastDisplayDay.difference(firstDisplayDay).inDays + 1,
+            ),
+          ),
+          // Expanded(
+          //   child: Padding(
+          //     padding: EdgeInsets.all(8.0),
+          //     child: LayoutBuilder(
+          //       builder: (context, constraints) {
+          //         double itemWidth = (constraints.maxWidth - 60) / 7;
+          //         return Wrap(
+          //           spacing: 10,
+          //           runSpacing: 10,
+          //           children: List.generate(
+          //             lastDisplayDay.difference(firstDisplayDay).inDays + 1,
+          //             (index) {
+          //               DateTime date =
+          //                   firstDisplayDay.add(Duration(days: index));
+          //               bool isCurrentMonth = date.month == selectedDate.month;
+
+          //               return GestureDetector(
+          //                 onTap: () async {
+          //                   await widget.action?.call(date.toIso8601String());
+          //                 },
+          //                 child: Container(
+          //                   width: itemWidth,
+          //                   height: itemWidth, // Đảm bảo item là hình vuông
+          //                   decoration: BoxDecoration(
+          //                     color: getColorForDate(date),
+          //                     borderRadius: BorderRadius.circular(12),
+          //                     boxShadow: [
+          //                       BoxShadow(
+          //                         color: Color(0x33000000),
+          //                         blurRadius: 4,
+          //                         offset: Offset(0, 2),
+          //                       ),
+          //                     ],
+          //                   ),
+          //                   child: Center(
+          //                     child: Text(
+          //                       '${date.day}',
+          //                       style: TextStyle(
+          //                         color: isCurrentMonth
+          //                             ? getTextColorForDate(date)
+          //                             : Colors.black.withOpacity(0.3),
+          //                         fontSize: 14,
+          //                       ),
+          //                     ),
+          //                   ),
+          //                 ),
+          //               );
+          //             },
+          //           ),
+          //         );
+          //       },
+          //     ),
+          //   ),
+          // ),
+        ],
+      ),
     );
   }
 }

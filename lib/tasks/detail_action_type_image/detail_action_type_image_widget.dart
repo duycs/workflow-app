@@ -329,6 +329,7 @@ class _DetailActionTypeImageWidgetState
                                     if (confirmDialogResponse) {
                                       _model.removeAtIndexFromImagesList(
                                           dataTodoItemIndex);
+                                      _model.isShow = true;
                                       setState(() {});
                                     } else {
                                       return;
@@ -473,6 +474,22 @@ class _DetailActionTypeImageWidgetState
                   },
                 ),
               ),
+            if (_model.isShow == true)
+              Align(
+                alignment: const AlignmentDirectional(-1.0, 0.0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                  child: Text(
+                    'Lưu để cập nhật dữ liệu mới nhất',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Nunito Sans',
+                          color: FlutterFlowTheme.of(context).error,
+                          letterSpacing: 0.0,
+                          fontStyle: FontStyle.italic,
+                        ),
+                  ),
+                ),
+              ),
             if ((widget.image?.status == 'todo') &&
                 (widget.image?.current == 1))
               Row(
@@ -524,6 +541,7 @@ class _DetailActionTypeImageWidgetState
                       if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
                               false)) {
                         _model.addToImages(_model.uploadedLocalFile);
+                        _model.isShow = true;
                         setState(() {});
                       }
                     },
@@ -617,6 +635,7 @@ class _DetailActionTypeImageWidgetState
                           _model.imagesList,
                         );
                         _model.images = [];
+                        _model.isShow = false;
                         setState(() {});
 
                         setState(() {});

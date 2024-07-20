@@ -590,7 +590,7 @@ class _TimeKeepingLocationUpdateWidgetState
                     return;
                   }
                   _model.apiResulttrf =
-                      await TimeKeepingGroup.timeKeepingLocationUpdateCall.call(
+                      await LocationGroup.locationUpdateCall.call(
                     id: widget.item?.id,
                     accessToken: FFAppState().accessToken,
                     requesDataJson: <String, dynamic>{

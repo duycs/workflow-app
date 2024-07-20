@@ -83,7 +83,7 @@ class TimeKeepingLocationUpdateModel
   List<double>? checkLocationTimeKeepingUpdate;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? checkTokenTimeKeepingLocationUpdate;
-  // Stores action output result for [Backend Call - API (TimeKeepingLocationUpdate)] action in Button widget.
+  // Stores action output result for [Backend Call - API (LocationUpdate)] action in Button widget.
   ApiCallResponse? apiResulttrf;
 
   @override

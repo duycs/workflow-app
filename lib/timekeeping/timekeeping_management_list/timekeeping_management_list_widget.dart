@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -57,8 +58,6 @@ class _TimekeepingManagementListWidgetState
     context.watch<FFAppState>();
 
     return Container(
-      width: double.infinity,
-      height: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
         borderRadius: BorderRadius.circular(0.0),
@@ -91,7 +90,11 @@ class _TimekeepingManagementListWidgetState
                   child: Text(
                     widget.checkShowParams == 'check'
                         ? 'Báo cáo chấm công tháng'
-                        : 'Báo cáo chấm công ngày ${widget.dateFilter}',
+                        : 'Báo cáo chấm công ngày ${dateTimeFormat(
+                            'd/M/y',
+                            functions.stringToDateTime(widget.dateFilter),
+                            locale: FFLocalizations.of(context).languageCode,
+                          )}',
                     maxLines: 2,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
@@ -104,7 +107,7 @@ class _TimekeepingManagementListWidgetState
             ],
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 12.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 8.0),
             child: Text(
               'Báo cáo chấm công của nhân viên',
               style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -131,7 +134,7 @@ class _TimekeepingManagementListWidgetState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Lọc Theo:',
+                          'Lọc theo',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Nunito Sans',
@@ -151,12 +154,6 @@ class _TimekeepingManagementListWidgetState
                       ].divide(const SizedBox(height: 3.0)),
                     ),
                   ),
-                if (widget.checkShowParams != 'check')
-                  Container(
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                    ),
-                  ),
               ],
             ),
           ),
@@ -164,8 +161,8 @@ class _TimekeepingManagementListWidgetState
             padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 if (widget.checkShowParams == 'check')
                   Expanded(
@@ -178,6 +175,8 @@ class _TimekeepingManagementListWidgetState
                         children: [
                           Row(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(
                                 width: 200.0,
@@ -205,7 +204,7 @@ class _TimekeepingManagementListWidgetState
                                 options: FFButtonOptions(
                                   height: 35.0,
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      15.0, 0.0, 15.0, 0.0),
+                                      10.0, 0.0, 10.0, 0.0),
                                   iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
@@ -226,7 +225,7 @@ class _TimekeepingManagementListWidgetState
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 2.0)),
+                            ],
                           ),
                         ].divide(const SizedBox(height: 3.0)),
                       ),
@@ -234,41 +233,22 @@ class _TimekeepingManagementListWidgetState
                   ),
                 if (widget.checkShowParams != 'check')
                   Container(
+                    width: 40.0,
+                    height: 50.0,
                     decoration: const BoxDecoration(),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Align(
-                          alignment: const AlignmentDirectional(1.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 12.0, 0.0, 0.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/export-spreadsheet-512.webp',
-                                width: 35.0,
-                                height: 35.0,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: Visibility(
+                      visible: widget.checkShowParams != 'check',
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(
+                          'assets/images/export-spreadsheet-512.webp',
+                          fit: BoxFit.cover,
                         ),
-                        Text(
-                          'Xuất Excel',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    fontSize: 13.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-              ],
+              ].divide(const SizedBox(width: 4.0)),
             ),
           ),
           Expanded(
@@ -278,10 +258,14 @@ class _TimekeepingManagementListWidgetState
                 pagingController: _model.setListViewController(
                   (nextPageMarker) =>
                       GroupTimekeepingsGroup.getShiftDaysCall.call(
-                    filter: '{}',
                     accessToken: FFAppState().accessToken,
                     offset: nextPageMarker.nextPageNumber * 20,
                     limit: 20,
+                    filter:
+                        '{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                      FFAppState().staffOrganization,
+                      r'''$.id''',
+                    ).toString()}\"}}}',
                   ),
                 ),
                 padding: const EdgeInsets.fromLTRB(
@@ -334,7 +318,7 @@ class _TimekeepingManagementListWidgetState
                               FlutterFlowTheme.of(context).secondaryBackground,
                           boxShadow: const [
                             BoxShadow(
-                              blurRadius: 4.0,
+                              blurRadius: 1.0,
                               color: Color(0x33000000),
                               offset: Offset(
                                 0.0,
@@ -346,7 +330,7 @@ class _TimekeepingManagementListWidgetState
                         ),
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              4.0, 0.0, 4.0, 0.0),
+                              4.0, 0.0, 4.0, 8.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -361,7 +345,7 @@ class _TimekeepingManagementListWidgetState
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 6.0),
+                                        0.0, 4.0, 0.0, 6.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -516,7 +500,7 @@ class _TimekeepingManagementListWidgetState
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
-                                              size: 20.0,
+                                              size: 18.0,
                                             ),
                                           ),
                                           Text(
@@ -531,23 +515,30 @@ class _TimekeepingManagementListWidgetState
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                          if ((listItemItem.shiftChecks
+                                          if ((listItemItem.shiftChecks.length >
+                                                  0) &&
+                                              (listItemItem.shiftChecks
                                                       .where((e) =>
                                                           e.checkin != null &&
                                                           e.checkin != '')
                                                       .toList()
                                                       .length >
-                                                  0) &&
-                                              (listItemItem.shiftChecks.length >
                                                   0))
                                             Text(
-                                              listItemItem.shiftChecks
-                                                  .where((e) =>
-                                                      e.checkin != null &&
-                                                      e.checkin != '')
-                                                  .toList()
-                                                  .first
-                                                  .checkin,
+                                              dateTimeFormat(
+                                                'Hm',
+                                                functions.stringToDateTime(
+                                                    listItemItem.shiftChecks
+                                                        .where((e) =>
+                                                            e.checkin != null &&
+                                                            e.checkin != '')
+                                                        .toList()
+                                                        .first
+                                                        .checkin),
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -576,7 +567,7 @@ class _TimekeepingManagementListWidgetState
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .tertiary,
-                                              size: 20.0,
+                                              size: 18.0,
                                             ),
                                           ),
                                           Text(
@@ -591,23 +582,31 @@ class _TimekeepingManagementListWidgetState
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                          if ((listItemItem.shiftChecks
+                                          if ((listItemItem.shiftChecks.length >
+                                                  0) &&
+                                              (listItemItem.shiftChecks
                                                       .where((e) =>
                                                           e.checkout != null &&
                                                           e.checkout != '')
                                                       .toList()
                                                       .length >
-                                                  0) &&
-                                              (listItemItem.shiftChecks.length >
                                                   0))
                                             Text(
-                                              listItemItem.shiftChecks
-                                                  .where((e) =>
-                                                      e.checkout != null &&
-                                                      e.checkout != '')
-                                                  .toList()
-                                                  .first
-                                                  .checkout,
+                                              dateTimeFormat(
+                                                'Hm',
+                                                functions.stringToDateTime(
+                                                    listItemItem.shiftChecks
+                                                        .where((e) =>
+                                                            e.checkout !=
+                                                                null &&
+                                                            e.checkout != '')
+                                                        .toList()
+                                                        .first
+                                                        .checkout),
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -655,22 +654,25 @@ class _TimekeepingManagementListWidgetState
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Nunito Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
                                         if (_model.checkShow == '0')
                                           Icon(
-                                            Icons.arrow_right_sharp,
+                                            Icons.keyboard_arrow_right,
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24.0,
+                                                .secondaryText,
+                                            size: 16.0,
                                           ),
                                         if (_model.checkShow == '1')
                                           Icon(
-                                            Icons.arrow_drop_down,
+                                            Icons.keyboard_arrow_down,
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24.0,
+                                                .secondaryText,
+                                            size: 16.0,
                                           ),
                                       ],
                                     ),
@@ -764,7 +766,7 @@ class _TimekeepingManagementListWidgetState
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
-                                                            .spaceAround,
+                                                            .spaceEvenly,
                                                     children: [
                                                       Text(
                                                         'Vào ca',
@@ -811,15 +813,15 @@ class _TimekeepingManagementListWidgetState
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   if ((listItemItem.shiftChecks
+                                                              .length >
+                                                          0) &&
+                                                      (listItemItem.shiftChecks
                                                               .where((e) =>
                                                                   e.checkin !=
                                                                       null &&
                                                                   e.checkin !=
                                                                       '')
                                                               .toList()
-                                                              .length >
-                                                          0) &&
-                                                      (listItemItem.shiftChecks
                                                               .length >
                                                           0))
                                                     Builder(
@@ -853,7 +855,7 @@ class _TimekeepingManagementListWidgetState
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
-                                                                          2.0,
+                                                                          4.0,
                                                                           0.0),
                                                                   child: Icon(
                                                                     Icons
@@ -865,20 +867,15 @@ class _TimekeepingManagementListWidgetState
                                                                   ),
                                                                 ),
                                                                 Text(
-                                                                  'Vào ca:  ',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                ),
-                                                                Text(
-                                                                  checkInsItem
-                                                                      .checkin,
+                                                                  dateTimeFormat(
+                                                                    'Hm',
+                                                                    functions.stringToDateTime(
+                                                                        checkInsItem
+                                                                            .checkin),
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
+                                                                  ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -897,15 +894,15 @@ class _TimekeepingManagementListWidgetState
                                                       },
                                                     ),
                                                   if ((listItemItem.shiftChecks
+                                                              .length >
+                                                          0) &&
+                                                      (listItemItem.shiftChecks
                                                               .where((e) =>
                                                                   e.checkout !=
                                                                       null &&
                                                                   e.checkout !=
                                                                       '')
                                                               .toList()
-                                                              .length >
-                                                          0) &&
-                                                      (listItemItem.shiftChecks
                                                               .length >
                                                           0))
                                                     Builder(
@@ -939,7 +936,7 @@ class _TimekeepingManagementListWidgetState
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
-                                                                          2.0,
+                                                                          4.0,
                                                                           0.0),
                                                                   child: Icon(
                                                                     Icons
@@ -951,20 +948,15 @@ class _TimekeepingManagementListWidgetState
                                                                   ),
                                                                 ),
                                                                 Text(
-                                                                  'Ra ca:  ',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                ),
-                                                                Text(
-                                                                  checkOutsItem
-                                                                      .checkout,
+                                                                  dateTimeFormat(
+                                                                    'Hm',
+                                                                    functions.stringToDateTime(
+                                                                        checkOutsItem
+                                                                            .checkout),
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
+                                                                  ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium

@@ -94,7 +94,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Tạo bài thi',
+                'Tạo mới bài thi',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
