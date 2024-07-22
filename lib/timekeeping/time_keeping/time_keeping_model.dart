@@ -77,7 +77,7 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
         await GroupTimekeepingsGroup.getTimekeepingsCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}]}',
+          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"date_created\":{\"_gte\":\"${dateStart?.toString()}\"}},{\"date_created\":{\"_lt\":\"${dateEnd?.toString()}\"}}]}',
     );
 
     if ((apiResultGetTimekeepings.succeeded ?? true)) {

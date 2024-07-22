@@ -188,7 +188,7 @@ class FFAppState extends ChangeNotifier {
     _biometricLogin = value;
   }
 
-  bool _IsInDevelopment = false;
+  bool _IsInDevelopment = true;
   bool get IsInDevelopment => _IsInDevelopment;
   set IsInDevelopment(bool value) {
     _IsInDevelopment = value;
