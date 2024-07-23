@@ -1,7 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'time_keeping_widget.dart' show TimeKeepingWidget;
 import 'package:flutter/material.dart';
@@ -112,6 +114,7 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
   /// Action blocks.
   Future getTimekeepings(BuildContext context) async {
     ApiCallResponse? apiResultGetTimekeepings;
+    bool? checkRefreshTokenBlock3;
 
     apiResultGetTimekeepings =
         await GroupTimekeepingsGroup.getTimekeepingsCall.call(
@@ -133,11 +136,33 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
           .data
           .toList()
           .cast<TimekeepingsStruct>();
+    } else {
+      checkRefreshTokenBlock3 = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultGetTimekeepings.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock3!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await getTimekeepings(context);
+      }
     }
   }
 
   Future getListBranch(BuildContext context) async {
     ApiCallResponse? apiResultGetListBranch;
+    bool? checkRefreshTokenBlock;
 
     apiResultGetListBranch = await BranchGroup.branchListCall.call(
       accessToken: FFAppState().accessToken,
@@ -154,11 +179,33 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
           .data
           .toList()
           .cast<BranchListStruct>();
+    } else {
+      checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultGetListBranch.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await getListBranch(context);
+      }
     }
   }
 
   Future getListDepartment(BuildContext context) async {
     ApiCallResponse? apiResultListDeparment;
+    bool? checkRefreshTokenBlock1;
 
     apiResultListDeparment = await DepartmentGroup.getDepartmentListCall.call(
       accessToken: FFAppState().accessToken,
@@ -178,11 +225,33 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
           .data
           .toList()
           .cast<DepartmentListStruct>();
+    } else {
+      checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultListDeparment.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock1!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await getListDepartment(context);
+      }
     }
   }
 
   Future getListStaffs(BuildContext context) async {
     ApiCallResponse? apiResuitListStaffs;
+    bool? checkRefreshTokenBlock2;
 
     apiResuitListStaffs = await StaffGroup.getStaffListCall.call(
       accessToken: FFAppState().accessToken,
@@ -202,6 +271,27 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
           .data
           .toList()
           .cast<StaffListStruct>();
+    } else {
+      checkRefreshTokenBlock2 = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResuitListStaffs.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock2!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await getListStaffs(context);
+      }
     }
   }
 }

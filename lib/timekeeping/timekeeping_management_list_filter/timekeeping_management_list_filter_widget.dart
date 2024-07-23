@@ -429,8 +429,15 @@ class _TimekeepingManagementListFilterWidgetState
                     children: [
                       Expanded(
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            await widget.callback?.call(
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                            );
+                            Navigator.pop(context);
                           },
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(

@@ -1,7 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'timekeeping_management_list_filter_widget.dart'
     show TimekeepingManagementListFilterWidget;
@@ -79,6 +81,7 @@ class TimekeepingManagementListFilterModel
   /// Action blocks.
   Future getListBranch(BuildContext context) async {
     ApiCallResponse? apiResultGetListBranch;
+    bool? checkRefreshTokenBlock;
 
     apiResultGetListBranch = await BranchGroup.branchListCall.call(
       accessToken: FFAppState().accessToken,
@@ -95,11 +98,33 @@ class TimekeepingManagementListFilterModel
           .data
           .toList()
           .cast<BranchListStruct>();
+    } else {
+      checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultGetListBranch.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await getListBranch(context);
+      }
     }
   }
 
   Future getListDepartment(BuildContext context) async {
     ApiCallResponse? apiResultListDeparment;
+    bool? checkRefreshTokenBlock1;
 
     apiResultListDeparment = await DepartmentGroup.getDepartmentListCall.call(
       accessToken: FFAppState().accessToken,
@@ -119,11 +144,33 @@ class TimekeepingManagementListFilterModel
           .data
           .toList()
           .cast<DepartmentListStruct>();
+    } else {
+      checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultListDeparment.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock1!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await getListDepartment(context);
+      }
     }
   }
 
   Future getListStaffs(BuildContext context) async {
     ApiCallResponse? apiResuitListStaffs;
+    bool? checkRefreshTokenBlock3;
 
     apiResuitListStaffs = await StaffGroup.getStaffListCall.call(
       accessToken: FFAppState().accessToken,
@@ -143,11 +190,33 @@ class TimekeepingManagementListFilterModel
           .data
           .toList()
           .cast<StaffListStruct>();
+    } else {
+      checkRefreshTokenBlock3 = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResuitListStaffs.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock3!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await getListStaffs(context);
+      }
     }
   }
 
   Future getListShifts(BuildContext context) async {
     ApiCallResponse? apiResultGetListShifts;
+    bool? checkRefreshTokenBlock2;
 
     apiResultGetListShifts =
         await TimekeepingShiftConfigsGroup.shiftListCall.call(
@@ -171,6 +240,27 @@ class TimekeepingManagementListFilterModel
           .withoutNulls
           .toList()
           .cast<ShiftListStruct>();
+    } else {
+      checkRefreshTokenBlock2 = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultGetListShifts.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock2!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await getListShifts(context);
+      }
     }
   }
 }

@@ -45,7 +45,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : const IntroScreenWidget(),
+          : const TimekeepingReportWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -63,7 +63,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : const IntroScreenWidget(),
+              : const TimekeepingReportWidget(),
         ),
         FFRoute(
           name: 'LessonList_Homepage',
@@ -245,11 +245,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const TrainingManageWidget(),
         ),
         FFRoute(
-          name: 'PersonnalDraft',
-          path: '/personnalDraft',
-          builder: (context, params) => const PersonnalDraftWidget(),
-        ),
-        FFRoute(
           name: 'TrainingRankList',
           path: '/trainingRankList',
           builder: (context, params) => const TrainingRankListWidget(),
@@ -290,39 +285,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const LoginWidget(),
         ),
         FFRoute(
-          name: 'ProdureStep01',
-          path: '/produreStep01',
-          builder: (context, params) => const ProdureStep01Widget(),
-        ),
-        FFRoute(
-          name: 'ProdureStep02',
-          path: '/produreStep02',
-          builder: (context, params) => const ProdureStep02Widget(),
-        ),
-        FFRoute(
-          name: 'ProdureStep03',
-          path: '/produreStep03',
-          builder: (context, params) => const ProdureStep03Widget(),
-        ),
-        FFRoute(
-          name: 'ProdureStep04',
-          path: '/produreStep04',
-          builder: (context, params) => const ProdureStep04Widget(),
-        ),
-        FFRoute(
           name: 'ProdureStep05',
           path: '/produreStep05',
           builder: (context, params) => const ProdureStep05Widget(),
-        ),
-        FFRoute(
-          name: 'ProcedurePublishing',
-          path: '/procedurePublishing',
-          builder: (context, params) => const ProcedurePublishingWidget(),
-        ),
-        FFRoute(
-          name: 'ProcedurePublishedDetail',
-          path: '/procedurePublishedDetail',
-          builder: (context, params) => const ProcedurePublishedDetailWidget(),
         ),
         FFRoute(
           name: 'TestCreate',
@@ -1181,11 +1146,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               structBuilder: ShiftConfigsStruct.fromSerializableMap,
             ),
           ),
-        ),
-        FFRoute(
-          name: 'TimeKeepingAdmin',
-          path: '/timeKeepingAdmin',
-          builder: (context, params) => const TimeKeepingAdminWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

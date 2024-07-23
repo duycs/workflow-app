@@ -20,28 +20,25 @@ Future showToast(
   // Tạo overlay entry
   OverlayEntry overlayEntry = OverlayEntry(
     builder: (context) => Positioned(
-      bottom: 0, // Khoảng cách từ đáy màn hình
-      left: 0, // Khoảng cách từ cạnh trái màn hình
-      right: 0, // Khoảng cách từ cạnh phải màn hình
-      child: Align(
-        alignment: Alignment.bottomCenter, // Căn giữa theo chiều ngang
-        child: Material(
-          color: Colors.transparent, // Không có màu nền cho phần tử này
-          child: Container(
-            //  padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-            decoration: BoxDecoration(
-              color: colorBackground,
-              borderRadius: BorderRadius.circular(8.0),
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Material(
+        color: Colors.transparent,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+          decoration: BoxDecoration(
+            color: colorBackground,
+            // borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Text(
+            message,
+            style: TextStyle(
+              color: colorText,
+              fontSize: 16.0,
             ),
-            child: Center(
-              child: Text(
-                message,
-                style: TextStyle(
-                  color: colorText,
-                  fontSize: 16.0,
-                ),
-              ),
-            ),
+            textAlign: TextAlign.left,
           ),
         ),
       ),
@@ -49,7 +46,7 @@ Future showToast(
   );
 
   // Thêm overlay entry vào overlay
-  Overlay.of(context)!.insert(overlayEntry);
+  Overlay.of(context).insert(overlayEntry);
 
   // Thoát overlay sau một khoảng thời gian
   await Future.delayed(Duration(seconds: 2));

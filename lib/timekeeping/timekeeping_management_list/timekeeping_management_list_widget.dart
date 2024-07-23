@@ -3,11 +3,9 @@ import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/timekeeping_management_list_filter/timekeeping_management_list_filter_widget.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -44,9 +42,6 @@ class _TimekeepingManagementListWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => TimekeepingManagementListModel());
-
-    _model.nameSearchTextController ??= TextEditingController();
-    _model.nameSearchFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -92,47 +87,40 @@ class _TimekeepingManagementListWidgetState
               Expanded(
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      await showDialog(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: Text(_model.idBranch),
-                            content: Text(_model.idDepartment),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: Text(_model.idStaff),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                    child: Text(
-                      widget.checkShowParams == 'check'
-                          ? 'Báo cáo chấm công tháng'
-                          : 'Báo cáo chấm công ngày ${dateTimeFormat(
-                              'd/M/y',
-                              functions.stringToDateTime(widget.dateFilter),
-                              locale: FFLocalizations.of(context).languageCode,
-                            )}',
-                      maxLines: 2,
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Nunito Sans',
-                            fontSize: 18.0,
-                            letterSpacing: 0.0,
-                          ),
-                    ),
+                  child: Text(
+                    widget.checkShowParams == 'check'
+                        ? 'Báo cáo chấm công tháng'
+                        : 'Báo cáo chấm công ngày ${dateTimeFormat(
+                            'd/M/y',
+                            functions.stringToDateTime(widget.dateFilter),
+                            locale: FFLocalizations.of(context).languageCode,
+                          )}',
+                    maxLines: 2,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Nunito Sans',
+                          fontSize: 18.0,
+                          letterSpacing: 0.0,
+                        ),
                   ),
                 ),
               ),
+              if (widget.checkShowParams != 'check')
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 16.0, 0.0),
+                  child: Container(
+                    width: 40.0,
+                    height: 50.0,
+                    decoration: const BoxDecoration(),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        'assets/images/export-spreadsheet-512.webp',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
             ],
           ),
           Padding(
@@ -146,144 +134,6 @@ class _TimekeepingManagementListWidgetState
                     fontWeight: FontWeight.normal,
                     fontStyle: FontStyle.italic,
                   ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: TextFormField(
-                      controller: _model.nameSearchTextController,
-                      focusNode: _model.nameSearchFocusNode,
-                      onChanged: (_) => EasyDebounce.debounce(
-                        '_model.nameSearchTextController',
-                        const Duration(milliseconds: 500),
-                        () => setState(() {}),
-                      ),
-                      autofocus: false,
-                      textInputAction: TextInputAction.search,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                        hintText: 'Tìm kiếm...',
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        filled: true,
-                        fillColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
-                        contentPadding:
-                            const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                        prefixIcon: const Icon(
-                          Icons.search,
-                        ),
-                        suffixIcon:
-                            _model.nameSearchTextController!.text.isNotEmpty
-                                ? InkWell(
-                                    onTap: () async {
-                                      _model.nameSearchTextController?.clear();
-                                      setState(() {});
-                                    },
-                                    child: Icon(
-                                      Icons.clear,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 18.0,
-                                    ),
-                                  )
-                                : null,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Nunito Sans',
-                            letterSpacing: 0.0,
-                          ),
-                      cursorColor: FlutterFlowTheme.of(context).primary,
-                      validator: _model.nameSearchTextControllerValidator
-                          .asValidator(context),
-                    ),
-                  ),
-                ),
-                FlutterFlowIconButton(
-                  borderColor: Colors.transparent,
-                  borderRadius: 10.0,
-                  borderWidth: 1.0,
-                  buttonSize: 50.0,
-                  icon: Icon(
-                    Icons.tune_rounded,
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    size: 30.0,
-                  ),
-                  onPressed: () async {
-                    await showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      useSafeArea: true,
-                      context: context,
-                      builder: (context) {
-                        return Padding(
-                          padding: MediaQuery.viewInsetsOf(context),
-                          child: TimekeepingManagementListFilterWidget(
-                            idBrand: _model.idBranch,
-                            idDepartment: _model.idDepartment,
-                            idStaff: _model.idStaff,
-                            idShifts: _model.idShifts,
-                            idStatus: _model.idStatus,
-                            callback: (idBranch, idDepartment, idStaff,
-                                idShifts, idStatus) async {
-                              _model.idBranch = idBranch!;
-                              _model.idDepartment = idDepartment!;
-                              _model.idStaff = idStaff!;
-                              _model.idShifts = idShifts!;
-                              _model.idStatus = idStatus!;
-                              setState(() {});
-                            },
-                          ),
-                        );
-                      },
-                    ).then((value) => safeSetState(() {}));
-                  },
-                ),
-              ],
             ),
           ),
           if ('1' == '2')
@@ -343,82 +193,72 @@ class _TimekeepingManagementListWidgetState
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: 200.0,
-                                height: 50.0,
-                                child: custom_widgets.CustomWidgetDateTime(
-                                  width: 200.0,
-                                  height: 50.0,
-                                  date: getCurrentTimestamp,
-                                  action: (dateStart, dateEnd) async {
-                                    _model.dateStart = dateStart!;
-                                    _model.dateEnd = dateStart;
-                                    setState(() {});
-                                  },
-                                ),
-                              ),
-                              FFButtonWidget(
-                                onPressed: () async {
-                                  setState(() => _model.listViewPagingController
-                                      ?.refresh());
+                          SizedBox(
+                            width: 200.0,
+                            height: 50.0,
+                            child: custom_widgets.CustomWidgetDateTime(
+                              width: 200.0,
+                              height: 50.0,
+                              date: getCurrentTimestamp,
+                              action: (dateStart, dateEnd) async {
+                                _model.dateStart = dateStart!;
+                                _model.dateEnd = dateStart;
+                                setState(() {});
+                                setState(() =>
+                                    _model.listViewPagingController?.refresh());
 
-                                  setState(() {});
-                                },
-                                text: 'Lọc',
-                                icon: const Icon(
-                                  Icons.filter_list_alt,
-                                  size: 15.0,
-                                ),
-                                options: FFButtonOptions(
-                                  height: 35.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 10.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        color: Colors.white,
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                showLoadingIndicator: false,
-                              ),
-                            ],
+                                setState(() {});
+                              },
+                            ),
                           ),
                         ].divide(const SizedBox(height: 3.0)),
                       ),
                     ),
                   ),
-                if (widget.checkShowParams != 'check')
-                  Container(
-                    width: 40.0,
-                    height: 50.0,
-                    decoration: const BoxDecoration(),
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset(
-                        'assets/images/export-spreadsheet-512.webp',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 10.0,
+                  borderWidth: 1.0,
+                  buttonSize: 50.0,
+                  icon: Icon(
+                    Icons.tune_rounded,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    size: 30.0,
                   ),
+                  onPressed: () async {
+                    await showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      useSafeArea: true,
+                      context: context,
+                      builder: (context) {
+                        return Padding(
+                          padding: MediaQuery.viewInsetsOf(context),
+                          child: TimekeepingManagementListFilterWidget(
+                            idBrand: _model.idBranch,
+                            idDepartment: _model.idDepartment,
+                            idStaff: _model.idStaff,
+                            idShifts: _model.idShifts,
+                            idStatus: _model.idStatus,
+                            callback: (idBranch, idDepartment, idStaff,
+                                idShifts, idStatus) async {
+                              _model.idBranch = idBranch!;
+                              _model.idDepartment = idDepartment!;
+                              _model.idStaff = idStaff!;
+                              _model.idShifts = idShifts!;
+                              _model.idStatus = idStatus!;
+                              setState(() {});
+                              setState(() =>
+                                  _model.listViewPagingController?.refresh());
+
+                              setState(() {});
+                            },
+                          ),
+                        );
+                      },
+                    ).then((value) => safeSetState(() {}));
+                  },
+                ),
               ].divide(const SizedBox(width: 4.0)),
             ),
           ),
@@ -432,16 +272,20 @@ class _TimekeepingManagementListWidgetState
                     accessToken: FFAppState().accessToken,
                     offset: nextPageMarker.nextPageNumber * 20,
                     limit: 20,
-                    filter: '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                    filter: '{\"_and\":[${'{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                       FFAppState().staffOrganization,
                       r'''$.id''',
-                    ).toString()}\"}}}${(widget.checkShowParams == 'check') && ((_model.dateStart == '') && (_model.dateEnd == '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month + 1, 1).toString()}\"}}' : ' '}${(widget.checkShowParams == 'check') && ((_model.dateStart != '') && (_model.dateEnd != '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(_model.dateStart).year, DateTime.parse(_model.dateStart).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(_model.dateEnd).year, DateTime.parse(_model.dateEnd).month + 1, 1).toString()}\"}}' : ' '}${functions.isRoleBranchAdmin(FFAppState().user) ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
+                    ).toString()}\"}}}'}${(widget.checkShowParams == 'check') && ((_model.dateStart == '') && (_model.dateEnd == '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month + 1, 1).toString()}\"}}' : ' '}${(widget.checkShowParams == 'check') && ((_model.dateStart != '') && (_model.dateEnd != '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(_model.dateStart).year, DateTime.parse(_model.dateStart).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(_model.dateEnd).year, DateTime.parse(_model.dateEnd).month + 1, 1).toString()}\"}}' : ' '}${functions.isRoleBranchAdmin(FFAppState().user) ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
                         FFAppState().staffBranch,
                         r'''$.id''',
                       ).toString()}\"}}}' : ' '}${functions.isRoleDepartmentAdmin(FFAppState().user) ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"${getJsonField(
                         FFAppState().staffDepartment,
                         r'''$.id''',
-                      ).toString()}\"}}}' : ' '}]}',
+                      ).toString()}\"}}}' : ' '}${widget.dateFilter != null && widget.dateFilter != '' ? ',{\"date_created\":{\"_gte\":\"${widget.dateFilter}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
+                        return DateTime.parse(var1)
+                            .add(const Duration(days: 1))
+                            .toString();
+                      }(widget.dateFilter!)}\"}}' : ' '}${(_model.idStaff != '') && (_model.idStaff != 'noData') ? ',{\"staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"${_model.idStaff}\"}}}}' : ' '}${(_model.idBranch != '') && (_model.idBranch != 'noData') ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${_model.idBranch}\"}}}' : ' '}${(_model.idDepartment != '') && (_model.idDepartment != 'noData') ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"${_model.idDepartment}\"}}}' : ' '}${(_model.idShifts != '') && (_model.idShifts != 'noData') ? ',{\"shift_id\":{\"id\":{\"_eq\":\"${_model.idShifts}\"}}}' : ' '}${(_model.idStatus != '') && (_model.idStatus != 'noData') ? ',{\"status\":{\"_eq\":\"${_model.idStatus}\"}}' : ' '}]}',
                   ),
                 ),
                 padding: const EdgeInsets.fromLTRB(

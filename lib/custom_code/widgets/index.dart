@@ -6,5 +6,4 @@ export 'format_text.dart' show FormatText;
 export 'mobile_editor.dart' show MobileEditor;
 export 'mobile_editor_display.dart' show MobileEditorDisplay;
 export 'custom_widget_date_time.dart' show CustomWidgetDateTime;
-export 'calendar.dart' show Calendar;
 export 'calendar_user.dart' show CalendarUser;

@@ -5854,7 +5854,7 @@ class GetShiftDaysCall {
           'limit': limit,
           'sort': "-date_created",
           'fields[]':
-              "staff_id.user_id.first_name, staff_id.id, shift_checks.id, shift_checks.checkin, shift_checks.checkout, shift_checks.location, day_number, shift_id.name, shift_id.start_time,  shift_id.end_time, id, staff_id.department_id, staff_id.branch_id",
+              "staff_id.user_id.first_name, staff_id.id, shift_checks.id, shift_checks.checkin, shift_checks.checkout, shift_checks.location, day_number, shift_id.name, shift_id.start_time,  shift_id.end_time, id, staff_id.department_id, staff_id.branch_id,staff_id.user_id.id, status,date_created",
         },
         returnBody: true,
         encodeBodyUtf8: false,
