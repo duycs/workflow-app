@@ -184,33 +184,16 @@ class _TimeKeepingAdminWidgetState extends State<TimeKeepingAdminWidget> {
                                                   ),
                                             ),
                                             const TextSpan(
-                                              text: '< ',
+                                              text: 'THÁNG ',
                                               style: TextStyle(
+                                                fontWeight: FontWeight.w600,
                                                 fontSize: 13.0,
                                               ),
                                             ),
                                             const TextSpan(
-                                              text: '04/10/2023',
+                                              text: '07',
                                               style: TextStyle(
-                                                fontSize: 13.0,
-                                              ),
-                                            ),
-                                            const TextSpan(
-                                              text: '-',
-                                              style: TextStyle(
-                                                fontSize: 13.0,
-                                              ),
-                                            ),
-                                            const TextSpan(
-                                              text: '09/07/2024',
-                                              style: TextStyle(
-                                                fontSize: 13.0,
-                                              ),
-                                            ),
-                                            const TextSpan(
-                                              text: ' >',
-                                              style: TextStyle(
-                                                fontSize: 13.0,
+                                                fontWeight: FontWeight.w600,
                                               ),
                                             )
                                           ],
@@ -240,92 +223,48 @@ class _TimeKeepingAdminWidgetState extends State<TimeKeepingAdminWidget> {
                                               ),
                                         ),
                                       ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: RichText(
-                                              textScaler: MediaQuery.of(context)
-                                                  .textScaler,
-                                              text: TextSpan(
-                                                children: [
-                                                  TextSpan(
-                                                    text:
-                                                        'Tổng công tháng 07: ',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                  TextSpan(
-                                                    text: '6.5',
-                                                    style: TextStyle(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 20.0,
-                                                    ),
-                                                  )
-                                                ],
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
+                                      Text(
+                                        'Tháng khác',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              letterSpacing: 0.0,
+                                              fontStyle: FontStyle.italic,
+                                              decoration:
+                                                  TextDecoration.underline,
                                             ),
-                                          ),
-                                        ],
                                       ),
                                     ],
                                   ),
                                 ),
                                 Column(
                                   mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 20.0),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.asset(
-                                          'assets/images/export-spreadsheet-512.webp',
-                                          width: 50.0,
-                                          height: 50.0,
-                                          fit: BoxFit.cover,
-                                        ),
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.asset(
+                                        'assets/images/export-spreadsheet-512.webp',
+                                        width: 50.0,
+                                        height: 50.0,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                     Text(
-                                      'Tháng khác',
+                                      'Xuất excel',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Nunito Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
                                             letterSpacing: 0.0,
-                                            fontStyle: FontStyle.italic,
-                                            decoration:
-                                                TextDecoration.underline,
                                           ),
                                     ),
                                   ],
                                 ),
-                              ],
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                         ),

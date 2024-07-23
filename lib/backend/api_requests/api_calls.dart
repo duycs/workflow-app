@@ -223,7 +223,7 @@ class ShiftConfigsCall {
         'limit': limit,
         'sort': "-date_created",
         'fields[]':
-            "name, branchs.id,branchs.name, departments.id, departments.name, staffs.id, staffs.user_id.first_name, shifts.id, shifts.shifts_id.id, shifts.shifts_id.name, shifts.shifts_id.start_time, shifts.shifts_id.end_time, shifts.shifts_id.normal, id, status, enable, user_created, date_created, address_id, organization_id, address_id.id, address_id.detail, departments.staffs.id, departments.staffs.user_id.first_name,staffs.department_id, staffs.id, staffs.user_id.first_name ",
+            "off_week_days, name, branchs.id,branchs.name, departments.id, departments.name, staffs.id, staffs.user_id.first_name, shifts.id, shifts.shifts_id.id, shifts.shifts_id.name, shifts.shifts_id.start_time, shifts.shifts_id.end_time, shifts.shifts_id.normal, id, status, enable, user_created, date_created, address_id, organization_id, address_id.id, address_id.detail, departments.staffs.id, departments.staffs.user_id.first_name,staffs.department_id, staffs.id, staffs.user_id.first_name ",
       },
       returnBody: true,
       encodeBodyUtf8: false,

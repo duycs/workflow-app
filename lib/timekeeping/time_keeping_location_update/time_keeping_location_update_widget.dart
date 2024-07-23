@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
+import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -406,42 +407,43 @@ class _TimeKeepingLocationUpdateWidgetState
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 32.0, 0.0, 0.0),
-                          child: FlutterFlowPlacePicker(
-                            iOSGoogleMapsApiKey: '',
-                            androidGoogleMapsApiKey: '',
-                            webGoogleMapsApiKey: '',
-                            onSelect: (place) async {
-                              setState(() => _model.placePickerValue = place);
-                            },
-                            defaultText: 'Chọn từ bản đồ',
-                            icon: Icon(
-                              Icons.place,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                            buttonOptions: FFButtonOptions(
-                              height: 42.0,
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 1.0,
-                              borderRadius: BorderRadius.circular(8.0),
+                        if ('1' == '2')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 32.0, 0.0, 0.0),
+                            child: FlutterFlowPlacePicker(
+                              iOSGoogleMapsApiKey: '',
+                              androidGoogleMapsApiKey: '',
+                              webGoogleMapsApiKey: '',
+                              onSelect: (place) async {
+                                setState(() => _model.placePickerValue = place);
+                              },
+                              defaultText: 'Chọn từ bản đồ',
+                              icon: Icon(
+                                Icons.place,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              buttonOptions: FFButtonOptions(
+                                height: 42.0,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 1.0,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                           ),
-                        ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 32.0, 0.0, 4.0),
+                              0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Phạm vi áp dụng (m)',
                             style: FlutterFlowTheme.of(context)
@@ -527,6 +529,55 @@ class _TimeKeepingLocationUpdateWidgetState
                                 ),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 24.0, 0.0, 4.0),
+                          child: Text(
+                            'Trạng thái hoạt động',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 2.0, 0.0),
+                          child: FlutterFlowRadioButton(
+                            options: ['Hoạt động', 'Không hoạt động'].toList(),
+                            onChanged: (val) => setState(() {}),
+                            controller: _model.radioButtonValueController ??=
+                                FormFieldController<String>(
+                                    widget.item?.status == 'published'
+                                        ? 'Hoạt động'
+                                        : 'Không họat động'),
+                            optionHeight: 32.0,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                            selectedTextStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                            buttonPosition: RadioButtonPosition.left,
+                            direction: Axis.horizontal,
+                            radioButtonColor:
+                                FlutterFlowTheme.of(context).primary,
+                            inactiveRadioButtonColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            toggleable: false,
+                            horizontalAlignment: WrapAlignment.spaceBetween,
+                            verticalAlignment: WrapCrossAlignment.start,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -589,7 +640,7 @@ class _TimeKeepingLocationUpdateWidgetState
                     if (shouldSetState) setState(() {});
                     return;
                   }
-                  _model.apiResulttrf =
+                  _model.apiResultLocationUpdate =
                       await LocationGroup.locationUpdateCall.call(
                     id: widget.item?.id,
                     accessToken: FFAppState().accessToken,
@@ -615,11 +666,14 @@ class _TimeKeepingLocationUpdateWidgetState
                           r'''$.map''',
                         ),
                       },
+                      'status': _model.radioButtonValue == 'Hoạt động'
+                          ? 'published'
+                          : 'archived',
                     },
                   );
 
                   shouldSetState = true;
-                  if ((_model.apiResulttrf?.succeeded ?? true)) {
+                  if ((_model.apiResultLocationUpdate?.succeeded ?? true)) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(

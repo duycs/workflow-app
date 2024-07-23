@@ -193,8 +193,11 @@ class _TimekeepingManagementListWidgetState
                                 ),
                               ),
                               FFButtonWidget(
-                                onPressed: () {
-                                  print('Button pressed ...');
+                                onPressed: () async {
+                                  setState(() => _model.listViewPagingController
+                                      ?.refresh());
+
+                                  setState(() {});
                                 },
                                 text: 'Lọc',
                                 icon: const Icon(
@@ -224,6 +227,7 @@ class _TimekeepingManagementListWidgetState
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
+                                showLoadingIndicator: false,
                               ),
                             ],
                           ),
@@ -262,10 +266,10 @@ class _TimekeepingManagementListWidgetState
                     offset: nextPageMarker.nextPageNumber * 20,
                     limit: 20,
                     filter:
-                        '{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                        '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                       FFAppState().staffOrganization,
                       r'''$.id''',
-                    ).toString()}\"}}}',
+                    ).toString()}\"}}}${(widget.checkShowParams == 'check') && ((_model.dateStart == '') && (_model.dateEnd == '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month + 1, 1).toString()}\"}}' : ' '}${(widget.checkShowParams == 'check') && ((_model.dateStart != '') && (_model.dateEnd != '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(_model.dateStart).year, DateTime.parse(_model.dateStart).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(_model.dateEnd).year, DateTime.parse(_model.dateEnd).month + 1, 1).toString()}\"}}' : ' '}]}',
                   ),
                 ),
                 padding: const EdgeInsets.fromLTRB(

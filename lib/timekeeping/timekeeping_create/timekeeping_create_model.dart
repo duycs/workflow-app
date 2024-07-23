@@ -93,6 +93,15 @@ class TimekeepingCreateModel extends FlutterFlowModel<TimekeepingCreateWidget> {
 
   String? address;
 
+  List<String> offDays = [];
+  void addToOffDays(String item) => offDays.add(item);
+  void removeFromOffDays(String item) => offDays.remove(item);
+  void removeAtIndexFromOffDays(int index) => offDays.removeAt(index);
+  void insertAtIndexInOffDays(int index, String item) =>
+      offDays.insert(index, item);
+  void updateOffDaysAtIndex(int index, Function(String) updateFn) =>
+      offDays[index] = updateFn(offDays[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -129,12 +138,12 @@ class TimekeepingCreateModel extends FlutterFlowModel<TimekeepingCreateWidget> {
   bool? checkboxListTileValue6;
   // State field(s) for CheckboxListTile widget.
   bool? checkboxListTileValue7;
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController;
-  String? get choiceChipsValue =>
-      choiceChipsValueController?.value?.firstOrNull;
-  set choiceChipsValue(String? val) =>
-      choiceChipsValueController?.value = val != null ? [val] : [];
+  // State field(s) for departments widget.
+  FormFieldController<List<String>>? departmentsValueController;
+  String? get departmentsValue =>
+      departmentsValueController?.value?.firstOrNull;
+  set departmentsValue(String? val) =>
+      departmentsValueController?.value = val != null ? [val] : [];
 
   @override
   void initState(BuildContext context) {

@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -100,7 +101,15 @@ class _IndividualTimekeepingDetailsWidgetState
                   accessToken: FFAppState().accessToken,
                   offset: nextPageMarker.nextPageNumber * 20,
                   limit: 20,
-                  filter: '{}',
+                  filter:
+                      '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"organization_id\":{\"_eq\":\"${getJsonField(
+                    FFAppState().staffOrganization,
+                    r'''$.id''',
+                  ).toString()}\"}},{\"date_created\":{\"_gte\":\"${widget.dateFilter}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
+                    return DateTime.parse(var1)
+                        .add(const Duration(days: 1))
+                        .toString();
+                  }(widget.dateFilter!)}\"}}]}',
                 ),
               ),
               padding: const EdgeInsets.fromLTRB(
@@ -138,7 +147,9 @@ class _IndividualTimekeepingDetailsWidgetState
                     ),
                   ),
                 ),
-
+                noItemsFoundIndicatorBuilder: (_) => const Center(
+                  child: DataNotFoundWidget(),
+                ),
                 itemBuilder: (context, _, listItemIndex) {
                   final listItemItem =
                       _model.listViewPagingController!.itemList![listItemIndex];

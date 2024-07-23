@@ -34,12 +34,49 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
     updateFn(request ??= LocationStruct());
   }
 
+  List<BranchListStruct> brandList = [];
+  void addToBrandList(BranchListStruct item) => brandList.add(item);
+  void removeFromBrandList(BranchListStruct item) => brandList.remove(item);
+  void removeAtIndexFromBrandList(int index) => brandList.removeAt(index);
+  void insertAtIndexInBrandList(int index, BranchListStruct item) =>
+      brandList.insert(index, item);
+  void updateBrandListAtIndex(int index, Function(BranchListStruct) updateFn) =>
+      brandList[index] = updateFn(brandList[index]);
+
+  List<DepartmentListStruct> departmentList = [];
+  void addToDepartmentList(DepartmentListStruct item) =>
+      departmentList.add(item);
+  void removeFromDepartmentList(DepartmentListStruct item) =>
+      departmentList.remove(item);
+  void removeAtIndexFromDepartmentList(int index) =>
+      departmentList.removeAt(index);
+  void insertAtIndexInDepartmentList(int index, DepartmentListStruct item) =>
+      departmentList.insert(index, item);
+  void updateDepartmentListAtIndex(
+          int index, Function(DepartmentListStruct) updateFn) =>
+      departmentList[index] = updateFn(departmentList[index]);
+
+  List<StaffListStruct> staffsList = [];
+  void addToStaffsList(StaffListStruct item) => staffsList.add(item);
+  void removeFromStaffsList(StaffListStruct item) => staffsList.remove(item);
+  void removeAtIndexFromStaffsList(int index) => staffsList.removeAt(index);
+  void insertAtIndexInStaffsList(int index, StaffListStruct item) =>
+      staffsList.insert(index, item);
+  void updateStaffsListAtIndex(int index, Function(StaffListStruct) updateFn) =>
+      staffsList[index] = updateFn(staffsList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  // State field(s) for DropDown1 widget.
+  String? dropDown1Value;
+  FormFieldController<String>? dropDown1ValueController;
+  // State field(s) for DropDown2 widget.
+  String? dropDown2Value;
+  FormFieldController<String>? dropDown2ValueController;
+  // State field(s) for DropDown3 widget.
+  String? dropDown3Value;
+  FormFieldController<String>? dropDown3ValueController;
   // Stores action output result for [Custom Action - authenticateUsingBiometricsSetting] action in Button widget.
   bool? authenticateBiometicsTimeKeeping;
   // Stores action output result for [Custom Action - timeKeepingLocation] action in Button widget.
@@ -77,7 +114,10 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
         await GroupTimekeepingsGroup.getTimekeepingsCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"date_created\":{\"_gte\":\"${dateStart?.toString()}\"}},{\"date_created\":{\"_lt\":\"${dateEnd?.toString()}\"}}]}',
+          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${widget!.checkShowFilter == 'adminReport' ? dropDown3Value : FFAppState().staffid}\"}}},{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffOrganization,
+        r'''$.id''',
+      ).toString().toString()}\"}}},{\"date_created\":{\"_gte\":\"${dateStart != null ? dateStart?.toString() : (DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month, 1).toString())}\"}},{\"date_created\":{\"_lt\":\"${dateEnd != null ? dateEnd?.toString() : (DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month + 1, 1).toString())}\"}}]}',
     );
 
     if ((apiResultGetTimekeepings.succeeded ?? true)) {
@@ -90,6 +130,69 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
           .data
           .toList()
           .cast<TimekeepingsStruct>();
+    }
+  }
+
+  Future getListBranch(BuildContext context) async {
+    ApiCallResponse? apiResultGetListBranch;
+
+    apiResultGetListBranch = await BranchGroup.branchListCall.call(
+      accessToken: FFAppState().accessToken,
+      filter:
+          '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.organization_id''',
+      ).toString().toString()}\"}}}]}',
+    );
+
+    if ((apiResultGetListBranch.succeeded ?? true)) {
+      brandList = BranchListDataStruct.maybeFromMap(
+              (apiResultGetListBranch.jsonBody ?? ''))!
+          .data
+          .toList()
+          .cast<BranchListStruct>();
+    }
+  }
+
+  Future getListDepartment(BuildContext context) async {
+    ApiCallResponse? apiResultListDeparment;
+
+    apiResultListDeparment = await DepartmentGroup.getDepartmentListCall.call(
+      accessToken: FFAppState().accessToken,
+      filter:
+          '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.organization_id''',
+      ).toString().toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"$dropDown1Value\"}}}]}',
+    );
+
+    if ((apiResultListDeparment.succeeded ?? true)) {
+      departmentList = DepartmentListDataStruct.maybeFromMap(
+              (apiResultListDeparment.jsonBody ?? ''))!
+          .data
+          .toList()
+          .cast<DepartmentListStruct>();
+    }
+  }
+
+  Future getListStaffs(BuildContext context) async {
+    ApiCallResponse? apiResuitListStaffs;
+
+    apiResuitListStaffs = await StaffGroup.getStaffListCall.call(
+      accessToken: FFAppState().accessToken,
+      filter:
+          '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.organization_id''',
+      ).toString().toString()}\"}}},{\"department_id\":{\"id\":{\"_eq\":\"$dropDown2Value\"}}}]}',
+    );
+
+    if ((apiResuitListStaffs.succeeded ?? true)) {
+      staffsList = StaffListDataStruct.maybeFromMap(
+              (apiResuitListStaffs.jsonBody ?? ''))!
+          .data
+          .toList()
+          .cast<StaffListStruct>();
     }
   }
 }

@@ -452,42 +452,43 @@ class _TimeKeepingLocationCreatedWidgetState
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 32.0, 0.0, 0.0),
-                          child: FlutterFlowPlacePicker(
-                            iOSGoogleMapsApiKey: '',
-                            androidGoogleMapsApiKey: '',
-                            webGoogleMapsApiKey: '',
-                            onSelect: (place) async {
-                              setState(() => _model.placePickerValue = place);
-                            },
-                            defaultText: 'Chọn từ bản đồ',
-                            icon: Icon(
-                              Icons.place,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                            buttonOptions: FFButtonOptions(
-                              height: 42.0,
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 1.0,
-                              borderRadius: BorderRadius.circular(8.0),
+                        if ('1' == '2')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 32.0, 0.0, 0.0),
+                            child: FlutterFlowPlacePicker(
+                              iOSGoogleMapsApiKey: '',
+                              androidGoogleMapsApiKey: '',
+                              webGoogleMapsApiKey: '',
+                              onSelect: (place) async {
+                                setState(() => _model.placePickerValue = place);
+                              },
+                              defaultText: 'Chọn từ bản đồ',
+                              icon: Icon(
+                                Icons.place,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              buttonOptions: FFButtonOptions(
+                                height: 42.0,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 1.0,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                           ),
-                        ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 32.0, 0.0, 4.0),
+                              0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Phạm vi áp dụng (m)',
                             style: FlutterFlowTheme.of(context)
