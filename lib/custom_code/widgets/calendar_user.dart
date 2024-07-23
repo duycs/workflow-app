@@ -26,7 +26,9 @@ class CalendarUser extends StatefulWidget {
   final Future Function(String? date)? action;
   final DateTime? date;
   final List<dynamic>? json;
-  final Future Function(DateTime? dateStart, DateTime? dateEnd)? dateUpdate;
+  final Future Function(
+          DateTime? dateStart, DateTime? dateEnd, DateTime? calendarMonth)?
+      dateUpdate;
 
   @override
   State<CalendarUser> createState() => _CalendarUserState();
@@ -49,7 +51,7 @@ class _CalendarUserState extends State<CalendarUser> {
     DateTime dateEnd = DateTime(selectedDate.year, selectedDate.month + 1, 1);
 
     if (widget.dateUpdate != null) {
-      await widget.dateUpdate!(dateStart, dateEnd);
+      await widget.dateUpdate!(dateStart, dateEnd, selectedDate);
     }
   }
 
@@ -229,60 +231,6 @@ class _CalendarUserState extends State<CalendarUser> {
               itemCount: lastDisplayDay.difference(firstDisplayDay).inDays + 1,
             ),
           ),
-          // Expanded(
-          //   child: Padding(
-          //     padding: EdgeInsets.all(8.0),
-          //     child: LayoutBuilder(
-          //       builder: (context, constraints) {
-          //         double itemWidth = (constraints.maxWidth - 60) / 7;
-          //         return Wrap(
-          //           spacing: 10,
-          //           runSpacing: 10,
-          //           children: List.generate(
-          //             lastDisplayDay.difference(firstDisplayDay).inDays + 1,
-          //             (index) {
-          //               DateTime date =
-          //                   firstDisplayDay.add(Duration(days: index));
-          //               bool isCurrentMonth = date.month == selectedDate.month;
-
-          //               return GestureDetector(
-          //                 onTap: () async {
-          //                   await widget.action?.call(date.toIso8601String());
-          //                 },
-          //                 child: Container(
-          //                   width: itemWidth,
-          //                   height: itemWidth, // Đảm bảo item là hình vuông
-          //                   decoration: BoxDecoration(
-          //                     color: getColorForDate(date),
-          //                     borderRadius: BorderRadius.circular(12),
-          //                     boxShadow: [
-          //                       BoxShadow(
-          //                         color: Color(0x33000000),
-          //                         blurRadius: 4,
-          //                         offset: Offset(0, 2),
-          //                       ),
-          //                     ],
-          //                   ),
-          //                   child: Center(
-          //                     child: Text(
-          //                       '${date.day}',
-          //                       style: TextStyle(
-          //                         color: isCurrentMonth
-          //                             ? getTextColorForDate(date)
-          //                             : Colors.black.withOpacity(0.3),
-          //                         fontSize: 14,
-          //                       ),
-          //                     ),
-          //                   ),
-          //                 ),
-          //               );
-          //             },
-          //           ),
-          //         );
-          //       },
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

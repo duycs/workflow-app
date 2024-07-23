@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'time_keeping_widget.dart' show TimeKeepingWidget;
 import 'package:flutter/material.dart';
 
@@ -64,6 +65,8 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
       staffsList.insert(index, item);
   void updateStaffsListAtIndex(int index, Function(StaffListStruct) updateFn) =>
       staffsList[index] = updateFn(staffsList[index]);
+
+  DateTime? calendarMonth;
 
   ///  State fields for stateful widgets in this page.
 
@@ -163,7 +166,10 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
           '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"$dropDown1Value\"}}}]}',
+      ).toString().toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"${functions.isRoleBranchAdmin(FFAppState().user) ? getJsonField(
+              FFAppState().staffLogin,
+              r'''$.branch_id''',
+            ).toString().toString() : dropDown1Value}\"}}}]}',
     );
 
     if ((apiResultListDeparment.succeeded ?? true)) {
@@ -184,7 +190,10 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
           '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}}},{\"department_id\":{\"id\":{\"_eq\":\"$dropDown2Value\"}}}]}',
+      ).toString().toString()}\"}}},{\"department_id\":{\"id\":{\"_eq\":\"${FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725' ? getJsonField(
+              FFAppState().staffLogin,
+              r'''$.department_id''',
+            ).toString().toString() : dropDown2Value}\"}}}]}',
     );
 
     if ((apiResuitListStaffs.succeeded ?? true)) {

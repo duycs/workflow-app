@@ -12,6 +12,7 @@ import '/rich_text_editor/mobile_editor_component/mobile_editor_component_widget
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/training/lesson/quiz_creation_lesson/quiz_creation_lesson_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -1483,20 +1484,6 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                               shouldSetState = true;
                               if ((_model.apiResultCreatedLession2?.succeeded ??
                                   true)) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Tạo mới bài học thành công',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                );
                                 _model.dataListLession =
                                     LessonsStruct.maybeFromMap(getJsonField(
                                   (_model.apiResultCreatedLession2?.jsonBody ??
@@ -1506,6 +1493,13 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                 setState(() {});
                                 await widget.callBack?.call(
                                   _model.dataListLession,
+                                );
+                                await actions.showToast(
+                                  context,
+                                  'Tạo mới thành công',
+                                  FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  FlutterFlowTheme.of(context).secondary,
                                 );
                                 Navigator.pop(context);
                               }
@@ -1557,20 +1551,6 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                             shouldSetState = true;
                             if ((_model.apiResultCreatedLession1?.succeeded ??
                                 true)) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Tạo mới bài học thành công',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                ),
-                              );
                               _model.dataListLession =
                                   LessonsStruct.maybeFromMap(getJsonField(
                                 (_model.apiResultCreatedLession1?.jsonBody ??
@@ -1580,6 +1560,13 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                               setState(() {});
                               await widget.callBack?.call(
                                 _model.dataListLession,
+                              );
+                              await actions.showToast(
+                                context,
+                                'Tạo mới thành công',
+                                FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                FlutterFlowTheme.of(context).secondary,
                               );
                               Navigator.pop(context);
                             }

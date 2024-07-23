@@ -301,7 +301,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                     shrinkWrap: true,
                     reverse: false,
                     scrollDirection: Axis.vertical,
-                    separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                    separatorBuilder: (_, __) => const SizedBox(height: 12.0),
                     builderDelegate: PagedChildBuilderDelegate<dynamic>(
                       // Customize what your widget looks like when it's loading the first page.
                       firstPageProgressIndicatorBuilder: (_) => Center(
@@ -420,6 +420,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                                 fontFamily: 'Nunito Sans',
                                                 fontSize: 16.0,
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
                                               ),
                                         ),
                                         trailing: Icon(
@@ -452,7 +453,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                             Icons.timer_sharp,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            size: 24.0,
+                                            size: 20.0,
                                           ),
                                         ),
                                         Expanded(
@@ -462,14 +463,16 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                                     0.0, 0.0, 4.0, 0.0),
                                             child: Text(
                                               'Chấm công bằng: ',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    letterSpacing: 0.0,
+                                                  ),
                                             ),
                                           ),
                                         ),
@@ -561,7 +564,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                             FontAwesomeIcons.usersCog,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            size: 20.0,
+                                            size: 16.0,
                                           ),
                                         ),
                                         Padding(
@@ -574,6 +577,9 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -609,7 +615,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                             Icons.face_sharp,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            size: 24.0,
+                                            size: 20.0,
                                           ),
                                         ),
                                         Padding(
@@ -622,6 +628,9 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),

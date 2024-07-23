@@ -442,7 +442,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 12.0, 0.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -501,7 +501,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 12.0, 0.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(2.0, 16.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -515,12 +515,6 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
                                 ),
-                          ),
-                          TextSpan(
-                            text: '',
-                            style: TextStyle(
-                              color: FlutterFlowTheme.of(context).error,
-                            ),
                           )
                         ],
                         style: FlutterFlowTheme.of(context).bodyMedium.override(

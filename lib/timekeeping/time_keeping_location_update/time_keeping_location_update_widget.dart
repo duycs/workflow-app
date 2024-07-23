@@ -590,7 +590,9 @@ class _TimeKeepingLocationUpdateWidgetState
                 onPressed: () async {
                   var shouldSetState = false;
                   _model.checkLocationTimeKeepingUpdate =
-                      await actions.getCurrentLocationStruct();
+                      await actions.getCurrentLocationStruct(
+                    context,
+                  );
                   shouldSetState = true;
                   if ((_model.checkLocationTimeKeepingUpdate != null &&
                           (_model.checkLocationTimeKeepingUpdate)!

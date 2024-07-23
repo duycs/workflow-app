@@ -46,12 +46,12 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
         await _model.getListBranch(context);
       }
       if ((widget.checkShowFilter == 'adminReport') &&
-          (functions.isRoleBranchAdmin(FFAppState().user) ||
-              functions.isRoleOrgAdmin(FFAppState().user))) {
+          functions.isRoleBranchAdmin(FFAppState().user)) {
         await _model.getListDepartment(context);
         setState(() {});
       }
-      if (widget.checkShowFilter == 'adminReport') {
+      if ((widget.checkShowFilter == 'adminReport') &&
+          functions.isRoleDepartmentAdmin(FFAppState().user)) {
         await _model.getListStaffs(context);
         setState(() {});
       }
@@ -155,19 +155,12 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(10.0, 8.0, 10.0, 0.0),
                       child: Container(
+                        width: double.infinity,
                         decoration: const BoxDecoration(),
                         child: FlutterFlowDropDown<String>(
                           controller: _model.dropDown1ValueController ??=
                               FormFieldController<String>(
-                            _model.dropDown1Value ??= (FFAppState().user.role ==
-                                        'a8d33527-375b-4599-ac70-6a3fcad1de39') ||
-                                    (FFAppState().user.role ==
-                                        '6a8bc644-cb2d-4a31-b11e-b86e19824725')
-                                ? getJsonField(
-                                    FFAppState().staffLogin,
-                                    r'''$.branch_id''',
-                                  ).toString()
-                                : '',
+                            _model.dropDown1Value ??= '',
                           ),
                           options: List<String>.from(
                               _model.brandList.map((e) => e.id).toList()),
@@ -232,13 +225,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                         child: FlutterFlowDropDown<String>(
                           controller: _model.dropDown2ValueController ??=
                               FormFieldController<String>(
-                            _model.dropDown2Value ??= FFAppState().user.role ==
-                                    '6a8bc644-cb2d-4a31-b11e-b86e19824725'
-                                ? getJsonField(
-                                    FFAppState().staffLogin,
-                                    r'''$.department_id''',
-                                  ).toString()
-                                : '',
+                            _model.dropDown2Value ??= '',
                           ),
                           options: List<String>.from(
                               _model.departmentList.map((e) => e.id).toList()),
@@ -424,9 +411,26 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                       fontSize: 13.0,
                                                     ),
                                                   ),
-                                                  const TextSpan(
-                                                    text: '07',
-                                                    style: TextStyle(
+                                                  TextSpan(
+                                                    text:
+                                                        _model.calendarMonth ==
+                                                                null
+                                                            ? dateTimeFormat(
+                                                                'MM/yyyy',
+                                                                getCurrentTimestamp,
+                                                                locale: FFLocalizations.of(
+                                                                        context)
+                                                                    .languageCode,
+                                                              )
+                                                            : dateTimeFormat(
+                                                                'MM/yyyy',
+                                                                _model
+                                                                    .calendarMonth,
+                                                                locale: FFLocalizations.of(
+                                                                        context)
+                                                                    .languageCode,
+                                                              ),
+                                                    style: const TextStyle(
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -446,7 +450,37 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 8.0),
                                               child: Text(
-                                                '100',
+                                                _model.timeKeepingList.isNotEmpty
+                                                    ? formatNumber(
+                                                        _model.timeKeepingList
+                                                                .where((e) =>
+                                                                    e.status ==
+                                                                    '1')
+                                                                .toList()
+                                                                .length
+                                                                .toDouble() +
+                                                            _model
+                                                                .timeKeepingList
+                                                                .where((e) =>
+                                                                    e.status ==
+                                                                    '5')
+                                                                .toList()
+                                                                .length
+                                                                .toDouble() +
+                                                            (_model.timeKeepingList
+                                                                    .where((e) =>
+                                                                        e.status ==
+                                                                        '2')
+                                                                    .toList()
+                                                                    .length
+                                                                    .toDouble() /
+                                                                2),
+                                                        formatType:
+                                                            FormatType.decimal,
+                                                        decimalType: DecimalType
+                                                            .commaDecimal,
+                                                      )
+                                                    : '0',
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -462,22 +496,6 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                           FontWeight.w600,
                                                     ),
                                               ),
-                                            ),
-                                            Text(
-                                              'Tháng khác',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    letterSpacing: 0.0,
-                                                    fontStyle: FontStyle.italic,
-                                                    decoration: TextDecoration
-                                                        .underline,
-                                                  ),
                                             ),
                                           ],
                                         ),
@@ -2387,9 +2405,11 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         },
                                       ).then((value) => setState(() {}));
                                     },
-                                    dateUpdate: (dateStart, dateEnd) async {
+                                    dateUpdate: (dateStart, dateEnd,
+                                        calendarMonth) async {
                                       _model.dateStart = dateStart;
                                       _model.dateEnd = dateEnd;
+                                      _model.calendarMonth = calendarMonth;
                                       setState(() {});
                                       await _model.getTimekeepings(context);
                                       setState(() {});
@@ -2540,6 +2560,130 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
+                                                      .tertiary,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0),
+                                                ),
+                                              ),
+                                              RichText(
+                                                textScaler:
+                                                    MediaQuery.of(context)
+                                                        .textScaler,
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: 'Nghỉ có lý do: ',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    TextSpan(
+                                                      text: _model
+                                                          .timeKeepingList
+                                                          .where((e) =>
+                                                              e.status == '3')
+                                                          .toList()
+                                                          .length
+                                                          .toString(),
+                                                      style: const TextStyle(),
+                                                    )
+                                                  ],
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                            ].divide(const SizedBox(width: 2.0)),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Container(
+                                                width: 20.0,
+                                                height: 20.0,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0),
+                                                ),
+                                              ),
+                                              RichText(
+                                                textScaler:
+                                                    MediaQuery.of(context)
+                                                        .textScaler,
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text:
+                                                          'Nghỉ không lý do: ',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    TextSpan(
+                                                      text: _model
+                                                          .timeKeepingList
+                                                          .where((e) =>
+                                                              e.status == '4')
+                                                          .toList()
+                                                          .length
+                                                          .toString(),
+                                                      style: const TextStyle(),
+                                                    )
+                                                  ],
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                            ].divide(const SizedBox(width: 2.0)),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 8.0, 12.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Container(
+                                                width: 20.0,
+                                                height: 20.0,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .secondaryText,
                                                   borderRadius:
                                                       BorderRadius.circular(
@@ -2630,130 +2774,6 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                           .timeKeepingList
                                                           .where((e) =>
                                                               e.status == '0')
-                                                          .toList()
-                                                          .length
-                                                          .toString(),
-                                                      style: const TextStyle(),
-                                                    )
-                                                  ],
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ),
-                                            ].divide(const SizedBox(width: 2.0)),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 8.0, 12.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Container(
-                                                width: 20.0,
-                                                height: 20.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .tertiary,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          4.0),
-                                                ),
-                                              ),
-                                              RichText(
-                                                textScaler:
-                                                    MediaQuery.of(context)
-                                                        .textScaler,
-                                                text: TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text: 'Nghỉ có lý do: ',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                    TextSpan(
-                                                      text: _model
-                                                          .timeKeepingList
-                                                          .where((e) =>
-                                                              e.status == '3')
-                                                          .toList()
-                                                          .length
-                                                          .toString(),
-                                                      style: const TextStyle(),
-                                                    )
-                                                  ],
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ),
-                                            ].divide(const SizedBox(width: 2.0)),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Container(
-                                                width: 20.0,
-                                                height: 20.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          4.0),
-                                                ),
-                                              ),
-                                              RichText(
-                                                textScaler:
-                                                    MediaQuery.of(context)
-                                                        .textScaler,
-                                                text: TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text:
-                                                          'Nghỉ không lý do: ',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                    TextSpan(
-                                                      text: _model
-                                                          .timeKeepingList
-                                                          .where((e) =>
-                                                              e.status == '4')
                                                           .toList()
                                                           .length
                                                           .toString(),
@@ -2877,7 +2897,9 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                 if (_model.timeKeepingLocation ==
                                     'Chấm công thành công!') {
                                   _model.getLocation =
-                                      await actions.getCurrentLocationStruct();
+                                      await actions.getCurrentLocationStruct(
+                                    context,
+                                  );
                                   shouldSetState = true;
                                   _model.updateRequestStruct(
                                     (e) => e
@@ -3097,8 +3119,10 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                   shouldSetState = true;
                                   if (_model.timeKeepingLocationCheckOut ==
                                       'Chấm công thành công!') {
-                                    _model.getLocationCheckOut = await actions
-                                        .getCurrentLocationStruct();
+                                    _model.getLocationCheckOut =
+                                        await actions.getCurrentLocationStruct(
+                                      context,
+                                    );
                                     shouldSetState = true;
                                     _model.updateRequestStruct(
                                       (e) => e

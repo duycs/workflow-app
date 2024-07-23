@@ -621,102 +621,86 @@ class _TimeKeepingLocationCreatedWidgetState
                       return;
                     }
                     _model.getCurrentLocation =
-                        await actions.getCurrentLocationStruct();
+                        await actions.getCurrentLocationStruct(
+                      context,
+                    );
                     shouldSetState = true;
-                    if ((_model.getCurrentLocation != null &&
-                            (_model.getCurrentLocation)!.isNotEmpty) ==
-                        true) {
-                      _model.checkTokenTimeKeepingCreated =
-                          await action_blocks.tokenReload(context);
-                      shouldSetState = true;
-                      if (!_model.checkTokenTimeKeepingCreated!) {
-                        setState(() {});
-                        if (shouldSetState) setState(() {});
-                        return;
-                      }
-                      _model.apiResultTimeKeepingCreated =
-                          await LocationGroup.locationCreatedCall.call(
-                        accessToken: FFAppState().accessToken,
-                        requesDataJson: <String, dynamic>{
-                          'status': 'published',
-                          'detail': _model.textController1.text,
-                          'meter_range': _model.textController2.text,
-                          'ward_id': <String, dynamic>{
-                            'id': _model.dropDownValue3,
-                          },
-                          'district_id': <String, dynamic>{
-                            'id': _model.dropDownValue2,
-                          },
-                          'city_id': <String, dynamic>{
-                            'id': _model.dropDownValue1,
-                          },
-                          'location': <String, dynamic>{
-                            'type': 'Point',
-                            'map': <String, List<dynamic>>{
-                              'coordinates': _model.getCurrentLocation!,
-                            },
-                          },
-                        },
-                      );
-
-                      shouldSetState = true;
-                      if ((_model.apiResultTimeKeepingCreated?.succeeded ??
-                          true)) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Tạo mới địa điểm chấm công thành công!',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            ),
-                            duration: const Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
-                          ),
-                        );
-                        await widget.callBack?.call(
-                          getJsonField(
-                            (_model.apiResultTimeKeepingCreated?.jsonBody ??
-                                ''),
-                            r'''$.id''',
-                          ).toString(),
-                        );
-                        Navigator.pop(context);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Tạo mới điểm chấm công không t ha',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            ),
-                            duration: const Duration(milliseconds: 4000),
-                            backgroundColor: FlutterFlowTheme.of(context).error,
-                          ),
-                        );
-                      }
-                    } else {
-                      await showDialog(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: const Text('Định vị chưa được bật'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: const Text('Ok'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
+                    _model.checkTokenTimeKeepingCreated =
+                        await action_blocks.tokenReload(context);
+                    shouldSetState = true;
+                    if (!_model.checkTokenTimeKeepingCreated!) {
+                      setState(() {});
                       if (shouldSetState) setState(() {});
                       return;
                     }
+                    _model.apiResultTimeKeepingCreated =
+                        await LocationGroup.locationCreatedCall.call(
+                      accessToken: FFAppState().accessToken,
+                      requesDataJson: <String, dynamic>{
+                        'status': 'published',
+                        'detail': _model.textController1.text,
+                        'meter_range': _model.textController2.text,
+                        'ward_id': <String, dynamic>{
+                          'id': _model.dropDownValue3,
+                        },
+                        'district_id': <String, dynamic>{
+                          'id': _model.dropDownValue2,
+                        },
+                        'city_id': <String, dynamic>{
+                          'id': _model.dropDownValue1,
+                        },
+                        'location': <String, dynamic>{
+                          'type': 'Point',
+                          'map': <String, List<dynamic>>{
+                            'coordinates': _model.getCurrentLocation!,
+                          },
+                        },
+                        'organization_id': getJsonField(
+                          FFAppState().staffLogin,
+                          r'''$.organization_id''',
+                        ),
+                      },
+                    );
 
+                    shouldSetState = true;
+                    if ((_model.apiResultTimeKeepingCreated?.succeeded ??
+                        true)) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Tạo mới địa điểm chấm công thành công!',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
+                      await widget.callBack?.call(
+                        getJsonField(
+                          (_model.apiResultTimeKeepingCreated?.jsonBody ??
+                              ''),
+                          r'''$.id''',
+                        ).toString(),
+                      );
+                      Navigator.pop(context);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Tạo mới điểm chấm công không thành công',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor: FlutterFlowTheme.of(context).error,
+                        ),
+                      );
+                    }
+                  
                     if (shouldSetState) setState(() {});
                   },
                   text: 'Lưu địa chỉ mới',

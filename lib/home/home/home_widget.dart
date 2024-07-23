@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/notification/notification/notification_widget.dart';
 import '/training/author/author_sign_up/author_sign_up_widget.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:badges/badges.dart' as badges;
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
@@ -1429,12 +1428,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                     if (FFAppState().IsInDevelopment)
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            20.0, 0.0, 20.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            if (functions.isRoleStaff(FFAppState().user))
+                            20.0, 0.0, 0.0, 12.0),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
                               InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -1460,7 +1460,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   );
                                 },
                                 child: Container(
-                                  width: 70.0,
+                                  width: 100.0,
                                   height: 90.0,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12.0),
@@ -1474,11 +1474,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        4.0, 12.0, 4.0, 0.0),
+                                        4.0, 0.0, 4.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                          MainAxisAlignment.center,
                                       children: [
                                         Icon(
                                           Icons.fact_check_outlined,
@@ -1505,91 +1505,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                 ),
                               ),
-                            if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
-                                (FFAppState().user.role ==
-                                    '82073000-1ba2-43a4-a55c-459d17c23b68') ||
-                                (FFAppState().user.role ==
-                                    'a8d33527-375b-4599-ac70-6a3fcad1de39'))
-                              Expanded(
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    _model.checkColorBorder = '15';
-                                    setState(() {});
-                                    await Future.delayed(
-                                        const Duration(milliseconds: 10));
-                                    _model.checkColorBorder = '';
-                                    setState(() {});
-
-                                    context.pushNamed(
-                                      'TimeKeeping',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-                                  },
-                                  child: Container(
-                                    height: 90.0,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12.0),
-                                      border: Border.all(
-                                        color: _model.checkColorBorder == '15'
-                                            ? FlutterFlowTheme.of(context)
-                                                .primary
-                                            : FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                      ),
-                                    ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          4.0, 12.0, 4.0, 0.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Icon(
-                                            Icons.fact_check_outlined,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 30.0,
-                                          ),
-                                          Text(
-                                            'Chấm công',
-                                            textAlign: TextAlign.center,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  fontSize: 13.0,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ].divide(const SizedBox(height: 2.0)),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
-                                (FFAppState().user.role ==
-                                    '82073000-1ba2-43a4-a55c-459d17c23b68') ||
-                                (FFAppState().user.role ==
-                                    'a8d33527-375b-4599-ac70-6a3fcad1de39'))
-                              Expanded(
-                                child: InkWell(
+                              if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                  (FFAppState().user.role ==
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') ||
+                                  (FFAppState().user.role ==
+                                      'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                                InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
                                   hoverColor: Colors.transparent,
@@ -1615,6 +1536,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     );
                                   },
                                   child: Container(
+                                    width: 100.0,
                                     height: 90.0,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12.0),
@@ -1629,11 +1551,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          4.0, 12.0, 4.0, 0.0),
+                                          4.0, 0.0, 4.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                            MainAxisAlignment.center,
                                         children: [
                                           FaIcon(
                                             FontAwesomeIcons.chartBar,
@@ -1660,14 +1582,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ),
                                   ),
                                 ),
-                              ),
-                            if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
-                                (FFAppState().user.role ==
-                                    '82073000-1ba2-43a4-a55c-459d17c23b68') ||
-                                (FFAppState().user.role ==
-                                    'a8d33527-375b-4599-ac70-6a3fcad1de39'))
-                              Expanded(
-                                child: InkWell(
+                              if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                  (FFAppState().user.role ==
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') ||
+                                  (FFAppState().user.role ==
+                                      'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                                InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
                                   hoverColor: Colors.transparent,
@@ -1693,6 +1613,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     );
                                   },
                                   child: Container(
+                                    width: 100.0,
                                     height: 90.0,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12.0),
@@ -1707,11 +1628,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          4.0, 12.0, 4.0, 0.0),
+                                          4.0, 0.0, 4.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                            MainAxisAlignment.center,
                                         children: [
                                           Icon(
                                             Icons.format_list_bulleted_add,
@@ -1738,14 +1659,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ),
                                   ),
                                 ),
-                              ),
-                            if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
-                                (FFAppState().user.role ==
-                                    '82073000-1ba2-43a4-a55c-459d17c23b68') ||
-                                (FFAppState().user.role ==
-                                    'a8d33527-375b-4599-ac70-6a3fcad1de39'))
-                              Expanded(
-                                child: InkWell(
+                              if (((FFAppState().user.role ==
+                                          '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                      (FFAppState().user.role ==
+                                          '82073000-1ba2-43a4-a55c-459d17c23b68') ||
+                                      (FFAppState().user.role ==
+                                          'a8d33527-375b-4599-ac70-6a3fcad1de39')) &&
+                                  ('1' == '2'))
+                                InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
                                   hoverColor: Colors.transparent,
@@ -1771,6 +1692,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     );
                                   },
                                   child: Container(
+                                    width: 100.0,
                                     height: 90.0,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12.0),
@@ -1816,14 +1738,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ),
                                   ),
                                 ),
-                              ),
-                            if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
-                                (FFAppState().user.role ==
-                                    '82073000-1ba2-43a4-a55c-459d17c23b68') ||
-                                (FFAppState().user.role ==
-                                    'a8d33527-375b-4599-ac70-6a3fcad1de39'))
-                              Expanded(
-                                child: InkWell(
+                              if (((FFAppState().user.role ==
+                                          '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                      (FFAppState().user.role ==
+                                          '82073000-1ba2-43a4-a55c-459d17c23b68') ||
+                                      (FFAppState().user.role ==
+                                          'a8d33527-375b-4599-ac70-6a3fcad1de39')) &&
+                                  ('1' == '2'))
+                                InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
                                   hoverColor: Colors.transparent,
@@ -1849,6 +1771,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     );
                                   },
                                   child: Container(
+                                    width: 100.0,
                                     height: 90.0,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12.0),
@@ -1894,8 +1817,176 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ),
                                   ),
                                 ),
-                              ),
-                          ].divide(const SizedBox(width: 12.0)),
+                            ].divide(const SizedBox(width: 16.0)),
+                          ),
+                        ),
+                      ),
+                    if (FFAppState().IsInDevelopment)
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                  (FFAppState().user.role ==
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') ||
+                                  (FFAppState().user.role ==
+                                      'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    _model.checkColorBorder = '12';
+                                    setState(() {});
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                    _model.checkColorBorder = '';
+                                    setState(() {});
+
+                                    context.pushNamed(
+                                      'TimekeepingLocationList',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 100.0,
+                                    height: 90.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      border: Border.all(
+                                        color: _model.checkColorBorder == '12'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                      ),
+                                    ),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          4.0, 0.0, 4.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.share_location_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 30.0,
+                                          ),
+                                          Text(
+                                            'Vị trí',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 13.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ].divide(const SizedBox(height: 2.0)),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                  (FFAppState().user.role ==
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') ||
+                                  (FFAppState().user.role ==
+                                      'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    _model.checkColorBorder = '13';
+                                    setState(() {});
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                    _model.checkColorBorder = '';
+                                    setState(() {});
+
+                                    context.pushNamed(
+                                      'TimekeepingShiftList',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 100.0,
+                                    height: 90.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      border: Border.all(
+                                        color: _model.checkColorBorder == '13'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                      ),
+                                    ),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          4.0, 0.0, 4.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.six_ft_apart_sharp,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 30.0,
+                                          ),
+                                          Text(
+                                            'Ca làm việc',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 13.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ].divide(const SizedBox(height: 2.0)),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ].divide(const SizedBox(width: 16.0)),
+                          ),
                         ),
                       ),
                   ].addToEnd(const SizedBox(height: 110.0)),

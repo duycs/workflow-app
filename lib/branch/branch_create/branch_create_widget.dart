@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -565,6 +566,14 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                               ?.succeeded ??
                                           true)) {
                                         await widget.reloadDataList?.call();
+                                        await actions.showToast(
+                                          context,
+                                          'Tạo mới thành công',
+                                          FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
+                                        );
                                         Navigator.pop(context);
                                       } else {
                                         await showDialog(

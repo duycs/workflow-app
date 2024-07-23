@@ -323,7 +323,7 @@ bool isRoleAdminGroup(UserStruct user) {
   }
 }
 
-bool isRoleDepartmentAdminCopy(UserStruct user) {
+bool isRoleDepartmentAdmin(UserStruct user) {
   try {
     return user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725';
   } catch (e) {

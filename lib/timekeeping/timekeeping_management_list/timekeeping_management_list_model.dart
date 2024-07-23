@@ -17,8 +17,22 @@ class TimekeepingManagementListModel
 
   String dateEnd = '';
 
+  String idBranch = '';
+
+  String idDepartment = '';
+
+  String idStaff = '';
+
+  String idShifts = '';
+
+  String idStatus = '';
+
   ///  State fields for stateful widgets in this component.
 
+  // State field(s) for nameSearch widget.
+  FocusNode? nameSearchFocusNode;
+  TextEditingController? nameSearchTextController;
+  String? Function(BuildContext, String?)? nameSearchTextControllerValidator;
   // State field(s) for ListView widget.
 
   PagingController<ApiPagingParams, dynamic>? listViewPagingController;
@@ -29,6 +43,9 @@ class TimekeepingManagementListModel
 
   @override
   void dispose() {
+    nameSearchFocusNode?.dispose();
+    nameSearchTextController?.dispose();
+
     listViewPagingController?.dispose();
   }
 
