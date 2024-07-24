@@ -11,7 +11,9 @@ import '/procedure/dropdown_departments_list/dropdown_departments_list_widget.da
 import '/procedure/dropdown_user_list/dropdown_user_list_widget.dart';
 import '/timekeeping/time_keeping_select_date/time_keeping_select_date_widget.dart';
 import '/timekeeping/timekeeping_shift/timekeeping_shift_widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'timekeeping_create_model.dart';
 export 'timekeeping_create_model.dart';
@@ -104,7 +106,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                         !_model.formKey.currentState!.validate()) {
                       return;
                     }
-                    if (_model.staffSelectList.isNotEmpty) {
+                    if (_model.staffSelectList.length > 0) {
                       _model.checkStaffs = [];
                       setState(() {});
                       while (_model.loop < _model.staffSelectList.length) {
@@ -113,7 +115,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     e.id ==
                                     _model.staffSelectList[_model.loop].staffsId
                                         .id)
-                                .toList().isNotEmpty) {
+                                .toList()
+                                .length >
+                            0) {
                           _model.addToCheckStaffs(CheckUpdateStepStruct(
                             firstName: _model.staffSelectList[_model.loop]
                                 .staffsId.userId.firstName,
@@ -127,7 +131,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                       }
                       _model.loop = 0;
                       setState(() {});
-                      if (_model.checkStaffs.isNotEmpty) {
+                      if (_model.checkStaffs.length > 0) {
                         await showModalBottomSheet(
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,
@@ -174,7 +178,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           elevation: 0,
                           insetPadding: EdgeInsets.zero,
                           backgroundColor: Colors.transparent,
-                          alignment: const AlignmentDirectional(0.0, 0.0)
+                          alignment: AlignmentDirectional(0.0, 0.0)
                               .resolve(Directionality.of(context)),
                           child: GestureDetector(
                             onTap: () => _model.unfocusNode.canRequestFocus
@@ -222,7 +226,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                 context.pushNamed(
                                   'TimekeepingList',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -248,14 +252,14 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -264,7 +268,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 12.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(2.0, 12.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -357,7 +361,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                   if ('1' == '2')
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                          EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                       child: RichText(
                         textScaler: MediaQuery.of(context).textScaler,
                         text: TextSpan(
@@ -442,7 +446,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -489,7 +493,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                               letterSpacing: 0.0,
                             ),
                     textPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 24.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 24.0, 0.0),
                     buttonPosition: RadioButtonPosition.left,
                     direction: Axis.horizontal,
                     radioButtonColor: FlutterFlowTheme.of(context).primary,
@@ -501,7 +505,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 16.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(2.0, 16.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -526,7 +530,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 1.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 1.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -536,7 +540,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             onPressed: () async {
                               if (_model.offDays
                                       .where((e) => e == '1')
-                                      .toList().isNotEmpty) {
+                                      .toList()
+                                      .length >
+                                  0) {
                                 _model.removeFromOffDays('1');
                                 setState(() {});
                               } else {
@@ -547,13 +553,15 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             text: 'MON',
                             options: FFButtonOptions(
                               height: 55.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: _model.offDays
                                           .where((e) => e == '1')
-                                          .toList().isNotEmpty
+                                          .toList()
+                                          .length >
+                                      0
                                   ? FlutterFlowTheme.of(context).secondary
                                   : FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -563,7 +571,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: _model.offDays
                                                 .where((e) => e == '1')
-                                                .toList().isNotEmpty
+                                                .toList()
+                                                .length >
+                                            0
                                         ? FlutterFlowTheme.of(context)
                                             .secondaryBackground
                                         : FlutterFlowTheme.of(context)
@@ -573,7 +583,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontWeight: FontWeight.normal,
                                   ),
                               elevation: 1.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -590,7 +600,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             onPressed: () async {
                               if (_model.offDays
                                       .where((e) => e == '2')
-                                      .toList().isNotEmpty) {
+                                      .toList()
+                                      .length >
+                                  0) {
                                 _model.removeFromOffDays('2');
                                 setState(() {});
                               } else {
@@ -601,13 +613,15 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             text: 'TUE',
                             options: FFButtonOptions(
                               height: 55.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: _model.offDays
                                           .where((e) => e == '2')
-                                          .toList().isNotEmpty
+                                          .toList()
+                                          .length >
+                                      0
                                   ? FlutterFlowTheme.of(context).secondary
                                   : FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -617,7 +631,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: _model.offDays
                                                 .where((e) => e == '2')
-                                                .toList().isNotEmpty
+                                                .toList()
+                                                .length >
+                                            0
                                         ? FlutterFlowTheme.of(context)
                                             .secondaryBackground
                                         : FlutterFlowTheme.of(context)
@@ -627,7 +643,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontWeight: FontWeight.normal,
                                   ),
                               elevation: 1.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -644,7 +660,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             onPressed: () async {
                               if (_model.offDays
                                       .where((e) => e == '3')
-                                      .toList().isNotEmpty) {
+                                      .toList()
+                                      .length >
+                                  0) {
                                 _model.removeFromOffDays('3');
                                 setState(() {});
                               } else {
@@ -655,13 +673,15 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             text: 'WED',
                             options: FFButtonOptions(
                               height: 55.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: _model.offDays
                                           .where((e) => e == '3')
-                                          .toList().isNotEmpty
+                                          .toList()
+                                          .length >
+                                      0
                                   ? FlutterFlowTheme.of(context).secondary
                                   : FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -671,7 +691,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: _model.offDays
                                                 .where((e) => e == '3')
-                                                .toList().isNotEmpty
+                                                .toList()
+                                                .length >
+                                            0
                                         ? FlutterFlowTheme.of(context)
                                             .secondaryBackground
                                         : FlutterFlowTheme.of(context)
@@ -681,7 +703,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontWeight: FontWeight.normal,
                                   ),
                               elevation: 1.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -698,7 +720,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             onPressed: () async {
                               if (_model.offDays
                                       .where((e) => e == '4')
-                                      .toList().isNotEmpty) {
+                                      .toList()
+                                      .length >
+                                  0) {
                                 _model.removeFromOffDays('4');
                                 setState(() {});
                               } else {
@@ -709,13 +733,15 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             text: 'THU',
                             options: FFButtonOptions(
                               height: 55.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: _model.offDays
                                           .where((e) => e == '4')
-                                          .toList().isNotEmpty
+                                          .toList()
+                                          .length >
+                                      0
                                   ? FlutterFlowTheme.of(context).secondary
                                   : FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -725,7 +751,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: _model.offDays
                                                 .where((e) => e == '4')
-                                                .toList().isNotEmpty
+                                                .toList()
+                                                .length >
+                                            0
                                         ? FlutterFlowTheme.of(context)
                                             .secondaryBackground
                                         : FlutterFlowTheme.of(context)
@@ -735,7 +763,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontWeight: FontWeight.normal,
                                   ),
                               elevation: 1.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -752,7 +780,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             onPressed: () async {
                               if (_model.offDays
                                       .where((e) => e == '5')
-                                      .toList().isNotEmpty) {
+                                      .toList()
+                                      .length >
+                                  0) {
                                 _model.removeFromOffDays('5');
                                 setState(() {});
                               } else {
@@ -763,13 +793,15 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             text: 'FRI',
                             options: FFButtonOptions(
                               height: 55.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: _model.offDays
                                           .where((e) => e == '5')
-                                          .toList().isNotEmpty
+                                          .toList()
+                                          .length >
+                                      0
                                   ? FlutterFlowTheme.of(context).secondary
                                   : FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -779,7 +811,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: _model.offDays
                                                 .where((e) => e == '5')
-                                                .toList().isNotEmpty
+                                                .toList()
+                                                .length >
+                                            0
                                         ? FlutterFlowTheme.of(context)
                                             .secondaryBackground
                                         : FlutterFlowTheme.of(context)
@@ -789,7 +823,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontWeight: FontWeight.normal,
                                   ),
                               elevation: 1.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -806,7 +840,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             onPressed: () async {
                               if (_model.offDays
                                       .where((e) => e == '6')
-                                      .toList().isNotEmpty) {
+                                      .toList()
+                                      .length >
+                                  0) {
                                 _model.removeFromOffDays('6');
                                 setState(() {});
                               } else {
@@ -817,13 +853,15 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             text: 'SAT',
                             options: FFButtonOptions(
                               height: 55.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: _model.offDays
                                           .where((e) => e == '6')
-                                          .toList().isNotEmpty
+                                          .toList()
+                                          .length >
+                                      0
                                   ? FlutterFlowTheme.of(context).secondary
                                   : FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -833,7 +871,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: _model.offDays
                                                 .where((e) => e == '6')
-                                                .toList().isNotEmpty
+                                                .toList()
+                                                .length >
+                                            0
                                         ? FlutterFlowTheme.of(context)
                                             .secondaryBackground
                                         : FlutterFlowTheme.of(context)
@@ -843,7 +883,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontWeight: FontWeight.normal,
                                   ),
                               elevation: 1.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -860,7 +900,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             onPressed: () async {
                               if (_model.offDays
                                       .where((e) => e == '0')
-                                      .toList().isNotEmpty) {
+                                      .toList()
+                                      .length >
+                                  0) {
                                 _model.removeFromOffDays('0');
                                 setState(() {});
                               } else {
@@ -871,13 +913,15 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             text: 'SUN',
                             options: FFButtonOptions(
                               height: 55.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: _model.offDays
                                           .where((e) => e == '0')
-                                          .toList().isNotEmpty
+                                          .toList()
+                                          .length >
+                                      0
                                   ? FlutterFlowTheme.of(context).secondary
                                   : FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -887,7 +931,9 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: _model.offDays
                                                 .where((e) => e == '0')
-                                                .toList().isNotEmpty
+                                                .toList()
+                                                .length >
+                                            0
                                         ? FlutterFlowTheme.of(context)
                                             .secondaryBackground
                                         : FlutterFlowTheme.of(context)
@@ -897,7 +943,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     fontWeight: FontWeight.normal,
                                   ),
                               elevation: 1.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -909,12 +955,12 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             ),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 8.0)),
+                      ].divide(SizedBox(width: 8.0)),
                     ),
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -993,7 +1039,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                             : FlutterFlowTheme.of(context).info,
                         dense: true,
                         controlAffinity: ListTileControlAffinity.leading,
-                        shape: const RoundedRectangleBorder(
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0.0),
                             bottomRight: Radius.circular(0.0),
@@ -1113,7 +1159,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                         checkColor: FlutterFlowTheme.of(context).info,
                         dense: true,
                         controlAffinity: ListTileControlAffinity.leading,
-                        shape: const RoundedRectangleBorder(
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(8.0),
                             bottomRight: Radius.circular(8.0),
@@ -1125,7 +1171,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -1201,7 +1247,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           : FlutterFlowTheme.of(context).info,
                       dense: true,
                       controlAffinity: ListTileControlAffinity.leading,
-                      shape: const RoundedRectangleBorder(
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(0.0),
                           bottomRight: Radius.circular(0.0),
@@ -1262,7 +1308,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                         checkColor: FlutterFlowTheme.of(context).info,
                         dense: true,
                         controlAffinity: ListTileControlAffinity.leading,
-                        shape: const RoundedRectangleBorder(
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0.0),
                             bottomRight: Radius.circular(0.0),
@@ -1325,7 +1371,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           : FlutterFlowTheme.of(context).info,
                       dense: true,
                       controlAffinity: ListTileControlAffinity.leading,
-                      shape: const RoundedRectangleBorder(
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(0.0),
                           bottomRight: Radius.circular(0.0),
@@ -1387,7 +1433,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           : FlutterFlowTheme.of(context).info,
                       dense: true,
                       controlAffinity: ListTileControlAffinity.leading,
-                      shape: const RoundedRectangleBorder(
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(8.0),
                           bottomRight: Radius.circular(8.0),
@@ -1406,7 +1452,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                   if ('1' == '2')
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                          EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                       child: RichText(
                         textScaler: MediaQuery.of(context).textScaler,
                         text: TextSpan(
@@ -1456,7 +1502,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                   : FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
-                                child: const TimeKeepingSelectDateWidget(),
+                                child: TimeKeepingSelectDateWidget(),
                               ),
                             );
                           },
@@ -1471,7 +1517,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1500,7 +1546,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -1537,7 +1583,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: GestureDetector(
                                 onTap: () => _model.unfocusNode.canRequestFocus
@@ -1594,7 +1640,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1623,7 +1669,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
                     child: FlutterFlowChoiceChips(
                       options: _model.departmentSelectList
                           .map((e) => e.departmentsId.name)
@@ -1679,7 +1725,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -1716,7 +1762,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: GestureDetector(
                                 onTap: () => _model.unfocusNode.canRequestFocus
@@ -1748,7 +1794,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1777,7 +1823,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                     child: Text(
                       '*Lưu ý: Không chọn nhân viên thuộc bộ phận đã chọn ở trên',
                       maxLines: 2,
@@ -1791,7 +1837,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 0.0, 0.0),
                     child: Builder(
                       builder: (context) {
                         final staffs = _model.staffSelectList.toList();
@@ -1802,7 +1848,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: staffs.length,
-                          separatorBuilder: (_, __) => const SizedBox(height: 2.0),
+                          separatorBuilder: (_, __) => SizedBox(height: 2.0),
                           itemBuilder: (context, staffsIndex) {
                             final staffsItem = staffs[staffsIndex];
                             return Container(
@@ -1812,14 +1858,14 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 4.0, 0.0, 4.0),
                                         child: Text(
                                           staffsItem.staffsId.userId.firstName,
@@ -1861,7 +1907,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                       },
                     ),
                   ),
-                ].addToEnd(const SizedBox(height: 32.0)),
+                ].addToEnd(SizedBox(height: 32.0)),
               ),
             ),
           ),

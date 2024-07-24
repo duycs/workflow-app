@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'question_select_model.dart';
 export 'question_select_model.dart';
 
@@ -40,7 +42,7 @@ class _QuestionSelectWidgetState extends State<QuestionSelectWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
       child: FlutterFlowRadioButton(
         options: ['Option 1'].toList(),
         onChanged: (val) => setState(() {}),

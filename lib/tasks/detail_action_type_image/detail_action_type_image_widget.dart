@@ -7,9 +7,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'detail_action_type_image_model.dart';
 export 'detail_action_type_image_model.dart';
@@ -47,8 +50,8 @@ class _DetailActionTypeImageWidgetState
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       while (_model.loop <
-          widget.image!.operations.first.operationsId.files.length) {
-        _model.addToImagesList(widget.image!.operations.first.operationsId
+          widget!.image!.operations.first.operationsId.files.length) {
+        _model.addToImagesList(widget!.image!.operations.first.operationsId
             .files[_model.loop].directusFilesId.id);
         setState(() {});
         _model.loop = _model.loop + 1;
@@ -76,11 +79,11 @@ class _DetailActionTypeImageWidgetState
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        if ((widget.image?.status == 'done') &&
-            (widget.image!.operations.first.operationsId.files.isNotEmpty))
+        if ((widget!.image?.status == 'done') &&
+            (widget!.image!.operations.first.operationsId.files.length > 0))
           Builder(
             builder: (context) {
-              final data = widget.image?.operations.toList() ?? [];
+              final data = widget!.image?.operations?.toList() ?? [];
 
               return Column(
                 mainAxisSize: MainAxisSize.max,
@@ -92,7 +95,7 @@ class _DetailActionTypeImageWidgetState
 
                       return GridView.builder(
                         padding: EdgeInsets.zero,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 6.0,
                           mainAxisSpacing: 6.0,
@@ -105,12 +108,12 @@ class _DetailActionTypeImageWidgetState
                         itemBuilder: (context, dataGridIndex) {
                           final dataGridItem = dataGrid[dataGridIndex];
                           return Stack(
-                            alignment: const AlignmentDirectional(1.0, -1.0),
+                            alignment: AlignmentDirectional(1.0, -1.0),
                             children: [
                               Container(
                                 width: double.infinity,
                                 height: double.infinity,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -163,7 +166,7 @@ class _DetailActionTypeImageWidgetState
                               Opacity(
                                 opacity: 0.7,
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 6.0, 6.0, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderRadius: 20.0,
@@ -211,8 +214,8 @@ class _DetailActionTypeImageWidgetState
         Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            if ((widget.image?.status == 'todo') &&
-                (widget.image?.current == 1))
+            if ((widget!.image?.status == 'todo') &&
+                (widget!.image?.current == 1))
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
@@ -223,7 +226,7 @@ class _DetailActionTypeImageWidgetState
 
                     return GridView.builder(
                       padding: EdgeInsets.zero,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 6.0,
                         mainAxisSpacing: 6.0,
@@ -237,12 +240,12 @@ class _DetailActionTypeImageWidgetState
                         final dataTodoItemItem =
                             dataTodoItem[dataTodoItemIndex];
                         return Stack(
-                          alignment: const AlignmentDirectional(1.0, -1.0),
+                          alignment: AlignmentDirectional(1.0, -1.0),
                           children: [
                             Container(
                               width: double.infinity,
                               height: double.infinity,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -255,12 +258,12 @@ class _DetailActionTypeImageWidgetState
                                       type: PageTransitionType.fade,
                                       child: FlutterFlowExpandedImageView(
                                         image: Image.network(
-                                          '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${dataTodoItemItem}?access_token=${FFAppState().accessToken}',
                                           fit: BoxFit.contain,
                                         ),
                                         allowRotation: false,
                                         tag:
-                                            '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
+                                            '${FFAppConstants.ApiBaseUrl}/assets/${dataTodoItemItem}?access_token=${FFAppState().accessToken}',
                                         useHeroAnimation: true,
                                       ),
                                     ),
@@ -268,12 +271,12 @@ class _DetailActionTypeImageWidgetState
                                 },
                                 child: Hero(
                                   tag:
-                                      '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
+                                      '${FFAppConstants.ApiBaseUrl}/assets/${dataTodoItemItem}?access_token=${FFAppState().accessToken}',
                                   transitionOnUserGestures: true,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
-                                      '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
+                                      '${FFAppConstants.ApiBaseUrl}/assets/${dataTodoItemItem}?access_token=${FFAppState().accessToken}',
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -283,7 +286,7 @@ class _DetailActionTypeImageWidgetState
                             Opacity(
                               opacity: 0.7,
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 6.0, 6.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderRadius: 20.0,
@@ -303,8 +306,8 @@ class _DetailActionTypeImageWidgetState
                                               context: context,
                                               builder: (alertDialogContext) {
                                                 return AlertDialog(
-                                                  title: const Text('Xác nhận'),
-                                                  content: const Text(
+                                                  title: Text('Xác nhận'),
+                                                  content: Text(
                                                       'Bạn chắc chắn muốn xóa?'),
                                                   actions: [
                                                     TextButton(
@@ -312,14 +315,14 @@ class _DetailActionTypeImageWidgetState
                                                           Navigator.pop(
                                                               alertDialogContext,
                                                               false),
-                                                      child: const Text('Hủy'),
+                                                      child: Text('Hủy'),
                                                     ),
                                                     TextButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext,
                                                               true),
-                                                      child: const Text('Xác nhận'),
+                                                      child: Text('Xác nhận'),
                                                     ),
                                                   ],
                                                 );
@@ -345,16 +348,16 @@ class _DetailActionTypeImageWidgetState
                   },
                 ),
               ),
-            if (_model.images.isNotEmpty)
+            if (_model.images.length > 0)
               Container(
-                decoration: const BoxDecoration(),
+                decoration: BoxDecoration(),
                 child: Builder(
                   builder: (context) {
                     final imageUpload = _model.images.toList();
 
                     return GridView.builder(
                       padding: EdgeInsets.zero,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 6.0,
                         mainAxisSpacing: 6.0,
@@ -367,12 +370,12 @@ class _DetailActionTypeImageWidgetState
                       itemBuilder: (context, imageUploadIndex) {
                         final imageUploadItem = imageUpload[imageUploadIndex];
                         return Stack(
-                          alignment: const AlignmentDirectional(1.0, -1.0),
+                          alignment: AlignmentDirectional(1.0, -1.0),
                           children: [
                             Container(
                               width: double.infinity,
                               height: double.infinity,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -413,7 +416,7 @@ class _DetailActionTypeImageWidgetState
                             Opacity(
                               opacity: 0.7,
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 6.0, 6.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderRadius: 20.0,
@@ -433,8 +436,8 @@ class _DetailActionTypeImageWidgetState
                                               context: context,
                                               builder: (alertDialogContext) {
                                                 return AlertDialog(
-                                                  title: const Text('Xác nhận'),
-                                                  content: const Text(
+                                                  title: Text('Xác nhận'),
+                                                  content: Text(
                                                       'Bạn chắc chắn muốn xóa?'),
                                                   actions: [
                                                     TextButton(
@@ -442,14 +445,14 @@ class _DetailActionTypeImageWidgetState
                                                           Navigator.pop(
                                                               alertDialogContext,
                                                               false),
-                                                      child: const Text('Hủy'),
+                                                      child: Text('Hủy'),
                                                     ),
                                                     TextButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext,
                                                               true),
-                                                      child: const Text('Xác nhận'),
+                                                      child: Text('Xác nhận'),
                                                     ),
                                                   ],
                                                 );
@@ -476,9 +479,9 @@ class _DetailActionTypeImageWidgetState
               ),
             if (_model.isShow == true)
               Align(
-                alignment: const AlignmentDirectional(-1.0, 0.0),
+                alignment: AlignmentDirectional(-1.0, 0.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                   child: Text(
                     'Lưu để cập nhật dữ liệu mới nhất',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -490,8 +493,8 @@ class _DetailActionTypeImageWidgetState
                   ),
                 ),
               ),
-            if ((widget.image?.status == 'todo') &&
-                (widget.image?.current == 1))
+            if ((widget!.image?.status == 'todo') &&
+                (widget!.image?.current == 1))
               Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -538,7 +541,8 @@ class _DetailActionTypeImageWidgetState
                         }
                       }
 
-                      if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                      if (_model.uploadedLocalFile != null &&
+                          (_model.uploadedLocalFile.bytes?.isNotEmpty ??
                               false)) {
                         _model.addToImages(_model.uploadedLocalFile);
                         _model.isShow = true;
@@ -555,9 +559,9 @@ class _DetailActionTypeImageWidgetState
                       width: 110.0,
                       height: 35.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).alternate,
                       textStyle: FlutterFlowTheme.of(context)
                           .titleSmall
@@ -568,17 +572,18 @@ class _DetailActionTypeImageWidgetState
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.normal,
                           ),
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                  if (_model.images.isNotEmpty)
+                  if (_model.images.length > 0)
                     FFButtonWidget(
                       onPressed: () async {
-                        if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                        if (_model.uploadedLocalFile != null &&
+                            (_model.uploadedLocalFile.bytes?.isNotEmpty ??
                                 false)) {
                           _model.uploadListImageToken =
                               await action_blocks.tokenReload(context);
@@ -649,10 +654,10 @@ class _DetailActionTypeImageWidgetState
                       options: FFButtonOptions(
                         width: 110.0,
                         height: 35.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -663,23 +668,23 @@ class _DetailActionTypeImageWidgetState
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                ].divide(const SizedBox(width: 8.0)),
+                ].divide(SizedBox(width: 8.0)),
               ),
-          ].divide(const SizedBox(height: 8.0)),
+          ].divide(SizedBox(height: 8.0)),
         ),
         Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            if ((widget.image?.status == 'todo') &&
-                (widget.image?.current == 0))
+            if ((widget!.image?.status == 'todo') &&
+                (widget!.image?.current == 0))
               FFButtonWidget(
                 onPressed: ('1' == '1')
                     ? null
@@ -695,9 +700,9 @@ class _DetailActionTypeImageWidgetState
                 options: FFButtonOptions(
                   width: 110.0,
                   height: 35.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).alternate,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Nunito Sans',
@@ -706,7 +711,7 @@ class _DetailActionTypeImageWidgetState
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.normal,
                       ),
-                  borderSide: const BorderSide(
+                  borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 1.0,
                   ),
@@ -715,7 +720,7 @@ class _DetailActionTypeImageWidgetState
               ),
           ],
         ),
-      ].divide(const SizedBox(height: 6.0)),
+      ].divide(SizedBox(height: 6.0)),
     );
   }
 }

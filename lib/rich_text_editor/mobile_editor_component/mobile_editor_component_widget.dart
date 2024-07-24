@@ -1,6 +1,9 @@
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'mobile_editor_component_model.dart';
 export 'mobile_editor_component_model.dart';
 
@@ -46,13 +49,13 @@ class _MobileEditorComponentWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
       height: MediaQuery.sizeOf(context).height * 1.0,
       child: custom_widgets.MobileEditor(
         width: MediaQuery.sizeOf(context).width * 1.0,
         height: MediaQuery.sizeOf(context).height * 1.0,
-        content: widget.content?.toString(),
+        content: widget!.content?.toString(),
         setContentCallback: (editorContent) async {
           await widget.setContentCallback?.call(
             editorContent,

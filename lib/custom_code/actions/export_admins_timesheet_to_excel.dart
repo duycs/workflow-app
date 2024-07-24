@@ -19,9 +19,6 @@ import 'dart:math';
 import 'package:intl/intl.dart';
 
 Future exportAdminsTimesheetToExcel(List<dynamic> item) async {
-// In ra đầu vào để kiểm tra
-  print(item);
-
   try {
     String extensionFirst = generateRandomString(12);
     var excel = Excel.createExcel();
@@ -99,9 +96,9 @@ Future exportAdminsTimesheetToExcel(List<dynamic> item) async {
             departmentName,
             email,
             userStatus,
-            dateCreated.split('-')[2], // Năm
-            dateCreated.split('-')[1], // Tháng
-            dateCreated.split('-')[0], // Ngày
+            dateCreated.split('-')[2],
+            dateCreated.split('-')[1],
+            dateCreated.split('-')[0],
             timesheetStatus,
             shiftName,
             shiftStartTime,
@@ -118,15 +115,15 @@ Future exportAdminsTimesheetToExcel(List<dynamic> item) async {
           departmentName,
           email,
           userStatus,
-          dateCreated.split('-')[2], // Năm
-          dateCreated.split('-')[1], // Tháng
-          dateCreated.split('-')[0], // Ngày
+          dateCreated.split('-')[2],
+          dateCreated.split('-')[1],
+          dateCreated.split('-')[0],
           timesheetStatus,
           shiftName,
           shiftStartTime,
           shiftEndTime,
-          '', // Giờ check-in NV
-          '' // Giờ check-out NV
+          ''
+              ''
         ]);
       }
     }

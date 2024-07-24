@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'operation_create_model.dart';
 export 'operation_create_model.dart';
@@ -62,17 +63,17 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Container(
           width: double.infinity,
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxHeight: 650.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 3.0,
                 color: Color(0x33000000),
@@ -88,19 +89,19 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
               width: 1.0,
             ),
           ),
-          alignment: const AlignmentDirectional(0.0, 1.0),
+          alignment: AlignmentDirectional(0.0, 1.0),
           child: Form(
             key: _model.formKey,
             autovalidateMode: AutovalidateMode.disabled,
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(16.0),
                       child: SingleChildScrollView(
                         primary: false,
                         child: Column(
@@ -192,7 +193,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 16.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -256,7 +257,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                contentPadding: const EdgeInsets.all(16.0),
+                                contentPadding: EdgeInsets.all(16.0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -320,7 +321,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 16.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -349,7 +350,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                     'to_do_list',
                                     'approve'
                                   ]),
-                                  optionLabels: const [
+                                  optionLabels: [
                                     'Nhập văn bản',
                                     'Chụp ảnh',
                                     'Upload file',
@@ -379,7 +380,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                       : FlutterFlowTheme.of(context).alternate,
                                   borderWidth: 1.0,
                                   borderRadius: 8.0,
-                                  margin: const EdgeInsetsDirectional.fromSTEB(
+                                  margin: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
                                   hidesUnderline: true,
                                   isOverButton: true,
@@ -395,7 +396,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                 ),
                                 if (_model.checkHD == '1')
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Yêu cầu chọn kiểu hành động',
@@ -412,10 +413,10 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                           ),
                                     ),
                                   ),
-                              ].divide(const SizedBox(height: 6.0)),
+                              ].divide(SizedBox(height: 6.0)),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   12.0, 0.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -437,7 +438,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                     value: _model.switchValue!,
                                     onChanged: (newValue) async {
                                       setState(
-                                          () => _model.switchValue = newValue);
+                                          () => _model.switchValue = newValue!);
                                     },
                                     activeColor: FlutterFlowTheme.of(context)
                                         .primaryBackground,
@@ -449,24 +450,24 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                         FlutterFlowTheme.of(context)
                                             .secondaryText,
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
-                          ].divide(const SizedBox(height: 16.0)),
+                          ].divide(SizedBox(height: 16.0)),
                         ),
                       ),
                     ),
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 12.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
@@ -475,9 +476,9 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                               text: 'Hủy',
                               options: FFButtonOptions(
                                 height: 44.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -504,7 +505,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var shouldSetState = false;
+                              var _shouldSetState = false;
 
                               setState(() {});
                               if (_model.dropDownValue != null &&
@@ -520,19 +521,19 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
-                                          title: const Text('Xác nhận'),
+                                          title: Text('Xác nhận'),
                                           content:
-                                              const Text('Bạn chắc chắn muốn lưu?'),
+                                              Text('Bạn chắc chắn muốn lưu?'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext, false),
-                                              child: const Text('Hủy'),
+                                              child: Text('Hủy'),
                                             ),
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext, true),
-                                              child: const Text('Xác nhận'),
+                                              child: Text('Xác nhận'),
                                             ),
                                           ],
                                         );
@@ -542,7 +543,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                 if (confirmDialogResponse) {
                                   _model.apiResuftRefreshTokenOperaAdd =
                                       await action_blocks.tokenReload(context);
-                                  shouldSetState = true;
+                                  _shouldSetState = true;
                                   if (_model.apiResuftRefreshTokenOperaAdd!) {
                                     _model.apiResultOperationAdd =
                                         await OperationGroup.operationAddCall
@@ -560,7 +561,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                       },
                                     );
 
-                                    shouldSetState = true;
+                                    _shouldSetState = true;
                                     if ((_model
                                             .apiResultOperationAdd?.succeeded ??
                                         true)) {
@@ -576,7 +577,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                             ),
                                           ),
                                           duration:
-                                              const Duration(milliseconds: 4000),
+                                              Duration(milliseconds: 4000),
                                           backgroundColor:
                                               FlutterFlowTheme.of(context)
                                                   .secondary,
@@ -587,11 +588,11 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                     }
                                   } else {
                                     setState(() {});
-                                    if (shouldSetState) setState(() {});
+                                    if (_shouldSetState) setState(() {});
                                     return;
                                   }
                                 } else {
-                                  if (shouldSetState) setState(() {});
+                                  if (_shouldSetState) setState(() {});
                                   return;
                                 }
                               } else {
@@ -601,18 +602,18 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                     !_model.formKey.currentState!.validate()) {
                                   return;
                                 }
-                                if (shouldSetState) setState(() {});
+                                if (_shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (shouldSetState) setState(() {});
+                              if (_shouldSetState) setState(() {});
                             },
                             text: 'Lưu',
                             options: FFButtonOptions(
                               height: 44.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -623,7 +624,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

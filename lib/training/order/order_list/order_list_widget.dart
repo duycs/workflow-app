@@ -1,15 +1,21 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/order/filter_order_list/filter_order_list_widget.dart';
 import '/training/order/order_detail/order_detail_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'order_list_model.dart';
@@ -86,7 +92,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
               context.pushNamed(
                 'Profile',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -104,7 +110,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -118,21 +124,22 @@ class _OrderListWidgetState extends State<OrderListWidget> {
               children: [
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 12.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                        child: SizedBox(
+                        child: Container(
                           width: double.infinity,
                           child: TextFormField(
                             controller: _model.searchTextController,
                             focusNode: _model.searchFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.searchTextController',
-                              const Duration(milliseconds: 500),
+                              Duration(milliseconds: 500),
                               () async {
-                                if (_model.searchTextController.text != '') {
+                                if (_model.searchTextController.text != null &&
+                                    _model.searchTextController.text != '') {
                                   setState(() => _model.listViewPagingController
                                       ?.refresh());
                                 } else {
@@ -162,7 +169,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
@@ -192,7 +199,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
                                   .primaryBackground,
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 8.0, 0.0, 8.0),
                               prefixIcon: Icon(
                                 Icons.search_sharp,
@@ -206,6 +213,8 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                       onTap: () async {
                                         _model.searchTextController?.clear();
                                         if (_model.searchTextController.text !=
+                                                null &&
+                                            _model.searchTextController.text !=
                                                 '') {
                                           setState(() => _model
                                               .listViewPagingController
@@ -218,7 +227,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
 
                                         setState(() {});
                                       },
-                                      child: const Icon(
+                                      child: Icon(
                                         Icons.clear,
                                         color: Color(0xFF757575),
                                         size: 16.0,
@@ -242,7 +251,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: FlutterFlowIconButton(
                           borderColor: Colors.transparent,
                           borderRadius: 10.0,
@@ -306,30 +315,36 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                     ],
                   ),
                 ),
-                if (((_model.searchTextController.text != '') &&
+                if (((_model.searchTextController.text != null &&
+                            _model.searchTextController.text != '') &&
                         (_model.searchTextController.text != '') &&
                         (_model.searchTextController.text != ' ')) ||
-                    ((_model.statusFilter != '') &&
+                    ((_model.statusFilter != null &&
+                            _model.statusFilter != '') &&
                         (_model.statusFilter != '') &&
                         (_model.statusFilter != ' ')) ||
-                    ((_model.privateFilter != '') &&
+                    ((_model.privateFilter != null &&
+                            _model.privateFilter != '') &&
                         (_model.privateFilter != '') &&
                         (_model.privateFilter != ' ')) ||
-                    ((_model.codeFilter != '') &&
+                    ((_model.codeFilter != null && _model.codeFilter != '') &&
                         (_model.codeFilter != '') &&
                         (_model.codeFilter != ' ')) ||
-                    ((_model.authorFilter != '') &&
+                    ((_model.authorFilter != null &&
+                            _model.authorFilter != '') &&
                         (_model.authorFilter != '') &&
                         (_model.authorFilter != ' ')) ||
-                    ((_model.dateStartFilter != '') &&
+                    ((_model.dateStartFilter != null &&
+                            _model.dateStartFilter != '') &&
                         (_model.dateStartFilter != '') &&
                         (_model.dateStartFilter != ' ')) ||
-                    ((_model.dateEndFilter != '') &&
+                    ((_model.dateEndFilter != null &&
+                            _model.dateEndFilter != '') &&
                         (_model.dateEndFilter != '') &&
                         (_model.dateEndFilter != ' ')))
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
                     child: Text(
                       '#Kết quả tìm kiếm theo bộ lọc',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -343,7 +358,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                   ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                     child: PagedListView<ApiPagingParams, dynamic>.separated(
                       pagingController: _model.setListViewController(
                         (nextPageMarker) => OrderGroup.getListOrderCall.call(
@@ -357,9 +372,9 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                           ).toString()}\"}},{\"customer_id\":{\"id\":{\"_eq\":\"${getJsonField(
                             FFAppState().staffLogin,
                             r'''$.id''',
-                          ).toString()}\"}}}${(_model.searchTextController.text != '') && (_model.searchTextController.text != ' ') ? ',{\"program_order_items\":{\"program_id\":{\"name\":{\"_icontains\":\"${_model.searchTextController.text}\"}}}}' : ' '}${(_model.statusFilter != '') && (_model.statusFilter != '') && (_model.statusFilter != '') ? ',{\"status\":{\"_eq\":\"${_model.statusFilter == 'Nháp' ? 'draft' : 'published'}\"}}' : ' '}${(_model.privateFilter != '') && (_model.privateFilter != '') && (_model.privateFilter != '') ? ',{\"private\":{\"_eq\":\"${_model.privateFilter == 'Cá nhân' ? '1' : '0'}\"}}' : ' '}${(_model.codeFilter != '') && (_model.codeFilter != '') && (_model.codeFilter != '') ? ',{\"code\":{\"_icontains\":\"${_model.codeFilter}\"}}' : ' '}${(_model.authorFilter != '') && (_model.authorFilter != '') && (_model.authorFilter != '') ? ',{\"program_order_items\":{\"program_id\":{\"author_id\":{\"alias\":{\"_icontains\":\"${_model.authorFilter}\"}}}}}' : ' '}${(_model.dateStartFilter != '') && (_model.dateStartFilter != '') && (_model.dateStartFilter != '') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStartFilter}\"}}' : ' '}${(_model.dateEndFilter != '') && (_model.dateEndFilter != '') && (_model.dateEndFilter != '') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
+                          ).toString()}\"}}}${(_model.searchTextController.text != null && _model.searchTextController.text != '') && (_model.searchTextController.text != ' ') ? ',{\"program_order_items\":{\"program_id\":{\"name\":{\"_icontains\":\"${_model.searchTextController.text}\"}}}}' : ' '}${(_model.statusFilter != null && _model.statusFilter != '') && (_model.statusFilter != '') && (_model.statusFilter != '') ? ',{\"status\":{\"_eq\":\"${_model.statusFilter == 'Nháp' ? 'draft' : 'published'}\"}}' : ' '}${(_model.privateFilter != null && _model.privateFilter != '') && (_model.privateFilter != '') && (_model.privateFilter != '') ? ',{\"private\":{\"_eq\":\"${_model.privateFilter == 'Cá nhân' ? '1' : '0'}\"}}' : ' '}${(_model.codeFilter != null && _model.codeFilter != '') && (_model.codeFilter != '') && (_model.codeFilter != '') ? ',{\"code\":{\"_icontains\":\"${_model.codeFilter}\"}}' : ' '}${(_model.authorFilter != null && _model.authorFilter != '') && (_model.authorFilter != '') && (_model.authorFilter != '') ? ',{\"program_order_items\":{\"program_id\":{\"author_id\":{\"alias\":{\"_icontains\":\"${_model.authorFilter}\"}}}}}' : ' '}${(_model.dateStartFilter != null && _model.dateStartFilter != '') && (_model.dateStartFilter != '') && (_model.dateStartFilter != '') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStartFilter}\"}}' : ' '}${(_model.dateEndFilter != null && _model.dateEndFilter != '') && (_model.dateEndFilter != '') && (_model.dateEndFilter != '') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
                                   return DateTime.parse(var1)
-                                      .add(const Duration(days: 1))
+                                      .add(Duration(days: 1))
                                       .toString();
                                 }(_model.dateEndFilter)}\"}}' : ' '}]}',
                           sort: '-date_created',
@@ -370,7 +385,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                       shrinkWrap: true,
                       reverse: false,
                       scrollDirection: Axis.vertical,
-                      separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                      separatorBuilder: (_, __) => SizedBox(height: 10.0),
                       builderDelegate: PagedChildBuilderDelegate<dynamic>(
                         // Customize what your widget looks like when it's loading the first page.
                         firstPageProgressIndicatorBuilder: (_) => Center(
@@ -396,7 +411,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                             ),
                           ),
                         ),
-                        noItemsFoundIndicatorBuilder: (_) => const SizedBox(
+                        noItemsFoundIndicatorBuilder: (_) => Container(
                           width: double.infinity,
                           child: DataNotFoundWidget(),
                         ),
@@ -420,7 +435,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: GestureDetector(
@@ -431,7 +446,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                       _model.unfocusNode)
                                               : FocusScope.of(context)
                                                   .unfocus(),
-                                          child: SizedBox(
+                                          child: Container(
                                             height: MediaQuery.sizeOf(context)
                                                     .height *
                                                 1.0,
@@ -497,12 +512,12 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                   ).then((value) => setState(() {}));
                                 },
                                 child: Container(
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 8.0, 8.0, 8.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
@@ -512,7 +527,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                 Container(
                                                   width: 100.0,
                                                   height: 110.0,
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   child: ClipRRect(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -535,7 +550,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           4.0, 4.0, 0.0, 0.0),
                                                   child: Container(
@@ -564,11 +579,11 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                       ),
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       2.0,
@@ -615,7 +630,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 4.0),
                                                     child: RichText(
@@ -627,7 +642,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                           TextSpan(
                                                             text:
                                                                 '#${(dataListIndex + 1).toString()}: ',
-                                                            style: const TextStyle(),
+                                                            style: TextStyle(),
                                                           ),
                                                           TextSpan(
                                                             text: dataListItem
@@ -675,7 +690,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       4.0,
@@ -719,7 +734,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                 ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 4.0)),
+                                                        SizedBox(width: 4.0)),
                                                   ),
                                                   Row(
                                                     mainAxisSize:
@@ -736,14 +751,14 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       4.0,
                                                                       0.0,
                                                                       0.0),
                                                           child: Text(
-                                                            dateTimeFormat(
+                                                            '${dateTimeFormat(
                                                               'dd/MM/yyyy',
                                                               functions.stringToDateTime(
                                                                   dataListItem
@@ -751,7 +766,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                               locale: FFLocalizations
                                                                       .of(context)
                                                                   .languageCode,
-                                                            ),
+                                                            )}',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .labelMedium
@@ -766,7 +781,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                       ),
                                                       Expanded(
                                                         child: Text(
-                                                          formatNumber(
+                                                          '${formatNumber(
                                                             functions.stringToInt(
                                                                 dataListItem
                                                                     .totalPrice),
@@ -776,7 +791,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                             decimalType:
                                                                 DecimalType
                                                                     .commaDecimal,
-                                                          ),
+                                                          )}',
                                                           textAlign:
                                                               TextAlign.end,
                                                           style: FlutterFlowTheme
@@ -792,7 +807,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 4.0)),
+                                                        SizedBox(width: 4.0)),
                                                   ),
                                                   Row(
                                                     mainAxisSize:
@@ -809,7 +824,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       4.0,
@@ -859,11 +874,11 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         4.0,
@@ -888,15 +903,15 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 4.0)),
+                                                        SizedBox(width: 4.0)),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
-                                      const Divider(
+                                      Divider(
                                         height: 1.0,
                                         thickness: 1.0,
                                         color: Color(0x5057636C),

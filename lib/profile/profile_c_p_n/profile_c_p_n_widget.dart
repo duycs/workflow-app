@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -7,8 +8,11 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'profile_c_p_n_model.dart';
@@ -84,7 +88,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -93,7 +97,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
           child: Stack(
             children: [
               if (_model.isLoad == false)
-                SizedBox(
+                Container(
                   width: double.infinity,
                   height: double.infinity,
                   child: custom_widgets.LoadingPageWidget(
@@ -112,7 +116,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                       Stack(
                         children: [
                           ClipRRect(
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(16.0),
                               bottomRight: Radius.circular(16.0),
                               topLeft: Radius.circular(0.0),
@@ -125,12 +129,12 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 1.0),
+                            alignment: AlignmentDirectional(0.0, 1.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 200.0, 0.0, 0.0),
                               child: ClipRRect(
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(0.0),
                                   bottomRight: Radius.circular(0.0),
                                   topLeft: Radius.circular(16.0),
@@ -145,7 +149,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                     decoration: BoxDecoration(
                                       color:
                                           FlutterFlowTheme.of(context).accent4,
-                                      borderRadius: const BorderRadius.only(
+                                      borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(0.0),
                                         bottomRight: Radius.circular(0.0),
                                         topLeft: Radius.circular(16.0),
@@ -153,15 +157,15 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Container(
-                                        constraints: const BoxConstraints(
+                                        constraints: BoxConstraints(
                                           maxWidth: 800.0,
                                         ),
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
-                                          boxShadow: const [
+                                          boxShadow: [
                                             BoxShadow(
                                               blurRadius: 3.0,
                                               color: Color(0x33000000),
@@ -175,7 +179,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                               BorderRadius.circular(12.0),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(12.0),
+                                          padding: EdgeInsets.all(12.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             crossAxisAlignment:
@@ -212,11 +216,11 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                             .textScaler,
                                                     text: TextSpan(
                                                       children: [
-                                                        const TextSpan(
+                                                        TextSpan(
                                                           text: ' ',
                                                           style: TextStyle(),
                                                         ),
-                                                        const TextSpan(
+                                                        TextSpan(
                                                           text: 'Hotline: ',
                                                           style: TextStyle(),
                                                         ),
@@ -238,7 +242,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                   .organizationDetail!
                                                                   .hotline
                                                               : 'Chưa có Hotline',
-                                                          style: const TextStyle(),
+                                                          style: TextStyle(),
                                                         )
                                                       ],
                                                       style:
@@ -284,10 +288,10 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                         size: 20.0,
                                                       ),
                                                       options: FFButtonOptions(
-                                                        padding: const EdgeInsets.all(
+                                                        padding: EdgeInsets.all(
                                                             12.0),
                                                         iconPadding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -331,7 +335,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                 .secondaryBackground,
                                                       ),
                                                     ),
-                                                ].divide(const SizedBox(width: 8.0)),
+                                                ].divide(SizedBox(width: 8.0)),
                                               ),
                                               Divider(
                                                 height: 16.0,
@@ -369,7 +373,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                             ?.branchs)!
                                                                         .isNotEmpty) ==
                                                                 true
-                                                            ? '${_model.organizationDetail?.branchs.where((e) => (_model.organizationDetail!.branchs.isNotEmpty) && (e.status == 'published')).toList().length.toString()} Chi nhánh'
+                                                            ? '${_model.organizationDetail?.branchs?.where((e) => (_model.organizationDetail!.branchs.length > 0) && (e.status == 'published')).toList()?.length?.toString()} Chi nhánh'
                                                             : '0 Chi nhánh',
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -383,7 +387,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                 ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 2.0)),
+                                                        SizedBox(width: 2.0)),
                                                   ),
                                                   Row(
                                                     mainAxisSize:
@@ -400,10 +404,12 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                         size: 20.0,
                                                       ),
                                                       Text(
-                                                        (_model.organizationDetail!.branchs.isNotEmpty) &&
-                                                                ((_model.organizationDetail?.branchs.where((e) => e.departments.where((e) => e.status == 'published').toList().isNotEmpty).toList() !=
+                                                        (_model.organizationDetail!.branchs
+                                                                        .length >
+                                                                    0) &&
+                                                                ((_model.organizationDetail?.branchs?.where((e) => e.departments.where((e) => e.status == 'published').toList().isNotEmpty).toList() !=
                                                                             null &&
-                                                                        (_model.organizationDetail?.branchs.where((e) => e.departments.where((e) => e.status == 'published').toList().isNotEmpty).toList())!
+                                                                        (_model.organizationDetail?.branchs?.where((e) => e.departments.where((e) => e.status == 'published').toList().isNotEmpty).toList())!
                                                                             .isNotEmpty) ==
                                                                     true)
                                                             ? '${((List<int> var1) {
@@ -425,7 +431,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                 ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 2.0)),
+                                                        SizedBox(width: 2.0)),
                                                   ),
                                                   Row(
                                                     mainAxisSize:
@@ -444,17 +450,18 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                       ),
                                                       Text(
                                                         _model.organizationDetail!
-                                                                    .staffs.isNotEmpty
+                                                                    .staffs.length >
+                                                                0
                                                             ? '${valueOrDefault<String>(
                                                                 _model
                                                                     .organizationDetail
                                                                     ?.staffs
-                                                                    .where((e) =>
+                                                                    ?.where((e) =>
                                                                         e.status ==
                                                                         'active')
                                                                     .toList()
-                                                                    .length
-                                                                    .toString(),
+                                                                    ?.length
+                                                                    ?.toString(),
                                                                 '0',
                                                               )} Nhân viên'
                                                             : '0Nhân viên',
@@ -470,12 +477,12 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                 ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 2.0)),
+                                                        SizedBox(width: 2.0)),
                                                   ),
                                                 ],
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 8.0, 0.0, 8.0),
                                                 child: Row(
@@ -491,7 +498,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           extra: <String,
                                                               dynamic>{
                                                             kTransitionInfoKey:
-                                                                const TransitionInfo(
+                                                                TransitionInfo(
                                                               hasTransition:
                                                                   true,
                                                               transitionType:
@@ -515,10 +522,10 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                         size: 20.0,
                                                       ),
                                                       options: FFButtonOptions(
-                                                        padding: const EdgeInsets.all(
+                                                        padding: EdgeInsets.all(
                                                             12.0),
                                                         iconPadding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -566,7 +573,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 6.0),
                                                 child: Text(
@@ -596,7 +603,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                       .secondaryBackground,
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 6.0),
                                                   child: Row(
@@ -621,13 +628,13 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                 _model
                                                                     .organizationDetail
                                                                     ?.staffs
-                                                                    .where((e) =>
+                                                                    ?.where((e) =>
                                                                         e.userId
                                                                             .role ==
                                                                         '82073000-1ba2-43a4-a55c-459d17c23b68')
                                                                     .toList()
-                                                                    .first
-                                                                    .id,
+                                                                    ?.first
+                                                                    ?.id,
                                                                 ParamType
                                                                     .String,
                                                               ),
@@ -635,7 +642,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                             extra: <String,
                                                                 dynamic>{
                                                               kTransitionInfoKey:
-                                                                  const TransitionInfo(
+                                                                  TransitionInfo(
                                                                 hasTransition:
                                                                     true,
                                                                 transitionType:
@@ -669,7 +676,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsets.all(
+                                                                EdgeInsets.all(
                                                                     2.0),
                                                             child: ClipRRect(
                                                               borderRadius:
@@ -678,7 +685,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                           90.0),
                                                               child:
                                                                   Image.network(
-                                                                '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.staffs.where((e) => e.userId.role == '82073000-1ba2-43a4-a55c-459d17c23b68').toList().first.userId.avatar}?access_token=${FFAppState().accessToken}',
+                                                                '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.staffs?.where((e) => e.userId.role == '82073000-1ba2-43a4-a55c-459d17c23b68').toList()?.first?.userId?.avatar}?access_token=${FFAppState().accessToken}',
                                                                 width: 40.0,
                                                                 height: 40.0,
                                                                 fit: BoxFit
@@ -711,7 +718,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -769,30 +776,30 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                             ),
                                                             if ((_model.organizationDetail
                                                                             ?.staffs
-                                                                            .where((e) =>
+                                                                            ?.where((e) =>
                                                                                 e.userId.role ==
                                                                                 '82073000-1ba2-43a4-a55c-459d17c23b68')
                                                                             .toList()
-                                                                            .first
-                                                                            .title !=
+                                                                            ?.first
+                                                                            ?.title !=
                                                                         null &&
                                                                     _model.organizationDetail
                                                                             ?.staffs
-                                                                            .where((e) =>
+                                                                            ?.where((e) =>
                                                                                 e.userId.role ==
                                                                                 '82073000-1ba2-43a4-a55c-459d17c23b68')
                                                                             .toList()
-                                                                            .first
-                                                                            .title !=
+                                                                            ?.first
+                                                                            ?.title !=
                                                                         '') &&
                                                                 (_model.organizationDetail
                                                                         ?.staffs
-                                                                        .where((e) =>
+                                                                        ?.where((e) =>
                                                                             e.userId.role ==
                                                                             '82073000-1ba2-43a4-a55c-459d17c23b68')
                                                                         .toList()
-                                                                        .first
-                                                                        .title !=
+                                                                        ?.first
+                                                                        ?.title !=
                                                                     'null'))
                                                               Text(
                                                                 _model
@@ -815,12 +822,12 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                           0.0,
                                                                     ),
                                                               ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               height: 1.0)),
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 12.0)),
+                                                        SizedBox(width: 12.0)),
                                                   ),
                                                 ),
                                               ),
@@ -829,10 +836,10 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                   ?.staffs)!
                                                               .isNotEmpty) ==
                                                       true) &&
-                                                  ((_model.organizationDetail?.staffs.where((e) => e.userId.role == 'a8d33527-375b-4599-ac70-6a3fcad1de39').toList() != null &&
+                                                  ((_model.organizationDetail?.staffs?.where((e) => e.userId.role == 'a8d33527-375b-4599-ac70-6a3fcad1de39').toList() != null &&
                                                           (_model.organizationDetail
                                                                   ?.staffs
-                                                                  .where((e) =>
+                                                                  ?.where((e) =>
                                                                       e.userId.role ==
                                                                       'a8d33527-375b-4599-ac70-6a3fcad1de39')
                                                                   .toList())!
@@ -843,17 +850,19 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           .where((e) =>
                                                               e.userId.role ==
                                                               'a8d33527-375b-4599-ac70-6a3fcad1de39')
-                                                          .toList().isNotEmpty))
+                                                          .toList()
+                                                          .length >
+                                                      0))
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Container(
                                                     height: 140.0,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -864,14 +873,14 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           final adminBranch = _model
                                                                   .organizationDetail
                                                                   ?.staffs
-                                                                  .where((e) =>
+                                                                  ?.where((e) =>
                                                                       (e.userId
                                                                               .role ==
                                                                           'a8d33527-375b-4599-ac70-6a3fcad1de39') &&
                                                                       (e.status ==
                                                                           'active'))
                                                                   .toList()
-                                                                  .toList() ??
+                                                                  ?.toList() ??
                                                               [];
 
                                                           return ListView
@@ -887,7 +896,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                     .length,
                                                             separatorBuilder: (_,
                                                                     __) =>
-                                                                const SizedBox(
+                                                                SizedBox(
                                                                     width: 8.0),
                                                             itemBuilder: (context,
                                                                 adminBranchIndex) {
@@ -922,7 +931,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                     extra: <String,
                                                                         dynamic>{
                                                                       kTransitionInfoKey:
-                                                                          const TransitionInfo(
+                                                                          TransitionInfo(
                                                                         hasTransition:
                                                                             true,
                                                                         transitionType:
@@ -941,7 +950,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .secondaryBackground,
-                                                                    boxShadow: const [
+                                                                    boxShadow: [
                                                                       BoxShadow(
                                                                         color: Color(
                                                                             0x34090F13),
@@ -963,7 +972,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                   child:
                                                                       Padding(
                                                                     padding:
-                                                                        const EdgeInsets.all(
+                                                                        EdgeInsets.all(
                                                                             8.0),
                                                                     child:
                                                                         Column(
@@ -996,7 +1005,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               4.0,
                                                                               0.0,
@@ -1015,7 +1024,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                         Flexible(
                                                                           child:
                                                                               Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 2.0,
                                                                                 0.0,
@@ -1031,7 +1040,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        if ((adminBranchItem.title != '') &&
+                                                                        if ((adminBranchItem.title != null && adminBranchItem.title != '') &&
                                                                             (adminBranchItem.title !=
                                                                                 'null'))
                                                                           Text(
@@ -1063,7 +1072,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                         .alternate,
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 8.0),
                                                 child: Text(
@@ -1092,7 +1101,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           ?.description ==
                                                       'null'))
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 0.0, 8.0),
                                                   child: Text(
@@ -1120,7 +1129,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           ?.description !=
                                                       'null'))
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           6.0, 0.0, 0.0, 8.0),
                                                   child: wrapWithModel(
@@ -1158,7 +1167,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                         .alternate,
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 10.0),
                                                 child: Text(
@@ -1177,7 +1186,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         6.0, 0.0, 6.0, 10.0),
                                                 child: Text(
@@ -1215,7 +1224,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                         .alternate,
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 10.0),
                                                 child: Text(
@@ -1241,7 +1250,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                       ?.video ==
                                                   '1fdaeaf9-74e3-42e9-94b5-acb9f3996949')
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           6.0, 0.0, 0.0, 10.0),
                                                   child: Text(
@@ -1272,7 +1281,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           ?.video !=
                                                       '1fdaeaf9-74e3-42e9-94b5-acb9f3996949'))
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 4.0),
                                                   child: Container(
@@ -1293,7 +1302,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsets.all(8.0),
+                                                          EdgeInsets.all(8.0),
                                                       child:
                                                           FlutterFlowVideoPlayer(
                                                         path:
@@ -1319,7 +1328,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           ?.files)!
                                                       .isNotEmpty)
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 12.0),
                                                   child: Row(
@@ -1328,7 +1337,9 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                     children: [
                                                       if (_model
                                                               .organizationDetail!
-                                                              .files.isNotEmpty)
+                                                              .files
+                                                              .length >
+                                                          0)
                                                         Expanded(
                                                           flex: 3,
                                                           child: InkWell(
@@ -1353,7 +1364,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                       FlutterFlowExpandedImageView(
                                                                     image: Image
                                                                         .network(
-                                                                      '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                      '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.files?.first?.directusFilesId?.id}?access_token=${FFAppState().accessToken}',
                                                                       fit: BoxFit
                                                                           .contain,
                                                                       errorBuilder: (context,
@@ -1369,7 +1380,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                     allowRotation:
                                                                         false,
                                                                     tag:
-                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.files?.first?.directusFilesId?.id}?access_token=${FFAppState().accessToken}',
                                                                     useHeroAnimation:
                                                                         true,
                                                                   ),
@@ -1378,7 +1389,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                             },
                                                             child: Hero(
                                                               tag:
-                                                                  '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                  '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.files?.first?.directusFilesId?.id}?access_token=${FFAppState().accessToken}',
                                                               transitionOnUserGestures:
                                                                   true,
                                                               child: ClipRRect(
@@ -1388,7 +1399,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                             8.0),
                                                                 child: Image
                                                                     .network(
-                                                                  '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                  '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.files?.first?.directusFilesId?.id}?access_token=${FFAppState().accessToken}',
                                                                   width: 190.0,
                                                                   height: 208.0,
                                                                   fit: BoxFit
@@ -1424,7 +1435,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                 2)
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1453,7 +1464,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                             FlutterFlowExpandedImageView(
                                                                           image:
                                                                               Image.network(
-                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[1])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files?[1])?.directusFilesId?.id}?access_token=${FFAppState().accessToken}',
                                                                             fit:
                                                                                 BoxFit.contain,
                                                                             errorBuilder: (context, error, stackTrace) =>
@@ -1465,7 +1476,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                           allowRotation:
                                                                               false,
                                                                           tag:
-                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[1])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files?[1])?.directusFilesId?.id}?access_token=${FFAppState().accessToken}',
                                                                           useHeroAnimation:
                                                                               true,
                                                                         ),
@@ -1474,7 +1485,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                   },
                                                                   child: Hero(
                                                                     tag:
-                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[1])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files?[1])?.directusFilesId?.id}?access_token=${FFAppState().accessToken}',
                                                                     transitionOnUserGestures:
                                                                         true,
                                                                     child:
@@ -1484,7 +1495,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                               8.0),
                                                                       child: Image
                                                                           .network(
-                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[1])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files?[1])?.directusFilesId?.id}?access_token=${FFAppState().accessToken}',
                                                                         width:
                                                                             160.0,
                                                                         height:
@@ -1515,7 +1526,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                 3)
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             4.0,
@@ -1544,7 +1555,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                             FlutterFlowExpandedImageView(
                                                                           image:
                                                                               Image.network(
-                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[2])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files?[2])?.directusFilesId?.id}?access_token=${FFAppState().accessToken}',
                                                                             fit:
                                                                                 BoxFit.contain,
                                                                             errorBuilder: (context, error, stackTrace) =>
@@ -1556,7 +1567,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                           allowRotation:
                                                                               false,
                                                                           tag:
-                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[2])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files?[2])?.directusFilesId?.id}?access_token=${FFAppState().accessToken}',
                                                                           useHeroAnimation:
                                                                               true,
                                                                         ),
@@ -1565,7 +1576,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                   },
                                                                   child: Hero(
                                                                     tag:
-                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[2])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files?[2])?.directusFilesId?.id}?access_token=${FFAppState().accessToken}',
                                                                     transitionOnUserGestures:
                                                                         true,
                                                                     child:
@@ -1575,7 +1586,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                               8.0),
                                                                       child: Image
                                                                           .network(
-                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[2])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files?[2])?.directusFilesId?.id}?access_token=${FFAppState().accessToken}',
                                                                         width:
                                                                             160.0,
                                                                         height:
@@ -1599,23 +1610,24 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                   ),
                                                                 ),
                                                               ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               height: 8.0)),
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 8.0)),
+                                                        SizedBox(width: 8.0)),
                                                   ),
                                                 ),
                                               if ((_model.organizationDetail!
-                                                          .files.isNotEmpty) &&
+                                                          .files.length >
+                                                      0) &&
                                                   (_model.organizationDetail!
                                                       .files.isNotEmpty) &&
                                                   (_model.organizationDetail!
                                                           .files.length >
                                                       3))
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 8.0),
                                                   child: Text(
@@ -1634,7 +1646,8 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                   ),
                                                 ),
                                               if ((_model.organizationDetail!
-                                                          .files.isNotEmpty) &&
+                                                          .files.length >
+                                                      0) &&
                                                   (_model.organizationDetail!
                                                       .files.isNotEmpty) &&
                                                   (_model.organizationDetail!
@@ -1649,7 +1662,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 50.0),
                                                     child: Builder(
@@ -1662,7 +1675,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           padding:
                                                               EdgeInsets.zero,
                                                           gridDelegate:
-                                                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                                              SliverGridDelegateWithFixedCrossAxisCount(
                                                             crossAxisCount: 3,
                                                             crossAxisSpacing:
                                                                 5.0,
@@ -1703,7 +1716,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                         FlutterFlowExpandedImageView(
                                                                       image: Image
                                                                           .network(
-                                                                        '${FFAppConstants.ApiBaseUrl}/assets/$imagesItem?access_token=${FFAppState().accessToken}',
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem}?access_token=${FFAppState().accessToken}',
                                                                         fit: BoxFit
                                                                             .contain,
                                                                         errorBuilder: (context,
@@ -1718,7 +1731,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                       allowRotation:
                                                                           false,
                                                                       tag:
-                                                                          '${FFAppConstants.ApiBaseUrl}/assets/$imagesItem?access_token=${FFAppState().accessToken}',
+                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem}?access_token=${FFAppState().accessToken}',
                                                                       useHeroAnimation:
                                                                           true,
                                                                     ),
@@ -1727,7 +1740,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                               },
                                                               child: Hero(
                                                                 tag:
-                                                                    '${FFAppConstants.ApiBaseUrl}/assets/$imagesItem?access_token=${FFAppState().accessToken}',
+                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem}?access_token=${FFAppState().accessToken}',
                                                                 transitionOnUserGestures:
                                                                     true,
                                                                 child:
@@ -1738,7 +1751,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                               8.0),
                                                                   child: Image
                                                                       .network(
-                                                                    '${FFAppConstants.ApiBaseUrl}/assets/$imagesItem?access_token=${FFAppState().accessToken}',
+                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem}?access_token=${FFAppState().accessToken}',
                                                                     width:
                                                                         300.0,
                                                                     height:
@@ -1779,9 +1792,9 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 23.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -1820,7 +1833,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                     width: 100.0,
                                     height: 100.0,
                                     clipBehavior: Clip.antiAlias,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                     ),
                                     child: Image.network(
@@ -1840,7 +1853,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                           ),
                         ],
                       ),
-                  ].addToEnd(const SizedBox(height: 38.0)),
+                  ].addToEnd(SizedBox(height: 38.0)),
                 ),
               ),
             ],

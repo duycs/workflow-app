@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
@@ -7,20 +8,26 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/news_feed/action_newsfeed/action_newsfeed_widget.dart';
 import '/news_feed/comment_newsfeed/comment_newsfeed_widget.dart';
 import '/news_feed/d_n_f_newsfeed/d_n_f_newsfeed_widget.dart';
 import '/news_feed/newsfeed_create/newsfeed_create_widget.dart';
+import 'dart:math';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'newsfeed_model.dart';
 export 'newsfeed_model.dart';
@@ -106,12 +113,12 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
         body: Stack(
-          alignment: const AlignmentDirectional(0.0, 1.0),
+          alignment: AlignmentDirectional(0.0, 1.0),
           children: [
             Column(
               mainAxisSize: MainAxisSize.max,
@@ -120,17 +127,17 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                 if ('1' == '2')
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 17.0, 0.0, 17.0, 0.0),
                             child: FlutterFlowChoiceChips(
-                              options: const [
+                              options: [
                                 ChipData('Tổ chức'),
                                 ChipData('Chi nhánh'),
                                 ChipData('Bộ phận')
@@ -148,7 +155,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                 setState(() {});
                               },
                               selectedChipStyle: ChipStyle(
-                                backgroundColor: const Color(0x00000000),
+                                backgroundColor: Color(0x00000000),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -157,9 +164,9 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                           FlutterFlowTheme.of(context).primary,
                                       letterSpacing: 0.0,
                                     ),
-                                iconColor: const Color(0x00000000),
+                                iconColor: Color(0x00000000),
                                 iconSize: 0.0,
-                                labelPadding: const EdgeInsetsDirectional.fromSTEB(
+                                labelPadding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 elevation: 0.0,
                                 borderRadius: BorderRadius.circular(8.0),
@@ -175,9 +182,9 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                           .secondaryText,
                                       letterSpacing: 0.0,
                                     ),
-                                iconColor: const Color(0x00000000),
+                                iconColor: Color(0x00000000),
                                 iconSize: 0.0,
-                                labelPadding: const EdgeInsetsDirectional.fromSTEB(
+                                labelPadding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 elevation: 0.0,
                                 borderRadius: BorderRadius.circular(8.0),
@@ -200,13 +207,13 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                   ),
                 Container(
                   height: 56.0,
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
                     child: Column(
                       children: [
                         Align(
-                          alignment: const Alignment(0.0, 0),
+                          alignment: Alignment(0.0, 0),
                           child: TabBar(
                             labelColor: FlutterFlowTheme.of(context).primary,
                             unselectedLabelColor:
@@ -227,8 +234,8 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                 ),
                             indicatorColor:
                                 FlutterFlowTheme.of(context).primary,
-                            padding: const EdgeInsets.all(4.0),
-                            tabs: const [
+                            padding: EdgeInsets.all(4.0),
+                            tabs: [
                               Tab(
                                 text: 'Tổ chức',
                               ),
@@ -297,7 +304,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 4.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -305,7 +312,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 4.0, 0.0),
                                 child: Text(
                                   'Tin tức yêu cầu đọc',
@@ -347,7 +354,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
+                                          kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -401,7 +408,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                 false,
                               ))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 16.0, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderRadius: 90.0,
@@ -475,7 +482,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                               children: [
                                 if ('1' == '2')
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 0.0, 16.0),
                                     child: Builder(
                                       builder: (context) {
@@ -522,7 +529,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       }.withoutNulls,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
-                                                            const TransitionInfo(
+                                                            TransitionInfo(
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
@@ -540,13 +547,13 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                           BorderRadius.circular(
                                                               4.0),
                                                     ),
-                                                    child: SizedBox(
+                                                    child: Container(
                                                       height: 190.0,
                                                       child: Stack(
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Container(
                                                               width: 210.0,
@@ -558,12 +565,13 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                   fit: BoxFit
                                                                       .cover,
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           1.0,
                                                                           -1.0),
                                                                   image: Image
                                                                       .network(
-                                                                    newsfeedRequireItem.images.isNotEmpty
+                                                                    newsfeedRequireItem.images.length >
+                                                                            0
                                                                         ? '${FFAppConstants.ApiBaseUrl}/assets/${newsfeedRequireItem.images.first.directusFilesId.id}?access_token=${FFAppState().accessToken}'
                                                                         : ' ',
                                                                   ).image,
@@ -578,16 +586,16 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                             context)
                                                                         .primaryText
                                                                   ],
-                                                                  stops: const [
+                                                                  stops: [
                                                                     0.0,
                                                                     1.0
                                                                   ],
                                                                   begin:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           -1.0),
                                                                   end:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0,
                                                                           1.0),
                                                                 ),
@@ -597,13 +605,13 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                             4.0),
                                                               ),
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       1.0, 0.0),
                                                             ),
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         0.0,
@@ -673,7 +681,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                           16.0,
                                                                     ),
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           16.0,
@@ -707,7 +715,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                           16.0,
                                                                     ),
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           16.0,
@@ -731,11 +739,11 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                             ),
                                                                       ),
                                                                     ),
-                                                                  ].divide(const SizedBox(
+                                                                  ].divide(SizedBox(
                                                                       width:
                                                                           2.0)),
                                                                 ),
-                                                              ].divide(const SizedBox(
+                                                              ].divide(SizedBox(
                                                                   height: 4.0)),
                                                             ),
                                                           ),
@@ -746,7 +754,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                 ),
                                               );
                                             }).divide(
-                                              const SizedBox(width: 16.0),
+                                              SizedBox(width: 16.0),
                                               filterFn: (newsfeedRequireIndex) {
                                                 final newsfeedRequireItem =
                                                     newsfeedRequire[
@@ -776,7 +784,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
+                                          kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -815,23 +823,23 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       ),
                                     ),
                                   ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                         if ((_model.newsfeedPublished.isNotEmpty) &&
                             (_model.isLoad == true))
                           Container(
                             height: 200.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   12.0, 4.0, 12.0, 1.0),
                               child: Builder(
                                 builder: (context) {
                                   final newsfeedRequireList =
                                       _model.newsfeedPublished.toList();
 
-                                  return SizedBox(
+                                  return Container(
                                     width: double.infinity,
                                     height: 180.0,
                                     child: CarouselSlider.builder(
@@ -868,7 +876,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -887,7 +895,9 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       fit: BoxFit.cover,
                                                       image: Image.network(
                                                         newsfeedRequireListItem
-                                                                    .images.isNotEmpty
+                                                                    .images
+                                                                    .length >
+                                                                0
                                                             ? '${FFAppConstants.ApiBaseUrl}/assets/${newsfeedRequireListItem.images.first.directusFilesId.id}?access_token=${FFAppState().accessToken}'
                                                             : ' ',
                                                       ).image,
@@ -896,13 +906,13 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                         BorderRadius.circular(
                                                             4.0),
                                                   ),
-                                                  child: SizedBox(
+                                                  child: Container(
                                                     height: 190.0,
                                                     child: Stack(
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Container(
                                                             width:
@@ -916,7 +926,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                 fit: BoxFit
                                                                     .cover,
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         1.0,
                                                                         -1.0),
                                                                 image:
@@ -932,16 +942,16 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                       .noColor,
                                                                   Colors.black
                                                                 ],
-                                                                stops: const [
+                                                                stops: [
                                                                   0.0,
                                                                   1.0
                                                                 ],
                                                                 begin:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         -1.0),
                                                                 end:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0, 1.0),
                                                               ),
                                                               borderRadius:
@@ -950,13 +960,13 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                           4.0),
                                                             ),
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     1.0, 0.0),
                                                           ),
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       12.0,
                                                                       0.0,
@@ -1028,7 +1038,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                     size: 16.0,
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1065,7 +1075,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                     size: 16.0,
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1093,11 +1103,11 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                           ),
                                                                     ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     width:
                                                                         2.0)),
                                                               ),
-                                                            ].divide(const SizedBox(
+                                                            ].divide(SizedBox(
                                                                 height: 4.0)),
                                                           ),
                                                         ),
@@ -1140,7 +1150,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -1163,11 +1173,11 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                             4.0),
                                                   ),
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(24.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Row(
@@ -1233,7 +1243,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                           ),
                         if (_model.isLoad == false)
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 56.0),
                             child: Container(
                               width: 100.0,
@@ -1242,7 +1252,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                               ),
-                              child: SizedBox(
+                              child: Container(
                                 width: double.infinity,
                                 height: double.infinity,
                                 child: custom_widgets.LoadingPageWidget(
@@ -1254,20 +1264,20 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                               ),
                             ),
                           ),
-                        if ((_model.newsfeedPublished.isEmpty) &&
+                        if ((_model.newsfeedPublished.length == 0) &&
                             (_model.isLoad == true))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 25.0),
                             child: wrapWithModel(
                               model: _model.dNFNewsfeedModel,
                               updateCallback: () => setState(() {}),
-                              child: const DNFNewsfeedWidget(),
+                              child: DNFNewsfeedWidget(),
                             ),
                           ),
                         if ('1' == '2')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 24.0, 0.0, 0.0),
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
@@ -1275,7 +1285,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 8.0),
                                     child: Container(
                                       height: 27.0,
@@ -1291,10 +1301,10 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       ),
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Text(
                                             '#liênhoan',
@@ -1310,7 +1320,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 8.0),
                                     child: Container(
                                       height: 27.0,
@@ -1326,10 +1336,10 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       ),
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Text(
                                             '#giảiđấu',
@@ -1345,7 +1355,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 8.0),
                                     child: Container(
                                       height: 27.0,
@@ -1361,10 +1371,10 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       ),
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Text(
                                             '#đàotạo',
@@ -1380,22 +1390,22 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                     ),
                                   ),
                                 ]
-                                    .divide(const SizedBox(width: 8.0))
-                                    .addToStart(const SizedBox(width: 16.0))
-                                    .addToEnd(const SizedBox(width: 16.0)),
+                                    .divide(SizedBox(width: 8.0))
+                                    .addToStart(SizedBox(width: 16.0))
+                                    .addToEnd(SizedBox(width: 16.0)),
                               ),
                             ).animateOnPageLoad(
                                 animationsMap['rowOnPageLoadAnimation']!),
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 4.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 0.0, 6.0),
                                 child: Text(
                                   'Tất cả',
@@ -1429,7 +1439,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                 false,
                               ))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 16.0, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderRadius: 90.0,
@@ -1594,7 +1604,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                               offset: nextPageMarker.nextPageNumber * 20,
                             ),
                           ),
-                          padding: const EdgeInsets.fromLTRB(
+                          padding: EdgeInsets.fromLTRB(
                             0,
                             0,
                             0,
@@ -1630,7 +1640,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                               ),
                             ),
                             noItemsFoundIndicatorBuilder: (_) =>
-                                const DNFNewsfeedWidget(),
+                                DNFNewsfeedWidget(),
                             itemBuilder: (context, _, newsfeedIndex) {
                               final newsfeedItem = _model
                                   .listViewPagingController!
@@ -1641,7 +1651,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       .primaryBackground,
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 8.0),
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -1650,7 +1660,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -1658,7 +1668,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 16.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1690,7 +1700,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       }.withoutNulls,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
-                                                            const TransitionInfo(
+                                                            TransitionInfo(
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
@@ -1723,7 +1733,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsets.all(2.0),
+                                                          EdgeInsets.all(2.0),
                                                       child: ClipRRect(
                                                         borderRadius:
                                                             BorderRadius
@@ -1750,7 +1760,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Column(
@@ -1915,7 +1925,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        const TransitionInfo(
+                                                        TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -1979,7 +1989,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                   (newsfeedItem.files.length >
                                                       0)))
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 8.0),
                                               child: InkWell(
                                                 splashColor: Colors.transparent,
@@ -2004,7 +2014,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -2020,7 +2030,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       MediaQuery.of(context)
                                                           .textScaler,
                                                   text: TextSpan(
-                                                    children: const [
+                                                    children: [
                                                       TextSpan(
                                                         text: 'Xem thêm... ',
                                                         style: TextStyle(
@@ -2056,7 +2066,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                   (newsfeedItem.files.length ==
                                                       0)))
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 8.0),
                                               child: custom_widgets.FormatText(
                                                 width: 100.0,
@@ -2075,7 +2085,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -2095,7 +2105,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     BorderRadius.circular(8.0),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding: EdgeInsets.all(8.0),
                                                 child: Builder(
                                                   builder: (context) {
                                                     final imageList =
@@ -2107,7 +2117,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       physics:
                                                           const NeverScrollableScrollPhysics(),
                                                       gridDelegate:
-                                                          const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                                          SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                                         crossAxisCount: 2,
                                                       ),
                                                       crossAxisSpacing: 6.0,
@@ -2242,7 +2252,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                         extra: <String,
                                                                             dynamic>{
                                                                           kTransitionInfoKey:
-                                                                              const TransitionInfo(
+                                                                              TransitionInfo(
                                                                             hasTransition:
                                                                                 true,
                                                                             transitionType:
@@ -2267,7 +2277,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                             BorderRadius.circular(8.0),
                                                                       ),
                                                                       alignment:
-                                                                          const AlignmentDirectional(
+                                                                          AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                       child:
@@ -2319,7 +2329,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                         0) &&
                                                     ('1' == '2'),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(8.0),
+                                                  padding: EdgeInsets.all(8.0),
                                                   child: Builder(
                                                     builder: (context) {
                                                       final videoList =
@@ -2331,7 +2341,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                         physics:
                                                             const NeverScrollableScrollPhysics(),
                                                         gridDelegate:
-                                                            const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                                            SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                                           crossAxisCount: 2,
                                                         ),
                                                         crossAxisSpacing: 6.0,
@@ -2370,7 +2380,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                             ),
                                           Builder(
                                             builder: (context) => Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 6.0),
                                               child: InkWell(
                                                 splashColor: Colors.transparent,
@@ -2389,7 +2399,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                         backgroundColor:
                                                             Colors.transparent,
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -2430,14 +2440,14 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
-                                                    const Icon(
+                                                    Icon(
                                                       Icons.favorite,
                                                       color: Color(0xFFF40A0A),
                                                       size: 18.0,
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -2475,7 +2485,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -2504,7 +2514,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 3.0)),
+                                                      SizedBox(width: 3.0)),
                                                 ),
                                               ),
                                             ),
@@ -2523,7 +2533,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       .length ==
                                                   0)
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 8.0, 0.0),
                                                   child: Semantics(
@@ -2564,7 +2574,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       4.0,
@@ -2601,7 +2611,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                           0.0,
                                                                     ),
                                                               ),
-                                                            ].divide(const SizedBox(
+                                                            ].divide(SizedBox(
                                                                 width: 4.0)),
                                                           ),
                                                         ),
@@ -2617,7 +2627,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       .length >
                                                   0)
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 8.0, 0.0),
                                                   child: InkWell(
@@ -2660,7 +2670,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     4.0,
@@ -2673,7 +2683,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                               MainAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            const Icon(
+                                                            Icon(
                                                               Icons.favorite,
                                                               color: Color(
                                                                   0xFFF40A0A),
@@ -2694,7 +2704,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                         0.0,
                                                                   ),
                                                             ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               width: 4.0)),
                                                         ),
                                                       ),
@@ -2775,7 +2785,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   4.0,
@@ -2836,11 +2846,11 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
               ],
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
               child: wrapWithModel(
                 model: _model.navBarModel,
                 updateCallback: () => setState(() {}),
-                child: const NavBarWidget(
+                child: NavBarWidget(
                   selectedPageIndex: 4,
                 ),
               ),
