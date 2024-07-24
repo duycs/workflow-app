@@ -20,17 +20,18 @@ Future showToast(
   // Tạo overlay entry
   OverlayEntry overlayEntry = OverlayEntry(
     builder: (context) => Positioned(
-      bottom: 0,
+      bottom: 6,
       left: 0,
       right: 0,
       child: Material(
         color: Colors.transparent,
         child: Container(
           width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.symmetric(horizontal: 16.0),
           padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
           decoration: BoxDecoration(
             color: colorBackground,
-            // borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(8.0),
           ),
           child: Text(
             message,

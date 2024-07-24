@@ -589,6 +589,33 @@ class _TimeKeepingLocationUpdateWidgetState
               child: FFButtonWidget(
                 onPressed: () async {
                   var shouldSetState = false;
+                  var confirmDialogResponse = await showDialog<bool>(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: const Text('Xác nhận'),
+                            content: const Text(
+                                'Lưu ý vị trí làm việc là vị trí hiện tại của bạn đang tạo'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext, false),
+                                child: const Text('Hủy'),
+                              ),
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext, true),
+                                child: const Text('Xác nhận'),
+                              ),
+                            ],
+                          );
+                        },
+                      ) ??
+                      false;
+                  if (!confirmDialogResponse) {
+                    if (shouldSetState) setState(() {});
+                    return;
+                  }
                   _model.checkLocationTimeKeepingUpdate =
                       await actions.getCurrentLocationStruct(
                     context,
@@ -596,21 +623,8 @@ class _TimeKeepingLocationUpdateWidgetState
                   shouldSetState = true;
                   if ((_model.checkLocationTimeKeepingUpdate != null &&
                           (_model.checkLocationTimeKeepingUpdate)!
-                              .isNotEmpty) ==
+                              .isNotEmpty) !=
                       true) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Chỉnh sửa thành công',
-                          style: TextStyle(
-                            color: FlutterFlowTheme.of(context).primaryText,
-                          ),
-                        ),
-                        duration: const Duration(milliseconds: 4000),
-                        backgroundColor: FlutterFlowTheme.of(context).secondary,
-                      ),
-                    );
-                  } else {
                     await showDialog(
                       context: context,
                       builder: (alertDialogContext) {
@@ -629,7 +643,6 @@ class _TimeKeepingLocationUpdateWidgetState
                     if (shouldSetState) setState(() {});
                     return;
                   }
-
                   if (_model.formKey.currentState == null ||
                       !_model.formKey.currentState!.validate()) {
                     return;
@@ -660,10 +673,9 @@ class _TimeKeepingLocationUpdateWidgetState
                         'id': _model.dropDownValue1,
                       },
                       'location': <String, dynamic>{
-                        'map': getJsonField(
+                        'coordinates': getJsonField(
                           <String, List<dynamic>>{
-                            'coordinates':
-                                _model.checkLocationTimeKeepingUpdate!,
+                            'map': _model.checkLocationTimeKeepingUpdate!,
                           },
                           r'''$.map''',
                         ),

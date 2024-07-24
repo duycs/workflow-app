@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/timekeeping/individual_timekeeping_details/individual_timekeeping_details_widget.dart';
-import '/timekeeping/time_keeping_checkout/time_keeping_checkout_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -98,16 +97,20 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed(
-                'Home',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
+              if (widget.checkShowFilter == 'adminReport') {
+                context.safePop();
+              } else {
+                context.pushNamed(
+                  'Home',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
+              }
             },
           ),
           title: Text(
@@ -500,29 +503,43 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                           ],
                                         ),
                                       ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: Image.asset(
-                                              'assets/images/export-spreadsheet-512.webp',
-                                              width: 50.0,
-                                              height: 50.0,
-                                              fit: BoxFit.cover,
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await actions
+                                              .exportUserTimesheetToExcel(
+                                            _model.itemTimekeepings!,
+                                          );
+                                        },
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: Image.asset(
+                                                'assets/images/export-spreadsheet-512.webp',
+                                                width: 50.0,
+                                                height: 50.0,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
-                                          ),
-                                          Text(
-                                            'Xuất excel',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ],
+                                            Text(
+                                              'Xuất excel',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ].divide(const SizedBox(width: 16.0)),
                                   ),
@@ -2802,7 +2819,22 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                         ),
                       ),
                     ),
-                  if (widget.checkShowFilter != 'adminReport')
+                  if ((widget.checkShowFilter != 'adminReport') &&
+                      (_model.timeKeepingList
+                              .where((e) =>
+                                  dateTimeFormat(
+                                    'd/M/y',
+                                    functions.stringToDateTime(e.dateCreated),
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  ) ==
+                                  dateTimeFormat(
+                                    'd/M/y',
+                                    getCurrentTimestamp,
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  ))
+                              .toList().isNotEmpty))
                     Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 16.0),
@@ -2819,6 +2851,20 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                 shouldSetState = true;
                                 if (_model.authenticateBiometicsTimeKeeping !=
                                     true) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Lỗi xác thực',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).error,
+                                    ),
+                                  );
                                   if (shouldSetState) setState(() {});
                                   return;
                                 }
@@ -2922,24 +2968,50 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                     shouldSetState = true;
                                     if ((_model.apiResulCheckin?.succeeded ??
                                         true)) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Chấm công thành công',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
+                                      if (getJsonField(
+                                            (_model.apiResulCheckin?.jsonBody ??
+                                                ''),
+                                            r'''$.status''',
+                                          ).toString() !=
+                                          '404') {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Chấm công thành công',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
                                             ),
+                                            duration:
+                                                const Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
                                           ),
-                                          duration:
-                                              const Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                        ),
-                                      );
+                                        );
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Không có ca làm việc',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
+                                            ),
+                                            duration:
+                                                const Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .error,
+                                          ),
+                                        );
+                                      }
                                     } else {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
@@ -2962,8 +3034,28 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                     }
                                   } else {
                                     setState(() {});
+                                    if (shouldSetState) setState(() {});
+                                    return;
                                   }
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        _model.timeKeepingLocation!,
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).error,
+                                    ),
+                                  );
+                                  if (shouldSetState) setState(() {});
+                                  return;
                                 }
+
                                 if (shouldSetState) setState(() {});
                               },
                               text: 'Chấm công vào',
@@ -2997,156 +3089,127 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                             ),
                           ),
                           Expanded(
-                            child: Builder(
-                              builder: (context) => FFButtonWidget(
-                                onPressed: () async {
-                                  var shouldSetState = false;
-                                  await showDialog(
-                                    context: context,
-                                    builder: (dialogContext) {
-                                      return Dialog(
-                                        elevation: 0,
-                                        insetPadding: EdgeInsets.zero,
-                                        backgroundColor: Colors.transparent,
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                        child: GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
-                                          child: const TimeKeepingCheckoutWidget(),
-                                        ),
-                                      );
-                                    },
-                                  ).then((value) => setState(() {}));
-
-                                  _model.authenticateBiometicsTimeKeepingCheckOut =
-                                      await actions
-                                          .authenticateUsingBiometricsSetting();
-                                  shouldSetState = true;
-                                  if (_model
-                                          .authenticateBiometicsTimeKeepingCheckOut !=
-                                      true) {
-                                    if (shouldSetState) setState(() {});
-                                    return;
-                                  }
-                                  _model.timeKeepingLocationCheckOut =
-                                      await actions.timeKeepingLocation(
-                                    _model.timeKeepingList
-                                        .where((e) =>
-                                            dateTimeFormat(
-                                              'd/M/y',
-                                              functions.stringToDateTime(
-                                                  e.dateCreated),
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            ) ==
-                                            dateTimeFormat(
-                                              'd/M/y',
-                                              functions.stringToDateTime(
-                                                  getCurrentTimestamp
-                                                      .toString()),
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            ))
-                                        .toList()
-                                        .first
-                                        .shiftConfigId
-                                        .addressId
-                                        .location
-                                        .coordinates
-                                        .first,
-                                    _model.timeKeepingList
-                                        .where((e) =>
-                                            dateTimeFormat(
-                                              'd/M/y',
-                                              functions.stringToDateTime(
-                                                  e.dateCreated),
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            ) ==
-                                            dateTimeFormat(
-                                              'd/M/y',
-                                              functions.stringToDateTime(
-                                                  getCurrentTimestamp
-                                                      .toString()),
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            ))
-                                        .toList()
-                                        .first
-                                        .shiftConfigId
-                                        .addressId
-                                        .location
-                                        .coordinates
-                                        .last,
-                                    _model.timeKeepingList
-                                        .where((e) =>
-                                            dateTimeFormat(
-                                              'd/M/y',
-                                              functions.stringToDateTime(
-                                                  e.dateCreated),
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            ) ==
-                                            dateTimeFormat(
-                                              'd/M/y',
-                                              functions.stringToDateTime(
-                                                  getCurrentTimestamp
-                                                      .toString()),
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            ))
-                                        .toList()
-                                        .first
-                                        .shiftConfigId
-                                        .addressId
-                                        .meterRange
-                                        .toDouble(),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                var shouldSetState = false;
+                                _model.authenticateBiometicsTimeKeepingCheckOut =
+                                    await actions
+                                        .authenticateUsingBiometricsSetting();
+                                shouldSetState = true;
+                                if (_model
+                                        .authenticateBiometicsTimeKeepingCheckOut !=
+                                    true) {
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
+                                _model.timeKeepingLocationCheckOut =
+                                    await actions.timeKeepingLocation(
+                                  _model.timeKeepingList
+                                      .where((e) =>
+                                          dateTimeFormat(
+                                            'd/M/y',
+                                            functions.stringToDateTime(
+                                                e.dateCreated),
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ) ==
+                                          dateTimeFormat(
+                                            'd/M/y',
+                                            functions.stringToDateTime(
+                                                getCurrentTimestamp.toString()),
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ))
+                                      .toList()
+                                      .first
+                                      .shiftConfigId
+                                      .addressId
+                                      .location
+                                      .coordinates
+                                      .first,
+                                  _model.timeKeepingList
+                                      .where((e) =>
+                                          dateTimeFormat(
+                                            'd/M/y',
+                                            functions.stringToDateTime(
+                                                e.dateCreated),
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ) ==
+                                          dateTimeFormat(
+                                            'd/M/y',
+                                            functions.stringToDateTime(
+                                                getCurrentTimestamp.toString()),
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ))
+                                      .toList()
+                                      .first
+                                      .shiftConfigId
+                                      .addressId
+                                      .location
+                                      .coordinates
+                                      .last,
+                                  _model.timeKeepingList
+                                      .where((e) =>
+                                          dateTimeFormat(
+                                            'd/M/y',
+                                            functions.stringToDateTime(
+                                                e.dateCreated),
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ) ==
+                                          dateTimeFormat(
+                                            'd/M/y',
+                                            functions.stringToDateTime(
+                                                getCurrentTimestamp.toString()),
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ))
+                                      .toList()
+                                      .first
+                                      .shiftConfigId
+                                      .addressId
+                                      .meterRange
+                                      .toDouble(),
+                                );
+                                shouldSetState = true;
+                                if (_model.timeKeepingLocationCheckOut ==
+                                    'Chấm công thành công!') {
+                                  _model.getLocationCheckOut =
+                                      await actions.getCurrentLocationStruct(
+                                    context,
                                   );
                                   shouldSetState = true;
-                                  if (_model.timeKeepingLocationCheckOut ==
-                                      'Chấm công thành công!') {
-                                    _model.getLocationCheckOut =
-                                        await actions.getCurrentLocationStruct(
-                                      context,
+                                  _model.updateRequestStruct(
+                                    (e) => e
+                                      ..type = 'Point'
+                                      ..coordinates =
+                                          _model.getLocationCheckOut!.toList(),
+                                  );
+                                  setState(() {});
+                                  _model.apiCheckOut =
+                                      await action_blocks.tokenReload(context);
+                                  shouldSetState = true;
+                                  if (_model.apiCheckOut!) {
+                                    _model.apiResulCheckOut =
+                                        await GroupTimekeepingsGroup
+                                            .checkOutCall
+                                            .call(
+                                      requestJson: _model.request?.toMap(),
+                                      accessToken: FFAppState().accessToken,
                                     );
-                                    shouldSetState = true;
-                                    _model.updateRequestStruct(
-                                      (e) => e
-                                        ..type = 'Point'
-                                        ..coordinates = _model
-                                            .getLocationCheckOut!
-                                            .toList(),
-                                    );
-                                    setState(() {});
-                                    _model.apiCheckOut = await action_blocks
-                                        .tokenReload(context);
-                                    shouldSetState = true;
-                                    if (_model.apiCheckOut!) {
-                                      _model.apiResulCheckOut =
-                                          await GroupTimekeepingsGroup
-                                              .checkInCall
-                                              .call(
-                                        accessToken: FFAppState().accessToken,
-                                        requestJson: _model.request?.toMap(),
-                                      );
 
-                                      shouldSetState = true;
-                                      if ((_model.apiResulCheckOut?.succeeded ??
-                                          true)) {
+                                    shouldSetState = true;
+                                    if ((_model.apiResulCheckOut?.succeeded ??
+                                        true)) {
+                                      if (getJsonField(
+                                            (_model.apiResulCheckOut
+                                                    ?.jsonBody ??
+                                                ''),
+                                            r'''$.status''',
+                                          ).toString() !=
+                                          '404') {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
@@ -3170,7 +3233,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                             .showSnackBar(
                                           SnackBar(
                                             content: Text(
-                                              'Chấm công thất bại',
+                                              'Không tồn tại ca làm việc',
                                               style: TextStyle(
                                                 color:
                                                     FlutterFlowTheme.of(context)
@@ -3186,39 +3249,79 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                         );
                                       }
                                     } else {
-                                      setState(() {});
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Chấm công thất bại',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .error,
+                                        ),
+                                      );
                                     }
+                                  } else {
+                                    setState(() {});
+                                    if (shouldSetState) setState(() {});
+                                    return;
                                   }
-                                  if (shouldSetState) setState(() {});
-                                },
-                                text: 'Chấm công ra',
-                                icon: const Icon(
-                                  Icons.fingerprint,
-                                  size: 24.0,
-                                ),
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        _model.timeKeepingLocation!,
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
                                       ),
-                                  elevation: 3.0,
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
+                                    ),
+                                  );
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
+
+                                if (shouldSetState) setState(() {});
+                              },
+                              text: 'Chấm công ra',
+                              icon: const Icon(
+                                Icons.fingerprint,
+                                size: 24.0,
+                              ),
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
                                 ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
                           ),

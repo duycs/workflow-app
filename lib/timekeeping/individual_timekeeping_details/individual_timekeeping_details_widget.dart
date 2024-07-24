@@ -166,7 +166,7 @@ class _IndividualTimekeepingDetailsWidgetState
                             color: Color(0x33000000),
                             offset: Offset(
                               0.0,
-                              2.0,
+                              1.0,
                             ),
                           )
                         ],

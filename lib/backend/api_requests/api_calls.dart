@@ -223,7 +223,7 @@ class ShiftConfigsCall {
         'limit': limit,
         'sort': "-date_created",
         'fields[]':
-            "off_week_days, name, branchs.id,branchs.name, departments.id, departments.name, staffs.id, staffs.user_id.first_name, shifts.id, shifts.shifts_id.id, shifts.shifts_id.name, shifts.shifts_id.start_time, shifts.shifts_id.end_time, shifts.shifts_id.normal, id, status, enable, user_created, date_created, address_id, organization_id, address_id.id, address_id.detail, departments.staffs.id, departments.staffs.user_id.first_name,staffs.department_id, staffs.id, staffs.user_id.first_name ",
+            "address_id.meter_range, off_week_days, name, branchs.id,branchs.name, departments.id, departments.name, staffs.id, staffs.user_id.first_name, shifts.id, shifts.shifts_id.id, shifts.shifts_id.name, shifts.shifts_id.start_time, shifts.shifts_id.end_time, shifts.shifts_id.normal, id, status, enable, user_created, date_created, address_id, organization_id, address_id.id, address_id.detail, departments.staffs.id, departments.staffs.user_id.first_name,staffs.department_id, staffs.id, staffs.user_id.first_name ",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -5810,7 +5810,7 @@ class GetTimekeepingsCall {
           'limit': limit,
           'offset': offset,
           'fields[]':
-              "shift_config_id.address_id.meter_range, shift_config_id.address_id.location, id, status, date_created, organization_id, day_number, shift_config_id, staff_id.department_id.name, type,shift_days.id, shift_days.staff_id,staff_id.id, shift_days.day_number, shift_days.shift_id.name, shift_days.shift_id.start_time,  shift_days.shift_id.end_time,shift_days.shift_checks.id, shift_days.shift_checks.checkin, shift_days.shift_checks.checkout, shift_days.shift_checks.location",
+              "shift_config_id.address_id.meter_range, shift_config_id.address_id.location, id, status, date_created, organization_id, day_number, shift_config_id, staff_id.department_id.name, type,shift_days.id, shift_days.staff_id,staff_id.id, shift_days.day_number, shift_days.shift_id.name, shift_days.shift_id.start_time,  shift_days.shift_id.end_time,shift_days.shift_checks.id, shift_days.shift_checks.checkin, shift_days.shift_checks.checkout, shift_days.shift_checks.location,staff_id.title,staff_id.user_id.first_name,staff_id.user_id.status,staff_id.user_id.email,staff_id.phone,staff_id.branch_id.name,shift_days.shift_checks.checkin,shift_days.shift_checks.checkout",
         },
         returnBody: true,
         encodeBodyUtf8: false,
@@ -5854,7 +5854,7 @@ class GetShiftDaysCall {
           'limit': limit,
           'sort': "-date_created",
           'fields[]':
-              "staff_id.user_id.first_name, staff_id.id, shift_checks.id, shift_checks.checkin, shift_checks.checkout, shift_checks.location, day_number, shift_id.name, shift_id.start_time,  shift_id.end_time, id, staff_id.department_id, staff_id.branch_id,staff_id.user_id.id, status,date_created",
+              "staff_id.user_id.first_name, staff_id.id, shift_checks.id, shift_checks.checkin, shift_checks.checkout, shift_checks.location, day_number, shift_id.name, shift_id.start_time,  shift_id.end_time, id, staff_id.department_id, staff_id.branch_id,staff_id.user_id.id, status,date_created,staff_id.department_id.name, staff_id.branch_id.name, staff_id.title, staff_id.user_id.email, staff_id.user_id.status, shift_checks.checkin, shift_checks.checkout",
         },
         returnBody: true,
         encodeBodyUtf8: false,

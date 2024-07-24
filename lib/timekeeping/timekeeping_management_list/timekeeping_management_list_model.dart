@@ -1,6 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'timekeeping_management_list_widget.dart'
     show TimekeepingManagementListWidget;
@@ -27,6 +30,8 @@ class TimekeepingManagementListModel
 
   String idStatus = '';
 
+  dynamic json;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for ListView widget.
@@ -40,6 +45,56 @@ class TimekeepingManagementListModel
   @override
   void dispose() {
     listViewPagingController?.dispose();
+  }
+
+  /// Action blocks.
+  Future getListShiftdays(BuildContext context) async {
+    ApiCallResponse? apiResultGetList;
+    bool? checkRefreshTokenBlock;
+
+    apiResultGetList = await GroupTimekeepingsGroup.getShiftDaysCall.call(
+      accessToken: FFAppState().accessToken,
+      filter: '{\"_and\":[${'{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffOrganization,
+        r'''$.id''',
+      ).toString().toString()}\"}}}'}${(widget!.checkShowParams == 'check') && ((dateStart == '') && (dateEnd == '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month + 1, 1).toString()}\"}}' : ' '}${(widget!.checkShowParams == 'check') && ((dateStart != '') && (dateEnd != '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(dateStart).year, DateTime.parse(dateStart).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(dateEnd).year, DateTime.parse(dateEnd).month + 1, 1).toString()}\"}}' : ' '}${functions.isRoleBranchAdmin(FFAppState().user) ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
+          FFAppState().staffBranch,
+          r'''$.id''',
+        ).toString().toString()}\"}}}' : ' '}${functions.isRoleDepartmentAdmin(FFAppState().user) ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"${getJsonField(
+          FFAppState().staffDepartment,
+          r'''$.id''',
+        ).toString().toString()}\"}}}' : ' '}${widget!.dateFilter != null && widget!.dateFilter != '' ? ',{\"date_created\":{\"_gte\":\"${widget!.dateFilter}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
+          return DateTime.parse(var1).add(const Duration(days: 1)).toString();
+        }(widget!.dateFilter!)}\"}}' : ' '}${(idStaff != '') && (idStaff != 'noData') ? ',{\"staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"$idStaff\"}}}}' : ' '}${(idBranch != '') && (idBranch != 'noData') ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"$idBranch\"}}}' : ' '}${(idDepartment != '') && (idDepartment != 'noData') ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"$idDepartment\"}}}' : ' '}${(idShifts != '') && (idShifts != 'noData') ? ',{\"shift_id\":{\"id\":{\"_eq\":\"$idShifts\"}}}' : ' '}${(idStatus != '') && (idStatus != 'noData') ? ',{\"status\":{\"_eq\":\"$idStatus\"}}' : ' '}]}',
+    );
+
+    if ((apiResultGetList.succeeded ?? true)) {
+      json = getJsonField(
+        (apiResultGetList.jsonBody ?? ''),
+        r'''$.data''',
+      );
+    } else {
+      checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultGetList.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await getListShiftdays(context);
+      }
+    }
   }
 
   /// Additional helper methods.

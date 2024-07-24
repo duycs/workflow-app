@@ -100,7 +100,7 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
   List<double>? getLocationCheckOut;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? apiCheckOut;
-  // Stores action output result for [Backend Call - API (CheckIn)] action in Button widget.
+  // Stores action output result for [Backend Call - API (CheckOut)] action in Button widget.
   ApiCallResponse? apiResulCheckOut;
 
   @override

@@ -201,7 +201,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                         ),
                                               ),
                                               Row(
-                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceBetween,

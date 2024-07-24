@@ -45,7 +45,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : const TimekeepingReportWidget(),
+          : const LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -63,7 +63,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : const TimekeepingReportWidget(),
+              : const LoginWidget(),
         ),
         FFRoute(
           name: 'LessonList_Homepage',

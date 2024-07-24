@@ -4,9 +4,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/timekeeping/timekeeping_management_list_filter/timekeeping_management_list_filter_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +44,12 @@ class _TimekeepingManagementListWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => TimekeepingManagementListModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await _model.getListShiftdays(context);
+      setState(() {});
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -104,118 +112,9 @@ class _TimekeepingManagementListWidgetState
                   ),
                 ),
               ),
-              if (widget.checkShowParams != 'check')
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 16.0, 0.0),
-                  child: Container(
-                    width: 40.0,
-                    height: 50.0,
-                    decoration: const BoxDecoration(),
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset(
-                        'assets/images/export-spreadsheet-512.webp',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 8.0),
-            child: Text(
-              'Báo cáo chấm công của nhân viên',
-              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Nunito Sans',
-                    fontSize: 13.0,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FontStyle.italic,
-                  ),
-            ),
-          ),
-          if ('1' == '2')
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  if (widget.checkShowParams == 'check')
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Lọc theo',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                          ),
-                          Text(
-                            'Chi nhánh/Bộ phận/Nhân viên/Ca/Trạng thái chấm công',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                        ].divide(const SizedBox(height: 3.0)),
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                if (widget.checkShowParams == 'check')
-                  Expanded(
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: 200.0,
-                            height: 50.0,
-                            child: custom_widgets.CustomWidgetDateTime(
-                              width: 200.0,
-                              height: 50.0,
-                              date: getCurrentTimestamp,
-                              action: (dateStart, dateEnd) async {
-                                _model.dateStart = dateStart!;
-                                _model.dateEnd = dateStart;
-                                setState(() {});
-                                setState(() =>
-                                    _model.listViewPagingController?.refresh());
-
-                                setState(() {});
-                              },
-                            ),
-                          ),
-                        ].divide(const SizedBox(height: 3.0)),
-                      ),
-                    ),
-                  ),
-                FlutterFlowIconButton(
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                child: FlutterFlowIconButton(
                   borderColor: Colors.transparent,
                   borderRadius: 10.0,
                   borderWidth: 1.0,
@@ -252,6 +151,7 @@ class _TimekeepingManagementListWidgetState
                                   _model.listViewPagingController?.refresh());
 
                               setState(() {});
+                              await _model.getListShiftdays(context);
                             },
                           ),
                         );
@@ -259,7 +159,238 @@ class _TimekeepingManagementListWidgetState
                     ).then((value) => safeSetState(() {}));
                   },
                 ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 8.0),
+            child: Text(
+              'Báo cáo chấm công của nhân viên',
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Nunito Sans',
+                    fontSize: 13.0,
+                    letterSpacing: 0.0,
+                    fontWeight: FontWeight.normal,
+                    fontStyle: FontStyle.italic,
+                  ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                if (widget.checkShowParams == 'check')
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 200.0,
+                            height: 50.0,
+                            child: custom_widgets.CustomWidgetDateTime(
+                              width: 200.0,
+                              height: 50.0,
+                              date: getCurrentTimestamp,
+                              action: (dateStart, dateEnd) async {
+                                _model.dateStart = dateStart!;
+                                _model.dateEnd = dateStart;
+                                setState(() {});
+                                setState(() =>
+                                    _model.listViewPagingController?.refresh());
+
+                                setState(() {});
+                                await _model.getListShiftdays(context);
+                                setState(() {});
+                              },
+                            ),
+                          ),
+                        ].divide(const SizedBox(height: 3.0)),
+                      ),
+                    ),
+                  ),
               ].divide(const SizedBox(width: 4.0)),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 0.0),
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+                boxShadow: const [
+                  BoxShadow(
+                    blurRadius: 1.0,
+                    color: Color(0x33000000),
+                    offset: Offset(
+                      0.0,
+                      2.0,
+                    ),
+                  )
+                ],
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 12.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Chi tiết chấm công',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  fontSize: 16.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    '100',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          fontSize: 18.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                  Text(
+                                    'Đi làm',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    '12',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          fontSize: 18.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                  Text(
+                                    'Nghỉ phép',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    '05',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          fontSize: 18.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                  Text(
+                                    'Nghỉ không phép',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        await actions.exportAdminsTimesheetToExcel(
+                          _model.json!,
+                        );
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 5.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.asset(
+                                'assets/images/export-spreadsheet-512.webp',
+                                width: 40.0,
+                                height: 40.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Xuất Excel',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
           Expanded(
@@ -342,7 +473,7 @@ class _TimekeepingManagementListWidgetState
                               color: Color(0x33000000),
                               offset: Offset(
                                 0.0,
-                                2.0,
+                                1.0,
                               ),
                             )
                           ],
@@ -645,60 +776,64 @@ class _TimekeepingManagementListWidgetState
                                   ],
                                 ),
                               ),
-                              Align(
-                                alignment: const AlignmentDirectional(1.0, 1.0),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 5.0, 0.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      if (_model.checkShow == '0') {
-                                        _model.checkShow = '1';
-                                        setState(() {});
-                                      } else {
-                                        _model.checkShow = '0';
-                                        setState(() {});
-                                      }
-                                    },
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          'Lịch sử',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        if (_model.checkShow == '0')
-                                          Icon(
-                                            Icons.keyboard_arrow_right,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 16.0,
+                              if (listItemItem.shiftChecks.length > 0)
+                                Align(
+                                  alignment: const AlignmentDirectional(1.0, 1.0),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 5.0, 0.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        if (_model.checkShow == '0') {
+                                          _model.checkShow = '1';
+                                          setState(() {});
+                                        } else {
+                                          _model.checkShow = '0';
+                                          setState(() {});
+                                        }
+                                      },
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            'Lịch sử',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
-                                        if (_model.checkShow == '1')
-                                          Icon(
-                                            Icons.keyboard_arrow_down,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 16.0,
-                                          ),
-                                      ],
+                                          if (_model.checkShow == '0')
+                                            Icon(
+                                              Icons.keyboard_arrow_right,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 16.0,
+                                            ),
+                                          if (_model.checkShow == '1')
+                                            Icon(
+                                              Icons.keyboard_arrow_down,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 16.0,
+                                            ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
                               if (_model.checkShow == '1')
                                 Container(
                                   width: double.infinity,

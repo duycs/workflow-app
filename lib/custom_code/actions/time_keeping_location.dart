@@ -27,27 +27,35 @@ Future<String> timeKeepingLocation(
     if (distanceInMeters <= meters) {
       return "Chấm công thành công!";
     } else {
-      return "Chấm công không thành công";
+      return "Vị trí của bạn không nằm trong phạm vi chấm công";
     }
   } catch (e) {
     return "Chấm công không thành công: $e";
   }
-  // Add your function code here!
 }
 
 Future<Position> _getCurrentLocation() async {
   bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
-    throw Exception("Dịnh vụ định vị đã bị tắt");
+    await Geolocator.openLocationSettings(); // Yêu cầu mở cài đặt định vị
+    throw Exception(
+        "Dịch vụ định vị đã bị tắt. Vui lòng bật định vị và thử lại.");
   }
+
   LocationPermission permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied) {
-    throw Exception("Quyên truy cập bị từ chối");
+    permission = await Geolocator.requestPermission();
+    if (permission != LocationPermission.whileInUse &&
+        permission != LocationPermission.always) {
+      throw Exception("Quyền truy cập bị từ chối");
+    }
   }
 
   if (permission == LocationPermission.deniedForever) {
-    throw Exception("Quyên truy cập bị từ chối vĩnh viễn");
+    throw Exception(
+        "Quyền truy cập bị từ chối vĩnh viễn. Vui lòng vào cài đặt và cấp quyền truy cập.");
   }
+
   return await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high);
 }

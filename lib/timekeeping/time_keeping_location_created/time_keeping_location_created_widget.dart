@@ -584,6 +584,33 @@ class _TimeKeepingLocationCreatedWidgetState
                 child: FFButtonWidget(
                   onPressed: () async {
                     var shouldSetState = false;
+                    var confirmDialogResponse = await showDialog<bool>(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: const Text('Xác nhận'),
+                              content: const Text(
+                                  'Lưu ý: Vị trí làm việc sẽ là vị trí hiện tại của bạn.'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext, false),
+                                  child: const Text('Hủy'),
+                                ),
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext, true),
+                                  child: const Text('Xác nhận'),
+                                ),
+                              ],
+                            );
+                          },
+                        ) ??
+                        false;
+                    if (!confirmDialogResponse) {
+                      if (shouldSetState) setState(() {});
+                      return;
+                    }
                     if (_model.dropDownValue1 != null &&
                         _model.dropDownValue1 != '') {
                       _model.checkCtity = false;
@@ -651,9 +678,12 @@ class _TimeKeepingLocationCreatedWidgetState
                         },
                         'location': <String, dynamic>{
                           'type': 'Point',
-                          'map': <String, List<dynamic>>{
-                            'coordinates': _model.getCurrentLocation!,
-                          },
+                          'coordinates': getJsonField(
+                            <String, List<dynamic>>{
+                              'map': _model.getCurrentLocation!,
+                            },
+                            r'''$.map''',
+                          ),
                         },
                         'organization_id': getJsonField(
                           FFAppState().staffLogin,
