@@ -45,6 +45,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
         setState(() {});
       }
 
+      _model.isLoaded = true;
       setState(() {});
     });
 
