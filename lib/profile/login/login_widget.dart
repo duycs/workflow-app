@@ -1044,8 +1044,19 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                         setState(
                                                                             () {});
 
-                                                                        context.pushNamed(
-                                                                            'TaskList');
+                                                                        context
+                                                                            .goNamed(
+                                                                          'Home',
+                                                                          extra: <String,
+                                                                              dynamic>{
+                                                                            kTransitionInfoKey:
+                                                                                TransitionInfo(
+                                                                              hasTransition: true,
+                                                                              transitionType: PageTransitionType.fade,
+                                                                              duration: Duration(milliseconds: 0),
+                                                                            ),
+                                                                          },
+                                                                        );
 
                                                                         await actions
                                                                             .notifiAddServer(
