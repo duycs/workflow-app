@@ -175,3 +175,5 @@ export '/timekeeping/timekeeping_update/timekeeping_update_widget.dart'
     show TimekeepingUpdateWidget;
 export '/training/lesson/lesson_lists_homepage_branch/lesson_lists_homepage_branch_widget.dart'
     show LessonListsHomepageBranchWidget;
+export '/training/lesson/lessons_list_navbar/lessons_list_navbar_widget.dart'
+    show LessonsListNavbarWidget;

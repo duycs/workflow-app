@@ -1,17 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
-import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.dart';
 import '/training/lesson/no_data/no_data_widget.dart';
-import 'dart:async';
-import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'lesson_lists_homepage_branch_model.dart';
@@ -30,38 +25,11 @@ class _LessonListsHomepageBranchWidgetState
   late LessonListsHomepageBranchModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  late StreamSubscription<bool> _keyboardVisibilitySubscription;
-  bool _isKeyboardVisible = false;
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => LessonListsHomepageBranchModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.tokenReloadLessonListsHomepageList =
-          await action_blocks.tokenReload(context);
-      if (_model.tokenReloadLessonListsHomepageList!) {
-        setState(() {});
-      } else {
-        setState(() {});
-        return;
-      }
-
-      _model.isLoad = true;
-      _model.checkLoading = true;
-      setState(() {});
-    });
-
-    if (!isWeb) {
-      _keyboardVisibilitySubscription =
-          KeyboardVisibilityController().onChange.listen((bool visible) {
-        setState(() {
-          _isKeyboardVisible = visible;
-        });
-      });
-    }
 
     _model.nameSearchTextController ??= TextEditingController();
     _model.nameSearchFocusNode ??= FocusNode();
@@ -73,9 +41,6 @@ class _LessonListsHomepageBranchWidgetState
   void dispose() {
     _model.dispose();
 
-    if (!isWeb) {
-      _keyboardVisibilitySubscription.cancel();
-    }
     super.dispose();
   }
 
@@ -136,8 +101,6 @@ class _LessonListsHomepageBranchWidgetState
                                     '_model.nameSearchTextController',
                                     const Duration(milliseconds: 500),
                                     () async {
-                                      await _model.getListLesson(context);
-                                      setState(() {});
                                       setState(() => _model
                                           .listViewPagingController
                                           ?.refresh());
@@ -210,9 +173,6 @@ class _LessonListsHomepageBranchWidgetState
                                             onTap: () async {
                                               _model.nameSearchTextController
                                                   ?.clear();
-                                              await _model
-                                                  .getListLesson(context);
-                                              setState(() {});
                                               setState(() => _model
                                                   .listViewPagingController
                                                   ?.refresh());
@@ -353,17 +313,17 @@ class _LessonListsHomepageBranchWidgetState
                               accessToken: FFAppState().accessToken,
                               limit: 20,
                               offset: nextPageMarker.nextPageNumber * 20,
-                              filter: '{\"_and\":[{},{\"organization_id\":{\"_eq\":\"${getJsonField(
+                              filter: '{\"_and\":[{}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
                                 FFAppState().staffLogin,
                                 r'''$.organization_id''',
-                              ).toString()}\"}}${_model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${_model.nameSearchTextController.text != '' ? _model.nameSearchTextController.text : ' '}${_model.nameSearchTextController.text != '' ? '\"}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_icontains\":\"' : ' '}${(_model.status != '') && (_model.status != 'noData') ? _model.status : ' '}${(_model.status != '') && (_model.status != 'noData') ? '\"}}' : ' '}${(_model.dateStartList != '') && (_model.dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStartList != '') && (_model.dateStartList != 'noData') ? _model.dateStartList : ' '}${(_model.dateStartList != '') && (_model.dateStartList != 'noData') ? '\"}}' : ' '}${(_model.dateEndList != '') && (_model.dateEndList != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEndList != '') && (_model.dateEndList != 'noData') ? ((String var1) {
+                              ).toString()}\"}},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"id\":{\"_neq\":\"${getJsonField(
+                                FFAppState().staffDepartment,
+                                r'''$.id''',
+                              ).toString()}\"}}}}}},{\"status\":{\"_icontains\":\"published\"}}'}${_model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_eq\":\"${_model.status}\"}}' : ' '}${(_model.dateStartList != '') && (_model.dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStartList}\"}}' : ' '}${(_model.dateEndList != '') && (_model.dateEndList != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
                                   return DateTime.parse(var1)
                                       .add(const Duration(days: 1))
                                       .toString();
-                                }(_model.dateEndList)) : ' '}${(_model.dateEndList != '') && (_model.dateEndList != 'noData') ? '\"}}' : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? ',{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"love\"}}}},{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? FFAppState().staffid : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? '\"}}}}' : ' '}${_model.programsAllId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${_model.programsAllId != '' ? _model.programsAllId : ' '}${_model.programsAllId != '' ? '\"}}}}' : ' '},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"id\":{\"_neq\":\"${getJsonField(
-                                FFAppState().staffDepartment,
-                                r'''$.id''',
-                              ).toString()}\"}}}}}},{\"status\":{\"_eq\":\"published\"}}]}',
+                                }(_model.dateEndList)}\"}}' : ' '},{\"status\":{\"_eq\":\"published\"}}]}',
                             ),
                           ),
                           padding: EdgeInsets.zero,
@@ -408,9 +368,10 @@ class _LessonListsHomepageBranchWidgetState
                             noItemsFoundIndicatorBuilder: (_) => const Center(
                               child: NoDataWidget(),
                             ),
-                            itemBuilder: (context, _, listIndex) {
-                              final listItem = _model.listViewPagingController!
-                                  .itemList![listIndex];
+                            itemBuilder: (context, _, listLessonsIndex) {
+                              final listLessonsItem = _model
+                                  .listViewPagingController!
+                                  .itemList![listLessonsIndex];
                               return InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -421,7 +382,7 @@ class _LessonListsHomepageBranchWidgetState
                                     'LessonDetail',
                                     queryParameters: {
                                       'idLesson': serializeParam(
-                                        listItem.id,
+                                        listLessonsItem.id,
                                         ParamType.String,
                                       ),
                                     }.withoutNulls,
@@ -458,7 +419,7 @@ class _LessonListsHomepageBranchWidgetState
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: Image.network(
-                                            '${FFAppConstants.ApiBaseUrl}/assets/${listItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                            '${FFAppConstants.ApiBaseUrl}/assets/${listLessonsItem.imageCover}?access_token=${FFAppState().accessToken}',
                                             width: 100.0,
                                             height: double.infinity,
                                             fit: BoxFit.cover,
@@ -493,7 +454,7 @@ class _LessonListsHomepageBranchWidgetState
                                                           .stretch,
                                                   children: [
                                                     Text(
-                                                      listItem.name,
+                                                      listLessonsItem.name,
                                                       maxLines: 2,
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -516,7 +477,8 @@ class _LessonListsHomepageBranchWidgetState
                                                                   0.0,
                                                                   4.0),
                                                       child: Text(
-                                                        listItem.description,
+                                                        listLessonsItem
+                                                            .description,
                                                         maxLines: 2,
                                                         style: FlutterFlowTheme
                                                                 .of(context)
@@ -531,7 +493,7 @@ class _LessonListsHomepageBranchWidgetState
                                                       ),
                                                     ),
                                                     Text(
-                                                      'Người tạo: ${listItem.userCreated.firstName}',
+                                                      'Người tạo: ${listLessonsItem.userCreated.firstName}',
                                                       maxLines: 2,
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -558,7 +520,7 @@ class _LessonListsHomepageBranchWidgetState
                                                   ),
                                                   Expanded(
                                                     child: Text(
-                                                      '${listItem.durationHours.toString()} phút',
+                                                      '${listLessonsItem.durationHours.toString()} phút',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodySmall
@@ -588,22 +550,6 @@ class _LessonListsHomepageBranchWidgetState
                 ].addToEnd(const SizedBox(height: 200.0)),
               ),
             ),
-            if (!(isWeb
-                ? MediaQuery.viewInsetsOf(context).bottom > 0
-                : _isKeyboardVisible))
-              Align(
-                alignment: const AlignmentDirectional(0.0, 1.0),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
-                  child: wrapWithModel(
-                    model: _model.navBarModel,
-                    updateCallback: () => setState(() {}),
-                    child: const NavBarWidget(
-                      selectedPageIndex: 8,
-                    ),
-                  ),
-                ),
-              ),
             if (_model.checkLoading == false)
               Container(
                 decoration: const BoxDecoration(),

@@ -1,59 +1,43 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/nav_bar_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:async';
-import 'lesson_lists_homepage_branch_widget.dart'
-    show LessonListsHomepageBranchWidget;
+import '/actions/actions.dart' as action_blocks;
+import 'lessons_list_navbar_widget.dart' show LessonsListNavbarWidget;
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-class LessonListsHomepageBranchModel
-    extends FlutterFlowModel<LessonListsHomepageBranchWidget> {
+class LessonsListNavbarModel extends FlutterFlowModel<LessonsListNavbarWidget> {
   ///  Local state fields for this page.
 
-  List<LessonsStruct> listLesson = [];
-  void addToListLesson(LessonsStruct item) => listLesson.add(item);
-  void removeFromListLesson(LessonsStruct item) => listLesson.remove(item);
-  void removeAtIndexFromListLesson(int index) => listLesson.removeAt(index);
-  void insertAtIndexInListLesson(int index, LessonsStruct item) =>
-      listLesson.insert(index, item);
-  void updateListLessonAtIndex(int index, Function(LessonsStruct) updateFn) =>
-      listLesson[index] = updateFn(listLesson[index]);
-
-  List<EmployeeLessonListStruct> listLessonRow = [];
-  void addToListLessonRow(EmployeeLessonListStruct item) =>
-      listLessonRow.add(item);
-  void removeFromListLessonRow(EmployeeLessonListStruct item) =>
-      listLessonRow.remove(item);
-  void removeAtIndexFromListLessonRow(int index) =>
-      listLessonRow.removeAt(index);
-  void insertAtIndexInListLessonRow(int index, EmployeeLessonListStruct item) =>
-      listLessonRow.insert(index, item);
-  void updateListLessonRowAtIndex(
-          int index, Function(EmployeeLessonListStruct) updateFn) =>
-      listLessonRow[index] = updateFn(listLessonRow[index]);
+  List<LessonsStruct> list = [];
+  void addToList(LessonsStruct item) => list.add(item);
+  void removeFromList(LessonsStruct item) => list.remove(item);
+  void removeAtIndexFromList(int index) => list.removeAt(index);
+  void insertAtIndexInList(int index, LessonsStruct item) =>
+      list.insert(index, item);
+  void updateListAtIndex(int index, Function(LessonsStruct) updateFn) =>
+      list[index] = updateFn(list[index]);
 
   String status = '';
 
-  String dateStartList = '';
+  String dateStart = '';
 
-  String dateEndList = '';
+  String dateEnd = '';
 
-  String statusLove = '';
+  String programId = '';
 
-  String lessonFavoriteStatusList = '';
+  String checkAPI = '';
 
-  String programsAllId = '';
-
-  bool isLoad = false;
-
-  String checkColor = '';
-
-  bool checkLoading = false;
+  bool isShow = false;
 
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in LessonsListNavbar widget.
+  bool? tokenReloadLessonsList;
   // State field(s) for nameSearch widget.
   FocusNode? nameSearchFocusNode;
   TextEditingController? nameSearchTextController;
@@ -63,8 +47,13 @@ class LessonListsHomepageBranchModel
   PagingController<ApiPagingParams, dynamic>? listViewPagingController;
   Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
+  // Model for navBar component.
+  late NavBarModel navBarModel;
+
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    navBarModel = createModel(context, () => NavBarModel());
+  }
 
   @override
   void dispose() {
@@ -73,31 +62,52 @@ class LessonListsHomepageBranchModel
     nameSearchTextController?.dispose();
 
     listViewPagingController?.dispose();
+    navBarModel.dispose();
   }
 
   /// Action blocks.
-  Future getListLesson(BuildContext context) async {
+  Future getLessons(BuildContext context) async {
     ApiCallResponse? apiResultList;
+    bool? checkRefreshTokenBlock1;
 
     apiResultList = await LessonGroup.getLessonListCall.call(
       accessToken: FFAppState().accessToken,
-      filter: '{\"_and\":[{}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
+      filter: '{\"_and\":[${'{\"organization_id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"id\":{\"_neq\":\"${getJsonField(
-        FFAppState().staffDepartment,
-        r'''$.id''',
-      ).toString().toString()}\"}}}}}},{\"status\":{\"_icontains\":\"published\"}}'}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"$status\"}}' : ' '}${(dateStartList != '') && (dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"$dateStartList\"}}' : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
+      ).toString().toString()}\"}}'}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"$status\"}}' : ' '}${(dateStart != '') && (dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"$dateStart\"}}' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
           return DateTime.parse(var1).add(const Duration(days: 1)).toString();
-        }(dateEndList)}\"}}' : ' '}${programsAllId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"$programsAllId\"}}}}' : ' '}]}',
+        }(dateEnd)}\"}}' : ' '}${programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"$programId\"}}}}' : ' '}]}',
     );
 
     if ((apiResultList.succeeded ?? true)) {
-      listLesson =
+      list =
           LessonsListDataStruct.maybeFromMap((apiResultList.jsonBody ?? ''))!
               .data
               .toList()
               .cast<LessonsStruct>();
+      checkAPI = '1';
+    } else {
+      checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultList.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock1!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await getLessons(context);
+      }
     }
   }
 

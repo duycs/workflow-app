@@ -1151,6 +1151,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'LessonLists_Homepage_Branch',
           path: '/lessonListsHomepageBranch',
           builder: (context, params) => const LessonListsHomepageBranchWidget(),
+        ),
+        FFRoute(
+          name: 'LessonsListNavbar',
+          path: '/lessonsListNavbar',
+          builder: (context, params) => LessonsListNavbarWidget(
+            checkpage: params.getParam(
+              'checkpage',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

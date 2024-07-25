@@ -344,7 +344,13 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         context.goNamed(
-                          'LessonLists_Homepage_Branch',
+                          'LessonsListNavbar',
+                          queryParameters: {
+                            'checkpage': serializeParam(
+                              '',
+                              ParamType.String,
+                            ),
+                          }.withoutNulls,
                           extra: <String, dynamic>{
                             kTransitionInfoKey: const TransitionInfo(
                               hasTransition: true,
@@ -363,7 +369,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                         child: Opacity(
-                          opacity: widget.selectedPageIndex == 6 ? 1.0 : 0.5,
+                          opacity: widget.selectedPageIndex == 8 ? 1.0 : 0.5,
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 14.0, 10.0, 14.0, 10.0),
