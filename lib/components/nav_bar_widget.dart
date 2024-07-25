@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'nav_bar_model.dart';
 export 'nav_bar_model.dart';
@@ -10,7 +9,7 @@ class NavBarWidget extends StatefulWidget {
   const NavBarWidget({
     super.key,
     int? selectedPageIndex,
-  }) : this.selectedPageIndex = selectedPageIndex ?? 1;
+  }) : selectedPageIndex = selectedPageIndex ?? 1;
 
   final int selectedPageIndex;
 
@@ -47,14 +46,14 @@ class _NavBarWidgetState extends State<NavBarWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
       child: SafeArea(
         child: Container(
           width: double.infinity,
           height: 60.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 1.0,
                 color: Color(0x33000000),
@@ -67,9 +66,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
             borderRadius: BorderRadius.circular(100.0),
             shape: BoxShape.rectangle,
           ),
-          alignment: AlignmentDirectional(0.0, 0.0),
+          alignment: const AlignmentDirectional(0.0, 0.0),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -85,7 +84,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       context.goNamed(
                         'Home',
                         extra: <String, dynamic>{
-                          kTransitionInfoKey: TransitionInfo(
+                          kTransitionInfoKey: const TransitionInfo(
                             hasTransition: true,
                             transitionType: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
@@ -96,7 +95,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     child: Container(
                       decoration: BoxDecoration(
                         color: valueOrDefault<Color>(
-                          widget!.selectedPageIndex == 3
+                          widget.selectedPageIndex == 3
                               ? FlutterFlowTheme.of(context).primary
                               : FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -105,9 +104,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                         borderRadius: BorderRadius.circular(24.0),
                       ),
                       child: Opacity(
-                        opacity: widget!.selectedPageIndex == 3 ? 1.0 : 0.5,
+                        opacity: widget.selectedPageIndex == 3 ? 1.0 : 0.5,
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               14.0, 10.0, 14.0, 10.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -116,7 +115,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                               Icon(
                                 Icons.home_outlined,
                                 color: valueOrDefault<Color>(
-                                  widget!.selectedPageIndex == 3
+                                  widget.selectedPageIndex == 3
                                       ? FlutterFlowTheme.of(context)
                                           .secondaryBackground
                                       : FlutterFlowTheme.of(context)
@@ -125,7 +124,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                 ),
                                 size: 24.0,
                               ),
-                              if (widget!.selectedPageIndex == 3)
+                              if (widget.selectedPageIndex == 3)
                                 Text(
                                   'Home',
                                   style: FlutterFlowTheme.of(context)
@@ -138,7 +137,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                 ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                         ),
                       ),
@@ -153,7 +152,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       context.goNamed(
                         'TaskList',
                         extra: <String, dynamic>{
-                          kTransitionInfoKey: TransitionInfo(
+                          kTransitionInfoKey: const TransitionInfo(
                             hasTransition: true,
                             transitionType: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
@@ -163,15 +162,15 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: widget!.selectedPageIndex == 1
+                        color: widget.selectedPageIndex == 1
                             ? FlutterFlowTheme.of(context).primary
                             : FlutterFlowTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(24.0),
                       ),
                       child: Opacity(
-                        opacity: widget!.selectedPageIndex == 1 ? 1.0 : 0.5,
+                        opacity: widget.selectedPageIndex == 1 ? 1.0 : 0.5,
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               14.0, 10.0, 14.0, 10.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -179,14 +178,14 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                             children: [
                               Icon(
                                 Icons.rule,
-                                color: widget!.selectedPageIndex == 1
+                                color: widget.selectedPageIndex == 1
                                     ? FlutterFlowTheme.of(context)
                                         .secondaryBackground
                                     : FlutterFlowTheme.of(context)
                                         .secondaryText,
                                 size: 24.0,
                               ),
-                              if (widget!.selectedPageIndex == 1)
+                              if (widget.selectedPageIndex == 1)
                                 Text(
                                   'Tasks',
                                   style: FlutterFlowTheme.of(context)
@@ -199,7 +198,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                 ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                         ),
                       ),
@@ -215,7 +214,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                         context.goNamed(
                           'WorkResultList',
                           extra: <String, dynamic>{
-                            kTransitionInfoKey: TransitionInfo(
+                            kTransitionInfoKey: const TransitionInfo(
                               hasTransition: true,
                               transitionType: PageTransitionType.fade,
                               duration: Duration(milliseconds: 0),
@@ -225,16 +224,16 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          color: widget!.selectedPageIndex == 5
+                          color: widget.selectedPageIndex == 5
                               ? FlutterFlowTheme.of(context).primary
                               : FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                         child: Opacity(
-                          opacity: widget!.selectedPageIndex == 5 ? 1.0 : 0.5,
+                          opacity: widget.selectedPageIndex == 5 ? 1.0 : 0.5,
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 14.0, 10.0, 14.0, 10.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -242,14 +241,14 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                               children: [
                                 Icon(
                                   Icons.check_circle_outlined,
-                                  color: widget!.selectedPageIndex == 5
+                                  color: widget.selectedPageIndex == 5
                                       ? FlutterFlowTheme.of(context)
                                           .secondaryBackground
                                       : FlutterFlowTheme.of(context)
                                           .secondaryText,
                                   size: 24.0,
                                 ),
-                                if (widget!.selectedPageIndex == 5)
+                                if (widget.selectedPageIndex == 5)
                                   Text(
                                     'Kết quả',
                                     style: FlutterFlowTheme.of(context)
@@ -262,7 +261,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                   ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                         ),
@@ -281,7 +280,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                         context.goNamed(
                           'LessonLists_Homepage',
                           extra: <String, dynamic>{
-                            kTransitionInfoKey: TransitionInfo(
+                            kTransitionInfoKey: const TransitionInfo(
                               hasTransition: true,
                               transitionType: PageTransitionType.fade,
                               duration: Duration(milliseconds: 0),
@@ -291,16 +290,16 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          color: widget!.selectedPageIndex == 6
+                          color: widget.selectedPageIndex == 6
                               ? FlutterFlowTheme.of(context).primary
                               : FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                         child: Opacity(
-                          opacity: widget!.selectedPageIndex == 6 ? 1.0 : 0.5,
+                          opacity: widget.selectedPageIndex == 6 ? 1.0 : 0.5,
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 14.0, 10.0, 14.0, 10.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -308,14 +307,14 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                               children: [
                                 Icon(
                                   Icons.menu_book_rounded,
-                                  color: widget!.selectedPageIndex == 6
+                                  color: widget.selectedPageIndex == 6
                                       ? FlutterFlowTheme.of(context)
                                           .secondaryBackground
                                       : FlutterFlowTheme.of(context)
                                           .secondaryText,
                                   size: 24.0,
                                 ),
-                                if (widget!.selectedPageIndex == 6)
+                                if (widget.selectedPageIndex == 6)
                                   Text(
                                     'Đào tạo',
                                     style: FlutterFlowTheme.of(context)
@@ -328,7 +327,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                   ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                         ),
@@ -343,7 +342,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       context.goNamed(
                         'Newsfeed',
                         extra: <String, dynamic>{
-                          kTransitionInfoKey: TransitionInfo(
+                          kTransitionInfoKey: const TransitionInfo(
                             hasTransition: true,
                             transitionType: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
@@ -354,7 +353,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     child: Container(
                       decoration: BoxDecoration(
                         color: valueOrDefault<Color>(
-                          widget!.selectedPageIndex == 4
+                          widget.selectedPageIndex == 4
                               ? FlutterFlowTheme.of(context).primary
                               : FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -363,9 +362,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                         borderRadius: BorderRadius.circular(24.0),
                       ),
                       child: Opacity(
-                        opacity: widget!.selectedPageIndex == 4 ? 1.0 : 0.5,
+                        opacity: widget.selectedPageIndex == 4 ? 1.0 : 0.5,
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               14.0, 10.0, 14.0, 10.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -374,7 +373,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                               Icon(
                                 Icons.newspaper_sharp,
                                 color: valueOrDefault<Color>(
-                                  widget!.selectedPageIndex == 4
+                                  widget.selectedPageIndex == 4
                                       ? FlutterFlowTheme.of(context)
                                           .secondaryBackground
                                       : FlutterFlowTheme.of(context)
@@ -384,7 +383,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                 ),
                                 size: 24.0,
                               ),
-                              if (widget!.selectedPageIndex == 4)
+                              if (widget.selectedPageIndex == 4)
                                 Text(
                                   'Bảng tin',
                                   style: FlutterFlowTheme.of(context)
@@ -397,7 +396,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                 ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                         ),
                       ),
@@ -412,7 +411,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       context.goNamed(
                         'Profile',
                         extra: <String, dynamic>{
-                          kTransitionInfoKey: TransitionInfo(
+                          kTransitionInfoKey: const TransitionInfo(
                             hasTransition: true,
                             transitionType: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
@@ -423,7 +422,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     child: Container(
                       decoration: BoxDecoration(
                         color: valueOrDefault<Color>(
-                          widget!.selectedPageIndex == 2
+                          widget.selectedPageIndex == 2
                               ? FlutterFlowTheme.of(context).primary
                               : FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -432,9 +431,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                         borderRadius: BorderRadius.circular(24.0),
                       ),
                       child: Opacity(
-                        opacity: widget!.selectedPageIndex == 2 ? 1.0 : 0.5,
+                        opacity: widget.selectedPageIndex == 2 ? 1.0 : 0.5,
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               14.0, 10.0, 14.0, 10.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -443,7 +442,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                               Icon(
                                 Icons.person_outline,
                                 color: valueOrDefault<Color>(
-                                  widget!.selectedPageIndex == 2
+                                  widget.selectedPageIndex == 2
                                       ? FlutterFlowTheme.of(context)
                                           .secondaryBackground
                                       : FlutterFlowTheme.of(context)
@@ -452,7 +451,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                 ),
                                 size: 24.0,
                               ),
-                              if (widget!.selectedPageIndex == 2)
+                              if (widget.selectedPageIndex == 2)
                                 Text(
                                   'Cá nhân',
                                   style: FlutterFlowTheme.of(context)
@@ -465,7 +464,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                 ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                         ),
                       ),

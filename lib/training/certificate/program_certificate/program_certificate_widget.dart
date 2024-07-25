@@ -8,7 +8,6 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'program_certificate_model.dart';
 export 'program_certificate_model.dart';
@@ -72,11 +71,11 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: SafeArea(
         child: Container(
           width: double.infinity,
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxWidth: double.infinity,
           ),
           decoration: BoxDecoration(
@@ -88,7 +87,7 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,15 +109,15 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                 ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 8.0),
+                      const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 8.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 8.0),
                           child: Icon(
                             Icons.menu_book_sharp,
@@ -128,7 +127,7 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Text(
                           'Danh sách chương trình',
                           textAlign: TextAlign.center,
@@ -142,7 +141,7 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
                         child: Text(
                           'Bạn có thể áp dụng mẫu chứng chỉ này cho các chương trình đào tạo',
                           style:
@@ -152,14 +151,14 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                                   ),
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: double.infinity,
                         child: TextFormField(
                           controller: _model.nameSearchTextController,
                           focusNode: _model.nameSearchFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.nameSearchTextController',
-                            Duration(milliseconds: 500),
+                            const Duration(milliseconds: 500),
                             () async {
                               _model.isLoad = false;
                               setState(() {});
@@ -220,9 +219,9 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                             filled: true,
                             fillColor:
                                 FlutterFlowTheme.of(context).primaryBackground,
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.search,
                               size: 24.0,
                             ),
@@ -258,10 +257,9 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                               .asValidator(context),
                         ),
                       ),
-                      if (_model.nameSearchTextController.text != null &&
-                          _model.nameSearchTextController.text != '')
+                      if (_model.nameSearchTextController.text != '')
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 2.0, 0.0, 0.0),
                           child: Text(
                             'Kết quả tìm kiếm theo bộ lọc',
@@ -302,7 +300,7 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                                 final listProgramsItem =
                                     listPrograms[listProgramsIndex];
                                 return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 1.0),
                                   child: Container(
                                     width: double.infinity,
@@ -314,7 +312,7 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                                           blurRadius: 0.0,
                                           color: FlutterFlowTheme.of(context)
                                               .primaryBackground,
-                                          offset: Offset(
+                                          offset: const Offset(
                                             0.0,
                                             1.0,
                                           ),
@@ -322,7 +320,7 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                                       ],
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 8.0, 12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -339,7 +337,7 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                                               shape: BoxShape.rectangle,
                                             ),
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(18.0),
@@ -361,7 +359,7 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 12.0, 0.0),
                                               child: Row(
@@ -395,7 +393,7 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
-                                                ].divide(SizedBox(width: 3.0)),
+                                                ].divide(const SizedBox(width: 3.0)),
                                               ),
                                             ),
                                           ),
@@ -467,13 +465,13 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 4.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 4.0),
                       child: Container(
                         width: double.infinity,
                         height: MediaQuery.sizeOf(context).height * 0.6,
-                        decoration: BoxDecoration(),
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: Container(
+                        decoration: const BoxDecoration(),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: SizedBox(
                           width: double.infinity,
                           height: double.infinity,
                           child: custom_widgets.LoadingPageWidget(
@@ -490,16 +488,16 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 5.0),
                       child: Container(
                         width: double.infinity,
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: FaIcon(
                                 FontAwesomeIcons.database,
@@ -525,7 +523,7 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                   ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 12.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -538,9 +536,9 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                           text: 'Huỷ',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -568,9 +566,9 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                           text: 'Áp dụng',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -581,14 +579,14 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                             ),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
               ],

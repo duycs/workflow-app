@@ -9,10 +9,8 @@ import '/flutter_flow/upload_data.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'update_profile_user_model.dart';
 export 'update_profile_user_model.dart';
@@ -43,7 +41,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.date = getJsonField(
-        widget!.data,
+        widget.data,
         r'''$.dob''',
       ).toString().toString();
       setState(() {});
@@ -51,52 +49,52 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
 
     _model.nameTextController ??= TextEditingController(
         text: getJsonField(
-      widget!.data,
+      widget.data,
       r'''$.user_id.first_name''',
     ).toString().toString());
     _model.nameFocusNode ??= FocusNode();
 
     _model.hotlineTextController1 ??= TextEditingController(
-        text: ('${getJsonField(
-                      widget!.data,
+        text: (getJsonField(
+                      widget.data,
                       r'''$.phone''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     '') &&
-                ('${getJsonField(
-                      widget!.data,
+                (getJsonField(
+                      widget.data,
                       r'''$.phone''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     'undefined') &&
-                ('${getJsonField(
-                      widget!.data,
+                (getJsonField(
+                      widget.data,
                       r'''$.phone''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     'null')
             ? getJsonField(
-                widget!.data,
+                widget.data,
                 r'''$.phone''',
               ).toString().toString()
             : '');
     _model.hotlineFocusNode1 ??= FocusNode();
 
     _model.hotlineTextController2 ??= TextEditingController(
-        text: ('${getJsonField(
-                      widget!.data,
+        text: (getJsonField(
+                      widget.data,
                       r'''$.slogan''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     '') &&
-                ('${getJsonField(
-                      widget!.data,
+                (getJsonField(
+                      widget.data,
                       r'''$.slogan''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     'undefined') &&
-                ('${getJsonField(
-                      widget!.data,
+                (getJsonField(
+                      widget.data,
                       r'''$.slogan''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     'null')
             ? getJsonField(
-                widget!.data,
+                widget.data,
                 r'''$.slogan''',
               ).toString().toString()
             : '');
@@ -104,52 +102,52 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
 
     _model.textController4 ??= TextEditingController(
         text: getJsonField(
-      widget!.data,
+      widget.data,
       r'''$.user_id.email''',
     ).toString().toString());
     _model.textFieldFocusNode ??= FocusNode();
 
     _model.addressTextController ??= TextEditingController(
-        text: ('${getJsonField(
-                      widget!.data,
+        text: (getJsonField(
+                      widget.data,
                       r'''$.cccd''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     '') &&
-                ('${getJsonField(
-                      widget!.data,
+                (getJsonField(
+                      widget.data,
                       r'''$.cccd''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     'undefined') &&
-                ('${getJsonField(
-                      widget!.data,
+                (getJsonField(
+                      widget.data,
                       r'''$.cccd''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     'null')
             ? getJsonField(
-                widget!.data,
+                widget.data,
                 r'''$.cccd''',
               ).toString().toString()
             : ' ');
     _model.addressFocusNode ??= FocusNode();
 
     _model.hotlineTextController3 ??= TextEditingController(
-        text: ('${getJsonField(
-                      widget!.data,
+        text: (getJsonField(
+                      widget.data,
                       r'''$.description''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     '') &&
-                ('${getJsonField(
-                      widget!.data,
+                (getJsonField(
+                      widget.data,
                       r'''$.description''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     'undefined') &&
-                ('${getJsonField(
-                      widget!.data,
+                (getJsonField(
+                      widget.data,
                       r'''$.description''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     'null')
             ? getJsonField(
-                widget!.data,
+                widget.data,
                 r'''$.description''',
               ).toString().toString()
             : '');
@@ -198,7 +196,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                 letterSpacing: 0.0,
               ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: false,
         elevation: 1.0,
       ),
@@ -215,18 +213,18 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: Stack(
-                      alignment: AlignmentDirectional(0.0, -1.0),
+                      alignment: const AlignmentDirectional(0.0, -1.0),
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 150.0, 0.0, 0.0),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(0.0),
                                 bottomRight: Radius.circular(0.0),
                                 topLeft: Radius.circular(16.0),
@@ -240,7 +238,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).accent4,
-                                    borderRadius: BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                       bottomLeft: Radius.circular(0.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(16.0),
@@ -256,17 +254,17 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                           MainAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.all(12.0),
+                                          padding: const EdgeInsets.all(12.0),
                                           child: Container(
                                             width: double.infinity,
-                                            constraints: BoxConstraints(
+                                            constraints: const BoxConstraints(
                                               maxWidth: 800.0,
                                             ),
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              boxShadow: [
+                                              boxShadow: const [
                                                 BoxShadow(
                                                   blurRadius: 3.0,
                                                   color: Color(0x33000000),
@@ -280,7 +278,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                   BorderRadius.circular(12.0),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(12.0),
+                                              padding: const EdgeInsets.all(12.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -288,7 +286,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 16.0),
                                                     child: Container(
@@ -303,7 +301,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsets.all(8.0),
+                                                            const EdgeInsets.all(8.0),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -327,7 +325,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                         0.0,
                                                                   ),
                                                             ),
-                                                          ].divide(SizedBox(
+                                                          ].divide(const SizedBox(
                                                               width: 8.0)),
                                                         ),
                                                       ),
@@ -342,7 +340,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     0.0,
@@ -435,7 +433,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                           40.0),
                                                             ),
                                                             contentPadding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         20.0,
                                                                         0.0,
@@ -465,7 +463,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     0.0,
@@ -558,7 +556,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                           40.0),
                                                             ),
                                                             contentPadding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         20.0,
                                                                         0.0,
@@ -585,7 +583,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     0.0,
@@ -678,7 +676,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                           40.0),
                                                             ),
                                                             contentPadding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         20.0,
                                                                         0.0,
@@ -703,7 +701,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                       if ('1' == '2')
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       0.0,
@@ -798,7 +796,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                             40.0),
                                                               ),
                                                               contentPadding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           20.0,
                                                                           0.0,
@@ -825,7 +823,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                         ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     0.0,
@@ -839,16 +837,16 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                               FormFieldController<
                                                                   String>(
                                                             _model.dropDownValue ??=
-                                                                '${getJsonField(
-                                                                          widget!
+                                                                getJsonField(
+                                                                          widget
                                                                               .data,
                                                                           r'''$.gender''',
-                                                                        ).toString()}' ==
+                                                                        ).toString() ==
                                                                         'male'
                                                                     ? 'Nam'
                                                                     : 'Nữ',
                                                           ),
-                                                          options: [
+                                                          options: const [
                                                             'Nam',
                                                             'Nữ'
                                                           ],
@@ -889,7 +887,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                           borderWidth: 2.0,
                                                           borderRadius: 40.0,
                                                           margin:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       16.0,
                                                                       4.0,
@@ -903,7 +901,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     0.0,
@@ -997,7 +995,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                           40.0),
                                                             ),
                                                             contentPadding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         20.0,
                                                                         0.0,
@@ -1024,7 +1022,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     0.0,
@@ -1040,7 +1038,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                           highlightColor: Colors
                                                               .transparent,
                                                           onTap: () async {
-                                                            final _datePickedDate =
+                                                            final datePickedDate =
                                                                 await showDatePicker(
                                                               context: context,
                                                               initialDate:
@@ -1102,16 +1100,16 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                               },
                                                             );
 
-                                                            if (_datePickedDate !=
+                                                            if (datePickedDate !=
                                                                 null) {
                                                               safeSetState(() {
                                                                 _model.datePicked =
                                                                     DateTime(
-                                                                  _datePickedDate
+                                                                  datePickedDate
                                                                       .year,
-                                                                  _datePickedDate
+                                                                  datePickedDate
                                                                       .month,
-                                                                  _datePickedDate
+                                                                  datePickedDate
                                                                       .day,
                                                                 );
                                                               });
@@ -1150,7 +1148,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           0.0,
@@ -1181,7 +1179,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                         : dateTimeFormat(
                                                                             'dd/MM/yyyy',
                                                                             functions.stringToDateTime(getJsonField(
-                                                                              widget!.data,
+                                                                              widget.data,
                                                                               r'''$.dob''',
                                                                             ).toString()),
                                                                             locale:
@@ -1197,7 +1195,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                               0.0,
                                                                         ),
                                                                   ),
-                                                                ].divide(SizedBox(
+                                                                ].divide(const SizedBox(
                                                                     width:
                                                                         8.0)),
                                                               ),
@@ -1209,7 +1207,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                           true)
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       15.0,
                                                                       0.0,
@@ -1233,7 +1231,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                         ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     10.0,
@@ -1328,7 +1326,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                           20.0),
                                                             ),
                                                             contentPadding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         10.0,
@@ -1353,7 +1351,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                       ),
                                                     ],
                                                   ),
-                                                ].divide(SizedBox(height: 4.0)),
+                                                ].divide(const SizedBox(height: 4.0)),
                                               ),
                                             ),
                                           ),
@@ -1367,20 +1365,19 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Container(
-                            decoration: BoxDecoration(),
+                            decoration: const BoxDecoration(),
                             child: Stack(
-                              alignment: AlignmentDirectional(1.0, 1.0),
+                              alignment: const AlignmentDirectional(1.0, 1.0),
                               children: [
-                                if (_model.uploadedLocalFile == null ||
-                                    (_model.uploadedLocalFile.bytes?.isEmpty ??
+                                if ((_model.uploadedLocalFile.bytes?.isEmpty ??
                                         true))
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(60.0),
                                     child: Image.network(
                                       '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                                        widget!.data,
+                                        widget.data,
                                         r'''$.user_id.avatar''',
                                       ).toString()}?access_token=${FFAppState().accessToken}',
                                       width: 120.0,
@@ -1396,12 +1393,11 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                       ),
                                     ),
                                   ),
-                                if (_model.uploadedLocalFile != null &&
-                                    (_model.uploadedLocalFile.bytes
+                                if ((_model.uploadedLocalFile.bytes
                                             ?.isNotEmpty ??
                                         false))
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(60.0),
@@ -1483,42 +1479,42 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                       ],
                     ),
                   ),
-                ].addToEnd(SizedBox(height: 36.0)),
+                ].addToEnd(const SizedBox(height: 36.0)),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
             child: FFButtonWidget(
               onPressed: () async {
-                var _shouldSetState = false;
+                var shouldSetState = false;
                 if (_model.formKey.currentState == null ||
                     !_model.formKey.currentState!.validate()) {
                   return;
                 }
-                if (!((_model.date != null && _model.date != '') &&
+                if (!((_model.date != '') &&
                     (_model.date != 'null'))) {
                   _model.checkDate = true;
                   setState(() {});
-                  if (_shouldSetState) setState(() {});
+                  if (shouldSetState) setState(() {});
                   return;
                 }
                 var confirmDialogResponse = await showDialog<bool>(
                       context: context,
                       builder: (alertDialogContext) {
                         return AlertDialog(
-                          title: Text('Xác nhận'),
-                          content: Text('Bạn chắc chắn muốn lưu?'),
+                          title: const Text('Xác nhận'),
+                          content: const Text('Bạn chắc chắn muốn lưu?'),
                           actions: [
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, false),
-                              child: Text('Hủy'),
+                              child: const Text('Hủy'),
                             ),
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, true),
-                              child: Text('Xác nhận'),
+                              child: const Text('Xác nhận'),
                             ),
                           ],
                         );
@@ -1526,11 +1522,10 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  if (_model.uploadedLocalFile != null &&
-                      (_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
+                  if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
                     _model.reloadTokenUpdateStaff =
                         await action_blocks.tokenReload(context);
-                    _shouldSetState = true;
+                    shouldSetState = true;
                     if (_model.reloadTokenUpdateStaff!) {
                       _model.apiResultUploadImage =
                           await UploadFileGroup.uploadFileCall.call(
@@ -1538,7 +1533,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                         file: _model.uploadedLocalFile,
                       );
 
-                      _shouldSetState = true;
+                      shouldSetState = true;
                       if ((_model.apiResultUploadImage?.succeeded ?? true)) {
                         _model.image = getJsonField(
                           (_model.apiResultUploadImage?.jsonBody ?? ''),
@@ -1551,19 +1546,18 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                           id: FFAppState().user.id,
                           requestDataJson: <String, dynamic>{
                             'first_name': _model.nameTextController.text,
-                            'avatar': _model.uploadedLocalFile != null &&
-                                    (_model.uploadedLocalFile.bytes
+                            'avatar': (_model.uploadedLocalFile.bytes
                                             ?.isNotEmpty ??
                                         false)
                                 ? _model.image
                                 : getJsonField(
-                                    widget!.data,
+                                    widget.data,
                                     r'''$.user_id.avatar''',
                                   ),
                           },
                         );
 
-                        _shouldSetState = true;
+                        shouldSetState = true;
                         if ((_model.apiResultUpdateStaff?.succeeded ?? true)) {
                           _model.apiResultUpdateUserStaff =
                               await StaffGroup.updateUserStaffCall.call(
@@ -1589,27 +1583,24 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                   : dateTimeFormat(
                                       'yyyy-MM-dd',
                                       functions.stringToDateTime(getJsonField(
-                                        widget!.data,
+                                        widget.data,
                                         r'''$.dob''',
                                       ).toString()),
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     ),
                               'description':
-                                  _model.hotlineTextController3.text != null &&
-                                          _model.hotlineTextController3.text !=
+                                  _model.hotlineTextController3.text !=
                                               ''
                                       ? _model.hotlineTextController3.text
                                       : '',
-                              'slogan': _model.hotlineTextController2.text !=
-                                          null &&
-                                      _model.hotlineTextController2.text != ''
+                              'slogan': _model.hotlineTextController2.text != ''
                                   ? _model.hotlineTextController2.text
                                   : '',
                             },
                           );
 
-                          _shouldSetState = true;
+                          shouldSetState = true;
                           if ((_model.apiResultUpdateUserStaff?.succeeded ??
                               true)) {
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -1621,7 +1612,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                         .primaryText,
                                   ),
                                 ),
-                                duration: Duration(milliseconds: 4000),
+                                duration: const Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).secondary,
                               ),
@@ -1632,7 +1623,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                             context.pushNamed(
                               'Profile',
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
+                                kTransitionInfoKey: const TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
@@ -1644,13 +1635,13 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                       }
                     } else {
                       setState(() {});
-                      if (_shouldSetState) setState(() {});
+                      if (shouldSetState) setState(() {});
                       return;
                     }
                   } else {
                     _model.reloadTokenUpdateStaff1 =
                         await action_blocks.tokenReload(context);
-                    _shouldSetState = true;
+                    shouldSetState = true;
                     if (_model.reloadTokenUpdateStaff1!) {
                       _model.apiResultUpdateStaff1 =
                           await StaffGroup.updateStaffCall.call(
@@ -1661,7 +1652,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                         },
                       );
 
-                      _shouldSetState = true;
+                      shouldSetState = true;
                       if ((_model.apiResultUpdateStaff1?.succeeded ?? true)) {
                         _model.apiResultUpdateUserStaff1 =
                             await StaffGroup.updateUserStaffCall.call(
@@ -1687,26 +1678,24 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                 : dateTimeFormat(
                                     'yyyy-MM-dd',
                                     functions.stringToDateTime(getJsonField(
-                                      widget!.data,
+                                      widget.data,
                                       r'''$.dob''',
                                     ).toString()),
                                     locale: FFLocalizations.of(context)
                                         .languageCode,
                                   ),
                             'description':
-                                _model.hotlineTextController3.text != null &&
-                                        _model.hotlineTextController3.text != ''
+                                _model.hotlineTextController3.text != ''
                                     ? _model.hotlineTextController3.text
                                     : '',
                             'slogan':
-                                _model.hotlineTextController2.text != null &&
-                                        _model.hotlineTextController2.text != ''
+                                _model.hotlineTextController2.text != ''
                                     ? _model.hotlineTextController2.text
                                     : '',
                           },
                         );
 
-                        _shouldSetState = true;
+                        shouldSetState = true;
                         if ((_model.apiResultUpdateUserStaff1?.succeeded ??
                             true)) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -1718,7 +1707,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                       FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
-                              duration: Duration(milliseconds: 4000),
+                              duration: const Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).secondary,
                             ),
@@ -1729,7 +1718,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                           context.pushNamed(
                             'Profile',
                             extra: <String, dynamic>{
-                              kTransitionInfoKey: TransitionInfo(
+                              kTransitionInfoKey: const TransitionInfo(
                                 hasTransition: true,
                                 transitionType: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
@@ -1740,22 +1729,22 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                       }
                     } else {
                       setState(() {});
-                      if (_shouldSetState) setState(() {});
+                      if (shouldSetState) setState(() {});
                       return;
                     }
                   }
                 } else {
-                  if (_shouldSetState) setState(() {});
+                  if (shouldSetState) setState(() {});
                   return;
                 }
 
-                if (_shouldSetState) setState(() {});
+                if (shouldSetState) setState(() {});
               },
               text: 'Cập nhật',
               options: FFButtonOptions(
                 height: 40.0,
-                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primary,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Nunito Sans',
@@ -1765,7 +1754,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                       fontWeight: FontWeight.normal,
                     ),
                 elevation: 3.0,
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.transparent,
                   width: 1.0,
                 ),

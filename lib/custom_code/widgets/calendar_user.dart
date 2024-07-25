@@ -103,6 +103,21 @@ class _CalendarUserState extends State<CalendarUser> {
     });
   }
 
+  Future<void> _pickDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (pickedDate != null && pickedDate != selectedDate) {
+      setState(() {
+        selectedDate = pickedDate;
+        _updateDateRange();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     DateTime firstDayOfMonth =
@@ -124,10 +139,6 @@ class _CalendarUserState extends State<CalendarUser> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
-                  onPressed: _prevMonth,
-                ),
                 Text(
                   'Tháng ${selectedDate.month}/${selectedDate.year}',
                   style: TextStyle(
@@ -135,9 +146,21 @@ class _CalendarUserState extends State<CalendarUser> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                IconButton(
-                  icon: Icon(Icons.arrow_forward_ios),
-                  onPressed: _nextMonth,
+                Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.calendar_today),
+                      onPressed: _pickDate,
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.arrow_back_ios),
+                      onPressed: _prevMonth,
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.arrow_forward_ios),
+                      onPressed: _nextMonth,
+                    ),
+                  ],
                 ),
               ],
             ),

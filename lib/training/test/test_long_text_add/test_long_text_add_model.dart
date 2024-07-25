@@ -1,10 +1,6 @@
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'test_long_text_add_widget.dart' show TestLongTextAddWidget;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class TestLongTextAddModel extends FlutterFlowModel<TestLongTextAddWidget> {
   ///  State fields for stateful widgets in this component.

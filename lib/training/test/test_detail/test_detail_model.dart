@@ -1,24 +1,8 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/test/checkbox_groups_test/checkbox_groups_test_widget.dart';
-import '/training/test/radio_buton_detail/radio_buton_detail_widget.dart';
-import '/training/test/test_long_text/test_long_text_widget.dart';
-import '/training/test/test_number/test_number_widget.dart';
-import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'test_detail_widget.dart' show TestDetailWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 
 class TestDetailModel extends FlutterFlowModel<TestDetailWidget> {
   ///  Local state fields for this page.

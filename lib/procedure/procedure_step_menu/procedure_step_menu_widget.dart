@@ -4,8 +4,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/procedure/procedure_step_update/procedure_step_update_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'procedure_step_menu_model.dart';
 export 'procedure_step_menu_model.dart';
 
@@ -48,7 +46,7 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
         if (_model.isLoad == true) {
           await widget.callBack?.call(
             _model.data,
-            widget!.idItem,
+            widget.idItem,
           );
           Navigator.pop(context);
           _model.isLoad = false;
@@ -75,7 +73,7 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 4.0,
             color: Color(0x33000000),
@@ -85,7 +83,7 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
             ),
           )
         ],
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(16.0),
@@ -93,7 +91,7 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
         ),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -106,10 +104,16 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 4.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 4.0),
               child: MouseRegion(
                 opaque: false,
                 cursor: MouseCursor.defer ?? MouseCursor.defer,
+                onEnter: ((event) async {
+                  setState(() => _model.mouseRegionHovered1 = true);
+                }),
+                onExit: ((event) async {
+                  setState(() => _model.mouseRegionHovered1 = false);
+                }),
                 child: Builder(
                   builder: (context) => InkWell(
                     splashColor: Colors.transparent,
@@ -126,10 +130,10 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
                             elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
-                            alignment: AlignmentDirectional(0.0, 0.0)
+                            alignment: const AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
                             child: ProcedureStepUpdateWidget(
-                              data: widget!.item!,
+                              data: widget.item!,
                               callBack: (addItem) async {
                                 _model.data = addItem;
                                 setState(() {});
@@ -148,7 +152,7 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
                       setState(() {});
                     },
                     child: AnimatedContainer(
-                      duration: Duration(milliseconds: 150),
+                      duration: const Duration(milliseconds: 150),
                       curve: Curves.easeInOut,
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -179,19 +183,19 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
                     ),
                   ),
                 ),
-                onEnter: ((event) async {
-                  setState(() => _model.mouseRegionHovered1 = true);
-                }),
-                onExit: ((event) async {
-                  setState(() => _model.mouseRegionHovered1 = false);
-                }),
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 4.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 4.0),
               child: MouseRegion(
                 opaque: false,
                 cursor: MouseCursor.defer ?? MouseCursor.defer,
+                onEnter: ((event) async {
+                  setState(() => _model.mouseRegionHovered2 = true);
+                }),
+                onExit: ((event) async {
+                  setState(() => _model.mouseRegionHovered2 = false);
+                }),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -206,7 +210,7 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
                     setState(() {});
                   },
                   child: AnimatedContainer(
-                    duration: Duration(milliseconds: 150),
+                    duration: const Duration(milliseconds: 150),
                     curve: Curves.easeInOut,
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -235,12 +239,6 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
                     ),
                   ),
                 ),
-                onEnter: ((event) async {
-                  setState(() => _model.mouseRegionHovered2 = true);
-                }),
-                onExit: ((event) async {
-                  setState(() => _model.mouseRegionHovered2 = false);
-                }),
               ),
             ),
           ],

@@ -4,18 +4,13 @@ import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure_publishing/filter_work_result/filter_work_result_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
@@ -93,7 +88,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
               context.goNamed(
                 'Home',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
+                  kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -130,7 +125,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                   context.pushNamed(
                     'ReportImage',
                     extra: <String, dynamic>{
-                      kTransitionInfoKey: TransitionInfo(
+                      kTransitionInfoKey: const TransitionInfo(
                         hasTransition: true,
                         transitionType: PageTransitionType.fade,
                         duration: Duration(milliseconds: 0),
@@ -141,7 +136,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -153,7 +148,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -163,7 +158,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                         focusNode: _model.textFieldFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.textController',
-                          Duration(milliseconds: 500),
+                          const Duration(milliseconds: 500),
                           () async {
                             _model.nameSearch = _model.textController.text;
                             _model.dataList = [];
@@ -190,7 +185,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
@@ -220,9 +215,9 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).primaryBackground,
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 0.0, 0.0),
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.search,
                           ),
                           suffixIcon: _model.textController!.text.isNotEmpty
@@ -302,7 +297,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                         .listViewPagingController
                                         ?.refresh());
                                     setState(() {
-                                      _model.textController?.text = name!;
+                                      _model.textController?.text = name;
                                       _model.textController?.selection =
                                           TextSelection.collapsed(
                                               offset: _model
@@ -319,24 +314,21 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                   ],
                 ),
               ),
-              if ((_model.nameSearch != null && _model.nameSearch != '') ||
-                  (_model.dateStart != null && _model.dateStart != '') ||
-                  (_model.dateEnd != null && _model.dateEnd != '') ||
-                  (_model.userCreated != null && _model.userCreated != ''))
+              if ((_model.nameSearch != '') ||
+                  (_model.dateStart != '') ||
+                  (_model.dateEnd != '') ||
+                  (_model.userCreated != ''))
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      if ((_model.nameSearch != null &&
-                              _model.nameSearch != '') ||
-                          (_model.dateStart != null &&
-                              _model.dateStart != '') ||
-                          (_model.dateEnd != null && _model.dateEnd != '') ||
-                          (_model.userCreated != null &&
-                              _model.userCreated != ''))
+                      if ((_model.nameSearch != '') ||
+                          (_model.dateStart != '') ||
+                          (_model.dateEnd != '') ||
+                          (_model.userCreated != ''))
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 0.0, 0.0),
                           child: Text(
                             '#Kết quả hiển thị theo bộ lọc',
@@ -355,7 +347,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                 ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 0.0),
                   child: PagedListView<ApiPagingParams, dynamic>(
                     pagingController: _model.setListViewController(
                       (nextPageMarker) => ProcedurePublishedGroup
@@ -387,12 +379,12 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                               r'''$.id''',
                             ).toString()}\"}}}}}';
                           }
-                        }()}${(_model.nameSearch != null && _model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.dateStart != null && _model.dateStart != '') && (_model.dateStart != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}}}' : ' '}${(_model.dateEnd != null && _model.dateEnd != '') && (_model.dateEnd != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_lt\":\"${_model.dateEnd}\"}}}}' : ' '}${(_model.userCreated != null && _model.userCreated != '') && (_model.userCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"created_user_id\":{\"first_name\":{\"_icontains\":\"${_model.userCreated}\"}}}}}' : ' '}]}',
+                        }()}${(_model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.dateStart != '') && (_model.dateStart != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_lt\":\"${_model.dateEnd}\"}}}}' : ' '}${(_model.userCreated != '') && (_model.userCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"created_user_id\":{\"first_name\":{\"_icontains\":\"${_model.userCreated}\"}}}}}' : ' '}]}',
                         offset: nextPageMarker.nextPageNumber * 20,
                         limit: 20,
                       ),
                     ),
-                    padding: EdgeInsets.fromLTRB(
+                    padding: const EdgeInsets.fromLTRB(
                       0,
                       0,
                       0,
@@ -406,7 +398,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                       // Customize what your widget looks like when it's loading the first page.
                       firstPageProgressIndicatorBuilder: (_) => Center(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 50.0, 0.0, 0.0),
                           child: SizedBox(
                             width: 50.0,
@@ -422,7 +414,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                       // Customize what your widget looks like when it's loading another page.
                       newPageProgressIndicatorBuilder: (_) => Center(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 50.0, 0.0, 0.0),
                           child: SizedBox(
                             width: 50.0,
@@ -435,8 +427,8 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                           ),
                         ),
                       ),
-                      noItemsFoundIndicatorBuilder: (_) => Center(
-                        child: Container(
+                      noItemsFoundIndicatorBuilder: (_) => const Center(
+                        child: SizedBox(
                           width: double.infinity,
                           child: DataNotFoundWidget(),
                         ),
@@ -461,13 +453,13 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                   0) &&
                               (functions.countJobDone(itemsItem.toMap()) != 0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: Container(
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .primaryBackground,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   bottomLeft: Radius.circular(16.0),
                                   bottomRight: Radius.circular(16.0),
                                   topLeft: Radius.circular(16.0),
@@ -475,10 +467,10 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsets.all(6.0),
+                                padding: const EdgeInsets.all(6.0),
                                 child: Container(
                                   width: double.infinity,
-                                  color: Color(0x00000000),
+                                  color: const Color(0x00000000),
                                   child: ExpandableNotifier(
                                     initialExpanded: false,
                                     child: ExpandablePanel(
@@ -489,7 +481,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     4.0, 0.0, 0.0, 6.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -517,7 +509,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           6.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -548,7 +540,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                               ],
                                             ),
                                           ),
-                                        ].divide(SizedBox(height: 4.0)),
+                                        ].divide(const SizedBox(height: 4.0)),
                                       ),
                                       collapsed: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -591,7 +583,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           2.0, 0.0, 2.0, 0.0),
                                                   child: Icon(
@@ -702,7 +694,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                             ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     2.0, 0.0, 2.0, 0.0),
                                             child: Builder(
                                               builder: (context) {
@@ -777,7 +769,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                               )),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -812,7 +804,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                               extra: <String,
                                                                   dynamic>{
                                                                 kTransitionInfoKey:
-                                                                    TransitionInfo(
+                                                                    const TransitionInfo(
                                                                   hasTransition:
                                                                       true,
                                                                   transitionType:
@@ -834,7 +826,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                       .of(context)
                                                                   .secondaryBackground,
                                                               borderRadius:
-                                                                  BorderRadius
+                                                                  const BorderRadius
                                                                       .only(
                                                                 bottomLeft: Radius
                                                                     .circular(
@@ -852,7 +844,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           10.0,
@@ -894,7 +886,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
                                                                                 child: Icon(
                                                                                   Icons.access_time,
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
@@ -921,7 +913,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
                                                                                 child: Icon(
                                                                                   Icons.update_outlined,
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
@@ -950,7 +942,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
                                                                                 child: Icon(
                                                                                   Icons.person_outline,
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
@@ -958,7 +950,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 ),
                                                                               ),
                                                                               Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
                                                                                 child: Text(
                                                                                   'Người tạo: ',
                                                                                   style: FlutterFlowTheme.of(context).labelSmall.override(
@@ -973,7 +965,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 width: 35.0,
                                                                                 height: 35.0,
                                                                                 clipBehavior: Clip.antiAlias,
-                                                                                decoration: BoxDecoration(
+                                                                                decoration: const BoxDecoration(
                                                                                   shape: BoxShape.circle,
                                                                                 ),
                                                                                 child: Image.network(
@@ -990,7 +982,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                           if ('1' ==
                                                                               '3')
                                                                             Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                                                                               child: Text(
                                                                                 'Người tham gia: ${itemTaskDoneItem.createdUserId.firstName == 'null' ? ' ' : itemTaskDoneItem.submitStaffId.userId.firstName}',
                                                                                 style: FlutterFlowTheme.of(context).labelSmall.override(
@@ -1001,7 +993,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                     ),
                                                                               ),
                                                                             ),
-                                                                        ].divide(SizedBox(height: 4.0)),
+                                                                        ].divide(const SizedBox(height: 4.0)),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -1017,7 +1009,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                             .end,
                                                                     children: [
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             12.0,
                                                                             0.0,
                                                                             0.0,
@@ -1052,7 +1044,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                               fontWeight: FontWeight.w500,
                                                                             ),
                                                                       ),
-                                                                    ].divide(SizedBox(
+                                                                    ].divide(const SizedBox(
                                                                         width:
                                                                             8.0)),
                                                                   ),
@@ -1068,7 +1060,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                               },
                                             ),
                                           ),
-                                        ].divide(SizedBox(height: 4.0)),
+                                        ].divide(const SizedBox(height: 4.0)),
                                       ),
                                       expanded: Visibility(
                                         visible: (itemsItem.steps.length > 0) &&
@@ -1077,7 +1069,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                 0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   2.0, 0.0, 2.0, 0.0),
                                           child: Builder(
                                             builder: (context) {
@@ -1095,7 +1087,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                               as Iterable<
                                                                   ProcedurePublishedStepTaskStruct?>)
                                                           .withoutNulls
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [];
 
                                               return Column(
@@ -1125,7 +1117,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                         itemsItem.steps.length,
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1160,7 +1152,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                             extra: <String,
                                                                 dynamic>{
                                                               kTransitionInfoKey:
-                                                                  TransitionInfo(
+                                                                  const TransitionInfo(
                                                                 hasTransition:
                                                                     true,
                                                                 transitionType:
@@ -1187,14 +1179,14 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .alternate,
-                                                                offset: Offset(
+                                                                offset: const Offset(
                                                                   0.0,
                                                                   1.0,
                                                                 ),
                                                               )
                                                             ],
                                                             borderRadius:
-                                                                BorderRadius
+                                                                const BorderRadius
                                                                     .only(
                                                               bottomLeft: Radius
                                                                   .circular(
@@ -1213,7 +1205,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         10.0,
@@ -1256,7 +1248,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 2.0,
@@ -1290,7 +1282,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                             CrossAxisAlignment.end,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 2.0,
@@ -1305,7 +1297,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                           if ('1' ==
                                                                               '2')
                                                                             Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                                                                               child: Text(
                                                                                 'Người tạo: ${itemPublishedListItem.createdUserId.firstName == 'null' ? ' ' : itemPublishedListItem.createdUserId.firstName}',
                                                                                 style: FlutterFlowTheme.of(context).labelSmall.override(
@@ -1317,7 +1309,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                               ),
                                                                             ),
                                                                           Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 12.0,
@@ -1341,7 +1333,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                             clipBehavior:
                                                                                 Clip.antiAlias,
                                                                             decoration:
-                                                                                BoxDecoration(
+                                                                                const BoxDecoration(
                                                                               shape: BoxShape.circle,
                                                                             ),
                                                                             child:
@@ -1352,13 +1344,13 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                           ),
                                                                         ],
                                                                       ),
-                                                                    ].divide(SizedBox(
+                                                                    ].divide(const SizedBox(
                                                                         height:
                                                                             4.0)),
                                                                   ),
                                                                 ),
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           15.0,
                                                                           0.0,
@@ -1446,7 +1438,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                   ),
                 ),
               ),
-            ].divide(SizedBox(height: 8.0)),
+            ].divide(const SizedBox(height: 8.0)),
           ),
         ),
       ),

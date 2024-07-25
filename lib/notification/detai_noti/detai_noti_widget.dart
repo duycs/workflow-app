@@ -4,8 +4,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'detai_noti_model.dart';
 export 'detai_noti_model.dart';
 
@@ -48,12 +46,12 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 12.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 12.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 3.0,
               color: Color(0x33000000),
@@ -66,7 +64,7 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(12.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +92,7 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +102,7 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                               return var1.split('.').last;
                             }(getJsonField(
                               functions.stringToJson(getJsonField(
-                                widget!.data,
+                                widget.data,
                                 r'''$.contents''',
                               ).toString()),
                               r'''$.en''',
@@ -116,7 +114,7 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                                     ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 4.0, 0.0, 0.0),
                             child: SelectionArea(
                                 child: Text(
@@ -124,7 +122,7 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                                 return var1.split('.').first;
                               }(getJsonField(
                                 functions.stringToJson(getJsonField(
-                                  widget!.data,
+                                  widget.data,
                                   r'''$.contents''',
                                 ).toString()),
                                 r'''$.en''',
@@ -158,7 +156,7 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                 ],
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                 child: Text(
                   'Notes & descriptions go here they will maybe help explain when it needs done.',
                   style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -168,14 +166,14 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: SelectionArea(
                           child: Text(
                         'Last Activity',
@@ -187,9 +185,9 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                     ),
                     Expanded(
                       child: Align(
-                        alignment: AlignmentDirectional(-1.0, 0.0),
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               4.0, 8.0, 0.0, 0.0),
                           child: SelectionArea(
                               child: Text(
@@ -206,22 +204,22 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                     ),
                     FFButtonWidget(
                       onPressed: () async {
-                        if ('${getJsonField(
+                        if (getJsonField(
                               functions.stringToJson(getJsonField(
-                                widget!.data,
+                                widget.data,
                                 r'''$.notifications_id.data''',
                               ).toString()),
                               r'''$.screen''',
-                            ).toString()}' ==
+                            ).toString() ==
                             '1') {
                           context.goNamed('TaskList');
-                        } else if ('${getJsonField(
+                        } else if (getJsonField(
                               functions.stringToJson(getJsonField(
-                                widget!.data,
+                                widget.data,
                                 r'''$.notifications_id.data''',
                               ).toString()),
                               r'''$.screen''',
-                            ).toString()}' ==
+                            ).toString() ==
                             '2') {
                           context.goNamed('TaskListWait');
                         }
@@ -229,10 +227,10 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                       text: 'Thực hiện ngay',
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).secondary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -241,7 +239,7 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 2.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),

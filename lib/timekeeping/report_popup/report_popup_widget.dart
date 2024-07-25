@@ -2,8 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/timekeeping/timekeeping_management_list/timekeeping_management_list_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'report_popup_model.dart';
 export 'report_popup_model.dart';
 
@@ -41,25 +39,25 @@ class _ReportPopupWidgetState extends State<ReportPopupWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         width: double.infinity,
         height: 210.0,
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           maxHeight: 500.0,
         ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
             topRight: Radius.circular(16.0),
           ),
         ),
-        alignment: AlignmentDirectional(0.0, 1.0),
+        alignment: const AlignmentDirectional(0.0, 1.0),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,7 +70,7 @@ class _ReportPopupWidgetState extends State<ReportPopupWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                 child: ListView(
                   padding: EdgeInsets.zero,
                   primary: false,
@@ -96,7 +94,7 @@ class _ReportPopupWidgetState extends State<ReportPopupWidget> {
                             ),
                           }.withoutNulls,
                           extra: <String, dynamic>{
-                            kTransitionInfoKey: TransitionInfo(
+                            kTransitionInfoKey: const TransitionInfo(
                               hasTransition: true,
                               transitionType: PageTransitionType.fade,
                               duration: Duration(milliseconds: 0),
@@ -109,7 +107,7 @@ class _ReportPopupWidgetState extends State<ReportPopupWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -132,7 +130,7 @@ class _ReportPopupWidgetState extends State<ReportPopupWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
@@ -152,9 +150,9 @@ class _ReportPopupWidgetState extends State<ReportPopupWidget> {
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: AlignmentDirectional(0.0, 0.0)
+                                alignment: const AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: Container(
+                                child: const SizedBox(
                                   height: double.infinity,
                                   width: double.infinity,
                                   child: TimekeepingManagementListWidget(
@@ -170,7 +168,7 @@ class _ReportPopupWidgetState extends State<ReportPopupWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(16.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -193,7 +191,7 @@ class _ReportPopupWidgetState extends State<ReportPopupWidget> {
                                         ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                         ),
@@ -202,7 +200,7 @@ class _ReportPopupWidgetState extends State<ReportPopupWidget> {
                   ],
                 ),
               ),
-            ].divide(SizedBox(height: 12.0)),
+            ].divide(const SizedBox(height: 12.0)),
           ),
         ),
       ),

@@ -1,33 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
 import '/components/nav_bar_widget.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
-import '/tasks/done_action_type_to_do_list/done_action_type_to_do_list_widget.dart';
-import '/tasks/filter_task_list_done/filter_task_list_done_widget.dart';
-import '/tasks/popup_see_more/popup_see_more_widget.dart';
-import '/tasks/popup_task_done/popup_task_done_widget.dart';
-import 'dart:async';
-import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'task_list_done_widget.dart' show TaskListDoneWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 
 class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
   ///  Local state fields for this page.
@@ -119,9 +97,9 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
       accessToken: FFAppState().accessToken,
     );
 
-    if ((apiResultGetTaskDone?.succeeded ?? true)) {
+    if ((apiResultGetTaskDone.succeeded ?? true)) {
       totalDone = getJsonField(
-        (apiResultGetTaskDone?.jsonBody ?? ''),
+        (apiResultGetTaskDone.jsonBody ?? ''),
         r'''$.meta.filter_count''',
       );
     }
@@ -137,9 +115,9 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
       accessToken: FFAppState().accessToken,
     );
 
-    if ((apiResultGetTaskToDo?.succeeded ?? true)) {
+    if ((apiResultGetTaskToDo.succeeded ?? true)) {
       taskToDo = getJsonField(
-        (apiResultGetTaskToDo?.jsonBody ?? ''),
+        (apiResultGetTaskToDo.jsonBody ?? ''),
         r'''$.meta.filter_count''',
       );
     }
@@ -155,9 +133,9 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
       accessToken: FFAppState().accessToken,
     );
 
-    if ((apiResultGetTaskWait?.succeeded ?? true)) {
+    if ((apiResultGetTaskWait.succeeded ?? true)) {
       taskWait = getJsonField(
-        (apiResultGetTaskWait?.jsonBody ?? ''),
+        (apiResultGetTaskWait.jsonBody ?? ''),
         r'''$.meta.filter_count''',
       );
     }
@@ -170,7 +148,7 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -210,7 +188,7 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

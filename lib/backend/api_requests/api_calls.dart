@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
-import '../schema/structs/index.dart';
 
 import 'package:flutter/foundation.dart';
 
@@ -63,11 +61,11 @@ class ShiftListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'ShiftList',
-        apiUrl: '${baseUrl}/items/shifts',
+        apiUrl: '$baseUrl/items/shifts',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'filter': filter,
@@ -105,11 +103,11 @@ class AddressListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'AddressList',
-        apiUrl: '${baseUrl}/items/address',
+        apiUrl: '$baseUrl/items/address',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'filter': filter,
@@ -137,7 +135,7 @@ class AddressListCall {
 
 class ShiftCreateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestJson,
+    dynamic requestJson,
     String? accessToken = '',
   }) async {
     final baseUrl = TimekeepingShiftConfigsGroup.getBaseUrl(
@@ -145,15 +143,14 @@ class ShiftCreateCall {
     );
 
     final request = _serializeJson(requestJson);
-    final ffApiRequestBody = '''
-${request}''';
+    final ffApiRequestBody = request;
     return ApiManager.instance.makeApiCall(
       callName: 'ShiftCreate',
-      apiUrl: '${baseUrl}/items/shifts',
+      apiUrl: '$baseUrl/items/shifts',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -170,7 +167,7 @@ ${request}''';
 
 class ShiftUpdateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestJson,
+    dynamic requestJson,
     String? id = '',
     String? accessToken = '',
   }) async {
@@ -179,15 +176,14 @@ class ShiftUpdateCall {
     );
 
     final request = _serializeJson(requestJson);
-    final ffApiRequestBody = '''
-${request}''';
+    final ffApiRequestBody = request;
     return ApiManager.instance.makeApiCall(
       callName: 'ShiftUpdate',
-      apiUrl: '${baseUrl}/items/shifts/${id}',
+      apiUrl: '$baseUrl/items/shifts/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -215,11 +211,11 @@ class ShiftConfigsCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'ShiftConfigs',
-      apiUrl: '${baseUrl}/items/shift_configs',
+      apiUrl: '$baseUrl/items/shift_configs',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'filter': filter,
@@ -241,7 +237,7 @@ class ShiftConfigsCall {
 
 class ShiftConfigsCreateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestJson,
+    dynamic requestJson,
     String? accessToken = '',
   }) async {
     final baseUrl = TimekeepingShiftConfigsGroup.getBaseUrl(
@@ -249,15 +245,14 @@ class ShiftConfigsCreateCall {
     );
 
     final request = _serializeJson(requestJson);
-    final ffApiRequestBody = '''
-${request}''';
+    final ffApiRequestBody = request;
     return ApiManager.instance.makeApiCall(
       callName: 'ShiftConfigsCreate',
-      apiUrl: '${baseUrl}/items/shift_configs',
+      apiUrl: '$baseUrl/items/shift_configs',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -274,7 +269,7 @@ ${request}''';
 
 class ShiftConfigsUpdateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestJson,
+    dynamic requestJson,
     String? id = '',
     String? accessToken = '',
   }) async {
@@ -283,15 +278,14 @@ class ShiftConfigsUpdateCall {
     );
 
     final request = _serializeJson(requestJson);
-    final ffApiRequestBody = '''
-${request}''';
+    final ffApiRequestBody = request;
     return ApiManager.instance.makeApiCall(
       callName: 'ShiftConfigsUpdate',
-      apiUrl: '${baseUrl}/items/shift_configs/${id}',
+      apiUrl: '$baseUrl/items/shift_configs/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -347,11 +341,11 @@ class NewsfeedListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'NewsfeedList',
-        apiUrl: '${baseUrl}/items/news',
+        apiUrl: '$baseUrl/items/news',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'filter': filter,
@@ -388,11 +382,11 @@ class NewsfeedOneCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'NewsfeedOne',
-      apiUrl: '${baseUrl}/items/news/${id}',
+      apiUrl: '$baseUrl/items/news/$id',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields[]':
@@ -421,16 +415,16 @@ class ReactNewsfeedCall {
     final ffApiRequestBody = '''
 {
   "status": "love",
-  "news_id": "${newsId}",
-  "staff_id": "${staffId}"
+  "news_id": "$newsId",
+  "staff_id": "$staffId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ReactNewsfeed',
-      apiUrl: '${baseUrl}/flows/trigger/a6b2b14e-e289-40b1-a140-b8d7b29d8072',
+      apiUrl: '$baseUrl/flows/trigger/a6b2b14e-e289-40b1-a140-b8d7b29d8072',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -456,11 +450,11 @@ class ReactNewsfeedDeleteCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'ReactNewsfeedDelete',
-      apiUrl: '${baseUrl}/items/news_reacts/${id}',
+      apiUrl: '$baseUrl/items/news_reacts/$id',
       callType: ApiCallType.DELETE,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       returnBody: true,
@@ -475,7 +469,7 @@ class ReactNewsfeedDeleteCall {
 
 class CommentsNewFeedCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = NewsfeedGroup.getBaseUrl(
@@ -483,15 +477,14 @@ class CommentsNewFeedCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CommentsNewFeed',
-      apiUrl: '${baseUrl}/flows/trigger/de32a25c-cdc7-4e5f-9f45-33a8498dade6',
+      apiUrl: '$baseUrl/flows/trigger/de32a25c-cdc7-4e5f-9f45-33a8498dade6',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -517,11 +510,11 @@ class CommentsNewFeedDeleteCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'CommentsNewFeedDelete',
-      apiUrl: '${baseUrl}/items/news_comments/${id}',
+      apiUrl: '$baseUrl/items/news_comments/$id',
       callType: ApiCallType.DELETE,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       returnBody: true,
@@ -547,16 +540,16 @@ class NewsfeedConfirmReadedCall {
     final ffApiRequestBody = '''
 {
   "status": "readed",
-  "news_id": "${newsId}",
-  "staff_id": "${staffId}"
+  "news_id": "$newsId",
+  "staff_id": "$staffId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'NewsfeedConfirmReaded',
-      apiUrl: '${baseUrl}/flows/trigger/45430b59-ddec-4fc2-8baf-70fe635033ab',
+      apiUrl: '$baseUrl/flows/trigger/45430b59-ddec-4fc2-8baf-70fe635033ab',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -573,7 +566,7 @@ class NewsfeedConfirmReadedCall {
 
 class CreateNewsFeedCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = NewsfeedGroup.getBaseUrl(
@@ -581,15 +574,14 @@ class CreateNewsFeedCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateNewsFeed',
-      apiUrl: '${baseUrl}/items/news',
+      apiUrl: '$baseUrl/items/news',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -606,7 +598,7 @@ ${requestData}''';
 
 class EditNewsFeedCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? id = '',
     String? accessToken = '',
   }) async {
@@ -615,15 +607,14 @@ class EditNewsFeedCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'EditNewsFeed',
-      apiUrl: '${baseUrl}/items/news/${id}',
+      apiUrl: '$baseUrl/items/news/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -674,11 +665,11 @@ class ProcedurePublishedListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'ProcedurePublishedList',
-        apiUrl: '${baseUrl}/items/workflows',
+        apiUrl: '$baseUrl/items/workflows',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields':
@@ -717,15 +708,15 @@ class ProcedureTemplateUpdateLimitPublishedCall {
 
     final ffApiRequestBody = '''
 {
-  "limit_published": ${limitPublished}
+  "limit_published": $limitPublished
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ProcedureTemplateUpdateLimitPublished',
-      apiUrl: '${baseUrl}/items/workflows/${id}',
+      apiUrl: '$baseUrl/items/workflows/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -751,15 +742,15 @@ class ProcedurePublishedCall {
 
     final ffApiRequestBody = '''
 {
-  "workflow_id": "${workflowId}"
+  "workflow_id": "$workflowId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ProcedurePublished',
-      apiUrl: '${baseUrl}/flows/trigger/cb0b45cb-956a-410e-9f15-fd040a83a0e4',
+      apiUrl: '$baseUrl/flows/trigger/cb0b45cb-956a-410e-9f15-fd040a83a0e4',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -809,11 +800,11 @@ class GetDepartmentListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'GetDepartmentList',
-        apiUrl: '${baseUrl}/items/departments',
+        apiUrl: '$baseUrl/items/departments',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields[]':
@@ -845,7 +836,7 @@ class PostdepartmentCall {
     String? description = '',
     String? branchId = '',
     String? code = '',
-    dynamic? programsIdJson,
+    dynamic programsIdJson,
     String? accessToken = '',
   }) async {
     final baseUrl = DepartmentGroup.getBaseUrl(
@@ -856,19 +847,19 @@ class PostdepartmentCall {
     final ffApiRequestBody = '''
 {
   "status": "published",
-  "name": "${name}",
-  "description": "${description}",
-  "branch_id": "${branchId}",
-  "code": "${code}",
-  "programs": ${programsId}
+  "name": "$name",
+  "description": "$description",
+  "branch_id": "$branchId",
+  "code": "$code",
+  "programs": $programsId
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Postdepartment',
-      apiUrl: '${baseUrl}/items/departments',
+      apiUrl: '$baseUrl/items/departments',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -890,7 +881,7 @@ class PathDepartmentCall {
     String? description = '',
     String? branchId = '',
     String? code = '',
-    dynamic? programsIdJson,
+    dynamic programsIdJson,
     String? status = '',
     String? accessToken = '',
   }) async {
@@ -901,20 +892,20 @@ class PathDepartmentCall {
     final programsId = _serializeJson(programsIdJson, true);
     final ffApiRequestBody = '''
 {
-  "status": "${status}",
-  "name": "${name}",
-  "description": "${description}",
-  "branch_id": "${branchId}",
-  "code": "${code}",
-  "programs": ${programsId}
+  "status": "$status",
+  "name": "$name",
+  "description": "$description",
+  "branch_id": "$branchId",
+  "code": "$code",
+  "programs": $programsId
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'PathDepartment',
-      apiUrl: '${baseUrl}/items/departments/${departmentId}',
+      apiUrl: '$baseUrl/items/departments/$departmentId',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -931,7 +922,7 @@ class PathDepartmentCall {
 
 class UpdateProgramsCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = DepartmentGroup.getBaseUrl(
@@ -939,15 +930,14 @@ class UpdateProgramsCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdatePrograms',
-      apiUrl: '${baseUrl}/flows/trigger/d76ea3a4-88ff-4a81-b6c8-e6f8edc20652',
+      apiUrl: '$baseUrl/flows/trigger/d76ea3a4-88ff-4a81-b6c8-e6f8edc20652',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -972,11 +962,11 @@ class ProgramSynchronizedCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'ProgramSynchronized',
-      apiUrl: '${baseUrl}/flows/trigger/b1888ea3-9709-4c01-821d-9573d1171060',
+      apiUrl: '$baseUrl/flows/trigger/b1888ea3-9709-4c01-821d-9573d1171060',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       returnBody: true,
@@ -1017,11 +1007,11 @@ class UploadFileCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'UploadFile',
-      apiUrl: '${baseUrl}/files',
+      apiUrl: '$baseUrl/files',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'file': file,
@@ -1049,11 +1039,11 @@ class UploadListFileCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'UploadListFile',
-      apiUrl: '${baseUrl}/files',
+      apiUrl: '$baseUrl/files',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'file': file,
@@ -1098,11 +1088,11 @@ class UserMeCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'UserMe',
-      apiUrl: '${baseUrl}/users/me',
+      apiUrl: '$baseUrl/users/me',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       returnBody: true,
@@ -1126,15 +1116,15 @@ class GetStaffIdCall {
 
     final ffApiRequestBody = '''
 {
-"user_id":"${userId}"
+"user_id":"$userId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetStaffId',
-      apiUrl: '${baseUrl}/flows/trigger/414ee2de-1efe-4542-98d5-436eb0107ee0',
+      apiUrl: '$baseUrl/flows/trigger/414ee2de-1efe-4542-98d5-436eb0107ee0',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -1159,11 +1149,11 @@ class GetListUserCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'GetListUser',
-      apiUrl: '${baseUrl}/users',
+      apiUrl: '$baseUrl/users',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields': "email",
@@ -1189,17 +1179,17 @@ class DeleteAccountCall {
       accessToken: accessToken,
     );
 
-    final ffApiRequestBody = '''
+    const ffApiRequestBody = '''
 {
     "status": "archived"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'DeleteAccount',
-      apiUrl: '${baseUrl}/users/${userId}',
+      apiUrl: '$baseUrl/users/$userId',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -1238,12 +1228,12 @@ class LoginCall {
 
     final ffApiRequestBody = '''
 {
-  "email": "${email}",
-  "password": "${password}"
+  "email": "$email",
+  "password": "$password"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Login',
-      apiUrl: '${baseUrl}/flows/trigger/104bce56-32bc-4140-a93d-5de3e5a46b39',
+      apiUrl: '$baseUrl/flows/trigger/104bce56-32bc-4140-a93d-5de3e5a46b39',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1269,12 +1259,12 @@ class RefreshTokenCall {
 
     final ffApiRequestBody = '''
 {
-  "refresh_token": "${refreshToken}",
+  "refresh_token": "$refreshToken",
   "mode": "json"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'RefreshToken',
-      apiUrl: '${baseUrl}/auth/refresh',
+      apiUrl: '$baseUrl/auth/refresh',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1294,16 +1284,15 @@ class RefreshTokenCall {
 
 class CreateOrganizationUserCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
   }) async {
     final baseUrl = AuthenGroup.getBaseUrl();
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateOrganizationUser',
-      apiUrl: '${baseUrl}/flows/trigger/c5d94aa6-ac37-4ece-bfc5-05503805ad8b',
+      apiUrl: '$baseUrl/flows/trigger/c5d94aa6-ac37-4ece-bfc5-05503805ad8b',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1367,11 +1356,11 @@ class GetLessonListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'GetLessonList',
-        apiUrl: '${baseUrl}/items/lessions',
+        apiUrl: '$baseUrl/items/lessions',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields[]':
@@ -1408,11 +1397,11 @@ class GetLessionsOneCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'GetLessionsOne',
-      apiUrl: '${baseUrl}/items/lessions/${lessionsId}',
+      apiUrl: '$baseUrl/items/lessions/$lessionsId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields':
@@ -1442,11 +1431,11 @@ class EmployeeLessonListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'EmployeeLessonList',
-        apiUrl: '${baseUrl}/items/staffs_lessions',
+        apiUrl: '$baseUrl/items/staffs_lessions',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields[]':
@@ -1487,17 +1476,17 @@ class PostCommentCall {
     final ffApiRequestBody = '''
 {
   "status": "published",
-  "lession_id": "${lessionId}",
-  "content": "${content}",
-  "staff_id": "${staffId}"
+  "lession_id": "$lessionId",
+  "content": "$content",
+  "staff_id": "$staffId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'PostComment',
-      apiUrl: '${baseUrl}/flows/trigger/c9e1d3e3-cc5d-4b86-9f77-b2f561c7496a',
+      apiUrl: '$baseUrl/flows/trigger/c9e1d3e3-cc5d-4b86-9f77-b2f561c7496a',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -1514,7 +1503,7 @@ class PostCommentCall {
 
 class PostLessonCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = LessonGroup.getBaseUrl(
@@ -1522,15 +1511,14 @@ class PostLessonCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'PostLesson',
-      apiUrl: '${baseUrl}/items/lessions',
+      apiUrl: '$baseUrl/items/lessions',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -1547,7 +1535,7 @@ ${requestData}''';
 
 class PathLessonCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? idLesson = '',
     String? accessToken = '',
   }) async {
@@ -1556,15 +1544,14 @@ class PathLessonCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'PathLesson',
-      apiUrl: '${baseUrl}/items/lessions/${idLesson}',
+      apiUrl: '$baseUrl/items/lessions/$idLesson',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -1590,11 +1577,11 @@ class DeleteCommentCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'DeleteComment',
-      apiUrl: '${baseUrl}/items/lessions_comments/${id}',
+      apiUrl: '$baseUrl/items/lessions_comments/$id',
       callType: ApiCallType.DELETE,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       returnBody: true,
@@ -1618,11 +1605,11 @@ class ProgramsLessionsCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'ProgramsLessions',
-      apiUrl: '${baseUrl}/items/programs_lessions',
+      apiUrl: '$baseUrl/items/programs_lessions',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields[]':
@@ -1652,17 +1639,17 @@ class PostHeartCall {
 
     final ffApiRequestBody = '''
 {
-  "status": "${status}",
-  "lession_id": "${lessionId}",
-  "staff_id": "${staffId}"
+  "status": "$status",
+  "lession_id": "$lessionId",
+  "staff_id": "$staffId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'postHeart',
-      apiUrl: '${baseUrl}/flows/trigger/b1e1fdf3-6656-4c9e-9c58-03feeee4ed7c',
+      apiUrl: '$baseUrl/flows/trigger/b1e1fdf3-6656-4c9e-9c58-03feeee4ed7c',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -1688,11 +1675,11 @@ class DeleteHeartCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'DeleteHeart',
-      apiUrl: '${baseUrl}/items/lessions_reacts/${idHeart}',
+      apiUrl: '$baseUrl/items/lessions_reacts/$idHeart',
       callType: ApiCallType.DELETE,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       returnBody: true,
@@ -1718,15 +1705,15 @@ class UpdateStaffLessonStatusCall {
     final ffApiRequestBody = '''
 {
   "status": "inprogress",
-  "date_start": "${dateStart}"
+  "date_start": "$dateStart"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateStaffLessonStatus',
-      apiUrl: '${baseUrl}/items/staffs_lessions/${id}',
+      apiUrl: '$baseUrl/items/staffs_lessions/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -1753,15 +1740,15 @@ class UpdateLessonStatusMarketCall {
 
     final ffApiRequestBody = '''
 {
-  "status": "${status}"
+  "status": "$status"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateLessonStatusMarket',
-      apiUrl: '${baseUrl}/items/lessions/${id}',
+      apiUrl: '$baseUrl/items/lessions/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -1788,16 +1775,16 @@ class UpdateStaffProgramStatusCall {
 
     final ffApiRequestBody = '''
 {
-  "staff_id": "${staffId}",
-  "program_id": "${programId}"
+  "staff_id": "$staffId",
+  "program_id": "$programId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateStaffProgramStatus',
-      apiUrl: '${baseUrl}/flows/trigger/8c284328-1373-4da4-98f5-b3024d3e9861',
+      apiUrl: '$baseUrl/flows/trigger/8c284328-1373-4da4-98f5-b3024d3e9861',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -1864,11 +1851,11 @@ class StudyProgramListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'StudyProgramList',
-        apiUrl: '${baseUrl}/items/programs',
+        apiUrl: '$baseUrl/items/programs',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'filter': filter,
@@ -1908,11 +1895,11 @@ class StudyProgramOneCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'StudyProgramOne',
-      apiUrl: '${baseUrl}/items/programs',
+      apiUrl: '$baseUrl/items/programs',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'filter': filter,
@@ -1944,11 +1931,11 @@ class StudyProgramGetOneCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'StudyProgramGetOne',
-      apiUrl: '${baseUrl}/items/programs/${id}',
+      apiUrl: '$baseUrl/items/programs/$id',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields':
@@ -1966,7 +1953,7 @@ class StudyProgramGetOneCall {
 
 class StudyProgramCreateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = StudyProgramGroup.getBaseUrl(
@@ -1974,15 +1961,14 @@ class StudyProgramCreateCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'StudyProgramCreate',
-      apiUrl: '${baseUrl}/items/programs',
+      apiUrl: '$baseUrl/items/programs',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -1999,7 +1985,7 @@ ${requestData}''';
 
 class StudyProgramLessionsUpdateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? id = '',
     String? accessToken = '',
   }) async {
@@ -2008,15 +1994,14 @@ class StudyProgramLessionsUpdateCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'StudyProgramLessionsUpdate',
-      apiUrl: '${baseUrl}/items/programs/${id}',
+      apiUrl: '$baseUrl/items/programs/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2042,15 +2027,15 @@ class SynchronizedStaffLessonCall {
 
     final ffApiRequestBody = '''
 {
-  "program_id": "${programId}"
+  "program_id": "$programId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'SynchronizedStaffLesson',
-      apiUrl: '${baseUrl}/flows/trigger/b1888ea3-9709-4c01-821d-9573d1171060',
+      apiUrl: '$baseUrl/flows/trigger/b1888ea3-9709-4c01-821d-9573d1171060',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2079,11 +2064,11 @@ class StaffsProgramsCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'StaffsPrograms',
-        apiUrl: '${baseUrl}/items/staffs_programs',
+        apiUrl: '$baseUrl/items/staffs_programs',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields[]':
@@ -2127,21 +2112,21 @@ class UpdateStudyProgramPriceCall {
 
     final ffApiRequestBody = '''
 {
-  "price": ${price},
-"iap_apple_product_id":"${iapApple}",
-"iap_google_product_id":"${iapGoogle}",
-  "author_id": "${authorId}",
-  "category_id": "${category}",
-  "domain_id": "${domain}",
-  "version": ${version}
+  "price": $price,
+"iap_apple_product_id":"$iapApple",
+"iap_google_product_id":"$iapGoogle",
+  "author_id": "$authorId",
+  "category_id": "$category",
+  "domain_id": "$domain",
+  "version": $version
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateStudyProgramPrice',
-      apiUrl: '${baseUrl}/items/programs/${id}',
+      apiUrl: '$baseUrl/items/programs/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2170,17 +2155,17 @@ class AddProgramMarketCall {
 
     final ffApiRequestBody = '''
 {
-  "program_id": "${id}",
-  "category_id": "${categoryId}",
-  "domain_id": "${domainId}"
+  "program_id": "$id",
+  "category_id": "$categoryId",
+  "domain_id": "$domainId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'AddProgramMarket',
-      apiUrl: '${baseUrl}/flows/trigger/39a06a6d-e1f8-4271-85e8-5773579b0c2c',
+      apiUrl: '$baseUrl/flows/trigger/39a06a6d-e1f8-4271-85e8-5773579b0c2c',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2206,11 +2191,11 @@ class DeleteProgramCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'DeleteProgram',
-      apiUrl: '${baseUrl}/items/programs/${id}',
+      apiUrl: '$baseUrl/items/programs/$id',
       callType: ApiCallType.DELETE,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       returnBody: true,
@@ -2225,7 +2210,7 @@ class DeleteProgramCall {
 
 class StaffsProgramsPostCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = StudyProgramGroup.getBaseUrl(
@@ -2233,15 +2218,14 @@ class StaffsProgramsPostCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'staffsProgramsPost',
-      apiUrl: '${baseUrl}/items/staffs_programs',
+      apiUrl: '$baseUrl/items/staffs_programs',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2269,7 +2253,7 @@ class CoppyStaffProgramsCall {
 {
   "programs": [
     {
-      "program_id": "${programId}",
+      "program_id": "$programId",
       "limit_invite": 0,
       "private": 0
     }
@@ -2277,11 +2261,11 @@ class CoppyStaffProgramsCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'coppyStaffPrograms',
-      apiUrl: '${baseUrl}/flows/trigger/80fe65e9-f22f-4c5a-9ee2-39b4c1ddc462',
+      apiUrl: '$baseUrl/flows/trigger/80fe65e9-f22f-4c5a-9ee2-39b4c1ddc462',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2298,7 +2282,7 @@ class CoppyStaffProgramsCall {
 
 class UpdateDepartmentSynchronizedCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = StudyProgramGroup.getBaseUrl(
@@ -2306,15 +2290,14 @@ class UpdateDepartmentSynchronizedCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateDepartmentSynchronized',
-      apiUrl: '${baseUrl}/flows/trigger/0b48f433-e632-4eee-84b9-9651d207de98',
+      apiUrl: '$baseUrl/flows/trigger/0b48f433-e632-4eee-84b9-9651d207de98',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2331,7 +2314,7 @@ ${requestData}''';
 
 class ReviewProgramCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = StudyProgramGroup.getBaseUrl(
@@ -2339,15 +2322,14 @@ class ReviewProgramCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'ReviewProgram',
-      apiUrl: '${baseUrl}/flows/trigger/0b09d278-b3b0-4ac4-b523-a965c570a059',
+      apiUrl: '$baseUrl/flows/trigger/0b09d278-b3b0-4ac4-b523-a965c570a059',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2373,11 +2355,11 @@ class IapProductsCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'IapProducts',
-      apiUrl: '${baseUrl}/items/iap_products',
+      apiUrl: '$baseUrl/items/iap_products',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'filter': filter,
@@ -2428,11 +2410,11 @@ class StaffsTestsListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'StaffsTestsList',
-        apiUrl: '${baseUrl}/items/staffs_tests',
+        apiUrl: '$baseUrl/items/staffs_tests',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields':
@@ -2469,11 +2451,11 @@ class StaffAnswerListCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'StaffAnswerList',
-      apiUrl: '${baseUrl}/items/staffs_answers',
+      apiUrl: '$baseUrl/items/staffs_answers',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'filter': filter,
@@ -2492,7 +2474,7 @@ class StaffAnswerListCall {
 
 class CreateStaffTestCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = DoTestGroup.getBaseUrl(
@@ -2500,15 +2482,14 @@ class CreateStaffTestCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateStaffTest',
-      apiUrl: '${baseUrl}/items/staffs_tests',
+      apiUrl: '$baseUrl/items/staffs_tests',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2525,7 +2506,7 @@ ${requestData}''';
 
 class CreateStaffAnswerCall {
   Future<ApiCallResponse> call({
-    dynamic? requestJson,
+    dynamic requestJson,
     String? accessToken = '',
   }) async {
     final baseUrl = DoTestGroup.getBaseUrl(
@@ -2533,15 +2514,14 @@ class CreateStaffAnswerCall {
     );
 
     final request = _serializeJson(requestJson, true);
-    final ffApiRequestBody = '''
-${request}''';
+    final ffApiRequestBody = request;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateStaffAnswer',
-      apiUrl: '${baseUrl}/items/staffs_answers',
+      apiUrl: '$baseUrl/items/staffs_answers',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2567,15 +2547,15 @@ class CalculateTestScoresCall {
 
     final ffApiRequestBody = '''
 {
-  "staff_test_id": "${staffTestId}"
+  "staff_test_id": "$staffTestId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'CalculateTestScores',
-      apiUrl: '${baseUrl}/flows/trigger/44b43c13-8b8e-4032-b528-ae3be7c52a7d',
+      apiUrl: '$baseUrl/flows/trigger/44b43c13-8b8e-4032-b528-ae3be7c52a7d',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2592,7 +2572,7 @@ class CalculateTestScoresCall {
 
 class CreateStaffTestsCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? fields =
         'id,test_id.id, test_id.name, test_id.description, test_id.duration_minutes, code',
     String? accessToken = '',
@@ -2602,15 +2582,14 @@ class CreateStaffTestsCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateStaffTests',
-      apiUrl: '${baseUrl}/items/staffs_tests?fields=${fields}',
+      apiUrl: '$baseUrl/items/staffs_tests?fields=$fields',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2647,7 +2626,7 @@ class TestGroup {
 
 class CreateTestCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = TestGroup.getBaseUrl(
@@ -2655,15 +2634,14 @@ class CreateTestCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateTest',
-      apiUrl: '${baseUrl}/items/tests',
+      apiUrl: '$baseUrl/items/tests',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2680,7 +2658,7 @@ ${requestData}''';
 
 class QuestionTestAddCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = TestGroup.getBaseUrl(
@@ -2688,15 +2666,14 @@ class QuestionTestAddCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'QuestionTestAdd',
-      apiUrl: '${baseUrl}/items/tests_questions',
+      apiUrl: '$baseUrl/items/tests_questions',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2725,11 +2702,11 @@ class TestListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'TestList',
-        apiUrl: '${baseUrl}/items/tests',
+        apiUrl: '$baseUrl/items/tests',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields':
@@ -2768,11 +2745,11 @@ class TestOneCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'TestOne',
-      apiUrl: '${baseUrl}/items/tests/${testsId}',
+      apiUrl: '$baseUrl/items/tests/$testsId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields':
@@ -2793,7 +2770,7 @@ class TestOneCall {
 
 class TestUpdateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? id = '',
     String? accessToken = '',
   }) async {
@@ -2802,15 +2779,14 @@ class TestUpdateCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'TestUpdate',
-      apiUrl: '${baseUrl}/items/tests/${id}',
+      apiUrl: '$baseUrl/items/tests/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2858,11 +2834,11 @@ class QuestionListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'questionList',
-        apiUrl: '${baseUrl}/items/questions',
+        apiUrl: '$baseUrl/items/questions',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields':
@@ -2899,11 +2875,11 @@ class QuestionListOneCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'questionListOne',
-      apiUrl: '${baseUrl}/items/questions/${questionId}',
+      apiUrl: '$baseUrl/items/questions/$questionId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields':
@@ -2921,7 +2897,7 @@ class QuestionListOneCall {
 
 class QuestionCreateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = QuestionGroup.getBaseUrl(
@@ -2929,15 +2905,14 @@ class QuestionCreateCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'questionCreate',
-      apiUrl: '${baseUrl}/flows/trigger/ab20019b-2912-40b4-8dcf-e3b010893396',
+      apiUrl: '$baseUrl/flows/trigger/ab20019b-2912-40b4-8dcf-e3b010893396',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -2954,7 +2929,7 @@ ${requestData}''';
 
 class QuestionUpdateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = QuestionGroup.getBaseUrl(
@@ -2962,15 +2937,14 @@ class QuestionUpdateCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'questionUpdate',
-      apiUrl: '${baseUrl}/flows/trigger/bd88689f-a050-44ac-b694-e2fe2c06e23c',
+      apiUrl: '$baseUrl/flows/trigger/bd88689f-a050-44ac-b694-e2fe2c06e23c',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3035,11 +3009,11 @@ class WorkflowsListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'workflowsList',
-        apiUrl: '${baseUrl}/items/workflows',
+        apiUrl: '$baseUrl/items/workflows',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields':
@@ -3079,11 +3053,11 @@ class OperationsListCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'operationsList',
-      apiUrl: '${baseUrl}/items/operations',
+      apiUrl: '$baseUrl/items/operations',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields': "id, status, name, description",
@@ -3105,7 +3079,7 @@ class OperationsListCall {
 
 class OperationsCreateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = ProcedureTemplateGroup.getBaseUrl(
@@ -3113,15 +3087,14 @@ class OperationsCreateCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'operationsCreate',
-      apiUrl: '${baseUrl}/items/operations',
+      apiUrl: '$baseUrl/items/operations',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3138,7 +3111,7 @@ ${requestData}''';
 
 class WorkflowsCreateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = ProcedureTemplateGroup.getBaseUrl(
@@ -3146,15 +3119,14 @@ class WorkflowsCreateCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'workflowsCreate',
-      apiUrl: '${baseUrl}/items/workflows',
+      apiUrl: '$baseUrl/items/workflows',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3171,7 +3143,7 @@ ${requestData}''';
 
 class TasksCreateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = ProcedureTemplateGroup.getBaseUrl(
@@ -3179,15 +3151,14 @@ class TasksCreateCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'tasksCreate',
-      apiUrl: '${baseUrl}/items/tasks',
+      apiUrl: '$baseUrl/items/tasks',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3215,11 +3186,11 @@ class TasksListCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'tasksList',
-      apiUrl: '${baseUrl}/items/tasks',
+      apiUrl: '$baseUrl/items/tasks',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields':
@@ -3242,7 +3213,7 @@ class TasksListCall {
 
 class StepsCreateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = ProcedureTemplateGroup.getBaseUrl(
@@ -3250,15 +3221,14 @@ class StepsCreateCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'stepsCreate',
-      apiUrl: '${baseUrl}/items/steps',
+      apiUrl: '$baseUrl/items/steps',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3286,11 +3256,11 @@ class StepsListCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'stepsList',
-      apiUrl: '${baseUrl}/items/steps',
+      apiUrl: '$baseUrl/items/steps',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields':
@@ -3313,7 +3283,7 @@ class StepsListCall {
 
 class StepCreateWorkflowsCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = ProcedureTemplateGroup.getBaseUrl(
@@ -3321,15 +3291,14 @@ class StepCreateWorkflowsCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'stepCreateWorkflows',
-      apiUrl: '${baseUrl}/flows/trigger/b1ba3372-66bb-44c9-baec-c8db8c7511fe',
+      apiUrl: '$baseUrl/flows/trigger/b1ba3372-66bb-44c9-baec-c8db8c7511fe',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3355,11 +3324,11 @@ class WorkflowsOneCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'workflowsOne',
-      apiUrl: '${baseUrl}/items/workflows/${id}',
+      apiUrl: '$baseUrl/items/workflows/$id',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields':
@@ -3377,7 +3346,7 @@ class WorkflowsOneCall {
 
 class WorkflowUpdateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = ProcedureTemplateGroup.getBaseUrl(
@@ -3385,15 +3354,14 @@ class WorkflowUpdateCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'workflowUpdate',
-      apiUrl: '${baseUrl}/flows/trigger/ebd094ca-ca35-4867-8850-4db6d65ee569',
+      apiUrl: '$baseUrl/flows/trigger/ebd094ca-ca35-4867-8850-4db6d65ee569',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3410,7 +3378,7 @@ ${requestData}''';
 
 class StepUpdateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = ProcedureTemplateGroup.getBaseUrl(
@@ -3418,15 +3386,14 @@ class StepUpdateCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'stepUpdate',
-      apiUrl: '${baseUrl}/flows/trigger/ad1865a8-6611-4c50-8777-15a871f52524',
+      apiUrl: '$baseUrl/flows/trigger/ad1865a8-6611-4c50-8777-15a871f52524',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3453,14 +3420,14 @@ class DeleteWorkflowsStepCall {
     final stepId = _serializeList(stepIdList);
 
     final ffApiRequestBody = '''
-{"steps":{"create":[],"update":[],"delete":${stepId}}}''';
+{"steps":{"create":[],"update":[],"delete":$stepId}}''';
     return ApiManager.instance.makeApiCall(
       callName: 'DeleteWorkflowsStep',
-      apiUrl: '${baseUrl}/items/workflows/${workflowsId}',
+      apiUrl: '$baseUrl/items/workflows/$workflowsId',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3486,15 +3453,15 @@ class WorkflowCopyCall {
 
     final ffApiRequestBody = '''
 {
-  "workflow_id": "${workflowId}"
+  "workflow_id": "$workflowId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'workflowCopy',
-      apiUrl: '${baseUrl}/flows/trigger/409e0add-4b94-419e-814d-ac787810e2b8',
+      apiUrl: '$baseUrl/flows/trigger/409e0add-4b94-419e-814d-ac787810e2b8',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3522,17 +3489,17 @@ class WorkflowMarketCall {
 
     final ffApiRequestBody = '''
 {
-  "workflow_id": "${workflowId}",
-  "category_id": "${categoryId}",
-  "domain_id": "${domainId}"
+  "workflow_id": "$workflowId",
+  "category_id": "$categoryId",
+  "domain_id": "$domainId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'workflowMarket',
-      apiUrl: '${baseUrl}/flows/trigger/462eabbb-b130-4500-b4dd-32d4801cbdd0',
+      apiUrl: '$baseUrl/flows/trigger/462eabbb-b130-4500-b4dd-32d4801cbdd0',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3549,7 +3516,7 @@ class WorkflowMarketCall {
 
 class CreateWorkflowsAllCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = ProcedureTemplateGroup.getBaseUrl(
@@ -3557,15 +3524,14 @@ class CreateWorkflowsAllCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateWorkflowsAll',
-      apiUrl: '${baseUrl}/flows/trigger/70307d27-4a51-4562-968c-a07441932397',
+      apiUrl: '$baseUrl/flows/trigger/70307d27-4a51-4562-968c-a07441932397',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3582,7 +3548,7 @@ ${requestData}''';
 
 class UpdateWorkflowsAllCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = ProcedureTemplateGroup.getBaseUrl(
@@ -3590,15 +3556,14 @@ class UpdateWorkflowsAllCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateWorkflowsAll',
-      apiUrl: '${baseUrl}/flows/trigger/86f7cb77-4c2b-4afe-9b21-248d70a9385e',
+      apiUrl: '$baseUrl/flows/trigger/86f7cb77-4c2b-4afe-9b21-248d70a9385e',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3645,11 +3610,11 @@ class BranchListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'BranchList',
-        apiUrl: '${baseUrl}/items/branchs',
+        apiUrl: '$baseUrl/items/branchs',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'filter': filter,
@@ -3677,7 +3642,7 @@ class BranchListCall {
 
 class BranchAddCall {
   Future<ApiCallResponse> call({
-    dynamic? requesDataJson,
+    dynamic requesDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = BranchGroup.getBaseUrl(
@@ -3685,15 +3650,14 @@ class BranchAddCall {
     );
 
     final requesData = _serializeJson(requesDataJson);
-    final ffApiRequestBody = '''
-${requesData}''';
+    final ffApiRequestBody = requesData;
     return ApiManager.instance.makeApiCall(
       callName: 'BranchAdd',
-      apiUrl: '${baseUrl}/items/branchs',
+      apiUrl: '$baseUrl/items/branchs',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3710,7 +3674,7 @@ ${requesData}''';
 
 class BranchUpdateCall {
   Future<ApiCallResponse> call({
-    dynamic? requesDataJson,
+    dynamic requesDataJson,
     String? id = '',
     String? accessToken = '',
   }) async {
@@ -3719,15 +3683,14 @@ class BranchUpdateCall {
     );
 
     final requesData = _serializeJson(requesDataJson);
-    final ffApiRequestBody = '''
-${requesData}''';
+    final ffApiRequestBody = requesData;
     return ApiManager.instance.makeApiCall(
       callName: 'BranchUpdate',
-      apiUrl: '${baseUrl}/items/branchs/${id}',
+      apiUrl: '$baseUrl/items/branchs/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3782,11 +3745,11 @@ class GetStaffListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'GetStaffList',
-        apiUrl: '${baseUrl}/items/staffs',
+        apiUrl: '$baseUrl/items/staffs',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields':
@@ -3827,11 +3790,11 @@ class GetListStaffReportCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'GetListStaffReport',
-        apiUrl: '${baseUrl}/items/staffs',
+        apiUrl: '$baseUrl/items/staffs',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields':
@@ -3869,11 +3832,11 @@ class StaffGetOneCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'StaffGetOne',
-      apiUrl: '${baseUrl}/items/staffs/${staffId}',
+      apiUrl: '$baseUrl/items/staffs/$staffId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields':
@@ -3892,7 +3855,7 @@ class StaffGetOneCall {
 
 class CreateStaffCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = StaffGroup.getBaseUrl(
@@ -3900,15 +3863,14 @@ class CreateStaffCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateStaff',
-      apiUrl: '${baseUrl}/flows/trigger/3481e773-dacc-466a-b35a-fcff84464e87',
+      apiUrl: '$baseUrl/flows/trigger/3481e773-dacc-466a-b35a-fcff84464e87',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3925,7 +3887,7 @@ ${requestData}''';
 
 class UpdateStaffCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? id = '',
     String? accessToken = '',
   }) async {
@@ -3934,15 +3896,14 @@ class UpdateStaffCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateStaff',
-      apiUrl: '${baseUrl}/users/${id}',
+      apiUrl: '$baseUrl/users/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3960,7 +3921,7 @@ ${requestData}''';
 class UpdateUserStaffCall {
   Future<ApiCallResponse> call({
     String? staffId = '',
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = StaffGroup.getBaseUrl(
@@ -3968,15 +3929,14 @@ class UpdateUserStaffCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateUserStaff',
-      apiUrl: '${baseUrl}/items/staffs/${staffId}',
+      apiUrl: '$baseUrl/items/staffs/$staffId',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -3993,7 +3953,7 @@ ${requestData}''';
 
 class UpdatePasswordCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = StaffGroup.getBaseUrl(
@@ -4001,15 +3961,14 @@ class UpdatePasswordCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdatePassword',
-      apiUrl: '${baseUrl}/flows/trigger/a721cfaf-8453-4f0c-aff1-6839e9c8ddb1',
+      apiUrl: '$baseUrl/flows/trigger/a721cfaf-8453-4f0c-aff1-6839e9c8ddb1',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -4036,16 +3995,16 @@ class CreateProgramStaffCall {
     final ffApiRequestBody = '''
 {
   "staff_ids": [
-    "${staffId}"
+    "$staffId"
   ]
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'CreateProgramStaff',
-      apiUrl: '${baseUrl}/flows/trigger/03cdb683-356a-46f0-be36-2893888d0263',
+      apiUrl: '$baseUrl/flows/trigger/03cdb683-356a-46f0-be36-2893888d0263',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -4093,11 +4052,11 @@ class GetOneOrganizationCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'GetOneOrganization',
-      apiUrl: '${baseUrl}/items/organizations/${organizationId}',
+      apiUrl: '$baseUrl/items/organizations/$organizationId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields':
@@ -4119,7 +4078,7 @@ class GetOneOrganizationCall {
 class UpdateOrganizationCall {
   Future<ApiCallResponse> call({
     String? organizationId = '',
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = OrganizationGroup.getBaseUrl(
@@ -4127,15 +4086,14 @@ class UpdateOrganizationCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateOrganization',
-      apiUrl: '${baseUrl}/items/organizations/${organizationId}',
+      apiUrl: '$baseUrl/items/organizations/$organizationId',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -4163,11 +4121,11 @@ class GetOrganizationCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'GetOrganization',
-      apiUrl: '${baseUrl}/items/organizations/${organizationId}',
+      apiUrl: '$baseUrl/items/organizations/$organizationId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields':
@@ -4222,11 +4180,11 @@ class GetListTaskCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'GetListTask',
-        apiUrl: '${baseUrl}/items/tasks',
+        apiUrl: '$baseUrl/items/tasks',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields':
@@ -4267,11 +4225,11 @@ class GetNumberTaskCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'GetNumberTask',
-        apiUrl: '${baseUrl}/items/tasks',
+        apiUrl: '$baseUrl/items/tasks',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'filter': filter,
@@ -4297,7 +4255,7 @@ class GetNumberTaskCall {
 class UpdateOperationCall {
   Future<ApiCallResponse> call({
     String? operationId = '',
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = TaskGroup.getBaseUrl(
@@ -4305,15 +4263,14 @@ class UpdateOperationCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateOperation',
-      apiUrl: '${baseUrl}/items/operations/${operationId}',
+      apiUrl: '$baseUrl/items/operations/$operationId',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -4341,17 +4298,17 @@ class ConfirmOperationCall {
 
     final ffApiRequestBody = '''
 {
-  "task_id": "${taskId}",
-  "staff_id": "${staffId}",
-  "submit_type": "${submitType}"
+  "task_id": "$taskId",
+  "staff_id": "$staffId",
+  "submit_type": "$submitType"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ConfirmOperation',
-      apiUrl: '${baseUrl}/flows/trigger/f3371d44-ab81-45f4-97dd-d616ddbc2a82',
+      apiUrl: '$baseUrl/flows/trigger/f3371d44-ab81-45f4-97dd-d616ddbc2a82',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -4379,17 +4336,17 @@ class ReceiveTaskCall {
 
     final ffApiRequestBody = '''
 {
-  "staff_id": "${staffId}",
-  "workflow_id": "${workflowId}",
-  "published_count": ${publishedCount}
+  "staff_id": "$staffId",
+  "workflow_id": "$workflowId",
+  "published_count": $publishedCount
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ReceiveTask',
-      apiUrl: '${baseUrl}/flows/trigger/cb967d02-d828-4896-85cf-f2340f9b3fb2',
+      apiUrl: '$baseUrl/flows/trigger/cb967d02-d828-4896-85cf-f2340f9b3fb2',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -4436,11 +4393,11 @@ class OperationListCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'OperationList',
-        apiUrl: '${baseUrl}/items/operations',
+        apiUrl: '$baseUrl/items/operations',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields':
@@ -4469,7 +4426,7 @@ class OperationListCall {
 
 class OperationAddCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = OperationGroup.getBaseUrl(
@@ -4477,15 +4434,14 @@ class OperationAddCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'OperationAdd',
-      apiUrl: '${baseUrl}/items/operations',
+      apiUrl: '$baseUrl/items/operations',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -4502,7 +4458,7 @@ ${requestData}''';
 
 class OperationsUpdateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? operationId = '',
     String? accessToken = '',
   }) async {
@@ -4511,15 +4467,14 @@ class OperationsUpdateCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'OperationsUpdate',
-      apiUrl: '${baseUrl}/items/operations/${operationId}',
+      apiUrl: '$baseUrl/items/operations/$operationId',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -4560,11 +4515,11 @@ class GetCategoriesListCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'GetCategoriesList',
-      apiUrl: '${baseUrl}/items/categories',
+      apiUrl: '$baseUrl/items/categories',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       returnBody: true,
@@ -4603,11 +4558,11 @@ class GetDomainsListCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'GetDomainsList',
-      apiUrl: '${baseUrl}/items/domains',
+      apiUrl: '$baseUrl/items/domains',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       returnBody: true,
@@ -4653,11 +4608,11 @@ class GetListMarketLessonCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'GetListMarketLesson',
-        apiUrl: '${baseUrl}/items/programs',
+        apiUrl: '$baseUrl/items/programs',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'fields[]':
@@ -4697,11 +4652,11 @@ class GetOneProgramsCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'GetOnePrograms',
-      apiUrl: '${baseUrl}/items/programs/${idPrograms}',
+      apiUrl: '$baseUrl/items/programs/$idPrograms',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields[]':
@@ -4732,16 +4687,16 @@ class InviteStaffCall {
 
     final ffApiRequestBody = '''
 {
-  "staff_id": "${staffId}",
-  "program_id": "${programId}"
+  "staff_id": "$staffId",
+  "program_id": "$programId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'InviteStaff',
-      apiUrl: '${baseUrl}/flows/trigger/b86eacb0-d17b-42aa-b401-82375d97f2b3',
+      apiUrl: '$baseUrl/flows/trigger/b86eacb0-d17b-42aa-b401-82375d97f2b3',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -4791,11 +4746,11 @@ class ListAuthorsCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'ListAuthors',
-        apiUrl: '${baseUrl}/items/authors',
+        apiUrl: '$baseUrl/items/authors',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'filter': filter,
@@ -4831,11 +4786,11 @@ class GetOneAuthorsCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'GetOneAuthors',
-      apiUrl: '${baseUrl}/items/authors/${id}',
+      apiUrl: '$baseUrl/items/authors/$id',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields':
@@ -4864,11 +4819,11 @@ class ListAthorsSortCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'ListAthorsSort',
-      apiUrl: '${baseUrl}/items/authors',
+      apiUrl: '$baseUrl/items/authors',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'filter': filter,
@@ -4890,7 +4845,7 @@ class ListAthorsSortCall {
 
 class AuthorsSignUpCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = GroupAuthorsGroup.getBaseUrl(
@@ -4898,15 +4853,14 @@ class AuthorsSignUpCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'AuthorsSignUp',
-      apiUrl: '${baseUrl}/items/authors',
+      apiUrl: '$baseUrl/items/authors',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -4923,7 +4877,7 @@ ${requestData}''';
 
 class AuthorsUpdateCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? id = '',
     String? accessToken = '',
   }) async {
@@ -4932,15 +4886,14 @@ class AuthorsUpdateCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'AuthorsUpdate',
-      apiUrl: '${baseUrl}/items/authors/${id}',
+      apiUrl: '$baseUrl/items/authors/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -4985,11 +4938,11 @@ class GetDomainsCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'GetDomains',
-        apiUrl: '${baseUrl}/items/domains',
+        apiUrl: '$baseUrl/items/domains',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'filter': filter,
@@ -5051,11 +5004,11 @@ class GetListOrderCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'GetListOrder',
-        apiUrl: '${baseUrl}/items/program_orders',
+        apiUrl: '$baseUrl/items/program_orders',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'limit': limit,
@@ -5092,11 +5045,11 @@ class GetOneOrderCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'GetOneOrder',
-      apiUrl: '${baseUrl}/items/program_orders/${id}',
+      apiUrl: '$baseUrl/items/program_orders/$id',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields':
@@ -5114,7 +5067,7 @@ class GetOneOrderCall {
 
 class CreateOrderCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = OrderGroup.getBaseUrl(
@@ -5122,15 +5075,14 @@ class CreateOrderCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateOrder',
-      apiUrl: '${baseUrl}/flows/trigger/cc1419dd-4f67-4049-8d30-8e26f7d715b0',
+      apiUrl: '$baseUrl/flows/trigger/cc1419dd-4f67-4049-8d30-8e26f7d715b0',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -5147,7 +5099,7 @@ ${requestData}''';
 
 class UpdateOrderCall {
   Future<ApiCallResponse> call({
-    dynamic? requestDataJson,
+    dynamic requestDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = OrderGroup.getBaseUrl(
@@ -5155,15 +5107,14 @@ class UpdateOrderCall {
     );
 
     final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = '''
-${requestData}''';
+    final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateOrder',
-      apiUrl: '${baseUrl}/flows/trigger/7ac31b41-de6b-4d2a-91ce-e6ff18ee6c46',
+      apiUrl: '$baseUrl/flows/trigger/7ac31b41-de6b-4d2a-91ce-e6ff18ee6c46',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -5189,15 +5140,15 @@ class QrCodeCall {
 
     final ffApiRequestBody = '''
 {
-  "program_order_id": "${orderId}"
+  "program_order_id": "$orderId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'QrCode',
-      apiUrl: '${baseUrl}/flows/trigger/cfe5b9a4-1967-4cd3-9a1a-41aea2a76df4',
+      apiUrl: '$baseUrl/flows/trigger/cfe5b9a4-1967-4cd3-9a1a-41aea2a76df4',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -5223,11 +5174,11 @@ class OrderCompletedCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'OrderCompleted',
-      apiUrl: '${baseUrl}/flows/trigger/3b9cc77a-ddde-4098-a81f-b102f4daa429',
+      apiUrl: '$baseUrl/flows/trigger/3b9cc77a-ddde-4098-a81f-b102f4daa429',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       bodyType: BodyType.JSON,
@@ -5253,15 +5204,15 @@ class CheckTransferCall {
     final ffApiRequestBody = '''
 {
   "type": 0,
-  "value": "${value}"
+  "value": "$value"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'CheckTransfer',
-      apiUrl: '${baseUrl}/flows/trigger/d6cb057b-3036-4714-b0a0-c2cd21e3a739',
+      apiUrl: '$baseUrl/flows/trigger/d6cb057b-3036-4714-b0a0-c2cd21e3a739',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -5293,16 +5244,15 @@ class STHLoginAcountsGroup {
 
 class UpdateBiometricVerificationCall {
   Future<ApiCallResponse> call({
-    dynamic? dataJson,
+    dynamic dataJson,
   }) async {
     final baseUrl = STHLoginAcountsGroup.getBaseUrl();
 
     final data = _serializeJson(dataJson);
-    final ffApiRequestBody = '''
-${data}''';
+    final ffApiRequestBody = data;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateBiometricVerification',
-      apiUrl: '${baseUrl}/flows/trigger/a5385417-9c38-406f-8ce3-5b669409c3e6',
+      apiUrl: '$baseUrl/flows/trigger/a5385417-9c38-406f-8ce3-5b669409c3e6',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -5322,16 +5272,15 @@ ${data}''';
 
 class LoginBiometricVerificationCall {
   Future<ApiCallResponse> call({
-    dynamic? dataJson,
+    dynamic dataJson,
   }) async {
     final baseUrl = STHLoginAcountsGroup.getBaseUrl();
 
     final data = _serializeJson(dataJson);
-    final ffApiRequestBody = '''
-${data}''';
+    final ffApiRequestBody = data;
     return ApiManager.instance.makeApiCall(
       callName: 'LoginBiometricVerification',
-      apiUrl: '${baseUrl}/flows/trigger/54e3a167-dcee-4d34-8de5-96afa42c11fe',
+      apiUrl: '$baseUrl/flows/trigger/54e3a167-dcee-4d34-8de5-96afa42c11fe',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -5371,7 +5320,7 @@ class SettingAcountGroup {
 
 class UpdateBiometricVerificationWorkCall {
   Future<ApiCallResponse> call({
-    dynamic? dataJson,
+    dynamic dataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = SettingAcountGroup.getBaseUrl(
@@ -5379,15 +5328,14 @@ class UpdateBiometricVerificationWorkCall {
     );
 
     final data = _serializeJson(dataJson);
-    final ffApiRequestBody = '''
-${data}''';
+    final ffApiRequestBody = data;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateBiometricVerificationWork',
-      apiUrl: '${baseUrl}/flows/trigger/a5385417-9c38-406f-8ce3-5b669409c3e6',
+      apiUrl: '$baseUrl/flows/trigger/a5385417-9c38-406f-8ce3-5b669409c3e6',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -5404,7 +5352,7 @@ ${data}''';
 
 class LoginBiometricVerificationCopyCall {
   Future<ApiCallResponse> call({
-    dynamic? dataJson,
+    dynamic dataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = SettingAcountGroup.getBaseUrl(
@@ -5412,15 +5360,14 @@ class LoginBiometricVerificationCopyCall {
     );
 
     final data = _serializeJson(dataJson);
-    final ffApiRequestBody = '''
-${data}''';
+    final ffApiRequestBody = data;
     return ApiManager.instance.makeApiCall(
       callName: 'LoginBiometricVerification Copy',
-      apiUrl: '${baseUrl}/flows/trigger/54e3a167-dcee-4d34-8de5-96afa42c11fe',
+      apiUrl: '$baseUrl/flows/trigger/54e3a167-dcee-4d34-8de5-96afa42c11fe',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -5466,15 +5413,15 @@ class ProgramsCall {
 
     final ffApiRequestBody = '''
 {
-  "certificate_id": "${certificateId}"
+  "certificate_id": "$certificateId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'programs',
-      apiUrl: '${baseUrl}/items/programs/${idProgram}',
+      apiUrl: '$baseUrl/items/programs/$idProgram',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -5500,11 +5447,11 @@ class GetOneCertificatesCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'GetOneCertificates',
-      apiUrl: '${baseUrl}/items/certificates/${idCertificates}',
+      apiUrl: '$baseUrl/items/certificates/$idCertificates',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'fields[]': "programs,code, id",
@@ -5532,15 +5479,15 @@ class PathCertificatesCall {
 
     final ffApiRequestBody = '''
 {
-  	  "programs":${programs}
+  	  "programs":$programs
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'PathCertificates',
-      apiUrl: '${baseUrl}/items/certificates/${idCertificate}',
+      apiUrl: '$baseUrl/items/certificates/$idCertificate',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -5584,11 +5531,11 @@ class GetNotificationsCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'GetNotifications',
-      apiUrl: '${baseUrl}/items/notifications',
+      apiUrl: '$baseUrl/items/notifications',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {
         'filter': filter,
@@ -5615,15 +5562,15 @@ class UpdateStatusNotificationCall {
 
     final ffApiRequestBody = '''
 {
-  "status": "${status}"
+  "status": "$status"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateStatusNotification',
-      apiUrl: '${baseUrl}/items/notifications/${id}',
+      apiUrl: '$baseUrl/items/notifications/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -5657,7 +5604,7 @@ class LocationGroup {
 
 class LocationCreatedCall {
   Future<ApiCallResponse> call({
-    dynamic? requesDataJson,
+    dynamic requesDataJson,
     String? accessToken = '',
   }) async {
     final baseUrl = LocationGroup.getBaseUrl(
@@ -5665,15 +5612,14 @@ class LocationCreatedCall {
     );
 
     final requesData = _serializeJson(requesDataJson);
-    final ffApiRequestBody = '''
-${requesData}''';
+    final ffApiRequestBody = requesData;
     return ApiManager.instance.makeApiCall(
       callName: 'LocationCreated',
-      apiUrl: '${baseUrl}/items/address',
+      apiUrl: '$baseUrl/items/address',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -5690,7 +5636,7 @@ ${requesData}''';
 
 class LocationUpdateCall {
   Future<ApiCallResponse> call({
-    dynamic? requesDataJson,
+    dynamic requesDataJson,
     String? id = '',
     String? accessToken = '',
   }) async {
@@ -5699,15 +5645,14 @@ class LocationUpdateCall {
     );
 
     final requesData = _serializeJson(requesDataJson);
-    final ffApiRequestBody = '''
-${requesData}''';
+    final ffApiRequestBody = requesData;
     return ApiManager.instance.makeApiCall(
       callName: 'LocationUpdate',
-      apiUrl: '${baseUrl}/items/address/${id}',
+      apiUrl: '$baseUrl/items/address/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -5750,11 +5695,11 @@ class ListDistrictCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'ListDistrict',
-      apiUrl: '${baseUrl}/items/districts',
+      apiUrl: '$baseUrl/items/districts',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       returnBody: true,
@@ -5777,11 +5722,11 @@ class ListCityCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'ListCity',
-      apiUrl: '${baseUrl}/items/cities',
+      apiUrl: '$baseUrl/items/cities',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       returnBody: true,
@@ -5804,11 +5749,11 @@ class ListWardCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'ListWard',
-      apiUrl: '${baseUrl}/items/wards',
+      apiUrl: '$baseUrl/items/wards',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       returnBody: true,
@@ -5854,11 +5799,11 @@ class GetTimekeepingsCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'GetTimekeepings',
-        apiUrl: '${baseUrl}/items/timekeepings',
+        apiUrl: '$baseUrl/items/timekeepings',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'filter': filter,
@@ -5897,11 +5842,11 @@ class GetShiftDaysCall {
     return FFApiInterceptor.makeApiCall(
       ApiCallOptions(
         callName: 'GetShiftDays',
-        apiUrl: '${baseUrl}/items/shift_days',
+        apiUrl: '$baseUrl/items/shift_days',
         callType: ApiCallType.GET,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${accessToken}',
+          'Authorization': 'Bearer $accessToken',
         },
         params: {
           'filter': filter,
@@ -5929,7 +5874,7 @@ class GetShiftDaysCall {
 
 class CheckInCall {
   Future<ApiCallResponse> call({
-    dynamic? requestJson,
+    dynamic requestJson,
     String? accessToken = '',
   }) async {
     final baseUrl = GroupTimekeepingsGroup.getBaseUrl(
@@ -5937,15 +5882,14 @@ class CheckInCall {
     );
 
     final request = _serializeJson(requestJson);
-    final ffApiRequestBody = '''
-${request}''';
+    final ffApiRequestBody = request;
     return ApiManager.instance.makeApiCall(
       callName: 'CheckIn',
-      apiUrl: '${baseUrl}/flows/trigger/6046aa85-f460-4d57-b645-c4b8dd4e6e3d',
+      apiUrl: '$baseUrl/flows/trigger/6046aa85-f460-4d57-b645-c4b8dd4e6e3d',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,
@@ -5962,7 +5906,7 @@ ${request}''';
 
 class CheckOutCall {
   Future<ApiCallResponse> call({
-    dynamic? requestJson,
+    dynamic requestJson,
     String? accessToken = '',
   }) async {
     final baseUrl = GroupTimekeepingsGroup.getBaseUrl(
@@ -5970,15 +5914,14 @@ class CheckOutCall {
     );
 
     final request = _serializeJson(requestJson);
-    final ffApiRequestBody = '''
-${request}''';
+    final ffApiRequestBody = request;
     return ApiManager.instance.makeApiCall(
       callName: 'CheckOut',
-      apiUrl: '${baseUrl}/flows/trigger/df2a197e-dca1-412e-a0b9-50c514e8c2a9',
+      apiUrl: '$baseUrl/flows/trigger/df2a197e-dca1-412e-a0b9-50c514e8c2a9',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken}',
+        'Authorization': 'Bearer $accessToken',
       },
       params: {},
       body: ffApiRequestBody,

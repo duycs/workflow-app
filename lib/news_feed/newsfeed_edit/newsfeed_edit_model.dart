@@ -1,18 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'newsfeed_edit_widget.dart' show NewsfeedEditWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class NewsfeedEditModel extends FlutterFlowModel<NewsfeedEditWidget> {
   ///  Local state fields for this component.
@@ -183,8 +174,7 @@ class NewsfeedEditModel extends FlutterFlowModel<NewsfeedEditWidget> {
     bool? uploadimageToken1;
     ApiCallResponse? apiResultUploadImage1;
 
-    if (uploadedLocalFile1 != null &&
-        (uploadedLocalFile1.bytes?.isNotEmpty ?? false)) {
+    if ((uploadedLocalFile1.bytes?.isNotEmpty ?? false)) {
       uploadimageToken1 = await action_blocks.tokenReload(context);
       if (uploadimageToken1!) {
         apiResultUploadImage1 = await UploadFileGroup.uploadListFileCall.call(
@@ -192,12 +182,12 @@ class NewsfeedEditModel extends FlutterFlowModel<NewsfeedEditWidget> {
           fileList: listImage,
         );
 
-        if ((apiResultUploadImage1?.succeeded ?? true)) {
+        if ((apiResultUploadImage1.succeeded ?? true)) {
           if (listImage.length == 1) {
             addToListImageUploadNF(FileDataTypeStruct(
               directusFilesId: FileIDDataTypeStruct(
                 id: getJsonField(
-                  (apiResultUploadImage1?.jsonBody ?? ''),
+                  (apiResultUploadImage1.jsonBody ?? ''),
                   r'''$.data.id''',
                 ).toString().toString(),
               ),
@@ -216,8 +206,8 @@ class NewsfeedEditModel extends FlutterFlowModel<NewsfeedEditWidget> {
               addToListImageUploadNF(FileDataTypeStruct(
                 directusFilesId: FileIDDataTypeStruct(
                   id: (FileUploadStruct.maybeFromMap(
-                              (apiResultUploadImage1?.jsonBody ?? ''))
-                          ?.data?[loop])
+                              (apiResultUploadImage1.jsonBody ?? ''))
+                          ?.data[loop])
                       ?.id,
                 ),
               ));
@@ -255,8 +245,7 @@ class NewsfeedEditModel extends FlutterFlowModel<NewsfeedEditWidget> {
     bool? uploadVideoToken1;
     ApiCallResponse? apiResultUploadVideo1;
 
-    if (uploadedLocalFile3 != null &&
-        (uploadedLocalFile3.bytes?.isNotEmpty ?? false)) {
+    if ((uploadedLocalFile3.bytes?.isNotEmpty ?? false)) {
       uploadVideoToken1 = await action_blocks.tokenReload(context);
       if (uploadVideoToken1!) {
         apiResultUploadVideo1 = await UploadFileGroup.uploadListFileCall.call(
@@ -264,12 +253,12 @@ class NewsfeedEditModel extends FlutterFlowModel<NewsfeedEditWidget> {
           fileList: listVideo,
         );
 
-        if ((apiResultUploadVideo1?.succeeded ?? true)) {
+        if ((apiResultUploadVideo1.succeeded ?? true)) {
           if (listVideo.length == 1) {
             addToListVideoUploadNF(FileDataTypeStruct(
               directusFilesId: FileIDDataTypeStruct(
                 id: getJsonField(
-                  (apiResultUploadVideo1?.jsonBody ?? ''),
+                  (apiResultUploadVideo1.jsonBody ?? ''),
                   r'''$.data.id''',
                 ).toString().toString(),
               ),
@@ -288,8 +277,8 @@ class NewsfeedEditModel extends FlutterFlowModel<NewsfeedEditWidget> {
               addToListVideoUploadNF(FileDataTypeStruct(
                 directusFilesId: FileIDDataTypeStruct(
                   id: (FileUploadStruct.maybeFromMap(
-                              (apiResultUploadVideo1?.jsonBody ?? ''))
-                          ?.data?[loop])
+                              (apiResultUploadVideo1.jsonBody ?? ''))
+                          ?.data[loop])
                       ?.id,
                 ),
               ));
@@ -327,8 +316,7 @@ class NewsfeedEditModel extends FlutterFlowModel<NewsfeedEditWidget> {
     bool? uploadFileToken1;
     ApiCallResponse? apiResultUploadFIle1;
 
-    if (uploadedLocalFile2 != null &&
-        (uploadedLocalFile2.bytes?.isNotEmpty ?? false)) {
+    if ((uploadedLocalFile2.bytes?.isNotEmpty ?? false)) {
       uploadFileToken1 = await action_blocks.tokenReload(context);
       if (uploadFileToken1!) {
         apiResultUploadFIle1 = await UploadFileGroup.uploadListFileCall.call(
@@ -336,12 +324,12 @@ class NewsfeedEditModel extends FlutterFlowModel<NewsfeedEditWidget> {
           fileList: listFile,
         );
 
-        if ((apiResultUploadFIle1?.succeeded ?? true)) {
+        if ((apiResultUploadFIle1.succeeded ?? true)) {
           if (listFile.length == 1) {
             addToListFileUploadNF(FileDataTypeStruct(
               directusFilesId: FileIDDataTypeStruct(
                 id: getJsonField(
-                  (apiResultUploadFIle1?.jsonBody ?? ''),
+                  (apiResultUploadFIle1.jsonBody ?? ''),
                   r'''$.data.id''',
                 ).toString().toString(),
               ),
@@ -360,8 +348,8 @@ class NewsfeedEditModel extends FlutterFlowModel<NewsfeedEditWidget> {
               addToListFileUploadNF(FileDataTypeStruct(
                 directusFilesId: FileIDDataTypeStruct(
                   id: (FileUploadStruct.maybeFromMap(
-                              (apiResultUploadFIle1?.jsonBody ?? ''))
-                          ?.data?[loop])
+                              (apiResultUploadFIle1.jsonBody ?? ''))
+                          ?.data[loop])
                       ?.id,
                 ),
               ));
