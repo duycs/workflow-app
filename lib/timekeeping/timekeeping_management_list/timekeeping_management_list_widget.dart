@@ -790,11 +790,12 @@ class _TimekeepingManagementListWidgetState
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        if (_model.checkShow == '0') {
-                                          _model.checkShow = '1';
+                                        if (_model.checkShow ==
+                                            listItemItem.id) {
+                                          _model.checkShow = '';
                                           setState(() {});
                                         } else {
-                                          _model.checkShow = '0';
+                                          _model.checkShow = listItemItem.id;
                                           setState(() {});
                                         }
                                       },
@@ -815,7 +816,8 @@ class _TimekeepingManagementListWidgetState
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                          if (_model.checkShow == '0')
+                                          if (listItemItem.id !=
+                                              _model.checkShow)
                                             Icon(
                                               Icons.keyboard_arrow_right,
                                               color:
@@ -823,7 +825,10 @@ class _TimekeepingManagementListWidgetState
                                                       .secondaryText,
                                               size: 16.0,
                                             ),
-                                          if (_model.checkShow == '1')
+                                          if ((_model.checkShow != null &&
+                                                  _model.checkShow != '') &&
+                                              (listItemItem.id ==
+                                                  _model.checkShow))
                                             Icon(
                                               Icons.keyboard_arrow_down,
                                               color:
@@ -836,7 +841,7 @@ class _TimekeepingManagementListWidgetState
                                     ),
                                   ),
                                 ),
-                              if (_model.checkShow == '1')
+                              if (listItemItem.id == _model.checkShow)
                                 Container(
                                   width: double.infinity,
                                   decoration: const BoxDecoration(),
@@ -923,7 +928,7 @@ class _TimekeepingManagementListWidgetState
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
-                                                            .spaceEvenly,
+                                                            .spaceAround,
                                                     children: [
                                                       Text(
                                                         'Vào ca',
@@ -969,19 +974,8 @@ class _TimekeepingManagementListWidgetState
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  if ((listItemItem.shiftChecks
-                                                              .length >
-                                                          0) &&
-                                                      (listItemItem.shiftChecks
-                                                              .where((e) =>
-                                                                  e.checkin !=
-                                                                      null &&
-                                                                  e.checkin !=
-                                                                      '')
-                                                              .toList()
-                                                              .length >
-                                                          0))
-                                                    Builder(
+                                                  Expanded(
+                                                    child: Builder(
                                                       builder: (context) {
                                                         final checkIns =
                                                             listItemItem
@@ -1006,6 +1000,9 @@ class _TimekeepingManagementListWidgetState
                                                               mainAxisSize:
                                                                   MainAxisSize
                                                                       .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
                                                               children: [
                                                                 Padding(
                                                                   padding: const EdgeInsetsDirectional
@@ -1050,19 +1047,9 @@ class _TimekeepingManagementListWidgetState
                                                         );
                                                       },
                                                     ),
-                                                  if ((listItemItem.shiftChecks
-                                                              .length >
-                                                          0) &&
-                                                      (listItemItem.shiftChecks
-                                                              .where((e) =>
-                                                                  e.checkout !=
-                                                                      null &&
-                                                                  e.checkout !=
-                                                                      '')
-                                                              .toList()
-                                                              .length >
-                                                          0))
-                                                    Builder(
+                                                  ),
+                                                  Expanded(
+                                                    child: Builder(
                                                       builder: (context) {
                                                         final checkOuts =
                                                             listItemItem
@@ -1087,6 +1074,9 @@ class _TimekeepingManagementListWidgetState
                                                               mainAxisSize:
                                                                   MainAxisSize
                                                                       .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
                                                               children: [
                                                                 Padding(
                                                                   padding: const EdgeInsetsDirectional
@@ -1131,6 +1121,7 @@ class _TimekeepingManagementListWidgetState
                                                         );
                                                       },
                                                     ),
+                                                  ),
                                                 ],
                                               ),
                                             ],

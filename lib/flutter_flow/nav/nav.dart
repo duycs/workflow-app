@@ -1148,34 +1148,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'LessonList_HomepageCopy',
-          path: '/lessonListHomepageCopy',
-          builder: (context, params) => LessonListHomepageCopyWidget(
-            statusLesson: params.getParam(
-              'statusLesson',
-              ParamType.String,
-            ),
-            statusLove: params.getParam(
-              'statusLove',
-              ParamType.String,
-            ),
-            lessonNewCreate: params.getParam(
-              'lessonNewCreate',
-              ParamType.String,
-            ),
-            lesonHistory: params.getParam(
-              'lesonHistory',
-              ParamType.String,
-            ),
-            checkLesson: params.getParam(
-              'checkLesson',
-              ParamType.String,
-            ),
-            staffId: params.getParam(
-              'staffId',
-              ParamType.String,
-            ),
-          ),
+          name: 'LessonLists_Homepage_Branch',
+          path: '/lessonListsHomepageBranch',
+          builder: (context, params) => const LessonListsHomepageBranchWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

@@ -429,58 +429,62 @@ class _IndividualTimekeepingDetailsWidgetState
                                 ],
                               ),
                             ),
-                            Align(
-                              alignment: const AlignmentDirectional(1.0, 1.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 4.0, 5.0, 0.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    if (_model.checkShow == '0') {
-                                      _model.checkShow = '1';
-                                      setState(() {});
-                                    } else {
-                                      _model.checkShow = '0';
-                                      setState(() {});
-                                    }
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        'Lịch sử',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      if (_model.checkShow == '0')
-                                        Icon(
-                                          Icons.arrow_right_sharp,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 24.0,
+                            if (listItemItem.shiftChecks.length > 0)
+                              Align(
+                                alignment: const AlignmentDirectional(1.0, 1.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 4.0, 5.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      if (_model.checkShow == listItemItem.id) {
+                                        _model.checkShow = '';
+                                        setState(() {});
+                                      } else {
+                                        _model.checkShow = listItemItem.id;
+                                        setState(() {});
+                                      }
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          'Lịch sử',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
-                                      if (_model.checkShow == '1')
-                                        Icon(
-                                          Icons.arrow_drop_down,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 24.0,
-                                        ),
-                                    ],
+                                        if (listItemItem.id != _model.checkShow)
+                                          Icon(
+                                            Icons.arrow_right_sharp,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
+                                          ),
+                                        if ((_model.checkShow != null &&
+                                                _model.checkShow != '') &&
+                                            (listItemItem.id ==
+                                                _model.checkShow))
+                                          Icon(
+                                            Icons.arrow_drop_down,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
+                                          ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            if (_model.checkShow == '1')
+                            if (listItemItem.id == _model.checkShow)
                               Container(
                                 width: double.infinity,
                                 decoration: const BoxDecoration(),
@@ -562,7 +566,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                                       MainAxisSize.max,
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
-                                                          .spaceEvenly,
+                                                          .spaceAround,
                                                   children: [
                                                     Text(
                                                       'Vào ca',
@@ -603,18 +607,8 @@ class _IndividualTimekeepingDetailsWidgetState
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                if ((listItemItem.shiftChecks
-                                                            .length >
-                                                        0) &&
-                                                    (listItemItem.shiftChecks
-                                                            .where((e) =>
-                                                                e.checkin !=
-                                                                    null &&
-                                                                e.checkin != '')
-                                                            .toList()
-                                                            .length >
-                                                        0))
-                                                  Builder(
+                                                Expanded(
+                                                  child: Builder(
                                                     builder: (context) {
                                                       final checkIns =
                                                           listItemItem
@@ -629,6 +623,9 @@ class _IndividualTimekeepingDetailsWidgetState
                                                       return Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
                                                         children: List.generate(
                                                             checkIns.length,
                                                             (checkInsIndex) {
@@ -639,6 +636,9 @@ class _IndividualTimekeepingDetailsWidgetState
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
                                                             children: [
                                                               Padding(
                                                                 padding:
@@ -684,19 +684,9 @@ class _IndividualTimekeepingDetailsWidgetState
                                                       );
                                                     },
                                                   ),
-                                                if ((listItemItem.shiftChecks
-                                                            .length >
-                                                        0) &&
-                                                    (listItemItem.shiftChecks
-                                                            .where((e) =>
-                                                                e.checkout !=
-                                                                    null &&
-                                                                e.checkout !=
-                                                                    '')
-                                                            .toList()
-                                                            .length >
-                                                        0))
-                                                  Builder(
+                                                ),
+                                                Expanded(
+                                                  child: Builder(
                                                     builder: (context) {
                                                       final checkOuts =
                                                           listItemItem
@@ -721,6 +711,9 @@ class _IndividualTimekeepingDetailsWidgetState
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
                                                             children: [
                                                               Padding(
                                                                 padding:
@@ -766,6 +759,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                                       );
                                                     },
                                                   ),
+                                                ),
                                               ],
                                             ),
                                           ],

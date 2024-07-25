@@ -14,7 +14,7 @@ class TimekeepingManagementListModel
     extends FlutterFlowModel<TimekeepingManagementListWidget> {
   ///  Local state fields for this component.
 
-  String checkShow = '0';
+  String? checkShow = '';
 
   String dateStart = '';
 

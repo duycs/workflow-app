@@ -333,6 +333,72 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                         ),
                       ),
                     ),
+                  if ((FFAppState().user.role ==
+                          'a8d33527-375b-4599-ac70-6a3fcad1de39') ||
+                      (FFAppState().user.role ==
+                          '82073000-1ba2-43a4-a55c-459d17c23b68'))
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.goNamed(
+                          'LessonLists_Homepage_Branch',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 0),
+                            ),
+                          },
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: widget.selectedPageIndex == 8
+                              ? FlutterFlowTheme.of(context).primary
+                              : FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                          borderRadius: BorderRadius.circular(24.0),
+                        ),
+                        child: Opacity(
+                          opacity: widget.selectedPageIndex == 6 ? 1.0 : 0.5,
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                14.0, 10.0, 14.0, 10.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.menu_book_rounded,
+                                  color: widget.selectedPageIndex == 8
+                                      ? FlutterFlowTheme.of(context)
+                                          .secondaryBackground
+                                      : FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                  size: 24.0,
+                                ),
+                                if (widget.selectedPageIndex == 8)
+                                  Text(
+                                    'Đào tạo',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                              ].divide(const SizedBox(width: 4.0)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,

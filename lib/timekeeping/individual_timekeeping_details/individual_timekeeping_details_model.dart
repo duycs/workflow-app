@@ -10,7 +10,7 @@ class IndividualTimekeepingDetailsModel
     extends FlutterFlowModel<IndividualTimekeepingDetailsWidget> {
   ///  Local state fields for this component.
 
-  String checkShow = '0';
+  String? checkShow = '';
 
   ///  State fields for stateful widgets in this component.
 
