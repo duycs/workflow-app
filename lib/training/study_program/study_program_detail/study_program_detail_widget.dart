@@ -7,12 +7,14 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/study_program/certificate_list_study_program/certificate_list_study_program_widget.dart';
 import '/training/study_program/study_program_edit/study_program_edit_widget.dart';
+import 'dart:math';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'study_program_detail_model.dart';
 export 'study_program_detail_model.dart';
@@ -68,8 +70,8 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, -250.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, -250.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -87,8 +89,8 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(-10.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(-10.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -106,8 +108,8 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 80.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 80.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -126,8 +128,8 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
             curve: Curves.easeInOut,
             delay: 50.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(-20.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(-20.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -146,8 +148,8 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
             curve: Curves.easeInOut,
             delay: 50.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(-20.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(-20.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -165,8 +167,8 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 90.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 90.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -219,7 +221,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -244,7 +246,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 2.0,
                                       color: Color(0x17202529),
@@ -254,7 +256,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                       ),
                                     )
                                   ],
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(24.0),
                                     bottomRight: Radius.circular(24.0),
                                     topLeft: Radius.circular(0.0),
@@ -262,7 +264,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                   ),
                                 ),
                                 child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(16.0),
                                     bottomRight: Radius.circular(16.0),
                                     topLeft: Radius.circular(0.0),
@@ -284,7 +286,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                               ).animateOnPageLoad(animationsMap[
                                   'containerOnPageLoadAnimation1']!),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 20.0, 0.0, 20.0),
                               child: Text(
                                 _model.studyProgramData!.name,
@@ -309,7 +311,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(16.0),
+                                    padding: EdgeInsets.all(16.0),
                                     child: Container(
                                       width: double.infinity,
                                       decoration: BoxDecoration(
@@ -325,7 +327,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -335,7 +337,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                       BorderRadius.circular(
                                                           40.0),
                                                   child: Image.network(
-                                                    '${FFAppConstants.ApiBaseUrl}/assets/${_model.studyProgramData?.userCreated.avatar}?access_token=${FFAppState().accessToken}',
+                                                    '${FFAppConstants.ApiBaseUrl}/assets/${_model.studyProgramData?.userCreated?.avatar}?access_token=${FFAppState().accessToken}',
                                                     width: 40.0,
                                                     height: 40.0,
                                                     fit: BoxFit.cover,
@@ -353,7 +355,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(12.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Column(
@@ -387,7 +389,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -465,11 +467,11 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                           ),
                                                           child: Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           2.0,
@@ -505,12 +507,12 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                     ],
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(width: 4.0)),
+                                              ].divide(SizedBox(width: 4.0)),
                                             ),
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -523,7 +525,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                   size: 24.0,
                                                 ),
                                                 Text(
-                                                  'Thời hạn:  ${_model.studyProgramData?.estimateInDay.toString()} ngày',
+                                                  'Thời hạn:  ${_model.studyProgramData?.estimateInDay?.toString()} ngày',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -533,7 +535,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
-                                              ].divide(const SizedBox(width: 4.0)),
+                                              ].divide(SizedBox(width: 4.0)),
                                             ),
                                           ),
                                           Text(
@@ -553,7 +555,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                               'textOnPageLoadAnimation2']!),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 8.0),
                                             child: Text(
                                               _model.studyProgramData!
@@ -614,8 +616,9 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                       ),
                                                       Text(
                                                         _model.studyProgramData!
-                                                                    .lessions.isNotEmpty
-                                                            ? '(${_model.studyProgramData?.lessions.length.toString()} Bài học)'
+                                                                    .lessions.length >
+                                                                0
+                                                            ? '(${_model.studyProgramData?.lessions?.length?.toString()} Bài học)'
                                                             : '(Chưa có bài học nào)',
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -629,7 +632,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                                 ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 6.0)),
+                                                        SizedBox(width: 6.0)),
                                                   ),
                                                   collapsed: Container(),
                                                   expanded: Builder(
@@ -637,7 +640,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                       final itemLessions = _model
                                                               .studyProgramData
                                                               ?.lessions
-                                                              .toList() ??
+                                                              ?.toList() ??
                                                           [];
 
                                                       return Column(
@@ -651,7 +654,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                                   itemLessionsIndex];
                                                           return Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -678,7 +681,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                               ),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             8.0,
@@ -700,7 +703,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                                       buttonSize:
                                                                           40.0,
                                                                       fillColor:
-                                                                          const Color(
+                                                                          Color(
                                                                               0x6A0868FF),
                                                                       icon:
                                                                           Icon(
@@ -727,7 +730,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                                           extra: <String,
                                                                               dynamic>{
                                                                             kTransitionInfoKey:
-                                                                                const TransitionInfo(
+                                                                                TransitionInfo(
                                                                               hasTransition: true,
                                                                               transitionType: PageTransitionType.fade,
                                                                               duration: Duration(milliseconds: 0),
@@ -766,19 +769,19 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                                         ],
                                                                       ),
                                                                     ),
-                                                                  ].divide(const SizedBox(
+                                                                  ].divide(SizedBox(
                                                                       width:
                                                                           8.0)),
                                                                 ),
                                                               ),
                                                             ),
                                                           );
-                                                        }).divide(const SizedBox(
+                                                        }).divide(SizedBox(
                                                             height: 8.0)),
                                                       );
                                                     },
                                                   ),
-                                                  theme: const ExpandableThemeData(
+                                                  theme: ExpandableThemeData(
                                                     tapHeaderToExpand: true,
                                                     tapBodyToExpand: false,
                                                     tapBodyToCollapse: false,
@@ -793,7 +796,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 12.0, 0.0, 12.0),
                                             child: Container(
                                               width: double.infinity,
@@ -811,7 +814,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                   child: ExpandablePanel(
                                                     header: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -846,8 +849,10 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                           Text(
                                                             _model
                                                                         .studyProgramData!
-                                                                        .departments.isNotEmpty
-                                                                ? '(${_model.studyProgramData?.departments.length.toString()} Bộ phận)'
+                                                                        .departments
+                                                                        .length >
+                                                                    0
+                                                                ? '(${_model.studyProgramData?.departments?.length?.toString()} Bộ phận)'
                                                                 : '(Chưa có bộ phận nào được gán)',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
@@ -859,7 +864,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                                       0.0,
                                                                 ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             width: 6.0)),
                                                       ),
                                                     ),
@@ -869,7 +874,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                         final itemDepartment =
                                                             _model.studyProgramData
                                                                     ?.departments
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [];
 
                                                         return Column(
@@ -884,7 +889,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                                     itemDepartmentIndex];
                                                             return Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -910,7 +915,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                                   ),
                                                                 ),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           8.0,
@@ -949,19 +954,19 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                                               ),
                                                                         ),
                                                                       ),
-                                                                    ].divide(const SizedBox(
+                                                                    ].divide(SizedBox(
                                                                         width:
                                                                             8.0)),
                                                                   ),
                                                                 ),
                                                               ),
                                                             );
-                                                          }).divide(const SizedBox(
+                                                          }).divide(SizedBox(
                                                               height: 8.0)),
                                                         );
                                                       },
                                                     ),
-                                                    theme: const ExpandableThemeData(
+                                                    theme: ExpandableThemeData(
                                                       tapHeaderToExpand: true,
                                                       tapBodyToExpand: false,
                                                       tapBodyToCollapse: false,
@@ -977,7 +982,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 15.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1006,12 +1011,12 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                 if (_model
                                                             .studyProgramData
                                                             ?.certificateId
-                                                            .id ==
+                                                            ?.id ==
                                                         null ||
                                                     _model
                                                             .studyProgramData
                                                             ?.certificateId
-                                                            .id ==
+                                                            ?.id ==
                                                         '')
                                                   Text(
                                                     '(Chưa có chứng chỉ áp dụng)',
@@ -1030,17 +1035,17 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                     (_model
                                                                 .studyProgramData
                                                                 ?.certificateId
-                                                                .id !=
+                                                                ?.id !=
                                                             null &&
                                                         _model
                                                                 .studyProgramData
                                                                 ?.certificateId
-                                                                .id !=
+                                                                ?.id !=
                                                             '') &&
                                                     (_model
                                                             .studyProgramData
                                                             ?.certificateId
-                                                            .id !=
+                                                            ?.id !=
                                                         'null'))
                                                   FFButtonWidget(
                                                     onPressed: () async {
@@ -1084,14 +1089,14 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                     options: FFButtonOptions(
                                                       height: 30.0,
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   24.0,
                                                                   0.0,
                                                                   24.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1122,7 +1127,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                                         .italic,
                                                               ),
                                                       elevation: 3.0,
-                                                      borderSide: const BorderSide(
+                                                      borderSide: BorderSide(
                                                         color:
                                                             Colors.transparent,
                                                         width: 1.0,
@@ -1132,10 +1137,10 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                               8.0),
                                                     ),
                                                   ),
-                                              ].divide(const SizedBox(width: 4.0)),
+                                              ].divide(SizedBox(width: 4.0)),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(height: 8.0)),
+                                        ].divide(SizedBox(height: 8.0)),
                                       ),
                                     ),
                                   ),
@@ -1149,17 +1154,17 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1246,16 +1251,16 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                       ).then((value) => safeSetState(() {}));
                                     },
                                     text: 'Thao tác khác',
-                                    icon: const Icon(
+                                    icon: Icon(
                                       Icons.menu,
                                       size: 15.0,
                                     ),
                                     options: FFButtonOptions(
                                       height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 24.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color: FlutterFlowTheme.of(context)
                                           .secondary,
@@ -1267,7 +1272,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                             letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -1275,7 +1280,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                     ),
                                   ),
                                 ),
-                                if (_model.studyProgramData?.userCreated.id ==
+                                if (_model.studyProgramData?.userCreated?.id ==
                                     FFAppState().user.id)
                                   Expanded(
                                     child: Builder(
@@ -1289,7 +1294,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -1305,16 +1310,16 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                   child: StudyProgramEditWidget(
                                                     dataDetail:
                                                         _model.studyProgramData,
-                                                    itemLessions: widget
+                                                    itemLessions: widget!
                                                         .studyProgramList,
-                                                    itemPrograms: widget
+                                                    itemPrograms: widget!
                                                         .studyProgramList
                                                         ?.toMap(),
-                                                    itemLession: widget
+                                                    itemLession: widget!
                                                         .studyProgramList
                                                         ?.lessions
-                                                        .first
-                                                        .lessionsId,
+                                                        ?.first
+                                                        ?.lessionsId,
                                                     callBackList1: () async {
                                                       await _model
                                                           .getOneDataStudyProgram(
@@ -1329,17 +1334,17 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                           ).then((value) => setState(() {}));
                                         },
                                         text: 'Chỉnh sửa',
-                                        icon: const Icon(
+                                        icon: Icon(
                                           Icons.edit_outlined,
                                           size: 15.0,
                                         ),
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 10.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -1351,7 +1356,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                     color: Colors.white,
                                                     letterSpacing: 0.0,
                                                   ),
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -1359,7 +1364,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                       ),
                                     ),
                                   ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              ].divide(SizedBox(width: 8.0)),
                             ),
                           ),
                         ),
@@ -1375,7 +1380,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  child: SizedBox(
+                  child: Container(
                     width: double.infinity,
                     height: double.infinity,
                     child: custom_widgets.LoadingPageWidget(

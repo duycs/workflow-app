@@ -1,13 +1,18 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/market/filter_programs/filter_programs_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'program_list_market_model.dart';
@@ -20,10 +25,10 @@ class ProgramListMarketWidget extends StatefulWidget {
     String? idAuthor,
     String? idDomain,
     String? domainToProgramListMarket,
-  })  : price = price ?? '',
-        idAuthor = idAuthor ?? '',
-        idDomain = idDomain ?? '',
-        domainToProgramListMarket = domainToProgramListMarket ?? '';
+  })  : this.price = price ?? '',
+        this.idAuthor = idAuthor ?? '',
+        this.idDomain = idDomain ?? '',
+        this.domainToProgramListMarket = domainToProgramListMarket ?? '';
 
   final String price;
   final String idAuthor;
@@ -111,12 +116,12 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                 context: context,
                 builder: (alertDialogContext) {
                   return AlertDialog(
-                    title: Text(widget.idDomain),
-                    content: Text(widget.idAuthor),
+                    title: Text(widget!.idDomain),
+                    content: Text(widget!.idAuthor),
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(alertDialogContext),
-                        child: const Text('Ok'),
+                        child: Text('Ok'),
                       ),
                     ],
                   );
@@ -133,7 +138,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                   ),
             ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -144,19 +149,19 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 12.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 12.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
-                      child: SizedBox(
+                      child: Container(
                         width: double.infinity,
                         child: TextFormField(
                           controller: _model.searchMarketTextController,
                           focusNode: _model.searchMarketFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.searchMarketTextController',
-                            const Duration(milliseconds: 500),
+                            Duration(milliseconds: 500),
                             () async {
                               setState(() =>
                                   _model.listViewPagingController?.refresh());
@@ -182,7 +187,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                       letterSpacing: 0.0,
                                     ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Color(0x00000000),
                                 width: 1.0,
                               ),
@@ -210,8 +215,8 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             filled: true,
-                            fillColor: const Color(0x15FF5963),
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            fillColor: Color(0x15FF5963),
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 8.0, 0.0, 8.0),
                             prefixIcon: Icon(
                               Icons.search,
@@ -229,7 +234,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                           ?.refresh());
                                       setState(() {});
                                     },
-                                    child: const Icon(
+                                    child: Icon(
                                       Icons.clear,
                                       color: Color(0xFF757575),
                                       size: 22.0,
@@ -252,7 +257,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: FlutterFlowIconButton(
                         borderColor: Colors.transparent,
                         borderRadius: 10.0,
@@ -286,11 +291,11 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                     listDomain: _model.listDataDomain
                                         .map((e) => e.name)
                                         .toList(),
-                                    checkPrice: widget.price,
+                                    checkPrice: widget!.price,
                                     checkPrice1: 'checkPriceList',
                                     priceMin1: _model.priceMin,
                                     priceMax1: _model.priceMax,
-                                    checkAuthor: widget.idAuthor,
+                                    checkAuthor: widget!.idAuthor,
                                     callBack: (domain,
                                         author,
                                         category,
@@ -321,14 +326,14 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                   ],
                 ),
               ),
-              if ((widget.price == 'free') || (widget.price == 'NoFree'))
+              if ((widget!.price == 'free') || (widget!.price == 'NoFree'))
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
                   child: Text(
                     () {
-                      if (widget.price == 'free') {
+                      if (widget!.price == 'free') {
                         return 'Khoá học miễn phí';
-                      } else if (widget.price == 'NoFree') {
+                      } else if (widget!.price == 'NoFree') {
                         return 'Khoá học bán chạy';
                       } else {
                         return '';
@@ -342,19 +347,20 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                         ),
                   ),
                 ),
-              if ((_model.searchMarketTextController.text != '') ||
-                  ((_model.domain != '') &&
+              if ((_model.searchMarketTextController.text != null &&
+                      _model.searchMarketTextController.text != '') ||
+                  ((_model.domain != null && _model.domain != '') &&
                       (_model.domain != 'noData')) ||
-                  ((_model.author != '') &&
+                  ((_model.author != null && _model.author != '') &&
                       (_model.author != 'noData')) ||
-                  ((_model.category != '') &&
+                  ((_model.category != null && _model.category != '') &&
                       (_model.category != 'noData')) ||
-                  ((_model.priceMin != '') &&
+                  ((_model.priceMin != null && _model.priceMin != '') &&
                       (_model.priceMin != 'noData')) ||
-                  ((_model.priceMax != '') &&
+                  ((_model.priceMax != null && _model.priceMax != '') &&
                       (_model.priceMax != 'noData')))
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
                   child: Text(
                     '#Kết quả tìm kiếm theo bộ lọc',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -368,7 +374,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                 ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 0.0),
                   child: PagedListView<ApiPagingParams, dynamic>(
                     pagingController: _model.setListViewController(
                       (nextPageMarker) =>
@@ -377,17 +383,18 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                         limit: 20,
                         offset: nextPageMarker.nextPageNumber * 20,
                         filter: '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${() {
-                          if (widget.price == 'free') {
+                          if (widget!.price == 'free') {
                             return ',{\"price\":{\"_eq\":\"0\"}}';
-                          } else if (((widget.price == 'NoFree') &&
-                                  (_model.priceMin == '')) ||
-                              ((widget.price == 'NoFree') &&
+                          } else if (((widget!.price == 'NoFree') &&
+                                  (_model.priceMin == null ||
+                                      _model.priceMin == '')) ||
+                              ((widget!.price == 'NoFree') &&
                                   (_model.priceMin == 'noData'))) {
                             return ',{\"price\":{\"_gt\":\"0\"}}';
                           } else {
                             return ' ';
                           }
-                        }()}${_model.searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${_model.searchMarketTextController.text != '' ? _model.searchMarketTextController.text : ' '}${_model.searchMarketTextController.text != '' ? '\"}}' : ' '}${widget.domainToProgramListMarket != '' ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"' : ' '}${widget.domainToProgramListMarket != '' ? widget.domainToProgramListMarket : ' '}${widget.domainToProgramListMarket != '' ? '\"}}}' : ' '}${(_model.domain != '') && (_model.domain != 'noData') ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"' : ' '}${(_model.domain != '') && (_model.domain != 'noData') ? _model.domain : ' '}${(_model.domain != '') && (_model.domain != 'noData') ? '\"}}}' : ' '}${(_model.author != '') && (_model.author != 'noData') ? ',{\"author_id\":{\"alias\":{\"_icontains\":\"' : ' '}${(_model.author != '') && (_model.author != 'noData') ? _model.author : ' '}${(_model.author != '') && (_model.author != 'noData') ? '\"}}}' : ' '}${(_model.category != '') && (_model.category != 'noData') ? ',{\"category_id\":{\"name\":{\"_icontains\":\"' : ' '}${(_model.category != '') && (_model.category != 'noData') ? _model.category : ' '}${(_model.category != '') && (_model.category != 'noData') ? '\"}}}' : ' '}${(_model.priceMinDomain != '') && (_model.priceMinDomain != 'noData') && (widget.price == 'free1') ? ',{\"price\":{\"_gte\":\"' : ' '}${(_model.priceMinDomain != '') && (_model.priceMinDomain != 'noData') && (widget.price == 'free1') ? _model.priceMinDomain : ' '}${(_model.priceMinDomain != '') && (_model.priceMinDomain != 'noData') && (widget.price == 'free1') ? '\"}}' : ' '}${(_model.priceMaxDomain != '') && (_model.priceMaxDomain != 'noData') && (widget.price == 'free1') ? ',{\"price\":{\"_lte\":\"' : ' '}${(_model.priceMaxDomain != '') && (_model.priceMaxDomain != 'noData') && (widget.price == 'free1') ? _model.priceMaxDomain : ' '}${(_model.priceMaxDomain != '') && (_model.priceMaxDomain != 'noData') && (widget.price == 'free1') ? '\"}}' : ' '}${(_model.priceMin != '') && (_model.priceMin != 'noData') && (widget.price != 'free1') ? ',{\"price\":{\"_gte\":\"' : ' '}${(_model.priceMin != '') && (_model.priceMin != 'noData') && (widget.price != 'free1') ? _model.priceMin : ' '}${(_model.priceMin != '') && (_model.priceMin != 'noData') && (widget.price != 'free1') ? '\"}}' : ' '}${(_model.priceMax != '') && (_model.priceMax != 'noData') && (widget.price != 'free1') ? ',{\"price\":{\"_lte\":\"' : ' '}${(_model.priceMax != '') && (_model.priceMax != 'noData') && (widget.price != 'free1') ? _model.priceMax : ' '}${(_model.priceMax != '') && (_model.priceMax != 'noData') && (widget.price != 'free1') ? '\"}}' : ' '}${(widget.idAuthor != '') && (widget.idDomain != '') ? ',{\"author_id\":{\"id\":{\"_eq\":\"${widget.idAuthor}\"}}},{\"domain_id\":{\"id\":{\"_eq\":\"${widget.idDomain}\"}}}' : ' '}]}',
+                        }()}${_model.searchMarketTextController.text != null && _model.searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${_model.searchMarketTextController.text != null && _model.searchMarketTextController.text != '' ? _model.searchMarketTextController.text : ' '}${_model.searchMarketTextController.text != null && _model.searchMarketTextController.text != '' ? '\"}}' : ' '}${widget!.domainToProgramListMarket != null && widget!.domainToProgramListMarket != '' ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"' : ' '}${widget!.domainToProgramListMarket != null && widget!.domainToProgramListMarket != '' ? widget!.domainToProgramListMarket : ' '}${widget!.domainToProgramListMarket != null && widget!.domainToProgramListMarket != '' ? '\"}}}' : ' '}${(_model.domain != null && _model.domain != '') && (_model.domain != 'noData') ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"' : ' '}${(_model.domain != null && _model.domain != '') && (_model.domain != 'noData') ? _model.domain : ' '}${(_model.domain != null && _model.domain != '') && (_model.domain != 'noData') ? '\"}}}' : ' '}${(_model.author != null && _model.author != '') && (_model.author != 'noData') ? ',{\"author_id\":{\"alias\":{\"_icontains\":\"' : ' '}${(_model.author != null && _model.author != '') && (_model.author != 'noData') ? _model.author : ' '}${(_model.author != null && _model.author != '') && (_model.author != 'noData') ? '\"}}}' : ' '}${(_model.category != null && _model.category != '') && (_model.category != 'noData') ? ',{\"category_id\":{\"name\":{\"_icontains\":\"' : ' '}${(_model.category != null && _model.category != '') && (_model.category != 'noData') ? _model.category : ' '}${(_model.category != null && _model.category != '') && (_model.category != 'noData') ? '\"}}}' : ' '}${(_model.priceMinDomain != null && _model.priceMinDomain != '') && (_model.priceMinDomain != 'noData') && (widget!.price == 'free1') ? ',{\"price\":{\"_gte\":\"' : ' '}${(_model.priceMinDomain != null && _model.priceMinDomain != '') && (_model.priceMinDomain != 'noData') && (widget!.price == 'free1') ? _model.priceMinDomain : ' '}${(_model.priceMinDomain != null && _model.priceMinDomain != '') && (_model.priceMinDomain != 'noData') && (widget!.price == 'free1') ? '\"}}' : ' '}${(_model.priceMaxDomain != null && _model.priceMaxDomain != '') && (_model.priceMaxDomain != 'noData') && (widget!.price == 'free1') ? ',{\"price\":{\"_lte\":\"' : ' '}${(_model.priceMaxDomain != null && _model.priceMaxDomain != '') && (_model.priceMaxDomain != 'noData') && (widget!.price == 'free1') ? _model.priceMaxDomain : ' '}${(_model.priceMaxDomain != null && _model.priceMaxDomain != '') && (_model.priceMaxDomain != 'noData') && (widget!.price == 'free1') ? '\"}}' : ' '}${(_model.priceMin != null && _model.priceMin != '') && (_model.priceMin != 'noData') && (widget!.price != 'free1') ? ',{\"price\":{\"_gte\":\"' : ' '}${(_model.priceMin != null && _model.priceMin != '') && (_model.priceMin != 'noData') && (widget!.price != 'free1') ? _model.priceMin : ' '}${(_model.priceMin != null && _model.priceMin != '') && (_model.priceMin != 'noData') && (widget!.price != 'free1') ? '\"}}' : ' '}${(_model.priceMax != null && _model.priceMax != '') && (_model.priceMax != 'noData') && (widget!.price != 'free1') ? ',{\"price\":{\"_lte\":\"' : ' '}${(_model.priceMax != null && _model.priceMax != '') && (_model.priceMax != 'noData') && (widget!.price != 'free1') ? _model.priceMax : ' '}${(_model.priceMax != null && _model.priceMax != '') && (_model.priceMax != 'noData') && (widget!.price != 'free1') ? '\"}}' : ' '}${(widget!.idAuthor != null && widget!.idAuthor != '') && (widget!.idDomain != null && widget!.idDomain != '') ? ',{\"author_id\":{\"id\":{\"_eq\":\"${widget!.idAuthor}\"}}},{\"domain_id\":{\"id\":{\"_eq\":\"${widget!.idDomain}\"}}}' : ' '}]}',
                       ),
                     ),
                     padding: EdgeInsets.zero,
@@ -420,13 +427,13 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                           ),
                         ),
                       ),
-                      noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
+                      noItemsFoundIndicatorBuilder: (_) => DataNotFoundWidget(),
                       itemBuilder: (context, _, itemProgramsIndex) {
                         final itemProgramsItem = _model
                             .listViewPagingController!
                             .itemList![itemProgramsIndex];
                         return Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 16.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -443,7 +450,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
+                                  kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -456,7 +463,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
@@ -464,7 +471,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                       width: 90.0,
                                       height: 100.0,
                                       fit: BoxFit.cover,
-                                      alignment: const Alignment(0.0, 0.0),
+                                      alignment: Alignment(0.0, 0.0),
                                       errorBuilder:
                                           (context, error, stackTrace) =>
                                               Image.asset(
@@ -472,7 +479,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                         width: 90.0,
                                         height: 100.0,
                                         fit: BoxFit.cover,
-                                        alignment: const Alignment(0.0, 0.0),
+                                        alignment: Alignment(0.0, 0.0),
                                       ),
                                     ),
                                   ),
@@ -536,7 +543,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                           if (itemProgramsItem.reacts.length >
                                               0)
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 2.0),
                                               child: Icon(
                                                 Icons.star,
@@ -581,7 +588,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                             ),
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 16.0, 0.0),
                                               child: Row(
@@ -591,7 +598,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 2.0),
                                                     child: Icon(
@@ -618,16 +625,16 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                                               FontStyle.italic,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(width: 4.0)),
+                                                ].divide(SizedBox(width: 4.0)),
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 4.0)),
+                                        ].divide(SizedBox(width: 4.0)),
                                       ),
                                     ],
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 12.0)),
+                              ].divide(SizedBox(width: 12.0)),
                             ),
                           ),
                         );

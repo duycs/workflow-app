@@ -1,15 +1,19 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/timekeeping/timekeeping_management_list_filter/timekeeping_management_list_filter_widget.dart';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'timekeeping_management_list_model.dart';
@@ -94,13 +98,13 @@ class _TimekeepingManagementListWidgetState
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                   child: Text(
-                    widget.checkShowParams == 'check'
+                    widget!.checkShowParams == 'check'
                         ? 'Báo cáo chấm công tháng'
                         : 'Báo cáo chấm công ngày ${dateTimeFormat(
                             'd/M/y',
-                            functions.stringToDateTime(widget.dateFilter),
+                            functions.stringToDateTime(widget!.dateFilter),
                             locale: FFLocalizations.of(context).languageCode,
                           )}',
                     maxLines: 2,
@@ -113,7 +117,7 @@ class _TimekeepingManagementListWidgetState
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                 child: FlutterFlowIconButton(
                   borderColor: Colors.transparent,
                   borderRadius: 10.0,
@@ -163,7 +167,7 @@ class _TimekeepingManagementListWidgetState
             ],
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -172,13 +176,13 @@ class _TimekeepingManagementListWidgetState
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 12.0, 0.0),
                           child: Text(
                             'Báo cáo chấm công của nhân viên',
@@ -193,8 +197,8 @@ class _TimekeepingManagementListWidgetState
                                 ),
                           ),
                         ),
-                        if (widget.checkShowParams == 'check')
-                          SizedBox(
+                        if (widget!.checkShowParams == 'check')
+                          Container(
                             width: 200.0,
                             height: 50.0,
                             child: custom_widgets.CustomWidgetDateTime(
@@ -203,7 +207,7 @@ class _TimekeepingManagementListWidgetState
                               date: getCurrentTimestamp,
                               action: (dateStart, dateEnd) async {
                                 _model.dateStart = dateStart!;
-                                _model.dateEnd = dateStart;
+                                _model.dateEnd = dateStart!;
                                 setState(() {});
                                 setState(() =>
                                     _model.listViewPagingController?.refresh());
@@ -214,7 +218,7 @@ class _TimekeepingManagementListWidgetState
                               },
                             ),
                           ),
-                      ].divide(const SizedBox(height: 3.0)),
+                      ].divide(SizedBox(height: 3.0)),
                     ),
                   ),
                 ),
@@ -234,7 +238,7 @@ class _TimekeepingManagementListWidgetState
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(
@@ -256,17 +260,17 @@ class _TimekeepingManagementListWidgetState
                     ],
                   ),
                 ),
-              ].divide(const SizedBox(width: 4.0)),
+              ].divide(SizedBox(width: 4.0)),
             ),
           ),
           if ('1' == '2')
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 0.0),
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       blurRadius: 1.0,
                       color: Color(0x33000000),
@@ -279,7 +283,7 @@ class _TimekeepingManagementListWidgetState
                   borderRadius: BorderRadius.circular(4.0),
                 ),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 12.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -397,7 +401,7 @@ class _TimekeepingManagementListWidgetState
             ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
               child: PagedListView<ApiPagingParams, dynamic>.separated(
                 pagingController: _model.setListViewController(
                   (nextPageMarker) =>
@@ -408,20 +412,20 @@ class _TimekeepingManagementListWidgetState
                     filter: '{\"_and\":[${'{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                       FFAppState().staffOrganization,
                       r'''$.id''',
-                    ).toString()}\"}}}'}${(widget.checkShowParams == 'check') && ((_model.dateStart == '') && (_model.dateEnd == '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month + 1, 1).toString()}\"}}' : ' '}${(widget.checkShowParams == 'check') && ((_model.dateStart != '') && (_model.dateEnd != '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(_model.dateStart).year, DateTime.parse(_model.dateStart).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(_model.dateEnd).year, DateTime.parse(_model.dateEnd).month + 1, 1).toString()}\"}}' : ' '}${functions.isRoleBranchAdmin(FFAppState().user) ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
+                    ).toString()}\"}}}'}${(widget!.checkShowParams == 'check') && ((_model.dateStart == null || _model.dateStart == '') && (_model.dateEnd == null || _model.dateEnd == '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month + 1, 1).toString()}\"}}' : ' '}${(widget!.checkShowParams == 'check') && ((_model.dateStart != null && _model.dateStart != '') && (_model.dateEnd != null && _model.dateEnd != '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(_model.dateStart).year, DateTime.parse(_model.dateStart).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(_model.dateEnd).year, DateTime.parse(_model.dateEnd).month + 1, 1).toString()}\"}}' : ' '}${functions.isRoleBranchAdmin(FFAppState().user) ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
                         FFAppState().staffBranch,
                         r'''$.id''',
                       ).toString()}\"}}}' : ' '}${functions.isRoleDepartmentAdmin(FFAppState().user) ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"${getJsonField(
                         FFAppState().staffDepartment,
                         r'''$.id''',
-                      ).toString()}\"}}}' : ' '}${widget.dateFilter != null && widget.dateFilter != '' ? ',{\"date_created\":{\"_gte\":\"${widget.dateFilter}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
+                      ).toString()}\"}}}' : ' '}${widget!.dateFilter != null && widget!.dateFilter != '' ? ',{\"date_created\":{\"_gte\":\"${widget!.dateFilter}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
                         return DateTime.parse(var1)
-                            .add(const Duration(days: 1))
+                            .add(Duration(days: 1))
                             .toString();
-                      }(widget.dateFilter!)}\"}}' : ' '}${(_model.idStaff != '') && (_model.idStaff != 'noData') ? ',{\"staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"${_model.idStaff}\"}}}}' : ' '}${(_model.idBranch != '') && (_model.idBranch != 'noData') ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${_model.idBranch}\"}}}' : ' '}${(_model.idDepartment != '') && (_model.idDepartment != 'noData') ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"${_model.idDepartment}\"}}}' : ' '}${(_model.idShifts != '') && (_model.idShifts != 'noData') ? ',{\"shift_id\":{\"id\":{\"_eq\":\"${_model.idShifts}\"}}}' : ' '}${(_model.idStatus != '') && (_model.idStatus != 'noData') ? ',{\"status\":{\"_eq\":\"${_model.idStatus}\"}}' : ' '}]}',
+                      }(widget!.dateFilter!)}\"}}' : ' '}${(_model.idStaff != null && _model.idStaff != '') && (_model.idStaff != 'noData') ? ',{\"staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"${_model.idStaff}\"}}}}' : ' '}${(_model.idBranch != null && _model.idBranch != '') && (_model.idBranch != 'noData') ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${_model.idBranch}\"}}}' : ' '}${(_model.idDepartment != null && _model.idDepartment != '') && (_model.idDepartment != 'noData') ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"${_model.idDepartment}\"}}}' : ' '}${(_model.idShifts != null && _model.idShifts != '') && (_model.idShifts != 'noData') ? ',{\"shift_id\":{\"id\":{\"_eq\":\"${_model.idShifts}\"}}}' : ' '}${(_model.idStatus != null && _model.idStatus != '') && (_model.idStatus != 'noData') ? ',{\"status\":{\"_eq\":\"${_model.idStatus}\"}}' : ' '}]}',
                   ),
                 ),
-                padding: const EdgeInsets.fromLTRB(
+                padding: EdgeInsets.fromLTRB(
                   0,
                   0,
                   0,
@@ -431,7 +435,7 @@ class _TimekeepingManagementListWidgetState
                 shrinkWrap: true,
                 reverse: false,
                 scrollDirection: Axis.vertical,
-                separatorBuilder: (_, __) => const SizedBox(height: 16.0),
+                separatorBuilder: (_, __) => SizedBox(height: 16.0),
                 builderDelegate: PagedChildBuilderDelegate<dynamic>(
                   // Customize what your widget looks like when it's loading the first page.
                   firstPageProgressIndicatorBuilder: (_) => Center(
@@ -457,19 +461,19 @@ class _TimekeepingManagementListWidgetState
                       ),
                     ),
                   ),
-                  noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
+                  noItemsFoundIndicatorBuilder: (_) => DataNotFoundWidget(),
                   itemBuilder: (context, _, listItemIndex) {
                     final listItemItem = _model
                         .listViewPagingController!.itemList![listItemIndex];
                     return Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: const [
+                          boxShadow: [
                             BoxShadow(
                               blurRadius: 1.0,
                               color: Color(0x33000000),
@@ -482,14 +486,14 @@ class _TimekeepingManagementListWidgetState
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               4.0, 0.0, 4.0, 8.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     5.0, 5.0, 5.0, 0.0),
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -497,7 +501,7 @@ class _TimekeepingManagementListWidgetState
                                         .secondaryBackground,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 6.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -529,7 +533,7 @@ class _TimekeepingManagementListWidgetState
                                                 ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 5.0)),
+                                      ].divide(SizedBox(width: 5.0)),
                                     ),
                                   ),
                                 ),
@@ -540,14 +544,14 @@ class _TimekeepingManagementListWidgetState
                                 color: FlutterFlowTheme.of(context).alternate,
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 8.0, 10.0, 6.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 8.0, 0.0),
                                       child: Text(
                                         'Thời gian làm:',
@@ -570,18 +574,18 @@ class _TimekeepingManagementListWidgetState
                                             fontWeight: FontWeight.w600,
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 3.0)),
+                                  ].divide(SizedBox(width: 3.0)),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 10.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 8.0, 0.0),
                                       child: Text(
                                         'Họ và tên: ',
@@ -604,12 +608,12 @@ class _TimekeepingManagementListWidgetState
                                             fontWeight: FontWeight.w600,
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 3.0)),
+                                  ].divide(SizedBox(width: 3.0)),
                                 ),
                               ),
                               if ('1' == '2')
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -630,11 +634,11 @@ class _TimekeepingManagementListWidgetState
                                               fontWeight: FontWeight.normal,
                                             ),
                                       ),
-                                    ].divide(const SizedBox(width: 3.0)),
+                                    ].divide(SizedBox(width: 3.0)),
                                   ),
                                 ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 10.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -646,7 +650,7 @@ class _TimekeepingManagementListWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 4.0, 0.0),
                                             child: FaIcon(
                                               FontAwesomeIcons.businessTime,
@@ -713,7 +717,7 @@ class _TimekeepingManagementListWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 4.0, 0.0),
                                             child: FaIcon(
                                               FontAwesomeIcons.businessTime,
@@ -780,9 +784,9 @@ class _TimekeepingManagementListWidgetState
                               ),
                               if (listItemItem.shiftChecks.length > 0)
                                 Align(
-                                  alignment: const AlignmentDirectional(1.0, 1.0),
+                                  alignment: AlignmentDirectional(1.0, 1.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 5.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -844,9 +848,9 @@ class _TimekeepingManagementListWidgetState
                               if (listItemItem.id == _model.checkShow)
                                 Container(
                                   width: double.infinity,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 5.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -855,7 +859,7 @@ class _TimekeepingManagementListWidgetState
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -868,7 +872,7 @@ class _TimekeepingManagementListWidgetState
                                                 size: 24.0,
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -898,13 +902,13 @@ class _TimekeepingManagementListWidgetState
                                           ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 10.0, 5.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 5.0, 0.0, 8.0),
                                                 child: Container(
@@ -1005,7 +1009,7 @@ class _TimekeepingManagementListWidgetState
                                                                       .center,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1042,7 +1046,7 @@ class _TimekeepingManagementListWidgetState
                                                                 ),
                                                               ],
                                                             );
-                                                          }).divide(const SizedBox(
+                                                          }).divide(SizedBox(
                                                               height: 2.0)),
                                                         );
                                                       },
@@ -1079,7 +1083,7 @@ class _TimekeepingManagementListWidgetState
                                                                       .center,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1116,7 +1120,7 @@ class _TimekeepingManagementListWidgetState
                                                                 ),
                                                               ],
                                                             );
-                                                          }).divide(const SizedBox(
+                                                          }).divide(SizedBox(
                                                               height: 2.0)),
                                                         );
                                                       },

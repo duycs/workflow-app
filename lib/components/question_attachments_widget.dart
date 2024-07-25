@@ -2,6 +2,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'question_attachments_model.dart';
 export 'question_attachments_model.dart';
 
@@ -46,8 +48,8 @@ class _QuestionAttachmentsWidgetState extends State<QuestionAttachmentsWidget> {
       text: 'Upload files',
       options: FFButtonOptions(
         height: 40.0,
-        padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-        iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+        padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+        iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
         color: FlutterFlowTheme.of(context).primary,
         textStyle: FlutterFlowTheme.of(context).titleSmall.override(
               fontFamily: 'Nunito Sans',
@@ -57,7 +59,7 @@ class _QuestionAttachmentsWidgetState extends State<QuestionAttachmentsWidget> {
               fontWeight: FontWeight.normal,
             ),
         elevation: 3.0,
-        borderSide: const BorderSide(
+        borderSide: BorderSide(
           color: Colors.transparent,
           width: 1.0,
         ),

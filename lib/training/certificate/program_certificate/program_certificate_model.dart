@@ -1,10 +1,19 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'program_certificate_widget.dart' show ProgramCertificateWidget;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ProgramCertificateModel
     extends FlutterFlowModel<ProgramCertificateWidget> {
@@ -110,19 +119,19 @@ class ProgramCertificateModel
       filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}' : ' '}]}',
+      ).toString().toString()}\"}}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}' : ' '}]}',
     );
 
-    if ((apiResultList.succeeded ?? true)) {
+    if ((apiResultList?.succeeded ?? true)) {
       programs = StudyProgramListDataStruct.maybeFromMap(
-              (apiResultList.jsonBody ?? ''))!
+              (apiResultList?.jsonBody ?? ''))!
           .data
           .toList()
           .cast<StudyProgramListStruct>();
     } else {
       checkRefreshTokenBlockdf = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList.jsonBody ?? ''),
+        jsonErrors: (apiResultList?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockdf!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -133,7 +142,7 @@ class ProgramCertificateModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -153,14 +162,14 @@ class ProgramCertificateModel
       idCertificates: widget!.idCertificates,
     );
 
-    if ((apiResultGetOneCertificate.succeeded ?? true)) {
+    if ((apiResultGetOneCertificate?.succeeded ?? true)) {
       certificate = CertificatesListDataStruct.maybeFromMap(
-              (apiResultGetOneCertificate.jsonBody ?? ''))
+              (apiResultGetOneCertificate?.jsonBody ?? ''))
           ?.data;
     } else {
       checkRefreshTokenBlockdf11 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetOneCertificate.jsonBody ?? ''),
+        jsonErrors: (apiResultGetOneCertificate?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockdf11!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -171,7 +180,7 @@ class ProgramCertificateModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -191,7 +200,7 @@ class ProgramCertificateModel
       idCertificate: widget!.idCertificates,
     );
 
-    if ((apiResultAdd.succeeded ?? true)) {
+    if ((apiResultAdd?.succeeded ?? true)) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -200,7 +209,7 @@ class ProgramCertificateModel
               color: FlutterFlowTheme.of(context).primaryText,
             ),
           ),
-          duration: const Duration(milliseconds: 4000),
+          duration: Duration(milliseconds: 4000),
           backgroundColor: FlutterFlowTheme.of(context).secondary,
         ),
       );
@@ -208,7 +217,7 @@ class ProgramCertificateModel
     } else {
       checkRefreshTokenBlockdf1122 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultAdd.jsonBody ?? ''),
+        jsonErrors: (apiResultAdd?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockdf1122!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -219,7 +228,7 @@ class ProgramCertificateModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

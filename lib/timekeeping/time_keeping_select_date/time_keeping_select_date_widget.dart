@@ -2,6 +2,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'time_keeping_select_date_model.dart';
 export 'time_keeping_select_date_model.dart';
 
@@ -41,21 +43,21 @@ class _TimeKeepingSelectDateWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 1.0),
+      alignment: AlignmentDirectional(0.0, 1.0),
       child: Container(
         height: 400.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
             topRight: Radius.circular(16.0),
           ),
         ),
-        alignment: const AlignmentDirectional(0.0, 1.0),
+        alignment: AlignmentDirectional(0.0, 1.0),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,11 +70,11 @@ class _TimeKeepingSelectDateWidgetState
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: SwitchListTile.adaptive(
                   value: _model.switchListTileValue ??= true,
                   onChanged: (newValue) async {
-                    setState(() => _model.switchListTileValue = newValue);
+                    setState(() => _model.switchListTileValue = newValue!);
                   },
                   title: Text(
                     'Ngày cuối cùng trong tháng',
@@ -90,13 +92,13 @@ class _TimeKeepingSelectDateWidgetState
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Ngày trong tháng',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -109,13 +111,13 @@ class _TimeKeepingSelectDateWidgetState
                 ),
               ),
               Container(
-                decoration: const BoxDecoration(),
-                child: SizedBox(
+                decoration: BoxDecoration(),
+                child: Container(
                   width: double.infinity,
                   child: CarouselSlider(
                     items: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         child: Container(
                           width: double.infinity,
@@ -142,7 +144,7 @@ class _TimeKeepingSelectDateWidgetState
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         child: Container(
                           width: double.infinity,
@@ -169,7 +171,7 @@ class _TimeKeepingSelectDateWidgetState
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         child: Container(
                           width: double.infinity,
@@ -196,7 +198,7 @@ class _TimeKeepingSelectDateWidgetState
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         child: Container(
                           width: double.infinity,
