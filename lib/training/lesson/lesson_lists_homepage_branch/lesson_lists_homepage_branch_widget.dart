@@ -363,7 +363,7 @@ class _LessonListsHomepageBranchWidgetState
                                 }(_model.dateEndList)) : ' '}${(_model.dateEndList != '') && (_model.dateEndList != 'noData') ? '\"}}' : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? ',{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"love\"}}}},{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? FFAppState().staffid : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? '\"}}}}' : ' '}${_model.programsAllId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${_model.programsAllId != '' ? _model.programsAllId : ' '}${_model.programsAllId != '' ? '\"}}}}' : ' '},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"id\":{\"_neq\":\"${getJsonField(
                                 FFAppState().staffDepartment,
                                 r'''$.id''',
-                              ).toString()}\"}}}}}},{\"status\":{\"_icontains\":\"published\"}}]}',
+                              ).toString()}\"}}}}}},{\"status\":{\"_eq\":\"published\"}}]}',
                             ),
                           ),
                           padding: EdgeInsets.zero,
