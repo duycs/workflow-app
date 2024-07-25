@@ -89,6 +89,7 @@ class _FilterBranchWidgetState extends State<FilterBranchWidget> {
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
                             fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
+                            fontWeight: FontWeight.w600,
                           ),
                     ),
                     FlutterFlowIconButton(

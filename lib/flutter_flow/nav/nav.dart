@@ -51,7 +51,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : IntroScreenWidget(),
+          : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -69,7 +69,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : IntroScreenWidget(),
+              : LoginWidget(),
         ),
         FFRoute(
           name: 'LessonList_Homepage',
@@ -251,11 +251,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => TrainingManageWidget(),
         ),
         FFRoute(
-          name: 'PersonnalDraft',
-          path: '/personnalDraft',
-          builder: (context, params) => PersonnalDraftWidget(),
-        ),
-        FFRoute(
           name: 'TrainingRankList',
           path: '/trainingRankList',
           builder: (context, params) => TrainingRankListWidget(),
@@ -296,39 +291,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
-          name: 'ProdureStep01',
-          path: '/produreStep01',
-          builder: (context, params) => ProdureStep01Widget(),
-        ),
-        FFRoute(
-          name: 'ProdureStep02',
-          path: '/produreStep02',
-          builder: (context, params) => ProdureStep02Widget(),
-        ),
-        FFRoute(
-          name: 'ProdureStep03',
-          path: '/produreStep03',
-          builder: (context, params) => ProdureStep03Widget(),
-        ),
-        FFRoute(
-          name: 'ProdureStep04',
-          path: '/produreStep04',
-          builder: (context, params) => ProdureStep04Widget(),
-        ),
-        FFRoute(
           name: 'ProdureStep05',
           path: '/produreStep05',
           builder: (context, params) => ProdureStep05Widget(),
-        ),
-        FFRoute(
-          name: 'ProcedurePublishing',
-          path: '/procedurePublishing',
-          builder: (context, params) => ProcedurePublishingWidget(),
-        ),
-        FFRoute(
-          name: 'ProcedurePublishedDetail',
-          path: '/procedurePublishedDetail',
-          builder: (context, params) => ProcedurePublishedDetailWidget(),
         ),
         FFRoute(
           name: 'TestCreate',
@@ -1185,6 +1150,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.DataStruct,
               isList: false,
               structBuilder: ShiftConfigsStruct.fromSerializableMap,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'LessonLists_Homepage_Branch',
+          path: '/lessonListsHomepageBranch',
+          builder: (context, params) => LessonListsHomepageBranchWidget(),
+        ),
+        FFRoute(
+          name: 'LessonsListNavbar',
+          path: '/lessonsListNavbar',
+          builder: (context, params) => LessonsListNavbarWidget(
+            checkpage: params.getParam(
+              'checkpage',
+              ParamType.String,
             ),
           ),
         )

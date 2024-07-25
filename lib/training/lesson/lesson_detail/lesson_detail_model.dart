@@ -6,11 +6,13 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
+import '/training/lesson/menu_delete/menu_delete_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'lesson_detail_widget.dart' show LessonDetailWidget;
+import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,6 +49,10 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
   final unfocusNode = FocusNode();
   // Model for MobileEditorDisplayComponent component.
   late MobileEditorDisplayComponentModel mobileEditorDisplayComponentModel;
+  // State field(s) for comments widget.
+  FocusNode? commentsFocusNode;
+  TextEditingController? commentsTextController;
+  String? Function(BuildContext, String?)? commentsTextControllerValidator;
 
   @override
   void initState(BuildContext context) {
@@ -58,6 +64,8 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
   void dispose() {
     unfocusNode.dispose();
     mobileEditorDisplayComponentModel.dispose();
+    commentsFocusNode?.dispose();
+    commentsTextController?.dispose();
   }
 
   /// Action blocks.
@@ -180,6 +188,44 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
         );
       } else {
         await getHeart(context);
+      }
+    }
+  }
+
+  Future postComment(BuildContext context) async {
+    ApiCallResponse? apiResultPostComment;
+    bool? checkRefreshTokenBlock123123;
+
+    apiResultPostComment = await LessonGroup.postCommentCall.call(
+      accessToken: FFAppState().accessToken,
+      content: commentsTextController.text,
+      lessionId: getJsonField(
+        listDetail,
+        r'''$.id''',
+      ).toString().toString(),
+      staffId: FFAppState().staffid,
+    );
+
+    if (!(apiResultPostComment?.succeeded ?? true)) {
+      checkRefreshTokenBlock123123 = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultPostComment?.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock123123!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await postComment(context);
       }
     }
   }

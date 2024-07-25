@@ -258,7 +258,7 @@ class _TimekeepingLocationListWidgetState
                   child: PagedListView<ApiPagingParams, dynamic>.separated(
                     pagingController: _model.setListViewController(
                       (nextPageMarker) =>
-                          TimekeepingShiftGroup.addressListCall.call(
+                          TimekeepingShiftConfigsGroup.addressListCall.call(
                         accessToken: FFAppState().accessToken,
                         limit: 20,
                         offset: nextPageMarker.nextPageNumber * 20,
@@ -308,6 +308,16 @@ class _TimekeepingLocationListWidgetState
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 1.0,
+                                color: Color(0x33000000),
+                                offset: Offset(
+                                  0.0,
+                                  1.0,
+                                ),
+                              )
+                            ],
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(

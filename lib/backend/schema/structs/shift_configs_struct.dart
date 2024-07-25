@@ -18,6 +18,7 @@ class ShiftConfigsStruct extends BaseStruct {
     List<StaffListStruct>? staffs,
     List<ShiftCofigsShiftsStruct>? shifts,
     String? name,
+    List<String>? offWeekDays,
   })  : _id = id,
         _status = status,
         _enable = enable,
@@ -28,7 +29,8 @@ class ShiftConfigsStruct extends BaseStruct {
         _departments = departments,
         _staffs = staffs,
         _shifts = shifts,
-        _name = name;
+        _name = name,
+        _offWeekDays = offWeekDays;
 
   // "id" field.
   String? _id;
@@ -133,6 +135,17 @@ class ShiftConfigsStruct extends BaseStruct {
 
   bool hasName() => _name != null;
 
+  // "off_week_days" field.
+  List<String>? _offWeekDays;
+  List<String> get offWeekDays => _offWeekDays ?? const [];
+  set offWeekDays(List<String>? val) => _offWeekDays = val;
+
+  void updateOffWeekDays(Function(List<String>) updateFn) {
+    updateFn(_offWeekDays ??= []);
+  }
+
+  bool hasOffWeekDays() => _offWeekDays != null;
+
   static ShiftConfigsStruct fromMap(Map<String, dynamic> data) =>
       ShiftConfigsStruct(
         id: data['id'] as String?,
@@ -158,6 +171,7 @@ class ShiftConfigsStruct extends BaseStruct {
           ShiftCofigsShiftsStruct.fromMap,
         ),
         name: data['name'] as String?,
+        offWeekDays: getDataList(data['off_week_days']),
       );
 
   static ShiftConfigsStruct? maybeFromMap(dynamic data) => data is Map
@@ -176,6 +190,7 @@ class ShiftConfigsStruct extends BaseStruct {
         'staffs': _staffs?.map((e) => e.toMap()).toList(),
         'shifts': _shifts?.map((e) => e.toMap()).toList(),
         'name': _name,
+        'off_week_days': _offWeekDays,
       }.withoutNulls;
 
   @override
@@ -227,6 +242,11 @@ class ShiftConfigsStruct extends BaseStruct {
         'name': serializeParam(
           _name,
           ParamType.String,
+        ),
+        'off_week_days': serializeParam(
+          _offWeekDays,
+          ParamType.String,
+          isList: true,
         ),
       }.withoutNulls;
 
@@ -293,6 +313,11 @@ class ShiftConfigsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        offWeekDays: deserializeParam<String>(
+          data['off_week_days'],
+          ParamType.String,
+          true,
+        ),
       );
 
   @override
@@ -312,7 +337,8 @@ class ShiftConfigsStruct extends BaseStruct {
         listEquality.equals(departments, other.departments) &&
         listEquality.equals(staffs, other.staffs) &&
         listEquality.equals(shifts, other.shifts) &&
-        name == other.name;
+        name == other.name &&
+        listEquality.equals(offWeekDays, other.offWeekDays);
   }
 
   @override
@@ -327,7 +353,8 @@ class ShiftConfigsStruct extends BaseStruct {
         departments,
         staffs,
         shifts,
-        name
+        name,
+        offWeekDays
       ]);
 }
 

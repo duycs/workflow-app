@@ -7,21 +7,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class LocationStruct extends BaseStruct {
   LocationStruct({
-    List<int>? coordinates,
     String? type,
-  })  : _coordinates = coordinates,
-        _type = type;
-
-  // "coordinates" field.
-  List<int>? _coordinates;
-  List<int> get coordinates => _coordinates ?? const [];
-  set coordinates(List<int>? val) => _coordinates = val;
-
-  void updateCoordinates(Function(List<int>) updateFn) {
-    updateFn(_coordinates ??= []);
-  }
-
-  bool hasCoordinates() => _coordinates != null;
+    List<double>? coordinates,
+  })  : _type = type,
+        _coordinates = coordinates;
 
   // "type" field.
   String? _type;
@@ -30,43 +19,54 @@ class LocationStruct extends BaseStruct {
 
   bool hasType() => _type != null;
 
+  // "coordinates" field.
+  List<double>? _coordinates;
+  List<double> get coordinates => _coordinates ?? const [];
+  set coordinates(List<double>? val) => _coordinates = val;
+
+  void updateCoordinates(Function(List<double>) updateFn) {
+    updateFn(_coordinates ??= []);
+  }
+
+  bool hasCoordinates() => _coordinates != null;
+
   static LocationStruct fromMap(Map<String, dynamic> data) => LocationStruct(
-        coordinates: getDataList(data['coordinates']),
         type: data['type'] as String?,
+        coordinates: getDataList(data['coordinates']),
       );
 
   static LocationStruct? maybeFromMap(dynamic data) =>
       data is Map ? LocationStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
-        'coordinates': _coordinates,
         'type': _type,
+        'coordinates': _coordinates,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'coordinates': serializeParam(
-          _coordinates,
-          ParamType.int,
-          isList: true,
-        ),
         'type': serializeParam(
           _type,
           ParamType.String,
+        ),
+        'coordinates': serializeParam(
+          _coordinates,
+          ParamType.double,
+          isList: true,
         ),
       }.withoutNulls;
 
   static LocationStruct fromSerializableMap(Map<String, dynamic> data) =>
       LocationStruct(
-        coordinates: deserializeParam<int>(
-          data['coordinates'],
-          ParamType.int,
-          true,
-        ),
         type: deserializeParam(
           data['type'],
           ParamType.String,
           false,
+        ),
+        coordinates: deserializeParam<double>(
+          data['coordinates'],
+          ParamType.double,
+          true,
         ),
       );
 
@@ -77,12 +77,12 @@ class LocationStruct extends BaseStruct {
   bool operator ==(Object other) {
     const listEquality = ListEquality();
     return other is LocationStruct &&
-        listEquality.equals(coordinates, other.coordinates) &&
-        type == other.type;
+        type == other.type &&
+        listEquality.equals(coordinates, other.coordinates);
   }
 
   @override
-  int get hashCode => const ListEquality().hash([coordinates, type]);
+  int get hashCode => const ListEquality().hash([type, coordinates]);
 }
 
 LocationStruct createLocationStruct({

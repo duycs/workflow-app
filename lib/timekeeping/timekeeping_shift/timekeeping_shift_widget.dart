@@ -129,7 +129,8 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                           _shouldSetState = true;
                           if (_model.shiftCreateBack!) {
                             _model.apiResultShiftCreateback =
-                                await TimekeepingShiftGroup.shiftCreateCall
+                                await TimekeepingShiftConfigsGroup
+                                    .shiftCreateCall
                                     .call(
                               accessToken: FFAppState().accessToken,
                               requestJson: <String, dynamic>{
@@ -227,7 +228,8 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                             _shouldSetState = true;
                             if (_model.shiftCreate!) {
                               _model.apiResultShiftCreate =
-                                  await TimekeepingShiftGroup.shiftCreateCall
+                                  await TimekeepingShiftConfigsGroup
+                                      .shiftCreateCall
                                       .call(
                                 accessToken: FFAppState().accessToken,
                                 requestJson: <String, dynamic>{

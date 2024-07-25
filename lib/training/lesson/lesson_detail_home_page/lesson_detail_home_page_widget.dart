@@ -196,15 +196,16 @@ class _LessonDetailHomePageWidgetState
           centerTitle: false,
           elevation: 1.0,
         ),
-        body: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if ((widget!.listItems != null) &&
-                (_model.status != null && _model.status != '') &&
-                (widget!.id != null && widget!.id != ''))
-              Expanded(
-                child: Padding(
+        body: SingleChildScrollView(
+          primary: false,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if ((widget!.listItems != null) &&
+                  (_model.status != null && _model.status != '') &&
+                  (widget!.id != null && widget!.id != ''))
+                Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                   child: SingleChildScrollView(
                     primary: false,
@@ -2470,160 +2471,166 @@ class _LessonDetailHomePageWidgetState
                     ),
                   ),
                 ),
-              ),
-            if ((_model.status != null && _model.status != '') &&
-                (widget!.listItems != null) &&
-                (_model.status != 'draft'))
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    if ((_model.status != null && _model.status != '') &&
-                        (widget!.listItems != null) &&
-                        (_model.status != 'draft') &&
-                        (widget!.id != null && widget!.id != ''))
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(40.0),
-                        child: Image.network(
-                          '${FFAppConstants.ApiBaseUrl}/assets/${FFAppState().user.avatar}?access_token=${FFAppState().accessToken}',
-                          width: 40.0,
-                          height: 40.0,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) =>
-                              Image.asset(
-                            'assets/images/error_image.png',
+              if ((_model.status != null && _model.status != '') &&
+                  (widget!.listItems != null) &&
+                  (_model.status != 'draft'))
+                Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      if ((_model.status != null && _model.status != '') &&
+                          (widget!.listItems != null) &&
+                          (_model.status != 'draft') &&
+                          (widget!.id != null && widget!.id != ''))
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(40.0),
+                          child: Image.network(
+                            '${FFAppConstants.ApiBaseUrl}/assets/${FFAppState().user.avatar}?access_token=${FFAppState().accessToken}',
                             width: 40.0,
                             height: 40.0,
                             fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) =>
+                                Image.asset(
+                              'assets/images/error_image.png',
+                              width: 40.0,
+                              height: 40.0,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                    if ((_model.status != null && _model.status != '') &&
-                        (widget!.listItems != null) &&
-                        (_model.status != 'draft') &&
-                        (widget!.id != null && widget!.id != ''))
-                      Flexible(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 0.0, 0.0),
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 0.0, 8.0, 0.0),
-                                    child: TextFormField(
-                                      controller: _model.commentsTextController,
-                                      focusNode: _model.commentsFocusNode,
-                                      autofocus: false,
-                                      textInputAction: TextInputAction.send,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
+                      if ((_model.status != null && _model.status != '') &&
+                          (widget!.listItems != null) &&
+                          (_model.status != 'draft') &&
+                          (widget!.id != null && widget!.id != ''))
+                        Flexible(
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 0.0, 0.0),
+                            child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                borderRadius: BorderRadius.circular(16.0),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 0.0, 8.0, 0.0),
+                                      child: TextFormField(
+                                        controller:
+                                            _model.commentsTextController,
+                                        focusNode: _model.commentsFocusNode,
+                                        autofocus: false,
+                                        textInputAction: TextInputAction.send,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          labelStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          hintText: 'Viết bình luận...',
+                                          hintStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          enabledBorder: InputBorder.none,
+                                          focusedBorder: InputBorder.none,
+                                          errorBorder: InputBorder.none,
+                                          focusedErrorBorder: InputBorder.none,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
-                                        hintText: 'Viết bình luận...',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        enabledBorder: InputBorder.none,
-                                        focusedBorder: InputBorder.none,
-                                        errorBorder: InputBorder.none,
-                                        focusedErrorBorder: InputBorder.none,
+                                        validator: _model
+                                            .commentsTextControllerValidator
+                                            .asValidator(context),
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      validator: _model
-                                          .commentsTextControllerValidator
-                                          .asValidator(context),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 3.0, 0.0),
-                                  child: FlutterFlowIconButton(
-                                    borderColor:
-                                        FlutterFlowTheme.of(context).noColor,
-                                    borderRadius: 20.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 40.0,
-                                    fillColor:
-                                        FlutterFlowTheme.of(context).noColor,
-                                    icon: Icon(
-                                      Icons.send,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 3.0, 0.0),
+                                    child: FlutterFlowIconButton(
+                                      borderColor:
+                                          FlutterFlowTheme.of(context).noColor,
+                                      borderRadius: 20.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 40.0,
+                                      fillColor:
+                                          FlutterFlowTheme.of(context).noColor,
+                                      icon: Icon(
+                                        Icons.send,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
+                                      onPressed: () async {
+                                        if (_model.commentsTextController
+                                                    .text !=
+                                                null &&
+                                            _model.commentsTextController
+                                                    .text !=
+                                                '') {
+                                          await _model.postComment(context);
+                                          setState(() {});
+                                          setState(() {
+                                            _model.commentsTextController
+                                                ?.clear();
+                                          });
+                                          await _model.getComments(context);
+                                          setState(() {});
+                                        }
+                                      },
                                     ),
-                                    onPressed: () async {
-                                      if (_model.commentsTextController.text !=
-                                              null &&
-                                          _model.commentsTextController.text !=
-                                              '') {
-                                        await _model.postComment(context);
-                                        setState(() {});
-                                        setState(() {
-                                          _model.commentsTextController
-                                              ?.clear();
-                                        });
-                                        await _model.getComments(context);
-                                        setState(() {});
-                                      }
-                                    },
                                   ),
-                                ),
-                              ].divide(SizedBox(width: 6.0)),
+                                ].divide(SizedBox(width: 6.0)),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                  ],
-                ),
-              ),
-            if (_model.status == null || _model.status == '')
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
-                child: Container(
-                  width: double.infinity,
-                  height: MediaQuery.sizeOf(context).height * 0.7,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ],
                   ),
-                  alignment: AlignmentDirectional(0.0, 0.0),
+                ),
+              if (_model.status == null || _model.status == '')
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                   child: Container(
                     width: double.infinity,
-                    height: double.infinity,
-                    child: custom_widgets.LoadingPageWidget(
+                    height: MediaQuery.sizeOf(context).height * 0.7,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                    alignment: AlignmentDirectional(0.0, 0.0),
+                    child: Container(
                       width: double.infinity,
                       height: double.infinity,
-                      size: 50.0,
-                      color: FlutterFlowTheme.of(context).primary,
+                      child: custom_widgets.LoadingPageWidget(
+                        width: double.infinity,
+                        height: double.infinity,
+                        size: 50.0,
+                        color: FlutterFlowTheme.of(context).primary,
+                      ),
                     ),
                   ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -919,49 +919,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                 }
                                                                 _model.loop = 0;
                                                                 setState(() {});
-                                                              }
-                                                              _model.getTaskListDetailToken =
-                                                                  await action_blocks
-                                                                      .tokenReload(
-                                                                          context);
-                                                              _shouldSetState =
-                                                                  true;
-                                                              if (_model
-                                                                  .getTaskListDetailToken!) {
-                                                                _model.apiResultGetTaskListDetail2 =
-                                                                    await TaskGroup
-                                                                        .getListTaskCall
-                                                                        .call(
-                                                                  accessToken:
-                                                                      FFAppState()
-                                                                          .accessToken,
-                                                                  filter:
-                                                                      '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget!.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget!.publishedCount?.toString()}\"}}]}',
-                                                                  sort:
-                                                                      'number',
-                                                                  limit: 100,
-                                                                  offset: 0,
-                                                                );
-
-                                                                _shouldSetState =
-                                                                    true;
-                                                                if ((_model
-                                                                        .apiResultGetTaskListDetail2
-                                                                        ?.succeeded ??
-                                                                    true)) {
-                                                                  _model
-                                                                      .list = TaskListDataStruct.maybeFromMap((_model
-                                                                              .apiResultGetTaskListDetail2
-                                                                              ?.jsonBody ??
-                                                                          ''))!
-                                                                      .data
-                                                                      .toList()
-                                                                      .cast<
-                                                                          TaskListStruct>();
-                                                                  setState(
-                                                                      () {});
-                                                                }
+                                                                await _model
+                                                                    .getDetail(
+                                                                        context);
+                                                                setState(() {});
                                                               } else {
+                                                                await _model
+                                                                    .getDetail(
+                                                                        context);
                                                                 setState(() {});
                                                               }
                                                             } else {

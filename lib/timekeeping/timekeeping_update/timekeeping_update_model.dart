@@ -119,6 +119,15 @@ class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
           int index, Function(ShiftCofigsShiftsStruct) updateFn) =>
       shiftsInitial[index] = updateFn(shiftsInitial[index]);
 
+  List<String> offDays = [];
+  void addToOffDays(String item) => offDays.add(item);
+  void removeFromOffDays(String item) => offDays.remove(item);
+  void removeAtIndexFromOffDays(int index) => offDays.removeAt(index);
+  void insertAtIndexInOffDays(int index, String item) =>
+      offDays.insert(index, item);
+  void updateOffDaysAtIndex(int index, Function(String) updateFn) =>
+      offDays[index] = updateFn(offDays[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -207,7 +216,7 @@ class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
     shiftConfigsUpdate = await action_blocks.tokenReload(context);
     if (shiftConfigsUpdate!) {
       apiResultShiftConfigsUpdate =
-          await TimekeepingShiftGroup.shiftConfigsUpdateCall.call(
+          await TimekeepingShiftConfigsGroup.shiftConfigsUpdateCall.call(
         accessToken: FFAppState().accessToken,
         id: id,
         requestJson: request?.toMap(),

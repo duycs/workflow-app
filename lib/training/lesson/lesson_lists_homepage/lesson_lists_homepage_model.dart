@@ -119,6 +119,8 @@ class LessonListsHomepageModel
 
   String checkColor = '';
 
+  bool checkLoading = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

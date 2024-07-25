@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
+import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -91,12 +92,14 @@ class TimeKeepingLocationUpdateModel
     return null;
   }
 
+  // State field(s) for RadioButton widget.
+  FormFieldController<String>? radioButtonValueController;
   // Stores action output result for [Custom Action - getCurrentLocationStruct] action in Button widget.
   List<double>? checkLocationTimeKeepingUpdate;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? checkTokenTimeKeepingLocationUpdate;
-  // Stores action output result for [Backend Call - API (TimeKeepingLocationUpdate)] action in Button widget.
-  ApiCallResponse? apiResulttrf;
+  // Stores action output result for [Backend Call - API (LocationUpdate)] action in Button widget.
+  ApiCallResponse? apiResultLocationUpdate;
 
   @override
   void initState(BuildContext context) {
@@ -189,4 +192,7 @@ class TimeKeepingLocationUpdateModel
           .cast<WardsStruct>();
     }
   }
+
+  /// Additional helper methods.
+  String? get radioButtonValue => radioButtonValueController?.value;
 }

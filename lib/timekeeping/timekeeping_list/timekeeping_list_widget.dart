@@ -6,7 +6,9 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/timekeeping/time_keeping_filter/time_keeping_filter_widget.dart';
 import '/backend/schema/structs/index.dart';
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -136,7 +138,14 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.textController',
                           Duration(milliseconds: 1000),
-                          () => setState(() {}),
+                          () async {
+                            _model.nameTimeKeeping = _model.textController.text;
+                            setState(() {});
+                            setState(() =>
+                                _model.listViewPagingController?.refresh());
+
+                            setState(() {});
+                          },
                         ),
                         autofocus: false,
                         textInputAction: TextInputAction.search,
@@ -194,6 +203,14 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                               ? InkWell(
                                   onTap: () async {
                                     _model.textController?.clear();
+                                    _model.nameTimeKeeping =
+                                        _model.textController.text;
+                                    setState(() {});
+                                    setState(() => _model
+                                        .listViewPagingController
+                                        ?.refresh());
+
+                                    setState(() {});
                                     setState(() {});
                                   },
                                   child: Icon(
@@ -224,8 +241,38 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                         color: FlutterFlowTheme.of(context).primaryText,
                         size: 30.0,
                       ),
-                      onPressed: () {
-                        print('IconButton pressed ...');
+                      onPressed: () async {
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          enableDrag: false,
+                          context: context,
+                          builder: (context) {
+                            return GestureDetector(
+                              onTap: () => _model.unfocusNode.canRequestFocus
+                                  ? FocusScope.of(context)
+                                      .requestFocus(_model.unfocusNode)
+                                  : FocusScope.of(context).unfocus(),
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: TimeKeepingFilterWidget(
+                                  nameDepartment: _model.nameDepartment,
+                                  nameStaff: _model.nameStaff,
+                                  callBack: (nameDepartment, nameStaff) async {
+                                    _model.nameDepartment = nameDepartment!;
+                                    _model.nameStaff = nameStaff!;
+                                    setState(() {});
+                                    setState(() => _model
+                                        .listViewPagingController
+                                        ?.refresh());
+
+                                    setState(() {});
+                                  },
+                                ),
+                              ),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
                       },
                     ),
                   ],
@@ -238,13 +285,13 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                   child: PagedListView<ApiPagingParams, dynamic>.separated(
                     pagingController: _model.setListViewController(
                       (nextPageMarker) =>
-                          TimekeepingShiftGroup.shiftConfigsCall.call(
+                          TimekeepingShiftConfigsGroup.shiftConfigsCall.call(
                         accessToken: FFAppState().accessToken,
                         filter:
-                            '{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            '{\"_and\":[{},{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                           FFAppState().staffOrganization,
                           r'''$.id''',
-                        ).toString()}\"}}}',
+                        ).toString()}\"}}}${_model.nameTimeKeeping != null && _model.nameTimeKeeping != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameTimeKeeping}\"}}' : ''}${_model.nameDepartment != null && _model.nameDepartment != '' ? ',{\"departments\":{\"name\":{\"_icontains\":\"${_model.nameDepartment}\"}}}' : ''}${_model.nameStaff != null && _model.nameStaff != '' ? ',{\"departments\":{\"staffs\":{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.nameStaff}\"}}}}}' : ''}]}',
                         offset: nextPageMarker.nextPageNumber * 20,
                         limit: 20,
                       ),
@@ -259,7 +306,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                     shrinkWrap: true,
                     reverse: false,
                     scrollDirection: Axis.vertical,
-                    separatorBuilder: (_, __) => SizedBox(height: 8.0),
+                    separatorBuilder: (_, __) => SizedBox(height: 12.0),
                     builderDelegate: PagedChildBuilderDelegate<dynamic>(
                       // Customize what your widget looks like when it's loading the first page.
                       firstPageProgressIndicatorBuilder: (_) => Center(
@@ -317,6 +364,16 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 1.0,
+                                  color: Color(0x33000000),
+                                  offset: Offset(
+                                    0.0,
+                                    1.0,
+                                  ),
+                                )
+                              ],
                               borderRadius: BorderRadius.circular(12.0),
                             ),
                             child: Padding(
@@ -378,6 +435,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                                 fontFamily: 'Nunito Sans',
                                                 fontSize: 16.0,
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
                                               ),
                                         ),
                                         trailing: Icon(
@@ -410,7 +468,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                             Icons.timer_sharp,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            size: 24.0,
+                                            size: 20.0,
                                           ),
                                         ),
                                         Expanded(
@@ -420,14 +478,16 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                                     0.0, 0.0, 4.0, 0.0),
                                             child: Text(
                                               'Chấm công bằng: ',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    letterSpacing: 0.0,
+                                                  ),
                                             ),
                                           ),
                                         ),
@@ -519,7 +579,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                             FontAwesomeIcons.usersCog,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            size: 20.0,
+                                            size: 16.0,
                                           ),
                                         ),
                                         Padding(
@@ -532,6 +592,9 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -567,7 +630,7 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                             Icons.face_sharp,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            size: 24.0,
+                                            size: 20.0,
                                           ),
                                         ),
                                         Padding(
@@ -580,6 +643,9 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),

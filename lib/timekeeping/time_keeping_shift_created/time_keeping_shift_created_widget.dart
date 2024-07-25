@@ -557,7 +557,8 @@ class _TimeKeepingShiftCreatedWidgetState
                                   return;
                                 }
                                 _model.apiResultShiftCreate =
-                                    await TimekeepingShiftGroup.shiftCreateCall
+                                    await TimekeepingShiftConfigsGroup
+                                        .shiftCreateCall
                                         .call(
                                   accessToken: FFAppState().accessToken,
                                   requestJson: <String, dynamic>{

@@ -5,9 +5,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
+import '/training/lesson/menu_delete/menu_delete_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -50,6 +52,9 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
       await _model.getComments(context);
       setState(() {});
     });
+
+    _model.commentsTextController ??= TextEditingController();
+    _model.commentsFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -114,7 +119,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                   primary: false,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Align(
                         alignment: AlignmentDirectional(-1.0, 0.0),
@@ -1635,6 +1640,138 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                           ],
                         ),
                       ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 12.0, 16.0, 12.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(40.0),
+                              child: Image.network(
+                                '${FFAppConstants.ApiBaseUrl}/assets/${FFAppState().user.avatar}?access_token=${FFAppState().accessToken}',
+                                width: 40.0,
+                                height: 40.0,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Image.asset(
+                                  'assets/images/error_image.png',
+                                  width: 40.0,
+                                  height: 40.0,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 0.0, 0.0, 0.0),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 0.0, 8.0, 0.0),
+                                          child: TextFormField(
+                                            controller:
+                                                _model.commentsTextController,
+                                            focusNode: _model.commentsFocusNode,
+                                            autofocus: false,
+                                            textInputAction:
+                                                TextInputAction.send,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              labelStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              hintText: 'Viết bình luận...',
+                                              hintStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              enabledBorder: InputBorder.none,
+                                              focusedBorder: InputBorder.none,
+                                              errorBorder: InputBorder.none,
+                                              focusedErrorBorder:
+                                                  InputBorder.none,
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                            validator: _model
+                                                .commentsTextControllerValidator
+                                                .asValidator(context),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 3.0, 0.0),
+                                        child: FlutterFlowIconButton(
+                                          borderColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .noColor,
+                                          borderRadius: 20.0,
+                                          borderWidth: 1.0,
+                                          buttonSize: 40.0,
+                                          fillColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .noColor,
+                                          icon: Icon(
+                                            Icons.send,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                          onPressed: () async {
+                                            if (_model.commentsTextController
+                                                        .text !=
+                                                    null &&
+                                                _model.commentsTextController
+                                                        .text !=
+                                                    '') {
+                                              await _model.postComment(context);
+                                              setState(() {});
+                                              setState(() {
+                                                _model.commentsTextController
+                                                    ?.clear();
+                                              });
+                                              await _model.getComments(context);
+                                              setState(() {});
+                                            }
+                                          },
+                                        ),
+                                      ),
+                                    ].divide(SizedBox(width: 6.0)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       if (widget!.checkPage != 'lessonMarket')
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -1804,6 +1941,88 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                                             .w500,
                                                                   ),
                                                             ),
+                                                            if ('${getJsonField(
+                                                                  listItemsItem,
+                                                                  r'''$.comments_id.staff_id.id''',
+                                                                ).toString()}' ==
+                                                                FFAppState()
+                                                                    .staffid)
+                                                              Builder(
+                                                                builder:
+                                                                    (context) =>
+                                                                        InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap:
+                                                                      () async {
+                                                                    await showAlignedDialog(
+                                                                      context:
+                                                                          context,
+                                                                      isGlobal:
+                                                                          false,
+                                                                      avoidOverflow:
+                                                                          true,
+                                                                      targetAnchor: AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0)
+                                                                          .resolve(
+                                                                              Directionality.of(context)),
+                                                                      followerAnchor: AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0)
+                                                                          .resolve(
+                                                                              Directionality.of(context)),
+                                                                      builder:
+                                                                          (dialogContext) {
+                                                                        return Material(
+                                                                          color:
+                                                                              Colors.transparent,
+                                                                          child:
+                                                                              GestureDetector(
+                                                                            onTap: () => _model.unfocusNode.canRequestFocus
+                                                                                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                                                                                : FocusScope.of(context).unfocus(),
+                                                                            child:
+                                                                                Container(
+                                                                              height: 120.0,
+                                                                              width: 200.0,
+                                                                              child: MenuDeleteWidget(
+                                                                                id: getJsonField(
+                                                                                  listItemsItem,
+                                                                                  r'''$.id''',
+                                                                                ),
+                                                                                afterDeleteAction: () async {
+                                                                                  await _model.getComments(context);
+
+                                                                                  setState(() {});
+                                                                                },
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                    ).then((value) =>
+                                                                        setState(
+                                                                            () {}));
+                                                                  },
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .more_vert,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    size: 20.0,
+                                                                  ),
+                                                                ),
+                                                              ),
                                                           ],
                                                         ),
                                                         Padding(

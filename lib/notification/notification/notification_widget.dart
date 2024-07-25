@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -157,84 +158,9 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    _model.checkTokenNotiStatus =
-                                        await action_blocks
-                                            .tokenReload(context);
-                                    if (_model.checkTokenNotiStatus!) {
-                                      _model.apiResultbz5 =
-                                          await NotificationsGroup
-                                              .updateStatusNotificationCall
-                                              .call(
-                                        accessToken: FFAppState().accessToken,
-                                        id: getJsonField(
-                                          listItem,
-                                          r'''$.id''',
-                                        ).toString(),
-                                        status: 'archived',
-                                      );
-
-                                      if ((_model.apiResultbz5?.succeeded ??
-                                          true)) {
-                                        if ('${getJsonField(
-                                              functions
-                                                  .stringToJson(getJsonField(
-                                                listItem,
-                                                r'''$.data''',
-                                              ).toString()),
-                                              r'''$.screen''',
-                                            ).toString()}' ==
-                                            '1') {
-                                          context.goNamed('TaskList');
-                                        } else if ('${getJsonField(
-                                              functions
-                                                  .stringToJson(getJsonField(
-                                                listItem,
-                                                r'''$.data''',
-                                              ).toString()),
-                                              r'''$.screen''',
-                                            ).toString()}' ==
-                                            '2') {
-                                          context.goNamed('TaskListWait');
-                                        } else if ('${getJsonField(
-                                              functions
-                                                  .stringToJson(getJsonField(
-                                                listItem,
-                                                r'''$.data''',
-                                              ).toString()),
-                                              r'''$.screen''',
-                                            ).toString()}' ==
-                                            '3') {
-                                          context
-                                              .goNamed('StudyProgramListUser');
-                                        } else if ('${getJsonField(
-                                              functions
-                                                  .stringToJson(getJsonField(
-                                                listItem,
-                                                r'''$.data''',
-                                              ).toString()),
-                                              r'''$.screen''',
-                                            ).toString()}' ==
-                                            '4') {
-                                          context
-                                              .goNamed('StudyProgramListUser');
-                                        } else if ('${getJsonField(
-                                              functions
-                                                  .stringToJson(getJsonField(
-                                                listItem,
-                                                r'''$.data''',
-                                              ).toString()),
-                                              r'''$.screen''',
-                                            ).toString()}' ==
-                                            '5') {
-                                          context
-                                              .goNamed('LessonLists_Homepage');
-                                        }
-                                      }
-                                    } else {
-                                      setState(() {});
-                                    }
-
-                                    setState(() {});
+                                    await actions.callApi(
+                                      context,
+                                    );
                                   },
                                   child: Container(
                                     width: double.infinity,

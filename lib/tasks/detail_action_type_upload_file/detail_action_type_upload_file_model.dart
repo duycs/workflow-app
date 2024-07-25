@@ -55,6 +55,8 @@ class DetailActionTypeUploadFileModel
   void updateListStringIdAtIndex(int index, Function(String) updateFn) =>
       listStringId[index] = updateFn(listStringId[index]);
 
+  bool isShow = false;
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Action Block - tokenReload] action in IconButton widget.

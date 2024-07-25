@@ -15,6 +15,7 @@ class ShiftConfigsRequestStruct extends BaseStruct {
     String? name,
     String? organizationId,
     int? enable,
+    List<String>? offWeekDays,
   })  : _status = status,
         _addressId = addressId,
         _departments = departments,
@@ -22,7 +23,8 @@ class ShiftConfigsRequestStruct extends BaseStruct {
         _shifts = shifts,
         _name = name,
         _organizationId = organizationId,
-        _enable = enable;
+        _enable = enable,
+        _offWeekDays = offWeekDays;
 
   // "status" field.
   String? _status;
@@ -95,6 +97,17 @@ class ShiftConfigsRequestStruct extends BaseStruct {
 
   bool hasEnable() => _enable != null;
 
+  // "off_week_days" field.
+  List<String>? _offWeekDays;
+  List<String> get offWeekDays => _offWeekDays ?? const [];
+  set offWeekDays(List<String>? val) => _offWeekDays = val;
+
+  void updateOffWeekDays(Function(List<String>) updateFn) {
+    updateFn(_offWeekDays ??= []);
+  }
+
+  bool hasOffWeekDays() => _offWeekDays != null;
+
   static ShiftConfigsRequestStruct fromMap(Map<String, dynamic> data) =>
       ShiftConfigsRequestStruct(
         status: data['status'] as String?,
@@ -108,6 +121,7 @@ class ShiftConfigsRequestStruct extends BaseStruct {
         name: data['name'] as String?,
         organizationId: data['organization_id'] as String?,
         enable: castToType<int>(data['enable']),
+        offWeekDays: getDataList(data['off_week_days']),
       );
 
   static ShiftConfigsRequestStruct? maybeFromMap(dynamic data) => data is Map
@@ -123,6 +137,7 @@ class ShiftConfigsRequestStruct extends BaseStruct {
         'name': _name,
         'organization_id': _organizationId,
         'enable': _enable,
+        'off_week_days': _offWeekDays,
       }.withoutNulls;
 
   @override
@@ -161,6 +176,11 @@ class ShiftConfigsRequestStruct extends BaseStruct {
         'enable': serializeParam(
           _enable,
           ParamType.int,
+        ),
+        'off_week_days': serializeParam(
+          _offWeekDays,
+          ParamType.String,
+          isList: true,
         ),
       }.withoutNulls;
 
@@ -208,6 +228,11 @@ class ShiftConfigsRequestStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        offWeekDays: deserializeParam<String>(
+          data['off_week_days'],
+          ParamType.String,
+          true,
+        ),
       );
 
   @override
@@ -224,7 +249,8 @@ class ShiftConfigsRequestStruct extends BaseStruct {
         listEquality.equals(shifts, other.shifts) &&
         name == other.name &&
         organizationId == other.organizationId &&
-        enable == other.enable;
+        enable == other.enable &&
+        listEquality.equals(offWeekDays, other.offWeekDays);
   }
 
   @override
@@ -236,7 +262,8 @@ class ShiftConfigsRequestStruct extends BaseStruct {
         shifts,
         name,
         organizationId,
-        enable
+        enable,
+        offWeekDays
       ]);
 }
 

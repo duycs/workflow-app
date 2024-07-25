@@ -419,7 +419,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       Icons.add,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      size: 24.0,
+                                      size: 28.0,
                                     ),
                                     onPressed: () async {
                                       await showModalBottomSheet(
@@ -1450,7 +1450,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       Icons.add,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      size: 24.0,
+                                      size: 28.0,
                                     ),
                                     onPressed: () async {
                                       await showModalBottomSheet(

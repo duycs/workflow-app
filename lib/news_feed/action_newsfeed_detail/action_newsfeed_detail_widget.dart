@@ -79,7 +79,7 @@ class _ActionNewsfeedDetailWidgetState
             ),
           )
         ],
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(0.0),
       ),
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),

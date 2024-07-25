@@ -6,7 +6,9 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/timekeeping/time_keeping_filter/time_keeping_filter_widget.dart';
 import '/backend/schema/structs/index.dart';
+import 'dart:async';
 import 'timekeeping_list_widget.dart' show TimekeepingListWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,14 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
 class TimekeepingListModel extends FlutterFlowModel<TimekeepingListWidget> {
+  ///  Local state fields for this page.
+
+  String nameTimeKeeping = '';
+
+  String nameStaff = '';
+
+  String nameDepartment = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -42,6 +52,22 @@ class TimekeepingListModel extends FlutterFlowModel<TimekeepingListWidget> {
   }
 
   /// Additional helper methods.
+  Future waitForOnePageForListView({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
   PagingController<ApiPagingParams, dynamic> setListViewController(
     Function(ApiPagingParams) apiCall,
   ) {

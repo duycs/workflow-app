@@ -1235,6 +1235,8 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                     .studyProgramData!
                                                     .certificateId
                                                     .code,
+                                                idProgram:
+                                                    _model.studyProgramData?.id,
                                                 callBackList2: () async {
                                                   await _model
                                                       .getOneDataStudyProgram(

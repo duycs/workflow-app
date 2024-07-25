@@ -456,42 +456,43 @@ class _TimeKeepingLocationCreatedWidgetState
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 32.0, 0.0, 0.0),
-                          child: FlutterFlowPlacePicker(
-                            iOSGoogleMapsApiKey: '',
-                            androidGoogleMapsApiKey: '',
-                            webGoogleMapsApiKey: '',
-                            onSelect: (place) async {
-                              setState(() => _model.placePickerValue = place);
-                            },
-                            defaultText: 'Chọn từ bản đồ',
-                            icon: Icon(
-                              Icons.place,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                            buttonOptions: FFButtonOptions(
-                              height: 42.0,
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 1.0,
-                              borderRadius: BorderRadius.circular(8.0),
+                        if ('1' == '2')
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 32.0, 0.0, 0.0),
+                            child: FlutterFlowPlacePicker(
+                              iOSGoogleMapsApiKey: '',
+                              androidGoogleMapsApiKey: '',
+                              webGoogleMapsApiKey: '',
+                              onSelect: (place) async {
+                                setState(() => _model.placePickerValue = place);
+                              },
+                              defaultText: 'Chọn từ bản đồ',
+                              icon: Icon(
+                                Icons.place,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              buttonOptions: FFButtonOptions(
+                                height: 42.0,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 1.0,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                           ),
-                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 32.0, 0.0, 4.0),
+                              0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Phạm vi áp dụng (m)',
                             style: FlutterFlowTheme.of(context)
@@ -587,6 +588,33 @@ class _TimeKeepingLocationCreatedWidgetState
                 child: FFButtonWidget(
                   onPressed: () async {
                     var _shouldSetState = false;
+                    var confirmDialogResponse = await showDialog<bool>(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: Text('Xác nhận'),
+                              content: Text(
+                                  'Lưu ý: Vị trí làm việc sẽ là vị trí hiện tại của bạn.'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext, false),
+                                  child: Text('Hủy'),
+                                ),
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext, true),
+                                  child: Text('Xác nhận'),
+                                ),
+                              ],
+                            );
+                          },
+                        ) ??
+                        false;
+                    if (!confirmDialogResponse) {
+                      if (_shouldSetState) setState(() {});
+                      return;
+                    }
                     if (_model.dropDownValue1 != null &&
                         _model.dropDownValue1 != '') {
                       _model.checkCtity = false;
@@ -624,11 +652,13 @@ class _TimeKeepingLocationCreatedWidgetState
                       return;
                     }
                     _model.getCurrentLocation =
-                        await actions.getCurrentLocationStruct();
+                        await actions.getCurrentLocationStruct(
+                      context,
+                    );
                     _shouldSetState = true;
                     if ((_model.getCurrentLocation != null &&
-                            (_model.getCurrentLocation)!.isNotEmpty) ==
-                        true) {
+                            (_model.getCurrentLocation)!.isNotEmpty) !=
+                        null) {
                       _model.checkTokenTimeKeepingCreated =
                           await action_blocks.tokenReload(context);
                       _shouldSetState = true;
@@ -638,7 +668,7 @@ class _TimeKeepingLocationCreatedWidgetState
                         return;
                       }
                       _model.apiResultTimeKeepingCreated =
-                          await TimeKeepingGroup.timeKeepingCreatedCall.call(
+                          await LocationGroup.locationCreatedCall.call(
                         accessToken: FFAppState().accessToken,
                         requesDataJson: <String, dynamic>{
                           'status': 'published',
@@ -655,10 +685,17 @@ class _TimeKeepingLocationCreatedWidgetState
                           },
                           'location': <String, dynamic>{
                             'type': 'Point',
-                            'map': <String, List<dynamic>>{
-                              'coordinates': _model.getCurrentLocation!,
-                            },
+                            'coordinates': getJsonField(
+                              <String, List<dynamic>>{
+                                'map': _model.getCurrentLocation!,
+                              },
+                              r'''$.map''',
+                            ),
                           },
+                          'organization_id': getJsonField(
+                            FFAppState().staffLogin,
+                            r'''$.organization_id''',
+                          ),
                         },
                       );
 
@@ -690,7 +727,7 @@ class _TimeKeepingLocationCreatedWidgetState
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Tạo mới điểm chấm công không t ha',
+                              'Tạo mới điểm chấm công không thành công',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),

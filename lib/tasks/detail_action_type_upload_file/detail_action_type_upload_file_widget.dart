@@ -230,6 +230,7 @@ class _DetailActionTypeUploadFileWidgetState
                           onPressed: () async {
                             _model.removeAtIndexFromListFileUpload(
                                 dataFileUploadIndex);
+                            _model.isShow = true;
                             setState(() {});
                           },
                         ),
@@ -433,6 +434,7 @@ class _DetailActionTypeUploadFileWidgetState
                             ),
                             onPressed: () async {
                               _model.removeAtIndexFromListFileId(dataFileIndex);
+                              _model.isShow = true;
                               setState(() {});
                             },
                           ),
@@ -442,6 +444,19 @@ class _DetailActionTypeUploadFileWidgetState
                 }).divide(SizedBox(height: 4.0)),
               );
             },
+          ),
+        if (_model.isShow == true)
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+            child: Text(
+              'Lưu để cập nhật dữ liệu mới nhất',
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Nunito Sans',
+                    color: FlutterFlowTheme.of(context).error,
+                    letterSpacing: 0.0,
+                    fontStyle: FontStyle.italic,
+                  ),
+            ),
           ),
         if (widget!.dataPass?.status == 'todo')
           Row(
@@ -491,6 +506,7 @@ class _DetailActionTypeUploadFileWidgetState
                             (_model.uploadedLocalFile.bytes?.isNotEmpty ??
                                 false)) {
                           _model.addToListFileUpload(_model.uploadedLocalFile);
+                          _model.isShow = true;
                           setState(() {});
                         }
                       },
@@ -590,6 +606,7 @@ class _DetailActionTypeUploadFileWidgetState
                             _model.listStringId,
                           );
                           _model.listFileUpload = [];
+                          _model.isShow = false;
                           setState(() {});
 
                           setState(() {});

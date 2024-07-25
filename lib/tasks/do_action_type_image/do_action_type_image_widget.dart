@@ -236,6 +236,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                                   _model
                                                       .removeAtIndexFromListUploadImage(
                                                           listImageIndex);
+                                                  _model.isShow = true;
                                                   setState(() {});
                                                 } else {
                                                   return;
@@ -366,6 +367,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                               if (confirmDialogResponse) {
                                 _model.removeAtIndexFromImageUpload(
                                     listImageUploadIndex);
+                                _model.isShow = true;
                                 setState(() {});
                               } else {
                                 return;
@@ -378,6 +380,22 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                   },
                 );
               },
+            ),
+          ),
+        if (_model.isShow == true)
+          Align(
+            alignment: AlignmentDirectional(-1.0, 0.0),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+              child: Text(
+                'Llưu để cập nhật dữ liệu mới nhất',
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Nunito Sans',
+                      color: FlutterFlowTheme.of(context).error,
+                      letterSpacing: 0.0,
+                      fontStyle: FontStyle.italic,
+                    ),
+              ),
             ),
           ),
         Row(
@@ -427,6 +445,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                 if (_model.uploadedLocalFile != null &&
                     (_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
                   _model.addToImageUpload(_model.uploadedLocalFile);
+                  _model.isShow = true;
                   setState(() {});
                 }
               },
@@ -505,6 +524,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                     _model.listUploadImage,
                   );
                   _model.imageUpload = [];
+                  _model.isShow = false;
                   setState(() {});
 
                   setState(() {});

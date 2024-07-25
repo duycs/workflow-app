@@ -209,7 +209,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                     child: PagedListView<ApiPagingParams, dynamic>.separated(
                       pagingController: _model.setListViewController(
                         (nextPageMarker) =>
-                            TimekeepingShiftGroup.addressListCall.call(
+                            TimekeepingShiftConfigsGroup.addressListCall.call(
                           filter:
                               '{\"_and\":[{\"status\":{\"_eq\":\"published\"}},{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                             FFAppState().staffOrganization,

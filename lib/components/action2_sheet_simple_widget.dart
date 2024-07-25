@@ -93,32 +93,6 @@ class _Action2SheetSimpleWidgetState extends State<Action2SheetSimpleWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: FFButtonWidget(
-                onPressed: () {
-                  print('Button pressed ...');
-                },
-                text: 'Delete Story',
-                options: FFButtonOptions(
-                  width: double.infinity,
-                  height: 60.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primaryBackground,
-                  textStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                        fontFamily: 'Nunito Sans',
-                        letterSpacing: 0.0,
-                      ),
-                  elevation: 2.0,
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-              child: FFButtonWidget(
                 onPressed: () async {
                   context.pop();
                 },

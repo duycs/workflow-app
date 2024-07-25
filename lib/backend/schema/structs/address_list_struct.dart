@@ -14,13 +14,15 @@ class AddressListStruct extends BaseStruct {
     UserStruct? userCreated,
     String? dateCreated,
     AddressWardStruct? wardId,
+    LocationStruct? location,
   })  : _id = id,
         _status = status,
         _detail = detail,
         _meterRange = meterRange,
         _userCreated = userCreated,
         _dateCreated = dateCreated,
-        _wardId = wardId;
+        _wardId = wardId,
+        _location = location;
 
   // "id" field.
   String? _id;
@@ -81,6 +83,17 @@ class AddressListStruct extends BaseStruct {
 
   bool hasWardId() => _wardId != null;
 
+  // "location" field.
+  LocationStruct? _location;
+  LocationStruct get location => _location ?? LocationStruct();
+  set location(LocationStruct? val) => _location = val;
+
+  void updateLocation(Function(LocationStruct) updateFn) {
+    updateFn(_location ??= LocationStruct());
+  }
+
+  bool hasLocation() => _location != null;
+
   static AddressListStruct fromMap(Map<String, dynamic> data) =>
       AddressListStruct(
         id: data['id'] as String?,
@@ -90,6 +103,7 @@ class AddressListStruct extends BaseStruct {
         userCreated: UserStruct.maybeFromMap(data['user_created']),
         dateCreated: data['date_created'] as String?,
         wardId: AddressWardStruct.maybeFromMap(data['ward_id']),
+        location: LocationStruct.maybeFromMap(data['location']),
       );
 
   static AddressListStruct? maybeFromMap(dynamic data) => data is Map
@@ -104,6 +118,7 @@ class AddressListStruct extends BaseStruct {
         'user_created': _userCreated?.toMap(),
         'date_created': _dateCreated,
         'ward_id': _wardId?.toMap(),
+        'location': _location?.toMap(),
       }.withoutNulls;
 
   @override
@@ -134,6 +149,10 @@ class AddressListStruct extends BaseStruct {
         ),
         'ward_id': serializeParam(
           _wardId,
+          ParamType.DataStruct,
+        ),
+        'location': serializeParam(
+          _location,
           ParamType.DataStruct,
         ),
       }.withoutNulls;
@@ -177,6 +196,12 @@ class AddressListStruct extends BaseStruct {
           false,
           structBuilder: AddressWardStruct.fromSerializableMap,
         ),
+        location: deserializeStructParam(
+          data['location'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: LocationStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -191,12 +216,21 @@ class AddressListStruct extends BaseStruct {
         meterRange == other.meterRange &&
         userCreated == other.userCreated &&
         dateCreated == other.dateCreated &&
-        wardId == other.wardId;
+        wardId == other.wardId &&
+        location == other.location;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([id, status, detail, meterRange, userCreated, dateCreated, wardId]);
+  int get hashCode => const ListEquality().hash([
+        id,
+        status,
+        detail,
+        meterRange,
+        userCreated,
+        dateCreated,
+        wardId,
+        location
+      ]);
 }
 
 AddressListStruct createAddressListStruct({
@@ -207,6 +241,7 @@ AddressListStruct createAddressListStruct({
   UserStruct? userCreated,
   String? dateCreated,
   AddressWardStruct? wardId,
+  LocationStruct? location,
 }) =>
     AddressListStruct(
       id: id,
@@ -216,4 +251,5 @@ AddressListStruct createAddressListStruct({
       userCreated: userCreated ?? UserStruct(),
       dateCreated: dateCreated,
       wardId: wardId ?? AddressWardStruct(),
+      location: location ?? LocationStruct(),
     );

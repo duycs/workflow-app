@@ -111,7 +111,7 @@ class _TimeKeepingShiftSelectWidgetState
                       PagedListView<ApiPagingParams, dynamic>.separated(
                         pagingController: _model.setListViewController(
                           (nextPageMarker) =>
-                              TimekeepingShiftGroup.shiftListCall.call(
+                              TimekeepingShiftConfigsGroup.shiftListCall.call(
                             accessToken: FFAppState().accessToken,
                             offset: nextPageMarker.nextPageNumber * 20,
                             limit: 20,

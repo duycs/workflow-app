@@ -204,10 +204,17 @@ class _TimeKeepingShiftFilterWidgetState
                             size: 24.0,
                           ),
                           Text(
-                            widget!.dateStartCheckIn != null &&
-                                    widget!.dateStartCheckIn != ''
-                                ? widget!.dateStartCheckIn!
-                                : 'Từ giờ',
+                            valueOrDefault<String>(
+                              _model.datePicked1 != null
+                                  ? dateTimeFormat(
+                                      'Hm',
+                                      _model.datePicked1,
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
+                                    )
+                                  : widget!.dateStartCheckIn,
+                              'Từ giờ',
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -280,10 +287,17 @@ class _TimeKeepingShiftFilterWidgetState
                             size: 24.0,
                           ),
                           Text(
-                            widget!.dateEndCheckIn != null &&
-                                    widget!.dateEndCheckIn != ''
-                                ? widget!.dateEndCheckIn
-                                : 'Đến giờ',
+                            valueOrDefault<String>(
+                              _model.datePicked2 != null
+                                  ? dateTimeFormat(
+                                      'Hm',
+                                      _model.datePicked2,
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
+                                    )
+                                  : widget!.dateEndCheckIn,
+                              'Đến giờ',
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -372,10 +386,17 @@ class _TimeKeepingShiftFilterWidgetState
                             size: 24.0,
                           ),
                           Text(
-                            widget!.dateStartCheckOut != null &&
-                                    widget!.dateStartCheckOut != ''
-                                ? widget!.dateStartCheckOut!
-                                : 'Từ giờ',
+                            valueOrDefault<String>(
+                              _model.datePicked3 != null
+                                  ? dateTimeFormat(
+                                      'Hm',
+                                      _model.datePicked3,
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
+                                    )
+                                  : widget!.dateStartCheckOut,
+                              'Từ giờ',
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -448,10 +469,17 @@ class _TimeKeepingShiftFilterWidgetState
                             size: 24.0,
                           ),
                           Text(
-                            widget!.dateEndCheckOut != null &&
-                                    widget!.dateEndCheckOut != ''
-                                ? widget!.dateEndCheckOut!
-                                : 'Đến giờ',
+                            valueOrDefault<String>(
+                              _model.datePicked4 != null
+                                  ? dateTimeFormat(
+                                      'Hm',
+                                      _model.datePicked4,
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
+                                    )
+                                  : widget!.dateEndCheckOut,
+                              'Đến giờ',
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -584,8 +612,16 @@ class _TimeKeepingShiftFilterWidgetState
                     children: [
                       Expanded(
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            await widget.callBack?.call(
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                            );
+                            Navigator.pop(context);
                           },
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
@@ -618,18 +654,40 @@ class _TimeKeepingShiftFilterWidgetState
                           onPressed: () async {
                             await widget.callBack?.call(
                               _model.datePicked1 != null
-                                  ? _model.datePicked1?.toString()
+                                  ? dateTimeFormat(
+                                      'Hm',
+                                      _model.datePicked1,
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
+                                    )
                                   : widget!.dateStartCheckIn,
                               _model.datePicked2 != null
-                                  ? _model.datePicked2?.toString()
+                                  ? dateTimeFormat(
+                                      'Hm',
+                                      _model.datePicked2,
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
+                                    )
                                   : widget!.dateEndCheckIn,
                               _model.textController.text,
-                              _model.dropDownStatusValue,
+                              _model.dropDownStatusValue == 'Hoạt động'
+                                  ? 'published'
+                                  : 'draft',
                               _model.datePicked4 != null
-                                  ? _model.datePicked4?.toString()
+                                  ? dateTimeFormat(
+                                      'Hm',
+                                      _model.datePicked4,
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
+                                    )
                                   : widget!.dateEndCheckOut,
                               _model.datePicked3 != null
-                                  ? _model.datePicked3?.toString()
+                                  ? dateTimeFormat(
+                                      'Hm',
+                                      _model.datePicked3,
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
+                                    )
                                   : widget!.dateStartCheckOut,
                             );
                             Navigator.pop(context);

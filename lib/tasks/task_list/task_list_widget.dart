@@ -1279,13 +1279,20 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                 }
                                                                 _model.loop = 0;
                                                                 setState(() {});
+                                                                await _model
+                                                                    .getNumberTask(
+                                                                        context);
+                                                                setState(() => _model
+                                                                    .listViewPagingController1
+                                                                    ?.refresh());
+                                                              } else {
+                                                                await _model
+                                                                    .getNumberTask(
+                                                                        context);
+                                                                setState(() => _model
+                                                                    .listViewPagingController1
+                                                                    ?.refresh());
                                                               }
-                                                              await _model
-                                                                  .getNumberTask(
-                                                                      context);
-                                                              setState(() => _model
-                                                                  .listViewPagingController1
-                                                                  ?.refresh());
                                                             } else {
                                                               setState(() {});
                                                             }
@@ -2867,6 +2874,25 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                               .tokenReload(context);
                                                                       if (_model
                                                                           .updateoperation22Token!) {
+                                                                        var confirmDialogResponse = await showDialog<bool>(
+                                                                              context: context,
+                                                                              builder: (alertDialogContext) {
+                                                                                return AlertDialog(
+                                                                                  title: Text(editorContent.toString()),
+                                                                                  actions: [
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                      child: Text('Cancel'),
+                                                                                    ),
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                      child: Text('Confirm'),
+                                                                                    ),
+                                                                                  ],
+                                                                                );
+                                                                              },
+                                                                            ) ??
+                                                                            false;
                                                                         _model.apiResultUpdateoperation22CopyCopy = await TaskGroup
                                                                             .updateOperationCall
                                                                             .call(

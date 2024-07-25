@@ -357,7 +357,12 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                             offset: nextPageMarker.nextPageNumber * 20,
                           ),
                         ),
-                        padding: EdgeInsets.zero,
+                        padding: EdgeInsets.fromLTRB(
+                          0,
+                          0,
+                          0,
+                          32.0,
+                        ),
                         primary: false,
                         shrinkWrap: true,
                         reverse: false,

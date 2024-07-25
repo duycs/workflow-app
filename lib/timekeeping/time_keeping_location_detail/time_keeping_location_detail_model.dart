@@ -12,6 +12,10 @@ import 'package:provider/provider.dart';
 
 class TimeKeepingLocationDetailModel
     extends FlutterFlowModel<TimeKeepingLocationDetailWidget> {
+  ///  Local state fields for this component.
+
+  bool checkCallBack = false;
+
   @override
   void initState(BuildContext context) {}
 

@@ -45,6 +45,7 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.address = widget!.itemDetail?.addressId?.id;
+      _model.offDays = widget!.itemDetail!.offWeekDays.toList().cast<String>();
       setState(() {});
       while (_model.loop < widget!.itemDetail!.departments.length) {
         _model.addToDepartmentSelectList(DepartmentsIdStruct(
@@ -256,7 +257,8 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                             .toList()
                         ..name = _model.nameTextController.text
                         ..enable =
-                            _model.radioButtonValue == 'Áp dụng ngay' ? 1 : 0,
+                            _model.radioButtonValue == 'Áp dụng ngay' ? 1 : 0
+                        ..offWeekDays = _model.offDays.toList(),
                     );
                     setState(() {});
                     await showDialog(
@@ -532,7 +534,7 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                     ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(2.0, 12.0, 0.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -591,6 +593,433 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                     toggleable: false,
                     horizontalAlignment: WrapAlignment.start,
                     verticalAlignment: WrapCrossAlignment.start,
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(2.0, 16.0, 0.0, 4.0),
+                    child: RichText(
+                      textScaler: MediaQuery.of(context).textScaler,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'Ngày nghỉ trong tuần',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          )
+                        ],
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 1.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              if (_model.offDays
+                                      .where((e) => e == '1')
+                                      .toList()
+                                      .length >
+                                  0) {
+                                _model.removeFromOffDays('1');
+                                setState(() {});
+                              } else {
+                                _model.addToOffDays('1');
+                                setState(() {});
+                              }
+                            },
+                            text: 'MON',
+                            options: FFButtonOptions(
+                              height: 55.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: _model.offDays
+                                          .where((e) => e == '1')
+                                          .toList()
+                                          .length >
+                                      0
+                                  ? FlutterFlowTheme.of(context).secondary
+                                  : FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: _model.offDays
+                                                .where((e) => e == '1')
+                                                .toList()
+                                                .length >
+                                            0
+                                        ? FlutterFlowTheme.of(context)
+                                            .secondaryBackground
+                                        : FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    fontSize: 13.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                              elevation: 1.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              if (_model.offDays
+                                      .where((e) => e == '2')
+                                      .toList()
+                                      .length >
+                                  0) {
+                                _model.removeFromOffDays('2');
+                                setState(() {});
+                              } else {
+                                _model.addToOffDays('2');
+                                setState(() {});
+                              }
+                            },
+                            text: 'TUE',
+                            options: FFButtonOptions(
+                              height: 55.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: _model.offDays
+                                          .where((e) => e == '2')
+                                          .toList()
+                                          .length >
+                                      0
+                                  ? FlutterFlowTheme.of(context).secondary
+                                  : FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: _model.offDays
+                                                .where((e) => e == '2')
+                                                .toList()
+                                                .length >
+                                            0
+                                        ? FlutterFlowTheme.of(context)
+                                            .secondaryBackground
+                                        : FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    fontSize: 13.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                              elevation: 1.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              if (_model.offDays
+                                      .where((e) => e == '3')
+                                      .toList()
+                                      .length >
+                                  0) {
+                                _model.removeFromOffDays('3');
+                                setState(() {});
+                              } else {
+                                _model.addToOffDays('3');
+                                setState(() {});
+                              }
+                            },
+                            text: 'WED',
+                            options: FFButtonOptions(
+                              height: 55.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: _model.offDays
+                                          .where((e) => e == '3')
+                                          .toList()
+                                          .length >
+                                      0
+                                  ? FlutterFlowTheme.of(context).secondary
+                                  : FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: _model.offDays
+                                                .where((e) => e == '3')
+                                                .toList()
+                                                .length >
+                                            0
+                                        ? FlutterFlowTheme.of(context)
+                                            .secondaryBackground
+                                        : FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    fontSize: 13.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                              elevation: 1.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              if (_model.offDays
+                                      .where((e) => e == '4')
+                                      .toList()
+                                      .length >
+                                  0) {
+                                _model.removeFromOffDays('4');
+                                setState(() {});
+                              } else {
+                                _model.addToOffDays('4');
+                                setState(() {});
+                              }
+                            },
+                            text: 'THU',
+                            options: FFButtonOptions(
+                              height: 55.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: _model.offDays
+                                          .where((e) => e == '4')
+                                          .toList()
+                                          .length >
+                                      0
+                                  ? FlutterFlowTheme.of(context).secondary
+                                  : FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: _model.offDays
+                                                .where((e) => e == '4')
+                                                .toList()
+                                                .length >
+                                            0
+                                        ? FlutterFlowTheme.of(context)
+                                            .secondaryBackground
+                                        : FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    fontSize: 13.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                              elevation: 1.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              if (_model.offDays
+                                      .where((e) => e == '5')
+                                      .toList()
+                                      .length >
+                                  0) {
+                                _model.removeFromOffDays('5');
+                                setState(() {});
+                              } else {
+                                _model.addToOffDays('5');
+                                setState(() {});
+                              }
+                            },
+                            text: 'FRI',
+                            options: FFButtonOptions(
+                              height: 55.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: _model.offDays
+                                          .where((e) => e == '5')
+                                          .toList()
+                                          .length >
+                                      0
+                                  ? FlutterFlowTheme.of(context).secondary
+                                  : FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: _model.offDays
+                                                .where((e) => e == '5')
+                                                .toList()
+                                                .length >
+                                            0
+                                        ? FlutterFlowTheme.of(context)
+                                            .secondaryBackground
+                                        : FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    fontSize: 13.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                              elevation: 1.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              if (_model.offDays
+                                      .where((e) => e == '6')
+                                      .toList()
+                                      .length >
+                                  0) {
+                                _model.removeFromOffDays('6');
+                                setState(() {});
+                              } else {
+                                _model.addToOffDays('6');
+                                setState(() {});
+                              }
+                            },
+                            text: 'SAT',
+                            options: FFButtonOptions(
+                              height: 55.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: _model.offDays
+                                          .where((e) => e == '6')
+                                          .toList()
+                                          .length >
+                                      0
+                                  ? FlutterFlowTheme.of(context).secondary
+                                  : FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: _model.offDays
+                                                .where((e) => e == '6')
+                                                .toList()
+                                                .length >
+                                            0
+                                        ? FlutterFlowTheme.of(context)
+                                            .secondaryBackground
+                                        : FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    fontSize: 13.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                              elevation: 1.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              if (_model.offDays
+                                      .where((e) => e == '0')
+                                      .toList()
+                                      .length >
+                                  0) {
+                                _model.removeFromOffDays('0');
+                                setState(() {});
+                              } else {
+                                _model.addToOffDays('0');
+                                setState(() {});
+                              }
+                            },
+                            text: 'SUN',
+                            options: FFButtonOptions(
+                              height: 55.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: _model.offDays
+                                          .where((e) => e == '0')
+                                          .toList()
+                                          .length >
+                                      0
+                                  ? FlutterFlowTheme.of(context).secondary
+                                  : FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: _model.offDays
+                                                .where((e) => e == '0')
+                                                .toList()
+                                                .length >
+                                            0
+                                        ? FlutterFlowTheme.of(context)
+                                            .secondaryBackground
+                                        : FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    fontSize: 13.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                              elevation: 1.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                        ),
+                      ].divide(SizedBox(width: 8.0)),
+                    ),
                   ),
                   Padding(
                     padding:

@@ -560,7 +560,8 @@ class _TimeKeepingShiftUpdateWidgetState
                                   return;
                                 }
                                 _model.apiResultShiftUpdate =
-                                    await TimekeepingShiftGroup.shiftUpdateCall
+                                    await TimekeepingShiftConfigsGroup
+                                        .shiftUpdateCall
                                         .call(
                                   accessToken: FFAppState().accessToken,
                                   id: widget!.item?.id,

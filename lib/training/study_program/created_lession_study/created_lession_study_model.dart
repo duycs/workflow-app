@@ -13,6 +13,7 @@ import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_
 import '/training/lesson/quiz_creation_lesson/quiz_creation_lesson_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/backend/schema/structs/index.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'created_lession_study_widget.dart' show CreatedLessionStudyWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
