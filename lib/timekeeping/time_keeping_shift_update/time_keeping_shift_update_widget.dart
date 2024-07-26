@@ -7,9 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'time_keeping_shift_update_model.dart';
 export 'time_keeping_shift_update_model.dart';
@@ -45,7 +43,7 @@ class _TimeKeepingShiftUpdateWidgetState
     _model = createModel(context, () => TimeKeepingShiftUpdateModel());
 
     _model.nameTextController ??=
-        TextEditingController(text: widget!.item?.name);
+        TextEditingController(text: widget.item?.name);
     _model.nameFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -63,16 +61,16 @@ class _TimeKeepingShiftUpdateWidgetState
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 600.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -85,13 +83,13 @@ class _TimeKeepingShiftUpdateWidgetState
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -129,7 +127,7 @@ class _TimeKeepingShiftUpdateWidgetState
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
                         child: Text(
                           'Tên ca làm việc',
                           style:
@@ -143,7 +141,7 @@ class _TimeKeepingShiftUpdateWidgetState
                         key: _model.formKey,
                         autovalidateMode: AutovalidateMode.disabled,
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 24.0),
                           child: TextFormField(
                             controller: _model.nameTextController,
@@ -206,7 +204,7 @@ class _TimeKeepingShiftUpdateWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
                         child: Text(
                           'Thời gian bắt đầu làm việc',
                           style:
@@ -222,7 +220,7 @@ class _TimeKeepingShiftUpdateWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          final _datePicked1Time = await showTimePicker(
+                          final datePicked1Time = await showTimePicker(
                             context: context,
                             initialTime:
                                 TimeOfDay.fromDateTime(getCurrentTimestamp),
@@ -257,14 +255,14 @@ class _TimeKeepingShiftUpdateWidgetState
                               );
                             },
                           );
-                          if (_datePicked1Time != null) {
+                          if (datePicked1Time != null) {
                             safeSetState(() {
                               _model.datePicked1 = DateTime(
                                 getCurrentTimestamp.year,
                                 getCurrentTimestamp.month,
                                 getCurrentTimestamp.day,
-                                _datePicked1Time.hour,
-                                _datePicked1Time.minute,
+                                datePicked1Time.hour,
+                                datePicked1Time.minute,
                               );
                             });
                           }
@@ -284,7 +282,7 @@ class _TimeKeepingShiftUpdateWidgetState
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -298,7 +296,7 @@ class _TimeKeepingShiftUpdateWidgetState
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,
                                           )
-                                        : widget!.item!.startTime,
+                                        : widget.item!.startTime,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -320,7 +318,7 @@ class _TimeKeepingShiftUpdateWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 4.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 4.0),
                         child: Text(
                           'Thời gian kết thúc làm việc',
                           style:
@@ -336,7 +334,7 @@ class _TimeKeepingShiftUpdateWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          final _datePicked2Time = await showTimePicker(
+                          final datePicked2Time = await showTimePicker(
                             context: context,
                             initialTime:
                                 TimeOfDay.fromDateTime(getCurrentTimestamp),
@@ -371,14 +369,14 @@ class _TimeKeepingShiftUpdateWidgetState
                               );
                             },
                           );
-                          if (_datePicked2Time != null) {
+                          if (datePicked2Time != null) {
                             safeSetState(() {
                               _model.datePicked2 = DateTime(
                                 getCurrentTimestamp.year,
                                 getCurrentTimestamp.month,
                                 getCurrentTimestamp.day,
-                                _datePicked2Time.hour,
-                                _datePicked2Time.minute,
+                                datePicked2Time.hour,
+                                datePicked2Time.minute,
                               );
                             });
                           }
@@ -398,7 +396,7 @@ class _TimeKeepingShiftUpdateWidgetState
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -412,7 +410,7 @@ class _TimeKeepingShiftUpdateWidgetState
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,
                                           )
-                                        : widget!.item!.endTime,
+                                        : widget.item!.endTime,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -434,7 +432,7 @@ class _TimeKeepingShiftUpdateWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 4.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 4.0),
                         child: Text(
                           'Trạng thái hoạt động',
                           style:
@@ -449,7 +447,7 @@ class _TimeKeepingShiftUpdateWidgetState
                         onChanged: (val) => setState(() {}),
                         controller: _model.radioButtonValueController ??=
                             FormFieldController<String>(
-                                widget!.item?.status == 'published'
+                                widget.item?.status == 'published'
                                     ? 'Hoạt động'
                                     : 'Không hoạt động'),
                         optionHeight: 32.0,
@@ -476,9 +474,9 @@ class _TimeKeepingShiftUpdateWidgetState
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -496,9 +494,9 @@ class _TimeKeepingShiftUpdateWidgetState
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -511,7 +509,7 @@ class _TimeKeepingShiftUpdateWidgetState
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -522,7 +520,7 @@ class _TimeKeepingShiftUpdateWidgetState
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var _shouldSetState = false;
+                              var shouldSetState = false;
                               if (_model.formKey.currentState == null ||
                                   !_model.formKey.currentState!.validate()) {
                                 return;
@@ -532,18 +530,18 @@ class _TimeKeepingShiftUpdateWidgetState
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            content: Text(
+                                            content: const Text(
                                                 'Xác nhận chỉnh sửa ca làm việc'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, false),
-                                                child: Text('Hủy'),
+                                                child: const Text('Hủy'),
                                               ),
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, true),
-                                                child: Text('Xác nhận'),
+                                                child: const Text('Xác nhận'),
                                               ),
                                             ],
                                           );
@@ -553,10 +551,10 @@ class _TimeKeepingShiftUpdateWidgetState
                               if (confirmDialogResponse) {
                                 _model.shiftUpdate =
                                     await action_blocks.tokenReload(context);
-                                _shouldSetState = true;
+                                shouldSetState = true;
                                 if (!_model.shiftUpdate!) {
                                   setState(() {});
-                                  if (_shouldSetState) setState(() {});
+                                  if (shouldSetState) setState(() {});
                                   return;
                                 }
                                 _model.apiResultShiftUpdate =
@@ -564,7 +562,7 @@ class _TimeKeepingShiftUpdateWidgetState
                                         .shiftUpdateCall
                                         .call(
                                   accessToken: FFAppState().accessToken,
-                                  id: widget!.item?.id,
+                                  id: widget.item?.id,
                                   requestJson: <String, dynamic>{
                                     'status':
                                         _model.radioButtonValue == 'Hoạt động'
@@ -578,10 +576,10 @@ class _TimeKeepingShiftUpdateWidgetState
                                     ),
                                     'start_time': _model.datePicked1 != null
                                         ? _model.startTime
-                                        : widget!.item?.startTime,
+                                        : widget.item?.startTime,
                                     'end_time': _model.datePicked2 != null
                                         ? _model.endTime
-                                        : widget!.item?.endTime,
+                                        : widget.item?.endTime,
                                     'name': _model.nameTextController.text,
                                     'organization_id': getJsonField(
                                       FFAppState().staffOrganization,
@@ -590,7 +588,7 @@ class _TimeKeepingShiftUpdateWidgetState
                                   },
                                 );
 
-                                _shouldSetState = true;
+                                shouldSetState = true;
                                 if ((_model.apiResultShiftUpdate?.succeeded ??
                                     true)) {
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -602,7 +600,7 @@ class _TimeKeepingShiftUpdateWidgetState
                                               .primaryText,
                                         ),
                                       ),
-                                      duration: Duration(milliseconds: 4000),
+                                      duration: const Duration(milliseconds: 4000),
                                       backgroundColor:
                                           FlutterFlowTheme.of(context)
                                               .secondary,
@@ -612,24 +610,24 @@ class _TimeKeepingShiftUpdateWidgetState
                                   Navigator.pop(context);
                                 }
                               } else {
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (_shouldSetState) setState(() {});
+                              if (shouldSetState) setState(() {});
                             },
                             text: 'Lưu',
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.save,
                               size: 24.0,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF33BA45),
+                              color: const Color(0xFF33BA45),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -638,7 +636,7 @@ class _TimeKeepingShiftUpdateWidgetState
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -646,11 +644,11 @@ class _TimeKeepingShiftUpdateWidgetState
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
                     ),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

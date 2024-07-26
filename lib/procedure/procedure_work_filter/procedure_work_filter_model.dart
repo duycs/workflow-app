@@ -1,14 +1,7 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/staffs_list_dropdown/staffs_list_dropdown_widget.dart';
 import 'procedure_work_filter_widget.dart' show ProcedureWorkFilterWidget;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class ProcedureWorkFilterModel
     extends FlutterFlowModel<ProcedureWorkFilterWidget> {

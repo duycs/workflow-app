@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
@@ -7,13 +6,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/place.dart';
-import 'dart:io';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'time_keeping_location_created_model.dart';
 export 'time_keeping_location_created_model.dart';
@@ -77,18 +73,18 @@ class _TimeKeepingLocationCreatedWidgetState
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(0.0),
             topRight: Radius.circular(0.0),
           ),
         ),
-        alignment: AlignmentDirectional(0.0, 1.0),
+        alignment: const AlignmentDirectional(0.0, 1.0),
         child: Form(
           key: _model.formKey,
           autovalidateMode: AutovalidateMode.disabled,
@@ -97,7 +93,7 @@ class _TimeKeepingLocationCreatedWidgetState
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -145,7 +141,7 @@ class _TimeKeepingLocationCreatedWidgetState
               Expanded(
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -153,7 +149,7 @@ class _TimeKeepingLocationCreatedWidgetState
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 12.0, 0.0, 4.0),
                           child: Text(
                             'Tỉnh/Thành phố',
@@ -195,10 +191,10 @@ class _TimeKeepingLocationCreatedWidgetState
                           elevation: 0.0,
                           borderColor: _model.checkCtity == true
                               ? FlutterFlowTheme.of(context).error
-                              : Color(0x00000000),
+                              : const Color(0x00000000),
                           borderWidth: 0.0,
                           borderRadius: 8.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
+                          margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -207,7 +203,7 @@ class _TimeKeepingLocationCreatedWidgetState
                         ),
                         if (_model.checkCtity == true)
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 6.0, 0.0, 0.0),
                             child: Text(
                               'Vui lòng chọn tỉnh/thành phố',
@@ -221,7 +217,7 @@ class _TimeKeepingLocationCreatedWidgetState
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Quận/Huyện',
@@ -272,10 +268,10 @@ class _TimeKeepingLocationCreatedWidgetState
                           elevation: 0.0,
                           borderColor: _model.checkDistric == true
                               ? FlutterFlowTheme.of(context).error
-                              : Color(0x00000000),
+                              : const Color(0x00000000),
                           borderWidth: 0.0,
                           borderRadius: 8.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
+                          margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -284,7 +280,7 @@ class _TimeKeepingLocationCreatedWidgetState
                         ),
                         if (_model.checkDistric == true)
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 6.0, 0.0, 0.0),
                             child: Text(
                               'Vui lòng chọn quận/huyện',
@@ -298,7 +294,7 @@ class _TimeKeepingLocationCreatedWidgetState
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Xã',
@@ -347,10 +343,10 @@ class _TimeKeepingLocationCreatedWidgetState
                           elevation: 0.0,
                           borderColor: _model.checkWard == true
                               ? FlutterFlowTheme.of(context).error
-                              : Color(0x00000000),
+                              : const Color(0x00000000),
                           borderWidth: 0.0,
                           borderRadius: 8.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
+                          margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -359,7 +355,7 @@ class _TimeKeepingLocationCreatedWidgetState
                         ),
                         if (_model.checkWard == true)
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 6.0, 0.0, 0.0),
                             child: Text(
                               'Vui lòng chọn xã',
@@ -373,7 +369,7 @@ class _TimeKeepingLocationCreatedWidgetState
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Địa chỉ cụ thể:',
@@ -395,7 +391,7 @@ class _TimeKeepingLocationCreatedWidgetState
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 6.0, 8.0, 6.0),
                             child: TextFormField(
                               controller: _model.textController1,
@@ -417,28 +413,28 @@ class _TimeKeepingLocationCreatedWidgetState
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Color(0x00000000),
                                     width: 2.0,
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Color(0x00000000),
                                     width: 2.0,
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 errorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Color(0x00000000),
                                     width: 2.0,
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 focusedErrorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Color(0x00000000),
                                     width: 2.0,
                                   ),
@@ -458,7 +454,7 @@ class _TimeKeepingLocationCreatedWidgetState
                         ),
                         if ('1' == '2')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 32.0, 0.0, 0.0),
                             child: FlutterFlowPlacePicker(
                               iOSGoogleMapsApiKey: '',
@@ -491,7 +487,7 @@ class _TimeKeepingLocationCreatedWidgetState
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Phạm vi áp dụng (m)',
@@ -564,7 +560,7 @@ class _TimeKeepingLocationCreatedWidgetState
                               .asValidator(context),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 4.0, 0.0, 4.0),
                           child: Text(
                             '* Trong vòng bán kính phạm vi áp dụng, nhân viên có thể chấm công hợp lệ',
@@ -584,27 +580,27 @@ class _TimeKeepingLocationCreatedWidgetState
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    var _shouldSetState = false;
+                    var shouldSetState = false;
                     var confirmDialogResponse = await showDialog<bool>(
                           context: context,
                           builder: (alertDialogContext) {
                             return AlertDialog(
-                              title: Text('Xác nhận'),
-                              content: Text(
+                              title: const Text('Xác nhận'),
+                              content: const Text(
                                   'Lưu ý: Vị trí làm việc sẽ là vị trí hiện tại của bạn.'),
                               actions: [
                                 TextButton(
                                   onPressed: () =>
                                       Navigator.pop(alertDialogContext, false),
-                                  child: Text('Hủy'),
+                                  child: const Text('Hủy'),
                                 ),
                                 TextButton(
                                   onPressed: () =>
                                       Navigator.pop(alertDialogContext, true),
-                                  child: Text('Xác nhận'),
+                                  child: const Text('Xác nhận'),
                                 ),
                               ],
                             );
@@ -612,7 +608,7 @@ class _TimeKeepingLocationCreatedWidgetState
                         ) ??
                         false;
                     if (!confirmDialogResponse) {
-                      if (_shouldSetState) setState(() {});
+                      if (shouldSetState) setState(() {});
                       return;
                     }
                     if (_model.dropDownValue1 != null &&
@@ -626,7 +622,7 @@ class _TimeKeepingLocationCreatedWidgetState
                       } else {
                         _model.checkDistric = true;
                         setState(() {});
-                        if (_shouldSetState) setState(() {});
+                        if (shouldSetState) setState(() {});
                         return;
                       }
 
@@ -637,13 +633,13 @@ class _TimeKeepingLocationCreatedWidgetState
                       } else {
                         _model.checkWard = true;
                         setState(() {});
-                        if (_shouldSetState) setState(() {});
+                        if (shouldSetState) setState(() {});
                         return;
                       }
                     } else {
                       _model.checkCtity = true;
                       setState(() {});
-                      if (_shouldSetState) setState(() {});
+                      if (shouldSetState) setState(() {});
                       return;
                     }
 
@@ -655,121 +651,99 @@ class _TimeKeepingLocationCreatedWidgetState
                         await actions.getCurrentLocationStruct(
                       context,
                     );
-                    _shouldSetState = true;
-                    if ((_model.getCurrentLocation != null &&
-                            (_model.getCurrentLocation)!.isNotEmpty) !=
-                        null) {
-                      _model.checkTokenTimeKeepingCreated =
-                          await action_blocks.tokenReload(context);
-                      _shouldSetState = true;
-                      if (!_model.checkTokenTimeKeepingCreated!) {
-                        setState(() {});
-                        if (_shouldSetState) setState(() {});
-                        return;
-                      }
-                      _model.apiResultTimeKeepingCreated =
-                          await LocationGroup.locationCreatedCall.call(
-                        accessToken: FFAppState().accessToken,
-                        requesDataJson: <String, dynamic>{
-                          'status': 'published',
-                          'detail': _model.textController1.text,
-                          'meter_range': _model.textController2.text,
-                          'ward_id': <String, dynamic>{
-                            'id': _model.dropDownValue3,
-                          },
-                          'district_id': <String, dynamic>{
-                            'id': _model.dropDownValue2,
-                          },
-                          'city_id': <String, dynamic>{
-                            'id': _model.dropDownValue1,
-                          },
-                          'location': <String, dynamic>{
-                            'type': 'Point',
-                            'coordinates': getJsonField(
-                              <String, List<dynamic>>{
-                                'map': _model.getCurrentLocation!,
-                              },
-                              r'''$.map''',
-                            ),
-                          },
-                          'organization_id': getJsonField(
-                            FFAppState().staffLogin,
-                            r'''$.organization_id''',
-                          ),
-                        },
-                      );
-
-                      _shouldSetState = true;
-                      if ((_model.apiResultTimeKeepingCreated?.succeeded ??
-                          true)) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Tạo mới địa điểm chấm công thành công!',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            ),
-                            duration: Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
-                          ),
-                        );
-                        await widget.callBack?.call(
-                          getJsonField(
-                            (_model.apiResultTimeKeepingCreated?.jsonBody ??
-                                ''),
-                            r'''$.id''',
-                          ).toString(),
-                        );
-                        Navigator.pop(context);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Tạo mới điểm chấm công không thành công',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            ),
-                            duration: Duration(milliseconds: 4000),
-                            backgroundColor: FlutterFlowTheme.of(context).error,
-                          ),
-                        );
-                      }
-                    } else {
-                      await showDialog(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: Text('Định vị chưa được bật'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: Text('Ok'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                      if (_shouldSetState) setState(() {});
+                    shouldSetState = true;
+                    _model.checkTokenTimeKeepingCreated =
+                        await action_blocks.tokenReload(context);
+                    shouldSetState = true;
+                    if (!_model.checkTokenTimeKeepingCreated!) {
+                      setState(() {});
+                      if (shouldSetState) setState(() {});
                       return;
                     }
+                    _model.apiResultTimeKeepingCreated =
+                        await LocationGroup.locationCreatedCall.call(
+                      accessToken: FFAppState().accessToken,
+                      requesDataJson: <String, dynamic>{
+                        'status': 'published',
+                        'detail': _model.textController1.text,
+                        'meter_range': _model.textController2.text,
+                        'ward_id': <String, dynamic>{
+                          'id': _model.dropDownValue3,
+                        },
+                        'district_id': <String, dynamic>{
+                          'id': _model.dropDownValue2,
+                        },
+                        'city_id': <String, dynamic>{
+                          'id': _model.dropDownValue1,
+                        },
+                        'location': <String, dynamic>{
+                          'type': 'Point',
+                          'coordinates': getJsonField(
+                            <String, List<dynamic>>{
+                              'map': _model.getCurrentLocation!,
+                            },
+                            r'''$.map''',
+                          ),
+                        },
+                        'organization_id': getJsonField(
+                          FFAppState().staffLogin,
+                          r'''$.organization_id''',
+                        ),
+                      },
+                    );
 
-                    if (_shouldSetState) setState(() {});
+                    shouldSetState = true;
+                    if ((_model.apiResultTimeKeepingCreated?.succeeded ??
+                        true)) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Tạo mới địa điểm chấm công thành công!',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
+                      await widget.callBack?.call(
+                        getJsonField(
+                          (_model.apiResultTimeKeepingCreated?.jsonBody ??
+                              ''),
+                          r'''$.id''',
+                        ).toString(),
+                      );
+                      Navigator.pop(context);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Tạo mới điểm chấm công không thành công',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor: FlutterFlowTheme.of(context).error,
+                        ),
+                      );
+                    }
+                  
+                    if (shouldSetState) setState(() {});
                   },
                   text: 'Lưu địa chỉ mới',
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.save_rounded,
                     size: 24.0,
                   ),
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Nunito Sans',
@@ -777,7 +751,7 @@ class _TimeKeepingLocationCreatedWidgetState
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

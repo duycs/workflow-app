@@ -7,10 +7,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'add_workflow_market_model.dart';
 export 'add_workflow_market_model.dart';
@@ -85,7 +83,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                       color: FlutterFlowTheme.of(context).primaryText,
                     ),
                   ),
-                  duration: Duration(milliseconds: 4000),
+                  duration: const Duration(milliseconds: 4000),
                   backgroundColor: FlutterFlowTheme.of(context).error,
                 ),
               );
@@ -110,7 +108,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                     color: FlutterFlowTheme.of(context).primaryText,
                   ),
                 ),
-                duration: Duration(milliseconds: 4000),
+                duration: const Duration(milliseconds: 4000),
                 backgroundColor: FlutterFlowTheme.of(context).error,
               ),
             );
@@ -140,17 +138,17 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
     return Visibility(
       visible: _model.isLoad == true,
       child: Align(
-        alignment: AlignmentDirectional(0.0, 0.0),
+        alignment: const AlignmentDirectional(0.0, 0.0),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Container(
             width: double.infinity,
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               maxHeight: 350.0,
             ),
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   blurRadius: 4.0,
                   color: Color(0x33000000),
@@ -163,7 +161,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
               borderRadius: BorderRadius.circular(12.0),
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -175,7 +173,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -210,9 +208,9 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 20.0, 0.0, 20.0),
                               child: FlutterFlowDropDown<String>(
                                 controller:
@@ -250,7 +248,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 2.0,
                                 borderRadius: 8.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
+                                margin: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 4.0, 16.0, 4.0),
                                 hidesUnderline: true,
                                 isOverButton: true,
@@ -260,7 +258,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: FlutterFlowDropDown<String>(
                               controller:
                                   _model.dropDownCategoryValueController ??=
@@ -297,7 +295,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 2.0,
                               borderRadius: 8.0,
-                              margin: EdgeInsetsDirectional.fromSTEB(
+                              margin: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 4.0, 16.0, 4.0),
                               hidesUnderline: true,
                               isOverButton: true,
@@ -311,7 +309,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -324,9 +322,9 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                             text: 'Đóng',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -340,7 +338,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                               ),
                               borderRadius: BorderRadius.circular(20.0),
@@ -350,7 +348,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var _shouldSetState = false;
+                              var shouldSetState = false;
 
                               setState(() {});
                               if ((_model.dropDownDomainValue != null &&
@@ -365,19 +363,19 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                                   context: context,
                                   builder: (alertDialogContext) {
                                     return AlertDialog(
-                                      content: Text(
+                                      content: const Text(
                                           'Vui lòng chọn lĩnh vực và bộ phận!'),
                                       actions: [
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
+                                          child: const Text('Ok'),
                                         ),
                                       ],
                                     );
                                   },
                                 );
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
 
@@ -385,17 +383,17 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                                   .workflowMarketCall
                                   .call(
                                 accessToken: FFAppState().accessToken,
-                                workflowId: widget!.id,
+                                workflowId: widget.id,
                                 categoryId: _model.dropDownCategoryValue,
                                 domainId: _model.dropDownDomainValue,
                               );
 
-                              _shouldSetState = true;
+                              shouldSetState = true;
                               if ((_model.apiResult16g?.succeeded ?? true)) {
                                 context.pushNamed(
                                   'ProcedureList',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
+                                    kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -412,7 +410,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                                             .primaryText,
                                       ),
                                     ),
-                                    duration: Duration(milliseconds: 4000),
+                                    duration: const Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
@@ -428,23 +426,23 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                                             .primaryText,
                                       ),
                                     ),
-                                    duration: Duration(milliseconds: 4000),
+                                    duration: const Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
                                 );
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (_shouldSetState) setState(() {});
+                              if (shouldSetState) setState(() {});
                             },
                             text: 'Xác nhận',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -457,7 +455,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                                     fontWeight: FontWeight.normal,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -465,7 +463,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 12.0)),
+                      ].divide(const SizedBox(width: 12.0)),
                     ),
                   ),
                 ],

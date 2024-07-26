@@ -8,13 +8,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'procedure_published_model.dart';
 export 'procedure_published_model.dart';
@@ -98,12 +95,12 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: SafeArea(
         child: Container(
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 3.0,
                 color: Color(0x33000000),
@@ -123,14 +120,14 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
             children: [
               if (_model.isLoad == true)
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: SingleChildScrollView(
                             primary: false,
                             child: Column(
@@ -138,7 +135,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 24.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -175,9 +172,9 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                     ],
                                   ),
                                 ),
-                                if (_model.workflowList.length > 0)
+                                if (_model.workflowList.isNotEmpty)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: FlutterFlowDropDown<String>(
                                       controller:
@@ -241,7 +238,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                           .alternate,
                                       borderWidth: 1.0,
                                       borderRadius: 8.0,
-                                      margin: EdgeInsetsDirectional.fromSTEB(
+                                      margin: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 4.0, 16.0, 4.0),
                                       hidesUnderline: true,
                                       isOverButton: true,
@@ -249,13 +246,13 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                       isMultiSelect: false,
                                     ),
                                   ),
-                                if ((_model.workflowList.length <= 0) &&
+                                if ((_model.workflowList.isEmpty) &&
                                     (FFAppState().user.role !=
                                         '3755a98d-f064-45cd-80e4-5084ab1dd2c4'))
                                   Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 16.0),
                                       child: Container(
                                         width: double.infinity,
@@ -275,7 +272,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -304,7 +301,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        TransitionInfo(
+                                                        const TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -316,17 +313,17 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                 );
                                               },
                                               text: 'Thêm',
-                                              icon: Icon(
+                                              icon: const Icon(
                                                 Icons.add,
                                                 size: 15.0,
                                               ),
                                               options: FFButtonOptions(
                                                 height: 40.0,
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    EdgeInsetsDirectional
+                                                    const EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -345,7 +342,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                 elevation: 3.0,
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -361,7 +358,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                 if (_model.workflowSelected?.cron != null &&
                                     _model.workflowSelected?.cron != '')
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -369,7 +366,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        final _datePicked1Date =
+                                        final datePicked1Date =
                                             await showDatePicker(
                                           context: context,
                                           initialDate: getCurrentTimestamp,
@@ -416,12 +413,12 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                           },
                                         );
 
-                                        if (_datePicked1Date != null) {
+                                        if (datePicked1Date != null) {
                                           safeSetState(() {
                                             _model.datePicked1 = DateTime(
-                                              _datePicked1Date.year,
-                                              _datePicked1Date.month,
-                                              _datePicked1Date.day,
+                                              datePicked1Date.year,
+                                              datePicked1Date.month,
+                                              datePicked1Date.day,
                                             );
                                           });
                                         }
@@ -439,17 +436,17 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 3.0, 0.0, 0.0),
                                             child: Text(
                                               'Thiết lập lặp: ${_model.workflowSelected?.cron != null && _model.workflowSelected?.cron != '' ? () {
-                                                  if ('${functions.checkTypeCron(_model.workflowSelected!.cron)}' ==
+                                                  if (functions.checkTypeCron(_model.workflowSelected!.cron) ==
                                                       '3') {
                                                     return 'Trong tháng';
-                                                  } else if ('${functions.checkTypeCron(_model.workflowSelected!.cron)}' ==
+                                                  } else if (functions.checkTypeCron(_model.workflowSelected!.cron) ==
                                                       '2') {
                                                     return 'Trong tuần';
-                                                  } else if ('${functions.checkTypeCron(_model.workflowSelected!.cron)}' ==
+                                                  } else if (functions.checkTypeCron(_model.workflowSelected!.cron) ==
                                                       '1') {
                                                     return 'Hàng ngày';
                                                   } else {
@@ -469,12 +466,12 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                   ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 4.0)),
+                                        ].divide(const SizedBox(width: 4.0)),
                                       ),
                                     ),
                                   ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       26.0, 0.0, 0.0, 10.0),
                                   child: Text(
                                     _model.workflowSelected?.cron != null &&
@@ -500,7 +497,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                 if (_model.workflowSelected?.cron != null &&
                                     _model.workflowSelected?.cron != '')
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -508,7 +505,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        final _datePicked2Date =
+                                        final datePicked2Date =
                                             await showDatePicker(
                                           context: context,
                                           initialDate: getCurrentTimestamp,
@@ -555,12 +552,12 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                           },
                                         );
 
-                                        if (_datePicked2Date != null) {
+                                        if (datePicked2Date != null) {
                                           safeSetState(() {
                                             _model.datePicked2 = DateTime(
-                                              _datePicked2Date.year,
-                                              _datePicked2Date.month,
-                                              _datePicked2Date.day,
+                                              datePicked2Date.year,
+                                              datePicked2Date.month,
+                                              datePicked2Date.day,
                                             );
                                           });
                                         }
@@ -594,7 +591,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 3.0, 0.0, 0.0),
                                             child: Text(
                                               _model.datePicked2 != null
@@ -620,13 +617,13 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                   ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 4.0)),
+                                        ].divide(const SizedBox(width: 4.0)),
                                       ),
                                     ),
                                   ),
                                 if (_model.workflowSelected != null)
                                   Padding(
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(16.0),
                                     child: SingleChildScrollView(
                                       primary: false,
                                       child: Column(
@@ -636,7 +633,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 8.0),
                                             child: Text(
                                               'Sơ đồ quy trình',
@@ -672,7 +669,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                   final listViewItem =
                                                       listView[listViewIndex];
                                                   return Container(
-                                                    decoration: BoxDecoration(),
+                                                    decoration: const BoxDecoration(),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.min,
@@ -684,7 +681,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                               .stretch,
                                                       children: [
                                                         if (listViewIndex > 0)
-                                                          Padding(
+                                                          const Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
@@ -720,12 +717,12 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                             Expanded(
                                                               child: Stack(
                                                                 alignment:
-                                                                    AlignmentDirectional(
+                                                                    const AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 children: [
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             40.0,
                                                                             0.0,
@@ -747,36 +744,36 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                                                 ? true
                                                                                 : false;
                                                                           }(listViewIndex)) {
-                                                                            return Color(0xFF3ABEF9);
+                                                                            return const Color(0xFF3ABEF9);
                                                                           } else if ((int var1) {
                                                                             return var1 % 5 == 1
                                                                                 ? true
                                                                                 : false;
                                                                           }(listViewIndex)) {
-                                                                            return Color(0xFF26355D);
+                                                                            return const Color(0xFF26355D);
                                                                           } else if ((int var1) {
                                                                             return var1 % 5 == 2
                                                                                 ? true
                                                                                 : false;
                                                                           }(listViewIndex)) {
-                                                                            return Color(0xFF059212);
+                                                                            return const Color(0xFF059212);
                                                                           } else if ((int var1) {
                                                                             return var1 % 5 == 3
                                                                                 ? true
                                                                                 : false;
                                                                           }(listViewIndex)) {
-                                                                            return Color(0xFFFF407D);
+                                                                            return const Color(0xFFFF407D);
                                                                           } else if ((int var1) {
                                                                             return var1 % 5 == 4
                                                                                 ? true
                                                                                 : false;
                                                                           }(listViewIndex)) {
-                                                                            return Color(0xFF7E8EF1);
+                                                                            return const Color(0xFF7E8EF1);
                                                                           } else {
-                                                                            return Color(0x00000000);
+                                                                            return const Color(0x00000000);
                                                                           }
                                                                         }(),
-                                                                        boxShadow: [
+                                                                        boxShadow: const [
                                                                           BoxShadow(
                                                                             blurRadius:
                                                                                 4.0,
@@ -790,7 +787,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                                           )
                                                                         ],
                                                                         borderRadius:
-                                                                            BorderRadius.only(
+                                                                            const BorderRadius.only(
                                                                           bottomLeft:
                                                                               Radius.circular(30.0),
                                                                           bottomRight:
@@ -802,7 +799,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                                         ),
                                                                       ),
                                                                       alignment:
-                                                                          AlignmentDirectional(
+                                                                          const AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                       child:
@@ -813,7 +810,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                                           Expanded(
                                                                             child:
                                                                                 Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
+                                                                              padding: const EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
                                                                               child: Text(
                                                                                 listViewItem.name,
                                                                                 maxLines: 2,
@@ -831,7 +828,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -847,7 +844,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                                           BoxDecoration(
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primaryBtnText,
-                                                                        boxShadow: [
+                                                                        boxShadow: const [
                                                                           BoxShadow(
                                                                             blurRadius:
                                                                                 4.0,
@@ -889,25 +886,25 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                                                     if ((int var1) {
                                                                                       return var1 % 5 == 0 ? true : false;
                                                                                     }(listViewIndex)) {
-                                                                                      return Color(0xFF3ABEF9);
+                                                                                      return const Color(0xFF3ABEF9);
                                                                                     } else if ((int var1) {
                                                                                       return var1 % 5 == 1 ? true : false;
                                                                                     }(listViewIndex)) {
-                                                                                      return Color(0xFF26355D);
+                                                                                      return const Color(0xFF26355D);
                                                                                     } else if ((int var1) {
                                                                                       return var1 % 5 == 2 ? true : false;
                                                                                     }(listViewIndex)) {
-                                                                                      return Color(0xFF059212);
+                                                                                      return const Color(0xFF059212);
                                                                                     } else if ((int var1) {
                                                                                       return var1 % 5 == 3 ? true : false;
                                                                                     }(listViewIndex)) {
-                                                                                      return Color(0xFFFF407D);
+                                                                                      return const Color(0xFFFF407D);
                                                                                     } else if ((int var1) {
                                                                                       return var1 % 5 == 4 ? true : false;
                                                                                     }(listViewIndex)) {
-                                                                                      return Color(0xFF7E8EF1);
+                                                                                      return const Color(0xFF7E8EF1);
                                                                                     } else {
-                                                                                      return Color(0x00000000);
+                                                                                      return const Color(0x00000000);
                                                                                     }
                                                                                   }(),
                                                                                   fontSize: 10.0,
@@ -916,32 +913,32 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                                                 ),
                                                                           ),
                                                                           Text(
-                                                                            '${(listViewIndex + 1).toString()}',
+                                                                            (listViewIndex + 1).toString(),
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: 'Nunito Sans',
                                                                                   color: () {
                                                                                     if ((int var1) {
                                                                                       return var1 % 5 == 0 ? true : false;
                                                                                     }(listViewIndex)) {
-                                                                                      return Color(0xFF3ABEF9);
+                                                                                      return const Color(0xFF3ABEF9);
                                                                                     } else if ((int var1) {
                                                                                       return var1 % 5 == 1 ? true : false;
                                                                                     }(listViewIndex)) {
-                                                                                      return Color(0xFF26355D);
+                                                                                      return const Color(0xFF26355D);
                                                                                     } else if ((int var1) {
                                                                                       return var1 % 5 == 2 ? true : false;
                                                                                     }(listViewIndex)) {
-                                                                                      return Color(0xFF059212);
+                                                                                      return const Color(0xFF059212);
                                                                                     } else if ((int var1) {
                                                                                       return var1 % 5 == 3 ? true : false;
                                                                                     }(listViewIndex)) {
-                                                                                      return Color(0xFFFF407D);
+                                                                                      return const Color(0xFFFF407D);
                                                                                     } else if ((int var1) {
                                                                                       return var1 % 5 == 4 ? true : false;
                                                                                     }(listViewIndex)) {
-                                                                                      return Color(0xFF7E8EF1);
+                                                                                      return const Color(0xFF7E8EF1);
                                                                                     } else {
-                                                                                      return Color(0x00000000);
+                                                                                      return const Color(0x00000000);
                                                                                     }
                                                                                   }(),
                                                                                   fontSize: 16.0,
@@ -968,7 +965,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                                 1))
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         30.0,
@@ -995,7 +992,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                       ),
                                     ),
                                   ),
-                                if ((_model.workflowList.length <= 0) &&
+                                if ((_model.workflowList.isEmpty) &&
                                     (FFAppState().user.role ==
                                         '3755a98d-f064-45cd-80e4-5084ab1dd2c4'))
                                   Flexible(
@@ -1010,11 +1007,11 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: wrapWithModel(
                                           model: _model.dataNotFoundModel,
                                           updateCallback: () => setState(() {}),
-                                          child: DataNotFoundWidget(),
+                                          child: const DataNotFoundWidget(),
                                         ),
                                       ),
                                     ),
@@ -1025,7 +1022,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 16.0, 24.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1033,7 +1030,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 12.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
@@ -1042,9 +1039,9 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                   text: 'Hủy',
                                   options: FFButtonOptions(
                                     height: 44.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -1068,20 +1065,20 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                 ),
                               ),
                             ),
-                            if (_model.workflowList.length > 0)
+                            if (_model.workflowList.isNotEmpty)
                               Expanded(
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    var _shouldSetState = false;
+                                    var shouldSetState = false;
                                     if (_model.workflowSelected?.type ==
                                         'schedule') {
                                       _model.reloadTokenUpdateLimit =
                                           await action_blocks
                                               .tokenReload(context);
-                                      _shouldSetState = true;
+                                      shouldSetState = true;
                                       if (!_model.reloadTokenUpdateLimit!) {
                                         setState(() {});
-                                        if (_shouldSetState) setState(() {});
+                                        if (shouldSetState) setState(() {});
                                         return;
                                       }
                                       _model.apiResultUpdateLimit =
@@ -1093,7 +1090,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                         limitPublished: _model.limitPublished,
                                       );
 
-                                      _shouldSetState = true;
+                                      shouldSetState = true;
                                       if (!(_model.apiResultUpdateLimit
                                               ?.succeeded ??
                                           true)) {
@@ -1109,7 +1106,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                               ),
                                             ),
                                             duration:
-                                                Duration(milliseconds: 4000),
+                                                const Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .error,
@@ -1120,10 +1117,10 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                     _model.procedurePublished =
                                         await action_blocks
                                             .tokenReload(context);
-                                    _shouldSetState = true;
+                                    shouldSetState = true;
                                     if (!_model.procedurePublished!) {
                                       setState(() {});
-                                      if (_shouldSetState) setState(() {});
+                                      if (shouldSetState) setState(() {});
                                       return;
                                     }
                                     _model.apiResultProcedurePublished =
@@ -1134,7 +1131,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                       workflowId: _model.workflowSelected?.id,
                                     );
 
-                                    _shouldSetState = true;
+                                    shouldSetState = true;
                                     if ((_model.apiResultProcedurePublished
                                             ?.succeeded ??
                                         true)) {
@@ -1150,7 +1147,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                             ),
                                           ),
                                           duration:
-                                              Duration(milliseconds: 4000),
+                                              const Duration(milliseconds: 4000),
                                           backgroundColor:
                                               FlutterFlowTheme.of(context)
                                                   .secondary,
@@ -1171,7 +1168,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                             ),
                                           ),
                                           duration:
-                                              Duration(milliseconds: 4000),
+                                              const Duration(milliseconds: 4000),
                                           backgroundColor:
                                               FlutterFlowTheme.of(context)
                                                   .error,
@@ -1179,14 +1176,14 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                       );
                                     }
 
-                                    if (_shouldSetState) setState(() {});
+                                    if (shouldSetState) setState(() {});
                                   },
                                   text: 'Xác nhận',
                                   options: FFButtonOptions(
                                     height: 44.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -1197,7 +1194,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                           fontSize: 14.0,
                                           letterSpacing: 0.0,
                                         ),
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -1212,7 +1209,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                   ),
                 ),
               if (_model.isLoad == false)
-                Container(
+                SizedBox(
                   width: double.infinity,
                   height: double.infinity,
                   child: custom_widgets.LoadingPageWidget(

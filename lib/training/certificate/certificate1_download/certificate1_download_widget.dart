@@ -5,7 +5,6 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'certificate1_download_model.dart';
 export 'certificate1_download_model.dart';
@@ -62,36 +61,36 @@ class _Certificate1DownloadWidgetState
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        if ('${getJsonField(
-              widget!.checkShow,
+        if (getJsonField(
+              widget.checkShow,
               r'''$.code''',
-            ).toString()}' !=
+            ).toString() !=
             'certificate2')
           Align(
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: const AlignmentDirectional(0.0, 0.0),
             child: Container(
               width: double.infinity,
               height: 200.0,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
-              alignment: AlignmentDirectional(0.0, 0.0),
+              alignment: const AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       child: Stack(
-                        alignment: AlignmentDirectional(0.0, -1.0),
+                        alignment: const AlignmentDirectional(0.0, -1.0),
                         children: [
                           Stack(
                             children: [
                               Opacity(
                                 opacity: 0.3,
                                 child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Icon(
                                     Icons.emoji_events_rounded,
                                     color: FlutterFlowTheme.of(context).warning,
@@ -100,9 +99,9 @@ class _Certificate1DownloadWidgetState
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -129,7 +128,7 @@ class _Certificate1DownloadWidgetState
                                             ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 6.0, 0.0, 6.0),
                                         child: Text(
                                           'Chứng nhận',
@@ -147,7 +146,7 @@ class _Certificate1DownloadWidgetState
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 2.0),
                                         child: Text(
                                           FFAppState().user.firstName,
@@ -162,7 +161,7 @@ class _Certificate1DownloadWidgetState
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 2.0),
                                         child: Text(
                                           'Chức vụ: \"${getJsonField(
@@ -180,7 +179,7 @@ class _Certificate1DownloadWidgetState
                                         ),
                                       ),
                                       Text(
-                                        'Đã hoàn thành: \"${widget!.program}\"',
+                                        'Đã hoàn thành: \"${widget.program}\"',
                                         textAlign: TextAlign.center,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -195,13 +194,13 @@ class _Certificate1DownloadWidgetState
                                         'Từ ngày ${dateTimeFormat(
                                           'dd-MM-yyyy',
                                           functions.stringToDateTime(
-                                              widget!.dateStart),
+                                              widget.dateStart),
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
                                         )} đến ngày ${dateTimeFormat(
                                           'dd-MM-yyyy',
                                           functions.stringToDateTime(
-                                              widget!.dateEnd),
+                                              widget.dateEnd),
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
                                         )}',
@@ -219,7 +218,7 @@ class _Certificate1DownloadWidgetState
                                       if ('1' == '2')
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 6.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -229,7 +228,7 @@ class _Certificate1DownloadWidgetState
                                               Expanded(
                                                 child: Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           0.0, -1.0),
                                                   child: FaIcon(
                                                     FontAwesomeIcons.medal,
@@ -243,7 +242,7 @@ class _Certificate1DownloadWidgetState
                                               Expanded(
                                                 child: Container(
                                                   height: 50.0,
-                                                  decoration: BoxDecoration(),
+                                                  decoration: const BoxDecoration(),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -296,14 +295,14 @@ class _Certificate1DownloadWidgetState
                                             ],
                                           ),
                                         ),
-                                    ].divide(SizedBox(height: 3.0)),
+                                    ].divide(const SizedBox(height: 3.0)),
                                   ),
                                 ),
                               ),
                             ],
                           ),
                           Align(
-                            alignment: AlignmentDirectional(1.0, -1.0),
+                            alignment: const AlignmentDirectional(1.0, -1.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -337,7 +336,7 @@ class _Certificate1DownloadWidgetState
                                       Expanded(
                                         child: Container(
                                           width: 50.0,
-                                          decoration: BoxDecoration(),
+                                          decoration: const BoxDecoration(),
                                           child: Text(
                                             getJsonField(
                                               FFAppState().staffOrganization,
@@ -359,11 +358,11 @@ class _Certificate1DownloadWidgetState
                                           await actions.screenCertificate(
                                             context,
                                             'Stack',
-                                            widget!.program!,
+                                            widget.program!,
                                             dateTimeFormat(
                                               'dd-MM-yyyy',
                                               functions.stringToDateTime(
-                                                  widget!.dateStart),
+                                                  widget.dateStart),
                                               locale:
                                                   FFLocalizations.of(context)
                                                       .languageCode,
@@ -371,7 +370,7 @@ class _Certificate1DownloadWidgetState
                                             dateTimeFormat(
                                               'dd-MM-yyyy',
                                               functions.stringToDateTime(
-                                                  widget!.dateEnd),
+                                                  widget.dateEnd),
                                               locale:
                                                   FFLocalizations.of(context)
                                                       .languageCode,
@@ -392,17 +391,17 @@ class _Certificate1DownloadWidgetState
                                           );
                                         },
                                         text: 'Ảnh',
-                                        icon: FaIcon(
+                                        icon: const FaIcon(
                                           FontAwesomeIcons.fileExport,
                                           size: 12.0,
                                         ),
                                         options: FFButtonOptions(
                                           height: 25.0,
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 5.0, 0.0),
                                           iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -418,7 +417,7 @@ class _Certificate1DownloadWidgetState
                                                         FontWeight.normal,
                                                   ),
                                           elevation: 3.0,
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -440,10 +439,10 @@ class _Certificate1DownloadWidgetState
               ),
             ),
           ),
-        if ('${getJsonField(
-              widget!.checkShow,
+        if (getJsonField(
+              widget.checkShow,
               r'''$.code''',
-            ).toString()}' ==
+            ).toString() ==
             'certificate2')
           Container(
             width: double.infinity,
@@ -452,7 +451,7 @@ class _Certificate1DownloadWidgetState
               color: FlutterFlowTheme.of(context).secondaryBackground,
             ),
             child: Stack(
-              alignment: AlignmentDirectional(0.0, 0.0),
+              alignment: const AlignmentDirectional(0.0, 0.0),
               children: [
                 Opacity(
                   opacity: 0.3,
@@ -481,7 +480,7 @@ class _Certificate1DownloadWidgetState
                       ),
                       Container(
                         width: 100.0,
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: Text(
                           'Công ty TNHH A fgrfgfdg fgdfsgfds gfdgdfg gvsdfg sdfgsdg fdgsfds ',
                           textAlign: TextAlign.center,
@@ -499,17 +498,17 @@ class _Certificate1DownloadWidgetState
                   ),
                 ),
                 Stack(
-                  alignment: AlignmentDirectional(0.0, 0.0),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 5.0, 0.0, 0.0),
                             child: Text(
                               'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
@@ -533,7 +532,7 @@ class _Certificate1DownloadWidgetState
                                 ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 6.0, 0.0, 6.0),
                             child: Text(
                               'Chứng nhận',
@@ -549,7 +548,7 @@ class _Certificate1DownloadWidgetState
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 2.0),
                             child: Text(
                               FFAppState().user.firstName,
@@ -564,7 +563,7 @@ class _Certificate1DownloadWidgetState
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 2.0),
                             child: Text(
                               'Chức vụ: \"${getJsonField(
@@ -582,7 +581,7 @@ class _Certificate1DownloadWidgetState
                             ),
                           ),
                           Text(
-                            'Đã hoàn thành \"${widget!.program}\"',
+                            'Đã hoàn thành \"${widget.program}\"',
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -596,11 +595,11 @@ class _Certificate1DownloadWidgetState
                           Text(
                             'Từ ngày ${dateTimeFormat(
                               'dd-MM-yyyy',
-                              functions.stringToDateTime(widget!.dateStart),
+                              functions.stringToDateTime(widget.dateStart),
                               locale: FFLocalizations.of(context).languageCode,
                             )} đến ngày ${dateTimeFormat(
                               'dd-MM-yyyy',
-                              functions.stringToDateTime(widget!.dateEnd),
+                              functions.stringToDateTime(widget.dateEnd),
                               locale: FFLocalizations.of(context).languageCode,
                             )}',
                             textAlign: TextAlign.center,
@@ -614,29 +613,29 @@ class _Certificate1DownloadWidgetState
                                   fontStyle: FontStyle.italic,
                                 ),
                           ),
-                        ].divide(SizedBox(height: 3.0)),
+                        ].divide(const SizedBox(height: 3.0)),
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(1.0, 1.0),
+                      alignment: const AlignmentDirectional(1.0, 1.0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 0.0, 10.0, 10.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             await actions.screenCertificate1(
                               context,
                               'Stack',
-                              widget!.program!,
+                              widget.program!,
                               dateTimeFormat(
                                 'dd-MM-yyyy',
-                                functions.stringToDateTime(widget!.dateStart),
+                                functions.stringToDateTime(widget.dateStart),
                                 locale:
                                     FFLocalizations.of(context).languageCode,
                               ),
                               dateTimeFormat(
                                 'dd-MM-yyyy',
-                                functions.stringToDateTime(widget!.dateEnd),
+                                functions.stringToDateTime(widget.dateEnd),
                                 locale:
                                     FFLocalizations.of(context).languageCode,
                               ),
@@ -656,15 +655,15 @@ class _Certificate1DownloadWidgetState
                             );
                           },
                           text: 'Ảnh',
-                          icon: FaIcon(
+                          icon: const FaIcon(
                             FontAwesomeIcons.fileExport,
                             size: 12.0,
                           ),
                           options: FFButtonOptions(
                             height: 25.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 5.0, 0.0, 5.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -677,7 +676,7 @@ class _Certificate1DownloadWidgetState
                                   fontWeight: FontWeight.normal,
                                 ),
                             elevation: 3.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

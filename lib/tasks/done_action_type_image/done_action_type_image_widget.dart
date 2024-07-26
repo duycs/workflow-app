@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'done_action_type_image_model.dart';
 export 'done_action_type_image_model.dart';
@@ -48,7 +47,7 @@ class _DoneActionTypeImageWidgetState extends State<DoneActionTypeImageWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
       child: SingleChildScrollView(
         primary: false,
         child: Column(
@@ -65,11 +64,11 @@ class _DoneActionTypeImageWidgetState extends State<DoneActionTypeImageWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.network(
-                        '${FFAppConstants.ApiBaseUrl}/assets/${widget!.image}?access_token=${FFAppState().accessToken}',
+                        '${FFAppConstants.ApiBaseUrl}/assets/${widget.image}?access_token=${FFAppState().accessToken}',
                         width: 150.0,
                         height: 150.0,
                         fit: BoxFit.cover,
@@ -86,7 +85,7 @@ class _DoneActionTypeImageWidgetState extends State<DoneActionTypeImageWidget> {
                 ],
               ),
             ),
-          ].divide(SizedBox(height: 6.0)),
+          ].divide(const SizedBox(height: 6.0)),
         ),
       ),
     );

@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/order/invite_user/invite_user_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'payment_success_component_model.dart';
 export 'payment_success_component_model.dart';
 
@@ -59,19 +57,19 @@ class _PaymentSuccessComponentWidgetState
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
+          const Icon(
             Icons.check_circle_outline,
             color: Color(0xFF19DB8A),
             size: 70.0,
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 0.0, 0.0),
             child: Text(
               'Thanh toán thành công!',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).headlineLarge.override(
                     fontFamily: 'Nunito Sans',
-                    color: Color(0xFF14181B),
+                    color: const Color(0xFF14181B),
                     fontSize: 22.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.w600,
@@ -79,13 +77,13 @@ class _PaymentSuccessComponentWidgetState
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
             child: Text(
               'Đơn hàng của bạn đã được thanh toán thành công. Hãy trải nghiệm ngay khóa học của bạn!',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: 'Nunito Sans',
-                    color: Color(0xFF57636C),
+                    color: const Color(0xFF57636C),
                     fontSize: 14.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.normal,
@@ -93,14 +91,14 @@ class _PaymentSuccessComponentWidgetState
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
             child: FFButtonWidget(
               onPressed: () async {
                 context.pushNamed(
                   'StudyProgramListMarket',
                   queryParameters: {
                     'checkpage': serializeParam(
-                      widget!.checkType,
+                      widget.checkType,
                       ParamType.String,
                     ),
                   }.withoutNulls,
@@ -110,9 +108,9 @@ class _PaymentSuccessComponentWidgetState
               options: FFButtonOptions(
                 width: double.infinity,
                 height: 55.0,
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: Color(0xFF19DB8A),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                color: const Color(0xFF19DB8A),
                 textStyle: FlutterFlowTheme.of(context).titleMedium.override(
                       fontFamily: 'Nunito Sans',
                       color: Colors.white,
@@ -127,7 +125,7 @@ class _PaymentSuccessComponentWidgetState
           ),
           if (false)
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 24.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 24.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   await showModalBottomSheet(
@@ -139,7 +137,7 @@ class _PaymentSuccessComponentWidgetState
                       return Padding(
                         padding: MediaQuery.viewInsetsOf(context),
                         child: InviteUserWidget(
-                          programId: widget!.programId!,
+                          programId: widget.programId!,
                         ),
                       );
                     },
@@ -149,9 +147,9 @@ class _PaymentSuccessComponentWidgetState
                 options: FFButtonOptions(
                   width: double.infinity,
                   height: 55.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleMedium.override(
                         fontFamily: 'Nunito Sans',

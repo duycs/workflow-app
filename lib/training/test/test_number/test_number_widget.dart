@@ -2,8 +2,6 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'test_number_model.dart';
 export 'test_number_model.dart';
 
@@ -34,8 +32,8 @@ class _TestNumberWidgetState extends State<TestNumberWidget> {
     _model = createModel(context, () => TestNumberModel());
 
     _model.textController ??= TextEditingController(
-        text: widget!.answersId?.answersId?.correct == 1
-            ? widget!.answersId?.answersId?.content
+        text: widget.answersId?.answersId.correct == 1
+            ? widget.answersId?.answersId.content
             : ' ');
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -52,7 +50,7 @@ class _TestNumberWidgetState extends State<TestNumberWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
       child: TextFormField(
         controller: _model.textController,
         focusNode: _model.textFieldFocusNode,

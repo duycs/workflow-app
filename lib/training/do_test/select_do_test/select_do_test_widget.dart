@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'select_do_test_model.dart';
 export 'select_do_test_model.dart';
 
@@ -40,7 +38,7 @@ class _SelectDoTestWidgetState extends State<SelectDoTestWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.addToDetail(widget!.listQuestion!);
+      _model.addToDetail(widget.listQuestion!);
       setState(() {});
     });
 
@@ -60,22 +58,22 @@ class _SelectDoTestWidgetState extends State<SelectDoTestWidget> {
       options: _model.detail.map((e) => e.content).toList().toList(),
       onChanged: ('1' == '1') ? null : (val) => setState(() {}),
       controller: _model.radioButtonValueController ??=
-          FormFieldController<String>(widget!.listAnswer!.answersId.content),
+          FormFieldController<String>(widget.listAnswer!.answersId.content),
       optionHeight: 32.0,
       optionWidth: MediaQuery.sizeOf(context).width * 1.0,
       textStyle: FlutterFlowTheme.of(context).labelMedium.override(
             fontFamily: 'Nunito Sans',
             color: valueOrDefault<Color>(
               () {
-                if ((widget!.listQuestion?.id ==
-                        widget!.listAnswer?.answersId?.id) &&
-                    (widget!.listQuestion?.correct == 1)) {
+                if ((widget.listQuestion?.id ==
+                        widget.listAnswer?.answersId.id) &&
+                    (widget.listQuestion?.correct == 1)) {
                   return FlutterFlowTheme.of(context).primary;
-                } else if ((widget!.listQuestion?.id ==
-                        widget!.listAnswer?.answersId?.id) &&
-                    (widget!.listQuestion?.correct != 1)) {
+                } else if ((widget.listQuestion?.id ==
+                        widget.listAnswer?.answersId.id) &&
+                    (widget.listQuestion?.correct != 1)) {
                   return FlutterFlowTheme.of(context).error;
-                } else if (widget!.listQuestion?.correct == 1) {
+                } else if (widget.listQuestion?.correct == 1) {
                   return FlutterFlowTheme.of(context).primary;
                 } else {
                   return FlutterFlowTheme.of(context).secondaryText;
@@ -89,13 +87,13 @@ class _SelectDoTestWidgetState extends State<SelectDoTestWidget> {
             fontFamily: 'Nunito Sans',
             color: valueOrDefault<Color>(
               () {
-                if ((widget!.listQuestion?.id ==
-                        widget!.listAnswer?.answersId?.id) &&
-                    (widget!.listQuestion?.correct == 1)) {
+                if ((widget.listQuestion?.id ==
+                        widget.listAnswer?.answersId.id) &&
+                    (widget.listQuestion?.correct == 1)) {
                   return FlutterFlowTheme.of(context).primary;
-                } else if ((widget!.listQuestion?.id ==
-                        widget!.listAnswer?.answersId?.id) &&
-                    (widget!.listQuestion?.correct != 1)) {
+                } else if ((widget.listQuestion?.id ==
+                        widget.listAnswer?.answersId.id) &&
+                    (widget.listQuestion?.correct != 1)) {
                   return FlutterFlowTheme.of(context).error;
                 } else {
                   return FlutterFlowTheme.of(context).secondaryText;

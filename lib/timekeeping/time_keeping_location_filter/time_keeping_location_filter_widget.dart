@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'time_keeping_location_filter_model.dart';
 export 'time_keeping_location_filter_model.dart';
 
@@ -49,27 +47,27 @@ class _TimeKeepingLocationFilterWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           maxHeight: 730.0,
         ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
             topRight: Radius.circular(16.0),
           ),
         ),
-        alignment: AlignmentDirectional(0.0, -1.0),
+        alignment: const AlignmentDirectional(0.0, -1.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
@@ -79,7 +77,7 @@ class _TimeKeepingLocationFilterWidgetState
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -112,7 +110,7 @@ class _TimeKeepingLocationFilterWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                         child: Text(
                           'Tỉnh/Thành phố',
                           style:
@@ -124,14 +122,14 @@ class _TimeKeepingLocationFilterWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                         child: FlutterFlowDropDown<String>(
                           controller: _model.dropDownStatusValueController1 ??=
                               FormFieldController<String>(
                             _model.dropDownStatusValue1 ??= '2',
                           ),
                           options: List<String>.from(['1', '2']),
-                          optionLabels: ['Hà Nội', 'Hưng Yên'],
+                          optionLabels: const ['Hà Nội', 'Hưng Yên'],
                           onChanged: (val) =>
                               setState(() => _model.dropDownStatusValue1 = val),
                           width: double.infinity,
@@ -152,7 +150,7 @@ class _TimeKeepingLocationFilterWidgetState
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderWidth: 2.0,
                           borderRadius: 8.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
+                          margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -162,7 +160,7 @@ class _TimeKeepingLocationFilterWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                         child: Text(
                           'Quận/Huyện',
                           style:
@@ -174,14 +172,14 @@ class _TimeKeepingLocationFilterWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                         child: FlutterFlowDropDown<String>(
                           controller: _model.dropDownStatusValueController2 ??=
                               FormFieldController<String>(
                             _model.dropDownStatusValue2 ??= '2',
                           ),
                           options: List<String>.from(['1', '2']),
-                          optionLabels: ['Hà Nội', 'Hưng Yên'],
+                          optionLabels: const ['Hà Nội', 'Hưng Yên'],
                           onChanged: (val) =>
                               setState(() => _model.dropDownStatusValue2 = val),
                           width: double.infinity,
@@ -202,7 +200,7 @@ class _TimeKeepingLocationFilterWidgetState
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderWidth: 2.0,
                           borderRadius: 8.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
+                          margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -212,7 +210,7 @@ class _TimeKeepingLocationFilterWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                         child: Text(
                           'Xã',
                           style:
@@ -224,14 +222,14 @@ class _TimeKeepingLocationFilterWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                         child: FlutterFlowDropDown<String>(
                           controller: _model.dropDownStatusValueController3 ??=
                               FormFieldController<String>(
                             _model.dropDownStatusValue3 ??= '2',
                           ),
                           options: List<String>.from(['1', '2']),
-                          optionLabels: ['Hà Nội', 'Hưng Yên'],
+                          optionLabels: const ['Hà Nội', 'Hưng Yên'],
                           onChanged: (val) =>
                               setState(() => _model.dropDownStatusValue3 = val),
                           width: double.infinity,
@@ -252,7 +250,7 @@ class _TimeKeepingLocationFilterWidgetState
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderWidth: 2.0,
                           borderRadius: 8.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
+                          margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -262,7 +260,7 @@ class _TimeKeepingLocationFilterWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                         child: Text(
                           'Địa chỉ cụ thể',
                           style:
@@ -327,7 +325,7 @@ class _TimeKeepingLocationFilterWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                         child: Text(
                           'Trạng thái hoạt động',
                           style:
@@ -339,14 +337,14 @@ class _TimeKeepingLocationFilterWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                         child: FlutterFlowDropDown<String>(
                           controller: _model.dropDownStatusValueController4 ??=
                               FormFieldController<String>(
                             _model.dropDownStatusValue4 ??= '2',
                           ),
                           options: List<String>.from(['1', '2']),
-                          optionLabels: ['Không hoạt động', 'Hoạt động'],
+                          optionLabels: const ['Không hoạt động', 'Hoạt động'],
                           onChanged: (val) =>
                               setState(() => _model.dropDownStatusValue4 = val),
                           width: double.infinity,
@@ -367,7 +365,7 @@ class _TimeKeepingLocationFilterWidgetState
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderWidth: 2.0,
                           borderRadius: 8.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
+                          margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -375,13 +373,13 @@ class _TimeKeepingLocationFilterWidgetState
                           isMultiSelect: false,
                         ),
                       ),
-                    ].divide(SizedBox(height: 8.0)),
+                    ].divide(const SizedBox(height: 8.0)),
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -394,10 +392,10 @@ class _TimeKeepingLocationFilterWidgetState
                       text: 'Xoá bộ lọc',
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -423,11 +421,11 @@ class _TimeKeepingLocationFilterWidgetState
                       text: 'Xác nhận',
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFF33BA45),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: const Color(0xFF33BA45),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Nunito Sans',
@@ -435,7 +433,7 @@ class _TimeKeepingLocationFilterWidgetState
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -443,7 +441,7 @@ class _TimeKeepingLocationFilterWidgetState
                       ),
                     ),
                   ),
-                ].divide(SizedBox(width: 16.0)),
+                ].divide(const SizedBox(width: 16.0)),
               ),
             ),
           ],

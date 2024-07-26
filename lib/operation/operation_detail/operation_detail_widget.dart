@@ -7,8 +7,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/operation/operation_update/operation_update_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'operation_detail_model.dart';
 export 'operation_detail_model.dart';
 
@@ -39,15 +37,15 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
     _model = createModel(context, () => OperationDetailModel());
 
     _model.textController1 ??=
-        TextEditingController(text: widget!.operationDetail?.name);
+        TextEditingController(text: widget.operationDetail?.name);
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??=
-        TextEditingController(text: widget!.operationDetail?.content);
+        TextEditingController(text: widget.operationDetail?.content);
     _model.textFieldFocusNode2 ??= FocusNode();
 
     _model.textController3 ??=
-        TextEditingController(text: widget!.operationDetail?.description);
+        TextEditingController(text: widget.operationDetail?.description);
     _model.textFieldFocusNode3 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -63,17 +61,17 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
           width: double.infinity,
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 650.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 3.0,
                 color: Color(0x33000000),
@@ -89,19 +87,19 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
               width: 1.0,
             ),
           ),
-          alignment: AlignmentDirectional(0.0, 1.0),
+          alignment: const AlignmentDirectional(0.0, 1.0),
           child: Form(
             key: _model.formKey,
             autovalidateMode: AutovalidateMode.disabled,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: SingleChildScrollView(
                         primary: false,
                         child: Column(
@@ -109,7 +107,7 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -199,7 +197,7 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 16.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -264,7 +262,7 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                contentPadding: EdgeInsets.all(16.0),
+                                contentPadding: const EdgeInsets.all(16.0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -328,7 +326,7 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 16.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -345,9 +343,9 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                               controller: _model.dropDownValueController ??=
                                   FormFieldController<String>(
                                 _model.dropDownValue ??=
-                                    widget!.operationDetail?.actionType,
+                                    widget.operationDetail?.actionType,
                               ),
-                              options: [
+                              options: const [
                                 'submit_text',
                                 'image',
                                 'upload_file',
@@ -376,7 +374,7 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 1.0,
                               borderRadius: 8.0,
-                              margin: EdgeInsetsDirectional.fromSTEB(
+                              margin: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 0.0),
                               hidesUnderline: true,
                               disabled: '1' == '1',
@@ -399,7 +397,7 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                 Expanded(
                                   child: SwitchListTile.adaptive(
                                     value: _model.switchListTileValue ??=
-                                        widget!.operationDetail?.status ==
+                                        widget.operationDetail?.status ==
                                                 'done'
                                             ? true
                                             : false,
@@ -408,7 +406,7 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                         : (newValue) async {
                                             setState(() =>
                                                 _model.switchListTileValue =
-                                                    newValue!);
+                                                    newValue);
                                           },
                                     title: Text(
                                       'Trạng thái hoạt động:',
@@ -431,23 +429,23 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                         ListTileControlAffinity.trailing,
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
-                          ].divide(SizedBox(height: 16.0)),
+                          ].divide(const SizedBox(height: 16.0)),
                         ),
                       ),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 12.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
@@ -456,9 +454,9 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                               text: 'Hủy',
                               options: FFButtonOptions(
                                 height: 44.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -493,11 +491,11 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: OperationUpdateWidget(
                                         operationUpdate:
-                                            widget!.operationDetail,
+                                            widget.operationDetail,
                                       ),
                                     );
                                   },
@@ -508,9 +506,9 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                               text: 'Chỉnh sửa',
                               options: FFButtonOptions(
                                 height: 44.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -521,7 +519,7 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),

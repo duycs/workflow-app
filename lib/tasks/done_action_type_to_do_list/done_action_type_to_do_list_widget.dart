@@ -2,8 +2,6 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'done_action_type_to_do_list_model.dart';
 export 'done_action_type_to_do_list_model.dart';
 
@@ -63,7 +61,7 @@ class _DoneActionTypeToDoListWidgetState
           ),
           child: Checkbox(
             value: _model.checkboxValue ??=
-                widget!.listData?.operationsId?.status == 'done',
+                widget.listData?.operationsId.status == 'done',
             onChanged: ('1' == '1')
                 ? null
                 : (newValue) async {
@@ -79,7 +77,7 @@ class _DoneActionTypeToDoListWidgetState
         ),
         Expanded(
           child: Text(
-            widget!.listData!.operationsId.content,
+            widget.listData!.operationsId.content,
             style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'Nunito Sans',
                   letterSpacing: 0.0,

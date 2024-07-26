@@ -1,20 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'timekeeping_management_list_filter_widget.dart'
     show TimekeepingManagementListFilterWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class TimekeepingManagementListFilterModel
     extends FlutterFlowModel<TimekeepingManagementListFilterWidget> {
@@ -99,16 +92,16 @@ class TimekeepingManagementListFilterModel
       ).toString().toString()}\"}}}]}',
     );
 
-    if ((apiResultGetListBranch?.succeeded ?? true)) {
+    if ((apiResultGetListBranch.succeeded ?? true)) {
       listBranch = BranchListDataStruct.maybeFromMap(
-              (apiResultGetListBranch?.jsonBody ?? ''))!
+              (apiResultGetListBranch.jsonBody ?? ''))!
           .data
           .toList()
           .cast<BranchListStruct>();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetListBranch?.jsonBody ?? ''),
+        jsonErrors: (apiResultGetListBranch.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -119,7 +112,7 @@ class TimekeepingManagementListFilterModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -145,16 +138,16 @@ class TimekeepingManagementListFilterModel
             ).toString().toString() : dropDown1Value}\"}}}]}',
     );
 
-    if ((apiResultListDeparment?.succeeded ?? true)) {
+    if ((apiResultListDeparment.succeeded ?? true)) {
       listDepartment = DepartmentListDataStruct.maybeFromMap(
-              (apiResultListDeparment?.jsonBody ?? ''))!
+              (apiResultListDeparment.jsonBody ?? ''))!
           .data
           .toList()
           .cast<DepartmentListStruct>();
     } else {
       checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultListDeparment?.jsonBody ?? ''),
+        jsonErrors: (apiResultListDeparment.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock1!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -165,7 +158,7 @@ class TimekeepingManagementListFilterModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -191,16 +184,16 @@ class TimekeepingManagementListFilterModel
             ).toString().toString() : dropDown2Value}\"}}}]}',
     );
 
-    if ((apiResuitListStaffs?.succeeded ?? true)) {
+    if ((apiResuitListStaffs.succeeded ?? true)) {
       listStaffs = StaffListDataStruct.maybeFromMap(
-              (apiResuitListStaffs?.jsonBody ?? ''))!
+              (apiResuitListStaffs.jsonBody ?? ''))!
           .data
           .toList()
           .cast<StaffListStruct>();
     } else {
       checkRefreshTokenBlock3 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResuitListStaffs?.jsonBody ?? ''),
+        jsonErrors: (apiResuitListStaffs.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock3!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -211,7 +204,7 @@ class TimekeepingManagementListFilterModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -235,9 +228,9 @@ class TimekeepingManagementListFilterModel
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"published\"}}]}',
     );
 
-    if ((apiResultGetListShifts?.succeeded ?? true)) {
+    if ((apiResultGetListShifts.succeeded ?? true)) {
       listShifts = (getJsonField(
-        (apiResultGetListShifts?.jsonBody ?? ''),
+        (apiResultGetListShifts.jsonBody ?? ''),
         r'''$.data''',
         true,
       )!
@@ -250,7 +243,7 @@ class TimekeepingManagementListFilterModel
     } else {
       checkRefreshTokenBlock2 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetListShifts?.jsonBody ?? ''),
+        jsonErrors: (apiResultGetListShifts.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock2!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -261,7 +254,7 @@ class TimekeepingManagementListFilterModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
