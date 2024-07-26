@@ -11,10 +11,13 @@ import '/training/study_program/filter_study_program/filter_study_program_widget
 import '/training/study_program/study_program_create/study_program_create_widget.dart';
 import '/training/study_program/study_program_edit/study_program_edit_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'study_program_list_model.dart';
@@ -61,7 +64,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
       if (_model.tokenReloadStudyProgramList!) {
         _model.isShow = true;
         setState(() {});
-        if (widget.showModal == 'LessonCreate') {
+        if (widget!.showModal == 'LessonCreate') {
           await showDialog(
             context: context,
             builder: (dialogContext) {
@@ -69,17 +72,17 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                 elevation: 0,
                 insetPadding: EdgeInsets.zero,
                 backgroundColor: Colors.transparent,
-                alignment: const AlignmentDirectional(0.0, 1.0)
+                alignment: AlignmentDirectional(0.0, 1.0)
                     .resolve(Directionality.of(context)),
                 child: GestureDetector(
                   onTap: () => _model.unfocusNode.canRequestFocus
                       ? FocusScope.of(context).requestFocus(_model.unfocusNode)
                       : FocusScope.of(context).unfocus(),
                   child: StudyProgramCreateWidget(
-                    itemLesstion: widget.itemLesstion,
-                    programsItem: widget.programsItem,
-                    itemListLesstion: widget.itemListLession,
-                    imageProgram: widget.imagesProgram,
+                    itemLesstion: widget!.itemLesstion,
+                    programsItem: widget!.programsItem,
+                    itemListLesstion: widget!.itemListLession,
+                    imageProgram: widget!.imagesProgram,
                     callBackList: () async {
                       _model.checkShow = null;
                       _model.dataList = [];
@@ -104,7 +107,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
             },
           ).then((value) => setState(() {}));
         }
-        if (widget.showModal == 'StudyProgramEdit') {
+        if (widget!.showModal == 'StudyProgramEdit') {
           await showDialog(
             context: context,
             builder: (dialogContext) {
@@ -112,47 +115,47 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                 elevation: 0,
                 insetPadding: EdgeInsets.zero,
                 backgroundColor: Colors.transparent,
-                alignment: const AlignmentDirectional(0.0, 0.0)
+                alignment: AlignmentDirectional(0.0, 0.0)
                     .resolve(Directionality.of(context)),
                 child: GestureDetector(
                   onTap: () => _model.unfocusNode.canRequestFocus
                       ? FocusScope.of(context).requestFocus(_model.unfocusNode)
                       : FocusScope.of(context).unfocus(),
                   child: ActionChinhSuaWidget(
-                    dataDetail: widget.dataProframDeatail,
+                    dataDetail: widget!.dataProframDeatail,
                     checkpage: 'programEdit',
-                    checkMarket: ((widget.dataProframDeatail?.template == 0) &&
+                    checkMarket: ((widget!.dataProframDeatail?.template == 0) &&
                                 (getJsonField(
                                       FFAppState().staffOrganization,
                                       r'''$.authors[0]''',
                                     ) !=
                                     null) &&
-                                ((widget.dataProframDeatail == null) ||
-                                    ((widget.dataProframDeatail?.authorId !=
+                                ((widget!.dataProframDeatail == null) ||
+                                    ((widget!.dataProframDeatail?.authorId !=
                                                 null &&
-                                            widget.dataProframDeatail
+                                            widget!.dataProframDeatail
                                                     ?.authorId !=
                                                 '') &&
-                                        (widget.dataProframDeatail?.authorId ==
+                                        (widget!.dataProframDeatail?.authorId ==
                                             getJsonField(
                                               FFAppState().staffOrganization,
                                               r'''$.authors[0]''',
                                             ).toString().toString()))) &&
-                                (widget.dataProframDeatail
+                                (widget!.dataProframDeatail
                                             ?.copyrightProgramId ==
                                         null ||
-                                    widget.dataProframDeatail
+                                    widget!.dataProframDeatail
                                             ?.copyrightProgramId ==
                                         '') &&
-                                (widget.dataProframDeatail?.version == 0)) ==
+                                (widget!.dataProframDeatail?.version == 0)) ==
                             true
                         ? true
                         : false,
-                    itemProgram: widget.programsItem,
-                    itemLessions: widget.itemListLession,
-                    itemLession: widget.itemLesstion,
+                    itemProgram: widget!.programsItem,
+                    itemLessions: widget!.itemListLession,
+                    itemLession: widget!.itemLesstion,
                     checkCodeCertificate:
-                        widget.dataProframDeatail!.certificateId.code,
+                        widget!.dataProframDeatail!.certificateId.code,
                     callBackList2: () async {
                       _model.checkShow = null;
                       _model.dataList = [];
@@ -218,7 +221,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                       elevation: 0,
                       insetPadding: EdgeInsets.zero,
                       backgroundColor: Colors.transparent,
-                      alignment: const AlignmentDirectional(0.0, 1.0)
+                      alignment: AlignmentDirectional(0.0, 1.0)
                           .resolve(Directionality.of(context)),
                       child: GestureDetector(
                         onTap: () => _model.unfocusNode.canRequestFocus
@@ -226,7 +229,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                 .requestFocus(_model.unfocusNode)
                             : FocusScope.of(context).unfocus(),
                         child: StudyProgramCreateWidget(
-                          itemLesstion: widget.itemLesstion,
+                          itemLesstion: widget!.itemLesstion,
                           callBackList: () async {
                             _model.checkShow = null;
                             _model.dataList = [];
@@ -286,21 +289,21 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                     letterSpacing: 0.0,
                   ),
             ),
-            actions: const [],
+            actions: [],
             centerTitle: false,
             elevation: 1.0,
           ),
           body: Visibility(
             visible: _model.isShow == true,
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if ((widget.checkpage == 'profile') && ('1' == '2'))
+                  if ((widget!.checkpage == 'profile') && ('1' == '2'))
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -315,12 +318,12 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                   'LessonsList',
                                   queryParameters: {
                                     'checkpage': serializeParam(
-                                      widget.checkpage,
+                                      widget!.checkpage,
                                       ParamType.String,
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -335,7 +338,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                   color: FlutterFlowTheme.of(context).secondary,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Text(
                                   'Danh sách bài học',
                                   style: FlutterFlowTheme.of(context)
@@ -361,12 +364,12 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                   'TestList',
                                   queryParameters: {
                                     'checkpage': serializeParam(
-                                      widget.checkpage,
+                                      widget!.checkpage,
                                       ParamType.String,
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -381,7 +384,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                   color: FlutterFlowTheme.of(context).error,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Text(
                                   'Danh sách bài thi',
                                   style: FlutterFlowTheme.of(context)
@@ -396,12 +399,12 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 16.0)),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
                     ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 12.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 12.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -412,7 +415,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                             focusNode: _model.textFieldNameSearchFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.textFieldNameSearchTextController',
-                              const Duration(milliseconds: 500),
+                              Duration(milliseconds: 500),
                               () async {
                                 _model.nameSearch = _model
                                     .textFieldNameSearchTextController.text;
@@ -473,9 +476,9 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
                                   .primaryBackground,
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 0.0),
-                              prefixIcon: const Icon(
+                              prefixIcon: Icon(
                                 Icons.search_sharp,
                               ),
                               suffixIcon: _model
@@ -593,12 +596,12 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                       ],
                     ),
                   ),
-                  if ('${(_model.nameSearch != null && _model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.lessionsNameSearch != null && _model.lessionsNameSearch != '') && (_model.lessionsNameSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${_model.lessionsNameSearch}\"}}}}' : ' '}${(_model.dateStartSearch != null && _model.dateStartSearch != '') && (_model.dateStartSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSearch}\"}}}}' : ' '}${(_model.dateEndSearch != null && _model.dateEndSearch != '') && (_model.dateEndSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${_model.dateEndSearch}\"}}}}' : ' '}${(_model.status != '') && (_model.status != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.status}\"}}' : ' '}' !=
+                  if ('${(_model.nameSearch != null && _model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.lessionsNameSearch != null && _model.lessionsNameSearch != '') && (_model.lessionsNameSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${_model.lessionsNameSearch}\"}}}}' : ' '}${(_model.dateStartSearch != null && _model.dateStartSearch != '') && (_model.dateStartSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSearch}\"}}}}' : ' '}${(_model.dateEndSearch != null && _model.dateEndSearch != '') && (_model.dateEndSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${_model.dateEndSearch}\"}}}}' : ' '}${(_model.status != null && _model.status != '') && (_model.status != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.status}\"}}' : ' '}' !=
                       '     ')
                     Align(
-                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                      alignment: AlignmentDirectional(-1.0, 0.0),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             12.0, 0.0, 12.0, 0.0),
                         child: Text(
                           '#Kết quả hiển thị theo bộ lọc',
@@ -615,7 +618,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                       child: PagedListView<ApiPagingParams, dynamic>.separated(
                         pagingController: _model.setListViewController1(
                           (nextPageMarker) =>
@@ -625,12 +628,12 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                             limit: 20,
                             filter: '{\"_and\":[{}${(_model.nameSearch != null && _model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.lessionsNameSearch != null && _model.lessionsNameSearch != '') && (_model.lessionsNameSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${_model.lessionsNameSearch}\"}}}}' : ' '}${(_model.dateStartSearch != null && _model.dateStartSearch != '') && (_model.dateStartSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSearch}\"}}}}' : ' '}${(_model.dateEndSearch != null && _model.dateEndSearch != '') && (_model.dateEndSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
                                 return DateTime.parse(var1)
-                                    .add(const Duration(days: 1))
+                                    .add(Duration(days: 1))
                                     .toString();
                               }(_model.dateEndSearch!)}\"}}}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
                               FFAppState().staffLogin,
                               r'''$.organization_id''',
-                            ).toString()}\"}}'}${(_model.status != '') && (_model.status != ' ') ? ',{\"status\":{\"_eq\":\"${_model.status}\"}}' : ' '},{\"copyright_program_id\":{\"_null\":true}},{\"copyright_organization_id\":{\"_null\":true}}]}',
+                            ).toString()}\"}}'}${(_model.status != null && _model.status != '') && (_model.status != ' ') ? ',{\"status\":{\"_eq\":\"${_model.status}\"}}' : ' '},{\"copyright_program_id\":{\"_null\":true}},{\"copyright_organization_id\":{\"_null\":true}}]}',
                           ),
                         ),
                         padding: EdgeInsets.zero,
@@ -638,7 +641,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                         shrinkWrap: true,
                         reverse: false,
                         scrollDirection: Axis.vertical,
-                        separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                        separatorBuilder: (_, __) => SizedBox(height: 10.0),
                         builderDelegate: PagedChildBuilderDelegate<dynamic>(
                           // Customize what your widget looks like when it's loading the first page.
                           firstPageProgressIndicatorBuilder: (_) => Center(
@@ -664,8 +667,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                               ),
                             ),
                           ),
-                          noItemsFoundIndicatorBuilder: (_) => const Center(
-                            child: SizedBox(
+                          noItemsFoundIndicatorBuilder: (_) => Center(
+                            child: Container(
                               width: double.infinity,
                               child: DataNotFoundWidget(),
                             ),
@@ -675,13 +678,13 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                 .listViewPagingController1!
                                 .itemList![dataListViewIndex];
                             return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 2.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 12.0, 4.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -698,7 +701,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                             ),
                                           }.withoutNulls,
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
+                                            kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
                                               transitionType:
                                                   PageTransitionType.fade,
@@ -719,7 +722,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                   .primaryBackground
                                               : FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
-                                          boxShadow: const [
+                                          boxShadow: [
                                             BoxShadow(
                                               blurRadius: 2.0,
                                               color: Color(0x33000000),
@@ -736,7 +739,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 0.0, 5.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -750,11 +753,11 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       10.0,
@@ -888,12 +891,12 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                     flex: 2,
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Container(
                                                         width: double.infinity,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: Column(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -909,7 +912,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                 Expanded(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             4.0,
@@ -995,7 +998,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                                       true
                                                                                   ? true
                                                                                   : false,
-                                                                              checkpage: widget.checkpage,
+                                                                              checkpage: widget!.checkpage,
                                                                               idProgram: dataListViewItem.id,
                                                                               checkCodeCertificate: dataListViewItem.certificateId.code,
                                                                               callBackList2: () async {
@@ -1028,20 +1031,20 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
                                                                           8.0),
                                                               child: Text(
-                                                                '${valueOrDefault<String>(
+                                                                '${'${valueOrDefault<String>(
                                                                   dataListViewItem
                                                                       .lessions
                                                                       .length
                                                                       .toString(),
                                                                   '0',
-                                                                )} bài học',
+                                                                )} bài học'}',
                                                                 maxLines: 2,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
@@ -1072,7 +1075,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                     'undefined'))
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1095,7 +1098,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                       ),
                                                                 ),
                                                               ),
-                                                            if ((widget.checkpage ==
+                                                            if ((widget!.checkpage ==
                                                                     'authorProfile') &&
                                                                 ('1' == '2'))
                                                               Row(
@@ -1131,7 +1134,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                       builder:
                                                                           (context) =>
                                                                               Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             8.0,
                                                                             0.0,
                                                                             4.0,
@@ -1147,14 +1150,14 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                                   elevation: 0,
                                                                                   insetPadding: EdgeInsets.zero,
                                                                                   backgroundColor: Colors.transparent,
-                                                                                  alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                   child: GestureDetector(
                                                                                     onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
                                                                                     child: AddProgramMarketWidget(
                                                                                       id: dataListViewItem.id,
                                                                                       price: dataListViewItem.price,
                                                                                       version: dataListViewItem.version,
-                                                                                      checkPage: widget.checkpage,
+                                                                                      checkPage: widget!.checkpage,
                                                                                     ),
                                                                                   ),
                                                                                 );
@@ -1176,12 +1179,12 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                               FFButtonOptions(
                                                                             height:
                                                                                 32.0,
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 6.0,
                                                                                 0.0,
                                                                                 8.0,
                                                                                 0.0),
-                                                                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -1222,7 +1225,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                       builder:
                                                                           (context) =>
                                                                               Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             8.0,
                                                                             0.0,
                                                                             4.0,
@@ -1238,14 +1241,14 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                                   elevation: 0,
                                                                                   insetPadding: EdgeInsets.zero,
                                                                                   backgroundColor: Colors.transparent,
-                                                                                  alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                   child: GestureDetector(
                                                                                     onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
                                                                                     child: AddProgramMarketWidget(
                                                                                       id: dataListViewItem.id,
                                                                                       price: dataListViewItem.price,
                                                                                       version: dataListViewItem.version,
-                                                                                      checkPage: widget.checkpage,
+                                                                                      checkPage: widget!.checkpage,
                                                                                       category: dataListViewItem.categoryId,
                                                                                       domain: dataListViewItem.domainId,
                                                                                     ),
@@ -1258,7 +1261,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                           text:
                                                                               'Market',
                                                                           icon:
-                                                                              const Icon(
+                                                                              Icon(
                                                                             Icons.check,
                                                                             color:
                                                                                 Color(0xFF38B647),
@@ -1269,12 +1272,12 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                               FFButtonOptions(
                                                                             height:
                                                                                 32.0,
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 6.0,
                                                                                 0.0,
                                                                                 8.0,
                                                                                 0.0),
-                                                                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -1359,7 +1362,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                         ''))
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             4.0,
                                                                             0.0,
@@ -1386,14 +1389,14 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                       ),
                                                     ),
                                                   ),
-                                                ].divide(const SizedBox(width: 4.0)),
+                                                ].divide(SizedBox(width: 4.0)),
                                               ),
                                             ),
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   1.0, 0.0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 8.0, 8.0, 12.0),
                                                 child: InkWell(
@@ -1436,7 +1439,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                   ''))
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       4.0,
                                                                       0.0,
@@ -1461,7 +1464,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           2.0,
@@ -1551,7 +1554,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                           size: 14.0,
                                                         ),
                                                     ].divide(
-                                                        const SizedBox(width: 8.0)),
+                                                        SizedBox(width: 8.0)),
                                                   ),
                                                 ),
                                               ),
@@ -1579,7 +1582,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                 dataListTestsView[
                                                     dataListTestsViewIndex];
                                             return Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 12.0, 4.0),
                                               child: InkWell(
@@ -1630,7 +1633,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -1652,7 +1655,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(6.0),
+                                                        EdgeInsets.all(6.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1739,7 +1742,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                               .normal,
                                                                     ),
                                                               ),
-                                                            ].divide(const SizedBox(
+                                                            ].divide(SizedBox(
                                                                 height: 4.0)),
                                                           ),
                                                         ),
@@ -1807,7 +1810,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                               extra: <String,
                                                                   dynamic>{
                                                                 kTransitionInfoKey:
-                                                                    const TransitionInfo(
+                                                                    TransitionInfo(
                                                                   hasTransition:
                                                                       true,
                                                                   transitionType:
@@ -1826,14 +1829,14 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                             width: 70.0,
                                                             height: 30.0,
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         12.0,
                                                                         0.0,
                                                                         12.0,
                                                                         0.0),
                                                             iconPadding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1861,7 +1864,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                     ),
                                                             elevation: 3.0,
                                                             borderSide:
-                                                                const BorderSide(
+                                                                BorderSide(
                                                               color: Colors
                                                                   .transparent,
                                                               width: 1.0,
@@ -1881,7 +1884,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                           size: 24.0,
                                                         ),
                                                       ].divide(
-                                                          const SizedBox(width: 8.0)),
+                                                          SizedBox(width: 8.0)),
                                                     ),
                                                   ),
                                                 ),
@@ -1910,7 +1913,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                 dataListLessionsView[
                                                     dataListLessionsViewIndex];
                                             return Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 12.0, 4.0),
                                               child: InkWell(
@@ -1936,7 +1939,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                       ),
                                                       'checkPage':
                                                           serializeParam(
-                                                        widget.checkpage,
+                                                        widget!.checkpage,
                                                         ParamType.String,
                                                       ),
                                                     }.withoutNulls,
@@ -1953,7 +1956,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(6.0),
+                                                        EdgeInsets.all(6.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.min,
@@ -2113,7 +2116,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                     extra: <String,
                                                                         dynamic>{
                                                                       kTransitionInfoKey:
-                                                                          const TransitionInfo(
+                                                                          TransitionInfo(
                                                                         hasTransition:
                                                                             true,
                                                                         transitionType:
@@ -2129,13 +2132,13 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                     FFButtonOptions(
                                                                   width: 70.0,
                                                                   height: 30.0,
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           12.0,
                                                                           0.0,
                                                                           12.0,
                                                                           0.0),
-                                                                  iconPadding: const EdgeInsetsDirectional
+                                                                  iconPadding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -2162,7 +2165,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                   elevation:
                                                                       3.0,
                                                                   borderSide:
-                                                                      const BorderSide(
+                                                                      BorderSide(
                                                                     color: Colors
                                                                         .transparent,
                                                                     width: 1.0,
@@ -2185,7 +2188,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                           size: 24.0,
                                                         ),
                                                       ].divide(
-                                                          const SizedBox(width: 8.0)),
+                                                          SizedBox(width: 8.0)),
                                                     ),
                                                   ),
                                                 ),

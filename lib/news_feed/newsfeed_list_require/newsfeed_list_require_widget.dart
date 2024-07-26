@@ -1,15 +1,21 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/news_feed/action_newsfeed/action_newsfeed_widget.dart';
 import '/news_feed/comment_newsfeed/comment_newsfeed_widget.dart';
 import '/news_feed/d_n_f_newsfeed/d_n_f_newsfeed_widget.dart';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'newsfeed_list_require_model.dart';
@@ -76,7 +82,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
               context.pushNamed(
                 'Newsfeed',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -94,7 +100,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -105,7 +111,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
               //
               // The list view is shrink wrapped to prevent the page from having two scrollable elements. The parent column is the element that is scrollable and it provides a smooth user experience.
               Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
             child: PagedListView<ApiPagingParams, dynamic>.separated(
               pagingController: _model.setListViewController(
                 (nextPageMarker) => NewsfeedGroup.newsfeedListCall.call(
@@ -113,12 +119,12 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                   accessToken: FFAppState().accessToken,
                   limit: 20,
                   filter: () {
-                    if (widget.checkScope == 'Tổ chức') {
+                    if (widget!.checkScope == 'Tổ chức') {
                       return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                         FFAppState().staffOrganization,
                         r'''$.id''',
                       ).toString()}\"}}},{\"branch_id\":{\"_null\":true}},{\"department_id\":{\"_null\":true}},{\"status\":{\"_eq\":\"require\"}}]}';
-                    } else if (widget.checkScope == 'Chi nhánh') {
+                    } else if (widget!.checkScope == 'Chi nhánh') {
                       return () {
                         if (FFAppState().user.role ==
                             '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
@@ -157,7 +163,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                           return ' ';
                         }
                       }();
-                    } else if (widget.checkScope == 'Bộ phận') {
+                    } else if (widget!.checkScope == 'Bộ phận') {
                       return () {
                         if (FFAppState().user.role ==
                             '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
@@ -206,7 +212,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
               primary: false,
               reverse: false,
               scrollDirection: Axis.vertical,
-              separatorBuilder: (_, __) => const SizedBox(height: 16.0),
+              separatorBuilder: (_, __) => SizedBox(height: 16.0),
               builderDelegate: PagedChildBuilderDelegate<dynamic>(
                 // Customize what your widget looks like when it's loading the first page.
                 firstPageProgressIndicatorBuilder: (_) => Center(
@@ -232,7 +238,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                     ),
                   ),
                 ),
-                noItemsFoundIndicatorBuilder: (_) => const DNFNewsfeedWidget(),
+                noItemsFoundIndicatorBuilder: (_) => DNFNewsfeedWidget(),
                 itemBuilder: (context, _, newsfeedListRequireIndex) {
                   final newsfeedListRequireItem = _model
                       .listViewPagingController!
@@ -244,13 +250,13 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(12.0),
+                      padding: EdgeInsets.all(12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -273,7 +279,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -297,7 +303,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(2.0),
+                                      padding: EdgeInsets.all(2.0),
                                       child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(90.0),
@@ -321,7 +327,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -446,7 +452,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -490,7 +496,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                               ((newsfeedListRequireItem.videos.length > 0) ||
                                   (newsfeedListRequireItem.files.length > 0)))
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -507,7 +513,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -548,7 +554,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                               ((newsfeedListRequireItem.videos.length == 0) &&
                                   (newsfeedListRequireItem.files.length == 0)))
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: custom_widgets.FormatText(
                                 width: 100.0,
@@ -565,7 +571,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -581,7 +587,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(8.0),
                                 child: Builder(
                                   builder: (context) {
                                     final imageList =
@@ -591,7 +597,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       gridDelegate:
-                                          const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                          SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
                                       ),
                                       crossAxisSpacing: 6.0,
@@ -642,7 +648,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                                               8.0),
                                                     ),
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Text(
                                                       '+ ${formatNumber(
@@ -691,7 +697,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                               child: Visibility(
                                 visible: '1' == '2',
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Builder(
                                     builder: (context) {
                                       final videoList = newsfeedListRequireItem
@@ -702,7 +708,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                         physics:
                                             const NeverScrollableScrollPhysics(),
                                         gridDelegate:
-                                            const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                            SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
                                         ),
                                         crossAxisSpacing: 6.0,
@@ -734,18 +740,18 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                               ),
                             ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 6.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                const Icon(
+                                Icon(
                                   Icons.favorite,
                                   color: Color(0xFFF40A0A),
                                   size: 18.0,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 16.0, 0.0),
                                   child: Text(
                                     newsfeedListRequireItem.reacts.length
@@ -767,7 +773,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                   size: 18.0,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 16.0, 0.0),
                                   child: Text(
                                     '${newsfeedListRequireItem.comments.length.toString()} bình luận',
@@ -781,7 +787,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                         ),
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 3.0)),
+                              ].divide(SizedBox(width: 3.0)),
                             ),
                           ),
                           Row(
@@ -796,7 +802,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                       .length ==
                                   0)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 8.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -821,7 +827,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 4.0, 8.0, 4.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
@@ -848,7 +854,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
-                                          ].divide(const SizedBox(width: 4.0)),
+                                          ].divide(SizedBox(width: 4.0)),
                                         ),
                                       ),
                                     ),
@@ -862,7 +868,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                       .length >
                                   0)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 8.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -893,14 +899,14 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 4.0, 8.0, 4.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           children: [
-                                            const Icon(
+                                            Icon(
                                               Icons.favorite,
                                               color: Color(0xFFF40A0A),
                                               size: 20.0,
@@ -918,7 +924,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
-                                          ].divide(const SizedBox(width: 4.0)),
+                                          ].divide(SizedBox(width: 4.0)),
                                         ),
                                       ),
                                     ),
@@ -970,7 +976,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                       borderRadius: BorderRadius.circular(90.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 4.0, 8.0, 4.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,

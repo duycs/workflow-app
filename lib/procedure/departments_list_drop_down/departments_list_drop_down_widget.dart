@@ -5,8 +5,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'departments_list_drop_down_model.dart';
 export 'departments_list_drop_down_model.dart';
@@ -119,7 +121,7 @@ class _DepartmentsListDropDownWidgetState
     return FlutterFlowDropDown<String>(
       controller: _model.dropDownValueController ??=
           FormFieldController<String>(
-        _model.dropDownValue ??= widget.id,
+        _model.dropDownValue ??= widget!.id,
       ),
       options: List<String>.from(_model.data.map((e) => e.id).toList()),
       optionLabels: _model.data.map((e) => e.name).toList(),
@@ -155,7 +157,7 @@ class _DepartmentsListDropDownWidgetState
       borderColor: FlutterFlowTheme.of(context).alternate,
       borderWidth: 1.0,
       borderRadius: 4.0,
-      margin: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+      margin: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
       hidesUnderline: true,
       isOverButton: true,
       isSearchable: true,

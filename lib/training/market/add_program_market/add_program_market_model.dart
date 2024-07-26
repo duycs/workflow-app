@@ -1,12 +1,21 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/training/market/checkbox_lessions/checkbox_lessions_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'add_program_market_widget.dart' show AddProgramMarketWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class AddProgramMarketModel extends FlutterFlowModel<AddProgramMarketWidget> {
   ///  Local state fields for this component.
@@ -156,7 +165,7 @@ class AddProgramMarketModel extends FlutterFlowModel<AddProgramMarketWidget> {
               '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"version\":{\"_eq\":\"${widget!.version?.toString()}\"}},{\"copyright_program_id\":{\"_eq\":\"${widget!.id}\"}}]}',
         );
 
-        if ((apiResultGetPreProgram.succeeded ?? true)) {
+        if ((apiResultGetPreProgram?.succeeded ?? true)) {
           deleteProgram = await action_blocks.tokenReload(context);
           if (!deleteProgram!) {
             return;
@@ -168,12 +177,12 @@ class AddProgramMarketModel extends FlutterFlowModel<AddProgramMarketWidget> {
         apiResultDeleteProgram = await StudyProgramGroup.deleteProgramCall.call(
           accessToken: FFAppState().accessToken,
           id: getJsonField(
-            (apiResultGetPreProgram.jsonBody ?? ''),
+            (apiResultGetPreProgram?.jsonBody ?? ''),
             r'''$.data[0].id''',
           ).toString().toString(),
         );
 
-        if ((apiResultDeleteProgram.succeeded ?? true)) {
+        if ((apiResultDeleteProgram?.succeeded ?? true)) {
         } else {
           return;
         }
@@ -194,7 +203,7 @@ class AddProgramMarketModel extends FlutterFlowModel<AddProgramMarketWidget> {
         filter: '{\"status\":{\"_eq\":\"published\"}}',
       );
 
-      if (!(getPrices.succeeded ?? true)) {
+      if (!(getPrices?.succeeded ?? true)) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -203,14 +212,14 @@ class AddProgramMarketModel extends FlutterFlowModel<AddProgramMarketWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
         return;
       }
       priceList = (getJsonField(
-        (getPrices.jsonBody ?? ''),
+        (getPrices?.jsonBody ?? ''),
         r'''$.data''',
         true,
       )!

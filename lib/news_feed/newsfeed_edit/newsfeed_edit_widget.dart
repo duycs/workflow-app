@@ -9,6 +9,7 @@ import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'newsfeed_edit_model.dart';
 export 'newsfeed_edit_model.dart';
@@ -43,27 +44,27 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      while (_model.loop < widget.newsFeedData!.images.length) {
+      while (_model.loop < widget!.newsFeedData!.images.length) {
         _model.listImageId =
-            widget.newsFeedData!.images.toList().cast<FileDataTypeStruct>();
+            widget!.newsFeedData!.images.toList().cast<FileDataTypeStruct>();
         setState(() {});
         _model.loop = _model.loop + 1;
         setState(() {});
       }
       _model.loop = 0;
       setState(() {});
-      while (_model.loop < widget.newsFeedData!.videos.length) {
+      while (_model.loop < widget!.newsFeedData!.videos.length) {
         _model.listVideoId =
-            widget.newsFeedData!.videos.toList().cast<FileDataTypeStruct>();
+            widget!.newsFeedData!.videos.toList().cast<FileDataTypeStruct>();
         setState(() {});
         _model.loop = _model.loop + 1;
         setState(() {});
       }
       _model.loop = 0;
       setState(() {});
-      while (_model.loop < widget.newsFeedData!.files.length) {
+      while (_model.loop < widget!.newsFeedData!.files.length) {
         _model.listFileId =
-            widget.newsFeedData!.files.toList().cast<FileDataTypeStruct>();
+            widget!.newsFeedData!.files.toList().cast<FileDataTypeStruct>();
         setState(() {});
         _model.loop = _model.loop + 1;
         setState(() {});
@@ -73,11 +74,11 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
     });
 
     _model.titleTextController ??=
-        TextEditingController(text: widget.newsFeedData?.title);
+        TextEditingController(text: widget!.newsFeedData?.title);
     _model.titleFocusNode ??= FocusNode();
 
     _model.contentTextController ??=
-        TextEditingController(text: widget.newsFeedData?.content);
+        TextEditingController(text: widget!.newsFeedData?.content);
     _model.contentFocusNode ??= FocusNode();
 
     _model.switchValue1 = true;
@@ -99,7 +100,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
     return SafeArea(
       child: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: Color(0xB20B191E),
         ),
         child: Column(
@@ -107,9 +108,9 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Align(
-              alignment: const AlignmentDirectional(1.0, 0.0),
+              alignment: AlignmentDirectional(1.0, 0.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 16.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 16.0),
                 child: FlutterFlowIconButton(
                   borderColor: Colors.transparent,
                   borderRadius: 30.0,
@@ -131,7 +132,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
               child: Material(
                 color: Colors.transparent,
                 elevation: 5.0,
-                shape: const RoundedRectangleBorder(
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(0.0),
                     bottomRight: Radius.circular(0.0),
@@ -143,7 +144,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    borderRadius: const BorderRadius.only(
+                    borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(0.0),
                       bottomRight: Radius.circular(0.0),
                       topLeft: Radius.circular(16.0),
@@ -152,7 +153,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -165,7 +166,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -173,7 +174,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           'Chỉnh sửa bảng tin',
@@ -190,7 +191,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                     ],
                                   ),
                                 ),
-                                const Divider(
+                                Divider(
                                   height: 4.0,
                                   thickness: 1.0,
                                   color: Color(0x66E0E3E7),
@@ -202,7 +203,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 8.0),
                                         child: Container(
                                           width: double.infinity,
@@ -250,7 +251,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                     BorderRadius.circular(4.0),
                                               ),
                                               focusedBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 1.0,
                                                 ),
@@ -258,7 +259,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                     BorderRadius.circular(4.0),
                                               ),
                                               errorBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 1.0,
                                                 ),
@@ -267,7 +268,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                               ),
                                               focusedErrorBorder:
                                                   OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 1.0,
                                                 ),
@@ -279,7 +280,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               contentPadding:
-                                                  const EdgeInsetsDirectional
+                                                  EdgeInsetsDirectional
                                                       .fromSTEB(16.0, 24.0,
                                                           20.0, 24.0),
                                             ),
@@ -298,7 +299,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 8.0),
                                         child: Container(
                                           width: double.infinity,
@@ -346,7 +347,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                     BorderRadius.circular(4.0),
                                               ),
                                               focusedBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 1.0,
                                                 ),
@@ -354,7 +355,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                     BorderRadius.circular(4.0),
                                               ),
                                               errorBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 1.0,
                                                 ),
@@ -363,7 +364,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                               ),
                                               focusedErrorBorder:
                                                   OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 1.0,
                                                 ),
@@ -375,7 +376,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               contentPadding:
-                                                  const EdgeInsetsDirectional
+                                                  EdgeInsetsDirectional
                                                       .fromSTEB(16.0, 24.0,
                                                           20.0, 24.0),
                                             ),
@@ -396,9 +397,9 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                     ],
                                   ),
                                 ),
-                                if (widget.newsFeedData!.images.isNotEmpty)
+                                if (widget!.newsFeedData!.images.length > 0)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Text(
                                       'Danh sách ảnh hiện tại: ',
@@ -410,7 +411,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                           ),
                                     ),
                                   ),
-                                if (widget.newsFeedData!.images.isNotEmpty)
+                                if (widget!.newsFeedData!.images.length > 0)
                                   Builder(
                                     builder: (context) {
                                       final list = _model.listImageId.toList();
@@ -423,7 +424,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                               (listIndex) {
                                             final listItem = list[listIndex];
                                             return Stack(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   1.0, -1.0),
                                               children: [
                                                 ClipRRect(
@@ -447,7 +448,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 4.0, 4.0, 0.0),
                                                   child: FlutterFlowIconButton(
@@ -457,7 +458,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                     borderWidth: 1.0,
                                                     buttonSize: 40.0,
                                                     fillColor:
-                                                        const Color(0x7FF1F4F8),
+                                                        Color(0x7FF1F4F8),
                                                     icon: Icon(
                                                       Icons.close_sharp,
                                                       color:
@@ -476,14 +477,14 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                 ),
                                               ],
                                             );
-                                          }).divide(const SizedBox(width: 12.0)),
+                                          }).divide(SizedBox(width: 12.0)),
                                         ),
                                       );
                                     },
                                   ),
-                                if (_model.listImage.isNotEmpty)
+                                if (_model.listImage.length > 0)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Text(
                                       'Danh sách ảnh mới được thêm: ',
@@ -495,7 +496,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                           ),
                                     ),
                                   ),
-                                if (_model.listImage.isNotEmpty)
+                                if (_model.listImage.length > 0)
                                   Builder(
                                     builder: (context) {
                                       final list = _model.listImage.toList();
@@ -508,7 +509,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                               (listIndex) {
                                             final listItem = list[listIndex];
                                             return Stack(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   1.0, -1.0),
                                               children: [
                                                 ClipRRect(
@@ -533,7 +534,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 4.0, 4.0, 0.0),
                                                   child: FlutterFlowIconButton(
@@ -543,7 +544,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                     borderWidth: 1.0,
                                                     buttonSize: 40.0,
                                                     fillColor:
-                                                        const Color(0x7FF1F4F8),
+                                                        Color(0x7FF1F4F8),
                                                     icon: Icon(
                                                       Icons.close_sharp,
                                                       color:
@@ -562,14 +563,14 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                 ),
                                               ],
                                             );
-                                          }).divide(const SizedBox(width: 12.0)),
+                                          }).divide(SizedBox(width: 12.0)),
                                         ),
                                       );
                                     },
                                   ),
-                                if (widget.newsFeedData!.files.isNotEmpty)
+                                if (widget!.newsFeedData!.files.length > 0)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Text(
                                       'Danh sách file hiện tại: ',
@@ -581,7 +582,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                           ),
                                     ),
                                   ),
-                                if (widget.newsFeedData!.files.isNotEmpty)
+                                if (widget!.newsFeedData!.files.length > 0)
                                   Builder(
                                     builder: (context) {
                                       final listFileUpload =
@@ -597,7 +598,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                   listFileUploadIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -648,16 +649,16 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                     setState(() {});
                                                   },
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                           );
                                         }),
                                       );
                                     },
                                   ),
-                                if (_model.listFile.isNotEmpty)
+                                if (_model.listFile.length > 0)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Text(
                                       'Danh sách file mới được thêm: ',
@@ -669,7 +670,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                           ),
                                     ),
                                   ),
-                                if (_model.listFile.isNotEmpty)
+                                if (_model.listFile.length > 0)
                                   Builder(
                                     builder: (context) {
                                       final listFileUpload =
@@ -685,7 +686,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                   listFileUploadIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -738,16 +739,16 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                     setState(() {});
                                                   },
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                           );
                                         }),
                                       );
                                     },
                                   ),
-                                if (widget.newsFeedData!.videos.isNotEmpty)
+                                if (widget!.newsFeedData!.videos.length > 0)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Text(
                                       'Danh sách video hiện tại: ',
@@ -759,7 +760,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                           ),
                                     ),
                                   ),
-                                if (widget.newsFeedData!.videos.isNotEmpty)
+                                if (widget!.newsFeedData!.videos.length > 0)
                                   Builder(
                                     builder: (context) {
                                       final listVideoUpload =
@@ -775,7 +776,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                   listVideoUploadIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -825,16 +826,16 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                     setState(() {});
                                                   },
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                           );
                                         }),
                                       );
                                     },
                                   ),
-                                if (_model.listVideo.isNotEmpty)
+                                if (_model.listVideo.length > 0)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Text(
                                       'Danh sách video mới được thêm: ',
@@ -846,7 +847,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                           ),
                                     ),
                                   ),
-                                if (_model.listVideo.isNotEmpty)
+                                if (_model.listVideo.length > 0)
                                   Builder(
                                     builder: (context) {
                                       final listVideoUpload =
@@ -862,7 +863,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                   listVideoUploadIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -914,7 +915,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                     setState(() {});
                                                   },
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                           );
                                         }),
@@ -925,29 +926,29 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                             ),
                           ),
                         ),
-                        const Divider(
+                        Divider(
                           height: 4.0,
                           thickness: 1.0,
                           color: Color(0x66E0E3E7),
                         ),
                         if ('1' == '2')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Container(
                                     width: 100.0,
                                     height: 32.0,
                                     decoration: BoxDecoration(
-                                      color: const Color(0xD2E0E3E7),
+                                      color: Color(0xD2E0E3E7),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '# Hashtag',
                                       style: FlutterFlowTheme.of(context)
@@ -963,10 +964,10 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                   width: 100.0,
                                   height: 32.0,
                                   decoration: BoxDecoration(
-                                    color: const Color(0xD2E0E3E7),
+                                    color: Color(0xD2E0E3E7),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     '@ Nhắc đến',
                                     style: FlutterFlowTheme.of(context)
@@ -977,7 +978,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                         ),
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              ].divide(SizedBox(width: 8.0)),
                             ),
                           ),
                         if ('1' == '2')
@@ -985,7 +986,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 0.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderRadius: 20.0,
@@ -1014,7 +1015,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 0.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderColor: Colors.transparent,
@@ -1039,7 +1040,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 0.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderColor: Colors.transparent,
@@ -1071,7 +1072,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 16.0, 0.0),
                                 child: Switch.adaptive(
                                   value: _model.switchValue1!,
@@ -1079,7 +1080,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                       ? null
                                       : (newValue) async {
                                           setState(() =>
-                                              _model.switchValue1 = newValue);
+                                              _model.switchValue1 = newValue!);
                                         },
                                   activeColor:
                                       FlutterFlowTheme.of(context).primary,
@@ -1096,13 +1097,13 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                           ),
                         if ('1' == '2')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
@@ -1134,7 +1135,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 16.0, 0.0),
                                   child: Switch.adaptive(
                                     value: _model.switchValue2!,
@@ -1142,7 +1143,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                         ? null
                                         : (newValue) async {
                                             setState(() => _model.switchValue2 =
-                                                newValue);
+                                                newValue!);
                                           },
                                     activeColor:
                                         FlutterFlowTheme.of(context).primary,
@@ -1159,13 +1160,13 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                             ),
                           ),
                         if ('1' == '2')
-                          const Divider(
+                          Divider(
                             height: 4.0,
                             thickness: 1.0,
                             color: Color(0x66E0E3E7),
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 4.0, 16.0, 44.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1184,7 +1185,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(6.0),
+                                      padding: EdgeInsets.all(6.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -1251,7 +1252,9 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                             }
                                           }
 
-                                          if ((_model.uploadedLocalFile1.bytes
+                                          if (_model.uploadedLocalFile1 !=
+                                                  null &&
+                                              (_model.uploadedLocalFile1.bytes
                                                       ?.isNotEmpty ??
                                                   false)) {
                                             _model.addToListImage(
@@ -1284,7 +1287,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(6.0),
+                                      padding: EdgeInsets.all(6.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -1338,7 +1341,9 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                             }
                                           }
 
-                                          if ((_model.uploadedLocalFile2.bytes
+                                          if (_model.uploadedLocalFile2 !=
+                                                  null &&
+                                              (_model.uploadedLocalFile2.bytes
                                                       ?.isNotEmpty ??
                                                   false)) {
                                             _model.addToListFile(
@@ -1371,7 +1376,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(6.0),
+                                      padding: EdgeInsets.all(6.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -1439,7 +1444,9 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                             }
                                           }
 
-                                          if ((_model.uploadedLocalFile3.bytes
+                                          if (_model.uploadedLocalFile3 !=
+                                                  null &&
+                                              (_model.uploadedLocalFile3.bytes
                                                       ?.isNotEmpty ??
                                                   false)) {
                                             _model.addToListVideo(
@@ -1465,7 +1472,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                 ],
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                alignment: AlignmentDirectional(1.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     if (_model.formKey.currentState == null ||
@@ -1487,25 +1494,25 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                             _model.listImageUploadNF.toList()
                                         ..files =
                                             _model.listFileUploadNF.toList()
-                                        ..status = widget.newsFeedData?.status
+                                        ..status = widget!.newsFeedData?.status
                                         ..title =
                                             _model.titleTextController.text
                                         ..content =
                                             _model.contentTextController.text
                                         ..userCreated = FFAppState().user.id
-                                        ..departmentId = (widget.newsFeedData
+                                        ..departmentId = (widget!.newsFeedData
                                                         ?.departmentId !=
                                                     null) &&
-                                                ('${widget.newsFeedData?.departmentId.id}' !=
+                                                ('${widget!.newsFeedData?.departmentId?.id}' !=
                                                     '')
-                                            ? widget.newsFeedData?.branchId.id
+                                            ? widget!.newsFeedData?.branchId?.id
                                             : null
-                                        ..branchId = (widget.newsFeedData
+                                        ..branchId = (widget!.newsFeedData
                                                         ?.branchId !=
                                                     null) &&
-                                                ('${widget.newsFeedData?.branchId.id}' !=
+                                                ('${widget!.newsFeedData?.branchId?.id}' !=
                                                     '')
-                                            ? widget.newsFeedData?.branchId.id
+                                            ? widget!.newsFeedData?.branchId?.id
                                             : null,
                                     );
                                     setState(() {});
@@ -1517,7 +1524,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                               .call(
                                         requestDataJson:
                                             _model.requestData?.toMap(),
-                                        id: widget.newsFeedData?.id,
+                                        id: widget!.newsFeedData?.id,
                                         accessToken: FFAppState().accessToken,
                                       );
 
@@ -1536,7 +1543,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                               ),
                                             ),
                                             duration:
-                                                const Duration(milliseconds: 4000),
+                                                Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .secondary,
@@ -1557,7 +1564,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                               ),
                                             ),
                                             duration:
-                                                const Duration(milliseconds: 4000),
+                                                Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .error,
@@ -1571,15 +1578,15 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                     setState(() {});
                                   },
                                   text: 'Cập nhật',
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.send_rounded,
                                     size: 15.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -1591,7 +1598,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                               FlutterFlowTheme.of(context).blue,
                                           letterSpacing: 0.0,
                                         ),
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -1599,7 +1606,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 6.0)),
+                            ].divide(SizedBox(width: 6.0)),
                           ),
                         ),
                       ],

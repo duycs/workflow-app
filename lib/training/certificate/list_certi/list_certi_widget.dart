@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'list_certi_model.dart';
 export 'list_certi_model.dart';
 
@@ -89,7 +91,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
               child: SingleChildScrollView(
                 primary: false,
                 child: Column(
@@ -97,13 +99,13 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 5.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 5.0),
                       child: Container(
                         height: 200.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: const [
+                          boxShadow: [
                             BoxShadow(
                               blurRadius: 4.0,
                               color: Color(0x33000000),
@@ -115,10 +117,10 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                           ],
                         ),
                         child: Stack(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,11 +128,11 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                   Expanded(
                                     child: Stack(
                                       alignment:
-                                          const AlignmentDirectional(0.0, -1.0),
+                                          AlignmentDirectional(0.0, -1.0),
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -138,7 +140,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 5.0, 0.0, 2.0),
                                                 child: Text(
@@ -167,7 +169,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                                         ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 3.0, 0.0, 3.0),
                                                 child: Text(
@@ -190,7 +192,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 1.0),
                                                 child: Text(
@@ -209,7 +211,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 1.0),
                                                 child: Text(
@@ -228,7 +230,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 1.0),
                                                 child: Text(
@@ -266,7 +268,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                               ),
                                               if ('1' == '2')
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 3.0, 0.0, 0.0),
                                                   child: Row(
@@ -279,7 +281,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                                       Expanded(
                                                         child: Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   0.0, -1.0),
                                                           child: FaIcon(
                                                             FontAwesomeIcons
@@ -295,7 +297,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                                         child: Container(
                                                           height: 35.0,
                                                           decoration:
-                                                              const BoxDecoration(),
+                                                              BoxDecoration(),
                                                           child: Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -357,23 +359,23 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                                     ],
                                                   ),
                                                 ),
-                                            ].divide(const SizedBox(height: 3.0)),
+                                            ].divide(SizedBox(height: 3.0)),
                                           ),
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(1.0, -1.0),
+                                              AlignmentDirectional(1.0, -1.0),
                                           child: Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             alignment:
-                                                const AlignmentDirectional(1.0, -1.0),
+                                                AlignmentDirectional(1.0, -1.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 2.0),
                                                   child: ClipRRect(
@@ -390,7 +392,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                                 ),
                                                 Container(
                                                   width: 50.0,
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   child: Text(
                                                     'Công ty TNHH A',
                                                     textAlign: TextAlign.center,
@@ -418,7 +420,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                             Opacity(
                               opacity: 0.3,
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Icon(
                                   Icons.emoji_events_rounded,
                                   color: FlutterFlowTheme.of(context).warning,
@@ -432,9 +434,9 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 12.0),
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 12.0),
                       child: Container(
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -442,12 +444,12 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                if (widget.checkCodeCertificate ==
+                                if (widget!.checkCodeCertificate ==
                                     'certificate1')
                                   Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Container(
                                         height: 30.0,
@@ -458,10 +460,10 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                               BorderRadius.circular(15.0),
                                         ),
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Text(
                                             'Đang áp dụng',
@@ -487,7 +489,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(1.0, 1.0),
+                                  alignment: AlignmentDirectional(1.0, 1.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
                                       var confirmDialogResponse =
@@ -495,8 +497,8 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                                 context: context,
                                                 builder: (alertDialogContext) {
                                                   return AlertDialog(
-                                                    title: const Text('Xác nhận'),
-                                                    content: const Text(
+                                                    title: Text('Xác nhận'),
+                                                    content: Text(
                                                         'Bạn có chắc chắn muốn áp dụng chứng chỉ trên?'),
                                                     actions: [
                                                       TextButton(
@@ -504,14 +506,14 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                                             Navigator.pop(
                                                                 alertDialogContext,
                                                                 false),
-                                                        child: const Text('Không'),
+                                                        child: Text('Không'),
                                                       ),
                                                       TextButton(
                                                         onPressed: () =>
                                                             Navigator.pop(
                                                                 alertDialogContext,
                                                                 true),
-                                                        child: const Text('Có'),
+                                                        child: Text('Có'),
                                                       ),
                                                     ],
                                                   );
@@ -528,10 +530,10 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                     text: 'Áp dụng',
                                     options: FFButtonOptions(
                                       height: 30.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 8.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -545,7 +547,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -566,14 +568,14 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Container(
                         width: double.infinity,
                         height: 200.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: const [
+                          boxShadow: [
                             BoxShadow(
                               blurRadius: 4.0,
                               color: Color(0x33000000),
@@ -585,7 +587,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                           ],
                         ),
                         child: Stack(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           children: [
                             Opacity(
                               opacity: 0.3,
@@ -618,14 +620,14 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 5.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Text(
                                       'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
@@ -649,7 +651,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 3.0, 0.0, 3.0),
                                     child: Text(
                                       'Chứng nhận',
@@ -666,7 +668,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 1.0),
                                     child: Text(
                                       'Tên nhân viên',
@@ -681,7 +683,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 1.0),
                                     child: Text(
                                       'Chức vụ: \"Nhân viên\"',
@@ -696,7 +698,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 1.0),
                                     child: Text(
                                       'Đã hoàn thành \"chương trình đào tạo\"',
@@ -726,7 +728,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                   ),
                                   if ('1' == '2')
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 3.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -735,7 +737,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                         children: [
                                           Expanded(
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, -1.0),
                                               child: FaIcon(
                                                 FontAwesomeIcons.medal,
@@ -749,7 +751,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                           Expanded(
                                             child: Container(
                                               height: 35.0,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -802,7 +804,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                         ],
                                       ),
                                     ),
-                                ].divide(const SizedBox(height: 3.0)),
+                                ].divide(SizedBox(height: 3.0)),
                               ),
                             ),
                           ],
@@ -811,7 +813,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                       child: Container(
                         decoration: BoxDecoration(
                           color:
@@ -821,11 +823,11 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            if (widget.checkCodeCertificate == 'certificate2')
+                            if (widget!.checkCodeCertificate == 'certificate2')
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Container(
                                     height: 30.0,
@@ -834,9 +836,9 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                           FlutterFlowTheme.of(context).accent2,
                                       borderRadius: BorderRadius.circular(15.0),
                                     ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 8.0, 0.0),
                                       child: Text(
                                         'Đang áp dụng',
@@ -862,7 +864,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(1.0, 1.0),
+                              alignment: AlignmentDirectional(1.0, 1.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   var confirmDialogResponse =
@@ -870,8 +872,8 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: const Text('Xác nhận'),
-                                                content: const Text(
+                                                title: Text('Xác nhận'),
+                                                content: Text(
                                                     'Bạn có chắc chắn muốn áp dụng chứng chỉ trên?'),
                                                 actions: [
                                                   TextButton(
@@ -879,14 +881,14 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             false),
-                                                    child: const Text('Không'),
+                                                    child: Text('Không'),
                                                   ),
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             true),
-                                                    child: const Text('Có'),
+                                                    child: Text('Có'),
                                                   ),
                                                 ],
                                               );
@@ -902,9 +904,9 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                 text: 'Áp dụng',
                                 options: FFButtonOptions(
                                   height: 30.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -917,7 +919,7 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
                                         fontWeight: FontWeight.normal,
                                       ),
                                   elevation: 3.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),

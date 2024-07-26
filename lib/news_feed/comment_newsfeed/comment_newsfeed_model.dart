@@ -1,10 +1,24 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/data_not_found_comment/data_not_found_comment_widget.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/upload_data.dart';
+import '/tasks/popup_see_more/popup_see_more_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'comment_newsfeed_widget.dart' show CommentNewsfeedWidget;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
   ///  Local state fields for this component.
@@ -68,9 +82,9 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
         file: uploadedLocalFile1,
       );
 
-      if ((apiResultojw.succeeded ?? true)) {
+      if ((apiResultojw?.succeeded ?? true)) {
         uploadImage = getJsonField(
-          (apiResultojw.jsonBody ?? ''),
+          (apiResultojw?.jsonBody ?? ''),
           r'''$.data.id''',
         ).toString().toString();
       }
@@ -91,9 +105,9 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
         file: uploadedLocalFile2,
       );
 
-      if ((apiResultUploadVideo.succeeded ?? true)) {
+      if ((apiResultUploadVideo?.succeeded ?? true)) {
         uploadVideo = getJsonField(
-          (apiResultUploadVideo.jsonBody ?? ''),
+          (apiResultUploadVideo?.jsonBody ?? ''),
           r'''$.data.id''',
         ).toString().toString();
       }
@@ -114,9 +128,9 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
         file: uploadedLocalFile3,
       );
 
-      if ((apiResultDataFile.succeeded ?? true)) {
+      if ((apiResultDataFile?.succeeded ?? true)) {
         uploadFile = getJsonField(
-          (apiResultDataFile.jsonBody ?? ''),
+          (apiResultDataFile?.jsonBody ?? ''),
           r'''$.data.id''',
         ).toString().toString();
       }
@@ -138,12 +152,12 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
           'status': 'published',
           'content': textController.text,
           'image':
-              uploadImage != '' ? uploadImage : null,
-          'file': uploadFile != ''
+              uploadImage != null && uploadImage != '' ? uploadImage : null,
+          'file': uploadFile != null && uploadFile != ''
               ? uploadedLocalFile1
               : null,
           'video':
-              uploadVideo != '' ? uploadVideo : null,
+              uploadVideo != null && uploadVideo != '' ? uploadVideo : null,
           'staff_id': getJsonField(
             FFAppState().staffLogin,
             r'''$.id''',
@@ -152,7 +166,7 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
         },
       );
 
-      if ((apiResultPostComment.succeeded ?? true)) {}
+      if ((apiResultPostComment?.succeeded ?? true)) {}
     } else {
       FFAppState().update(() {});
       return;
@@ -173,9 +187,9 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
       id: widget!.id,
     );
 
-    if ((apiResulNewFeddGetOne.succeeded ?? true)) {
+    if ((apiResulNewFeddGetOne?.succeeded ?? true)) {
       dataNewFeed = NewsfeedListStruct.maybeFromMap(getJsonField(
-        (apiResulNewFeddGetOne.jsonBody ?? ''),
+        (apiResulNewFeddGetOne?.jsonBody ?? ''),
         r'''$.data''',
       ));
       checkLoading = true;
@@ -195,16 +209,16 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
             context: context,
             builder: (alertDialogContext) {
               return AlertDialog(
-                title: const Text('Xác nhận'),
-                content: const Text('Bạn chắc chắn muốn xóa'),
+                title: Text('Xác nhận'),
+                content: Text('Bạn chắc chắn muốn xóa'),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(alertDialogContext, false),
-                    child: const Text('Hủy'),
+                    child: Text('Hủy'),
                   ),
                   TextButton(
                     onPressed: () => Navigator.pop(alertDialogContext, true),
-                    child: const Text('Xác nhận'),
+                    child: Text('Xác nhận'),
                   ),
                 ],
               );
@@ -217,7 +231,7 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
           id: id,
         );
 
-        if ((apiResult4jt.succeeded ?? true)) {
+        if ((apiResult4jt?.succeeded ?? true)) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -226,7 +240,7 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
                   color: FlutterFlowTheme.of(context).primaryText,
                 ),
               ),
-              duration: const Duration(milliseconds: 4000),
+              duration: Duration(milliseconds: 4000),
               backgroundColor: FlutterFlowTheme.of(context).secondary,
             ),
           );

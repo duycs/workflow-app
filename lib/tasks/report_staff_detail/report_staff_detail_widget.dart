@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/data_not_found_row_new/data_not_found_row_new_widget.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_charts.dart';
@@ -11,14 +12,18 @@ import '/flutter_flow/form_field_controller.dart';
 import '/tasks/export_excel_get_one/export_excel_get_one_widget.dart';
 import '/tasks/filter_report_staff_detail/filter_report_staff_detail_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'report_staff_detail_model.dart';
@@ -87,13 +92,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
     context.watch<FFAppState>();
     final chartPieChartColorsList1 = [
       FlutterFlowTheme.of(context).primary,
-      const Color(0xFF33BA45),
+      Color(0xFF33BA45),
       FlutterFlowTheme.of(context).tertiary
     ];
     final chartPieChartColorsList2 = [
       FlutterFlowTheme.of(context).tertiary,
       FlutterFlowTheme.of(context).primary,
-      const Color(0xFF33BA45)
+      Color(0xFF33BA45)
     ];
     final chartPieChartColorsList3 = [
       FlutterFlowTheme.of(context).accent3,
@@ -129,7 +134,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                widget.name!,
+                widget!.name!,
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
@@ -139,18 +144,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 1.0,
         ),
         body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               if ('1' == '2')
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                   child: Container(
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -158,7 +163,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                     ),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 8.0, 6.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 8.0, 6.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -187,8 +192,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                           ),
                                     ),
                                     TextSpan(
-                                      text: widget.title!,
-                                      style: const TextStyle(
+                                      text: widget!.title!,
+                                      style: TextStyle(
                                         fontWeight: FontWeight.normal,
                                       ),
                                     )
@@ -202,14 +207,14 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                 ),
                                 maxLines: 2,
                               ),
-                            ].divide(const SizedBox(width: 8.0)),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if ((widget.department != null &&
-                                      widget.department != '') &&
-                                  (widget.department != ' '))
+                              if ((widget!.department != null &&
+                                      widget!.department != '') &&
+                                  (widget!.department != ' '))
                                 Expanded(
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -240,8 +245,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         ),
                                               ),
                                               TextSpan(
-                                                text: widget.department!,
-                                                style: const TextStyle(
+                                                text: widget!.department!,
+                                                style: TextStyle(
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                               )
@@ -256,12 +261,12 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                           maxLines: 2,
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8.0)),
                                   ),
                                 ),
-                              if ((widget.branch != null &&
-                                      widget.branch != '') &&
-                                  (widget.branch != ' '))
+                              if ((widget!.branch != null &&
+                                      widget!.branch != '') &&
+                                  (widget!.branch != ' '))
                                 Expanded(
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -292,8 +297,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         ),
                                               ),
                                               TextSpan(
-                                                text: widget.branch!,
-                                                style: const TextStyle(
+                                                text: widget!.branch!,
+                                                style: TextStyle(
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                               )
@@ -308,7 +313,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                           maxLines: 2,
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8.0)),
                                   ),
                                 ),
                             ],
@@ -324,11 +329,11 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                     if (_model.staff != null)
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Column(
                           children: [
                             Align(
-                              alignment: const Alignment(0.0, 0),
+                              alignment: Alignment(0.0, 0),
                               child: FlutterFlowButtonTabBar(
                                 useToggleButtonStyle: false,
                                 isScrollable: true,
@@ -362,11 +367,11 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                 borderWidth: 2.0,
                                 borderRadius: 8.0,
                                 elevation: 0.0,
-                                labelPadding: const EdgeInsetsDirectional.fromSTEB(
+                                labelPadding: EdgeInsetsDirectional.fromSTEB(
                                     18.0, 0.0, 18.0, 0.0),
-                                buttonMargin: const EdgeInsetsDirectional.fromSTEB(
+                                buttonMargin: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
-                                tabs: const [
+                                tabs: [
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -411,7 +416,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                 controller: _model.tabBarController,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 16.0, 8.0, 0.0),
                                     child: SingleChildScrollView(
                                       primary: false,
@@ -425,7 +430,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                             children: [
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -447,7 +452,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                               ),
                                               if ('1' == '2')
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 8.0, 0.0),
                                                   child: FlutterFlowDropDown<
@@ -459,7 +464,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       _model.dropDownValue1 ??=
                                                           'Tổng',
                                                     ),
-                                                    options: const [
+                                                    options: [
                                                       'Tuần này',
                                                       'Tháng này',
                                                       'Năm nay',
@@ -497,7 +502,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     borderWidth: 0.0,
                                                     borderRadius: 4.0,
                                                     margin:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 8.0, 0.0),
                                                     hidesUnderline: true,
@@ -509,14 +514,14 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                               if ('1' == '2')
                                                 FFButtonWidget(
                                                   onPressed: () async {
-                                                    var shouldSetState = false;
+                                                    var _shouldSetState = false;
 
                                                     setState(() {});
                                                     _model.getOneStaffTask1 =
                                                         await action_blocks
                                                             .tokenReload(
                                                                 context);
-                                                    shouldSetState = true;
+                                                    _shouldSetState = true;
                                                     if (_model
                                                         .getOneStaffTask1!) {
                                                       _model.apiResultGetOneStaff1 =
@@ -527,12 +532,12 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             FFAppState()
                                                                 .accessToken,
                                                         staffId:
-                                                            widget.staffId,
+                                                            widget!.staffId,
                                                         filter: _model
                                                             .filterRequest,
                                                       );
 
-                                                      shouldSetState = true;
+                                                      _shouldSetState = true;
                                                       if ((_model
                                                               .apiResultGetOneStaff1
                                                               ?.succeeded ??
@@ -540,25 +545,23 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     } else {
                                                       FFAppState()
                                                           .update(() {});
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         setState(() {});
-                                                      }
                                                       return;
                                                     }
 
-                                                    if (shouldSetState) {
+                                                    if (_shouldSetState)
                                                       setState(() {});
-                                                    }
                                                   },
                                                   text: 'Button',
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(24.0, 0.0,
                                                                 24.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -574,7 +577,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 3.0,
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1.0,
                                                     ),
@@ -585,7 +588,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                 ),
                                               if (FFAppState().IsInDevelopment)
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 8.0, 0.0),
                                                   child: InkWell(
@@ -598,7 +601,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
-                                                      var shouldSetState =
+                                                      var _shouldSetState =
                                                           false;
 
                                                       setState(() {});
@@ -606,7 +609,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           await action_blocks
                                                               .tokenReload(
                                                                   context);
-                                                      shouldSetState = true;
+                                                      _shouldSetState = true;
                                                       if (_model
                                                           .getOneStaffTask2!) {
                                                         _model.apiResultGetOneStaff2 =
@@ -617,12 +620,12 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                               FFAppState()
                                                                   .accessToken,
                                                           staffId:
-                                                              widget.staffId,
+                                                              widget!.staffId,
                                                           filter: _model
                                                               .filterRequest,
                                                         );
 
-                                                        shouldSetState = true;
+                                                        _shouldSetState = true;
                                                         if ((_model
                                                                 .apiResultGetOneStaff2
                                                                 ?.succeeded ??
@@ -637,15 +640,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       } else {
                                                         FFAppState()
                                                             .update(() {});
-                                                        if (shouldSetState) {
+                                                        if (_shouldSetState)
                                                           setState(() {});
-                                                        }
                                                         return;
                                                       }
 
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         setState(() {});
-                                                      }
                                                     },
                                                     child: ClipRRect(
                                                       borderRadius:
@@ -664,24 +665,26 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                           ),
                                           Stack(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 8.0),
                                                   child: Container(
                                                     width: 160.0,
                                                     height: 160.0,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Visibility(
                                                       visible: (_model.staff !=
                                                               null) &&
-                                                          (_model.staff!.tasks.isNotEmpty),
-                                                      child: SizedBox(
+                                                          (_model.staff!.tasks
+                                                                  .length >
+                                                              0),
+                                                      child: Container(
                                                         width: double.infinity,
                                                         height: double.infinity,
                                                         child:
@@ -728,14 +731,15 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                   ),
                                                 ),
                                               ),
-                                              if ((_model.staff!.tasks.isNotEmpty
+                                              if ((_model.staff!.tasks.length >
+                                                          0
                                                       ? formatNumber(
                                                           _model.staff?.tasks
-                                                              .where((e) =>
+                                                              ?.where((e) =>
                                                                   e.tasksId !=
                                                                   null)
                                                               .toList()
-                                                              .length,
+                                                              ?.length,
                                                           formatType: FormatType
                                                               .decimal,
                                                           decimalType:
@@ -756,7 +760,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             90.0),
                                                   ),
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
                                                     '',
@@ -777,7 +781,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 4.0, 0.0, 4.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -787,7 +791,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 1.0),
                                                     child: Column(
@@ -819,7 +823,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                               TextSpan(
                                                                 text: _model
                                                                             .staff!
-                                                                            .tasks.isNotEmpty
+                                                                            .tasks
+                                                                            .length >
+                                                                        0
                                                                     ? formatNumber(
                                                                         _model
                                                                             .staff!
@@ -836,13 +842,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       )
                                                                     : '0',
                                                                 style:
-                                                                    const TextStyle(
+                                                                    TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,
                                                                 ),
                                                               ),
-                                                              const TextSpan(
+                                                              TextSpan(
                                                                 text:
                                                                     ' nhiệm vụ',
                                                                 style:
@@ -862,7 +868,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       6.0,
                                                                       0.0,
@@ -910,7 +916,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             ),
                                                                       ),
                                                                       TextSpan(
-                                                                        text: _model.staff!.tasks.isNotEmpty
+                                                                        text: _model.staff!.tasks.length >
+                                                                                0
                                                                             ? formatNumber(
                                                                                 _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 0)).toList().length,
                                                                                 formatType: FormatType.decimal,
@@ -918,12 +925,12 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               )
                                                                             : '0',
                                                                         style:
-                                                                            const TextStyle(
+                                                                            TextStyle(
                                                                           fontWeight:
                                                                               FontWeight.w600,
                                                                         ),
                                                                       ),
-                                                                      const TextSpan(
+                                                                      TextSpan(
                                                                         text:
                                                                             ')',
                                                                         style:
@@ -949,9 +956,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                     Container(
                                                                   width: 90.0,
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           1.0,
                                                                           0.0),
                                                                   child:
@@ -994,7 +1001,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               FFLocalizations.of(context).languageCode,
                                                                         )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
                                                                           return DateTime.parse(var1)
-                                                                              .add(const Duration(days: 1))
+                                                                              .add(Duration(days: 1))
                                                                               .toString();
                                                                         }(dateTimeFormat(
                                                                           'yyyy-MM-dd',
@@ -1021,7 +1028,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                           } else {
                                                                             return ' ';
                                                                           }
-                                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                        }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
                                                                           'yyyy-MM-dd',
                                                                           functions
                                                                               .stringToDateTime(_model.dateEnd1Filter),
@@ -1029,7 +1036,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               FFLocalizations.of(context).languageCode,
                                                                         )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
                                                                           return DateTime.parse(var1)
-                                                                              .add(const Duration(days: 1))
+                                                                              .add(Duration(days: 1))
                                                                               .toString();
                                                                         }(dateTimeFormat(
                                                                           'yyyy-MM-dd',
@@ -1087,13 +1094,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ].divide(const SizedBox(
+                                                            ].divide(SizedBox(
                                                                 width: 4.0)),
                                                           ),
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       6.0,
                                                                       0.0,
@@ -1141,7 +1148,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             ),
                                                                       ),
                                                                       TextSpan(
-                                                                        text: _model.staff!.tasks.isNotEmpty
+                                                                        text: _model.staff!.tasks.length >
+                                                                                0
                                                                             ? formatNumber(
                                                                                 _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1)).toList().length,
                                                                                 formatType: FormatType.decimal,
@@ -1149,12 +1157,12 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               )
                                                                             : '0',
                                                                         style:
-                                                                            const TextStyle(
+                                                                            TextStyle(
                                                                           fontWeight:
                                                                               FontWeight.w600,
                                                                         ),
                                                                       ),
-                                                                      const TextSpan(
+                                                                      TextSpan(
                                                                         text:
                                                                             ')',
                                                                         style:
@@ -1180,9 +1188,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                     Container(
                                                                   width: 90.0,
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           1.0,
                                                                           0.0),
                                                                   child:
@@ -1225,7 +1233,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               FFLocalizations.of(context).languageCode,
                                                                         )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
                                                                           return DateTime.parse(var1)
-                                                                              .add(const Duration(days: 1))
+                                                                              .add(Duration(days: 1))
                                                                               .toString();
                                                                         }(dateTimeFormat(
                                                                           'yyyy-MM-dd',
@@ -1252,7 +1260,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                           } else {
                                                                             return ' ';
                                                                           }
-                                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                        }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
                                                                           'yyyy-MM-dd',
                                                                           functions
                                                                               .stringToDateTime(_model.dateEnd1Filter),
@@ -1260,7 +1268,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               FFLocalizations.of(context).languageCode,
                                                                         )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
                                                                           return DateTime.parse(var1)
-                                                                              .add(const Duration(days: 1))
+                                                                              .add(Duration(days: 1))
                                                                               .toString();
                                                                         }(dateTimeFormat(
                                                                           'yyyy-MM-dd',
@@ -1318,13 +1326,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ].divide(const SizedBox(
+                                                            ].divide(SizedBox(
                                                                 width: 4.0)),
                                                           ),
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       6.0,
                                                                       0.0,
@@ -1343,7 +1351,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                 height: 20.0,
                                                                 decoration:
                                                                     BoxDecoration(
-                                                                  color: const Color(
+                                                                  color: Color(
                                                                       0xFF33BA45),
                                                                   borderRadius:
                                                                       BorderRadius
@@ -1371,7 +1379,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             ),
                                                                       ),
                                                                       TextSpan(
-                                                                        text: _model.staff!.tasks.isNotEmpty
+                                                                        text: _model.staff!.tasks.length >
+                                                                                0
                                                                             ? formatNumber(
                                                                                 _model.staff!.tasks.where((e) => e.tasksId.status == 'done').toList().length,
                                                                                 formatType: FormatType.decimal,
@@ -1379,12 +1388,12 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               )
                                                                             : '0',
                                                                         style:
-                                                                            const TextStyle(
+                                                                            TextStyle(
                                                                           fontWeight:
                                                                               FontWeight.w600,
                                                                         ),
                                                                       ),
-                                                                      const TextSpan(
+                                                                      TextSpan(
                                                                         text:
                                                                             ')',
                                                                         style:
@@ -1410,9 +1419,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                     Container(
                                                                   width: 90.0,
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           1.0,
                                                                           0.0),
                                                                   child:
@@ -1455,7 +1464,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               FFLocalizations.of(context).languageCode,
                                                                         )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
                                                                           return DateTime.parse(var1)
-                                                                              .add(const Duration(days: 1))
+                                                                              .add(Duration(days: 1))
                                                                               .toString();
                                                                         }(dateTimeFormat(
                                                                           'yyyy-MM-dd',
@@ -1482,7 +1491,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                           } else {
                                                                             return ' ';
                                                                           }
-                                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                        }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
                                                                           'yyyy-MM-dd',
                                                                           functions
                                                                               .stringToDateTime(_model.dateEnd1Filter),
@@ -1490,7 +1499,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               FFLocalizations.of(context).languageCode,
                                                                         )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
                                                                           return DateTime.parse(var1)
-                                                                              .add(const Duration(days: 1))
+                                                                              .add(Duration(days: 1))
                                                                               .toString();
                                                                         }(dateTimeFormat(
                                                                           'yyyy-MM-dd',
@@ -1548,21 +1557,21 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ].divide(const SizedBox(
+                                                            ].divide(SizedBox(
                                                                 width: 4.0)),
                                                           ),
                                                         ),
-                                                      ].divide(const SizedBox(
+                                                      ].divide(SizedBox(
                                                           height: 4.0)),
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(width: 32.0)),
+                                              ].divide(SizedBox(width: 32.0)),
                                             ),
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1572,7 +1581,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 8.0,
                                                                 0.0, 0.0),
                                                     child: RichText(
@@ -1581,20 +1590,23 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                               .textScaler,
                                                       text: TextSpan(
                                                         children: [
-                                                          const TextSpan(
+                                                          TextSpan(
                                                             text: 'Tổng ',
                                                             style: TextStyle(),
                                                           ),
                                                           TextSpan(
                                                             text: _model
                                                                         .staff!
-                                                                        .tasks.isNotEmpty
+                                                                        .tasks
+                                                                        .length >
+                                                                    0
                                                                 ? formatNumber(
                                                                     _model.staff!
                                                                             .tasks
                                                                             .where((e) =>
                                                                                 (e.tasksId.status == 'done') &&
-                                                                                (e.tasksId.deadline !=
+                                                                                (e.tasksId.deadline != null &&
+                                                                                    e.tasksId.deadline !=
                                                                                         '') &&
                                                                                 (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) ==
                                                                                     'before'))
@@ -1606,7 +1618,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             .where((e) =>
                                                                                 (e.tasksId.status == 'todo') &&
                                                                                 (e.tasksId.current == 1) &&
-                                                                                (e.tasksId.deadline != '') &&
+                                                                                (e.tasksId.deadline != null && e.tasksId.deadline != '') &&
                                                                                 ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal')))
                                                                             .toList()
                                                                             .length,
@@ -1618,7 +1630,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             .commaDecimal,
                                                                   )
                                                                 : '0',
-                                                            style: const TextStyle(
+                                                            style: TextStyle(
                                                               color: Color(
                                                                   0xFFF20000),
                                                               fontWeight:
@@ -1626,16 +1638,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       .w600,
                                                             ),
                                                           ),
-                                                          const TextSpan(
+                                                          TextSpan(
                                                             text: ' (',
                                                             style: TextStyle(),
                                                           ),
                                                           TextSpan(
                                                             text: _model
                                                                         .staff!
-                                                                        .tasks.isNotEmpty
+                                                                        .tasks
+                                                                        .length >
+                                                                    0
                                                                 ? formatNumber(
-                                                                    double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) *
+                                                                    double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) *
                                                                             100)
                                                                         .toStringAsFixed(
                                                                             2)),
@@ -1647,9 +1661,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             .commaDecimal,
                                                                   )
                                                                 : '0',
-                                                            style: const TextStyle(),
+                                                            style: TextStyle(),
                                                           ),
-                                                          const TextSpan(
+                                                          TextSpan(
                                                             text:
                                                                 '%) nhiệm vụ trễ deadline.\nTrong đó: ',
                                                             style: TextStyle(),
@@ -1679,9 +1693,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                 ),
                                                 Container(
                                                   width: 90.0,
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           1.0, 0.0),
                                                   child: InkWell(
                                                     splashColor:
@@ -1724,7 +1738,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
                                                           return DateTime.parse(
                                                                   var1)
-                                                              .add(const Duration(
+                                                              .add(Duration(
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
@@ -1761,7 +1775,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           } else {
                                                             return ' ';
                                                           }
-                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                        }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
                                                           'yyyy-MM-dd',
                                                           functions
                                                               .stringToDateTime(
@@ -1774,7 +1788,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
                                                           return DateTime.parse(
                                                                   var1)
-                                                              .add(const Duration(
+                                                              .add(Duration(
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
@@ -1840,7 +1854,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 8.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1862,18 +1876,21 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         TextSpan(
                                                           text: valueOrDefault<
                                                               String>(
-                                                            _model.staff!.tasks.isNotEmpty
+                                                            _model.staff!.tasks
+                                                                        .length >
+                                                                    0
                                                                 ? formatNumber(
                                                                     _model.staff
                                                                         ?.tasks
-                                                                        .where((e) =>
+                                                                        ?.where((e) =>
                                                                             (e.tasksId.status == 'todo') &&
                                                                             (e.tasksId.current ==
                                                                                 1) &&
-                                                                            (e.tasksId.deadline != '') &&
+                                                                            (e.tasksId.deadline != null &&
+                                                                                e.tasksId.deadline != '') &&
                                                                             ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal')))
                                                                         .toList()
-                                                                        .length,
+                                                                        ?.length,
                                                                     formatType:
                                                                         FormatType
                                                                             .decimal,
@@ -1893,19 +1910,21 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                     .normal,
                                                           ),
                                                         ),
-                                                        const TextSpan(
+                                                        TextSpan(
                                                           text: ' (',
                                                           style: TextStyle(),
                                                         ),
                                                         TextSpan(
                                                           text: valueOrDefault<
                                                               String>(
-                                                            _model.staff!.tasks.isNotEmpty
+                                                            _model.staff!.tasks
+                                                                        .length >
+                                                                    0
                                                                 ? valueOrDefault<
                                                                     String>(
                                                                     formatNumber(
-                                                                      double.parse(((_model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length / _model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) *
-                                                                              double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) * 100).toStringAsFixed(2)))
+                                                                      double.parse(((_model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length / _model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) *
+                                                                              double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) * 100).toStringAsFixed(2)))
                                                                           .toStringAsFixed(2)),
                                                                       formatType:
                                                                           FormatType
@@ -1925,7 +1944,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                 .primaryText,
                                                           ),
                                                         ),
-                                                        const TextSpan(
+                                                        TextSpan(
                                                           text: '%) nhiệm vụ ',
                                                           style: TextStyle(),
                                                         ),
@@ -1958,9 +1977,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                 ),
                                                 Container(
                                                   width: 100.0,
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           1.0, 0.0),
                                                   child: InkWell(
                                                     splashColor:
@@ -2005,7 +2024,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
                                                           return DateTime.parse(
                                                                   var1)
-                                                              .add(const Duration(
+                                                              .add(Duration(
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
@@ -2042,7 +2061,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           } else {
                                                             return ' ';
                                                           }
-                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                        }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
                                                           'yyyy-MM-dd',
                                                           functions
                                                               .stringToDateTime(
@@ -2055,7 +2074,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
                                                           return DateTime.parse(
                                                                   var1)
-                                                              .add(const Duration(
+                                                              .add(Duration(
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
@@ -2121,7 +2140,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 8.0, 16.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -2143,17 +2162,20 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         TextSpan(
                                                           text: valueOrDefault<
                                                               String>(
-                                                            _model.staff!.tasks.isNotEmpty
+                                                            _model.staff!.tasks
+                                                                        .length >
+                                                                    0
                                                                 ? formatNumber(
                                                                     _model.staff
                                                                         ?.tasks
-                                                                        .where((e) =>
+                                                                        ?.where((e) =>
                                                                             (e.tasksId.status ==
                                                                                 'done') &&
-                                                                            (e.tasksId.deadline != '') &&
+                                                                            (e.tasksId.deadline != null &&
+                                                                                e.tasksId.deadline != '') &&
                                                                             (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before'))
                                                                         .toList()
-                                                                        .length,
+                                                                        ?.length,
                                                                     formatType:
                                                                         FormatType
                                                                             .decimal,
@@ -2173,18 +2195,20 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                     .normal,
                                                           ),
                                                         ),
-                                                        const TextSpan(
+                                                        TextSpan(
                                                           text: ' (',
                                                           style: TextStyle(),
                                                         ),
                                                         TextSpan(
                                                           text: valueOrDefault<
                                                               String>(
-                                                            _model.staff!.tasks.isNotEmpty
+                                                            _model.staff!.tasks
+                                                                        .length >
+                                                                    0
                                                                 ? valueOrDefault<
                                                                     String>(
-                                                                    (double.parse(((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length / _model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) *
-                                                                                double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) * 100).toStringAsFixed(2)))
+                                                                    (double.parse(((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length / _model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) *
+                                                                                double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) * 100).toStringAsFixed(2)))
                                                                             .toStringAsFixed(2)))
                                                                         .toString(),
                                                                     '0',
@@ -2198,11 +2222,11 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                 .primaryText,
                                                           ),
                                                         ),
-                                                        const TextSpan(
+                                                        TextSpan(
                                                           text: '%) nhiệm vụ ',
                                                           style: TextStyle(),
                                                         ),
-                                                        const TextSpan(
+                                                        TextSpan(
                                                           text: 'Hoàn thành',
                                                           style: TextStyle(
                                                             color: Color(
@@ -2229,9 +2253,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                 ),
                                                 Container(
                                                   width: 100.0,
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           1.0, 0.0),
                                                   child: InkWell(
                                                     splashColor:
@@ -2276,7 +2300,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
                                                           return DateTime.parse(
                                                                   var1)
-                                                              .add(const Duration(
+                                                              .add(Duration(
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
@@ -2313,7 +2337,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           } else {
                                                             return ' ';
                                                           }
-                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                        }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
                                                           'yyyy-MM-dd',
                                                           functions
                                                               .stringToDateTime(
@@ -2326,7 +2350,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
                                                           return DateTime.parse(
                                                                   var1)
-                                                              .add(const Duration(
+                                                              .add(Duration(
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
@@ -2402,7 +2426,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                   onChanged: (_) =>
                                                       EasyDebounce.debounce(
                                                     '_model.textController',
-                                                    const Duration(milliseconds: 500),
+                                                    Duration(milliseconds: 500),
                                                     () async {
                                                       setState(() => _model
                                                           .listViewPagingController
@@ -2421,7 +2445,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
                                                           return DateTime.parse(
                                                                   var1)
-                                                              .add(const Duration(
+                                                              .add(Duration(
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
@@ -2458,7 +2482,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           } else {
                                                             return ' ';
                                                           }
-                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                        }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
                                                           'yyyy-MM-dd',
                                                           functions
                                                               .stringToDateTime(
@@ -2471,7 +2495,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
                                                           return DateTime.parse(
                                                                   var1)
-                                                              .add(const Duration(
+                                                              .add(Duration(
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
@@ -2582,10 +2606,10 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             .of(context)
                                                         .secondaryBackground,
                                                     contentPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 0.0,
                                                                 0.0, 0.0),
-                                                    prefixIcon: const Icon(
+                                                    prefixIcon: Icon(
                                                       Icons.search,
                                                       size: 24.0,
                                                     ),
@@ -2613,7 +2637,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                     )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
                                                                       return DateTime.parse(
                                                                               var1)
-                                                                          .add(const Duration(
+                                                                          .add(Duration(
                                                                               days: 1))
                                                                           .toString();
                                                                     }(dateTimeFormat(
@@ -2648,7 +2672,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       } else {
                                                                         return ' ';
                                                                       }
-                                                                    }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                    }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
                                                                       'yyyy-MM-dd',
                                                                       functions.stringToDateTime(
                                                                           _model
@@ -2659,7 +2683,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                     )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
                                                                       return DateTime.parse(
                                                                               var1)
-                                                                          .add(const Duration(
+                                                                          .add(Duration(
                                                                               days: 1))
                                                                           .toString();
                                                                     }(dateTimeFormat(
@@ -2807,7 +2831,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   return DateTime
                                                                           .parse(
                                                                               var1)
-                                                                      .add(const Duration(
+                                                                      .add(Duration(
                                                                           days:
                                                                               1))
                                                                       .toString();
@@ -2844,7 +2868,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   } else {
                                                                     return ' ';
                                                                   }
-                                                                }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
                                                                   'yyyy-MM-dd',
                                                                   functions
                                                                       .stringToDateTime(
@@ -2857,7 +2881,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   return DateTime
                                                                           .parse(
                                                                               var1)
-                                                                      .add(const Duration(
+                                                                      .add(Duration(
                                                                           days:
                                                                               1))
                                                                       .toString();
@@ -2905,14 +2929,15 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 0.0, 8.0, 0.0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
-                                                    if ((_model.textController.text !=
+                                                    if ((_model.textController.text != null &&
+                                                            _model.textController.text !=
                                                                 '') ||
                                                         ((_model.dateStart1Filter != null && _model.dateStart1Filter != '') &&
                                                             (_model.dateStart1Filter !=
@@ -3003,14 +3028,14 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             FFButtonOptions(
                                                           height: 32.0,
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       0.0,
                                                                       8.0,
                                                                       0.0),
                                                           iconPadding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -3039,7 +3064,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   ),
                                                           elevation: 3.0,
                                                           borderSide:
-                                                              const BorderSide(
+                                                              BorderSide(
                                                             color: Colors
                                                                 .transparent,
                                                             width: 1.0,
@@ -3064,7 +3089,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       true) ||
                                                   (_model.checkStatus6 == true))
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
                                                   child: Row(
@@ -3233,7 +3258,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         .nextPageNumber *
                                                     20,
                                                 limit: 20,
-                                                filter: '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${widget.staffId}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                                filter: '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${widget!.staffId}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
                                                   FFAppState().staffLogin,
                                                   r'''$.organization_id''',
                                                 ).toString()}\"}}}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"date_start\":{\"_gte\":\"${dateTimeFormat(
@@ -3246,7 +3271,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         .languageCode,
                                                   )}\"}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"date_start\":{\"_lte\":\"${(String var1) {
                                                     return DateTime.parse(var1)
-                                                        .add(const Duration(days: 1))
+                                                        .add(Duration(days: 1))
                                                         .toString();
                                                   }(dateTimeFormat(
                                                     'yyyy-MM-dd',
@@ -3279,7 +3304,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     } else {
                                                       return ' ';
                                                     }
-                                                  }()}\"}}' : ' '}${_model.textController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                  }()}\"}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"date_end\":{\"_gte\":\"${dateTimeFormat(
                                                     'yyyy-MM-dd',
                                                     functions.stringToDateTime(
                                                         _model.dateEnd1Filter),
@@ -3288,7 +3313,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         .languageCode,
                                                   )}\"}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"date_end\":{\"_lte\":\"${(String var1) {
                                                     return DateTime.parse(var1)
-                                                        .add(const Duration(days: 1))
+                                                        .add(Duration(days: 1))
                                                         .toString();
                                                   }(dateTimeFormat(
                                                     'yyyy-MM-dd',
@@ -3316,7 +3341,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                 sort: '-date_created',
                                               ),
                                             ),
-                                            padding: const EdgeInsets.fromLTRB(
+                                            padding: EdgeInsets.fromLTRB(
                                               0,
                                               0,
                                               0,
@@ -3327,7 +3352,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                             reverse: false,
                                             scrollDirection: Axis.vertical,
                                             separatorBuilder: (_, __) =>
-                                                const SizedBox(height: 8.0),
+                                                SizedBox(height: 8.0),
                                             builderDelegate:
                                                 PagedChildBuilderDelegate<
                                                     dynamic>(
@@ -3368,8 +3393,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                 ),
                                               ),
                                               noItemsFoundIndicatorBuilder:
-                                                  (_) => const Center(
-                                                child: SizedBox(
+                                                  (_) => Center(
+                                                child: Container(
                                                   width: double.infinity,
                                                   child:
                                                       DataNotFoundRowNewWidget(),
@@ -3385,7 +3410,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryBackground,
-                                                    boxShadow: const [
+                                                    boxShadow: [
                                                       BoxShadow(
                                                         blurRadius: 1.0,
                                                         color:
@@ -3402,7 +3427,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 16.0,
                                                                 8.0, 16.0),
                                                     child: Column(
@@ -3414,7 +3439,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -3489,7 +3514,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 FontWeight.w500,
                                                                           ),
                                                                     ),
-                                                                  ].divide(const SizedBox(
+                                                                  ].divide(SizedBox(
                                                                       height:
                                                                           4.0)),
                                                                 ),
@@ -3504,7 +3529,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                 children: [
                                                                   Align(
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                     child:
@@ -3529,12 +3554,12 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             BorderRadius.circular(40.0),
                                                                       ),
                                                                       alignment:
-                                                                          const AlignmentDirectional(
+                                                                          AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                       child:
                                                                           Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             8.0,
                                                                             4.0,
                                                                             8.0,
@@ -3603,7 +3628,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   }())
                                                                     Align(
                                                                       alignment:
-                                                                          const AlignmentDirectional(
+                                                                          AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                       child:
@@ -3613,16 +3638,16 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         decoration:
                                                                             BoxDecoration(
                                                                           color:
-                                                                              const Color(0x2DEE6060),
+                                                                              Color(0x2DEE6060),
                                                                           borderRadius:
                                                                               BorderRadius.circular(40.0),
                                                                         ),
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               8.0,
                                                                               4.0,
                                                                               8.0,
@@ -3634,7 +3659,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 TextAlign.center,
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: 'Nunito Sans',
-                                                                                  color: const Color(0xFFF20000),
+                                                                                  color: Color(0xFFF20000),
                                                                                   fontSize: 12.0,
                                                                                   letterSpacing: 0.0,
                                                                                 ),
@@ -3642,11 +3667,11 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     height:
                                                                         4.0)),
                                                               ),
-                                                            ].divide(const SizedBox(
+                                                            ].divide(SizedBox(
                                                                 width: 4.0)),
                                                           ),
                                                         ),
@@ -3706,7 +3731,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                 Expanded(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             4.0,
@@ -3727,7 +3752,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ].divide(const SizedBox(
+                                                              ].divide(SizedBox(
                                                                   width: 4.0)),
                                                             ),
                                                           ),
@@ -3740,7 +3765,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             ('1' == '2'))
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -3755,7 +3780,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       .start,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           2.0,
@@ -3806,7 +3831,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         ),
                                                                   ),
                                                                 ),
-                                                              ].divide(const SizedBox(
+                                                              ].divide(SizedBox(
                                                                   width: 4.0)),
                                                             ),
                                                           ),
@@ -3816,7 +3841,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             ('1' == '2'))
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -3831,7 +3856,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       .start,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           2.0,
@@ -3883,7 +3908,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         ),
                                                                   ),
                                                                 ),
-                                                              ].divide(const SizedBox(
+                                                              ].divide(SizedBox(
                                                                   width: 4.0)),
                                                             ),
                                                           ),
@@ -3913,7 +3938,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                           .end,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           2.0,
                                                                           4.0,
@@ -3929,7 +3954,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           2.0,
@@ -3993,7 +4018,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                           .end,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           2.0,
@@ -4038,10 +4063,10 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   ],
                                                                 ),
                                                               ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               width: 16.0)),
                                                         ),
-                                                      ].divide(const SizedBox(
+                                                      ].divide(SizedBox(
                                                           height: 4.0)),
                                                     ),
                                                   ),
@@ -4049,12 +4074,12 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                               },
                                             ),
                                           ),
-                                        ].divide(const SizedBox(height: 8.0)),
+                                        ].divide(SizedBox(height: 8.0)),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 16.0, 0.0, 16.0),
                                     child: SingleChildScrollView(
                                       child: Column(
@@ -4062,7 +4087,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -4070,7 +4095,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -4095,7 +4120,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                 if ('1' == '2')
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 8.0, 0.0),
                                                     child: FlutterFlowDropDown<
@@ -4114,7 +4139,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         '2',
                                                         '3'
                                                       ]),
-                                                      optionLabels: const [
+                                                      optionLabels: [
                                                         'Tuần này',
                                                         'Tháng này',
                                                         'Năm nay',
@@ -4154,7 +4179,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       borderWidth: 0.0,
                                                       borderRadius: 4.0,
                                                       margin:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   0.0,
@@ -4195,13 +4220,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           isGlobal: false,
                                                           avoidOverflow: true,
                                                           targetAnchor:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
                                                                           context)),
                                                           followerAnchor:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -4224,7 +4249,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             context)
                                                                         .unfocus(),
                                                                 child:
-                                                                    SizedBox(
+                                                                    Container(
                                                                   height: 190.0,
                                                                   width: 300.0,
                                                                   child:
@@ -4245,7 +4270,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     .IsInDevelopment)
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 8.0, 0.0),
                                                     child: InkWell(
@@ -4312,14 +4337,14 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                            padding: EdgeInsets.all(8.0),
                                             child: Container(
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 8.0, 8.0, 0.0),
                                                 child: SingleChildScrollView(
@@ -4333,7 +4358,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -4349,13 +4374,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             Expanded(
                                                               child: Stack(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 children: [
                                                                   Align(
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                     child:
@@ -4365,9 +4390,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       height:
                                                                           160.0,
                                                                       decoration:
-                                                                          const BoxDecoration(),
+                                                                          BoxDecoration(),
                                                                       child:
-                                                                          SizedBox(
+                                                                          Container(
                                                                         width: double
                                                                             .infinity,
                                                                         height:
@@ -4406,9 +4431,10 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                  if ((_model.staff!.staffPrograms.isNotEmpty
+                                                                  if ((_model.staff!.staffPrograms.length >
+                                                                              0
                                                                           ? formatNumber(
-                                                                              _model.staff?.staffPrograms.length,
+                                                                              _model.staff?.staffPrograms?.length,
                                                                               formatType: FormatType.decimal,
                                                                               decimalType: DecimalType.commaDecimal,
                                                                             )
@@ -4427,7 +4453,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             BorderRadius.circular(90.0),
                                                                       ),
                                                                       alignment:
-                                                                          const AlignmentDirectional(
+                                                                          AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                       child:
@@ -4449,7 +4475,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                 null)
                                                               Expanded(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -4480,18 +4506,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                     ),
                                                                               ),
                                                                               TextSpan(
-                                                                                text: _model.staff!.staffPrograms.isNotEmpty
+                                                                                text: _model.staff!.staffPrograms.length > 0
                                                                                     ? formatNumber(
                                                                                         _model.staff!.staffPrograms.length,
                                                                                         formatType: FormatType.decimal,
                                                                                         decimalType: DecimalType.commaDecimal,
                                                                                       )
                                                                                     : '0',
-                                                                                style: const TextStyle(
+                                                                                style: TextStyle(
                                                                                   fontWeight: FontWeight.w600,
                                                                                 ),
                                                                               ),
-                                                                              const TextSpan(
+                                                                              TextSpan(
                                                                                 text: ' chương trình',
                                                                                 style: TextStyle(),
                                                                               )
@@ -4523,13 +4549,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 ParamType.String,
                                                                               ),
                                                                               'staffId': serializeParam(
-                                                                                widget.staffId,
+                                                                                widget!.staffId,
                                                                                 ParamType.String,
                                                                               ),
                                                                             }.withoutNulls,
                                                                             extra: <String,
                                                                                 dynamic>{
-                                                                              kTransitionInfoKey: const TransitionInfo(
+                                                                              kTransitionInfoKey: TransitionInfo(
                                                                                 hasTransition: true,
                                                                                 transitionType: PageTransitionType.fade,
                                                                                 duration: Duration(milliseconds: 0),
@@ -4567,18 +4593,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                           ),
                                                                                     ),
                                                                                     TextSpan(
-                                                                                      text: _model.staff!.staffPrograms.isNotEmpty
+                                                                                      text: _model.staff!.staffPrograms.length > 0
                                                                                           ? formatNumber(
                                                                                               _model.staff!.staffPrograms.where((e) => e.status == 'draft').toList().length,
                                                                                               formatType: FormatType.decimal,
                                                                                               decimalType: DecimalType.commaDecimal,
                                                                                             )
                                                                                           : '0',
-                                                                                      style: const TextStyle(
+                                                                                      style: TextStyle(
                                                                                         fontWeight: FontWeight.w600,
                                                                                       ),
                                                                                     ),
-                                                                                    const TextSpan(
+                                                                                    TextSpan(
                                                                                       text: ')',
                                                                                       style: TextStyle(),
                                                                                     )
@@ -4591,15 +4617,15 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 ),
                                                                               ),
                                                                             ),
-                                                                            if ((_model.staff!.staffPrograms.isNotEmpty ? formatNumber(
-                                                                                    _model.staff?.staffPrograms.where((e) => e.status == 'draft').toList().length,
+                                                                            if ('${_model.staff!.staffPrograms.length > 0 ? formatNumber(
+                                                                                    _model.staff?.staffPrograms?.where((e) => e.status == 'draft').toList()?.length,
                                                                                     formatType: FormatType.decimal,
                                                                                     decimalType: DecimalType.commaDecimal,
-                                                                                  ) : '0') !=
+                                                                                  ) : '0'}' !=
                                                                                 '0')
                                                                               Container(
-                                                                                decoration: const BoxDecoration(),
-                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                decoration: BoxDecoration(),
+                                                                                alignment: AlignmentDirectional(1.0, 0.0),
                                                                                 child: Text(
                                                                                   'Xem',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -4611,7 +4637,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                       ),
                                                                                 ),
                                                                               ),
-                                                                          ].divide(const SizedBox(width: 4.0)),
+                                                                          ].divide(SizedBox(width: 4.0)),
                                                                         ),
                                                                       ),
                                                                       InkWell(
@@ -4635,13 +4661,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 ParamType.String,
                                                                               ),
                                                                               'staffId': serializeParam(
-                                                                                widget.staffId,
+                                                                                widget!.staffId,
                                                                                 ParamType.String,
                                                                               ),
                                                                             }.withoutNulls,
                                                                             extra: <String,
                                                                                 dynamic>{
-                                                                              kTransitionInfoKey: const TransitionInfo(
+                                                                              kTransitionInfoKey: TransitionInfo(
                                                                                 hasTransition: true,
                                                                                 transitionType: PageTransitionType.fade,
                                                                                 duration: Duration(milliseconds: 0),
@@ -4679,18 +4705,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                           ),
                                                                                     ),
                                                                                     TextSpan(
-                                                                                      text: _model.staff!.staffPrograms.isNotEmpty
+                                                                                      text: _model.staff!.staffPrograms.length > 0
                                                                                           ? formatNumber(
                                                                                               _model.staff!.staffPrograms.where((e) => e.status == 'inprogress').toList().length,
                                                                                               formatType: FormatType.decimal,
                                                                                               decimalType: DecimalType.commaDecimal,
                                                                                             )
                                                                                           : '0',
-                                                                                      style: const TextStyle(
+                                                                                      style: TextStyle(
                                                                                         fontWeight: FontWeight.w600,
                                                                                       ),
                                                                                     ),
-                                                                                    const TextSpan(
+                                                                                    TextSpan(
                                                                                       text: ')',
                                                                                       style: TextStyle(),
                                                                                     )
@@ -4703,15 +4729,15 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 ),
                                                                               ),
                                                                             ),
-                                                                            if ((_model.staff!.staffPrograms.isNotEmpty ? formatNumber(
-                                                                                    _model.staff?.staffPrograms.where((e) => e.status == 'inprogress').toList().length,
+                                                                            if ('${_model.staff!.staffPrograms.length > 0 ? formatNumber(
+                                                                                    _model.staff?.staffPrograms?.where((e) => e.status == 'inprogress').toList()?.length,
                                                                                     formatType: FormatType.decimal,
                                                                                     decimalType: DecimalType.commaDecimal,
-                                                                                  ) : '0') !=
+                                                                                  ) : '0'}' !=
                                                                                 '0')
                                                                               Container(
-                                                                                decoration: const BoxDecoration(),
-                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                decoration: BoxDecoration(),
+                                                                                alignment: AlignmentDirectional(1.0, 0.0),
                                                                                 child: Text(
                                                                                   'Xem',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -4723,7 +4749,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                       ),
                                                                                 ),
                                                                               ),
-                                                                          ].divide(const SizedBox(width: 4.0)),
+                                                                          ].divide(SizedBox(width: 4.0)),
                                                                         ),
                                                                       ),
                                                                       InkWell(
@@ -4747,13 +4773,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 ParamType.String,
                                                                               ),
                                                                               'staffId': serializeParam(
-                                                                                widget.staffId,
+                                                                                widget!.staffId,
                                                                                 ParamType.String,
                                                                               ),
                                                                             }.withoutNulls,
                                                                             extra: <String,
                                                                                 dynamic>{
-                                                                              kTransitionInfoKey: const TransitionInfo(
+                                                                              kTransitionInfoKey: TransitionInfo(
                                                                                 hasTransition: true,
                                                                                 transitionType: PageTransitionType.fade,
                                                                                 duration: Duration(milliseconds: 0),
@@ -4773,7 +4799,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               width: 20.0,
                                                                               height: 20.0,
                                                                               decoration: BoxDecoration(
-                                                                                color: const Color(0xFF33BA45),
+                                                                                color: Color(0xFF33BA45),
                                                                                 borderRadius: BorderRadius.circular(2.0),
                                                                               ),
                                                                             ),
@@ -4791,18 +4817,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                           ),
                                                                                     ),
                                                                                     TextSpan(
-                                                                                      text: _model.staff!.staffPrograms.isNotEmpty
+                                                                                      text: _model.staff!.staffPrograms.length > 0
                                                                                           ? formatNumber(
                                                                                               _model.staff!.staffPrograms.where((e) => e.status == 'done').toList().length,
                                                                                               formatType: FormatType.decimal,
                                                                                               decimalType: DecimalType.commaDecimal,
                                                                                             )
                                                                                           : '0',
-                                                                                      style: const TextStyle(
+                                                                                      style: TextStyle(
                                                                                         fontWeight: FontWeight.w600,
                                                                                       ),
                                                                                     ),
-                                                                                    const TextSpan(
+                                                                                    TextSpan(
                                                                                       text: ')',
                                                                                       style: TextStyle(),
                                                                                     )
@@ -4815,15 +4841,15 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 ),
                                                                               ),
                                                                             ),
-                                                                            if ((_model.staff!.staffPrograms.isNotEmpty ? formatNumber(
-                                                                                    _model.staff?.staffPrograms.where((e) => e.status == 'done').toList().length,
+                                                                            if ('${_model.staff!.staffPrograms.length > 0 ? formatNumber(
+                                                                                    _model.staff?.staffPrograms?.where((e) => e.status == 'done').toList()?.length,
                                                                                     formatType: FormatType.decimal,
                                                                                     decimalType: DecimalType.commaDecimal,
-                                                                                  ) : '0') !=
+                                                                                  ) : '0'}' !=
                                                                                 '0')
                                                                               Container(
-                                                                                decoration: const BoxDecoration(),
-                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                decoration: BoxDecoration(),
+                                                                                alignment: AlignmentDirectional(1.0, 0.0),
                                                                                 child: Text(
                                                                                   'Xem',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -4835,22 +4861,22 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                       ),
                                                                                 ),
                                                                               ),
-                                                                          ].divide(const SizedBox(width: 4.0)),
+                                                                          ].divide(SizedBox(width: 4.0)),
                                                                         ),
                                                                       ),
-                                                                    ].divide(const SizedBox(
+                                                                    ].divide(SizedBox(
                                                                         height:
                                                                             4.0)),
                                                                   ),
                                                                 ),
                                                               ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               width: 12.0)),
                                                         ),
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -4866,13 +4892,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             Expanded(
                                                               child: Stack(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 children: [
                                                                   Align(
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                     child:
@@ -4882,9 +4908,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       height:
                                                                           120.0,
                                                                       decoration:
-                                                                          const BoxDecoration(),
+                                                                          BoxDecoration(),
                                                                       child:
-                                                                          SizedBox(
+                                                                          Container(
                                                                         width: double
                                                                             .infinity,
                                                                         height:
@@ -4923,9 +4949,10 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                  if ((_model.staff!.staffLessions.isNotEmpty
+                                                                  if ((_model.staff!.staffLessions.length >
+                                                                              0
                                                                           ? formatNumber(
-                                                                              _model.staff?.staffLessions.length,
+                                                                              _model.staff?.staffLessions?.length,
                                                                               formatType: FormatType.decimal,
                                                                               decimalType: DecimalType.commaDecimal,
                                                                             )
@@ -4944,7 +4971,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             BorderRadius.circular(90.0),
                                                                       ),
                                                                       alignment:
-                                                                          const AlignmentDirectional(
+                                                                          AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                       child:
@@ -4966,7 +4993,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                 null)
                                                               Expanded(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -4994,18 +5021,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                   ),
                                                                             ),
                                                                             TextSpan(
-                                                                              text: _model.staff!.staffLessions.isNotEmpty
+                                                                              text: _model.staff!.staffLessions.length > 0
                                                                                   ? formatNumber(
                                                                                       _model.staff!.staffLessions.length,
                                                                                       formatType: FormatType.decimal,
                                                                                       decimalType: DecimalType.commaDecimal,
                                                                                     )
                                                                                   : '0',
-                                                                              style: const TextStyle(
+                                                                              style: TextStyle(
                                                                                 fontWeight: FontWeight.w600,
                                                                               ),
                                                                             ),
-                                                                            const TextSpan(
+                                                                            TextSpan(
                                                                               text: ' bài học',
                                                                               style: TextStyle(),
                                                                             )
@@ -5055,13 +5082,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 ParamType.String,
                                                                               ),
                                                                               'staffId': serializeParam(
-                                                                                widget.staffId,
+                                                                                widget!.staffId,
                                                                                 ParamType.String,
                                                                               ),
                                                                             }.withoutNulls,
                                                                             extra: <String,
                                                                                 dynamic>{
-                                                                              kTransitionInfoKey: const TransitionInfo(
+                                                                              kTransitionInfoKey: TransitionInfo(
                                                                                 hasTransition: true,
                                                                                 transitionType: PageTransitionType.fade,
                                                                                 duration: Duration(milliseconds: 0),
@@ -5099,18 +5126,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                           ),
                                                                                     ),
                                                                                     TextSpan(
-                                                                                      text: _model.staff!.staffLessions.isNotEmpty
+                                                                                      text: _model.staff!.staffLessions.length > 0
                                                                                           ? formatNumber(
                                                                                               _model.staff!.staffLessions.where((e) => e.status == 'draft').toList().length,
                                                                                               formatType: FormatType.decimal,
                                                                                               decimalType: DecimalType.commaDecimal,
                                                                                             )
                                                                                           : '0',
-                                                                                      style: const TextStyle(
+                                                                                      style: TextStyle(
                                                                                         fontWeight: FontWeight.w600,
                                                                                       ),
                                                                                     ),
-                                                                                    const TextSpan(
+                                                                                    TextSpan(
                                                                                       text: ')',
                                                                                       style: TextStyle(),
                                                                                     )
@@ -5123,15 +5150,15 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 ),
                                                                               ),
                                                                             ),
-                                                                            if ((_model.staff!.staffLessions.isNotEmpty ? formatNumber(
-                                                                                    _model.staff?.staffLessions.where((e) => e.status == 'draft').toList().length,
+                                                                            if ('${_model.staff!.staffLessions.length > 0 ? formatNumber(
+                                                                                    _model.staff?.staffLessions?.where((e) => e.status == 'draft').toList()?.length,
                                                                                     formatType: FormatType.decimal,
                                                                                     decimalType: DecimalType.commaDecimal,
-                                                                                  ) : '0') !=
+                                                                                  ) : '0'}' !=
                                                                                 '0')
                                                                               Container(
-                                                                                decoration: const BoxDecoration(),
-                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                decoration: BoxDecoration(),
+                                                                                alignment: AlignmentDirectional(1.0, 0.0),
                                                                                 child: Text(
                                                                                   'Xem',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -5143,7 +5170,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                       ),
                                                                                 ),
                                                                               ),
-                                                                          ].divide(const SizedBox(width: 4.0)),
+                                                                          ].divide(SizedBox(width: 4.0)),
                                                                         ),
                                                                       ),
                                                                       InkWell(
@@ -5183,13 +5210,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 ParamType.String,
                                                                               ),
                                                                               'staffId': serializeParam(
-                                                                                widget.staffId,
+                                                                                widget!.staffId,
                                                                                 ParamType.String,
                                                                               ),
                                                                             }.withoutNulls,
                                                                             extra: <String,
                                                                                 dynamic>{
-                                                                              kTransitionInfoKey: const TransitionInfo(
+                                                                              kTransitionInfoKey: TransitionInfo(
                                                                                 hasTransition: true,
                                                                                 transitionType: PageTransitionType.fade,
                                                                                 duration: Duration(milliseconds: 0),
@@ -5227,18 +5254,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                           ),
                                                                                     ),
                                                                                     TextSpan(
-                                                                                      text: _model.staff!.staffLessions.isNotEmpty
+                                                                                      text: _model.staff!.staffLessions.length > 0
                                                                                           ? formatNumber(
                                                                                               _model.staff!.staffLessions.where((e) => e.status == 'inprogress').toList().length,
                                                                                               formatType: FormatType.decimal,
                                                                                               decimalType: DecimalType.commaDecimal,
                                                                                             )
                                                                                           : '0',
-                                                                                      style: const TextStyle(
+                                                                                      style: TextStyle(
                                                                                         fontWeight: FontWeight.w600,
                                                                                       ),
                                                                                     ),
-                                                                                    const TextSpan(
+                                                                                    TextSpan(
                                                                                       text: ')',
                                                                                       style: TextStyle(),
                                                                                     )
@@ -5251,17 +5278,17 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 ),
                                                                               ),
                                                                             ),
-                                                                            if ((_model.staff!.staffLessions.isNotEmpty
+                                                                            if ((_model.staff!.staffLessions.length > 0
                                                                                     ? formatNumber(
-                                                                                        _model.staff?.staffLessions.where((e) => e.status == 'inprogress').toList().length,
+                                                                                        _model.staff?.staffLessions?.where((e) => e.status == 'inprogress').toList()?.length,
                                                                                         formatType: FormatType.decimal,
                                                                                         decimalType: DecimalType.commaDecimal,
                                                                                       )
                                                                                     : '0') !=
                                                                                 '0')
                                                                               Container(
-                                                                                decoration: const BoxDecoration(),
-                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                decoration: BoxDecoration(),
+                                                                                alignment: AlignmentDirectional(1.0, 0.0),
                                                                                 child: Text(
                                                                                   'Xem',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -5273,7 +5300,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                       ),
                                                                                 ),
                                                                               ),
-                                                                          ].divide(const SizedBox(width: 4.0)),
+                                                                          ].divide(SizedBox(width: 4.0)),
                                                                         ),
                                                                       ),
                                                                       InkWell(
@@ -5313,13 +5340,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 ParamType.String,
                                                                               ),
                                                                               'staffId': serializeParam(
-                                                                                widget.staffId,
+                                                                                widget!.staffId,
                                                                                 ParamType.String,
                                                                               ),
                                                                             }.withoutNulls,
                                                                             extra: <String,
                                                                                 dynamic>{
-                                                                              kTransitionInfoKey: const TransitionInfo(
+                                                                              kTransitionInfoKey: TransitionInfo(
                                                                                 hasTransition: true,
                                                                                 transitionType: PageTransitionType.fade,
                                                                                 duration: Duration(milliseconds: 0),
@@ -5357,18 +5384,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                           ),
                                                                                     ),
                                                                                     TextSpan(
-                                                                                      text: _model.staff!.staffLessions.isNotEmpty
+                                                                                      text: _model.staff!.staffLessions.length > 0
                                                                                           ? formatNumber(
                                                                                               _model.staff!.staffLessions.where((e) => e.status == 'done').toList().length,
                                                                                               formatType: FormatType.decimal,
                                                                                               decimalType: DecimalType.commaDecimal,
                                                                                             )
                                                                                           : '0',
-                                                                                      style: const TextStyle(
+                                                                                      style: TextStyle(
                                                                                         fontWeight: FontWeight.w600,
                                                                                       ),
                                                                                     ),
-                                                                                    const TextSpan(
+                                                                                    TextSpan(
                                                                                       text: ')',
                                                                                       style: TextStyle(),
                                                                                     )
@@ -5381,15 +5408,15 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 ),
                                                                               ),
                                                                             ),
-                                                                            if ((_model.staff!.staffLessions.isNotEmpty ? formatNumber(
-                                                                                    _model.staff?.staffLessions.where((e) => e.status == 'done').toList().length,
+                                                                            if ('${_model.staff!.staffLessions.length > 0 ? formatNumber(
+                                                                                    _model.staff?.staffLessions?.where((e) => e.status == 'done').toList()?.length,
                                                                                     formatType: FormatType.decimal,
                                                                                     decimalType: DecimalType.commaDecimal,
-                                                                                  ) : '0') !=
+                                                                                  ) : '0'}' !=
                                                                                 '0')
                                                                               Container(
-                                                                                decoration: const BoxDecoration(),
-                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                decoration: BoxDecoration(),
+                                                                                alignment: AlignmentDirectional(1.0, 0.0),
                                                                                 child: Text(
                                                                                   'Xem',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -5401,23 +5428,23 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                       ),
                                                                                 ),
                                                                               ),
-                                                                          ].divide(const SizedBox(width: 4.0)),
+                                                                          ].divide(SizedBox(width: 4.0)),
                                                                         ),
                                                                       ),
-                                                                    ].divide(const SizedBox(
+                                                                    ].divide(SizedBox(
                                                                         height:
                                                                             4.0)),
                                                                   ),
                                                                 ),
                                                               ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               width: 12.0)),
                                                         ),
                                                       ),
                                                       if (_model.staff != null)
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -5433,7 +5460,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             children: [
                                                               Expanded(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           8.0,
@@ -5447,14 +5474,14 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                     text:
                                                                         TextSpan(
                                                                       children: [
-                                                                        const TextSpan(
+                                                                        TextSpan(
                                                                           text:
                                                                               'Tổng ',
                                                                           style:
                                                                               TextStyle(),
                                                                         ),
                                                                         TextSpan(
-                                                                          text: _model.staff!.staffTests.isNotEmpty
+                                                                          text: _model.staff!.staffTests.length > 0
                                                                               ? formatNumber(
                                                                                   _model.staff!.staffTests.length,
                                                                                   formatType: FormatType.decimal,
@@ -5469,7 +5496,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                 FontWeight.w600,
                                                                           ),
                                                                         ),
-                                                                        const TextSpan(
+                                                                        TextSpan(
                                                                           text:
                                                                               ' bài thi đã làm. Trong đó: ',
                                                                           style:
@@ -5495,18 +5522,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   ),
                                                                 ),
                                                               ),
-                                                              if ((_model.staff!.staffTests.isNotEmpty ? formatNumber(
+                                                              if ('${_model.staff!.staffTests.length > 0 ? formatNumber(
                                                                       _model
                                                                           .staff
                                                                           ?.staffTests
-                                                                          .length,
+                                                                          ?.length,
                                                                       formatType:
                                                                           FormatType
                                                                               .decimal,
                                                                       decimalType:
                                                                           DecimalType
                                                                               .commaDecimal,
-                                                                    ) : '0') !=
+                                                                    ) : '0'}' !=
                                                                   '0')
                                                                 InkWell(
                                                                   splashColor:
@@ -5540,7 +5567,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         ),
                                                                         'staffId':
                                                                             serializeParam(
-                                                                          widget
+                                                                          widget!
                                                                               .staffId,
                                                                           ParamType
                                                                               .String,
@@ -5549,7 +5576,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            const TransitionInfo(
+                                                                            TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -5563,9 +5590,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   child:
                                                                       Container(
                                                                     decoration:
-                                                                        const BoxDecoration(),
+                                                                        BoxDecoration(),
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             1.0,
                                                                             0.0),
                                                                     child: Text(
@@ -5594,7 +5621,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       if (_model.staff != null)
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       16.0,
                                                                       0.0,
@@ -5624,7 +5651,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         text: valueOrDefault<
                                                                             String>(
                                                                           formatNumber(
-                                                                            _model.staff?.staffTests.where((e) => ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() == '1').toList().length,
+                                                                            _model.staff?.staffTests?.where((e) => ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() == '1').toList()?.length,
                                                                             formatType:
                                                                                 FormatType.decimal,
                                                                             decimalType:
@@ -5640,16 +5667,17 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               FontWeight.normal,
                                                                         ),
                                                                       ),
-                                                                      const TextSpan(
+                                                                      TextSpan(
                                                                         text:
                                                                             ' (',
                                                                         style:
                                                                             TextStyle(),
                                                                       ),
                                                                       TextSpan(
-                                                                        text: _model.staff!.staffTests.isNotEmpty
+                                                                        text: _model.staff!.staffTests.length >
+                                                                                0
                                                                             ? (double.parse((valueOrDefault<int>(
-                                                                                          _model.staff?.staffTests.where((e) => ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() == '1').toList().length,
+                                                                                          _model.staff?.staffTests?.where((e) => ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() == '1').toList()?.length,
                                                                                           0,
                                                                                         ) /
                                                                                         _model.staff!.staffTests.length)
@@ -5662,7 +5690,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               FlutterFlowTheme.of(context).primaryText,
                                                                         ),
                                                                       ),
-                                                                      const TextSpan(
+                                                                      TextSpan(
                                                                         text:
                                                                             '%) bài thi ',
                                                                         style:
@@ -5694,16 +5722,16 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   ),
                                                                 ),
                                                               ),
-                                                              if (valueOrDefault<String>(
+                                                              if ('${valueOrDefault<String>(
                                                                     formatNumber(
                                                                       _model
                                                                           .staff
                                                                           ?.staffTests
-                                                                          .where((e) =>
+                                                                          ?.where((e) =>
                                                                               ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() ==
                                                                               '1')
                                                                           .toList()
-                                                                          .length,
+                                                                          ?.length,
                                                                       formatType:
                                                                           FormatType
                                                                               .decimal,
@@ -5712,7 +5740,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               .commaDecimal,
                                                                     ),
                                                                     '0',
-                                                                  ) !=
+                                                                  )}' !=
                                                                   '0')
                                                                 InkWell(
                                                                   splashColor:
@@ -5746,7 +5774,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         ),
                                                                         'staffId':
                                                                             serializeParam(
-                                                                          widget
+                                                                          widget!
                                                                               .staffId,
                                                                           ParamType
                                                                               .String,
@@ -5755,7 +5783,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            const TransitionInfo(
+                                                                            TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -5769,9 +5797,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   child:
                                                                       Container(
                                                                     decoration:
-                                                                        const BoxDecoration(),
+                                                                        BoxDecoration(),
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             1.0,
                                                                             0.0),
                                                                     child: Text(
@@ -5800,7 +5828,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       if (_model.staff != null)
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       16.0,
                                                                       0.0,
@@ -5830,7 +5858,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         text: valueOrDefault<
                                                                             String>(
                                                                           formatNumber(
-                                                                            _model.staff?.staffTests.where((e) => ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() != '1').toList().length,
+                                                                            _model.staff?.staffTests?.where((e) => ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() != '1').toList()?.length,
                                                                             formatType:
                                                                                 FormatType.decimal,
                                                                             decimalType:
@@ -5846,16 +5874,17 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               FontWeight.normal,
                                                                         ),
                                                                       ),
-                                                                      const TextSpan(
+                                                                      TextSpan(
                                                                         text:
                                                                             ' (',
                                                                         style:
                                                                             TextStyle(),
                                                                       ),
                                                                       TextSpan(
-                                                                        text: _model.staff!.staffTests.isNotEmpty
+                                                                        text: _model.staff!.staffTests.length >
+                                                                                0
                                                                             ? (double.parse(((valueOrDefault<int>(
-                                                                                              _model.staff?.staffTests.where((e) => ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() != '1').toList().length,
+                                                                                              _model.staff?.staffTests?.where((e) => ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() != '1').toList()?.length,
                                                                                               0,
                                                                                             ) /
                                                                                             _model.staff!.staffTests.length) *
@@ -5869,13 +5898,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               FlutterFlowTheme.of(context).primaryText,
                                                                         ),
                                                                       ),
-                                                                      const TextSpan(
+                                                                      TextSpan(
                                                                         text:
                                                                             '%) bài thi ',
                                                                         style:
                                                                             TextStyle(),
                                                                       ),
-                                                                      const TextSpan(
+                                                                      TextSpan(
                                                                         text:
                                                                             'Đạt',
                                                                         style:
@@ -5901,16 +5930,16 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   ),
                                                                 ),
                                                               ),
-                                                              if (valueOrDefault<String>(
+                                                              if ('${valueOrDefault<String>(
                                                                     formatNumber(
                                                                       _model
                                                                           .staff
                                                                           ?.staffTests
-                                                                          .where((e) =>
+                                                                          ?.where((e) =>
                                                                               ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() !=
                                                                               '1')
                                                                           .toList()
-                                                                          .length,
+                                                                          ?.length,
                                                                       formatType:
                                                                           FormatType
                                                                               .decimal,
@@ -5919,7 +5948,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               .commaDecimal,
                                                                     ),
                                                                     '0',
-                                                                  ) !=
+                                                                  )}' !=
                                                                   '0')
                                                                 InkWell(
                                                                   splashColor:
@@ -5953,7 +5982,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         ),
                                                                         'staffId':
                                                                             serializeParam(
-                                                                          widget
+                                                                          widget!
                                                                               .staffId,
                                                                           ParamType
                                                                               .String,
@@ -5962,7 +5991,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            const TransitionInfo(
+                                                                            TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -5976,9 +6005,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   child:
                                                                       Container(
                                                                     decoration:
-                                                                        const BoxDecoration(),
+                                                                        BoxDecoration(),
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             1.0,
                                                                             0.0),
                                                                     child: Text(
@@ -6005,7 +6034,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           ),
                                                         ),
                                                     ].divide(
-                                                        const SizedBox(height: 16.0)),
+                                                        SizedBox(height: 16.0)),
                                                   ),
                                                 ),
                                               ),
@@ -6022,7 +6051,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                         ),
                       ),
                     if (_model.staff == null)
-                      SizedBox(
+                      Container(
                         width: double.infinity,
                         height: double.infinity,
                         child: custom_widgets.LoadingPageWidget(

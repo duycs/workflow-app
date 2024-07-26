@@ -8,8 +8,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'filter_personnel_list_model.dart';
 export 'filter_personnel_list_model.dart';
@@ -138,11 +140,11 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 1.0),
+      alignment: AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -152,7 +154,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
               ),
             )
           ],
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
@@ -160,7 +162,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -168,7 +170,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -216,10 +218,10 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                   ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 24.0),
                           child: FlutterFlowChoiceChips(
-                            options: const [
+                            options: [
                               ChipData('Hoạt động'),
                               ChipData('Không hoạt động')
                             ],
@@ -267,15 +269,15 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                             controller: _model.statusValueController ??=
                                 FormFieldController<List<String>>(
                               [
-                                widget.status != null && widget.status != ''
-                                    ? widget.status!
+                                widget!.status != null && widget!.status != ''
+                                    ? widget!.status!
                                     : ' '
                               ],
                             ),
                             wrapped: true,
                           ),
                         ),
-                      ].divide(const SizedBox(height: 4.0)),
+                      ].divide(SizedBox(height: 4.0)),
                     ),
                     if (FFAppState().user.role ==
                         '82073000-1ba2-43a4-a55c-459d17c23b68')
@@ -294,14 +296,14 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                 ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 24.0),
                             child: FlutterFlowDropDown<String>(
                               controller: _model.branchValueController ??=
                                   FormFieldController<String>(
-                                _model.branchValue ??= widget.branch != null &&
-                                        widget.branch != ''
-                                    ? widget.branch
+                                _model.branchValue ??= widget!.branch != null &&
+                                        widget!.branch != ''
+                                    ? widget!.branch
                                     : '1',
                               ),
                               options: List<String>.from(
@@ -375,7 +377,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 2.0,
                               borderRadius: 8.0,
-                              margin: const EdgeInsetsDirectional.fromSTEB(
+                              margin: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 4.0, 16.0, 4.0),
                               hidesUnderline: true,
                               isOverButton: true,
@@ -383,7 +385,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                               isMultiSelect: false,
                             ),
                           ),
-                        ].divide(const SizedBox(height: 4.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
                     if ((FFAppState().user.role ==
                             '82073000-1ba2-43a4-a55c-459d17c23b68') ||
@@ -404,15 +406,15 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                 ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 24.0),
                             child: FlutterFlowDropDown<String>(
                               controller: _model.departmentValueController ??=
                                   FormFieldController<String>(
                                 _model.departmentValue ??=
-                                    widget.department != null &&
-                                            widget.department != ''
-                                        ? widget.department
+                                    widget!.department != null &&
+                                            widget!.department != ''
+                                        ? widget!.department
                                         : '1',
                               ),
                               options: List<String>.from(_model.departmentList
@@ -457,7 +459,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 2.0,
                               borderRadius: 8.0,
-                              margin: const EdgeInsetsDirectional.fromSTEB(
+                              margin: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 4.0, 16.0, 4.0),
                               hidesUnderline: true,
                               isOverButton: true,
@@ -465,12 +467,12 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                               isMultiSelect: false,
                             ),
                           ),
-                        ].divide(const SizedBox(height: 4.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
-                  ].divide(const SizedBox(height: 8.0)),
+                  ].divide(SizedBox(height: 8.0)),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -509,7 +511,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                   } else {
                                     return ' ';
                                   }
-                                }()}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}]}',
+                                }()}${widget!.filterSearch != null && widget!.filterSearch != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${widget!.filterSearch}\"}}}' : ' '}]}',
                               );
 
                               if ((_model.apiResultClearFilter?.succeeded ??
@@ -538,9 +540,9 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -575,11 +577,11 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFF33BA45),
+                            color: Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -589,7 +591,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -597,10 +599,10 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 16.0)),
+                    ].divide(SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(const SizedBox(height: 8.0)),
+              ].divide(SizedBox(height: 8.0)),
             ),
           ),
         ),
