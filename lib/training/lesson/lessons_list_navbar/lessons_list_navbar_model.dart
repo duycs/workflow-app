@@ -1,24 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
 import '/components/nav_bar_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/lesson/filter_lesson/filter_lesson_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import 'dart:async';
 import 'lessons_list_navbar_widget.dart' show LessonsListNavbarWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
 
 class LessonsListNavbarModel extends FlutterFlowModel<LessonsListNavbarWidget> {
   ///  Local state fields for this page.
@@ -86,14 +75,14 @@ class LessonsListNavbarModel extends FlutterFlowModel<LessonsListNavbarWidget> {
       filter: '{\"_and\":[${'{\"organization_id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}}'}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}' : ' '}${(status != null && status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"${status}\"}}' : ' '}${(dateStart != null && dateStart != '') && (dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"${dateStart}\"}}' : ' '}${(dateEnd != null && dateEnd != '') && (dateEnd != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
-          return DateTime.parse(var1).add(Duration(days: 1)).toString();
-        }(dateEnd)}\"}}' : ' '}${programId != null && programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"${programId}\"}}}}' : ' '}]}',
+      ).toString().toString()}\"}}'}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"$status\"}}' : ' '}${(dateStart != '') && (dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"$dateStart\"}}' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
+          return DateTime.parse(var1).add(const Duration(days: 1)).toString();
+        }(dateEnd)}\"}}' : ' '}${programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"$programId\"}}}}' : ' '}]}',
     );
 
-    if ((apiResultList?.succeeded ?? true)) {
+    if ((apiResultList.succeeded ?? true)) {
       list =
-          LessonsListDataStruct.maybeFromMap((apiResultList?.jsonBody ?? ''))!
+          LessonsListDataStruct.maybeFromMap((apiResultList.jsonBody ?? ''))!
               .data
               .toList()
               .cast<LessonsStruct>();
@@ -101,7 +90,7 @@ class LessonsListNavbarModel extends FlutterFlowModel<LessonsListNavbarWidget> {
     } else {
       checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList?.jsonBody ?? ''),
+        jsonErrors: (apiResultList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock1!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -112,7 +101,7 @@ class LessonsListNavbarModel extends FlutterFlowModel<LessonsListNavbarWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -129,7 +118,7 @@ class LessonsListNavbarModel extends FlutterFlowModel<LessonsListNavbarWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -169,7 +158,7 @@ class LessonsListNavbarModel extends FlutterFlowModel<LessonsListNavbarWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

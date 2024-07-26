@@ -1,28 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/tasks/export_excel/export_excel_widget.dart';
-import '/tasks/filter_report_staff/filter_report_staff_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'report_staff_widget.dart' show ReportStaffWidget;
-import 'package:aligned_dialog/aligned_dialog.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:percent_indicator/percent_indicator.dart';
-import 'package:provider/provider.dart';
 
 class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
   ///  Local state fields for this page.
@@ -79,7 +63,7 @@ class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
       offset: 0,
       limit: 5000,
       filter:
-          '{\"_and\":[{}${(textController.text != null && textController.text != '') && (textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${textController.text}\"}}}' : ' '}${() {
+          '{\"_and\":[{}${(textController.text != '') && (textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${textController.text}\"}}}' : ' '}${() {
         if (FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68') {
           return ',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
             FFAppState().staffLogin,
@@ -101,28 +85,28 @@ class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
           return ' ';
         }
       }()}${() {
-        if ((statusFilter != null && statusFilter != '') &&
+        if ((statusFilter != '') &&
             (statusFilter == 'Hoạt động') &&
             (statusFilter != ' ')) {
           return ',{\"status\":{\"_eq\":\"active\"}}';
-        } else if ((statusFilter != null && statusFilter != '') &&
+        } else if ((statusFilter != '') &&
             (statusFilter == 'Không hoạt động') &&
             (statusFilter != ' ')) {
           return ',{\"status\":{\"_neq\":\"active\"}}';
         } else {
           return ' ';
         }
-      }()}${(branch != '1') && (branch != ' ') && (branch != null && branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${branch}\"}}}' : ' '}${(department != '1') && (department != ' ') && (department != null && department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${department}\"}}}' : ' '}]}',
+      }()}${(branch != '1') && (branch != ' ') && (branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"$branch\"}}}' : ' '}${(department != '1') && (department != ' ') && (department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"$department\"}}}' : ' '}]}',
       sort: 'sort',
     );
 
-    if ((apiResultGetList?.succeeded ?? true)) {
-      listaaaa = (apiResultGetList?.jsonBody ?? '').toString();
-      json = (apiResultGetList?.jsonBody ?? '');
+    if ((apiResultGetList.succeeded ?? true)) {
+      listaaaa = (apiResultGetList.jsonBody ?? '').toString();
+      json = (apiResultGetList.jsonBody ?? '');
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetList?.jsonBody ?? ''),
+        jsonErrors: (apiResultGetList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -133,7 +117,7 @@ class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -150,7 +134,7 @@ class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -190,7 +174,7 @@ class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

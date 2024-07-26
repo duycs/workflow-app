@@ -2,8 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'wait_action_type_approve_model.dart';
 export 'wait_action_type_approve_model.dart';
 
@@ -43,7 +41,7 @@ class _WaitActionTypeApproveWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.end,
@@ -55,15 +53,15 @@ class _WaitActionTypeApproveWidgetState
                     print('Button pressed ...');
                   },
             text: 'Từ chối',
-            icon: Icon(
+            icon: const Icon(
               Icons.close,
               size: 20.0,
             ),
             options: FFButtonOptions(
               width: 110.0,
               height: 35.0,
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).alternate,
               textStyle: FlutterFlowTheme.of(context).labelLarge.override(
                     fontFamily: 'Nunito Sans',
@@ -74,7 +72,7 @@ class _WaitActionTypeApproveWidgetState
               borderRadius: BorderRadius.circular(8.0),
             ),
           ),
-        ].divide(SizedBox(width: 16.0)),
+        ].divide(const SizedBox(width: 16.0)),
       ),
     );
   }

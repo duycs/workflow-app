@@ -1,14 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'individual_timekeeping_details_model.dart';
@@ -85,7 +82,7 @@ class _IndividualTimekeepingDetailsWidgetState
               Text(
                 'Chấm công ngày ${dateTimeFormat(
                   'd/M/y',
-                  functions.stringToDateTime(widget!.dateFilter),
+                  functions.stringToDateTime(widget.dateFilter),
                   locale: FFLocalizations.of(context).languageCode,
                 )}',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -108,14 +105,14 @@ class _IndividualTimekeepingDetailsWidgetState
                       '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"organization_id\":{\"_eq\":\"${getJsonField(
                     FFAppState().staffOrganization,
                     r'''$.id''',
-                  ).toString()}\"}},{\"date_created\":{\"_gte\":\"${widget!.dateFilter}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
+                  ).toString()}\"}},{\"date_created\":{\"_gte\":\"${widget.dateFilter}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
                     return DateTime.parse(var1)
-                        .add(Duration(days: 1))
+                        .add(const Duration(days: 1))
                         .toString();
-                  }(widget!.dateFilter!)}\"}}]}',
+                  }(widget.dateFilter!)}\"}}]}',
                 ),
               ),
-              padding: EdgeInsets.fromLTRB(
+              padding: const EdgeInsets.fromLTRB(
                 0,
                 0,
                 0,
@@ -150,7 +147,7 @@ class _IndividualTimekeepingDetailsWidgetState
                     ),
                   ),
                 ),
-                noItemsFoundIndicatorBuilder: (_) => Center(
+                noItemsFoundIndicatorBuilder: (_) => const Center(
                   child: DataNotFoundWidget(),
                 ),
                 itemBuilder: (context, _, listItemIndex) {
@@ -158,12 +155,12 @@ class _IndividualTimekeepingDetailsWidgetState
                       _model.listViewPagingController!.itemList![listItemIndex];
                   return Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 16.0),
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             blurRadius: 1.0,
                             color: Color(0x33000000),
@@ -177,13 +174,13 @@ class _IndividualTimekeepingDetailsWidgetState
                       ),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 8.0),
+                            const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 8.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   5.0, 5.0, 5.0, 0.0),
                               child: Container(
                                 decoration: BoxDecoration(
@@ -191,7 +188,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                       .secondaryBackground,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 6.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -222,7 +219,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                               ),
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 5.0)),
+                                    ].divide(const SizedBox(width: 5.0)),
                                   ),
                                 ),
                               ),
@@ -233,14 +230,14 @@ class _IndividualTimekeepingDetailsWidgetState
                               color: FlutterFlowTheme.of(context).alternate,
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 8.0, 10.0, 6.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 8.0, 0.0),
                                     child: Text(
                                       'Thời gian làm:',
@@ -263,12 +260,12 @@ class _IndividualTimekeepingDetailsWidgetState
                                           fontWeight: FontWeight.w600,
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 3.0)),
+                                ].divide(const SizedBox(width: 3.0)),
                               ),
                             ),
                             if ('1' == '2')
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     5.0, 0.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -289,11 +286,11 @@ class _IndividualTimekeepingDetailsWidgetState
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 3.0)),
+                                  ].divide(const SizedBox(width: 3.0)),
                                 ),
                               ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 10.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -305,7 +302,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 4.0, 0.0),
                                           child: FaIcon(
                                             FontAwesomeIcons.businessTime,
@@ -370,7 +367,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 4.0, 0.0),
                                           child: FaIcon(
                                             FontAwesomeIcons.businessTime,
@@ -434,9 +431,9 @@ class _IndividualTimekeepingDetailsWidgetState
                             ),
                             if (listItemItem.shiftChecks.length > 0)
                               Align(
-                                alignment: AlignmentDirectional(1.0, 1.0),
+                                alignment: const AlignmentDirectional(1.0, 1.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 5.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -490,9 +487,9 @@ class _IndividualTimekeepingDetailsWidgetState
                             if (listItemItem.id == _model.checkShow)
                               Container(
                                 width: double.infinity,
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 5.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -500,7 +497,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -513,7 +510,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 0.0, 0.0, 0.0),
                                               child: Text(
                                                 'Lịch sử Check in, Check out',
@@ -541,13 +538,13 @@ class _IndividualTimekeepingDetailsWidgetState
                                               .alternate,
                                         ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 10.0, 5.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 5.0, 0.0, 8.0),
                                               child: Container(
                                                 height: 32.0,
@@ -645,7 +642,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -682,7 +679,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                                               ),
                                                             ],
                                                           );
-                                                        }).divide(SizedBox(
+                                                        }).divide(const SizedBox(
                                                             height: 2.0)),
                                                       );
                                                     },
@@ -720,7 +717,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -757,7 +754,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                                               ),
                                                             ],
                                                           );
-                                                        }).divide(SizedBox(
+                                                        }).divide(const SizedBox(
                                                             height: 2.0)),
                                                       );
                                                     },

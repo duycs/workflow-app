@@ -1,8 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'long_text_do_test_model.dart';
 export 'long_text_do_test_model.dart';
 
@@ -37,7 +35,7 @@ class _LongTextDoTestWidgetState extends State<LongTextDoTestWidget> {
     _model = createModel(context, () => LongTextDoTestModel());
 
     _model.textController ??=
-        TextEditingController(text: widget!.listAnswerText);
+        TextEditingController(text: widget.listAnswerText);
     _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -107,11 +105,11 @@ class _LongTextDoTestWidgetState extends State<LongTextDoTestWidget> {
           maxLines: 3,
           validator: _model.textControllerValidator.asValidator(context),
         ),
-        if (widget!.corect == 0)
+        if (widget.corect == 0)
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
             child: Text(
-              'Đáp án đúng: ${widget!.questionAnswer}',
+              'Đáp án đúng: ${widget.questionAnswer}',
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: 'Nunito Sans',
                     color: FlutterFlowTheme.of(context).error,
@@ -120,7 +118,7 @@ class _LongTextDoTestWidgetState extends State<LongTextDoTestWidget> {
                   ),
             ),
           ),
-      ].divide(SizedBox(height: 8.0)),
+      ].divide(const SizedBox(height: 8.0)),
     );
   }
 }

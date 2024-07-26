@@ -1,21 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/market/filter_programs/filter_programs_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'program_list_market_widget.dart' show ProgramListMarketWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
 
 class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
   ///  Local state fields for this page.
@@ -97,25 +88,25 @@ class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
         if (widget!.price == 'free') {
           return ',{\"price\":{\"_eq\":\"0\"}}';
         } else if (((widget!.price == 'NoFree') &&
-                (priceMin == null || priceMin == '')) ||
+                (priceMin == '')) ||
             ((widget!.price == 'NoFree') && (priceMin == 'noData'))) {
           return ',{\"price\":{\"_gt\":\"0\"}}';
         } else {
           return ' ';
         }
-      }()}${searchMarketTextController.text != null && searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${searchMarketTextController.text}\"}}' : ' '}${widget!.domainToProgramListMarket != null && widget!.domainToProgramListMarket != '' ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"${widget!.domainToProgramListMarket}${widget!.domainToProgramListMarket}' : ' '}${(domain != null && domain != '') && (domain != 'noData') ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"${domain}\"}}}' : ' '}${(author != null && author != '') && (author != 'noData') ? ',{\"author_id\":{\"alias\":{\"_icontains\":\"${author}\"}}}' : ' '}${(category != null && category != '') && (category != 'noData') ? ',{\"category_id\":{\"name\":{\"_icontains\":\"${category}\"}}}' : ' '}${(priceMinDomain != null && priceMinDomain != '') && (priceMinDomain != 'noData') && (widget!.price == 'free1') ? ',{\"price\":{\"_gte\":\"${priceMinDomain}\"}}' : ' '}${(priceMaxDomain != null && priceMaxDomain != '') && (priceMaxDomain != 'noData') && (widget!.price == 'free1') ? ',{\"price\":{\"_lte\":\"${priceMaxDomain}\"}}' : ' '}${(priceMin != null && priceMin != '') && (priceMin != 'noData') && (widget!.price != 'free1') ? ',{\"price\":{\"_gte\":\"${priceMin}\"}}' : ' '}${(priceMax != null && priceMax != '') && (priceMax != 'noData') && (widget!.price != 'free1') ? ',{\"price\":{\"_lte\":\"${priceMax}\"}}' : ' '}${(priceMax != null && priceMax != '') && (priceMax != 'noData') && (widget!.price != 'free1') ? priceMax : ' '}${(widget!.idAuthor != null && widget!.idAuthor != '') && (widget!.idDomain != null && widget!.idDomain != '') ? ',{\"author_id\":{\"id\":{\"_eq\":\"${widget!.idAuthor}\"}}},{\"domain_id\":{\"id\":{\"_eq\":\"${widget!.idDomain}\"}}}' : ' '}]}',
+      }()}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${searchMarketTextController.text}\"}}' : ' '}${widget!.domainToProgramListMarket != '' ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"${widget!.domainToProgramListMarket}${widget!.domainToProgramListMarket}' : ' '}${(domain != '') && (domain != 'noData') ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"$domain\"}}}' : ' '}${(author != '') && (author != 'noData') ? ',{\"author_id\":{\"alias\":{\"_icontains\":\"$author\"}}}' : ' '}${(category != '') && (category != 'noData') ? ',{\"category_id\":{\"name\":{\"_icontains\":\"$category\"}}}' : ' '}${(priceMinDomain != '') && (priceMinDomain != 'noData') && (widget!.price == 'free1') ? ',{\"price\":{\"_gte\":\"$priceMinDomain\"}}' : ' '}${(priceMaxDomain != '') && (priceMaxDomain != 'noData') && (widget!.price == 'free1') ? ',{\"price\":{\"_lte\":\"$priceMaxDomain\"}}' : ' '}${(priceMin != '') && (priceMin != 'noData') && (widget!.price != 'free1') ? ',{\"price\":{\"_gte\":\"$priceMin\"}}' : ' '}${(priceMax != '') && (priceMax != 'noData') && (widget!.price != 'free1') ? ',{\"price\":{\"_lte\":\"$priceMax\"}}' : ' '}${(priceMax != '') && (priceMax != 'noData') && (widget!.price != 'free1') ? priceMax : ' '}${(widget!.idAuthor != '') && (widget!.idDomain != '') ? ',{\"author_id\":{\"id\":{\"_eq\":\"${widget!.idAuthor}\"}}},{\"domain_id\":{\"id\":{\"_eq\":\"${widget!.idDomain}\"}}}' : ' '}]}',
     );
 
-    if ((apiResultList?.succeeded ?? true)) {
+    if ((apiResultList.succeeded ?? true)) {
       listPrograms = MarketLessonListDataStruct.maybeFromMap(
-              (apiResultList?.jsonBody ?? ''))!
+              (apiResultList.jsonBody ?? ''))!
           .data
           .toList()
           .cast<MarketLessonListStruct>();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList?.jsonBody ?? ''),
+        jsonErrors: (apiResultList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -126,7 +117,7 @@ class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -144,16 +135,16 @@ class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
       accessToken: FFAppState().accessToken,
     );
 
-    if ((apiResultList?.succeeded ?? true)) {
+    if ((apiResultList.succeeded ?? true)) {
       listDataDomain = DomainsListDataDataStruct.maybeFromMap(
-              (apiResultList?.jsonBody ?? ''))!
+              (apiResultList.jsonBody ?? ''))!
           .data
           .toList()
           .cast<DomainsListListStruct>();
     } else {
       checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList?.jsonBody ?? ''),
+        jsonErrors: (apiResultList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock1!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -164,7 +155,7 @@ class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -181,7 +172,7 @@ class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -222,7 +213,7 @@ class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

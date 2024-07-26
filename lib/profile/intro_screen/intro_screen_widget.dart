@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
@@ -10,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'intro_screen_model.dart';
 export 'intro_screen_model.dart';
@@ -43,7 +41,7 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
         context.goNamed(
           'Login',
           extra: <String, dynamic>{
-            kTransitionInfoKey: TransitionInfo(
+            kTransitionInfoKey: const TransitionInfo(
               hasTransition: true,
               transitionType: PageTransitionType.fade,
               duration: Duration(milliseconds: 0),
@@ -69,8 +67,8 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
             curve: Curves.easeInOut,
             delay: 200.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 20.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -89,8 +87,8 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
             curve: Curves.easeInOut,
             delay: 200.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 20.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -109,8 +107,8 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
             curve: Curves.easeInOut,
             delay: 200.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 20.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -145,13 +143,13 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
               mainAxisSize: MainAxisSize.max,
               children: [
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     width: double.infinity,
                     height: 500.0,
                     child: Stack(
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 40.0),
                           child: PageView(
                             controller: _model.pageViewController ??=
@@ -160,7 +158,7 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                             scrollDirection: Axis.horizontal,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 24.0, 24.0, 48.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -179,7 +177,7 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 24.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -206,15 +204,15 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                                                   lineHeight: 1.5,
                                                 ),
                                           ),
-                                        ].divide(SizedBox(height: 6.0)),
+                                        ].divide(const SizedBox(height: 6.0)),
                                       ),
                                     ),
-                                  ].divide(SizedBox(height: 32.0)),
+                                  ].divide(const SizedBox(height: 32.0)),
                                 ).animateOnPageLoad(animationsMap[
                                     'columnOnPageLoadAnimation1']!),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 24.0, 24.0, 48.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -233,7 +231,7 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 24.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -260,15 +258,15 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                                                   lineHeight: 1.5,
                                                 ),
                                           ),
-                                        ].divide(SizedBox(height: 6.0)),
+                                        ].divide(const SizedBox(height: 6.0)),
                                       ),
                                     ),
-                                  ].divide(SizedBox(height: 32.0)),
+                                  ].divide(const SizedBox(height: 32.0)),
                                 ).animateOnPageLoad(animationsMap[
                                     'columnOnPageLoadAnimation2']!),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 24.0, 24.0, 48.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -287,7 +285,7 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 24.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -314,10 +312,10 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                                                   lineHeight: 1.5,
                                                 ),
                                           ),
-                                        ].divide(SizedBox(height: 6.0)),
+                                        ].divide(const SizedBox(height: 6.0)),
                                       ),
                                     ),
-                                  ].divide(SizedBox(height: 32.0)),
+                                  ].divide(const SizedBox(height: 32.0)),
                                 ).animateOnPageLoad(animationsMap[
                                     'columnOnPageLoadAnimation3']!),
                               ),
@@ -325,9 +323,9 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0.0, 1.0),
+                          alignment: const AlignmentDirectional(0.0, 1.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: smooth_page_indicator.SmoothPageIndicator(
                               controller: _model.pageViewController ??=
@@ -337,7 +335,7 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                               onDotClicked: (i) async {
                                 await _model.pageViewController!.animateToPage(
                                   i,
-                                  duration: Duration(milliseconds: 500),
+                                  duration: const Duration(milliseconds: 500),
                                   curve: Curves.ease,
                                 );
                                 setState(() {});
@@ -361,7 +359,7 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(24.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -375,7 +373,7 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                               }
 
                               await _model.pageViewController?.previousPage(
-                                duration: Duration(milliseconds: 300),
+                                duration: const Duration(milliseconds: 300),
                                 curve: Curves.ease,
                               );
                             },
@@ -383,9 +381,9 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 55.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .primaryBackground,
@@ -415,7 +413,7 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                               context.pushNamed(
                                 'Login',
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
+                                  kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -424,7 +422,7 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                               );
                             } else {
                               await _model.pageViewController?.nextPage(
-                                duration: Duration(milliseconds: 300),
+                                duration: const Duration(milliseconds: 300),
                                 curve: Curves.ease,
                               );
                             }
@@ -435,9 +433,9 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 55.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -449,7 +447,7 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                                   fontWeight: FontWeight.w600,
                                 ),
                             elevation: 0.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -457,7 +455,7 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 24.0)),
+                    ].divide(const SizedBox(width: 24.0)),
                   ),
                 ),
               ],

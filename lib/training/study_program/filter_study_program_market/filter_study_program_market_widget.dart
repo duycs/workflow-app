@@ -2,11 +2,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'filter_study_program_market_model.dart';
 export 'filter_study_program_market_model.dart';
 
@@ -50,19 +47,19 @@ class _FilterStudyProgramMarketWidgetState
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.dateEndFilter = widget!.dateEnd;
-      _model.dateStartFilter = widget!.dateStart;
+      _model.dateEndFilter = widget.dateEnd;
+      _model.dateStartFilter = widget.dateStart;
       setState(() {});
     });
 
     _model.lessionsTextController ??= TextEditingController(
-        text: widget!.lessionsName != null && widget!.lessionsName != ''
-            ? widget!.lessionsName
+        text: widget.lessionsName != null && widget.lessionsName != ''
+            ? widget.lessionsName
             : '');
     _model.lessionsFocusNode ??= FocusNode();
 
     _model.nameTextController ??= TextEditingController(
-        text: widget!.name != null && widget!.name != '' ? widget!.name : '');
+        text: widget.name != null && widget.name != '' ? widget.name : '');
     _model.nameFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -78,11 +75,11 @@ class _FilterStudyProgramMarketWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -92,7 +89,7 @@ class _FilterStudyProgramMarketWidgetState
               ),
             )
           ],
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
@@ -100,7 +97,7 @@ class _FilterStudyProgramMarketWidgetState
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -135,7 +132,7 @@ class _FilterStudyProgramMarketWidgetState
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -165,7 +162,7 @@ class _FilterStudyProgramMarketWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          final _datePicked1Date = await showDatePicker(
+                          final datePicked1Date = await showDatePicker(
                             context: context,
                             initialDate: getCurrentTimestamp,
                             firstDate: DateTime(1900),
@@ -202,12 +199,12 @@ class _FilterStudyProgramMarketWidgetState
                             },
                           );
 
-                          if (_datePicked1Date != null) {
+                          if (datePicked1Date != null) {
                             safeSetState(() {
                               _model.datePicked1 = DateTime(
-                                _datePicked1Date.year,
-                                _datePicked1Date.month,
-                                _datePicked1Date.day,
+                                datePicked1Date.year,
+                                datePicked1Date.month,
+                                datePicked1Date.day,
                               );
                             });
                           }
@@ -251,7 +248,7 @@ class _FilterStudyProgramMarketWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          final _datePicked2Date = await showDatePicker(
+                          final datePicked2Date = await showDatePicker(
                             context: context,
                             initialDate: getCurrentTimestamp,
                             firstDate: DateTime(1900),
@@ -288,12 +285,12 @@ class _FilterStudyProgramMarketWidgetState
                             },
                           );
 
-                          if (_datePicked2Date != null) {
+                          if (datePicked2Date != null) {
                             safeSetState(() {
                               _model.datePicked2 = DateTime(
-                                _datePicked2Date.year,
-                                _datePicked2Date.month,
-                                _datePicked2Date.day,
+                                datePicked2Date.year,
+                                datePicked2Date.month,
+                                datePicked2Date.day,
                               );
                             });
                           }
@@ -330,10 +327,10 @@ class _FilterStudyProgramMarketWidgetState
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(width: 8.0)),
+                  ].divide(const SizedBox(width: 8.0)),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
                   child: TextFormField(
                     controller: _model.lessionsTextController,
                     focusNode: _model.lessionsFocusNode,
@@ -389,7 +386,7 @@ class _FilterStudyProgramMarketWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
                   child: TextFormField(
                     controller: _model.nameTextController,
                     focusNode: _model.nameFocusNode,
@@ -445,7 +442,7 @@ class _FilterStudyProgramMarketWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -468,9 +465,9 @@ class _FilterStudyProgramMarketWidgetState
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -506,11 +503,11 @@ class _FilterStudyProgramMarketWidgetState
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF33BA45),
+                            color: const Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -520,7 +517,7 @@ class _FilterStudyProgramMarketWidgetState
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -528,10 +525,10 @@ class _FilterStudyProgramMarketWidgetState
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

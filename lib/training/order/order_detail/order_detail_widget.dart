@@ -9,9 +9,7 @@ import '/training/order/order_update/order_update_widget.dart';
 import '/training/order/payment/payment_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'order_detail_model.dart';
 export 'order_detail_model.dart';
@@ -68,7 +66,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
 
     _model.textController1 ??= TextEditingController(
         text: formatNumber(
-      widget!.quantity,
+      widget.quantity,
       formatType: FormatType.decimal,
       decimalType: DecimalType.commaDecimal,
     ));
@@ -92,11 +90,11 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -109,19 +107,19 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
           borderRadius: BorderRadius.circular(0.0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Mã đơn ${widget!.code}',
+                      'Mã đơn ${widget.code}',
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
                             fontFamily: 'Nunito Sans',
                             fontSize: 18.0,
@@ -155,7 +153,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                         child: Text(
                           'Thông tin khóa học',
                           style:
@@ -168,7 +166,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                         child: Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
@@ -181,7 +179,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 8.0, 12.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -200,11 +198,11 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(2.0),
+                                    padding: const EdgeInsets.all(2.0),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10.0),
                                       child: Image.network(
-                                        '${FFAppConstants.ApiBaseUrl}/assets/${widget!.image}?access_token=${FFAppState().accessToken}',
+                                        '${FFAppConstants.ApiBaseUrl}/assets/${widget.image}?access_token=${FFAppState().accessToken}',
                                         width: 44.0,
                                         height: 44.0,
                                         fit: BoxFit.cover,
@@ -222,7 +220,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -232,7 +230,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          widget!.name!,
+                                          widget.name!,
                                           maxLines: 3,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyLarge
@@ -252,7 +250,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -268,7 +266,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                             ),
                             Expanded(
                               child: Text(
-                                widget!.author!,
+                                widget.author!,
                                 textAlign: TextAlign.end,
                                 maxLines: 2,
                                 style: FlutterFlowTheme.of(context)
@@ -285,7 +283,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -302,7 +300,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                             ),
                             Text(
                               formatNumber(
-                                widget!.numLessions,
+                                widget.numLessions,
                                 formatType: FormatType.decimal,
                                 decimalType: DecimalType.commaDecimal,
                               ),
@@ -319,7 +317,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -335,7 +333,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                   ),
                             ),
                             Text(
-                              widget!.status == 'published'
+                              widget.status == 'published'
                                   ? 'Hoàn thành'
                                   : 'Nháp',
                               style: FlutterFlowTheme.of(context)
@@ -351,7 +349,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                       ),
                       if (false)
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -382,7 +380,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                         ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -400,10 +398,10 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                               controller: _model.dropDownValueController ??=
                                   FormFieldController<String>(
                                 _model.dropDownValue ??=
-                                    widget!.private == '0' ? '0' : '1',
+                                    widget.private == '0' ? '0' : '1',
                               ),
                               options: List<String>.from(['0', '1']),
-                              optionLabels: ['Tổ chức', 'Cá nhân'],
+                              optionLabels: const ['Tổ chức', 'Cá nhân'],
                               onChanged: (val) =>
                                   setState(() => _model.dropDownValue = val),
                               width: 200.0,
@@ -427,7 +425,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 1.0,
                               borderRadius: 4.0,
-                              margin: EdgeInsetsDirectional.fromSTEB(
+                              margin: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 4.0, 16.0, 4.0),
                               hidesUnderline: true,
                               disabled: '1' == '1',
@@ -439,7 +437,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 16.0, 0.0, 16.0),
                         child: Divider(
                           height: 1.0,
@@ -449,7 +447,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                         child: Text(
                           'Thanh toán',
                           style:
@@ -461,7 +459,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -478,7 +476,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                             ),
                             Text(
                               formatNumber(
-                                functions.stringToInt(widget!.price!),
+                                functions.stringToInt(widget.price!),
                                 formatType: FormatType.decimal,
                                 decimalType: DecimalType.commaDecimal,
                               ),
@@ -654,7 +652,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                         ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -671,7 +669,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                             ),
                             Text(
                               formatNumber(
-                                functions.stringToInt(widget!.totalPrice!),
+                                functions.stringToInt(widget.totalPrice!),
                                 formatType: FormatType.decimal,
                                 decimalType: DecimalType.commaDecimal,
                               ),
@@ -686,7 +684,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 16.0, 0.0, 16.0),
                         child: Divider(
                           height: 1.0,
@@ -702,9 +700,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                               letterSpacing: 0.0,
                             ),
                       ),
-                      if (widget!.private == '1')
+                      if (widget.private == '1')
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,
@@ -724,15 +722,15 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                 ),
                                 TextSpan(
                                   text: formatNumber(
-                                    (widget!.quantity!) - 1,
+                                    (widget.quantity!) - 1,
                                     formatType: FormatType.decimal,
                                     decimalType: DecimalType.commaDecimal,
                                   ),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                TextSpan(
+                                const TextSpan(
                                   text: ' thành viên khác của tổ chức.',
                                   style: TextStyle(),
                                 )
@@ -748,9 +746,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                             ),
                           ),
                         ),
-                      if (widget!.private == '0')
+                      if (widget.private == '0')
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,
@@ -770,15 +768,15 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                 ),
                                 TextSpan(
                                   text: formatNumber(
-                                    widget!.quantity,
+                                    widget.quantity,
                                     formatType: FormatType.decimal,
                                     decimalType: DecimalType.commaDecimal,
                                   ),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                TextSpan(
+                                const TextSpan(
                                   text: ' thành viên khác của tổ chức.',
                                   style: TextStyle(),
                                 )
@@ -798,11 +796,11 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                   ),
                 ),
               ),
-              if (widget!.status == 'draft')
+              if (widget.status == 'draft')
                 Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -818,20 +816,20 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: OrderUpdateWidget(
-                                        image: widget!.image,
-                                        name: widget!.name!,
-                                        rating: widget!.rating,
-                                        author: widget!.author!,
+                                        image: widget.image,
+                                        name: widget.name!,
+                                        rating: widget.rating,
+                                        author: widget.author!,
                                         numlession: 0,
-                                        price: widget!.price!,
-                                        quantity: widget!.quantity!,
-                                        totalPrice: widget!.totalPrice!,
-                                        private: widget!.private!,
-                                        orderId: widget!.orderId!,
-                                        programId: widget!.programId!,
+                                        price: widget.price!,
+                                        quantity: widget.quantity!,
+                                        totalPrice: widget.totalPrice!,
+                                        private: widget.private!,
+                                        orderId: widget.orderId!,
+                                        programId: widget.programId!,
                                       ),
                                     );
                                   },
@@ -840,15 +838,15 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                 Navigator.pop(context);
                               },
                               text: 'Chỉnh sửa',
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.edit,
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -859,7 +857,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -872,18 +870,18 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                           child: Builder(
                             builder: (context) => FFButtonWidget(
                               onPressed: () async {
-                                var _shouldSetState = false;
+                                var shouldSetState = false;
                                 _model.orderUpdateStatus1 =
                                     await action_blocks.tokenReload(context);
-                                _shouldSetState = true;
+                                shouldSetState = true;
                                 if (_model.orderUpdateStatus1!) {
                                   _model.apiResultQrCodeCreate =
                                       await OrderGroup.qrCodeCall.call(
                                     accessToken: FFAppState().accessToken,
-                                    orderId: widget!.orderId,
+                                    orderId: widget.orderId,
                                   );
 
-                                  _shouldSetState = true;
+                                  shouldSetState = true;
                                   if ((_model
                                           .apiResultQrCodeCreate?.succeeded ??
                                       true)) {
@@ -894,13 +892,13 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                           elevation: 0,
                                           insetPadding: EdgeInsets.zero,
                                           backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
+                                          alignment: const AlignmentDirectional(
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
                                           child: PaymentWidget(
-                                            orderId: widget!.orderId!,
-                                            private: widget!.private == '0'
+                                            orderId: widget.orderId!,
+                                            private: widget.private == '0'
                                                 ? 'private0'
                                                 : 'private1',
                                             qr: (_model.apiResultQrCodeCreate
@@ -913,29 +911,29 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
 
                                     Navigator.pop(context);
                                   } else {
-                                    if (_shouldSetState) setState(() {});
+                                    if (shouldSetState) setState(() {});
                                     return;
                                   }
                                 } else {
                                   setState(() {});
-                                  if (_shouldSetState) setState(() {});
+                                  if (shouldSetState) setState(() {});
                                   return;
                                 }
 
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                               },
                               text: 'Thanh toán',
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.payments_outlined,
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: Color(0xFF33BA45),
+                                color: const Color(0xFF33BA45),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -944,7 +942,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -953,11 +951,11 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
                     ),
                   ),
                 ),
-            ].divide(SizedBox(height: 8.0)),
+            ].divide(const SizedBox(height: 8.0)),
           ),
         ),
       ),

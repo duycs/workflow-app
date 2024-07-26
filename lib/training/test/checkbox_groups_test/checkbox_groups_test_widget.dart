@@ -2,8 +2,6 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'checkbox_groups_test_model.dart';
 export 'checkbox_groups_test_model.dart';
 
@@ -66,7 +64,7 @@ class _CheckboxGroupsTestWidgetState extends State<CheckboxGroupsTestWidget> {
               ),
               child: Checkbox(
                 value: _model.checkboxValue ??=
-                    widget!.parameter1?.answersId?.correct == 1,
+                    widget.parameter1?.answersId.correct == 1,
                 onChanged: ('1' == '1')
                     ? null
                     : (newValue) async {
@@ -83,7 +81,7 @@ class _CheckboxGroupsTestWidgetState extends State<CheckboxGroupsTestWidget> {
             ),
             Expanded(
               child: Text(
-                widget!.parameter1!.answersId.content,
+                widget.parameter1!.answersId.content,
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Nunito Sans',
                       letterSpacing: 0.0,

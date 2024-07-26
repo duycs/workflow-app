@@ -1,40 +1,35 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.dart';
 import '/training/lesson/no_data/no_data_widget.dart';
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
-import 'lesson_lists_homepage_branch_model.dart';
-export 'lesson_lists_homepage_branch_model.dart';
+import 'lesson_lists_homepage_draft_model.dart';
+export 'lesson_lists_homepage_draft_model.dart';
 
-class LessonListsHomepageBranchWidget extends StatefulWidget {
-  const LessonListsHomepageBranchWidget({super.key});
+class LessonListsHomepageDraftWidget extends StatefulWidget {
+  const LessonListsHomepageDraftWidget({super.key});
 
   @override
-  State<LessonListsHomepageBranchWidget> createState() =>
-      _LessonListsHomepageBranchWidgetState();
+  State<LessonListsHomepageDraftWidget> createState() =>
+      _LessonListsHomepageDraftWidgetState();
 }
 
-class _LessonListsHomepageBranchWidgetState
-    extends State<LessonListsHomepageBranchWidget> {
-  late LessonListsHomepageBranchModel _model;
+class _LessonListsHomepageDraftWidgetState
+    extends State<LessonListsHomepageDraftWidget> {
+  late LessonListsHomepageDraftModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => LessonListsHomepageBranchModel());
+    _model = createModel(context, () => LessonListsHomepageDraftModel());
 
     _model.nameSearchTextController ??= TextEditingController();
     _model.nameSearchFocusNode ??= FocusNode();
@@ -72,7 +67,7 @@ class _LessonListsHomepageBranchWidgetState
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -89,7 +84,7 @@ class _LessonListsHomepageBranchWidgetState
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 12.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -97,14 +92,14 @@ class _LessonListsHomepageBranchWidgetState
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 width: double.infinity,
                                 child: TextFormField(
                                   controller: _model.nameSearchTextController,
                                   focusNode: _model.nameSearchFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.nameSearchTextController',
-                                    Duration(milliseconds: 500),
+                                    const Duration(milliseconds: 500),
                                     () async {
                                       setState(() => _model
                                           .listViewPagingController
@@ -166,9 +161,9 @@ class _LessonListsHomepageBranchWidgetState
                                     fillColor: FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                     contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
+                                        const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 0.0, 0.0),
-                                    prefixIcon: Icon(
+                                    prefixIcon: const Icon(
                                       Icons.search,
                                       size: 24.0,
                                     ),
@@ -283,18 +278,15 @@ class _LessonListsHomepageBranchWidgetState
                           ],
                         ),
                       ),
-                      if ((_model.nameSearchTextController.text != null &&
-                              _model.nameSearchTextController.text != '') ||
-                          ((_model.status != null && _model.status != '') &&
+                      if ((_model.nameSearchTextController.text != '') ||
+                          ((_model.status != '') &&
                               (_model.status != 'noData')) ||
-                          ((_model.dateEndList != null &&
-                                  _model.dateEndList != '') &&
+                          ((_model.dateEndList != '') &&
                               (_model.dateEndList != 'noData')) ||
-                          ((_model.dateStartList != null &&
-                                  _model.dateStartList != '') &&
+                          ((_model.dateStartList != '') &&
                               (_model.dateStartList != 'noData')))
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 0.0, 4.0),
                           child: Text(
                             '#Kết quả tìm kiếm theo bộ lọc',
@@ -311,7 +303,7 @@ class _LessonListsHomepageBranchWidgetState
                           ),
                         ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 8.0, 16.0, 16.0),
                         child:
                             PagedListView<ApiPagingParams, dynamic>.separated(
@@ -327,9 +319,9 @@ class _LessonListsHomepageBranchWidgetState
                               ).toString()}\"}},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"id\":{\"_neq\":\"${getJsonField(
                                 FFAppState().staffDepartment,
                                 r'''$.id''',
-                              ).toString()}\"}}}}}},{\"status\":{\"_icontains\":\"published\"}}'}${_model.nameSearchTextController.text != null && _model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}' : ' '}${(_model.status != null && _model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_eq\":\"${_model.status}\"}}' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStartList}\"}}' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
+                              ).toString()}\"}}}}}},{\"status\":{\"_icontains\":\"published\"}}'}${_model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_eq\":\"${_model.status}\"}}' : ' '}${(_model.dateStartList != '') && (_model.dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStartList}\"}}' : ' '}${(_model.dateEndList != '') && (_model.dateEndList != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
                                   return DateTime.parse(var1)
-                                      .add(Duration(days: 1))
+                                      .add(const Duration(days: 1))
                                       .toString();
                                 }(_model.dateEndList)}\"}}' : ' '},{\"status\":{\"_eq\":\"published\"}}]}',
                             ),
@@ -339,12 +331,12 @@ class _LessonListsHomepageBranchWidgetState
                           shrinkWrap: true,
                           reverse: false,
                           scrollDirection: Axis.vertical,
-                          separatorBuilder: (_, __) => SizedBox(height: 8.0),
+                          separatorBuilder: (_, __) => const SizedBox(height: 8.0),
                           builderDelegate: PagedChildBuilderDelegate<dynamic>(
                             // Customize what your widget looks like when it's loading the first page.
                             firstPageProgressIndicatorBuilder: (_) => Center(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 300.0, 0.0, 0.0),
                                 child: SizedBox(
                                   width: 50.0,
@@ -360,7 +352,7 @@ class _LessonListsHomepageBranchWidgetState
                             // Customize what your widget looks like when it's loading another page.
                             newPageProgressIndicatorBuilder: (_) => Center(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 300.0, 0.0, 0.0),
                                 child: SizedBox(
                                   width: 50.0,
@@ -373,7 +365,7 @@ class _LessonListsHomepageBranchWidgetState
                                 ),
                               ),
                             ),
-                            noItemsFoundIndicatorBuilder: (_) => Center(
+                            noItemsFoundIndicatorBuilder: (_) => const Center(
                               child: NoDataWidget(),
                             ),
                             itemBuilder: (context, _, listLessonsIndex) {
@@ -395,7 +387,7 @@ class _LessonListsHomepageBranchWidgetState
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -417,7 +409,7 @@ class _LessonListsHomepageBranchWidgetState
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -431,7 +423,7 @@ class _LessonListsHomepageBranchWidgetState
                                             width: 100.0,
                                             height: double.infinity,
                                             fit: BoxFit.cover,
-                                            alignment: Alignment(0.0, 0.0),
+                                            alignment: const Alignment(0.0, 0.0),
                                             errorBuilder:
                                                 (context, error, stackTrace) =>
                                                     Image.asset(
@@ -439,7 +431,7 @@ class _LessonListsHomepageBranchWidgetState
                                               width: 100.0,
                                               height: double.infinity,
                                               fit: BoxFit.cover,
-                                              alignment: Alignment(0.0, 0.0),
+                                              alignment: const Alignment(0.0, 0.0),
                                             ),
                                           ),
                                         ),
@@ -478,7 +470,7 @@ class _LessonListsHomepageBranchWidgetState
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   4.0,
@@ -539,12 +531,12 @@ class _LessonListsHomepageBranchWidgetState
                                                           ),
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ],
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 8.0)),
+                                      ].divide(const SizedBox(width: 8.0)),
                                     ),
                                   ),
                                 ),
@@ -555,13 +547,13 @@ class _LessonListsHomepageBranchWidgetState
                       ),
                     ],
                   ),
-                ].addToEnd(SizedBox(height: 200.0)),
+                ].addToEnd(const SizedBox(height: 200.0)),
               ),
             ),
             if (_model.checkLoading == false)
               Container(
-                decoration: BoxDecoration(),
-                child: Container(
+                decoration: const BoxDecoration(),
+                child: SizedBox(
                   width: double.infinity,
                   height: double.infinity,
                   child: custom_widgets.LoadingPageWidget(

@@ -11,10 +11,8 @@ import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'lesson_detail_home_page_model.dart';
 export 'lesson_detail_home_page_model.dart';
@@ -29,9 +27,9 @@ class LessonDetailHomePageWidget extends StatefulWidget {
     this.programId,
     String? checkLesson,
     this.checkReload,
-  })  : this.id = id ?? '',
-        this.checkScroll = checkScroll ?? '0',
-        this.checkLesson = checkLesson ?? '';
+  })  : id = id ?? '',
+        checkScroll = checkScroll ?? '0',
+        checkLesson = checkLesson ?? '';
 
   final dynamic listItems;
   final String? status;
@@ -59,8 +57,8 @@ class _LessonDetailHomePageWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget!.listItems != null) {
-        _model.status = widget!.status!;
+      if (widget.listItems != null) {
+        _model.status = widget.status!;
         await _model.getComments(context);
         setState(() {});
         await _model.getHeart(context);
@@ -106,11 +104,11 @@ class _LessonDetailHomePageWidgetState
               size: 30.0,
             ),
             onPressed: () async {
-              if (widget!.checkReload == 'Home') {
+              if (widget.checkReload == 'Home') {
                 context.pushNamed(
                   'LessonLists_Homepage',
                   extra: <String, dynamic>{
-                    kTransitionInfoKey: TransitionInfo(
+                    kTransitionInfoKey: const TransitionInfo(
                       hasTransition: true,
                       transitionType: PageTransitionType.fade,
                       duration: Duration(milliseconds: 0),
@@ -136,26 +134,26 @@ class _LessonDetailHomePageWidgetState
                       ),
                 ),
               ),
-              if ((_model.status != null && _model.status != '') &&
+              if ((_model.status != '') &&
                   (_model.status == 'draft') &&
-                  (widget!.id != null && widget!.id != ''))
+                  (widget.id != ''))
                 FFButtonWidget(
                   onPressed: () async {
                     var confirmDialogResponse = await showDialog<bool>(
                           context: context,
                           builder: (alertDialogContext) {
                             return AlertDialog(
-                              content: Text('Bắt đầu bài học!'),
+                              content: const Text('Bắt đầu bài học!'),
                               actions: [
                                 TextButton(
                                   onPressed: () =>
                                       Navigator.pop(alertDialogContext, false),
-                                  child: Text('Đóng'),
+                                  child: const Text('Đóng'),
                                 ),
                                 TextButton(
                                   onPressed: () =>
                                       Navigator.pop(alertDialogContext, true),
-                                  child: Text('Xác nhận'),
+                                  child: const Text('Xác nhận'),
                                 ),
                               ],
                             );
@@ -172,9 +170,9 @@ class _LessonDetailHomePageWidgetState
                   text: 'Bắt đầu học',
                   options: FFButtonOptions(
                     height: 32.0,
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).secondary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Nunito Sans',
@@ -183,7 +181,7 @@ class _LessonDetailHomePageWidgetState
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
                         ),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),
@@ -192,7 +190,7 @@ class _LessonDetailHomePageWidgetState
                 ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -202,11 +200,11 @@ class _LessonDetailHomePageWidgetState
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              if ((widget!.listItems != null) &&
-                  (_model.status != null && _model.status != '') &&
-                  (widget!.id != null && widget!.id != ''))
+              if ((widget.listItems != null) &&
+                  (_model.status != '') &&
+                  (widget.id != ''))
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -214,13 +212,13 @@ class _LessonDetailHomePageWidgetState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 12.0, 0.0, 0.0),
                             child: Text(
                               getJsonField(
-                                widget!.listItems,
+                                widget.listItems,
                                 r'''$.name''',
                               ).toString(),
                               style: FlutterFlowTheme.of(context)
@@ -235,7 +233,7 @@ class _LessonDetailHomePageWidgetState
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 12.0, 12.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -249,14 +247,14 @@ class _LessonDetailHomePageWidgetState
                               children: [
                                 if ((_model.status != 'draft') &&
                                     (getJsonField(
-                                          widget!.listItems,
+                                          widget.listItems,
                                           r'''$.video''',
                                         ) !=
                                         null))
                                   FlutterFlowVideoPlayer(
                                     path:
                                         '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                                      widget!.listItems,
+                                      widget.listItems,
                                       r'''$.video''',
                                     ).toString()}?access_token=${FFAppState().accessToken}',
                                     videoType: VideoType.network,
@@ -271,16 +269,16 @@ class _LessonDetailHomePageWidgetState
                                   ),
                                 if ((_model.status == 'draft') &&
                                     (getJsonField(
-                                          widget!.listItems,
+                                          widget.listItems,
                                           r'''$.video''',
                                         ) !=
                                         null))
                                   Stack(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     children: [
                                       if ((_model.status == 'draft') &&
                                           (getJsonField(
-                                                widget!.listItems,
+                                                widget.listItems,
                                                 r'''$.video''',
                                               ) !=
                                               null))
@@ -294,13 +292,13 @@ class _LessonDetailHomePageWidgetState
                                         ),
                                       if ((_model.status == 'draft') &&
                                           (getJsonField(
-                                                widget!.listItems,
+                                                widget.listItems,
                                                 r'''$.video''',
                                               ) !=
                                               null))
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: FlutterFlowIconButton(
                                             borderColor:
                                                 FlutterFlowTheme.of(context)
@@ -331,7 +329,7 @@ class _LessonDetailHomePageWidgetState
                                                               .primaryText,
                                                     ),
                                                   ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
@@ -345,23 +343,23 @@ class _LessonDetailHomePageWidgetState
                                     ],
                                   ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 12.0),
                                   child: Container(
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.stretch,
                                       children: [
                                         if (getJsonField(
-                                              widget!.listItems,
+                                              widget.listItems,
                                               r'''$.file''',
                                             ) !=
                                             null)
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Container(
                                               width: double.infinity,
@@ -373,7 +371,7 @@ class _LessonDetailHomePageWidgetState
                                                     BorderRadius.circular(8.0),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsets.all(6.0),
+                                                padding: const EdgeInsets.all(6.0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -393,7 +391,7 @@ class _LessonDetailHomePageWidgetState
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -432,7 +430,7 @@ class _LessonDetailHomePageWidgetState
                                                                 if ((_model.checkFile ==
                                                                         '1') &&
                                                                     (getJsonField(
-                                                                          widget!
+                                                                          widget
                                                                               .listItems,
                                                                           r'''$.file''',
                                                                         ) !=
@@ -440,132 +438,132 @@ class _LessonDetailHomePageWidgetState
                                                                     (((((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'pdf') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'pdfa') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'pdfx') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'pdft') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'pdfvt') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'pdfua')) ||
                                                                         ((((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'jpeg') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'png') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'gif') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'jpg') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'bmp') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'tiff') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'tif') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'raw') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'webp') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'svg') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'heic') ||
                                                                             (((String type) {
                                                                                   return type.split('.').last;
                                                                                 }(getJsonField(
-                                                                                  widget!.listItems,
+                                                                                  widget.listItems,
                                                                                   r'''$.file.filename_download''',
                                                                                 ).toString())) ==
                                                                                 'heif'))) &&
                                                                     (_model.status != 'draft'))
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             2.0,
                                                                             0.0,
@@ -610,7 +608,7 @@ class _LessonDetailHomePageWidgetState
                                                                         .checkFile ==
                                                                     '0')
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             2.0,
                                                                             0.0,
@@ -663,7 +661,7 @@ class _LessonDetailHomePageWidgetState
                                                                     .center,
                                                             children: [
                                                               if ((getJsonField(
-                                                                        widget!
+                                                                        widget
                                                                             .listItems,
                                                                         r'''$.file''',
                                                                       ) !=
@@ -671,42 +669,42 @@ class _LessonDetailHomePageWidgetState
                                                                   ((((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'doc') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'docx') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'rtf') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'txt') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'odt') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'docm')))
@@ -726,7 +724,7 @@ class _LessonDetailHomePageWidgetState
                                                                   ),
                                                                 ),
                                                               if ((getJsonField(
-                                                                        widget!
+                                                                        widget
                                                                             .listItems,
                                                                         r'''$.file''',
                                                                       ) !=
@@ -734,63 +732,63 @@ class _LessonDetailHomePageWidgetState
                                                                   ((((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'xls') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'xlsx') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'xlsm') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'xlsb') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'csv') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'xltx') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'xltm') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'ods') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'xml')))
@@ -810,7 +808,7 @@ class _LessonDetailHomePageWidgetState
                                                                   ),
                                                                 ),
                                                               if ((getJsonField(
-                                                                        widget!
+                                                                        widget
                                                                             .listItems,
                                                                         r'''$.file''',
                                                                       ) !=
@@ -818,56 +816,56 @@ class _LessonDetailHomePageWidgetState
                                                                   ((((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'ppt') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'pptx') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'pptm') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'potx') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'potm') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'ppsx') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'ppsm') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'odp')))
@@ -887,7 +885,7 @@ class _LessonDetailHomePageWidgetState
                                                                   ),
                                                                 ),
                                                               if ((getJsonField(
-                                                                        widget!
+                                                                        widget
                                                                             .listItems,
                                                                         r'''$.file''',
                                                                       ) !=
@@ -895,42 +893,42 @@ class _LessonDetailHomePageWidgetState
                                                                   ((((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'pdf') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'pdfa') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'pdfx') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'pdft') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'pdfvt') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'pdfua')))
@@ -950,7 +948,7 @@ class _LessonDetailHomePageWidgetState
                                                                   ),
                                                                 ),
                                                               if ((getJsonField(
-                                                                        widget!
+                                                                        widget
                                                                             .listItems,
                                                                         r'''$.file''',
                                                                       ) !=
@@ -958,84 +956,84 @@ class _LessonDetailHomePageWidgetState
                                                                   ((((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'jpeg') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'png') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'gif') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'jpg') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'bmp') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'tiff') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'tif') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'raw') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'webp') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'svg') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'heic') ||
                                                                       (((String type) {
                                                                             return type.split('.').last;
                                                                           }(getJsonField(
-                                                                            widget!.listItems,
+                                                                            widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
                                                                           'heif')))
@@ -1056,7 +1054,7 @@ class _LessonDetailHomePageWidgetState
                                                                 ),
                                                               Expanded(
                                                                 child: Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -1081,126 +1079,126 @@ class _LessonDetailHomePageWidgetState
                                                                       if (((((String type) {
                                                                                     return type.split('.').last;
                                                                                   }(getJsonField(
-                                                                                    widget!.listItems,
+                                                                                    widget.listItems,
                                                                                     r'''$.file.filename_download''',
                                                                                   ).toString())) ==
                                                                                   'pdf') ||
                                                                               (((String type) {
                                                                                     return type.split('.').last;
                                                                                   }(getJsonField(
-                                                                                    widget!.listItems,
+                                                                                    widget.listItems,
                                                                                     r'''$.file.filename_download''',
                                                                                   ).toString())) ==
                                                                                   'pdfa') ||
                                                                               (((String type) {
                                                                                     return type.split('.').last;
                                                                                   }(getJsonField(
-                                                                                    widget!.listItems,
+                                                                                    widget.listItems,
                                                                                     r'''$.file.filename_download''',
                                                                                   ).toString())) ==
                                                                                   'pdfx') ||
                                                                               (((String type) {
                                                                                     return type.split('.').last;
                                                                                   }(getJsonField(
-                                                                                    widget!.listItems,
+                                                                                    widget.listItems,
                                                                                     r'''$.file.filename_download''',
                                                                                   ).toString())) ==
                                                                                   'pdft') ||
                                                                               (((String type) {
                                                                                     return type.split('.').last;
                                                                                   }(getJsonField(
-                                                                                    widget!.listItems,
+                                                                                    widget.listItems,
                                                                                     r'''$.file.filename_download''',
                                                                                   ).toString())) ==
                                                                                   'pdfvt') ||
                                                                               (((String type) {
                                                                                     return type.split('.').last;
                                                                                   }(getJsonField(
-                                                                                    widget!.listItems,
+                                                                                    widget.listItems,
                                                                                     r'''$.file.filename_download''',
                                                                                   ).toString())) ==
                                                                                   'pdfua') ||
                                                                               ((((String type) {
                                                                                         return type.split('.').last;
                                                                                       }(getJsonField(
-                                                                                        widget!.listItems,
+                                                                                        widget.listItems,
                                                                                         r'''$.file.filename_download''',
                                                                                       ).toString())) ==
                                                                                       'jpeg') ||
                                                                                   (((String type) {
                                                                                         return type.split('.').last;
                                                                                       }(getJsonField(
-                                                                                        widget!.listItems,
+                                                                                        widget.listItems,
                                                                                         r'''$.file.filename_download''',
                                                                                       ).toString())) ==
                                                                                       'png') ||
                                                                                   (((String type) {
                                                                                         return type.split('.').last;
                                                                                       }(getJsonField(
-                                                                                        widget!.listItems,
+                                                                                        widget.listItems,
                                                                                         r'''$.file.filename_download''',
                                                                                       ).toString())) ==
                                                                                       'gif') ||
                                                                                   (((String type) {
                                                                                         return type.split('.').last;
                                                                                       }(getJsonField(
-                                                                                        widget!.listItems,
+                                                                                        widget.listItems,
                                                                                         r'''$.file.filename_download''',
                                                                                       ).toString())) ==
                                                                                       'jpg') ||
                                                                                   (((String type) {
                                                                                         return type.split('.').last;
                                                                                       }(getJsonField(
-                                                                                        widget!.listItems,
+                                                                                        widget.listItems,
                                                                                         r'''$.file.filename_download''',
                                                                                       ).toString())) ==
                                                                                       'bmp') ||
                                                                                   (((String type) {
                                                                                         return type.split('.').last;
                                                                                       }(getJsonField(
-                                                                                        widget!.listItems,
+                                                                                        widget.listItems,
                                                                                         r'''$.file.filename_download''',
                                                                                       ).toString())) ==
                                                                                       'tiff') ||
                                                                                   (((String type) {
                                                                                         return type.split('.').last;
                                                                                       }(getJsonField(
-                                                                                        widget!.listItems,
+                                                                                        widget.listItems,
                                                                                         r'''$.file.filename_download''',
                                                                                       ).toString())) ==
                                                                                       'tif') ||
                                                                                   (((String type) {
                                                                                         return type.split('.').last;
                                                                                       }(getJsonField(
-                                                                                        widget!.listItems,
+                                                                                        widget.listItems,
                                                                                         r'''$.file.filename_download''',
                                                                                       ).toString())) ==
                                                                                       'raw') ||
                                                                                   (((String type) {
                                                                                         return type.split('.').last;
                                                                                       }(getJsonField(
-                                                                                        widget!.listItems,
+                                                                                        widget.listItems,
                                                                                         r'''$.file.filename_download''',
                                                                                       ).toString())) ==
                                                                                       'webp') ||
                                                                                   (((String type) {
                                                                                         return type.split('.').last;
                                                                                       }(getJsonField(
-                                                                                        widget!.listItems,
+                                                                                        widget.listItems,
                                                                                         r'''$.file.filename_download''',
                                                                                       ).toString())) ==
                                                                                       'svg') ||
                                                                                   (((String type) {
                                                                                         return type.split('.').last;
                                                                                       }(getJsonField(
-                                                                                        widget!.listItems,
+                                                                                        widget.listItems,
                                                                                         r'''$.file.filename_download''',
                                                                                       ).toString())) ==
                                                                                       'heic') ||
                                                                                   (((String type) {
                                                                                         return type.split('.').last;
                                                                                       }(getJsonField(
-                                                                                        widget!.listItems,
+                                                                                        widget.listItems,
                                                                                         r'''$.file.filename_download''',
                                                                                       ).toString())) ==
                                                                                       'heif'))) &&
@@ -1213,19 +1211,19 @@ class _LessonDetailHomePageWidgetState
                                                                     },
                                                                     child: Text(
                                                                       getJsonField(
-                                                                                widget!.listItems,
+                                                                                widget.listItems,
                                                                                 r'''$.file''',
                                                                               ) !=
                                                                               null
                                                                           ? '${(String name) {
                                                                               return name.toLowerCase().replaceAll(' ', '-');
                                                                             }(getJsonField(
-                                                                              widget!.listItems,
+                                                                              widget.listItems,
                                                                               r'''$.name''',
                                                                             ).toString())}.${(String type) {
                                                                               return type.split('.').last;
                                                                             }(getJsonField(
-                                                                              widget!.listItems,
+                                                                              widget.listItems,
                                                                               r'''$.file.filename_download''',
                                                                             ).toString())}'
                                                                           : 'Chưa có tài liệu',
@@ -1260,7 +1258,7 @@ class _LessonDetailHomePageWidgetState
                                                     if ((_model.status !=
                                                             'draft') &&
                                                         (getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file''',
                                                             ) !=
                                                             null))
@@ -1269,15 +1267,15 @@ class _LessonDetailHomePageWidgetState
                                                           await actions
                                                               .downloadFile(
                                                             '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.id''',
                                                             ).toString()}?access_token=${FFAppState().accessToken}',
                                                             getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.name''',
                                                             ).toString(),
                                                             getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString(),
                                                           );
@@ -1295,14 +1293,14 @@ class _LessonDetailHomePageWidgetState
                                                             FFButtonOptions(
                                                           height: 25.0,
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       0.0,
                                                                       8.0,
                                                                       0.0),
                                                           iconPadding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1336,7 +1334,7 @@ class _LessonDetailHomePageWidgetState
                                                         ),
                                                       ),
                                                   ].divide(
-                                                      SizedBox(width: 5.0)),
+                                                      const SizedBox(width: 5.0)),
                                                 ),
                                               ),
                                             ),
@@ -1344,7 +1342,7 @@ class _LessonDetailHomePageWidgetState
                                         if (_model.checkFile == '0')
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 16.0, 0.0, 0.0),
                                             child: Container(
                                               decoration: BoxDecoration(
@@ -1357,7 +1355,7 @@ class _LessonDetailHomePageWidgetState
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsets.all(4.0),
+                                                padding: const EdgeInsets.all(4.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -1367,7 +1365,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'pdf') ||
@@ -1376,7 +1374,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'pdfa') ||
@@ -1385,7 +1383,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'pdfx') ||
@@ -1394,7 +1392,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'pdft') ||
@@ -1403,7 +1401,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'pdfvt') ||
@@ -1412,14 +1410,14 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'pdfua'))
                                                       FlutterFlowPdfViewer(
                                                         networkPath:
                                                             '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                                                          widget!.listItems,
+                                                          widget.listItems,
                                                           r'''$.file.id''',
                                                         ).toString()}?access_token=${FFAppState().accessToken}',
                                                         width: double.infinity,
@@ -1431,7 +1429,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'jpeg') ||
@@ -1440,7 +1438,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'png') ||
@@ -1449,7 +1447,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'gif') ||
@@ -1458,7 +1456,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'jpg') ||
@@ -1467,7 +1465,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'bmp') ||
@@ -1476,7 +1474,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'tiff') ||
@@ -1485,7 +1483,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'tif') ||
@@ -1494,7 +1492,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'raw') ||
@@ -1503,7 +1501,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'webp') ||
@@ -1512,7 +1510,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'svg') ||
@@ -1521,7 +1519,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'heic') ||
@@ -1530,7 +1528,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .split('.')
                                                                   .last;
                                                             }(getJsonField(
-                                                              widget!.listItems,
+                                                              widget.listItems,
                                                               r'''$.file.filename_download''',
                                                             ).toString())) ==
                                                             'heif'))
@@ -1540,7 +1538,7 @@ class _LessonDetailHomePageWidgetState
                                                                 .circular(8.0),
                                                         child: Image.network(
                                                           '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                                                            widget!.listItems,
+                                                            widget.listItems,
                                                             r'''$.file.id''',
                                                           ).toString()}?access_token=${FFAppState().accessToken}',
                                                           width:
@@ -1557,14 +1555,14 @@ class _LessonDetailHomePageWidgetState
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(height: 8.0)),
+                              ].divide(const SizedBox(height: 8.0)),
                             ),
                           ),
                         ),
-                        if ((widget!.status != null && widget!.status != '') &&
+                        if ((widget.status != null && widget.status != '') &&
                             (_model.status != 'draft'))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 0.0, 4.0),
                             child: RichText(
                               textScaler: MediaQuery.of(context).textScaler,
@@ -1581,7 +1579,7 @@ class _LessonDetailHomePageWidgetState
                                         ),
                                   ),
                                   TextSpan(
-                                    text: '${() {
+                                    text: () {
                                       if (_model.status == 'draft') {
                                         return 'Chưa học';
                                       } else if (_model.status ==
@@ -1592,7 +1590,7 @@ class _LessonDetailHomePageWidgetState
                                       } else {
                                         return ' ';
                                       }
-                                    }()}',
+                                    }(),
                                     style: TextStyle(
                                       color: () {
                                         if (_model.status == 'draft') {
@@ -1606,7 +1604,7 @@ class _LessonDetailHomePageWidgetState
                                           return FlutterFlowTheme.of(context)
                                               .secondary;
                                         } else {
-                                          return Color(0x00000000);
+                                          return const Color(0x00000000);
                                         }
                                       }(),
                                       fontWeight: FontWeight.normal,
@@ -1627,9 +1625,9 @@ class _LessonDetailHomePageWidgetState
                         Container(
                           width: double.infinity,
                           height: 35.0,
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 4.0, 12.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1705,9 +1703,9 @@ class _LessonDetailHomePageWidgetState
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(SizedBox(width: 2.0)),
+                                      ].divide(const SizedBox(width: 2.0)),
                                     ),
-                                  ].divide(SizedBox(width: 4.0)),
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -1741,22 +1739,22 @@ class _LessonDetailHomePageWidgetState
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(SizedBox(width: 2.0)),
+                                      ].divide(const SizedBox(width: 2.0)),
                                     ),
-                                  ].divide(SizedBox(width: 4.0)),
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Align(
-                                      alignment: AlignmentDirectional(1.0, 0.0),
+                                      alignment: const AlignmentDirectional(1.0, 0.0),
                                       child: Text(
                                         dateTimeFormat(
                                           'dd/MM/yyyy',
                                           functions
                                               .stringToDateTime(getJsonField(
-                                            widget!.listItems,
+                                            widget.listItems,
                                             r'''$.date_created''',
                                           ).toString()),
                                           locale: FFLocalizations.of(context)
@@ -1771,26 +1769,26 @@ class _LessonDetailHomePageWidgetState
                                             ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 4.0)),
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
-                              ].divide(SizedBox(width: 24.0)),
+                              ].divide(const SizedBox(width: 24.0)),
                             ),
                           ),
                         ),
-                        if ((_model.testId != null && _model.testId != '') &&
+                        if ((_model.testId != '') &&
                             (_model.status != 'draft'))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 12.0, 12.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 if ((_model.status == 'inprogress') &&
-                                    (widget!.checkLesson != 'closeTest'))
+                                    (widget.checkLesson != 'closeTest'))
                                   Expanded(
                                     child: Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Builder(
                                         builder: (context) => InkWell(
                                           splashColor: Colors.transparent,
@@ -1807,7 +1805,7 @@ class _LessonDetailHomePageWidgetState
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -1824,11 +1822,11 @@ class _LessonDetailHomePageWidgetState
                                                     child: ConfirmDoTestWidget(
                                                       testId: _model.testId,
                                                       lessionId: getJsonField(
-                                                        widget!.listItems,
+                                                        widget.listItems,
                                                         r'''$.id''',
                                                       ).toString(),
                                                       avatar: getJsonField(
-                                                        widget!.listItems,
+                                                        widget.listItems,
                                                         r'''$.image_cover''',
                                                       ).toString(),
                                                     ),
@@ -1847,12 +1845,12 @@ class _LessonDetailHomePageWidgetState
                                                   BorderRadius.circular(12.0),
                                             ),
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 16.0, 0.0),
                                                 child: Row(
@@ -1887,7 +1885,7 @@ class _LessonDetailHomePageWidgetState
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Icon(
                                                       Icons
@@ -1907,10 +1905,10 @@ class _LessonDetailHomePageWidgetState
                                       ),
                                     ),
                                   ),
-                                if (widget!.checkLesson != 'closeTest')
+                                if (widget.checkLesson != 'closeTest')
                                   Expanded(
                                     child: Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -1922,7 +1920,7 @@ class _LessonDetailHomePageWidgetState
                                             queryParameters: {
                                               'lessionId': serializeParam(
                                                 getJsonField(
-                                                  widget!.listItems,
+                                                  widget.listItems,
                                                   r'''$.id''',
                                                 ).toString(),
                                                 ParamType.String,
@@ -1930,7 +1928,7 @@ class _LessonDetailHomePageWidgetState
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  TransitionInfo(
+                                                  const TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -1945,7 +1943,7 @@ class _LessonDetailHomePageWidgetState
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryBackground,
-                                            boxShadow: [
+                                            boxShadow: const [
                                               BoxShadow(
                                                 color: Color(0x33000000),
                                               )
@@ -1955,9 +1953,9 @@ class _LessonDetailHomePageWidgetState
                                           ),
                                           child: Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 16.0, 0.0),
                                               child: Row(
@@ -1993,7 +1991,7 @@ class _LessonDetailHomePageWidgetState
                                                                 ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(width: 4.0)),
+                                                        const SizedBox(width: 4.0)),
                                                   ),
                                                   Icon(
                                                     Icons.chevron_right_rounded,
@@ -2010,11 +2008,11 @@ class _LessonDetailHomePageWidgetState
                                       ),
                                     ),
                                   ),
-                              ].divide(SizedBox(width: 24.0)),
+                              ].divide(const SizedBox(width: 24.0)),
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 12.0, 0.0, 0.0),
                           child: Text(
                             'Nội dung bài học',
@@ -2026,32 +2024,27 @@ class _LessonDetailHomePageWidgetState
                                     ),
                           ),
                         ),
-                        if ((widget!.listItems != null) &&
+                        if ((widget.listItems != null) &&
                             (getJsonField(
-                                  widget!.listItems,
+                                  widget.listItems,
                                   r'''$.content''',
                                 ) !=
                                 null))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 5.0, 12.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                if ((widget!.listItems != null) &&
+                                if ((widget.listItems != null) &&
                                     (getJsonField(
-                                          widget!.listItems,
+                                          widget.listItems,
                                           r'''$.content''',
                                         ) !=
                                         null) &&
                                     (functions.formatHtml(getJsonField(
-                                              widget!.listItems,
-                                              r'''$.content''',
-                                            ).toString()) !=
-                                            null &&
-                                        functions.formatHtml(getJsonField(
-                                              widget!.listItems,
+                                              widget.listItems,
                                               r'''$.content''',
                                             ).toString()) !=
                                             ''))
@@ -2061,7 +2054,7 @@ class _LessonDetailHomePageWidgetState
                                     updateCallback: () => setState(() {}),
                                     child: MobileEditorDisplayComponentWidget(
                                       content: getJsonField(
-                                        widget!.listItems,
+                                        widget.listItems,
                                         r'''$.content''',
                                       ).toString(),
                                     ),
@@ -2070,7 +2063,7 @@ class _LessonDetailHomePageWidgetState
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.0, 16.0, 16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -2125,15 +2118,15 @@ class _LessonDetailHomePageWidgetState
                                           letterSpacing: 0.0,
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 2.0)),
+                                ].divide(const SizedBox(width: 2.0)),
                               ),
                             ],
                           ),
                         ),
                         Container(
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Visibility(
-                            visible: _model.list.length > 0,
+                            visible: _model.list.isNotEmpty,
                             child: Builder(
                               builder: (context) {
                                 final listItems = _model.list.toList();
@@ -2145,12 +2138,12 @@ class _LessonDetailHomePageWidgetState
                                   scrollDirection: Axis.vertical,
                                   itemCount: listItems.length,
                                   separatorBuilder: (_, __) =>
-                                      SizedBox(height: 5.0),
+                                      const SizedBox(height: 5.0),
                                   itemBuilder: (context, listItemsIndex) {
                                     final listItemsItem =
                                         listItems[listItemsIndex];
                                     return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 12.0, 12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -2160,7 +2153,7 @@ class _LessonDetailHomePageWidgetState
                                             CrossAxisAlignment.start,
                                         children: [
                                           Container(
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               shape: BoxShape.rectangle,
                                             ),
                                             child: InkWell(
@@ -2183,7 +2176,7 @@ class _LessonDetailHomePageWidgetState
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        TransitionInfo(
+                                                        const TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -2224,7 +2217,7 @@ class _LessonDetailHomePageWidgetState
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           12.0, 0.0, 0.0, 2.0),
                                                   child: Container(
@@ -2239,7 +2232,7 @@ class _LessonDetailHomePageWidgetState
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   12.0,
                                                                   8.0,
@@ -2275,10 +2268,10 @@ class _LessonDetailHomePageWidgetState
                                                                           0.0,
                                                                     ),
                                                               ),
-                                                              if ('${getJsonField(
+                                                              if (getJsonField(
                                                                     listItemsItem,
                                                                     r'''$.comments_id.staff_id.id''',
-                                                                  ).toString()}' ==
+                                                                  ).toString() ==
                                                                   FFAppState()
                                                                       .staffid)
                                                                 Builder(
@@ -2307,9 +2300,9 @@ class _LessonDetailHomePageWidgetState
                                                                         avoidOverflow:
                                                                             true,
                                                                         targetAnchor:
-                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         followerAnchor:
-                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         builder:
                                                                             (dialogContext) {
                                                                           return Material(
@@ -2318,7 +2311,7 @@ class _LessonDetailHomePageWidgetState
                                                                             child:
                                                                                 GestureDetector(
                                                                               onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                              child: Container(
+                                                                              child: SizedBox(
                                                                                 height: 100.0,
                                                                                 width: 200.0,
                                                                                 child: MenuDeleteWidget(
@@ -2355,7 +2348,7 @@ class _LessonDetailHomePageWidgetState
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -2385,7 +2378,7 @@ class _LessonDetailHomePageWidgetState
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 0.0, 0.0, 0.0),
                                                   child: Row(
@@ -2422,7 +2415,7 @@ class _LessonDetailHomePageWidgetState
                                                                       0.0,
                                                                 ),
                                                           ),
-                                                        ].divide(SizedBox(
+                                                        ].divide(const SizedBox(
                                                             width: 16.0)),
                                                       ),
                                                       if ('1' == '2')
@@ -2442,17 +2435,17 @@ class _LessonDetailHomePageWidgetState
                                                                         0.0,
                                                                   ),
                                                             ),
-                                                            Icon(
+                                                            const Icon(
                                                               Icons.favorite,
                                                               color: Color(
                                                                   0xFFFF0202),
                                                               size: 20.0,
                                                             ),
-                                                          ].divide(SizedBox(
+                                                          ].divide(const SizedBox(
                                                               width: 2.0)),
                                                         ),
                                                     ].divide(
-                                                        SizedBox(width: 10.0)),
+                                                        const SizedBox(width: 10.0)),
                                                   ),
                                                 ),
                                               ],
@@ -2471,20 +2464,20 @@ class _LessonDetailHomePageWidgetState
                     ),
                   ),
                 ),
-              if ((_model.status != null && _model.status != '') &&
-                  (widget!.listItems != null) &&
+              if ((_model.status != '') &&
+                  (widget.listItems != null) &&
                   (_model.status != 'draft'))
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      if ((_model.status != null && _model.status != '') &&
-                          (widget!.listItems != null) &&
+                      if ((_model.status != '') &&
+                          (widget.listItems != null) &&
                           (_model.status != 'draft') &&
-                          (widget!.id != null && widget!.id != ''))
+                          (widget.id != ''))
                         ClipRRect(
                           borderRadius: BorderRadius.circular(40.0),
                           child: Image.network(
@@ -2501,13 +2494,13 @@ class _LessonDetailHomePageWidgetState
                             ),
                           ),
                         ),
-                      if ((_model.status != null && _model.status != '') &&
-                          (widget!.listItems != null) &&
+                      if ((_model.status != '') &&
+                          (widget.listItems != null) &&
                           (_model.status != 'draft') &&
-                          (widget!.id != null && widget!.id != ''))
+                          (widget.id != ''))
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 0.0, 0.0),
                             child: Container(
                               width: double.infinity,
@@ -2521,7 +2514,7 @@ class _LessonDetailHomePageWidgetState
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 8.0, 0.0),
                                       child: TextFormField(
                                         controller:
@@ -2564,7 +2557,7 @@ class _LessonDetailHomePageWidgetState
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 3.0, 0.0),
                                     child: FlutterFlowIconButton(
                                       borderColor:
@@ -2583,9 +2576,6 @@ class _LessonDetailHomePageWidgetState
                                       onPressed: () async {
                                         if (_model.commentsTextController
                                                     .text !=
-                                                null &&
-                                            _model.commentsTextController
-                                                    .text !=
                                                 '') {
                                           await _model.postComment(context);
                                           setState(() {});
@@ -2599,7 +2589,7 @@ class _LessonDetailHomePageWidgetState
                                       },
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 6.0)),
+                                ].divide(const SizedBox(width: 6.0)),
                               ),
                             ),
                           ),
@@ -2607,17 +2597,17 @@ class _LessonDetailHomePageWidgetState
                     ],
                   ),
                 ),
-              if (_model.status == null || _model.status == '')
+              if (_model.status == '')
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                   child: Container(
                     width: double.infinity,
                     height: MediaQuery.sizeOf(context).height * 0.7,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Container(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: SizedBox(
                       width: double.infinity,
                       height: double.infinity,
                       child: custom_widgets.LoadingPageWidget(

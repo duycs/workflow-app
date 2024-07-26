@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'detail_action_type_approve_model.dart';
 export 'detail_action_type_approve_model.dart';
 
@@ -56,7 +54,7 @@ class _DetailActionTypeApproveWidgetState
       children: [
         FFButtonWidget(
           onPressed:
-              ((widget!.data?.status == 'todo') && (widget!.data?.current == 0))
+              ((widget.data?.status == 'todo') && (widget.data?.current == 0))
                   ? null
                   : () async {
                       await widget.callback?.call(
@@ -67,7 +65,7 @@ class _DetailActionTypeApproveWidgetState
           icon: Icon(
             Icons.close,
             color:
-                (widget!.data?.status == 'todo') && (widget!.data?.current == 1)
+                (widget.data?.status == 'todo') && (widget.data?.current == 1)
                     ? FlutterFlowTheme.of(context).secondaryText
                     : FlutterFlowTheme.of(context).secondaryText,
             size: 20.0,
@@ -75,8 +73,8 @@ class _DetailActionTypeApproveWidgetState
           options: FFButtonOptions(
             width: 110.0,
             height: 35.0,
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-            iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+            iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
             color: FlutterFlowTheme.of(context).alternate,
             textStyle: FlutterFlowTheme.of(context).labelLarge.override(
                   fontFamily: 'Nunito Sans',
@@ -87,7 +85,7 @@ class _DetailActionTypeApproveWidgetState
             borderRadius: BorderRadius.circular(8.0),
           ),
         ),
-      ].divide(SizedBox(width: 16.0)),
+      ].divide(const SizedBox(width: 16.0)),
     );
   }
 }

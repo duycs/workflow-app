@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -9,8 +8,6 @@ import '/training/certificate/program_certificate/program_certificate_widget.dar
 import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'certificate_list_model.dart';
 export 'certificate_list_model.dart';
 
@@ -76,25 +73,25 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
         body: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 8.0),
                 child: Container(
                   width: double.infinity,
                   height: 200.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         blurRadius: 4.0,
                         color: Color(0x33000000),
@@ -106,20 +103,20 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                     ],
                   ),
                   child: Stack(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     children: [
                       Padding(
-                        padding: EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.all(5.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Expanded(
                               child: Stack(
-                                alignment: AlignmentDirectional(0.0, -1.0),
+                                alignment: const AlignmentDirectional(0.0, -1.0),
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -128,7 +125,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 2.0),
                                           child: Text(
                                             'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
@@ -153,7 +150,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 5.0),
                                           child: Text(
                                             'Chứng nhận',
@@ -172,7 +169,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 1.0),
                                           child: Text(
                                             'Tên nhân viên',
@@ -188,7 +185,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 1.0),
                                           child: Text(
                                             'Chức vụ: \"Nhân viên\"',
@@ -204,7 +201,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 1.0),
                                           child: Text(
                                             'Đã hoàn thành \"Chương trình đào tạo\"',
@@ -221,7 +218,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 1.0),
                                           child: Text(
                                             'Từ ngày A đến ngày B',
@@ -240,7 +237,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                         if ('1' == '2')
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 3.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -251,7 +248,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                                 Expanded(
                                                   child: Align(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             0.0, -1.0),
                                                     child: FaIcon(
                                                       FontAwesomeIcons.medal,
@@ -266,7 +263,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                                 Expanded(
                                                   child: Container(
                                                     height: 35.0,
-                                                    decoration: BoxDecoration(),
+                                                    decoration: const BoxDecoration(),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -325,25 +322,25 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                               ],
                                             ),
                                           ),
-                                      ].divide(SizedBox(height: 3.0)),
+                                      ].divide(const SizedBox(height: 3.0)),
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(1.0, -1.0),
+                                    alignment: const AlignmentDirectional(1.0, -1.0),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Container(
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         alignment:
-                                            AlignmentDirectional(1.0, -1.0),
+                                            const AlignmentDirectional(1.0, -1.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 3.0),
                                               child: ClipRRect(
                                                 borderRadius:
@@ -358,7 +355,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                             ),
                                             Container(
                                               width: 50.0,
-                                              decoration: BoxDecoration(),
+                                              decoration: const BoxDecoration(),
                                               child: Text(
                                                 'Công ty TNHH A',
                                                 textAlign: TextAlign.center,
@@ -387,7 +384,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                       Opacity(
                         opacity: 0.3,
                         child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Icon(
                             Icons.emoji_events_rounded,
                             color: FlutterFlowTheme.of(context).warning,
@@ -427,7 +424,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                           : FocusScope.of(context).unfocus(),
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
-                                    child: ProgramCertificateWidget(
+                                    child: const ProgramCertificateWidget(
                                       idCertificates:
                                           '1ff8e3e4-fc53-4fe6-819a-db98d4785ef3',
                                     ),
@@ -439,9 +436,9 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                           text: 'Áp dụng',
                           options: FFButtonOptions(
                             height: 30.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 10.0, 0.0, 10.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -453,7 +450,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -470,7 +467,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
                                     child: GestureDetector(
                                       onTap: () => _model
@@ -478,12 +475,12 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                           ? FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
-                                      child: Container(
+                                      child: SizedBox(
                                         height: 200.0,
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.9,
-                                        child: Certificate1ZoomWidget(),
+                                        child: const Certificate1ZoomWidget(),
                                       ),
                                     ),
                                   );
@@ -491,17 +488,17 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                               ).then((value) => setState(() {}));
                             },
                             text: 'Xem',
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.remove_red_eye,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
                               height: 30.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 10.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
+                              color: FlutterFlowTheme.of(context).secondary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -511,7 +508,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -519,7 +516,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 3.0)),
+                      ].divide(const SizedBox(width: 3.0)),
                     ),
                     StyledDivider(
                       thickness: 1.0,
@@ -530,13 +527,13 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 8.0),
                 child: Container(
                   width: double.infinity,
                   height: 200.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         blurRadius: 4.0,
                         color: Color(0x33000000),
@@ -548,7 +545,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                     ],
                   ),
                   child: Stack(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     children: [
                       Opacity(
                         opacity: 0.3,
@@ -582,13 +579,13 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 5.0, 0.0, 0.0),
                               child: Text(
                                 'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
@@ -612,7 +609,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                   ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 5.0, 0.0, 5.0),
                               child: Text(
                                 'Chứng nhận',
@@ -628,7 +625,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: Text(
                                 'Tên nhân viên',
@@ -643,7 +640,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: Text(
                                 'Chức vụ: \"Nhân viên\"',
@@ -658,7 +655,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: Text(
                                 'Đã hoàn thành \"Chương trình đào tạo\"',
@@ -688,7 +685,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                             ),
                             if ('1' == '2')
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 3.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -698,7 +695,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                     Expanded(
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, -1.0),
+                                            const AlignmentDirectional(0.0, -1.0),
                                         child: FaIcon(
                                           FontAwesomeIcons.medal,
                                           color: FlutterFlowTheme.of(context)
@@ -710,7 +707,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                     Expanded(
                                       child: Container(
                                         height: 35.0,
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -763,7 +760,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                   ],
                                 ),
                               ),
-                          ].divide(SizedBox(height: 3.0)),
+                          ].divide(const SizedBox(height: 3.0)),
                         ),
                       ),
                     ],
@@ -794,7 +791,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                   : FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
-                                child: ProgramCertificateWidget(
+                                child: const ProgramCertificateWidget(
                                   idCertificates:
                                       '22e2144b-e206-4bf6-a22e-110088325e14',
                                 ),
@@ -806,10 +803,10 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                       text: 'Áp dụng',
                       options: FFButtonOptions(
                         height: 30.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             10.0, 0.0, 10.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -819,7 +816,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -836,7 +833,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: AlignmentDirectional(0.0, 0.0)
+                                alignment: const AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
                                 child: GestureDetector(
                                   onTap: () =>
@@ -844,11 +841,11 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                           ? FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
-                                  child: Container(
+                                  child: SizedBox(
                                     height: 200.0,
                                     width:
                                         MediaQuery.sizeOf(context).width * 0.9,
-                                    child: Certificate2ZoomWidget(),
+                                    child: const Certificate2ZoomWidget(),
                                   ),
                                 ),
                               );
@@ -856,17 +853,17 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                           ).then((value) => setState(() {}));
                         },
                         text: 'Xem',
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.remove_red_eye,
                           size: 15.0,
                         ),
                         options: FFButtonOptions(
                           height: 30.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 10.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
+                          color: FlutterFlowTheme.of(context).secondary,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Nunito Sans',
@@ -875,7 +872,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -883,7 +880,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(width: 3.0)),
+                  ].divide(const SizedBox(width: 3.0)),
                 ),
               ),
             ],

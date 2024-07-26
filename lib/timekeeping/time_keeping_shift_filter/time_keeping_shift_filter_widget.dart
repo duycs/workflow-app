@@ -4,10 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'time_keeping_shift_filter_model.dart';
 export 'time_keeping_shift_filter_model.dart';
 
@@ -21,7 +18,7 @@ class TimeKeepingShiftFilterWidget extends StatefulWidget {
     this.dateStartCheckOut,
     this.dateEndCheckOut,
     this.callBack,
-  }) : this.dateEndCheckIn = dateEndCheckIn ?? '';
+  }) : dateEndCheckIn = dateEndCheckIn ?? '';
 
   final String? dateStartCheckIn;
   final String dateEndCheckIn;
@@ -58,7 +55,7 @@ class _TimeKeepingShiftFilterWidgetState
     _model = createModel(context, () => TimeKeepingShiftFilterModel());
 
     _model.textController ??= TextEditingController(
-        text: widget!.name != null && widget!.name != '' ? widget!.name : '');
+        text: widget.name != null && widget.name != '' ? widget.name : '');
     _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -74,23 +71,23 @@ class _TimeKeepingShiftFilterWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           maxHeight: 600.0,
         ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
             topRight: Radius.circular(16.0),
           ),
         ),
-        alignment: AlignmentDirectional(0.0, -1.0),
+        alignment: const AlignmentDirectional(0.0, -1.0),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -99,7 +96,7 @@ class _TimeKeepingShiftFilterWidgetState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -129,7 +126,7 @@ class _TimeKeepingShiftFilterWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                   child: Text(
                     'Thời gian bắt đầu làm việc',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -148,7 +145,7 @@ class _TimeKeepingShiftFilterWidgetState
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        final _datePicked1Time = await showTimePicker(
+                        final datePicked1Time = await showTimePicker(
                           context: context,
                           initialTime:
                               TimeOfDay.fromDateTime(getCurrentTimestamp),
@@ -183,14 +180,14 @@ class _TimeKeepingShiftFilterWidgetState
                             );
                           },
                         );
-                        if (_datePicked1Time != null) {
+                        if (datePicked1Time != null) {
                           safeSetState(() {
                             _model.datePicked1 = DateTime(
                               getCurrentTimestamp.year,
                               getCurrentTimestamp.month,
                               getCurrentTimestamp.day,
-                              _datePicked1Time.hour,
-                              _datePicked1Time.minute,
+                              datePicked1Time.hour,
+                              datePicked1Time.minute,
                             );
                           });
                         }
@@ -212,7 +209,7 @@ class _TimeKeepingShiftFilterWidgetState
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     )
-                                  : widget!.dateStartCheckIn,
+                                  : widget.dateStartCheckIn,
                               'Từ giờ',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -231,7 +228,7 @@ class _TimeKeepingShiftFilterWidgetState
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        final _datePicked2Time = await showTimePicker(
+                        final datePicked2Time = await showTimePicker(
                           context: context,
                           initialTime:
                               TimeOfDay.fromDateTime(getCurrentTimestamp),
@@ -266,14 +263,14 @@ class _TimeKeepingShiftFilterWidgetState
                             );
                           },
                         );
-                        if (_datePicked2Time != null) {
+                        if (datePicked2Time != null) {
                           safeSetState(() {
                             _model.datePicked2 = DateTime(
                               getCurrentTimestamp.year,
                               getCurrentTimestamp.month,
                               getCurrentTimestamp.day,
-                              _datePicked2Time.hour,
-                              _datePicked2Time.minute,
+                              datePicked2Time.hour,
+                              datePicked2Time.minute,
                             );
                           });
                         }
@@ -295,7 +292,7 @@ class _TimeKeepingShiftFilterWidgetState
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     )
-                                  : widget!.dateEndCheckIn,
+                                  : widget.dateEndCheckIn,
                               'Đến giờ',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -311,7 +308,7 @@ class _TimeKeepingShiftFilterWidgetState
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                   child: Text(
                     'Thời gian kết thúc làm việc',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -330,7 +327,7 @@ class _TimeKeepingShiftFilterWidgetState
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        final _datePicked3Time = await showTimePicker(
+                        final datePicked3Time = await showTimePicker(
                           context: context,
                           initialTime:
                               TimeOfDay.fromDateTime(getCurrentTimestamp),
@@ -365,14 +362,14 @@ class _TimeKeepingShiftFilterWidgetState
                             );
                           },
                         );
-                        if (_datePicked3Time != null) {
+                        if (datePicked3Time != null) {
                           safeSetState(() {
                             _model.datePicked3 = DateTime(
                               getCurrentTimestamp.year,
                               getCurrentTimestamp.month,
                               getCurrentTimestamp.day,
-                              _datePicked3Time.hour,
-                              _datePicked3Time.minute,
+                              datePicked3Time.hour,
+                              datePicked3Time.minute,
                             );
                           });
                         }
@@ -394,7 +391,7 @@ class _TimeKeepingShiftFilterWidgetState
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     )
-                                  : widget!.dateStartCheckOut,
+                                  : widget.dateStartCheckOut,
                               'Từ giờ',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -413,7 +410,7 @@ class _TimeKeepingShiftFilterWidgetState
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        final _datePicked4Time = await showTimePicker(
+                        final datePicked4Time = await showTimePicker(
                           context: context,
                           initialTime:
                               TimeOfDay.fromDateTime(getCurrentTimestamp),
@@ -448,14 +445,14 @@ class _TimeKeepingShiftFilterWidgetState
                             );
                           },
                         );
-                        if (_datePicked4Time != null) {
+                        if (datePicked4Time != null) {
                           safeSetState(() {
                             _model.datePicked4 = DateTime(
                               getCurrentTimestamp.year,
                               getCurrentTimestamp.month,
                               getCurrentTimestamp.day,
-                              _datePicked4Time.hour,
-                              _datePicked4Time.minute,
+                              datePicked4Time.hour,
+                              datePicked4Time.minute,
                             );
                           });
                         }
@@ -477,7 +474,7 @@ class _TimeKeepingShiftFilterWidgetState
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     )
-                                  : widget!.dateEndCheckOut,
+                                  : widget.dateEndCheckOut,
                               'Đến giờ',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -493,7 +490,7 @@ class _TimeKeepingShiftFilterWidgetState
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                   child: Text(
                     'Tên ca làm việc',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -556,7 +553,7 @@ class _TimeKeepingShiftFilterWidgetState
                       _model.textControllerValidator.asValidator(context),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                   child: Text(
                     'Trạng thái hoạt động',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -566,18 +563,18 @@ class _TimeKeepingShiftFilterWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.dropDownStatusValueController ??=
                         FormFieldController<String>(
                       _model.dropDownStatusValue ??=
-                          (widget!.status != null && widget!.status != '') &&
-                                  (widget!.status == 'published')
+                          (widget.status != null && widget.status != '') &&
+                                  (widget.status == 'published')
                               ? 'Hoạt động'
                               : 'Không hoạt dộng',
                     ),
                     options: List<String>.from(['1', '2']),
-                    optionLabels: ['Không hoạt động', 'Hoạt động'],
+                    optionLabels: const ['Không hoạt động', 'Hoạt động'],
                     onChanged: (val) =>
                         setState(() => _model.dropDownStatusValue = val),
                     width: double.infinity,
@@ -597,7 +594,7 @@ class _TimeKeepingShiftFilterWidgetState
                     borderWidth: 2.0,
                     borderRadius: 8.0,
                     margin:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                     hidesUnderline: true,
                     isOverButton: true,
                     isSearchable: false,
@@ -605,7 +602,7 @@ class _TimeKeepingShiftFilterWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -626,9 +623,9 @@ class _TimeKeepingShiftFilterWidgetState
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -660,7 +657,7 @@ class _TimeKeepingShiftFilterWidgetState
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     )
-                                  : widget!.dateStartCheckIn,
+                                  : widget.dateStartCheckIn,
                               _model.datePicked2 != null
                                   ? dateTimeFormat(
                                       'Hm',
@@ -668,7 +665,7 @@ class _TimeKeepingShiftFilterWidgetState
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     )
-                                  : widget!.dateEndCheckIn,
+                                  : widget.dateEndCheckIn,
                               _model.textController.text,
                               _model.dropDownStatusValue == 'Hoạt động'
                                   ? 'published'
@@ -680,7 +677,7 @@ class _TimeKeepingShiftFilterWidgetState
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     )
-                                  : widget!.dateEndCheckOut,
+                                  : widget.dateEndCheckOut,
                               _model.datePicked3 != null
                                   ? dateTimeFormat(
                                       'Hm',
@@ -688,18 +685,18 @@ class _TimeKeepingShiftFilterWidgetState
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     )
-                                  : widget!.dateStartCheckOut,
+                                  : widget.dateStartCheckOut,
                             );
                             Navigator.pop(context);
                           },
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF33BA45),
+                            color: const Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -708,7 +705,7 @@ class _TimeKeepingShiftFilterWidgetState
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -716,10 +713,10 @@ class _TimeKeepingShiftFilterWidgetState
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

@@ -1,8 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'check_box_programs_model.dart';
 export 'check_box_programs_model.dart';
 
@@ -50,7 +48,7 @@ class _CheckBoxProgramsWidgetState extends State<CheckBoxProgramsWidget> {
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
-        final programItems = widget!.parameter3?.toList() ?? [];
+        final programItems = widget.parameter3?.toList() ?? [];
 
         return ListView.builder(
           padding: EdgeInsets.zero,

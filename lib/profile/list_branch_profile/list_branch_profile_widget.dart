@@ -1,18 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'list_branch_profile_model.dart';
@@ -99,7 +94,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -108,7 +103,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
           child: Visibility(
             visible: _model.isShow == true,
             child: Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -122,10 +117,9 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                           focusNode: _model.textFieldFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController',
-                            Duration(milliseconds: 500),
+                            const Duration(milliseconds: 500),
                             () async {
-                              if (_model.textController.text != null &&
-                                  _model.textController.text != '') {
+                              if (_model.textController.text != '') {
                                 _model.search = _model.textController.text;
                                 setState(() {});
                                 setState(() => _model.listViewPagingController1
@@ -181,9 +175,9 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                             filled: true,
                             fillColor:
                                 FlutterFlowTheme.of(context).primaryBackground,
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.search,
                               size: 24.0,
                             ),
@@ -191,8 +185,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                 ? InkWell(
                                     onTap: () async {
                                       _model.textController?.clear();
-                                      if (_model.textController.text != null &&
-                                          _model.textController.text != '') {
+                                      if (_model.textController.text != '') {
                                         _model.search =
                                             _model.textController.text;
                                         setState(() {});
@@ -209,7 +202,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
 
                                       setState(() {});
                                     },
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.clear,
                                       color: Color(0xFF757575),
                                       size: 18.0,
@@ -228,7 +221,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                       ),
                     ],
                   ),
-                  if (_model.search != null && _model.search != '')
+                  if (_model.search != '')
                     Text(
                       '#Kết quả hiển thị theo bộ lọc',
                       style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -240,7 +233,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                     ),
                   Expanded(
                     child: Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: PagedListView<ApiPagingParams, dynamic>.separated(
                         pagingController: _model.setListViewController1(
                           (nextPageMarker) => BranchGroup.branchListCall.call(
@@ -248,7 +241,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                             offset: nextPageMarker.nextPageNumber * 20,
                             limit: 20,
                             filter:
-                                '{\"_and\":[{}${(_model.search != null && _model.search != '') && (_model.search != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.search}\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                '{\"_and\":[{}${(_model.search != '') && (_model.search != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.search}\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                               FFAppState().staffLogin,
                               r'''$.organization_id''',
                             ).toString()}\"}}}'}${',{\"status\":{\"_eq\":\"published\"}}'}]}',
@@ -258,7 +251,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                         primary: false,
                         reverse: false,
                         scrollDirection: Axis.vertical,
-                        separatorBuilder: (_, __) => SizedBox(height: 10.0),
+                        separatorBuilder: (_, __) => const SizedBox(height: 10.0),
                         builderDelegate: PagedChildBuilderDelegate<dynamic>(
                           // Customize what your widget looks like when it's loading the first page.
                           firstPageProgressIndicatorBuilder: (_) => Center(
@@ -284,7 +277,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                               ),
                             ),
                           ),
-                          noItemsFoundIndicatorBuilder: (_) => Container(
+                          noItemsFoundIndicatorBuilder: (_) => const SizedBox(
                             width: double.infinity,
                             child: DataNotFoundWidget(),
                           ),
@@ -303,7 +296,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     6.0, 0.0, 6.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
@@ -315,7 +308,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Text(
-                                            '${(listItemIndex + 1).toString()}',
+                                            (listItemIndex + 1).toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -350,7 +343,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ].divide(SizedBox(width: 8.0)),
+                                        ].divide(const SizedBox(width: 8.0)),
                                       ),
                                       collapsed: Container(
                                         width:
@@ -362,7 +355,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                         ),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 8.0),
                                           child: Builder(
                                             builder: (context) {
@@ -375,7 +368,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                                 scrollDirection: Axis.vertical,
                                                 itemCount: listStaff.length,
                                                 separatorBuilder: (_, __) =>
-                                                    SizedBox(height: 2.0),
+                                                    const SizedBox(height: 2.0),
                                                 itemBuilder:
                                                     (context, listStaffIndex) {
                                                   final listStaffItem =
@@ -396,7 +389,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     10.0,
@@ -449,7 +442,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                                                         0.0,
                                                                   ),
                                                             ),
-                                                          ].divide(SizedBox(
+                                                          ].divide(const SizedBox(
                                                               width: 8.0)),
                                                         ),
                                                       ),
@@ -479,7 +472,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                                         .status ==
                                                     'published',
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           12.0, 0.0, 12.0, 0.0),
                                                   child: InkWell(
@@ -520,7 +513,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              TransitionInfo(
+                                                              const TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -544,7 +537,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     0.0,
@@ -558,7 +551,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                                                   .start,
                                                           children: [
                                                             Text(
-                                                              '${formatNumber(
+                                                              formatNumber(
                                                                 departmentList1Index +
                                                                     1,
                                                                 formatType:
@@ -567,7 +560,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                                                 decimalType:
                                                                     DecimalType
                                                                         .commaDecimal,
-                                                              )}',
+                                                              ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -580,7 +573,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                                             ),
                                                             Expanded(
                                                               child: Padding(
-                                                                padding: EdgeInsetsDirectional
+                                                                padding: const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         16.0,
@@ -617,7 +610,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                                                         0.0,
                                                                   ),
                                                             ),
-                                                          ].divide(SizedBox(
+                                                          ].divide(const SizedBox(
                                                               width: 4.0)),
                                                         ),
                                                       ),
@@ -627,7 +620,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                               );
                                             })
                                                 .divide(
-                                                  SizedBox(height: 8.0),
+                                                  const SizedBox(height: 8.0),
                                                   filterFn:
                                                       (departmentList1Index) {
                                                     final departmentList1Item =
@@ -639,13 +632,13 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                                   },
                                                 )
                                                 .addToStart(
-                                                    SizedBox(height: 12.0))
+                                                    const SizedBox(height: 12.0))
                                                 .addToEnd(
-                                                    SizedBox(height: 12.0)),
+                                                    const SizedBox(height: 12.0)),
                                           );
                                         },
                                       ),
-                                      theme: ExpandableThemeData(
+                                      theme: const ExpandableThemeData(
                                         tapHeaderToExpand: true,
                                         tapBodyToExpand: false,
                                         tapBodyToCollapse: false,
@@ -664,7 +657,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                       ),
                     ),
                   ),
-                ].divide(SizedBox(height: 8.0)),
+                ].divide(const SizedBox(height: 8.0)),
               ),
             ),
           ),
