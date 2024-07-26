@@ -6,9 +6,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/timekeeping/time_keeping_location/time_keeping_location_widget.dart';
 import '/timekeeping/time_keeping_shift_select/time_keeping_shift_select_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'timekeeping_shift_model.dart';
 export 'timekeeping_shift_model.dart';
@@ -49,8 +51,8 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.shiftSelect =
-          widget.shiftSelect!.toList().cast<ShiftListStruct>();
-      _model.addressId = widget.address;
+          widget!.shiftSelect!.toList().cast<ShiftListStruct>();
+      _model.addressId = widget!.address;
       setState(() {});
       while ('1' == '1') {
         if (_model.check == true) {
@@ -80,24 +82,24 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 1.0),
+      alignment: AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(0.0),
             topRight: Radius.circular(0.0),
           ),
         ),
-        alignment: const AlignmentDirectional(0.0, 1.0),
+        alignment: AlignmentDirectional(0.0, 1.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,17 +115,18 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                       size: 30.0,
                     ),
                     onPressed: () async {
-                      var shouldSetState = false;
-                      if (_model.shiftSelect.isEmpty) {
+                      var _shouldSetState = false;
+                      if (_model.shiftSelect.length <= 0) {
                         Navigator.pop(context);
-                        if (shouldSetState) setState(() {});
+                        if (_shouldSetState) setState(() {});
                         return;
                       }
                       while (_model.loop < _model.shiftSelect.length) {
-                        if (_model.shiftSelect[_model.loop].id == '') {
+                        if (_model.shiftSelect[_model.loop].id == null ||
+                            _model.shiftSelect[_model.loop].id == '') {
                           _model.shiftCreateBack =
                               await action_blocks.tokenReload(context);
-                          shouldSetState = true;
+                          _shouldSetState = true;
                           if (_model.shiftCreateBack!) {
                             _model.apiResultShiftCreateback =
                                 await TimekeepingShiftConfigsGroup
@@ -149,7 +152,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                               },
                             );
 
-                            shouldSetState = true;
+                            _shouldSetState = true;
                             if (_model.shiftCreateBack!) {
                               _model.updateShiftSelectAtIndex(
                                 _model.loop,
@@ -177,7 +180,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                         _model.addressId,
                       );
                       Navigator.pop(context);
-                      if (shouldSetState) setState(() {});
+                      if (_shouldSetState) setState(() {});
                     },
                   ),
                   Expanded(
@@ -197,31 +200,32 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        var shouldSetState = false;
-                        if (_model.shiftSelect.isEmpty) {
+                        var _shouldSetState = false;
+                        if (_model.shiftSelect.length <= 0) {
                           await showDialog(
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                content: const Text('Vui lòng chọn ca làm việc!'),
+                                content: Text('Vui lòng chọn ca làm việc!'),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
+                                    child: Text('Ok'),
                                   ),
                                 ],
                               );
                             },
                           );
-                          if (shouldSetState) setState(() {});
+                          if (_shouldSetState) setState(() {});
                           return;
                         }
                         while (_model.loop < _model.shiftSelect.length) {
-                          if (_model.shiftSelect[_model.loop].id == '') {
+                          if (_model.shiftSelect[_model.loop].id == null ||
+                              _model.shiftSelect[_model.loop].id == '') {
                             _model.shiftCreate =
                                 await action_blocks.tokenReload(context);
-                            shouldSetState = true;
+                            _shouldSetState = true;
                             if (_model.shiftCreate!) {
                               _model.apiResultShiftCreate =
                                   await TimekeepingShiftConfigsGroup
@@ -247,7 +251,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                 },
                               );
 
-                              shouldSetState = true;
+                              _shouldSetState = true;
                               if ((_model.apiResultShiftCreate?.succeeded ??
                                   true)) {
                                 _model.updateShiftSelectAtIndex(
@@ -281,9 +285,9 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: SizedBox(
+                              child: Container(
                                 height: double.infinity,
                                 width: double.infinity,
                                 child: TimeKeepingLocationWidget(
@@ -305,7 +309,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                           },
                         ).then((value) => setState(() {}));
 
-                        if (shouldSetState) setState(() {});
+                        if (_shouldSetState) setState(() {});
                       },
                       child: Text(
                         'Tiếp tục',
@@ -323,7 +327,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
@@ -332,7 +336,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 4.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 4.0),
                         child: Text(
                           '*Bạn có thể chọn theo ca làm việc được thiết lập sẵn hoặc Tùy chỉnh thời gian làm việc ',
                           style:
@@ -345,7 +349,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 36.0, 0.0, 16.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -366,12 +370,12 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                     fontWeight: FontWeight.w600,
                                   ),
                             ),
-                          ].divide(const SizedBox(width: 4.0)),
+                          ].divide(SizedBox(width: 4.0)),
                         ),
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(28.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(28.0, 0.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -390,19 +394,21 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                     callback: (item) async {
                                       if (_model.shiftSelect
                                               .where((e) => e.id == item.id)
-                                              .toList().isNotEmpty) {
+                                              .toList()
+                                              .length >
+                                          0) {
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
                                             return AlertDialog(
-                                              content: const Text(
+                                              content: Text(
                                                   'Ca làm việc đã được chọn. Vui lòng chọn ca làm việc khác!'),
                                               actions: [
                                                 TextButton(
                                                   onPressed: () =>
                                                       Navigator.pop(
                                                           alertDialogContext),
-                                                  child: const Text('Ok'),
+                                                  child: Text('Ok'),
                                                 ),
                                               ],
                                             );
@@ -432,7 +438,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -462,7 +468,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 36.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 36.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -505,13 +511,13 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        content: const Text(
+                                        content: Text(
                                             'Vui lòng chọn thời gian bắt đầu'),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext),
-                                            child: const Text('Ok'),
+                                            child: Text('Ok'),
                                           ),
                                         ],
                                       );
@@ -524,13 +530,13 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        content: const Text(
+                                        content: Text(
                                             'Vui lòng chọn thời gian kết thúc'),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext),
-                                            child: const Text('Ok'),
+                                            child: Text('Ok'),
                                           ),
                                         ],
                                       );
@@ -555,7 +561,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                 setState(() {});
                               },
                             ),
-                          ].divide(const SizedBox(width: 4.0)),
+                          ].divide(SizedBox(width: 4.0)),
                         ),
                       ),
                       Form(
@@ -566,7 +572,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   28.0, 12.0, 0.0, 4.0),
                               child: Text(
                                 'Thời gian bắt đầu làm việc',
@@ -580,7 +586,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   28.0, 0.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -588,7 +594,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  final datePicked1Time = await showTimePicker(
+                                  final _datePicked1Time = await showTimePicker(
                                     context: context,
                                     initialTime: TimeOfDay.fromDateTime(
                                         getCurrentTimestamp),
@@ -628,14 +634,14 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                       );
                                     },
                                   );
-                                  if (datePicked1Time != null) {
+                                  if (_datePicked1Time != null) {
                                     safeSetState(() {
                                       _model.datePicked1 = DateTime(
                                         getCurrentTimestamp.year,
                                         getCurrentTimestamp.month,
                                         getCurrentTimestamp.day,
-                                        datePicked1Time.hour,
-                                        datePicked1Time.minute,
+                                        _datePicked1Time.hour,
+                                        _datePicked1Time.minute,
                                       );
                                     });
                                   }
@@ -649,7 +655,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 8.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -674,7 +680,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                                           ? FlutterFlowTheme.of(
                                                                   context)
                                                               .primaryText
-                                                          : const Color(0x6D57636C),
+                                                          : Color(0x6D57636C),
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -692,7 +698,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   28.0, 24.0, 0.0, 4.0),
                               child: Text(
                                 'Thời gian kết thúc làm việc',
@@ -706,7 +712,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   28.0, 0.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -714,7 +720,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  final datePicked2Time = await showTimePicker(
+                                  final _datePicked2Time = await showTimePicker(
                                     context: context,
                                     initialTime: TimeOfDay.fromDateTime(
                                         getCurrentTimestamp),
@@ -754,14 +760,14 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                       );
                                     },
                                   );
-                                  if (datePicked2Time != null) {
+                                  if (_datePicked2Time != null) {
                                     safeSetState(() {
                                       _model.datePicked2 = DateTime(
                                         getCurrentTimestamp.year,
                                         getCurrentTimestamp.month,
                                         getCurrentTimestamp.day,
-                                        datePicked2Time.hour,
-                                        datePicked2Time.minute,
+                                        _datePicked2Time.hour,
+                                        _datePicked2Time.minute,
                                       );
                                     });
                                   }
@@ -775,7 +781,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 8.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -800,7 +806,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                                           ? FlutterFlowTheme.of(
                                                                   context)
                                                               .primaryText
-                                                          : const Color(0x6D57636C),
+                                                          : Color(0x6D57636C),
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -822,7 +828,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 36.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 36.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -842,12 +848,12 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                     fontWeight: FontWeight.w600,
                                   ),
                             ),
-                          ].divide(const SizedBox(width: 4.0)),
+                          ].divide(SizedBox(width: 4.0)),
                         ),
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                         child: Builder(
                           builder: (context) {
                             final shiftsSelect = _model.shiftSelect.toList();
@@ -859,7 +865,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                               scrollDirection: Axis.vertical,
                               itemCount: shiftsSelect.length,
                               separatorBuilder: (_, __) =>
-                                  const SizedBox(height: 4.0),
+                                  SizedBox(height: 4.0),
                               itemBuilder: (context, shiftsSelectIndex) {
                                 final shiftsSelectItem =
                                     shiftsSelect[shiftsSelectIndex];
@@ -888,11 +894,12 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                       ],
                                     ),
                                     child: ListTile(
-                                      leading: const Icon(
+                                      leading: Icon(
                                         Icons.six_ft_apart_sharp,
                                       ),
                                       title: Text(
-                                        shiftsSelectItem.name != ''
+                                        shiftsSelectItem.name != null &&
+                                                shiftsSelectItem.name != ''
                                             ? shiftsSelectItem.name
                                             : 'Chưa cập nhật',
                                         style: FlutterFlowTheme.of(context)
@@ -900,11 +907,15 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               color: shiftsSelectItem.name !=
+                                                          null &&
+                                                      shiftsSelectItem.name !=
                                                           ''
                                                   ? FlutterFlowTheme.of(context)
                                                       .primaryText
-                                                  : const Color(0x6D57636C),
+                                                  : Color(0x6D57636C),
                                               fontSize: shiftsSelectItem.name !=
+                                                          null &&
+                                                      shiftsSelectItem.name !=
                                                           ''
                                                   ? 14.0
                                                   : 13.0,

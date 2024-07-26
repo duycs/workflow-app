@@ -7,8 +7,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'do_action_type_image_model.dart';
 export 'do_action_type_image_model.dart';
@@ -47,8 +50,8 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
       _model.listUploadImage = [];
       setState(() {});
       while (_model.loop <
-          widget.image!.operations.first.operationsId.files.length) {
-        _model.addToListUploadImage(widget.image!.operations.first.operationsId
+          widget!.image!.operations.first.operationsId.files.length) {
+        _model.addToListUploadImage(widget!.image!.operations.first.operationsId
             .files[_model.loop].directusFilesId.id);
         setState(() {});
         _model.loop = _model.loop + 1;
@@ -76,10 +79,10 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: Builder(
             builder: (context) {
-              final list = widget.image?.operations.toList() ?? [];
+              final list = widget!.image?.operations?.toList() ?? [];
 
               return Column(
                 mainAxisSize: MainAxisSize.max,
@@ -90,11 +93,11 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        if ((widget.image != null) &&
-                            (listItem.operationsId.files.isNotEmpty))
+                        if ((widget!.image != null) &&
+                            (listItem.operationsId.files.length > 0))
                           Container(
                             width: double.infinity,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Builder(
                               builder: (context) {
                                 final listImage =
@@ -103,7 +106,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                 return GridView.builder(
                                   padding: EdgeInsets.zero,
                                   gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                      SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                     crossAxisSpacing: 6.0,
                                     mainAxisSpacing: 6.0,
@@ -118,12 +121,12 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                         listImage[listImageIndex];
                                     return Stack(
                                       alignment:
-                                          const AlignmentDirectional(1.0, -1.0),
+                                          AlignmentDirectional(1.0, -1.0),
                                       children: [
                                         Container(
                                           width: double.infinity,
                                           height: double.infinity,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
@@ -137,7 +140,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                                   child:
                                                       FlutterFlowExpandedImageView(
                                                     image: Image.network(
-                                                      '${FFAppConstants.ApiBaseUrl}/assets/$listImageItem?access_token=${FFAppState().accessToken}',
+                                                      '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem}?access_token=${FFAppState().accessToken}',
                                                       fit: BoxFit.contain,
                                                       errorBuilder: (context,
                                                               error,
@@ -149,7 +152,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                                     ),
                                                     allowRotation: false,
                                                     tag:
-                                                        '${FFAppConstants.ApiBaseUrl}/assets/$listImageItem?access_token=${FFAppState().accessToken}',
+                                                        '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem}?access_token=${FFAppState().accessToken}',
                                                     useHeroAnimation: true,
                                                   ),
                                                 ),
@@ -157,13 +160,13 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                             },
                                             child: Hero(
                                               tag:
-                                                  '${FFAppConstants.ApiBaseUrl}/assets/$listImageItem?access_token=${FFAppState().accessToken}',
+                                                  '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem}?access_token=${FFAppState().accessToken}',
                                               transitionOnUserGestures: true,
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                                 child: Image.network(
-                                                  '${FFAppConstants.ApiBaseUrl}/assets/$listImageItem?access_token=${FFAppState().accessToken}',
+                                                  '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem}?access_token=${FFAppState().accessToken}',
                                                   fit: BoxFit.cover,
                                                   errorBuilder: (context, error,
                                                           stackTrace) =>
@@ -180,7 +183,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                           opacity: 0.7,
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 6.0, 6.0, 0.0),
                                             child: FlutterFlowIconButton(
                                               borderRadius: 20.0,
@@ -203,9 +206,9 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                                           builder:
                                                               (alertDialogContext) {
                                                             return AlertDialog(
-                                                              title: const Text(
+                                                              title: Text(
                                                                   'Xác nhận'),
-                                                              content: const Text(
+                                                              content: Text(
                                                                   'Bạn chắc chắn muốn xóa'),
                                                               actions: [
                                                                 TextButton(
@@ -213,7 +216,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                                                       Navigator.pop(
                                                                           alertDialogContext,
                                                                           false),
-                                                                  child: const Text(
+                                                                  child: Text(
                                                                       'Hủy '),
                                                                 ),
                                                                 TextButton(
@@ -221,7 +224,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                                                       Navigator.pop(
                                                                           alertDialogContext,
                                                                           true),
-                                                                  child: const Text(
+                                                                  child: Text(
                                                                       'Xác nhận'),
                                                                 ),
                                                               ],
@@ -249,7 +252,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                               },
                             ),
                           ),
-                      ].divide(const SizedBox(height: 8.0)),
+                      ].divide(SizedBox(height: 8.0)),
                     ),
                   );
                 }),
@@ -257,17 +260,17 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
             },
           ),
         ),
-        if (_model.imageUpload.isNotEmpty)
+        if (_model.imageUpload.length > 0)
           Container(
             width: double.infinity,
-            decoration: const BoxDecoration(),
+            decoration: BoxDecoration(),
             child: Builder(
               builder: (context) {
                 final listImageUpload = _model.imageUpload.toList();
 
                 return GridView.builder(
                   padding: EdgeInsets.zero,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 6.0,
                     mainAxisSpacing: 6.0,
@@ -281,12 +284,12 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                     final listImageUploadItem =
                         listImageUpload[listImageUploadIndex];
                     return Stack(
-                      alignment: const AlignmentDirectional(1.0, -1.0),
+                      alignment: AlignmentDirectional(1.0, -1.0),
                       children: [
                         Container(
                           width: double.infinity,
                           height: double.infinity,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -342,19 +345,19 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: const Text('Xác nhận'),
+                                            title: Text('Xác nhận'),
                                             content:
-                                                const Text('Bạn chắc chắn muốn xóa'),
+                                                Text('Bạn chắc chắn muốn xóa'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, false),
-                                                child: const Text('Hủy '),
+                                                child: Text('Hủy '),
                                               ),
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, true),
-                                                child: const Text('Xác nhận'),
+                                                child: Text('Xác nhận'),
                                               ),
                                             ],
                                           );
@@ -381,9 +384,9 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
           ),
         if (_model.isShow == true)
           Align(
-            alignment: const AlignmentDirectional(-1.0, 0.0),
+            alignment: AlignmentDirectional(-1.0, 0.0),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
               child: Text(
                 'Llưu để cập nhật dữ liệu mới nhất',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -439,7 +442,8 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                   }
                 }
 
-                if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
+                if (_model.uploadedLocalFile != null &&
+                    (_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
                   _model.addToImageUpload(_model.uploadedLocalFile);
                   _model.isShow = true;
                   setState(() {});
@@ -454,8 +458,8 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
               options: FFButtonOptions(
                 width: 110.0,
                 height: 35.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).alternate,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Nunito Sans',
@@ -467,10 +471,11 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
-            if (_model.imageUpload.isNotEmpty)
+            if (_model.imageUpload.length > 0)
               FFButtonWidget(
                 onPressed: () async {
-                  if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
+                  if (_model.uploadedLocalFile != null &&
+                      (_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
                     _model.imageToken =
                         await action_blocks.tokenReload(context);
                     if (_model.imageToken!) {
@@ -533,9 +538,9 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                 options: FFButtonOptions(
                   width: 110.0,
                   height: 35.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Nunito Sans',
@@ -547,9 +552,9 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-          ].divide(const SizedBox(width: 8.0)),
+          ].divide(SizedBox(width: 8.0)),
         ),
-      ].divide(const SizedBox(height: 8.0)),
+      ].divide(SizedBox(height: 8.0)),
     );
   }
 }

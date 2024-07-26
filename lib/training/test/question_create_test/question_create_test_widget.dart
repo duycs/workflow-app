@@ -7,8 +7,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'question_create_test_model.dart';
 export 'question_create_test_model.dart';
@@ -64,17 +66,17 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+        padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
         child: Container(
           width: double.infinity,
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxHeight: 800.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 3.0,
                 color: Color(0x33000000),
@@ -90,19 +92,19 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
               width: 1.0,
             ),
           ),
-          alignment: const AlignmentDirectional(0.0, 1.0),
+          alignment: AlignmentDirectional(0.0, 1.0),
           child: Form(
             key: _model.formKey,
             autovalidateMode: AutovalidateMode.disabled,
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(16.0),
                       child: SingleChildScrollView(
                         primary: false,
                         child: Column(
@@ -110,7 +112,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 28.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -145,14 +147,14 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 12.0),
                               child: TextFormField(
                                 controller: _model.questionContenTextController,
                                 focusNode: _model.questionContenFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.questionContenTextController',
-                                  const Duration(milliseconds: 2000),
+                                  Duration(milliseconds: 2000),
                                   () async {
                                     _model.updateRequestDataStruct(
                                       (e) => e
@@ -223,7 +225,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                             ),
                             Flexible(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 28.0),
                                 child: FlutterFlowDropDown<String>(
                                   controller: _model.dropDownValueController ??=
@@ -232,7 +234,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                   ),
                                   options: List<String>.from(
                                       ['radio', 'checkbox', 'text', 'number']),
-                                  optionLabels: const [
+                                  optionLabels: [
                                     'Trắc nghiệm 1 đáp án',
                                     'Trắc nghiệm 1 hoặc nhiều đáp án',
                                     'Trả lời văn bản ngắn',
@@ -273,7 +275,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                       FlutterFlowTheme.of(context).alternate,
                                   borderWidth: 1.0,
                                   borderRadius: 8.0,
-                                  margin: const EdgeInsetsDirectional.fromSTEB(
+                                  margin: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 4.0, 16.0, 4.0),
                                   hidesUnderline: true,
                                   isOverButton: true,
@@ -310,7 +312,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 1.0,
                                           ),
@@ -386,7 +388,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 1.0,
                                           ),
@@ -440,6 +442,8 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                 FFButtonWidget(
                                   onPressed: () async {
                                     if (_model.textAnswerTextController.text !=
+                                            null &&
+                                        _model.textAnswerTextController.text !=
                                             '') {
                                       if (_model.dropDownValue == 'checkbox') {
                                         _model.updateRequestDataStruct(
@@ -473,20 +477,22 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                         if ((_model.requestData!.answers
                                                     .where(
                                                         (e) => e.correct == 1)
-                                                    .toList().isNotEmpty) &&
+                                                    .toList()
+                                                    .length >
+                                                0) &&
                                             (_model.checkboxValue == true)) {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: const Text(
+                                                title: Text(
                                                     'Kiểu radio chỉ có 1 đán án đúng!'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext),
-                                                    child: const Text('Ok'),
+                                                    child: Text('Ok'),
                                                   ),
                                                 ],
                                               );
@@ -524,19 +530,20 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                         }
                                       } else {
                                         setState(() {});
-                                        if (_model.requestData!.answers.isNotEmpty) {
+                                        if (_model.requestData!.answers.length >
+                                            0) {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: const Text(
+                                                title: Text(
                                                     'Kiểu text chỉ được 1 đán án!'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext),
-                                                    child: const Text('Ok'),
+                                                    child: Text('Ok'),
                                                   ),
                                                 ],
                                               );
@@ -572,21 +579,25 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                     } else {
                                       if (_model.textAnswerNumberTextController
                                                   .text !=
+                                              null &&
+                                          _model.textAnswerNumberTextController
+                                                  .text !=
                                               '') {
                                         setState(() {});
-                                        if (_model.requestData!.answers.isNotEmpty) {
+                                        if (_model.requestData!.answers.length >
+                                            0) {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: const Text(
+                                                title: Text(
                                                     'Kiểu number chỉ được 1 đán án!'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext),
-                                                    child: const Text('Ok'),
+                                                    child: Text('Ok'),
                                                   ),
                                                 ],
                                               );
@@ -624,13 +635,13 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                           builder: (alertDialogContext) {
                                             return AlertDialog(
                                               title:
-                                                  const Text('Vui lòng nhập đán án!'),
+                                                  Text('Vui lòng nhập đán án!'),
                                               actions: [
                                                 TextButton(
                                                   onPressed: () =>
                                                       Navigator.pop(
                                                           alertDialogContext),
-                                                  child: const Text('Ok'),
+                                                  child: Text('Ok'),
                                                 ),
                                               ],
                                             );
@@ -642,9 +653,9 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                   text: 'Thêm',
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -656,19 +667,19 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              ].divide(SizedBox(width: 8.0)),
                             ),
                             if ((_model.dropDownValue != 'text') &&
                                 (_model.dropDownValue != 'number'))
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 4.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -721,7 +732,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                 ),
                               ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 24.0, 0.0, 4.0),
                               child: Text(
                                 '# Danh sách đáp án',
@@ -737,7 +748,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                             Builder(
                               builder: (context) {
                                 final listView =
-                                    _model.requestData?.answers.toList() ?? [];
+                                    _model.requestData?.answers?.toList() ?? [];
 
                                 return ListView.separated(
                                   padding: EdgeInsets.zero,
@@ -746,7 +757,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                   scrollDirection: Axis.vertical,
                                   itemCount: listView.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 4.0),
+                                      SizedBox(height: 4.0),
                                   itemBuilder: (context, listViewIndex) {
                                     final listViewItem =
                                         listView[listViewIndex];
@@ -759,7 +770,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                             BorderRadius.circular(4.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: EdgeInsets.all(8.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -806,7 +817,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                                 setState(() {});
                                               },
                                             ),
-                                          ].divide(const SizedBox(width: 4.0)),
+                                          ].divide(SizedBox(width: 4.0)),
                                         ),
                                       ),
                                     );
@@ -821,14 +832,14 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 12.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
@@ -837,9 +848,9 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                               text: 'Hủy',
                               options: FFButtonOptions(
                                 height: 44.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -866,7 +877,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var shouldSetState = false;
+                              var _shouldSetState = false;
                               _model.updateRequestDataStruct(
                                 (e) => e
                                   ..status = 'published'
@@ -879,10 +890,12 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                               }
                               if (_model.requestData!.answers
                                       .where((e) => e.correct == 1)
-                                      .toList().isNotEmpty) {
+                                      .toList()
+                                      .length >
+                                  0) {
                                 _model.reloadTokenQuestionCreated =
                                     await action_blocks.tokenReload(context);
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if (_model.reloadTokenQuestionCreated!) {
                                   _model.apiResultCreate = await QuestionGroup
                                       .questionCreateCall
@@ -892,7 +905,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                     accessToken: FFAppState().accessToken,
                                   );
 
-                                  shouldSetState = true;
+                                  _shouldSetState = true;
                                   if ((_model.apiResultCreate?.succeeded ??
                                       true)) {
                                     Navigator.pop(context);
@@ -905,19 +918,19 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                                       .toList()
                                                   as Iterable<
                                                       QuestionObjectStruct?>)
-                                              .withoutNulls[0])
-                                          .id,
+                                              .withoutNulls?[0])
+                                          ?.id,
                                     );
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
-                                          title: const Text('Tạo mới thành công!'),
+                                          title: Text('Tạo mới thành công!'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext),
-                                              child: const Text('Ok'),
+                                              child: Text('Ok'),
                                             ),
                                           ],
                                         );
@@ -934,19 +947,19 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                                       .toList()
                                                   as Iterable<
                                                       QuestionObjectStruct?>)
-                                              .withoutNulls[0])
-                                          .id,
+                                              .withoutNulls?[0])
+                                          ?.id,
                                     );
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
-                                          title: const Text('Tạo mới thành công!'),
+                                          title: Text('Tạo mới thành công!'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext),
-                                              child: const Text('Ok'),
+                                              child: Text('Ok'),
                                             ),
                                           ],
                                         );
@@ -955,7 +968,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                   }
                                 } else {
                                   setState(() {});
-                                  if (shouldSetState) setState(() {});
+                                  if (_shouldSetState) setState(() {});
                                   return;
                                 }
                               } else {
@@ -968,21 +981,21 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                             .primaryText,
                                       ),
                                     ),
-                                    duration: const Duration(milliseconds: 4000),
+                                    duration: Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).error,
                                   ),
                                 );
                               }
 
-                              if (shouldSetState) setState(() {});
+                              if (_shouldSetState) setState(() {});
                             },
                             text: 'Lưu',
                             options: FFButtonOptions(
                               height: 44.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -993,7 +1006,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

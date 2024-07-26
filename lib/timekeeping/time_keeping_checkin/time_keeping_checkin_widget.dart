@@ -2,6 +2,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'time_keeping_checkin_model.dart';
 export 'time_keeping_checkin_model.dart';
 
@@ -40,16 +42,16 @@ class _TimeKeepingCheckinWidgetState extends State<TimeKeepingCheckinWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: EdgeInsets.all(12.0),
         child: Container(
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxHeight: 700.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -62,13 +64,13 @@ class _TimeKeepingCheckinWidgetState extends State<TimeKeepingCheckinWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,7 +108,7 @@ class _TimeKeepingCheckinWidgetState extends State<TimeKeepingCheckinWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 8.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 8.0),
                         child: Icon(
                           Icons.wb_sunny_rounded,
                           color: FlutterFlowTheme.of(context).tertiary,
@@ -115,7 +117,7 @@ class _TimeKeepingCheckinWidgetState extends State<TimeKeepingCheckinWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
                         child: Text(
                           'Good morning!',
                           style:
@@ -128,7 +130,7 @@ class _TimeKeepingCheckinWidgetState extends State<TimeKeepingCheckinWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 36.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 36.0),
                         child: Text(
                           'Thứ 2, ngày 20/07/2024',
                           style:
@@ -141,7 +143,7 @@ class _TimeKeepingCheckinWidgetState extends State<TimeKeepingCheckinWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
                         child: Text(
                           '08:00:00',
                           style:
@@ -161,7 +163,7 @@ class _TimeKeepingCheckinWidgetState extends State<TimeKeepingCheckinWidget> {
                     ],
                   ),
                 ),
-              ].divide(const SizedBox(height: 8.0)),
+              ].divide(SizedBox(height: 8.0)),
             ),
           ),
         ),
