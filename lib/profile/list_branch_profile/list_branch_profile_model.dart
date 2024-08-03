@@ -1,21 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'list_branch_profile_widget.dart' show ListBranchProfileWidget;
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
 
 class ListBranchProfileModel extends FlutterFlowModel<ListBranchProfileWidget> {
   ///  Local state fields for this page.
@@ -72,7 +62,7 @@ class ListBranchProfileModel extends FlutterFlowModel<ListBranchProfileWidget> {
         accessToken: FFAppState().accessToken,
       );
 
-      if ((apiResultDepartmentList?.succeeded ?? true)) {}
+      if ((apiResultDepartmentList.succeeded ?? true)) {}
     } else {
       FFAppState().update(() {});
       return;
@@ -88,15 +78,15 @@ class ListBranchProfileModel extends FlutterFlowModel<ListBranchProfileWidget> {
       apiResultldh = await BranchGroup.branchListCall.call(
         accessToken: FFAppState().accessToken,
         filter:
-            '{\"_and\":[{}${(search != null && search != '') && (search != ' ') ? ',{\"name\":{\"_icontains\":\"${search}\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+            '{\"_and\":[{}${(search != '') && (search != ' ') ? ',{\"name\":{\"_icontains\":\"$search\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
           FFAppState().staffLogin,
           r'''$.organization_id''',
         ).toString().toString()}\"}}}'}]}',
       );
 
-      if ((apiResultldh?.succeeded ?? true)) {
+      if ((apiResultldh.succeeded ?? true)) {
         listBranch =
-            BranchListDataStruct.maybeFromMap((apiResultldh?.jsonBody ?? ''))!
+            BranchListDataStruct.maybeFromMap((apiResultldh.jsonBody ?? ''))!
                 .data
                 .toList()
                 .cast<BranchListStruct>();
@@ -114,7 +104,7 @@ class ListBranchProfileModel extends FlutterFlowModel<ListBranchProfileWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController1?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -154,7 +144,7 @@ class ListBranchProfileModel extends FlutterFlowModel<ListBranchProfileWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController1?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

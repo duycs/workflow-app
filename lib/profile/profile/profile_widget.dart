@@ -1,24 +1,18 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/nav_bar_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/author/author_sign_up/author_sign_up_widget.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
@@ -91,7 +85,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
         body: Stack(
           children: [
             Align(
-              alignment: AlignmentDirectional(0.0, -1.0),
+              alignment: const AlignmentDirectional(0.0, -1.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -116,7 +110,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         'assets/images/bao-cao-cong-viec-la-gi_84206fb4-22a3-4189-af72-5379af812256.jpg',
                                       ).image,
                                     ),
-                                    borderRadius: BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                       bottomLeft: Radius.circular(0.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(0.0),
@@ -124,7 +118,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ),
                                   ),
                                   child: Stack(
-                                    alignment: AlignmentDirectional(0.0, 1.0),
+                                    alignment: const AlignmentDirectional(0.0, 1.0),
                                     children: [
                                       Opacity(
                                         opacity: 0.4,
@@ -134,7 +128,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,
-                                            borderRadius: BorderRadius.only(
+                                            borderRadius: const BorderRadius.only(
                                               bottomLeft: Radius.circular(0.0),
                                               bottomRight: Radius.circular(0.0),
                                               topLeft: Radius.circular(0.0),
@@ -144,7 +138,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 16.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -183,7 +177,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         image: Image.network(
                                                           _model.staffDetail !=
                                                                   null
-                                                              ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId?.avatar}?access_token=${FFAppState().accessToken}'
+                                                              ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId.avatar}?access_token=${FFAppState().accessToken}'
                                                               : ' ',
                                                           fit: BoxFit.contain,
                                                           errorBuilder: (context,
@@ -197,7 +191,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         allowRotation: true,
                                                         tag: _model.staffDetail !=
                                                                 null
-                                                            ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId?.avatar}?access_token=${FFAppState().accessToken}'
+                                                            ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId.avatar}?access_token=${FFAppState().accessToken}'
                                                             : ' ',
                                                         useHeroAnimation: true,
                                                       ),
@@ -207,7 +201,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                 child: Hero(
                                                   tag: _model.staffDetail !=
                                                           null
-                                                      ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId?.avatar}?access_token=${FFAppState().accessToken}'
+                                                      ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId.avatar}?access_token=${FFAppState().accessToken}'
                                                       : ' ',
                                                   transitionOnUserGestures:
                                                       true,
@@ -217,7 +211,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                             60.0),
                                                     child: Image.network(
                                                       _model.staffDetail != null
-                                                          ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId?.avatar}?access_token=${FFAppState().accessToken}'
+                                                          ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId.avatar}?access_token=${FFAppState().accessToken}'
                                                           : ' ',
                                                       width: 90.0,
                                                       height: 90.0,
@@ -246,7 +240,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 8.0),
                                                     child: Text(
@@ -273,12 +267,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   if (_model
                                                               .staffDetail
                                                               ?.branchId
-                                                              ?.name !=
+                                                              .name !=
                                                           null &&
                                                       _model
                                                               .staffDetail
                                                               ?.branchId
-                                                              ?.name !=
+                                                              .name !=
                                                           '')
                                                     Text(
                                                       (_model.staffDetail !=
@@ -307,12 +301,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   if (_model
                                                               .staffDetail
                                                               ?.departmentId
-                                                              ?.name !=
+                                                              .name !=
                                                           null &&
                                                       _model
                                                               .staffDetail
                                                               ?.departmentId
-                                                              ?.name !=
+                                                              .name !=
                                                           '')
                                                     Text(
                                                       (_model.staffDetail !=
@@ -366,7 +360,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                 ],
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 10.0)),
+                                          ].divide(const SizedBox(width: 10.0)),
                                         ),
                                       ),
                                     ],
@@ -377,7 +371,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 24.0, 16.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -401,7 +395,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         if ('1' == '2')
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 12.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -414,7 +408,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   size: 24.0,
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -436,7 +430,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 12.0, 16.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -460,7 +454,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(6.0),
+                                              padding: const EdgeInsets.all(6.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -476,7 +470,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                           null)
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -487,12 +481,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                 String>(
                                                               _model.staffDetail
                                                                   ?.staffLessions
-                                                                  ?.where((e) =>
+                                                                  .where((e) =>
                                                                       e.status ==
                                                                       'done')
                                                                   .toList()
-                                                                  ?.length
-                                                                  ?.toString(),
+                                                                  .length
+                                                                  .toString(),
                                                               '0',
                                                             ),
                                                             style: FlutterFlowTheme
@@ -516,8 +510,8 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                           _model
                                                               .staffDetail
                                                               ?.staffLessions
-                                                              ?.length
-                                                              ?.toString(),
+                                                              .length
+                                                              .toString(),
                                                           '0',
                                                         )}',
                                                         style:
@@ -532,11 +526,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                 ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(width: 1.0)),
+                                                        const SizedBox(width: 1.0)),
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -573,7 +567,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(6.0),
+                                              padding: const EdgeInsets.all(6.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -589,7 +583,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                           null)
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -600,12 +594,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                 String>(
                                                               _model.staffDetail
                                                                   ?.staffTests
-                                                                  ?.where((e) =>
+                                                                  .where((e) =>
                                                                       e.status ==
                                                                       'published')
                                                                   .toList()
-                                                                  ?.length
-                                                                  ?.toString(),
+                                                                  .length
+                                                                  .toString(),
                                                               '0',
                                                             ),
                                                             style: FlutterFlowTheme
@@ -629,8 +623,8 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                           _model
                                                               .staffDetail
                                                               ?.staffTests
-                                                              ?.length
-                                                              ?.toString(),
+                                                              .length
+                                                              .toString(),
                                                           '0',
                                                         )}',
                                                         style:
@@ -645,11 +639,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                 ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(width: 1.0)),
+                                                        const SizedBox(width: 1.0)),
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -686,7 +680,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(6.0),
+                                              padding: const EdgeInsets.all(6.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -702,7 +696,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                           null)
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -711,9 +705,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                           child: Text(
                                                             _model
                                                                         .staffDetail!
-                                                                        .staffTests
-                                                                        .length >
-                                                                    0
+                                                                        .staffTests.isNotEmpty
                                                                 ? ((List<String>
                                                                             var1,
                                                                         int var2) {
@@ -765,11 +757,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                 ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(width: 1.0)),
+                                                        const SizedBox(width: 1.0)),
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -789,13 +781,13 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 16.0)),
+                                      ].divide(const SizedBox(width: 16.0)),
                                     ),
                                   ),
                                   if ((FFAppState().marketOn == true) &&
                                       ('1' == '2'))
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 16.0, 16.0, 16.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -807,7 +799,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             'MarketPlace',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  TransitionInfo(
+                                                  const TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -826,13 +818,13 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 8.0, 16.0, 12.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 12.0, 0.0, 0.0),
                                                   child: Text(
@@ -855,7 +847,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(12.0, 0.0, 12.0,
                                                           12.0),
                                                   child: Row(
@@ -887,7 +879,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   2.0),
                                                           child: InkWell(
                                                             splashColor: Colors
@@ -913,7 +905,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                         .network(
                                                                       _model.staffDetail !=
                                                                               null
-                                                                          ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId?.avatar}?access_token=${FFAppState().accessToken}'
+                                                                          ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId.avatar}?access_token=${FFAppState().accessToken}'
                                                                           : ' ',
                                                                       fit: BoxFit
                                                                           .contain,
@@ -922,7 +914,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                         false,
                                                                     tag: _model.staffDetail !=
                                                                             null
-                                                                        ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId?.avatar}?access_token=${FFAppState().accessToken}'
+                                                                        ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId.avatar}?access_token=${FFAppState().accessToken}'
                                                                         : ' ',
                                                                     useHeroAnimation:
                                                                         true,
@@ -933,7 +925,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                             child: Hero(
                                                               tag: _model.staffDetail !=
                                                                       null
-                                                                  ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId?.avatar}?access_token=${FFAppState().accessToken}'
+                                                                  ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId.avatar}?access_token=${FFAppState().accessToken}'
                                                                   : ' ',
                                                               transitionOnUserGestures:
                                                                   true,
@@ -946,7 +938,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                     .network(
                                                                   _model.staffDetail !=
                                                                           null
-                                                                      ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId?.avatar}?access_token=${FFAppState().accessToken}'
+                                                                      ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId.avatar}?access_token=${FFAppState().accessToken}'
                                                                       : ' ',
                                                                   width: 60.0,
                                                                   height: 60.0,
@@ -960,12 +952,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       ),
                                                       Stack(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Container(
                                                               width: 120.0,
@@ -994,7 +986,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                   .circle,
                                                             ),
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Icon(
                                                               Icons
@@ -1026,7 +1018,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   2.0),
                                                           child: ClipRRect(
                                                             borderRadius:
@@ -1043,7 +1035,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(width: 16.0)),
+                                                        const SizedBox(width: 16.0)),
                                                   ),
                                                 ),
                                                 if ((FFAppState().user.role !=
@@ -1052,7 +1044,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         null))
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 4.0),
                                                     child: InkWell(
@@ -1091,7 +1083,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                     .viewInsetsOf(
                                                                         context),
                                                                 child:
-                                                                    AuthorSignUpWidget(),
+                                                                    const AuthorSignUpWidget(),
                                                               ),
                                                             );
                                                           },
@@ -1128,7 +1120,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         null))
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 4.0),
                                                     child: InkWell(
@@ -1146,7 +1138,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                           extra: <String,
                                                               dynamic>{
                                                             kTransitionInfoKey:
-                                                                TransitionInfo(
+                                                                const TransitionInfo(
                                                               hasTransition:
                                                                   true,
                                                               transitionType:
@@ -1192,7 +1184,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       ),
                                     ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 24.0, 16.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1216,7 +1208,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 8.0, 16.0, 12.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1235,7 +1227,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   BorderRadius.circular(8.0),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(12.0),
+                                              padding: const EdgeInsets.all(12.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -1255,14 +1247,14 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                 _model
                                                                     .staffDetail
                                                                     ?.tasks
-                                                                    ?.where((e) =>
+                                                                    .where((e) =>
                                                                         (e.tasksId.status ==
                                                                             'todo') &&
                                                                         (e.tasksId.current ==
                                                                             1))
                                                                     .toList()
-                                                                    ?.length
-                                                                    ?.toString(),
+                                                                    .length
+                                                                    .toString(),
                                                                 '0',
                                                               )
                                                             : '0',
@@ -1284,14 +1276,50 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
                                                                     0.0,
                                                                     6.0),
                                                         child: Text(
-                                                          '/${_model.staffDetail != null ? _model.staffDetail?.tasks?.length?.toString() : '0'}',
+                                                          '/${(valueOrDefault<int>(
+                                                                _model
+                                                                    .staffDetail
+                                                                    ?.tasks
+                                                                    .where((e) =>
+                                                                        (e.tasksId.status ==
+                                                                            'todo') &&
+                                                                        (e.tasksId.current ==
+                                                                            1))
+                                                                    .toList()
+                                                                    .length,
+                                                                0,
+                                                              ) + valueOrDefault<int>(
+                                                                _model
+                                                                    .staffDetail
+                                                                    ?.tasks
+                                                                    .where((e) =>
+                                                                        (e.tasksId.status ==
+                                                                            'done') &&
+                                                                        (e.tasksId.submitStaffId.id ==
+                                                                            _model.staffDetail?.id))
+                                                                    .toList()
+                                                                    .length,
+                                                                0,
+                                                              ) + valueOrDefault<int>(
+                                                                _model
+                                                                    .staffDetail
+                                                                    ?.tasks
+                                                                    .where((e) =>
+                                                                        (e.tasksId.status ==
+                                                                            'todo') &&
+                                                                        (e.tasksId.current ==
+                                                                            0))
+                                                                    .toList()
+                                                                    .length,
+                                                                0,
+                                                              )).toString()}',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -1304,11 +1332,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(width: 2.0)),
+                                                        const SizedBox(width: 2.0)),
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -1340,7 +1368,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   BorderRadius.circular(8.0),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(12.0),
+                                              padding: const EdgeInsets.all(12.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -1360,14 +1388,14 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                 _model
                                                                     .staffDetail
                                                                     ?.tasks
-                                                                    ?.where((e) =>
+                                                                    .where((e) =>
                                                                         (e.tasksId.status ==
                                                                             'done') &&
                                                                         (e.tasksId.submitStaffId.id ==
                                                                             _model.staffDetail?.id))
                                                                     .toList()
-                                                                    ?.length
-                                                                    ?.toString(),
+                                                                    .length
+                                                                    .toString(),
                                                                 '0',
                                                               )
                                                             : '0',
@@ -1389,14 +1417,50 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
                                                                     0.0,
                                                                     6.0),
                                                         child: Text(
-                                                          '/${_model.staffDetail != null ? _model.staffDetail?.tasks?.length?.toString() : '0'}',
+                                                          '/${(valueOrDefault<int>(
+                                                                _model
+                                                                    .staffDetail
+                                                                    ?.tasks
+                                                                    .where((e) =>
+                                                                        (e.tasksId.status ==
+                                                                            'todo') &&
+                                                                        (e.tasksId.current ==
+                                                                            1))
+                                                                    .toList()
+                                                                    .length,
+                                                                0,
+                                                              ) + valueOrDefault<int>(
+                                                                _model
+                                                                    .staffDetail
+                                                                    ?.tasks
+                                                                    .where((e) =>
+                                                                        (e.tasksId.status ==
+                                                                            'done') &&
+                                                                        (e.tasksId.submitStaffId.id ==
+                                                                            _model.staffDetail?.id))
+                                                                    .toList()
+                                                                    .length,
+                                                                0,
+                                                              ) + valueOrDefault<int>(
+                                                                _model
+                                                                    .staffDetail
+                                                                    ?.tasks
+                                                                    .where((e) =>
+                                                                        (e.tasksId.status ==
+                                                                            'todo') &&
+                                                                        (e.tasksId.current ==
+                                                                            0))
+                                                                    .toList()
+                                                                    .length,
+                                                                0,
+                                                              )).toString()}',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -1409,11 +1473,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(width: 2.0)),
+                                                        const SizedBox(width: 2.0)),
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -1445,7 +1509,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   BorderRadius.circular(8.0),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(12.0),
+                                              padding: const EdgeInsets.all(12.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -1465,14 +1529,14 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                 _model
                                                                     .staffDetail
                                                                     ?.tasks
-                                                                    ?.where((e) =>
+                                                                    .where((e) =>
                                                                         (e.tasksId.status ==
                                                                             'todo') &&
                                                                         (e.tasksId.current ==
                                                                             0))
                                                                     .toList()
-                                                                    ?.length
-                                                                    ?.toString(),
+                                                                    .length
+                                                                    .toString(),
                                                                 '0',
                                                               )
                                                             : '0',
@@ -1494,14 +1558,50 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
                                                                     0.0,
                                                                     6.0),
                                                         child: Text(
-                                                          '/${_model.staffDetail != null ? _model.staffDetail?.tasks?.length?.toString() : '0'}',
+                                                          '/${(valueOrDefault<int>(
+                                                                _model
+                                                                    .staffDetail
+                                                                    ?.tasks
+                                                                    .where((e) =>
+                                                                        (e.tasksId.status ==
+                                                                            'todo') &&
+                                                                        (e.tasksId.current ==
+                                                                            1))
+                                                                    .toList()
+                                                                    .length,
+                                                                0,
+                                                              ) + valueOrDefault<int>(
+                                                                _model
+                                                                    .staffDetail
+                                                                    ?.tasks
+                                                                    .where((e) =>
+                                                                        (e.tasksId.status ==
+                                                                            'done') &&
+                                                                        (e.tasksId.submitStaffId.id ==
+                                                                            _model.staffDetail?.id))
+                                                                    .toList()
+                                                                    .length,
+                                                                0,
+                                                              ) + valueOrDefault<int>(
+                                                                _model
+                                                                    .staffDetail
+                                                                    ?.tasks
+                                                                    .where((e) =>
+                                                                        (e.tasksId.status ==
+                                                                            'todo') &&
+                                                                        (e.tasksId.current ==
+                                                                            0))
+                                                                    .toList()
+                                                                    .length,
+                                                                0,
+                                                              )).toString()}',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -1514,11 +1614,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(width: 2.0)),
+                                                        const SizedBox(width: 2.0)),
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -1538,7 +1638,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 16.0)),
+                                      ].divide(const SizedBox(width: 16.0)),
                                     ),
                                   ),
                                 ],
@@ -1551,7 +1651,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           'a8d33527-375b-4599-ac70-6a3fcad1de39')) &&
                                   (FFAppState().marketOn == true))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 16.0, 16.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1575,7 +1675,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                 ),
                               if (FFAppState().marketOn == true)
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -1586,7 +1686,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context.pushNamed(
                                         'OrderList',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -1610,7 +1710,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1622,7 +1722,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 22.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -1640,7 +1740,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -1665,7 +1765,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           'a8d33527-375b-4599-ac70-6a3fcad1de39')) &&
                                   ('1' == '2'))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -1682,7 +1782,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -1706,7 +1806,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1718,7 +1818,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -1736,7 +1836,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -1761,7 +1861,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           'a8d33527-375b-4599-ac70-6a3fcad1de39')) &&
                                   (FFAppState().marketOn == true))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -1778,7 +1878,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -1802,7 +1902,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1814,7 +1914,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -1832,7 +1932,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -1857,7 +1957,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           'a8d33527-375b-4599-ac70-6a3fcad1de39')) &&
                                   ('1' == '2'))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 12.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -1868,7 +1968,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context.pushNamed(
                                         'QuestionList',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -1892,7 +1992,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1904,7 +2004,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -1922,7 +2022,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -1947,7 +2047,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           'a8d33527-375b-4599-ac70-6a3fcad1de39')) &&
                                   ('1' == '2'))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -1955,7 +2055,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      borderRadius: BorderRadius.only(
+                                      borderRadius: const BorderRadius.only(
                                         bottomLeft: Radius.circular(8.0),
                                         bottomRight: Radius.circular(8.0),
                                         topLeft: Radius.circular(8.0),
@@ -1968,7 +2068,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(12.0),
+                                      padding: const EdgeInsets.all(12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -1980,7 +2080,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Báo cáo đào tạo',
@@ -1997,7 +2097,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                           Expanded(
                                             child: Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.9, 0.0),
                                               child: Icon(
                                                 Icons.arrow_forward_ios,
@@ -2021,7 +2121,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           'a8d33527-375b-4599-ac70-6a3fcad1de39')) &&
                                   ('1' == '2'))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 24.0, 16.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -2051,7 +2151,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           'a8d33527-375b-4599-ac70-6a3fcad1de39')) &&
                                   ('1' == '2'))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 8.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2062,7 +2162,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context.pushNamed(
                                         'ProcedureList',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -2086,7 +2186,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -2098,7 +2198,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -2116,7 +2216,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -2141,7 +2241,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           'a8d33527-375b-4599-ac70-6a3fcad1de39')) &&
                                   ('1' == '2'))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2152,7 +2252,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context.pushNamed(
                                         'OperationList',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -2176,7 +2276,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -2188,7 +2288,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -2206,7 +2306,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -2231,7 +2331,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           'a8d33527-375b-4599-ac70-6a3fcad1de39')) &&
                                   ('1' == '2'))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 12.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2242,7 +2342,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context.pushNamed(
                                         'ProcessTemplateList',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -2266,7 +2366,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -2278,7 +2378,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -2296,7 +2396,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -2319,7 +2419,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   (FFAppState().user.role ==
                                       'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 24.0, 16.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -2344,7 +2444,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               if (FFAppState().user.role ==
                                   '82073000-1ba2-43a4-a55c-459d17c23b68')
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 8.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2355,7 +2455,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context.pushNamed(
                                         'DetailProfileCPN',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -2379,7 +2479,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -2391,7 +2491,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -2409,7 +2509,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -2429,7 +2529,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               if (FFAppState().user.role ==
                                   '82073000-1ba2-43a4-a55c-459d17c23b68')
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2440,7 +2540,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context.pushNamed(
                                         'BranchList',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -2464,7 +2564,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -2476,7 +2576,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -2494,7 +2594,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -2516,7 +2616,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   (FFAppState().user.role ==
                                       'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2527,7 +2627,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context.pushNamed(
                                         'DepartmentList',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -2551,7 +2651,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -2563,7 +2663,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -2581,7 +2681,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -2604,7 +2704,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   (FFAppState().user.role ==
                                       'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2615,7 +2715,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context.pushNamed(
                                         'PersonnelList',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -2639,7 +2739,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -2651,7 +2751,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -2669,7 +2769,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -2692,7 +2792,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   (FFAppState().user.role ==
                                       'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2703,7 +2803,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context.pushNamed(
                                         'ReportStaff',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -2727,7 +2827,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -2739,7 +2839,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -2757,7 +2857,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -2775,7 +2875,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   ),
                                 ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 24.0, 16.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -2798,7 +2898,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               if ((FFAppState().marketOn == true) &&
                                   functions.isRoleStaff(FFAppState().user))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2815,7 +2915,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -2839,7 +2939,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -2851,7 +2951,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -2869,7 +2969,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -2888,7 +2988,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                 ),
                               if (functions.isRoleStaff(FFAppState().user))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 8.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2899,7 +2999,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context.pushNamed(
                                         'StudyProgramListUser',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -2923,7 +3023,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -2935,7 +3035,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -2953,7 +3053,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -2972,7 +3072,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                 ),
                               if (functions.isRoleStaff(FFAppState().user))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2983,7 +3083,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context.pushNamed(
                                         'LessonsListUser',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -3007,7 +3107,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -3019,7 +3119,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -3037,7 +3137,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -3056,7 +3156,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                 ),
                               if (functions.isRoleStaff(FFAppState().user))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -3073,7 +3173,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -3097,7 +3197,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -3109,7 +3209,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               size: 24.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -3127,7 +3227,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
@@ -3145,7 +3245,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   ),
                                 ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 16.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -3162,7 +3262,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
+                                        kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -3185,7 +3285,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(12.0),
+                                      padding: const EdgeInsets.all(12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -3197,7 +3297,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Thông tin cá nhân',
@@ -3214,7 +3314,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                           Expanded(
                                             child: Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.9, 0.0),
                                               child: Icon(
                                                 Icons.arrow_forward_ios,
@@ -3232,7 +3332,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 16.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -3243,7 +3343,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     context.pushNamed(
                                       'ProfileUserSetting',
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
+                                        kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -3266,7 +3366,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(12.0),
+                                      padding: const EdgeInsets.all(12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -3278,7 +3378,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Thiết lập tài khoản',
@@ -3295,7 +3395,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                           Expanded(
                                             child: Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.9, 0.0),
                                               child: Icon(
                                                 Icons.arrow_forward_ios,
@@ -3313,7 +3413,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 16.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -3324,7 +3424,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     context.pushNamed(
                                       'EditPassword',
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
+                                        kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -3347,7 +3447,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(12.0),
+                                      padding: const EdgeInsets.all(12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -3359,7 +3459,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Đổi mật khẩu',
@@ -3376,7 +3476,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                           Expanded(
                                             child: Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.9, 0.0),
                                               child: Icon(
                                                 Icons.arrow_forward_ios,
@@ -3394,7 +3494,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 8.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
@@ -3403,8 +3503,8 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               context: context,
                                               builder: (alertDialogContext) {
                                                 return AlertDialog(
-                                                  title: Text('Xác nhận'),
-                                                  content: Text(
+                                                  title: const Text('Xác nhận'),
+                                                  content: const Text(
                                                       'Bạn có chắc chắn muốn đăng xuất không?'),
                                                   actions: [
                                                     TextButton(
@@ -3412,14 +3512,14 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                           Navigator.pop(
                                                               alertDialogContext,
                                                               false),
-                                                      child: Text('Không'),
+                                                      child: const Text('Không'),
                                                     ),
                                                     TextButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext,
                                                               true),
-                                                      child: Text('Có'),
+                                                      child: const Text('Có'),
                                                     ),
                                                   ],
                                                 );
@@ -3452,7 +3552,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context.goNamed(
                                         'Login',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -3465,15 +3565,15 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     setState(() {});
                                   },
                                   text: 'Đăng xuất',
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.logout,
                                     size: 15.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 55.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).fBGrey,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -3488,7 +3588,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   ),
                                 ),
                               ),
-                            ].addToEnd(SizedBox(height: 100.0)),
+                            ].addToEnd(const SizedBox(height: 100.0)),
                           ),
                         ),
                         if (_model.checkLoading == false)
@@ -3499,7 +3599,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
-                            child: Container(
+                            child: SizedBox(
                               width: double.infinity,
                               height: double.infinity,
                               child: custom_widgets.LoadingPageWidget(
@@ -3517,13 +3617,13 @@ class _ProfileWidgetState extends State<ProfileWidget>
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.0, 1.0),
+              alignment: const AlignmentDirectional(0.0, 1.0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
                 child: wrapWithModel(
                   model: _model.navBarModel,
                   updateCallback: () => setState(() {}),
-                  child: NavBarWidget(
+                  child: const NavBarWidget(
                     selectedPageIndex: 2,
                   ),
                 ),

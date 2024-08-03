@@ -10,14 +10,12 @@ import '/training/do_test/long_text_list_question/long_text_list_question_widget
 import '/training/do_test/number_list_question/number_list_question_widget.dart';
 import '/training/do_test/select_list_question/select_list_question_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'do_test_model.dart';
 export 'do_test_model.dart';
@@ -62,7 +60,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
       _model.getLessionTestToken = await action_blocks.tokenReload(context);
       if (_model.getLessionTestToken!) {
         _model.apiResultGetLessionTest = await TestGroup.testOneCall.call(
-          testsId: widget!.testId,
+          testsId: widget.testId,
           accessToken: FFAppState().accessToken,
         );
 
@@ -89,7 +87,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
           _model.loopList = 0;
           setState(() {});
           _model.instantTimer = InstantTimer.periodic(
-            duration: Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 1000),
             callback: (timer) async {
               _model.timerController.onStartTimer();
             },
@@ -141,21 +139,21 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                if (widget!.avatar != null &&
-                                    widget!.avatar != '')
+                                if (widget.avatar != null &&
+                                    widget.avatar != '')
                                   Align(
-                                    alignment: AlignmentDirectional(0.0, 1.0),
+                                    alignment: const AlignmentDirectional(0.0, 1.0),
                                     child: Padding(
-                                      padding: EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(8.0),
                                       child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          '${FFAppConstants.ApiBaseUrl}/assets/${widget!.avatar}?access_token=${FFAppState().accessToken}',
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${widget.avatar}?access_token=${FFAppState().accessToken}',
                                           width: double.infinity,
                                           height: 200.0,
                                           fit: BoxFit.cover,
-                                          alignment: Alignment(0.0, 0.0),
+                                          alignment: const Alignment(0.0, 0.0),
                                           errorBuilder:
                                               (context, error, stackTrace) =>
                                                   Image.asset(
@@ -163,14 +161,14 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                             width: double.infinity,
                                             height: 200.0,
                                             fit: BoxFit.cover,
-                                            alignment: Alignment(0.0, 0.0),
+                                            alignment: const Alignment(0.0, 0.0),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 4.0, 16.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
@@ -187,7 +185,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -206,7 +204,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 4.0),
                                             child: Text(
                                               'Thời gian: ',
@@ -236,7 +234,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                 ),
                                                 controller:
                                                     _model.timerController,
-                                                updateStateInterval: Duration(
+                                                updateStateInterval: const Duration(
                                                     milliseconds: 1000),
                                                 onChanged: (value, displayTime,
                                                     shouldUpdate) {
@@ -244,11 +242,12 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                       value;
                                                   _model.timerValue =
                                                       displayTime;
-                                                  if (shouldUpdate)
+                                                  if (shouldUpdate) {
                                                     setState(() {});
+                                                  }
                                                 },
                                                 onEnded: () async {
-                                                  var _shouldSetState = false;
+                                                  var shouldSetState = false;
                                                   _model.timerController.timer
                                                       .setPresetTime(
                                                           mSec: 0, add: false);
@@ -262,35 +261,33 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                     if (_model.requestData
                                                             .where((e) =>
                                                                 e.questionId ==
-                                                                (_model.list?.questions?[
+                                                                (_model.list?.questions[
                                                                         _model
                                                                             .loopQuestion])
                                                                     ?.questionsId
-                                                                    ?.id)
-                                                            .toList()
-                                                            .length <=
-                                                        0) {
+                                                                    .id)
+                                                            .toList().isEmpty) {
                                                       _model.addToRequestData(
                                                           RequestAnswerStaffStruct(
                                                         status: 'published',
                                                         correct: 0,
                                                         answerType: (_model.list
-                                                                    ?.questions?[
+                                                                    ?.questions[
                                                                 _model
                                                                     .loopQuestion])
                                                             ?.questionsId
-                                                            ?.answerType,
+                                                            .answerType,
                                                         staffId: getJsonField(
                                                           FFAppState()
                                                               .staffLogin,
                                                           r'''$.id''',
                                                         ).toString(),
                                                         questionId: (_model.list
-                                                                    ?.questions?[
+                                                                    ?.questions[
                                                                 _model
                                                                     .loopQuestion])
                                                             ?.questionsId
-                                                            ?.id,
+                                                            .id,
                                                       ));
                                                       setState(() {});
                                                     }
@@ -331,7 +328,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                   _model.createStaffTestToken1 =
                                                       await action_blocks
                                                           .tokenReload(context);
-                                                  _shouldSetState = true;
+                                                  shouldSetState = true;
                                                   if (_model
                                                       .createStaffTestToken1!) {
                                                     _model.apiResultCreateStaffTest1 =
@@ -354,15 +351,15 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                         'staff_id': FFAppState()
                                                             .staffid,
                                                         'test_id':
-                                                            widget!.testId,
+                                                            widget.testId,
                                                         'lession_id':
-                                                            widget!.lessionId,
+                                                            widget.lessionId,
                                                       },
                                                       accessToken: FFAppState()
                                                           .accessToken,
                                                     );
 
-                                                    _shouldSetState = true;
+                                                    shouldSetState = true;
                                                     if ((_model
                                                             .apiResultCreateStaffTest1
                                                             ?.succeeded ??
@@ -422,7 +419,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                           await action_blocks
                                                               .tokenReload(
                                                                   context);
-                                                      _shouldSetState = true;
+                                                      shouldSetState = true;
                                                       if (_model
                                                           .createStaffAnswerToken1!) {
                                                         _model.apiResultCreateStaffAnswer1 =
@@ -439,7 +436,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                               .toList(),
                                                         );
 
-                                                        _shouldSetState = true;
+                                                        shouldSetState = true;
                                                         if ((_model
                                                                 .apiResultCreateStaffAnswer1
                                                                 ?.succeeded ??
@@ -448,7 +445,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                               await action_blocks
                                                                   .tokenReload(
                                                                       context);
-                                                          _shouldSetState =
+                                                          shouldSetState =
                                                               true;
                                                           if (_model
                                                               .caculatorScoresToken1!) {
@@ -463,7 +460,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                   _model.testId,
                                                             );
 
-                                                            _shouldSetState =
+                                                            shouldSetState =
                                                                 true;
                                                             if ((_model
                                                                     .apiResultCaculatorScores1
@@ -482,7 +479,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                           .primaryText,
                                                                     ),
                                                                   ),
-                                                                  duration: Duration(
+                                                                  duration: const Duration(
                                                                       milliseconds:
                                                                           4000),
                                                                   backgroundColor:
@@ -491,9 +488,9 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                           .secondary,
                                                                 ),
                                                               );
-                                                              if (widget!.lessionId !=
+                                                              if (widget.lessionId !=
                                                                       null &&
-                                                                  widget!.lessionId !=
+                                                                  widget.lessionId !=
                                                                       '') {
                                                                 context
                                                                     .pushNamed(
@@ -540,21 +537,21 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                     ),
                                                                     'goodScore':
                                                                         serializeParam(
-                                                                      widget!
+                                                                      widget
                                                                           .goodScore,
                                                                       ParamType
                                                                           .int,
                                                                     ),
                                                                     'avatar':
                                                                         serializeParam(
-                                                                      widget!
+                                                                      widget
                                                                           .avatar,
                                                                       ParamType
                                                                           .String,
                                                                     ),
                                                                     'lessionId':
                                                                         serializeParam(
-                                                                      widget!
+                                                                      widget
                                                                           .lessionId,
                                                                       ParamType
                                                                           .String,
@@ -563,7 +560,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                   extra: <String,
                                                                       dynamic>{
                                                                     kTransitionInfoKey:
-                                                                        TransitionInfo(
+                                                                        const TransitionInfo(
                                                                       hasTransition:
                                                                           true,
                                                                       transitionType:
@@ -582,7 +579,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                   extra: <String,
                                                                       dynamic>{
                                                                     kTransitionInfoKey:
-                                                                        TransitionInfo(
+                                                                        const TransitionInfo(
                                                                       hasTransition:
                                                                           true,
                                                                       transitionType:
@@ -596,45 +593,53 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                 );
                                                               }
 
-                                                              if (_shouldSetState)
+                                                              if (shouldSetState) {
                                                                 setState(() {});
+                                                              }
                                                               return;
                                                             } else {
-                                                              if (_shouldSetState)
+                                                              if (shouldSetState) {
                                                                 setState(() {});
+                                                              }
                                                               return;
                                                             }
                                                           } else {
                                                             setState(() {});
-                                                            if (_shouldSetState)
+                                                            if (shouldSetState) {
                                                               setState(() {});
+                                                            }
                                                             return;
                                                           }
                                                         } else {
-                                                          if (_shouldSetState)
+                                                          if (shouldSetState) {
                                                             setState(() {});
+                                                          }
                                                           return;
                                                         }
                                                       } else {
                                                         setState(() {});
-                                                        if (_shouldSetState)
+                                                        if (shouldSetState) {
                                                           setState(() {});
+                                                        }
                                                         return;
                                                       }
                                                     } else {
-                                                      if (_shouldSetState)
+                                                      if (shouldSetState) {
                                                         setState(() {});
+                                                      }
                                                       return;
                                                     }
                                                   } else {
                                                     setState(() {});
-                                                    if (_shouldSetState)
+                                                    if (shouldSetState) {
                                                       setState(() {});
+                                                    }
                                                     return;
                                                   }
 
-                                                  if (_shouldSetState)
+                                                  if (shouldSetState) {
                                                     setState(() {});
+                                                  }
                                                 },
                                                 textAlign: TextAlign.start,
                                                 style:
@@ -646,11 +651,11 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(SizedBox(width: 2.0)),
+                                            ].divide(const SizedBox(width: 2.0)),
                                           ),
-                                        ].divide(SizedBox(width: 8.0)),
+                                        ].divide(const SizedBox(width: 8.0)),
                                       ),
-                                    ].divide(SizedBox(width: 4.0)),
+                                    ].divide(const SizedBox(width: 4.0)),
                                   ),
                                 ),
                                 Divider(
@@ -661,7 +666,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                   color: FlutterFlowTheme.of(context).alternate,
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
                                   child: Text(
                                     'Nội dung',
@@ -674,7 +679,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
                                   child: Html(
                                     data: _model.list!.description,
@@ -684,7 +689,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                 Builder(
                                   builder: (context) {
                                     final listQuestion =
-                                        _model.list?.questions?.toList() ?? [];
+                                        _model.list?.questions.toList() ?? [];
 
                                     return ListView.separated(
                                       padding: EdgeInsets.zero,
@@ -693,24 +698,24 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                       scrollDirection: Axis.vertical,
                                       itemCount: listQuestion.length,
                                       separatorBuilder: (_, __) =>
-                                          SizedBox(height: 8.0),
+                                          const SizedBox(height: 8.0),
                                       itemBuilder:
                                           (context, listQuestionIndex) {
                                         final listQuestionItem =
                                             listQuestion[listQuestionIndex];
                                         return Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 8.0, 16.0, 0.0),
                                           child: Container(
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 8.0),
                                                   child: Container(
@@ -724,11 +729,11 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                               12.0),
                                                     ),
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             -0.9, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   0.0,
@@ -761,7 +766,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                       url!),
                                                             ),
                                                           ),
-                                                        ].divide(SizedBox(
+                                                        ].divide(const SizedBox(
                                                             width: 4.0)),
                                                       ),
                                                     ),
@@ -772,7 +777,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                     'radio')
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -798,7 +803,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                     'checkbox')
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -824,7 +829,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                     'number')
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -850,7 +855,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                     'text')
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -892,7 +897,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                         itemCount:
                                                             dataQuestion.length,
                                                         separatorBuilder:
-                                                            (_, __) => SizedBox(
+                                                            (_, __) => const SizedBox(
                                                                 height: 4.0),
                                                         itemBuilder: (context,
                                                             dataQuestionIndex) {
@@ -901,7 +906,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                   dataQuestionIndex];
                                                           return Container(
                                                             decoration:
-                                                                BoxDecoration(),
+                                                                const BoxDecoration(),
                                                             child: Column(
                                                               mainAxisSize:
                                                                   MainAxisSize
@@ -970,7 +975,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                             setState(() {});
                                                                             while (_model.loop! <
                                                                                 _model.requestData[listQuestionIndex].answers.length) {
-                                                                              if (_model.requestData[listQuestionIndex].answers.where((e) => e.answersId.id == _model.checkboxAnswer).toList().length > 0) {
+                                                                              if (_model.requestData[listQuestionIndex].answers.where((e) => e.answersId.id == _model.checkboxAnswer).toList().isNotEmpty) {
                                                                                 _model.updateRequestDataAtIndex(
                                                                                   listQuestionIndex,
                                                                                   (e) => e
@@ -1046,7 +1051,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                             dataQuestionOne
                                                                 .length,
                                                         separatorBuilder:
-                                                            (_, __) => SizedBox(
+                                                            (_, __) => const SizedBox(
                                                                 height: 4.0),
                                                         itemBuilder: (context,
                                                             dataQuestionOneIndex) {
@@ -1230,7 +1235,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                       setState(() {});
                                                     },
                                                   ),
-                                              ].divide(SizedBox(height: 4.0)),
+                                              ].divide(const SizedBox(height: 4.0)),
                                             ),
                                           ),
                                         );
@@ -1243,26 +1248,26 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                           ),
                         ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 16.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            var _shouldSetState = false;
+                            var shouldSetState = false;
                             var confirmDialogResponse = await showDialog<bool>(
                                   context: context,
                                   builder: (alertDialogContext) {
                                     return AlertDialog(
-                                      title: Text('Bạn xác nhận nộp bài thi?'),
+                                      title: const Text('Bạn xác nhận nộp bài thi?'),
                                       actions: [
                                         TextButton(
                                           onPressed: () => Navigator.pop(
                                               alertDialogContext, false),
-                                          child: Text('Thoát'),
+                                          child: const Text('Đóng'),
                                         ),
                                         TextButton(
                                           onPressed: () => Navigator.pop(
                                               alertDialogContext, true),
-                                          child: Text('Xác nhận'),
+                                          child: const Text('Xác nhận'),
                                         ),
                                       ],
                                     );
@@ -1279,29 +1284,27 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                 if (_model.requestData
                                         .where((e) =>
                                             e.questionId ==
-                                            (_model.list?.questions?[
+                                            (_model.list?.questions[
                                                     _model.loopQuestion])
                                                 ?.questionsId
-                                                ?.id)
-                                        .toList()
-                                        .length <=
-                                    0) {
+                                                .id)
+                                        .toList().isEmpty) {
                                   _model.addToRequestData(
                                       RequestAnswerStaffStruct(
                                     status: 'published',
                                     correct: 0,
                                     answerType: (_model.list
-                                            ?.questions?[_model.loopQuestion])
+                                            ?.questions[_model.loopQuestion])
                                         ?.questionsId
-                                        ?.answerType,
+                                        .answerType,
                                     staffId: getJsonField(
                                       FFAppState().staffLogin,
                                       r'''$.id''',
                                     ).toString(),
                                     questionId: (_model.list
-                                            ?.questions?[_model.loopQuestion])
+                                            ?.questions[_model.loopQuestion])
                                         ?.questionsId
-                                        ?.id,
+                                        .id,
                                   ));
                                   setState(() {});
                                 }
@@ -1331,7 +1334,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                               setState(() {});
                               _model.createStaffTestToken =
                                   await action_blocks.tokenReload(context);
-                              _shouldSetState = true;
+                              shouldSetState = true;
                               if (_model.createStaffTestToken!) {
                                 _model.apiResultCreateStaffTest =
                                     await DoTestGroup.createStaffTestsCall.call(
@@ -1346,13 +1349,13 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                     'date_start': _model.dateStart,
                                     'date_end': _model.dateEnd,
                                     'staff_id': FFAppState().staffid,
-                                    'test_id': widget!.testId,
-                                    'lession_id': widget!.lessionId,
+                                    'test_id': widget.testId,
+                                    'lession_id': widget.lessionId,
                                   },
                                   accessToken: FFAppState().accessToken,
                                 );
 
-                                _shouldSetState = true;
+                                shouldSetState = true;
                                 if ((_model
                                         .apiResultCreateStaffTest?.succeeded ??
                                     true)) {
@@ -1401,7 +1404,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                   setState(() {});
                                   _model.createStaffAnswerToken =
                                       await action_blocks.tokenReload(context);
-                                  _shouldSetState = true;
+                                  shouldSetState = true;
                                   if (_model.createStaffAnswerToken!) {
                                     _model.apiResultCreateStaffAnswer =
                                         await DoTestGroup.createStaffAnswerCall
@@ -1412,14 +1415,14 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                           .toList(),
                                     );
 
-                                    _shouldSetState = true;
+                                    shouldSetState = true;
                                     if ((_model.apiResultCreateStaffAnswer
                                             ?.succeeded ??
                                         true)) {
                                       _model.caculatorScoresToken =
                                           await action_blocks
                                               .tokenReload(context);
-                                      _shouldSetState = true;
+                                      shouldSetState = true;
                                       if (_model.caculatorScoresToken!) {
                                         _model.apiResultCaculatorScores =
                                             await DoTestGroup
@@ -1429,30 +1432,20 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                           staffTestId: _model.testId,
                                         );
 
-                                        _shouldSetState = true;
+                                        shouldSetState = true;
                                         if ((_model.apiResultCaculatorScores
                                                 ?.succeeded ??
                                             true)) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'Nộp bài thi thành công!',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                            ),
+                                          await actions.showToast(
+                                            context,
+                                            'Nộp bài thi thành công!',
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            FlutterFlowTheme.of(context)
+                                                .secondary,
                                           );
-                                          if (widget!.lessionId != null &&
-                                              widget!.lessionId != '') {
+                                          if (widget.lessionId != null &&
+                                              widget.lessionId != '') {
                                             context.goNamed(
                                               'DoTestDetail',
                                               queryParameters: {
@@ -1483,21 +1476,21 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                   ParamType.String,
                                                 ),
                                                 'goodScore': serializeParam(
-                                                  widget!.goodScore,
+                                                  widget.goodScore,
                                                   ParamType.int,
                                                 ),
                                                 'avatar': serializeParam(
-                                                  widget!.avatar,
+                                                  widget.avatar,
                                                   ParamType.String,
                                                 ),
                                                 'lessionId': serializeParam(
-                                                  widget!.lessionId,
+                                                  widget.lessionId,
                                                   ParamType.String,
                                                 ),
                                               }.withoutNulls,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    TransitionInfo(
+                                                    const TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.fade,
@@ -1515,7 +1508,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                               'StudyProgramListUser',
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    TransitionInfo(
+                                                    const TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.fade,
@@ -1526,45 +1519,49 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                             );
                                           }
 
-                                          if (_shouldSetState) setState(() {});
+                                          if (shouldSetState) setState(() {});
                                           return;
                                         } else {
-                                          if (_shouldSetState) setState(() {});
+                                          if (shouldSetState) setState(() {});
                                           return;
                                         }
                                       } else {
                                         setState(() {});
-                                        if (_shouldSetState) setState(() {});
+                                        if (shouldSetState) setState(() {});
                                         return;
                                       }
                                     } else {
-                                      if (_shouldSetState) setState(() {});
+                                      if (shouldSetState) setState(() {});
                                       return;
                                     }
                                   } else {
                                     setState(() {});
-                                    if (_shouldSetState) setState(() {});
+                                    if (shouldSetState) setState(() {});
                                     return;
                                   }
                                 } else {
-                                  if (_shouldSetState) setState(() {});
+                                  if (shouldSetState) setState(() {});
                                   return;
                                 }
                               } else {
                                 setState(() {});
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
                             }
-                            if (_shouldSetState) setState(() {});
+                            if (shouldSetState) setState(() {});
                           },
                           text: 'Nộp bài',
+                          icon: const Icon(
+                            Icons.send_outlined,
+                            size: 24.0,
+                          ),
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -1576,7 +1573,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

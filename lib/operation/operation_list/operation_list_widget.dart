@@ -1,24 +1,18 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/operation/filter_operation/filter_operation_widget.dart';
 import '/operation/operation_create/operation_create_widget.dart';
 import '/operation/operation_detail/operation_detail_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'operation_list_model.dart';
@@ -112,7 +106,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                       elevation: 0,
                       insetPadding: EdgeInsets.zero,
                       backgroundColor: Colors.transparent,
-                      alignment: AlignmentDirectional(0.0, 0.0)
+                      alignment: const AlignmentDirectional(0.0, 0.0)
                           .resolve(Directionality.of(context)),
                       child: GestureDetector(
                         onTap: () => _model.unfocusNode.canRequestFocus
@@ -175,7 +169,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
               context.pushNamed(
                 'Profile',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
+                  kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -193,7 +187,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -207,7 +201,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -217,7 +211,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                           focusNode: _model.textFieldFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController',
-                            Duration(milliseconds: 500),
+                            const Duration(milliseconds: 500),
                             () async {
                               _model.seachName = _model.textController.text;
                               setState(() {});
@@ -250,7 +244,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                   letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Color(0x00000000),
                                 width: 1.0,
                               ),
@@ -280,9 +274,9 @@ class _OperationListWidgetState extends State<OperationListWidget>
                             filled: true,
                             fillColor:
                                 FlutterFlowTheme.of(context).primaryBackground,
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.search,
                             ),
                             suffixIcon: _model.textController!.text.isNotEmpty
@@ -378,7 +372,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                           .listViewThreePagingController
                                           ?.refresh());
                                       setState(() {
-                                        _model.textController?.text = name!;
+                                        _model.textController?.text = name;
                                         _model.textController?.selection =
                                             TextSelection.collapsed(
                                                 offset: _model.textController!
@@ -397,19 +391,15 @@ class _OperationListWidgetState extends State<OperationListWidget>
                     ],
                   ),
                 ),
-                if ((_model.seachName != null && _model.seachName != '') ||
-                    (_model.seachUserCreate != null &&
-                        _model.seachUserCreate != '') ||
-                    (_model.searchAction != null &&
-                        _model.searchAction != '') ||
-                    (_model.searchDateStart != null &&
-                        _model.searchDateStart != '') ||
-                    (_model.searchDateEnd != null &&
-                        _model.searchDateEnd != '') ||
-                    (_model.searchStatus != null && _model.searchStatus != ''))
+                if ((_model.seachName != '') ||
+                    (_model.seachUserCreate != '') ||
+                    (_model.searchAction != '') ||
+                    (_model.searchDateStart != '') ||
+                    (_model.searchDateEnd != '') ||
+                    (_model.searchStatus != ''))
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 0.0, 0.0),
                     child: Text(
                       '#Kết quả hiển thị theo bộ lọc',
                       style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -423,11 +413,11 @@ class _OperationListWidgetState extends State<OperationListWidget>
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     child: Column(
                       children: [
                         Align(
-                          alignment: Alignment(-1.0, 0),
+                          alignment: const Alignment(-1.0, 0),
                           child: TabBar(
                             labelColor: FlutterFlowTheme.of(context).primary,
                             unselectedLabelColor:
@@ -446,8 +436,8 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                 ),
                             indicatorColor:
                                 FlutterFlowTheme.of(context).primary,
-                            padding: EdgeInsets.all(4.0),
-                            tabs: [
+                            padding: const EdgeInsets.all(4.0),
+                            tabs: const [
                               Tab(
                                 text: 'Tất cả',
                               ),
@@ -486,7 +476,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                             physics: const NeverScrollableScrollPhysics(),
                             children: [
                               Stack(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 children: [
                                   if (_model.isLoad == true)
                                     PagedListView<ApiPagingParams,
@@ -504,23 +494,28 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                           filter: '{\"_or\":[{\"_and\":[{}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
                                             FFAppState().staffLogin,
                                             r'''$.organization_id''',
-                                          ).toString()}\"}}'}${(_model.seachName != null && _model.seachName != '') && (_model.seachName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.seachName}\"}}' : ' '}${(_model.searchStatus != null && _model.searchStatus != '') && (_model.searchStatus != ' ') ? ',{\"status\":{\"_eq\":\"${_model.searchStatus}\"}}' : ' '}${(_model.searchAction != null && _model.searchAction != '') && (_model.searchAction != ' ') ? ',{\"action_type\":{\"_eq\":\"${_model.searchAction}\"}}' : ' '}${(_model.searchDateStart != null && _model.searchDateStart != '') && (_model.searchDateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"${_model.searchDateStart}\"}}' : ''}${(_model.searchDateEnd != null && _model.searchDateEnd != '') && (_model.searchDateEnd != ' ') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
+                                          ).toString()}\"}}'}${(_model.seachName != '') && (_model.seachName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.seachName}\"}}' : ' '}${(_model.searchStatus != '') && (_model.searchStatus != ' ') ? ',{\"status\":{\"_eq\":\"${_model.searchStatus}\"}}' : ' '}${(_model.searchAction != '') && (_model.searchAction != ' ') ? ',{\"action_type\":{\"_eq\":\"${_model.searchAction}\"}}' : ' '}${(_model.searchDateStart != '') && (_model.searchDateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"${_model.searchDateStart}\"}}' : ''}${(_model.searchDateEnd != '') && (_model.searchDateEnd != ' ') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
                                               return DateTime.parse(var1)
-                                                  .add(Duration(days: 1))
+                                                  .add(const Duration(days: 1))
                                                   .toString();
-                                            }(_model.searchDateEnd)}\"}}' : ' '}${(_model.seachUserCreate != null && _model.seachUserCreate != '') && (_model.seachUserCreate != ' ') ? ',{\"user_created\":{\"first_name\":{\"_icontains\":\"${_model.seachUserCreate}\"}}}' : ''},{ \"flow_id\":{\"_null\": true}}]}${',{\"_and\":[{}${(_model.seachName != null && _model.seachName != '') && (_model.seachName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.seachName}\"}}' : ' '}${(_model.searchStatus != null && _model.searchStatus != '') && (_model.searchStatus != ' ') ? ',{\"status\":{\"_eq\":\"${_model.searchStatus}\"}}' : ' '}${(_model.searchAction != null && _model.searchAction != '') && (_model.searchAction != ' ') ? ',{\"action_type\":{\"_eq\":\"${_model.searchAction}\"}}' : ' '}${(_model.searchDateStart != null && _model.searchDateStart != '') && (_model.searchDateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"${_model.searchDateStart}\"}}' : ''}${(_model.searchDateEnd != null && _model.searchDateEnd != '') && (_model.searchDateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
+                                            }(_model.searchDateEnd)}\"}}' : ' '}${(_model.seachUserCreate != '') && (_model.seachUserCreate != ' ') ? ',{\"user_created\":{\"first_name\":{\"_icontains\":\"${_model.seachUserCreate}\"}}}' : ''},{ \"flow_id\":{\"_null\": true}}]}${',{\"_and\":[{}${(_model.seachName != '') && (_model.seachName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.seachName}\"}}' : ' '}${(_model.searchStatus != '') && (_model.searchStatus != ' ') ? ',{\"status\":{\"_eq\":\"${_model.searchStatus}\"}}' : ' '}${(_model.searchAction != '') && (_model.searchAction != ' ') ? ',{\"action_type\":{\"_eq\":\"${_model.searchAction}\"}}' : ' '}${(_model.searchDateStart != '') && (_model.searchDateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"${_model.searchDateStart}\"}}' : ''}${(_model.searchDateEnd != '') && (_model.searchDateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
                                               return DateTime.parse(var1)
-                                                  .add(Duration(days: 1))
+                                                  .add(const Duration(days: 1))
                                                   .toString();
-                                            }(_model.searchDateEnd)}\"}}' : ' '},{ \"flow_id\":{\"_nnull\": true}}${(_model.seachUserCreate != null && _model.seachUserCreate != '') && (_model.seachUserCreate != ' ') ? ',{\"user_created\":{\"first_name\":{\"_icontains\":\"${_model.seachUserCreate}\"}}}' : ''}]}'}]}',
+                                            }(_model.searchDateEnd)}\"}}' : ' '},{ \"flow_id\":{\"_nnull\": true}}${(_model.seachUserCreate != '') && (_model.seachUserCreate != ' ') ? ',{\"user_created\":{\"first_name\":{\"_icontains\":\"${_model.seachUserCreate}\"}}}' : ''}]}'}]}',
                                         ),
                                       ),
-                                      padding: EdgeInsets.zero,
+                                      padding: const EdgeInsets.fromLTRB(
+                                        0,
+                                        0,
+                                        0,
+                                        48.0,
+                                      ),
                                       primary: false,
                                       reverse: false,
                                       scrollDirection: Axis.vertical,
                                       separatorBuilder: (_, __) =>
-                                          SizedBox(height: 10.0),
+                                          const SizedBox(height: 10.0),
                                       builderDelegate:
                                           PagedChildBuilderDelegate<dynamic>(
                                         // Customize what your widget looks like when it's loading the first page.
@@ -554,8 +549,8 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                           ),
                                         ),
                                         noItemsFoundIndicatorBuilder: (_) =>
-                                            Center(
-                                          child: Container(
+                                            const Center(
+                                          child: SizedBox(
                                             width: double.infinity,
                                             child: DataNotFoundWidget(),
                                           ),
@@ -583,7 +578,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -620,7 +615,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                           8.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 8.0, 8.0, 8.0),
                                                   child: Column(
@@ -637,7 +632,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                           Expanded(
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -675,7 +670,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                               .name
                                                                           : ' ',
                                                                       style:
-                                                                          TextStyle(),
+                                                                          const TextStyle(),
                                                                     )
                                                                   ],
                                                                   style: FlutterFlowTheme.of(
@@ -716,7 +711,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -792,7 +787,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -823,7 +818,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -975,7 +970,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                               ),
                                                         ),
                                                       ),
-                                                      Divider(
+                                                      const Divider(
                                                         height: 12.0,
                                                         thickness: 1.0,
                                                         color:
@@ -1031,11 +1026,11 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                           20.0),
                                                             ),
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           0.0,
@@ -1081,7 +1076,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                 ],
                               ),
                               Stack(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 children: [
                                   PagedListView<ApiPagingParams,
                                       dynamic>.separated(
@@ -1096,18 +1091,18 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                         filter: '{\"_and\":[{}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
                                           FFAppState().staffLogin,
                                           r'''$.organization_id''',
-                                        ).toString()}\"}}'}${(_model.seachName != null && _model.seachName != '') && (_model.seachName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.seachName}\"}}' : ' '}${(_model.searchStatus != null && _model.searchStatus != '') && (_model.searchStatus != ' ') ? ',{\"status\":{\"_eq\":\"${_model.searchStatus}\"}}' : ' '}${(_model.searchAction != null && _model.searchAction != '') && (_model.searchAction != ' ') ? ',{\"action_type\":{\"_eq\":\"${_model.searchAction}\"}}' : ' '}${(_model.searchDateStart != null && _model.searchDateStart != '') && (_model.searchDateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"${_model.searchDateStart}\"}}' : ''}${(_model.searchDateEnd != null && _model.searchDateEnd != '') && (_model.searchDateEnd != ' ') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
+                                        ).toString()}\"}}'}${(_model.seachName != '') && (_model.seachName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.seachName}\"}}' : ' '}${(_model.searchStatus != '') && (_model.searchStatus != ' ') ? ',{\"status\":{\"_eq\":\"${_model.searchStatus}\"}}' : ' '}${(_model.searchAction != '') && (_model.searchAction != ' ') ? ',{\"action_type\":{\"_eq\":\"${_model.searchAction}\"}}' : ' '}${(_model.searchDateStart != '') && (_model.searchDateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"${_model.searchDateStart}\"}}' : ''}${(_model.searchDateEnd != '') && (_model.searchDateEnd != ' ') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
                                             return DateTime.parse(var1)
-                                                .add(Duration(days: 1))
+                                                .add(const Duration(days: 1))
                                                 .toString();
-                                          }(_model.searchDateEnd)}\"}}' : ' '}${(_model.seachUserCreate != null && _model.seachUserCreate != '') && (_model.seachUserCreate != ' ') ? ',{\"user_created\":{\"first_name\":{\"_icontains\":\"${_model.seachUserCreate}\"}}}' : ''},{ \"flow_id\":{\"_null\": true}}]}',
+                                          }(_model.searchDateEnd)}\"}}' : ' '}${(_model.seachUserCreate != '') && (_model.seachUserCreate != ' ') ? ',{\"user_created\":{\"first_name\":{\"_icontains\":\"${_model.seachUserCreate}\"}}}' : ''},{ \"flow_id\":{\"_null\": true}}]}',
                                       ),
                                     ),
                                     padding: EdgeInsets.zero,
                                     reverse: false,
                                     scrollDirection: Axis.vertical,
                                     separatorBuilder: (_, __) =>
-                                        SizedBox(height: 8.0),
+                                        const SizedBox(height: 8.0),
                                     builderDelegate:
                                         PagedChildBuilderDelegate<dynamic>(
                                       // Customize what your widget looks like when it's loading the first page.
@@ -1141,7 +1136,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                         ),
                                       ),
                                       noItemsFoundIndicatorBuilder: (_) =>
-                                          Container(
+                                          const SizedBox(
                                         width: double.infinity,
                                         child: DataNotFoundWidget(),
                                       ),
@@ -1167,7 +1162,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -1203,7 +1198,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                     BorderRadius.circular(8.0),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 8.0, 8.0, 8.0),
                                                 child: Column(
@@ -1215,7 +1210,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1257,7 +1252,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                       .name
                                                                   : ' ',
                                                               style:
-                                                                  TextStyle(),
+                                                                  const TextStyle(),
                                                             )
                                                           ],
                                                           style: FlutterFlowTheme
@@ -1278,7 +1273,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1352,7 +1347,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1385,7 +1380,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1531,7 +1526,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                             ),
                                                       ),
                                                     ),
-                                                    Divider(
+                                                    const Divider(
                                                       height: 12.0,
                                                       thickness: 1.0,
                                                       color: Color(0x5657636C),
@@ -1586,11 +1581,11 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                         20.0),
                                                           ),
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         0.0,
@@ -1636,7 +1631,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                 ],
                               ),
                               Stack(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 children: [
                                   PagedListView<ApiPagingParams,
                                       dynamic>.separated(
@@ -1644,9 +1639,9 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                         _model.setListViewThreeController(
                                       (nextPageMarker) =>
                                           OperationGroup.operationListCall.call(
-                                        filter: '{\"_and\":[{}${(_model.seachName != null && _model.seachName != '') && (_model.seachName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.seachName}\"}}' : ' '}${(_model.searchStatus != null && _model.searchStatus != '') && (_model.searchStatus != ' ') ? ',{\"status\":{\"_eq\":\"${_model.searchStatus}\"}}' : ' '}${(_model.searchAction != null && _model.searchAction != '') && (_model.searchAction != ' ') ? ',{\"action_type\":{\"_eq\":\"${_model.searchAction}\"}}' : ' '}${(_model.searchDateStart != null && _model.searchDateStart != '') && (_model.searchDateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"${_model.searchDateStart}\"}}' : ''}${(_model.searchDateEnd != null && _model.searchDateEnd != '') && (_model.searchDateEnd != ' ') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
+                                        filter: '{\"_and\":[{}${(_model.seachName != '') && (_model.seachName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.seachName}\"}}' : ' '}${(_model.searchStatus != '') && (_model.searchStatus != ' ') ? ',{\"status\":{\"_eq\":\"${_model.searchStatus}\"}}' : ' '}${(_model.searchAction != '') && (_model.searchAction != ' ') ? ',{\"action_type\":{\"_eq\":\"${_model.searchAction}\"}}' : ' '}${(_model.searchDateStart != '') && (_model.searchDateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"${_model.searchDateStart}\"}}' : ''}${(_model.searchDateEnd != '') && (_model.searchDateEnd != ' ') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
                                             return DateTime.parse(var1)
-                                                .add(Duration(days: 1))
+                                                .add(const Duration(days: 1))
                                                 .toString();
                                           }(_model.searchDateEnd)}\"}}' : ' '},{ \"flow_id\":{\"_nnull\": true}}]}',
                                         accessToken: FFAppState().accessToken,
@@ -1659,7 +1654,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                     reverse: false,
                                     scrollDirection: Axis.vertical,
                                     separatorBuilder: (_, __) =>
-                                        SizedBox(height: 8.0),
+                                        const SizedBox(height: 8.0),
                                     builderDelegate:
                                         PagedChildBuilderDelegate<dynamic>(
                                       // Customize what your widget looks like when it's loading the first page.
@@ -1693,8 +1688,8 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                         ),
                                       ),
                                       noItemsFoundIndicatorBuilder: (_) =>
-                                          Center(
-                                        child: Container(
+                                          const Center(
+                                        child: SizedBox(
                                           width: double.infinity,
                                           child: DataNotFoundWidget(),
                                         ),
@@ -1721,7 +1716,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -1757,7 +1752,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                     BorderRadius.circular(8.0),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 8.0, 8.0, 8.0),
                                                 child: Column(
@@ -1769,7 +1764,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1813,7 +1808,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                             .name
                                                                         : ' ',
                                                                     style:
-                                                                        TextStyle(),
+                                                                        const TextStyle(),
                                                                   )
                                                                 ],
                                                                 style: FlutterFlowTheme.of(
@@ -1846,7 +1841,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1879,7 +1874,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -2025,7 +2020,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                             ),
                                                       ),
                                                     ),
-                                                    Divider(
+                                                    const Divider(
                                                       height: 12.0,
                                                       thickness: 1.0,
                                                       color: Color(0x5657636C),
@@ -2080,11 +2075,11 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                         20.0),
                                                           ),
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         0.0,

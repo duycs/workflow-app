@@ -8,13 +8,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/place.dart';
-import 'dart:io';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'time_keeping_location_update_model.dart';
 export 'time_keeping_location_update_model.dart';
@@ -58,11 +55,11 @@ class _TimeKeepingLocationUpdateWidgetState
     });
 
     _model.textController1 ??=
-        TextEditingController(text: widget!.item?.detail);
+        TextEditingController(text: widget.item?.detail);
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??=
-        TextEditingController(text: widget!.item?.meterRange?.toString());
+        TextEditingController(text: widget.item?.meterRange.toString());
     _model.textFieldFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -80,24 +77,24 @@ class _TimeKeepingLocationUpdateWidgetState
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(0.0),
             topRight: Radius.circular(0.0),
           ),
         ),
-        alignment: AlignmentDirectional(0.0, 1.0),
+        alignment: const AlignmentDirectional(0.0, 1.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -148,7 +145,7 @@ class _TimeKeepingLocationUpdateWidgetState
                 autovalidateMode: AutovalidateMode.disabled,
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -156,7 +153,7 @@ class _TimeKeepingLocationUpdateWidgetState
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 12.0, 0.0, 4.0),
                           child: Text(
                             'Tỉnh/Thành phố',
@@ -173,7 +170,7 @@ class _TimeKeepingLocationUpdateWidgetState
                           controller: _model.dropDownValueController1 ??=
                               FormFieldController<String>(
                             _model.dropDownValue1 ??=
-                                widget!.item?.wardId?.districtId?.cityId?.id,
+                                widget.item?.wardId.districtId.cityId.id,
                           ),
                           options: List<String>.from(
                               _model.listCity.map((e) => e.id).toList()),
@@ -200,7 +197,7 @@ class _TimeKeepingLocationUpdateWidgetState
                           borderColor: Colors.transparent,
                           borderWidth: 0.0,
                           borderRadius: 8.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
+                          margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -208,7 +205,7 @@ class _TimeKeepingLocationUpdateWidgetState
                           isMultiSelect: false,
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Quận/Huyện',
@@ -225,7 +222,7 @@ class _TimeKeepingLocationUpdateWidgetState
                           controller: _model.dropDownValueController2 ??=
                               FormFieldController<String>(
                             _model.dropDownValue2 ??=
-                                widget!.item?.wardId?.districtId?.id,
+                                widget.item?.wardId.districtId.id,
                           ),
                           options: List<String>.from(
                               _model.listDistricts.map((e) => e.id).toList()),
@@ -261,7 +258,7 @@ class _TimeKeepingLocationUpdateWidgetState
                           borderColor: Colors.transparent,
                           borderWidth: 0.0,
                           borderRadius: 8.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
+                          margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -269,7 +266,7 @@ class _TimeKeepingLocationUpdateWidgetState
                           isMultiSelect: false,
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Xã',
@@ -285,7 +282,7 @@ class _TimeKeepingLocationUpdateWidgetState
                         FlutterFlowDropDown<String>(
                           controller: _model.dropDownValueController3 ??=
                               FormFieldController<String>(
-                            _model.dropDownValue3 ??= widget!.item?.wardId?.id,
+                            _model.dropDownValue3 ??= widget.item?.wardId.id,
                           ),
                           options: List<String>.from(
                               _model.listWards.map((e) => e.id).toList()),
@@ -319,7 +316,7 @@ class _TimeKeepingLocationUpdateWidgetState
                           borderColor: Colors.transparent,
                           borderWidth: 0.0,
                           borderRadius: 8.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
+                          margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -327,7 +324,7 @@ class _TimeKeepingLocationUpdateWidgetState
                           isMultiSelect: false,
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Địa chỉ cụ thể:',
@@ -349,7 +346,7 @@ class _TimeKeepingLocationUpdateWidgetState
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 6.0, 8.0, 6.0),
                             child: TextFormField(
                               controller: _model.textController1,
@@ -371,14 +368,14 @@ class _TimeKeepingLocationUpdateWidgetState
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Color(0x00000000),
                                     width: 2.0,
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Color(0x00000000),
                                     width: 2.0,
                                   ),
@@ -412,7 +409,7 @@ class _TimeKeepingLocationUpdateWidgetState
                         ),
                         if ('1' == '2')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 32.0, 0.0, 0.0),
                             child: FlutterFlowPlacePicker(
                               iOSGoogleMapsApiKey: '',
@@ -445,7 +442,7 @@ class _TimeKeepingLocationUpdateWidgetState
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Phạm vi áp dụng (m)',
@@ -518,7 +515,7 @@ class _TimeKeepingLocationUpdateWidgetState
                               .asValidator(context),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 4.0, 0.0, 4.0),
                           child: Text(
                             '* Trong vòng bán kính phạm vi áp dụng, nhân viên có thể chấm công hợp lệ',
@@ -533,7 +530,7 @@ class _TimeKeepingLocationUpdateWidgetState
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Trạng thái hoạt động',
@@ -547,14 +544,14 @@ class _TimeKeepingLocationUpdateWidgetState
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 2.0, 0.0),
                           child: FlutterFlowRadioButton(
                             options: ['Hoạt động', 'Không hoạt động'].toList(),
                             onChanged: (val) => setState(() {}),
                             controller: _model.radioButtonValueController ??=
                                 FormFieldController<String>(
-                                    widget!.item?.status == 'published'
+                                    widget.item?.status == 'published'
                                         ? 'Hoạt động'
                                         : 'Không họat động'),
                             optionHeight: 32.0,
@@ -588,27 +585,27 @@ class _TimeKeepingLocationUpdateWidgetState
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
               child: FFButtonWidget(
                 onPressed: () async {
-                  var _shouldSetState = false;
+                  var shouldSetState = false;
                   var confirmDialogResponse = await showDialog<bool>(
                         context: context,
                         builder: (alertDialogContext) {
                           return AlertDialog(
-                            title: Text('Xác nhận'),
-                            content: Text(
+                            title: const Text('Xác nhận'),
+                            content: const Text(
                                 'Lưu ý vị trí làm việc là vị trí hiện tại của bạn đang tạo'),
                             actions: [
                               TextButton(
                                 onPressed: () =>
                                     Navigator.pop(alertDialogContext, false),
-                                child: Text('Hủy'),
+                                child: const Text('Hủy'),
                               ),
                               TextButton(
                                 onPressed: () =>
                                     Navigator.pop(alertDialogContext, true),
-                                child: Text('Xác nhận'),
+                                child: const Text('Xác nhận'),
                               ),
                             ],
                           );
@@ -616,14 +613,14 @@ class _TimeKeepingLocationUpdateWidgetState
                       ) ??
                       false;
                   if (!confirmDialogResponse) {
-                    if (_shouldSetState) setState(() {});
+                    if (shouldSetState) setState(() {});
                     return;
                   }
                   _model.checkLocationTimeKeepingUpdate =
                       await actions.getCurrentLocationStruct(
                     context,
                   );
-                  _shouldSetState = true;
+                  shouldSetState = true;
                   if ((_model.checkLocationTimeKeepingUpdate != null &&
                           (_model.checkLocationTimeKeepingUpdate)!
                               .isNotEmpty) !=
@@ -632,18 +629,18 @@ class _TimeKeepingLocationUpdateWidgetState
                       context: context,
                       builder: (alertDialogContext) {
                         return AlertDialog(
-                          title: Text('Vui lòng bật định vị để tiếp tục.'),
+                          title: const Text('Vui lòng bật định vị để tiếp tục.'),
                           actions: [
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext),
-                              child: Text('Ok'),
+                              child: const Text('Ok'),
                             ),
                           ],
                         );
                       },
                     );
-                    if (_shouldSetState) setState(() {});
+                    if (shouldSetState) setState(() {});
                     return;
                   }
                   if (_model.formKey.currentState == null ||
@@ -652,15 +649,15 @@ class _TimeKeepingLocationUpdateWidgetState
                   }
                   _model.checkTokenTimeKeepingLocationUpdate =
                       await action_blocks.tokenReload(context);
-                  _shouldSetState = true;
+                  shouldSetState = true;
                   if (!_model.checkTokenTimeKeepingLocationUpdate!) {
                     setState(() {});
-                    if (_shouldSetState) setState(() {});
+                    if (shouldSetState) setState(() {});
                     return;
                   }
                   _model.apiResultLocationUpdate =
                       await LocationGroup.locationUpdateCall.call(
-                    id: widget!.item?.id,
+                    id: widget.item?.id,
                     accessToken: FFAppState().accessToken,
                     requesDataJson: <String, dynamic>{
                       'status': 'published',
@@ -689,19 +686,13 @@ class _TimeKeepingLocationUpdateWidgetState
                     },
                   );
 
-                  _shouldSetState = true;
+                  shouldSetState = true;
                   if ((_model.apiResultLocationUpdate?.succeeded ?? true)) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Chỉnh sửa thành công',
-                          style: TextStyle(
-                            color: FlutterFlowTheme.of(context).primaryText,
-                          ),
-                        ),
-                        duration: Duration(milliseconds: 4000),
-                        backgroundColor: FlutterFlowTheme.of(context).secondary,
-                      ),
+                    await actions.showToast(
+                      context,
+                      'Chỉnh sửa thành công',
+                      FlutterFlowTheme.of(context).secondaryBackground,
+                      FlutterFlowTheme.of(context).secondary,
                     );
                     if (Navigator.of(context).canPop()) {
                       context.pop();
@@ -709,7 +700,7 @@ class _TimeKeepingLocationUpdateWidgetState
                     context.pushNamed(
                       'TimekeepingLocationList',
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -717,35 +708,26 @@ class _TimeKeepingLocationUpdateWidgetState
                       },
                     );
                   } else {
-                    await showDialog(
-                      context: context,
-                      builder: (alertDialogContext) {
-                        return AlertDialog(
-                          title: Text('Chỉnh sửa thất bại!'),
-                          actions: [
-                            TextButton(
-                              onPressed: () =>
-                                  Navigator.pop(alertDialogContext),
-                              child: Text('Ok'),
-                            ),
-                          ],
-                        );
-                      },
+                    await actions.showToast(
+                      context,
+                      'Chỉnh sửa thất bại!',
+                      FlutterFlowTheme.of(context).secondaryBackground,
+                      FlutterFlowTheme.of(context).error,
                     );
                   }
 
-                  if (_shouldSetState) setState(() {});
+                  if (shouldSetState) setState(() {});
                 },
                 text: 'Xác nhận lưu',
-                icon: Icon(
+                icon: const Icon(
                   Icons.check,
                   size: 24.0,
                 ),
                 options: FFButtonOptions(
                   height: 40.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Nunito Sans',
@@ -753,7 +735,7 @@ class _TimeKeepingLocationUpdateWidgetState
                         letterSpacing: 0.0,
                       ),
                   elevation: 3.0,
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.transparent,
                     width: 1.0,
                   ),

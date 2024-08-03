@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'contact_profile_c_p_n_model.dart';
 export 'contact_profile_c_p_n_model.dart';
 
@@ -48,16 +46,16 @@ class _ContactProfileCPNWidgetState extends State<ContactProfileCPNWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 700.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 12.0,
                 color: Color(0x33000000),
@@ -70,7 +68,7 @@ class _ContactProfileCPNWidgetState extends State<ContactProfileCPNWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -83,7 +81,7 @@ class _ContactProfileCPNWidgetState extends State<ContactProfileCPNWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Thông tin liên hệ',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -112,7 +110,7 @@ class _ContactProfileCPNWidgetState extends State<ContactProfileCPNWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 10.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 10.0),
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
@@ -136,7 +134,7 @@ class _ContactProfileCPNWidgetState extends State<ContactProfileCPNWidget> {
                             color: FlutterFlowTheme.of(context).tertiary,
                           ),
                           Text(
-                            widget!.contactProfile!.name,
+                            widget.contactProfile!.name,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -149,7 +147,7 @@ class _ContactProfileCPNWidgetState extends State<ContactProfileCPNWidget> {
                           Builder(
                             builder: (context) {
                               final profileBranhs =
-                                  widget!.contactProfile?.branchs?.toList() ??
+                                  widget.contactProfile?.branchs.toList() ??
                                       [];
 
                               return ListView.builder(
@@ -161,7 +159,7 @@ class _ContactProfileCPNWidgetState extends State<ContactProfileCPNWidget> {
                                   final profileBranhsItem =
                                       profileBranhs[profileBranhsIndex];
                                   return Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Container(
                                       width: 100.0,
@@ -210,7 +208,7 @@ class _ContactProfileCPNWidgetState extends State<ContactProfileCPNWidget> {
                               );
                             },
                           ),
-                        ].divide(SizedBox(height: 4.0)),
+                        ].divide(const SizedBox(height: 4.0)),
                       ),
                     ),
                   ),

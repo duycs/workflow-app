@@ -2,8 +2,6 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'one_select_answer_model.dart';
 export 'one_select_answer_model.dart';
 
@@ -65,12 +63,12 @@ class _OneSelectAnswerWidgetState extends State<OneSelectAnswerWidget> {
           ),
           child: Checkbox(
             value: _model.checkboxValue ??=
-                widget!.stringId == widget!.data?.id,
+                widget.stringId == widget.data?.id,
             onChanged: (newValue) async {
               setState(() => _model.checkboxValue = newValue!);
               if (newValue!) {
                 await widget.callback?.call(
-                  widget!.data?.id,
+                  widget.data?.id,
                 );
               }
             },
@@ -85,7 +83,7 @@ class _OneSelectAnswerWidgetState extends State<OneSelectAnswerWidget> {
         Expanded(
           child: Text(
             valueOrDefault<String>(
-              widget!.data?.content,
+              widget.data?.content,
               'Loading',
             ),
             style: FlutterFlowTheme.of(context).bodyMedium.override(

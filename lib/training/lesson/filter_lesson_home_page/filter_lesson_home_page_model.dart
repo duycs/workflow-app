@@ -1,20 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'filter_lesson_home_page_widget.dart' show FilterLessonHomePageWidget;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class FilterLessonHomePageModel
     extends FlutterFlowModel<FilterLessonHomePageWidget> {
@@ -67,28 +58,28 @@ class FilterLessonHomePageModel
 
     apiResultList = await StudyProgramGroup.studyProgramListCall.call(
       accessToken: FFAppState().accessToken,
-      filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
+      filter: '{\"_and\":[${'{\"organization_id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}}${widget!.checkPrograms != 'programs' ? ' ,{\"departments\":{\"departments_id\":{\"_eq\":\"' : ' '}${widget!.checkPrograms != 'programs' ? getJsonField(
+      ).toString().toString()}\"}},{\"status\":{\"_eq\":\"published\"}}'}${widget!.checkPrograms != 'programs' ? ' ,{\"departments\":{\"departments_id\":{\"_eq\":\"${getJsonField(
           FFAppState().staffDepartment,
           r'''$.id''',
-        ).toString().toString() : ' '}${widget!.checkPrograms != 'programs' ? '\"}}}' : ' '}${widget!.checkPrograms == 'programs' ? ',{\"departments\":{\"departments_id\":{\"_neq\":\"' : ' '}${widget!.checkPrograms == 'programs' ? getJsonField(
+        ).toString().toString()}\"}}}' : ' '}${widget!.checkPrograms == 'programs' ? ',{\"departments\":{\"departments_id\":{\"_neq\":\"${getJsonField(
           FFAppState().staffDepartment,
           r'''$.id''',
-        ).toString().toString() : ' '}${widget!.checkPrograms == 'programs' ? '\"}}}' : ' '}]}',
+        ).toString().toString()}\"}}}' : ' '}]}',
     );
 
-    if ((apiResultList?.succeeded ?? true)) {
+    if ((apiResultList.succeeded ?? true)) {
       programList = StudyProgramListDataStruct.maybeFromMap(
-              (apiResultList?.jsonBody ?? ''))!
+              (apiResultList.jsonBody ?? ''))!
           .data
           .toList()
           .cast<StudyProgramListStruct>();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList?.jsonBody ?? ''),
+        jsonErrors: (apiResultList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -99,7 +90,7 @@ class FilterLessonHomePageModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

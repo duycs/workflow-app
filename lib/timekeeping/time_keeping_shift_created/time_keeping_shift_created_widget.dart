@@ -4,9 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import 'package:flutter/foundation.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'time_keeping_shift_created_model.dart';
 export 'time_keeping_shift_created_model.dart';
@@ -57,16 +56,16 @@ class _TimeKeepingShiftCreatedWidgetState
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 500.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -79,13 +78,13 @@ class _TimeKeepingShiftCreatedWidgetState
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -125,7 +124,7 @@ class _TimeKeepingShiftCreatedWidgetState
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 4.0),
                           child: Text(
                             'Tên ca làm việc',
@@ -138,7 +137,7 @@ class _TimeKeepingShiftCreatedWidgetState
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 24.0),
                           child: TextFormField(
                             controller: _model.nameTextController,
@@ -199,7 +198,7 @@ class _TimeKeepingShiftCreatedWidgetState
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 4.0),
                           child: Text(
                             'Thời gian bắt đầu làm việc',
@@ -217,7 +216,7 @@ class _TimeKeepingShiftCreatedWidgetState
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            final _datePicked1Time = await showTimePicker(
+                            final datePicked1Time = await showTimePicker(
                               context: context,
                               initialTime:
                                   TimeOfDay.fromDateTime(getCurrentTimestamp),
@@ -252,14 +251,14 @@ class _TimeKeepingShiftCreatedWidgetState
                                 );
                               },
                             );
-                            if (_datePicked1Time != null) {
+                            if (datePicked1Time != null) {
                               safeSetState(() {
                                 _model.datePicked1 = DateTime(
                                   getCurrentTimestamp.year,
                                   getCurrentTimestamp.month,
                                   getCurrentTimestamp.day,
-                                  _datePicked1Time.hour,
-                                  _datePicked1Time.minute,
+                                  datePicked1Time.hour,
+                                  datePicked1Time.minute,
                                 );
                               });
                             }
@@ -279,7 +278,7 @@ class _TimeKeepingShiftCreatedWidgetState
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -315,7 +314,7 @@ class _TimeKeepingShiftCreatedWidgetState
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Thời gian kết thúc làm việc',
@@ -333,7 +332,7 @@ class _TimeKeepingShiftCreatedWidgetState
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            final _datePicked2Time = await showTimePicker(
+                            final datePicked2Time = await showTimePicker(
                               context: context,
                               initialTime:
                                   TimeOfDay.fromDateTime(getCurrentTimestamp),
@@ -368,14 +367,14 @@ class _TimeKeepingShiftCreatedWidgetState
                                 );
                               },
                             );
-                            if (_datePicked2Time != null) {
+                            if (datePicked2Time != null) {
                               safeSetState(() {
                                 _model.datePicked2 = DateTime(
                                   getCurrentTimestamp.year,
                                   getCurrentTimestamp.month,
                                   getCurrentTimestamp.day,
-                                  _datePicked2Time.hour,
-                                  _datePicked2Time.minute,
+                                  datePicked2Time.hour,
+                                  datePicked2Time.minute,
                                 );
                               });
                             }
@@ -395,7 +394,7 @@ class _TimeKeepingShiftCreatedWidgetState
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -435,9 +434,9 @@ class _TimeKeepingShiftCreatedWidgetState
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -455,9 +454,9 @@ class _TimeKeepingShiftCreatedWidgetState
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -470,7 +469,7 @@ class _TimeKeepingShiftCreatedWidgetState
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -481,7 +480,7 @@ class _TimeKeepingShiftCreatedWidgetState
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var _shouldSetState = false;
+                              var shouldSetState = false;
                               if (_model.formKey.currentState == null ||
                                   !_model.formKey.currentState!.validate()) {
                                 return;
@@ -491,13 +490,13 @@ class _TimeKeepingShiftCreatedWidgetState
                                   context: context,
                                   builder: (alertDialogContext) {
                                     return AlertDialog(
-                                      content: Text(
+                                      content: const Text(
                                           'Vui lòng chọn thời gian bắt đầu'),
                                       actions: [
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
+                                          child: const Text('Ok'),
                                         ),
                                       ],
                                     );
@@ -510,13 +509,13 @@ class _TimeKeepingShiftCreatedWidgetState
                                   context: context,
                                   builder: (alertDialogContext) {
                                     return AlertDialog(
-                                      content: Text(
+                                      content: const Text(
                                           'Vui lòng chọn thời gian kết thúc'),
                                       actions: [
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
+                                          child: const Text('Ok'),
                                         ),
                                       ],
                                     );
@@ -529,18 +528,18 @@ class _TimeKeepingShiftCreatedWidgetState
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            content: Text(
+                                            content: const Text(
                                                 'Xác nhận tạo mới ca làm việc'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, false),
-                                                child: Text('Hủy'),
+                                                child: const Text('Hủy'),
                                               ),
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, true),
-                                                child: Text('Xác nhận'),
+                                                child: const Text('Xác nhận'),
                                               ),
                                             ],
                                           );
@@ -550,10 +549,10 @@ class _TimeKeepingShiftCreatedWidgetState
                               if (confirmDialogResponse) {
                                 _model.shiftCreate =
                                     await action_blocks.tokenReload(context);
-                                _shouldSetState = true;
+                                shouldSetState = true;
                                 if (!_model.shiftCreate!) {
                                   setState(() {});
-                                  if (_shouldSetState) setState(() {});
+                                  if (shouldSetState) setState(() {});
                                   return;
                                 }
                                 _model.apiResultShiftCreate =
@@ -579,46 +578,38 @@ class _TimeKeepingShiftCreatedWidgetState
                                   },
                                 );
 
-                                _shouldSetState = true;
+                                shouldSetState = true;
                                 if ((_model.apiResultShiftCreate?.succeeded ??
                                     true)) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Tạo mới ca làm việc thành công!',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                      ),
-                                      duration: Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondary,
-                                    ),
+                                  await actions.showToast(
+                                    context,
+                                    'Tạo mới ca làm việc thành công!',
+                                    FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    FlutterFlowTheme.of(context).secondary,
                                   );
                                   await widget.callback?.call();
                                   Navigator.pop(context);
                                 }
                               } else {
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (_shouldSetState) setState(() {});
+                              if (shouldSetState) setState(() {});
                             },
                             text: 'Lưu',
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.save_alt,
                               size: 24.0,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF33BA45),
+                              color: const Color(0xFF33BA45),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -627,7 +618,7 @@ class _TimeKeepingShiftCreatedWidgetState
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -635,11 +626,11 @@ class _TimeKeepingShiftCreatedWidgetState
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
                     ),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

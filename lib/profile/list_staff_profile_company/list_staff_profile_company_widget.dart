@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/components/data_not_found_row_new/data_not_found_row_new_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
@@ -8,14 +7,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'list_staff_profile_company_model.dart';
 export 'list_staff_profile_company_model.dart';
@@ -27,7 +22,7 @@ class ListStaffProfileCompanyWidget extends StatefulWidget {
     this.nameBranch,
     this.boPhan,
     String? checkScroll,
-  }) : this.checkScroll = checkScroll ?? '0';
+  }) : checkScroll = checkScroll ?? '0';
 
   final String? id;
   final String? nameBranch;
@@ -113,7 +108,7 @@ class _ListStaffProfileCompanyWidgetState
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -122,14 +117,14 @@ class _ListStaffProfileCompanyWidgetState
           child: Visibility(
             visible: _model.isSShow == true,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 16.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 16.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -146,7 +141,7 @@ class _ListStaffProfileCompanyWidgetState
                         ),
                         Expanded(
                           child: Text(
-                            widget!.nameBranch!,
+                            widget.nameBranch!,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -157,12 +152,12 @@ class _ListStaffProfileCompanyWidgetState
                                 ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 8.0)),
+                      ].divide(const SizedBox(width: 8.0)),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 16.0, 12.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 16.0, 12.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -179,7 +174,7 @@ class _ListStaffProfileCompanyWidgetState
                         ),
                         Expanded(
                           child: Text(
-                            widget!.boPhan!,
+                            widget.boPhan!,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -190,12 +185,12 @@ class _ListStaffProfileCompanyWidgetState
                                 ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 8.0)),
+                      ].divide(const SizedBox(width: 8.0)),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 12.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 12.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -205,7 +200,7 @@ class _ListStaffProfileCompanyWidgetState
                             focusNode: _model.textFieldFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.textController',
-                              Duration(milliseconds: 500),
+                              const Duration(milliseconds: 500),
                               () async {
                                 setState(() => _model.listViewPagingController1
                                     ?.refresh());
@@ -256,9 +251,9 @@ class _ListStaffProfileCompanyWidgetState
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
                                   .primaryBackground,
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 0.0),
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.search,
                                 size: 24.0,
                               ),
@@ -274,7 +269,7 @@ class _ListStaffProfileCompanyWidgetState
                                             ?.refresh());
                                         setState(() {});
                                       },
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.clear,
                                         color: Color(0xFF757575),
                                         size: 18.0,
@@ -295,11 +290,10 @@ class _ListStaffProfileCompanyWidgetState
                       ],
                     ),
                   ),
-                  if (_model.textController.text != null &&
-                      _model.textController.text != '')
+                  if (_model.textController.text != '')
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 16.0),
                       child: Text(
                         '#Kết quả hiển thị theo bộ lọc',
                         style:
@@ -313,7 +307,7 @@ class _ListStaffProfileCompanyWidgetState
                     ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                     child: Text(
                       'Hình ảnh nhân viên',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -323,10 +317,10 @@ class _ListStaffProfileCompanyWidgetState
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.0, -1.0),
+                    alignment: const AlignmentDirectional(0.0, -1.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 24.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 24.0),
                       child: Container(
                         width: double.infinity,
                         height: 100.0,
@@ -335,8 +329,8 @@ class _ListStaffProfileCompanyWidgetState
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 0.0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 16.0, 1.0),
                           child:
                               PagedListView<ApiPagingParams, dynamic>.separated(
                             pagingController: _model.setListViewController1(
@@ -347,14 +341,14 @@ class _ListStaffProfileCompanyWidgetState
                                 offset: nextPageMarker.nextPageNumber * 20,
                                 sort: 'sort',
                                 filter:
-                                    '{\"_and\":[{}${_model.textController.text != null && _model.textController.text != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${widget!.id != null && widget!.id != '' ? ',{\"department_id\":{\"id\":{\"_eq\":\"${widget!.id}\"}}}' : ' '}${',{\"status\":{\"_eq\":\"active\"}}'}]}',
+                                    '{\"_and\":[{}${_model.textController.text != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${widget.id != null && widget.id != '' ? ',{\"department_id\":{\"id\":{\"_eq\":\"${widget.id}\"}}}' : ' '}${',{\"status\":{\"_eq\":\"active\"}}'}]}',
                               ),
                             ),
                             padding: EdgeInsets.zero,
                             primary: false,
                             reverse: false,
                             scrollDirection: Axis.horizontal,
-                            separatorBuilder: (_, __) => SizedBox(width: 8.0),
+                            separatorBuilder: (_, __) => const SizedBox(width: 8.0),
                             builderDelegate: PagedChildBuilderDelegate<dynamic>(
                               // Customize what your widget looks like when it's loading the first page.
                               firstPageProgressIndicatorBuilder: (_) => Center(
@@ -380,7 +374,7 @@ class _ListStaffProfileCompanyWidgetState
                                   ),
                                 ),
                               ),
-                              noItemsFoundIndicatorBuilder: (_) => Center(
+                              noItemsFoundIndicatorBuilder: (_) => const Center(
                                 child: DataNotFoundRowNewWidget(),
                               ),
                               itemBuilder: (context, _, imagesIndex) {
@@ -391,7 +385,7 @@ class _ListStaffProfileCompanyWidgetState
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    boxShadow: [
+                                    boxShadow: const [
                                       BoxShadow(
                                         blurRadius: 4.0,
                                         color: Color(0x34090F13),
@@ -466,7 +460,7 @@ class _ListStaffProfileCompanyWidgetState
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 8.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 8.0),
                     child: Text(
                       'Danh sách nhân viên',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -479,7 +473,7 @@ class _ListStaffProfileCompanyWidgetState
                   Expanded(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                       child: PagedListView<ApiPagingParams, dynamic>(
                         pagingController: _model.setListViewController2(
                           (nextPageMarker) => StaffGroup.getStaffListCall.call(
@@ -488,7 +482,7 @@ class _ListStaffProfileCompanyWidgetState
                             offset: nextPageMarker.nextPageNumber * 20,
                             sort: 'sort',
                             filter:
-                                '{\"_and\":[{}${_model.textController.text != null && _model.textController.text != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${widget!.id != null && widget!.id != '' ? ',{\"department_id\":{\"id\":{\"_eq\":\"${widget!.id}\"}}}' : ' '}${',{\"status\":{\"_eq\":\"active\"}}'}]}',
+                                '{\"_and\":[{}${_model.textController.text != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${widget.id != null && widget.id != '' ? ',{\"department_id\":{\"id\":{\"_eq\":\"${widget.id}\"}}}' : ' '}${',{\"status\":{\"_eq\":\"active\"}}'}]}',
                           ),
                         ),
                         padding: EdgeInsets.zero,
@@ -520,7 +514,7 @@ class _ListStaffProfileCompanyWidgetState
                               ),
                             ),
                           ),
-                          noItemsFoundIndicatorBuilder: (_) => Container(
+                          noItemsFoundIndicatorBuilder: (_) => const SizedBox(
                             width: double.infinity,
                             child: DataNotFoundWidget(),
                           ),
@@ -529,7 +523,7 @@ class _ListStaffProfileCompanyWidgetState
                                 .listViewPagingController2!
                                 .itemList![listStaff1Index];
                             return Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 8.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -546,7 +540,7 @@ class _ListStaffProfileCompanyWidgetState
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -559,7 +553,7 @@ class _ListStaffProfileCompanyWidgetState
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    boxShadow: [
+                                    boxShadow: const [
                                       BoxShadow(
                                         blurRadius: 1.0,
                                         color: Color(0x32000000),
@@ -572,7 +566,7 @@ class _ListStaffProfileCompanyWidgetState
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         8.0, 8.0, 8.0, 8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -600,7 +594,7 @@ class _ListStaffProfileCompanyWidgetState
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -624,7 +618,7 @@ class _ListStaffProfileCompanyWidgetState
                                                       ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 4.0, 0.0, 0.0),
                                                   child: Text(
@@ -655,7 +649,7 @@ class _ListStaffProfileCompanyWidgetState
                                               }.withoutNulls,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    TransitionInfo(
+                                                    const TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.fade,
@@ -670,10 +664,10 @@ class _ListStaffProfileCompanyWidgetState
                                             width: 70.0,
                                             height: 36.0,
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -689,7 +683,7 @@ class _ListStaffProfileCompanyWidgetState
                                                           FontWeight.normal,
                                                     ),
                                             elevation: 2.0,
-                                            borderSide: BorderSide(
+                                            borderSide: const BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),

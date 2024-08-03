@@ -2,8 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'payment_succes_exception_component_model.dart';
 export 'payment_succes_exception_component_model.dart';
 
@@ -57,13 +55,13 @@ class _PaymentSuccesExceptionComponentWidgetState
             size: 100.0,
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 0.0, 0.0),
             child: Text(
               'Thanh toán thành công!',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).headlineLarge.override(
                     fontFamily: 'Inter',
-                    color: Color(0xFF14181B),
+                    color: const Color(0xFF14181B),
                     fontSize: 22.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.w600,
@@ -71,13 +69,13 @@ class _PaymentSuccesExceptionComponentWidgetState
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
             child: Text(
               'Chúc mừng bạn đã thanh toán thành công. Tuy nhiên đã gặp sự cố trong khi tạo đơn hàng cho bạn. Vui lòng liên hệ Hotline để được hỗ trợ!',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: 'Readex Pro',
-                    color: Color(0xFF57636C),
+                    color: const Color(0xFF57636C),
                     fontSize: 14.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.normal,
@@ -85,13 +83,13 @@ class _PaymentSuccesExceptionComponentWidgetState
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
             child: Text(
               'Xin lỗi bạn vì sự bất tiện này!',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: 'Readex Pro',
-                    color: Color(0xFF57636C),
+                    color: const Color(0xFF57636C),
                     fontSize: 14.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.normal,
@@ -99,7 +97,7 @@ class _PaymentSuccesExceptionComponentWidgetState
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
             child: FFButtonWidget(
               onPressed: () async {
                 Navigator.pop(context);
@@ -108,8 +106,8 @@ class _PaymentSuccesExceptionComponentWidgetState
               options: FFButtonOptions(
                 width: double.infinity,
                 height: 55.0,
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).tertiary,
                 textStyle: FlutterFlowTheme.of(context).titleMedium.override(
                       fontFamily: 'Readex Pro',

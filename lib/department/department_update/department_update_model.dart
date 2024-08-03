@@ -1,20 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'department_update_widget.dart' show DepartmentUpdateWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
   ///  Local state fields for this page.
@@ -120,29 +112,23 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"published\"}}]}',
     );
 
-    if ((apiResultist?.succeeded ?? true)) {
+    if ((apiResultist.succeeded ?? true)) {
       branchList =
-          BranchListDataStruct.maybeFromMap((apiResultist?.jsonBody ?? ''))!
+          BranchListDataStruct.maybeFromMap((apiResultist.jsonBody ?? ''))!
               .data
               .toList()
               .cast<BranchListStruct>();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultist?.jsonBody ?? ''),
+        jsonErrors: (apiResultist.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              FFAppConstants.ErrorLoadData,
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
+        await actions.showToast(
+          context,
+          FFAppConstants.ErrorLoadData,
+          FlutterFlowTheme.of(context).secondaryBackground,
+          FlutterFlowTheme.of(context).error,
         );
       } else {
         await getLinkBranchList(context);
@@ -162,29 +148,23 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
       ).toString().toString()}\"}},{\"status\":{\"_eq\":\"published\"}}]}',
     );
 
-    if ((apiResultList?.succeeded ?? true)) {
+    if ((apiResultList.succeeded ?? true)) {
       programsList = StudyProgramListDataStruct.maybeFromMap(
-              (apiResultList?.jsonBody ?? ''))!
+              (apiResultList.jsonBody ?? ''))!
           .data
           .toList()
           .cast<StudyProgramListStruct>();
     } else {
       checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList?.jsonBody ?? ''),
+        jsonErrors: (apiResultList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock1!) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              FFAppConstants.ErrorLoadData,
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
+        await actions.showToast(
+          context,
+          FFAppConstants.ErrorLoadData,
+          FlutterFlowTheme.of(context).secondaryBackground,
+          FlutterFlowTheme.of(context).error,
         );
       } else {
         await getPrograms(context);
@@ -217,18 +197,12 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
       status: radioButtonStatusValue == 'Hoạt động' ? 'published' : 'draft',
     );
 
-    if ((apiResultPathDepartment?.succeeded ?? true)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Cập nhật bộ phận thành công!',
-            style: TextStyle(
-              color: FlutterFlowTheme.of(context).primaryText,
-            ),
-          ),
-          duration: Duration(milliseconds: 4000),
-          backgroundColor: FlutterFlowTheme.of(context).secondary,
-        ),
+    if ((apiResultPathDepartment.succeeded ?? true)) {
+      await actions.showToast(
+        context,
+        'Cập nhật bộ phận thành công!',
+        FlutterFlowTheme.of(context).primaryText,
+        FlutterFlowTheme.of(context).secondary,
       );
       programDB = await action_blocks.tokenReload(context);
       if (programDB!) {
@@ -239,18 +213,12 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
             programId: programIds[loop].programsId.id,
           );
 
-          if (!(apiResultSynchronized?.succeeded ?? true)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  'Lỗi đồng bộ chương trình bài học',
-                  style: TextStyle(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                  ),
-                ),
-                duration: Duration(milliseconds: 4000),
-                backgroundColor: FlutterFlowTheme.of(context).error,
-              ),
+          if (!(apiResultSynchronized.succeeded ?? true)) {
+            await actions.showToast(
+              context,
+              'Lỗi đồng bộ chương trình bài học',
+              FlutterFlowTheme.of(context).secondaryBackground,
+              FlutterFlowTheme.of(context).error,
             );
           }
           loop = loop + 1;
@@ -266,7 +234,7 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
       context.pushNamed(
         'DepartmentList',
         extra: <String, dynamic>{
-          kTransitionInfoKey: TransitionInfo(
+          kTransitionInfoKey: const TransitionInfo(
             hasTransition: true,
             transitionType: PageTransitionType.fade,
             duration: Duration(milliseconds: 0),
@@ -276,20 +244,14 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
     } else {
       checkRefreshTokenBlockhg = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultPathDepartment?.jsonBody ?? ''),
+        jsonErrors: (apiResultPathDepartment.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockhg!) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              FFAppConstants.ErrorLoadData,
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
+        await actions.showToast(
+          context,
+          FFAppConstants.ErrorLoadData,
+          FlutterFlowTheme.of(context).secondaryBackground,
+          FlutterFlowTheme.of(context).error,
         );
       } else {
         await pathDepartment(context);

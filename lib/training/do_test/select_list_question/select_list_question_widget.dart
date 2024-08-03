@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'select_list_question_model.dart';
 export 'select_list_question_model.dart';
 
@@ -41,7 +39,7 @@ class _SelectListQuestionWidgetState extends State<SelectListQuestionWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.detail = widget!.listAnswer!.toList().cast<AnswersListStruct>();
+      _model.detail = widget.listAnswer!.toList().cast<AnswersListStruct>();
       setState(() {});
     });
 

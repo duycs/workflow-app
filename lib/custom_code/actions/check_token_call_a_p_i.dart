@@ -47,6 +47,7 @@ class CheckTokenCallAPI extends FFApiInterceptor {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString("wf_token", "${refresh_tokenNew}");
         options.headers["Authorization"] = "Bearer ${access_tokenNew}";
+        print(prefs.getString('wf_token'));
         return options;
       }
       return options;

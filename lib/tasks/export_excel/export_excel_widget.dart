@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'export_excel_model.dart';
 export 'export_excel_model.dart';
 
@@ -47,24 +45,24 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         height: 310.0,
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           maxHeight: 500.0,
         ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
             topRight: Radius.circular(16.0),
           ),
         ),
-        alignment: AlignmentDirectional(0.0, 1.0),
+        alignment: const AlignmentDirectional(0.0, 1.0),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -77,7 +75,7 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                 child: ListView(
                   padding: EdgeInsets.zero,
                   primary: false,
@@ -93,7 +91,7 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                         _model.checkTab = 1;
                         setState(() {});
                         await actions.exportExcel(
-                          widget!.json!,
+                          widget.json!,
                         );
                         _model.checkTab = 0;
                         setState(() {});
@@ -102,11 +100,11 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                         decoration: BoxDecoration(
                           color: _model.checkTab == 1
                               ? FlutterFlowTheme.of(context).primaryBackground
-                              : Color(0x00000000),
+                              : const Color(0x00000000),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -129,7 +127,7 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
@@ -143,7 +141,7 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                         _model.checkTab = 2;
                         setState(() {});
                         await actions.exportExcelLesson(
-                          widget!.json!,
+                          widget.json!,
                         );
                         _model.checkTab = 0;
                         setState(() {});
@@ -152,11 +150,11 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                         decoration: BoxDecoration(
                           color: _model.checkTab == 2
                               ? FlutterFlowTheme.of(context).primaryBackground
-                              : Color(0x00000000),
+                              : const Color(0x00000000),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -179,7 +177,7 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
@@ -193,7 +191,7 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                         _model.checkTab = 3;
                         setState(() {});
                         await actions.exportExcelTest(
-                          widget!.json!,
+                          widget.json!,
                         );
                         _model.checkTab = 0;
                         setState(() {});
@@ -202,11 +200,11 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                         decoration: BoxDecoration(
                           color: _model.checkTab == 3
                               ? FlutterFlowTheme.of(context).primaryBackground
-                              : Color(0x00000000),
+                              : const Color(0x00000000),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -229,7 +227,7 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
@@ -243,7 +241,7 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                         _model.checkTab = 4;
                         setState(() {});
                         await actions.reportStaffDetailToCsv(
-                          widget!.json!,
+                          widget.json!,
                         );
                         _model.checkTab = 0;
                         setState(() {});
@@ -252,11 +250,11 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                         decoration: BoxDecoration(
                           color: _model.checkTab == 4
                               ? FlutterFlowTheme.of(context).primaryBackground
-                              : Color(0x00000000),
+                              : const Color(0x00000000),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -279,7 +277,7 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
@@ -287,7 +285,7 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                   ],
                 ),
               ),
-            ].divide(SizedBox(height: 12.0)),
+            ].divide(const SizedBox(height: 12.0)),
           ),
         ),
       ),

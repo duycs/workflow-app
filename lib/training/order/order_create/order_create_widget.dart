@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -8,11 +7,10 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/training/order/payment/payment_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'order_create_model.dart';
 export 'order_create_model.dart';
@@ -27,12 +25,12 @@ class OrderCreateWidget extends StatefulWidget {
     String? author,
     String? programId,
     String? checkType,
-  })  : this.image = image ?? '',
-        this.price = price ?? '',
-        this.name = name ?? '',
-        this.author = author ?? '',
-        this.programId = programId ?? '',
-        this.checkType = checkType ?? '';
+  })  : image = image ?? '',
+        price = price ?? '',
+        name = name ?? '',
+        author = author ?? '',
+        programId = programId ?? '',
+        checkType = checkType ?? '';
 
   final String image;
   final String price;
@@ -81,16 +79,16 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 730.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -103,13 +101,13 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -148,7 +146,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 12.0),
                           child: Text(
                             'Thông tin khóa học',
@@ -161,7 +159,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 12.0),
                           child: Container(
                             width: double.infinity,
@@ -175,7 +173,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 8.0, 12.0, 8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -194,15 +192,14 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                       ),
                                     ),
                                     child: Visibility(
-                                      visible: widget!.image != null &&
-                                          widget!.image != '',
+                                      visible: widget.image != '',
                                       child: Padding(
-                                        padding: EdgeInsets.all(2.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(10.0),
                                           child: Image.network(
-                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget!.image != null && widget!.image != '' ? widget!.image : ' '}?access_token=${FFAppState().accessToken}',
+                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.image != '' ? widget.image : ' '}?access_token=${FFAppState().accessToken}',
                                             width: 44.0,
                                             height: 44.0,
                                             fit: BoxFit.cover,
@@ -221,7 +218,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -231,7 +228,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            widget!.name,
+                                            widget.name,
                                             maxLines: 2,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyLarge
@@ -250,7 +247,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -267,8 +264,8 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                               ),
                               Expanded(
                                 child: Text(
-                                  widget!.author != null && widget!.author != ''
-                                      ? widget!.author
+                                  widget.author != ''
+                                      ? widget.author
                                       : ' ',
                                   textAlign: TextAlign.end,
                                   maxLines: 2,
@@ -285,7 +282,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -302,17 +299,17 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     ),
                               ),
                               Text(
-                                '${valueOrDefault<int>(
-                                      widget!.numOfListLessions,
+                                valueOrDefault<int>(
+                                      widget.numOfListLessions,
                                       0,
                                     ) != null ? valueOrDefault<String>(
                                     formatNumber(
-                                      widget!.numOfListLessions,
+                                      widget.numOfListLessions,
                                       formatType: FormatType.decimal,
                                       decimalType: DecimalType.commaDecimal,
                                     ),
                                     '0',
-                                  ) : '0'}',
+                                  ) : '0',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -325,7 +322,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -355,7 +352,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 12.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -374,12 +371,12 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                 controller: _model.dropDownValueController ??=
                                     FormFieldController<String>(
                                   _model.dropDownValue ??=
-                                      widget!.checkType == 'organization'
+                                      widget.checkType == 'organization'
                                           ? '0'
                                           : '1',
                                 ),
                                 options: List<String>.from(['0', '1']),
-                                optionLabels: ['Tổ chức', 'Cá nhân'],
+                                optionLabels: const ['Tổ chức', 'Cá nhân'],
                                 onChanged: (val) =>
                                     setState(() => _model.dropDownValue = val),
                                 width: 200.0,
@@ -403,7 +400,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 1.0,
                                 borderRadius: 4.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
+                                margin: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 4.0, 16.0, 4.0),
                                 hidesUnderline: true,
                                 disabled: '1' == '1',
@@ -415,7 +412,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 16.0, 0.0, 16.0),
                           child: Divider(
                             height: 1.0,
@@ -424,7 +421,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 12.0),
                           child: Text(
                             'Thanh toán',
@@ -436,7 +433,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -453,18 +450,17 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     ),
                               ),
                               Text(
-                                '${valueOrDefault<String>(
+                                valueOrDefault<String>(
                                   formatNumber(
                                     functions.stringToInt(
-                                        widget!.price != null &&
-                                                widget!.price != ''
-                                            ? widget!.price
+                                        widget.price != ''
+                                            ? widget.price
                                             : '0'),
                                     formatType: FormatType.decimal,
                                     decimalType: DecimalType.commaDecimal,
                                   ),
                                   '0',
-                                )}',
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -501,7 +497,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                   focusNode: _model.quantityFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.quantityTextController',
-                                    Duration(milliseconds: 50),
+                                    const Duration(milliseconds: 50),
                                     () async {
                                       setState(() {});
                                     },
@@ -654,7 +650,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                             ],
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -671,22 +667,17 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     ),
                               ),
                               Text(
-                                '${valueOrDefault<String>(
+                                valueOrDefault<String>(
                                   formatNumber(
                                     valueOrDefault<int>(
                                           functions.stringToInt(
-                                              widget!.price != null &&
-                                                      widget!.price != ''
-                                                  ? widget!.price
+                                              widget.price != ''
+                                                  ? widget.price
                                                   : '0'),
                                           0,
                                         ) *
                                         valueOrDefault<int>(
-                                          functions.stringToInt(_model
-                                                          .quantityTextController
-                                                          .text !=
-                                                      null &&
-                                                  _model.quantityTextController
+                                          functions.stringToInt(_model.quantityTextController
                                                           .text !=
                                                       ''
                                               ? _model
@@ -698,7 +689,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     decimalType: DecimalType.commaDecimal,
                                   ),
                                   '0',
-                                )}',
+                                ),
                                 maxLines: 3,
                                 style: FlutterFlowTheme.of(context)
                                     .headlineSmall
@@ -711,7 +702,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 16.0, 0.0, 16.0),
                           child: Divider(
                             height: 1.0,
@@ -728,11 +719,10 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     letterSpacing: 0.0,
                                   ),
                         ),
-                        if ((widget!.checkType == 'staff') &&
-                            (widget!.checkType != null &&
-                                widget!.checkType != ''))
+                        if ((widget.checkType == 'staff') &&
+                            (widget.checkType != ''))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: RichText(
                               textScaler: MediaQuery.of(context).textScaler,
@@ -751,15 +741,12 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                         ),
                                   ),
                                   TextSpan(
-                                    text: '${valueOrDefault<String>(
+                                    text: valueOrDefault<String>(
                                       formatNumber(
                                         valueOrDefault<int>(
                                               functions.stringToInt(
                                                   valueOrDefault<String>(
                                                 _model.quantityTextController
-                                                                .text !=
-                                                            null &&
-                                                        _model.quantityTextController
                                                                 .text !=
                                                             ''
                                                     ? valueOrDefault<String>(
@@ -778,12 +765,12 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                         decimalType: DecimalType.commaDecimal,
                                       ),
                                       '0',
-                                    )}',
-                                    style: TextStyle(
+                                    ),
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  TextSpan(
+                                  const TextSpan(
                                     text: ' thành viên khác của tổ chức.',
                                     style: TextStyle(),
                                   )
@@ -799,11 +786,10 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                               ),
                             ),
                           ),
-                        if ((widget!.checkType == 'organization') &&
-                            (widget!.checkType != null &&
-                                widget!.checkType != ''))
+                        if ((widget.checkType == 'organization') &&
+                            (widget.checkType != ''))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: RichText(
                               textScaler: MediaQuery.of(context).textScaler,
@@ -822,14 +808,10 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                         ),
                                   ),
                                   TextSpan(
-                                    text: '${valueOrDefault<String>(
+                                    text: valueOrDefault<String>(
                                       formatNumber(
                                         valueOrDefault<int>(
-                                          functions.stringToInt(_model
-                                                          .quantityTextController
-                                                          .text !=
-                                                      null &&
-                                                  _model.quantityTextController
+                                          functions.stringToInt(_model.quantityTextController
                                                           .text !=
                                                       ''
                                               ? _model
@@ -841,12 +823,12 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                         decimalType: DecimalType.commaDecimal,
                                       ),
                                       '0',
-                                    )}',
-                                    style: TextStyle(
+                                    ),
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  TextSpan(
+                                  const TextSpan(
                                     text: ' thành viên của tổ chức.',
                                     style: TextStyle(),
                                   )
@@ -867,9 +849,9 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -877,50 +859,36 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var _shouldSetState = false;
+                              var shouldSetState = false;
                               if (_model.formKey.currentState == null ||
                                   !_model.formKey.currentState!.validate()) {
                                 return;
                               }
                               if (_model.quantityTextController.text == '0') {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Số lượng phải lớn hơn 0!',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).error,
-                                  ),
+                                await actions.showToast(
+                                  context,
+                                  'Số lượng phải lớn hơn 0!',
+                                  FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  FlutterFlowTheme.of(context).error,
                                 );
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
                               _model.orderCreateDraft =
                                   await _model.orderCreate(context);
-                              _shouldSetState = true;
+                              shouldSetState = true;
                               if (!(_model.orderCreateDraft != null &&
                                   _model.orderCreateDraft != '')) {
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Lưu đơn hàng thành công!',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                ),
+                              await actions.showToast(
+                                context,
+                                'Lưu đơn hàng thành công!',
+                                FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                FlutterFlowTheme.of(context).secondary,
                               );
                               if (Navigator.of(context).canPop()) {
                                 context.pop();
@@ -928,7 +896,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                               context.pushNamed(
                                 'OrderList',
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
+                                  kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -936,18 +904,18 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                 },
                               );
 
-                              if (_shouldSetState) setState(() {});
+                              if (shouldSetState) setState(() {});
                             },
                             text: 'Lưu tạm',
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.save,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -959,7 +927,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -970,37 +938,30 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var _shouldSetState = false;
+                              var shouldSetState = false;
                               if (_model.formKey.currentState == null ||
                                   !_model.formKey.currentState!.validate()) {
                                 return;
                               }
                               if (_model.quantityTextController.text == '0') {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Số lượng phải lớn hơn 0!',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).error,
-                                  ),
+                                await actions.showToast(
+                                  context,
+                                  'Số lượng phải lớn hơn 0!',
+                                  FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  FlutterFlowTheme.of(context).error,
                                 );
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
                               _model.orderCreateDraft2 =
                                   await _model.orderCreate(context);
-                              _shouldSetState = true;
+                              shouldSetState = true;
                               if (_model.orderCreateDraft2 != null &&
                                   _model.orderCreateDraft2 != '') {
                                 _model.orderUpdateStatusDone =
                                     await action_blocks.tokenReload(context);
-                                _shouldSetState = true;
+                                shouldSetState = true;
                                 if (_model.orderUpdateStatusDone!) {
                                   _model.apiResultQrCodeCreate =
                                       await OrderGroup.qrCodeCall.call(
@@ -1008,7 +969,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     orderId: _model.orderCreateDraft2,
                                   );
 
-                                  _shouldSetState = true;
+                                  shouldSetState = true;
                                   if ((_model
                                           .apiResultQrCodeCreate?.succeeded ??
                                       true)) {
@@ -1024,7 +985,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                           child: PaymentWidget(
                                             orderId: _model.orderCreateDraft2!,
                                             private:
-                                                widget!.checkType == 'staff'
+                                                widget.checkType == 'staff'
                                                     ? 'private1'
                                                     : 'private0',
                                             qr: (_model.apiResultQrCodeCreate
@@ -1037,33 +998,33 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
 
                                     Navigator.pop(context);
                                   } else {
-                                    if (_shouldSetState) setState(() {});
+                                    if (shouldSetState) setState(() {});
                                     return;
                                   }
                                 } else {
                                   setState(() {});
-                                  if (_shouldSetState) setState(() {});
+                                  if (shouldSetState) setState(() {});
                                   return;
                                 }
                               } else {
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (_shouldSetState) setState(() {});
+                              if (shouldSetState) setState(() {});
                             },
                             text: 'Thanh toán',
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.payments_outlined,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF33BA45),
+                              color: const Color(0xFF33BA45),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -1072,7 +1033,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -1080,11 +1041,11 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
                     ),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

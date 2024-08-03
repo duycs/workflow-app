@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -9,17 +8,13 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/tasks/export_excel/export_excel_widget.dart';
 import '/tasks/filter_report_staff/filter_report_staff_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'report_staff_model.dart';
@@ -105,7 +100,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -114,7 +109,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
           child: Visibility(
             visible: _model.isShow == true,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,17 +119,16 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.textController,
                             focusNode: _model.textFieldFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.textController',
-                              Duration(milliseconds: 500),
+                              const Duration(milliseconds: 500),
                               () async {
-                                if (_model.textController.text != null &&
-                                    _model.textController.text != '') {
+                                if (_model.textController.text != '') {
                                   _model.filterToken1 =
                                       await action_blocks.tokenReload(context);
                                   if (_model.filterToken1!) {
@@ -211,9 +205,9 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
                                   .primaryBackground,
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 0.0),
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.search,
                                 size: 24.0,
                               ),
@@ -221,9 +215,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                   ? InkWell(
                                       onTap: () async {
                                         _model.textController?.clear();
-                                        if (_model.textController.text !=
-                                                null &&
-                                            _model.textController.text != '') {
+                                        if (_model.textController.text != '') {
                                           _model.filterToken1 =
                                               await action_blocks
                                                   .tokenReload(context);
@@ -276,7 +268,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: FlutterFlowIconButton(
                           borderColor: Colors.transparent,
                           borderRadius: 10.0,
@@ -329,23 +321,20 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        if ((_model.textController.text != null &&
-                                _model.textController.text != '') ||
-                            ((_model.statusFilter != null &&
-                                    _model.statusFilter != '') &&
+                        if ((_model.textController.text != '') ||
+                            ((_model.statusFilter != '') &&
                                 (_model.statusFilter != ' ')) ||
-                            ((_model.branch != null && _model.branch != '') &&
+                            ((_model.branch != '') &&
                                 (_model.branch != ' ')) ||
-                            ((_model.department != null &&
-                                    _model.department != '') &&
+                            ((_model.department != '') &&
                                 (_model.department != ' ')))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 0.0, 8.0),
                             child: Text(
                               '# Kết quả tìm kiếm theo bộ lọc',
@@ -361,7 +350,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                           ),
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 1.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -369,7 +358,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                               children: [
                                 if ('1' == '2')
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 16.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -404,7 +393,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                         ).then((value) => safeSetState(() {}));
                                       },
                                       child: AnimatedContainer(
-                                        duration: Duration(milliseconds: 70),
+                                        duration: const Duration(milliseconds: 70),
                                         curve: Curves.easeIn,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
@@ -414,7 +403,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                         ),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 4.0, 8.0, 4.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -424,7 +413,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                               if ('1' == '2')
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           1.0, -1.0),
                                                   child: Builder(
                                                     builder: (context) =>
@@ -454,13 +443,13 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                           isGlobal: false,
                                                           avoidOverflow: true,
                                                           targetAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
                                                                           context)),
                                                           followerAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       1.0, -1.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -483,7 +472,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                                             context)
                                                                         .unfocus(),
                                                                 child:
-                                                                    Container(
+                                                                    SizedBox(
                                                                   height: 240.0,
                                                                   width: 300.0,
                                                                   child:
@@ -525,7 +514,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
-                                            ].divide(SizedBox(width: 4.0)),
+                                            ].divide(const SizedBox(width: 4.0)),
                                           ),
                                         ),
                                       ),
@@ -533,7 +522,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                   ),
                                 if (FFAppState().IsInDevelopment)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 16.0, 0.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
@@ -564,16 +553,16 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                         ).then((value) => safeSetState(() {}));
                                       },
                                       text: 'Xuất excel',
-                                      icon: FaIcon(
+                                      icon: const FaIcon(
                                         FontAwesomeIcons.fileExcel,
                                         color: Color(0xFF09923F),
                                       ),
                                       options: FFButtonOptions(
                                         height: 45.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
                                         iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
@@ -586,7 +575,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                       .secondaryText,
                                               letterSpacing: 0.0,
                                             ),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.transparent,
                                         ),
                                         borderRadius:
@@ -604,12 +593,12 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                       child: PagedListView<ApiPagingParams, dynamic>.separated(
                         pagingController: _model.setListViewController(
                           (nextPageMarker) => StaffGroup.getStaffListCall.call(
                             filter:
-                                '{\"_and\":[{}${(_model.textController.text != null && _model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
+                                '{\"_and\":[{}${(_model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
                               if (FFAppState().user.role ==
                                   '82073000-1ba2-43a4-a55c-459d17c23b68') {
                                 return ',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
@@ -632,20 +621,18 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                 return ' ';
                               }
                             }()}${() {
-                              if ((_model.statusFilter != null &&
-                                      _model.statusFilter != '') &&
+                              if ((_model.statusFilter != '') &&
                                   (_model.statusFilter == 'Hoạt động') &&
                                   (_model.statusFilter != ' ')) {
                                 return ',{\"status\":{\"_eq\":\"active\"}}';
-                              } else if ((_model.statusFilter != null &&
-                                      _model.statusFilter != '') &&
+                              } else if ((_model.statusFilter != '') &&
                                   (_model.statusFilter == 'Không hoạt động') &&
                                   (_model.statusFilter != ' ')) {
                                 return ',{\"status\":{\"_neq\":\"active\"}}';
                               } else {
                                 return ' ';
                               }
-                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != null && _model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != null && _model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '}]}',
+                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '}]}',
                             accessToken: FFAppState().accessToken,
                             limit: 20,
                             offset: nextPageMarker.nextPageNumber * 20,
@@ -656,7 +643,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                         primary: false,
                         reverse: false,
                         scrollDirection: Axis.vertical,
-                        separatorBuilder: (_, __) => SizedBox(height: 12.0),
+                        separatorBuilder: (_, __) => const SizedBox(height: 12.0),
                         builderDelegate: PagedChildBuilderDelegate<dynamic>(
                           // Customize what your widget looks like when it's loading the first page.
                           firstPageProgressIndicatorBuilder: (_) => Center(
@@ -682,8 +669,8 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                               ),
                             ),
                           ),
-                          noItemsFoundIndicatorBuilder: (_) => Center(
-                            child: Container(
+                          noItemsFoundIndicatorBuilder: (_) => const Center(
+                            child: SizedBox(
                               width: double.infinity,
                               child: DataNotFoundWidget(),
                             ),
@@ -731,7 +718,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
+                                    kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -749,7 +736,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                       blurRadius: 0.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
-                                      offset: Offset(
+                                      offset: const Offset(
                                         0.0,
                                         1.0,
                                       ),
@@ -757,7 +744,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                   ],
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -765,7 +752,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 4.0, 16.0, 8.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -789,7 +776,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsets.all(2.0),
+                                                padding: const EdgeInsets.all(2.0),
                                                 child: InkWell(
                                                   splashColor:
                                                       Colors.transparent,
@@ -868,7 +855,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   12.0,
                                                                   0.0,
@@ -904,7 +891,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -927,7 +914,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                                   ),
                                                             ),
                                                           ),
-                                                        ].divide(SizedBox(
+                                                        ].divide(const SizedBox(
                                                             height: 4.0)),
                                                       ),
                                                     ),
@@ -965,11 +952,11 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             4.0,
@@ -1013,12 +1000,12 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       -1.0,
                                                                       0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -1050,7 +1037,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                               ),
                                                             ),
                                                           ),
-                                                        ].divide(SizedBox(
+                                                        ].divide(const SizedBox(
                                                             height: 4.0)),
                                                       ),
                                                     ],
@@ -1062,7 +1049,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             24.0, 8.0, 0.0, 0.0),
                                         child: Text(
                                           'Công việc:',
@@ -1077,7 +1064,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             32.0, 4.0, 32.0, 4.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -1087,7 +1074,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Text(
-                                                    '${dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 0)).toList().length.toString()}/${dataListItem.tasks.length.toString()}',
+                                                    '${dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 0)).toList().length.toString()}/${(dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 0)).toList().length + dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1)).toList().length + dataListItem.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.submitStaffId.id == dataListItem.id)).toList().length).toString()}',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -1124,7 +1111,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Text(
-                                                    '${dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1)).toList().length.toString()}/${dataListItem.tasks.length.toString()}',
+                                                    '${dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1)).toList().length.toString()}/${(dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 0)).toList().length + dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1)).toList().length + dataListItem.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.submitStaffId.id == dataListItem.id)).toList().length).toString()}',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -1161,7 +1148,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Text(
-                                                    '${dataListItem.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.submitStaffId.id == dataListItem.id)).toList().length.toString()}/${dataListItem.tasks.length.toString()}',
+                                                    '${dataListItem.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.submitStaffId.id == dataListItem.id)).toList().length.toString()}/${(dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 0)).toList().length + dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1)).toList().length + dataListItem.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.submitStaffId.id == dataListItem.id)).toList().length).toString()}',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -1193,11 +1180,11 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                 ],
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 8.0)),
+                                          ].divide(const SizedBox(width: 8.0)),
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 4.0, 16.0, 8.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -1210,21 +1197,24 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                 CircularPercentIndicator(
                                                   percent: dataListItem
                                                           .tasks.isNotEmpty
-                                                      ? (double.parse((dataListItem
-                                                                  .tasks
-                                                                  .where((e) =>
-                                                                      (e.tasksId
-                                                                              .status ==
-                                                                          'done') &&
-                                                                      (e.tasksId.submitStaffId
-                                                                              .id ==
-                                                                          dataListItem
-                                                                              .id))
-                                                                  .toList()
-                                                                  .length /
-                                                              dataListItem
-                                                                  .tasks.length)
-                                                          .toStringAsFixed(2)))
+                                                      ? (double.parse(
+                                                          (valueOrDefault<int>(
+                                                                    dataListItem
+                                                                        .tasks
+                                                                        .where((e) =>
+                                                                            (e.tasksId.status ==
+                                                                                'done') &&
+                                                                            (e.tasksId.submitStaffId.id ==
+                                                                                dataListItem.id))
+                                                                        .toList()
+                                                                        .length,
+                                                                    0,
+                                                                  ) /
+                                                                  dataListItem
+                                                                      .tasks
+                                                                      .length)
+                                                              .toStringAsFixed(
+                                                                  2)))
                                                       : 0.0,
                                                   radius: 25.0,
                                                   lineWidth: 5.0,
@@ -1239,7 +1229,20 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                               context)
                                                           .alternate,
                                                   center: Text(
-                                                    '${(dataListItem.tasks.isNotEmpty ? (double.parse(((dataListItem.tasks.where((e) => e.tasksId.status == 'done').toList().length / dataListItem.tasks.length) * 100).toStringAsFixed(1))) : 0.0).toString()}%',
+                                                    '${(dataListItem.tasks.isNotEmpty ? (double.parse((valueOrDefault<int>(
+                                                          dataListItem.tasks
+                                                              .where((e) =>
+                                                                  (e.tasksId
+                                                                          .status ==
+                                                                      'done') &&
+                                                                  (e.tasksId.submitStaffId
+                                                                          .id ==
+                                                                      dataListItem
+                                                                          .id))
+                                                              .toList()
+                                                              .length,
+                                                          0,
+                                                        ) / dataListItem.tasks.length).toStringAsFixed(2))) : 0.0).toString()}%',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .headlineSmall
@@ -1270,7 +1273,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
-                                              ].divide(SizedBox(height: 4.0)),
+                                              ].divide(const SizedBox(height: 4.0)),
                                             ),
                                             Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -1341,16 +1344,16 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
-                                              ].divide(SizedBox(height: 4.0)),
+                                              ].divide(const SizedBox(height: 4.0)),
                                             ),
-                                          ].divide(SizedBox(width: 16.0)),
+                                          ].divide(const SizedBox(width: 16.0)),
                                         ),
                                       ),
                                       if (dataListItem.userId.role !=
                                           '82073000-1ba2-43a4-a55c-459d17c23b68')
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 8.0, 0.0, 0.0),
                                           child: Text(
                                             'Đào tạo:',
@@ -1368,7 +1371,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                           '82073000-1ba2-43a4-a55c-459d17c23b68')
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   32.0, 4.0, 32.0, 4.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1382,7 +1385,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                     Container(
                                                       width: 50.0,
                                                       decoration:
-                                                          BoxDecoration(),
+                                                          const BoxDecoration(),
                                                     ),
                                                     Text(
                                                       '${dataListItem.staffLessions.where((e) => e.status == 'done').toList().length.toString()}/${dataListItem.staffLessions.length.toString()}',
@@ -1430,7 +1433,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                     Container(
                                                       width: 50.0,
                                                       decoration:
-                                                          BoxDecoration(),
+                                                          const BoxDecoration(),
                                                     ),
                                                     Text(
                                                       '${dataListItem.staffTests.where((e) => e.status == 'published').toList().length.toString()}/${dataListItem.staffTests.length.toString()}',
@@ -1480,7 +1483,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                     Container(
                                                       width: 50.0,
                                                       decoration:
-                                                          BoxDecoration(),
+                                                          const BoxDecoration(),
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -1578,7 +1581,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                   ],
                                                 ),
                                               ),
-                                            ].divide(SizedBox(width: 16.0)),
+                                            ].divide(const SizedBox(width: 16.0)),
                                           ),
                                         ),
                                     ],

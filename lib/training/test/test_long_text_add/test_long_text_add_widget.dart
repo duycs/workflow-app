@@ -2,8 +2,6 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'test_long_text_add_model.dart';
 export 'test_long_text_add_model.dart';
 
@@ -34,8 +32,8 @@ class _TestLongTextAddWidgetState extends State<TestLongTextAddWidget> {
     _model = createModel(context, () => TestLongTextAddModel());
 
     _model.textController ??= TextEditingController(
-        text: widget!.answersId?.answersId?.correct == 1
-            ? widget!.answersId?.answersId?.content
+        text: widget.answersId?.answersId.correct == 1
+            ? widget.answersId?.answersId.content
             : ' ');
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -95,7 +93,7 @@ class _TestLongTextAddWidgetState extends State<TestLongTextAddWidget> {
           ),
           borderRadius: BorderRadius.circular(8.0),
         ),
-        contentPadding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+        contentPadding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
       ),
       style: FlutterFlowTheme.of(context).bodyMedium.override(
             fontFamily: 'Nunito Sans',

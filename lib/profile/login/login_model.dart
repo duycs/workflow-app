@@ -1,16 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'login_widget.dart' show LoginWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class LoginModel extends FlutterFlowModel<LoginWidget> {
   ///  Local state fields for this page.
@@ -73,7 +67,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   // Stores action output result for [Custom Action - getReTokenUser] action in IconButton widget.
   String? checkWfEmailBV;
   // Stores action output result for [Custom Action - biometricCreateSignature] action in IconButton widget.
-  dynamic? signature;
+  dynamic signature;
   // Stores action output result for [Backend Call - API (LoginBiometricVerification)] action in IconButton widget.
   ApiCallResponse? apiResultLoginBiometric;
   // Stores action output result for [Backend Call - API (GetStaffId)] action in IconButton widget.
@@ -104,19 +98,19 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
       accessToken: FFAppState().accessToken,
     );
 
-    if ((apiResultUserMe?.succeeded ?? true)) {
+    if ((apiResultUserMe.succeeded ?? true)) {
       FFAppState().user = UserResourceDataStruct.maybeFromMap(
-              (apiResultUserMe?.jsonBody ?? ''))!
+              (apiResultUserMe.jsonBody ?? ''))!
           .data;
       if ((UserResourceDataStruct.maybeFromMap(
-                      (apiResultUserMe?.jsonBody ?? ''))
+                      (apiResultUserMe.jsonBody ?? ''))
                   ?.data
-                  ?.enableBiometric ==
+                  .enableBiometric ==
               null) &&
           (UserResourceDataStruct.maybeFromMap(
-                      (apiResultUserMe?.jsonBody ?? ''))
+                      (apiResultUserMe.jsonBody ?? ''))
                   ?.data
-                  ?.enableBiometric ==
+                  .enableBiometric ==
               1)) {
         await actions.saveInfoUser(
           'bv',
@@ -133,34 +127,20 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
     ApiCallResponse? apiResultLogin;
     ApiCallResponse? apiResultGetStaffId;
 
-    if (emailAddressTextController.text == null ||
-        emailAddressTextController.text == '') {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Vui lòng nhập email',
-            style: TextStyle(
-              color: FlutterFlowTheme.of(context).primaryText,
-            ),
-          ),
-          duration: Duration(milliseconds: 4000),
-          backgroundColor: FlutterFlowTheme.of(context).error,
-        ),
+    if (emailAddressTextController.text == '') {
+      await actions.showToast(
+        context,
+        'Vui lòng nhập email',
+        FlutterFlowTheme.of(context).secondaryBackground,
+        FlutterFlowTheme.of(context).error,
       );
       return;
-    } else if (passwordTextController.text == null ||
-        passwordTextController.text == '') {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Vui lòng nhập mật khẩu',
-            style: TextStyle(
-              color: FlutterFlowTheme.of(context).primaryText,
-            ),
-          ),
-          duration: Duration(milliseconds: 4000),
-          backgroundColor: FlutterFlowTheme.of(context).error,
-        ),
+    } else if (passwordTextController.text == '') {
+      await actions.showToast(
+        context,
+        'Vui lòng nhập mật khẩu',
+        FlutterFlowTheme.of(context).secondaryBackground,
+        FlutterFlowTheme.of(context).error,
       );
       return;
     } else {
@@ -169,24 +149,17 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
         password: passwordTextController.text,
       );
 
-      if ((apiResultLogin?.succeeded ?? true)) {
+      if ((apiResultLogin.succeeded ?? true)) {
         if (getJsonField(
-              (apiResultLogin?.jsonBody ?? ''),
+              (apiResultLogin.jsonBody ?? ''),
               r'''$.errors''',
             ) !=
             null) {
-          ScaffoldMessenger.of(context).clearSnackBars();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Thông tin xác thực người dùng không hợp lệ',
-                style: TextStyle(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-              ),
-              duration: Duration(milliseconds: 4000),
-              backgroundColor: FlutterFlowTheme.of(context).error,
-            ),
+          await actions.showToast(
+            context,
+            'Thông tin xác thực người dùng không hợp lệ',
+            FlutterFlowTheme.of(context).secondaryBackground,
+            FlutterFlowTheme.of(context).error,
           );
           return;
         }
@@ -197,12 +170,12 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
         await actions.saveInfoUser(
           'wf_token',
           getJsonField(
-            (apiResultLogin?.jsonBody ?? ''),
+            (apiResultLogin.jsonBody ?? ''),
             r'''$.data.refresh_token''',
           ).toString().toString(),
         );
         loginData = LoginResourceDataStruct.maybeFromMap(
-            (apiResultLogin?.jsonBody ?? ''));
+            (apiResultLogin.jsonBody ?? ''));
         FFAppState().accessToken = loginData!.data.accessToken;
         FFAppState().refreshToken = loginData!.data.refreshToken;
         FFAppState().expires = loginData!.data.expires;
@@ -215,29 +188,29 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
           userId: FFAppState().user.id,
         );
 
-        if ((apiResultGetStaffId?.succeeded ?? true)) {
+        if ((apiResultGetStaffId.succeeded ?? true)) {
           FFAppState().staffid = getJsonField(
-            (apiResultGetStaffId?.jsonBody ?? ''),
+            (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.staff.id''',
           ).toString().toString();
           FFAppState().staffLogin = getJsonField(
-            (apiResultGetStaffId?.jsonBody ?? ''),
+            (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.staff''',
           );
           FFAppState().staffDepartment = getJsonField(
-            (apiResultGetStaffId?.jsonBody ?? ''),
+            (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.department''',
           );
           FFAppState().staffBranch = getJsonField(
-            (apiResultGetStaffId?.jsonBody ?? ''),
+            (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.branch''',
           );
           FFAppState().staffOrganization = getJsonField(
-            (apiResultGetStaffId?.jsonBody ?? ''),
+            (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.organization''',
           );
           FFAppState().Author = getJsonField(
-            (apiResultGetStaffId?.jsonBody ?? ''),
+            (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.organization.authors[0]''',
           );
           FFAppState().update(() {});
@@ -245,7 +218,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
           context.goNamed(
             'Home',
             extra: <String, dynamic>{
-              kTransitionInfoKey: TransitionInfo(
+              kTransitionInfoKey: const TransitionInfo(
                 hasTransition: true,
                 transitionType: PageTransitionType.fade,
                 duration: Duration(milliseconds: 0),
@@ -255,7 +228,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
           await actions.notifiAddServer(
             getJsonField(
-              (apiResultGetStaffId?.jsonBody ?? ''),
+              (apiResultGetStaffId.jsonBody ?? ''),
               r'''$.staff.id''',
             ).toString().toString(),
           );
@@ -265,18 +238,11 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
         return;
       } else {
-        ScaffoldMessenger.of(context).clearSnackBars();
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Email hoặc mật khẩu không chính xác. Vui lòng nhập lại!',
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
+        await actions.showToast(
+          context,
+          'Email hoặc mật khẩu không chính xác. Vui lòng nhập lại!',
+          FlutterFlowTheme.of(context).secondaryBackground,
+          FlutterFlowTheme.of(context).error,
         );
         return;
       }

@@ -4,9 +4,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'company_review_model.dart';
 export 'company_review_model.dart';
@@ -54,17 +54,17 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
           width: double.infinity,
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 250.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 12.0,
                 color: Color(0x33000000),
@@ -77,7 +77,7 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,7 +90,7 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Đánh giá khóa học',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -103,7 +103,7 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
                       child: FlutterFlowIconButton(
                         borderRadius: 20.0,
                         borderWidth: 1.0,
@@ -121,7 +121,7 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -150,7 +150,7 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                         itemSize: 50.0,
                         glowColor: FlutterFlowTheme.of(context).tertiary,
                       ),
-                    ].divide(SizedBox(height: 8.0)),
+                    ].divide(const SizedBox(height: 8.0)),
                   ),
                 ),
                 Row(
@@ -159,16 +159,16 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        var _shouldSetState = false;
+                        var shouldSetState = false;
                         _model.reloadTokenReviewProgram =
                             await action_blocks.tokenReload(context);
-                        _shouldSetState = true;
+                        shouldSetState = true;
                         if (_model.reloadTokenReviewProgram!) {
                           _model.apiResultReviewProgram =
                               await StudyProgramGroup.reviewProgramCall.call(
                             accessToken: FFAppState().accessToken,
                             requestDataJson: <String, dynamic>{
-                              'program_id': widget!.programId,
+                              'program_id': widget.programId,
                               'staff_id': getJsonField(
                                 FFAppState().staffLogin,
                                 r'''$.id''',
@@ -177,61 +177,45 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                             },
                           );
 
-                          _shouldSetState = true;
+                          shouldSetState = true;
                           if ((_model.apiResultReviewProgram?.succeeded ??
                               true)) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Đánh giá thành công!',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                duration: Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                              ),
+                            await actions.showToast(
+                              context,
+                              'Đánh giá thành công!',
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                              FlutterFlowTheme.of(context).secondary,
                             );
                             await widget.callBack?.call();
                             Navigator.pop(context);
                           } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Đánh giá không thành công!',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
-                                ),
-                                duration: Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).error,
-                              ),
+                            await actions.showToast(
+                              context,
+                              'Đánh giá không thành công!',
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                              FlutterFlowTheme.of(context).error,
                             );
                           }
                         } else {
                           setState(() {});
-                          if (_shouldSetState) setState(() {});
+                          if (shouldSetState) setState(() {});
                           return;
                         }
 
-                        if (_shouldSetState) setState(() {});
+                        if (shouldSetState) setState(() {});
                       },
                       text: 'Gửi ',
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.send,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(
                         width: 200.0,
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).secondary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -241,14 +225,14 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                  ].divide(SizedBox(width: 20.0)),
+                  ].divide(const SizedBox(width: 20.0)),
                 ),
               ],
             ),

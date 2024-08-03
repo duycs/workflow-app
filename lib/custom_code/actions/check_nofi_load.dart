@@ -15,10 +15,66 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
-Future callApi(String id) async {
+Future<String> refreshAccessToken() async {
   final prefs = await SharedPreferences.getInstance();
-  final accessToken = prefs.getString('accessToken') ?? '';
-  print("accessToken:${accessToken}");
+  final refreshToken = prefs.getString('wf_token') ?? '';
+  print(refreshToken);
+  final url = Uri.parse('https://workflow-api-dev.pexnic.com/auth/refresh');
+  final response = await http.post(
+    url,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: jsonEncode(<String, String>{'refresh_token': refreshToken}),
+  );
+
+  if (response.statusCode == 200) {
+    final data = jsonDecode(response.body);
+    final accessToken = data['access_token'];
+    print(accessToken);
+    prefs.setString('access_token', accessToken);
+    return accessToken;
+  } else {
+    throw Exception('Failed to refresh access token');
+  }
+}
+
+Future<String> getNotificationId(String code, String accessToken) async {
+  final url =
+      Uri.parse('https://workflow-api-dev.pexnic.com/items/notifications');
+  final response = await http.post(
+    url,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $accessToken',
+    },
+    body: jsonEncode({
+      'filter': {
+        '_and': [
+          {
+            '_and': [
+              {
+                'code': {'_eq': code}
+              }
+            ]
+          },
+          {
+            'status': {'_neq': 'archived'}
+          }
+        ]
+      }
+    }),
+  );
+
+  if (response.statusCode == 200) {
+    final data = jsonDecode(response.body);
+    return data['data'][0]['id'];
+  } else {
+    throw Exception('Failed to get notification ID');
+  }
+}
+
+Future<void> callApi(String id, String accessToken) async {
   final url =
       Uri.parse('https://workflow-api-dev.pexnic.com/items/notifications/$id');
   final response = await http.patch(
@@ -35,7 +91,6 @@ Future callApi(String id) async {
   } else {
     print('Failed to call API: ${response.statusCode}');
   }
-  // Add your function code here!
 }
 
 Future<void> checkNofiLoad(BuildContext context) async {
@@ -54,24 +109,34 @@ Future<void> checkNofiLoad(BuildContext context) async {
       // if (alert != null) {
       //   context.goNamed("ProcedurePublishedList");
       // }
+      final prefs = await SharedPreferences.getInstance();
+      String accessToken = prefs.getString('access_token') ?? '';
+
+      if (accessToken.isEmpty) {
+        accessToken = await refreshAccessToken();
+      }
+
+      final notificationId =
+          await getNotificationId(payload.data.code, accessToken);
+
       switch (payload.screen) {
         case "2":
           {
             context.pushNamed('TaskListWait');
-            await callApi(payload.data.id);
+            await callApi(notificationId, accessToken);
             return;
           }
         case "3":
           {
             context.pushNamed('StudyProgramListUser');
-            await callApi(payload.data.id);
+            await callApi(notificationId, accessToken);
 
             return;
           }
         case "4":
           {
             context.pushNamed('StudyProgramListUser');
-            await callApi(payload.data.id);
+            await callApi(notificationId, accessToken);
 
             return;
           }
@@ -86,14 +151,14 @@ Future<void> checkNofiLoad(BuildContext context) async {
                 ),
               }.withoutNulls,
             );
-            await callApi(payload.data.id);
+            await callApi(notificationId, accessToken);
 
             return;
           }
         case "8":
           {
             context.pushNamed('OrderList');
-            await callApi(payload.data.id);
+            await callApi(notificationId, accessToken);
 
             return;
           }
@@ -109,12 +174,11 @@ Future<void> checkNofiLoad(BuildContext context) async {
                 ),
               },
             );
-            await callApi(payload.data.id);
+            await callApi(notificationId, accessToken);
 
             return;
           }
       }
-
       FFAppState().update(() {
         FFAppState().alertCheck = payload.screen.toString();
         FFAppState().idCheck = payload.data.id;
@@ -136,10 +200,11 @@ class NotiPayload {
 
 class NotiData {
   final String id;
+  final String code;
 
-  NotiData(this.id);
+  NotiData(this.id, this.code);
 
   factory NotiData.fromJson(Map json) {
-    return NotiData(json?['id']);
+    return NotiData(json?['id'], json?['code']);
   }
 }

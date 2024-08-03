@@ -1,24 +1,16 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/question/filter_question/filter_question_widget.dart';
 import '/training/question/question_create/question_create_widget.dart';
 import '/training/question/question_menu/question_menu_widget.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'question_list_model.dart';
@@ -88,14 +80,14 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                     elevation: 0,
                     insetPadding: EdgeInsets.zero,
                     backgroundColor: Colors.transparent,
-                    alignment: AlignmentDirectional(0.0, 1.0)
+                    alignment: const AlignmentDirectional(0.0, 1.0)
                         .resolve(Directionality.of(context)),
                     child: GestureDetector(
                       onTap: () => _model.unfocusNode.canRequestFocus
                           ? FocusScope.of(context)
                               .requestFocus(_model.unfocusNode)
                           : FocusScope.of(context).unfocus(),
-                      child: Container(
+                      child: SizedBox(
                         height: MediaQuery.sizeOf(context).height * 1.0,
                         width: MediaQuery.sizeOf(context).width * 1.0,
                         child: QuestionCreateWidget(
@@ -153,7 +145,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -162,7 +154,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
           child: Visibility(
             visible: _model.isLoad == true,
             child: Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,7 +168,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                           focusNode: _model.questionNameFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.questionNameTextController',
-                            Duration(milliseconds: 500),
+                            const Duration(milliseconds: 500),
                             () async {
                               _model.nameSearch =
                                   _model.questionNameTextController.text;
@@ -249,7 +241,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                       setState(() {});
                                       setState(() {});
                                     },
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.clear,
                                       color: Color(0xFF757575),
                                       size: 22.0,
@@ -292,8 +284,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                 child: Padding(
                                   padding: MediaQuery.viewInsetsOf(context),
                                   child: FilterQuestionWidget(
-                                    name: (_model.nameSearch != null &&
-                                                _model.nameSearch != '') &&
+                                    name: (_model.nameSearch != '') &&
                                             (_model.nameSearch != ' ')
                                         ? _model.nameSearch
                                         : '',
@@ -308,10 +299,9 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                       });
                                       setState(() {
                                         _model.questionNameTextController
-                                            ?.text = ((nameFilter != null &&
-                                                    nameFilter != '') &&
+                                            ?.text = ((nameFilter != '') &&
                                                 (nameFilter != ' ')
-                                            ? nameFilter!
+                                            ? nameFilter
                                             : '');
                                         _model.questionNameTextController
                                                 ?.selection =
@@ -336,10 +326,9 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                       ),
                     ],
                   ),
-                  if (((_model.questionNameTextController.text != null &&
-                              _model.questionNameTextController.text != '') &&
+                  if (((_model.questionNameTextController.text != '') &&
                           (_model.questionNameTextController.text != ' ')) ||
-                      ((_model.status != null && _model.status != '') &&
+                      ((_model.status != '') &&
                           (_model.status != ' ')))
                     Text(
                       '#Kết quả hiển thị theo bộ lọc',
@@ -360,17 +349,22 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                             limit: 20,
                             offset: nextPageMarker.nextPageNumber * 20,
                             filter:
-                                '{\"_and\":[{}${(_model.nameSearch != null && _model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"content\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.status != null && _model.status != '') && (_model.status != ' ') ? ',{\"status\":{\"_eq\":\"${_model.status}\"}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                '{\"_and\":[{}${(_model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"content\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.status != '') && (_model.status != ' ') ? ',{\"status\":{\"_eq\":\"${_model.status}\"}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
                               FFAppState().staffLogin,
                               r'''$.organization_id''',
                             ).toString()}\"}}'}]}',
                           ),
                         ),
-                        padding: EdgeInsets.zero,
+                        padding: const EdgeInsets.fromLTRB(
+                          0,
+                          0,
+                          0,
+                          48.0,
+                        ),
                         primary: false,
                         reverse: false,
                         scrollDirection: Axis.vertical,
-                        separatorBuilder: (_, __) => SizedBox(height: 10.0),
+                        separatorBuilder: (_, __) => const SizedBox(height: 10.0),
                         builderDelegate: PagedChildBuilderDelegate<dynamic>(
                           // Customize what your widget looks like when it's loading the first page.
                           firstPageProgressIndicatorBuilder: (_) => Center(
@@ -396,8 +390,8 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                               ),
                             ),
                           ),
-                          noItemsFoundIndicatorBuilder: (_) => Center(
-                            child: Container(
+                          noItemsFoundIndicatorBuilder: (_) => const Center(
+                            child: SizedBox(
                               width: double.infinity,
                               height: double.infinity,
                               child: DataNotFoundWidget(),
@@ -408,7 +402,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                 .listViewPagingController!
                                 .itemList![detailViewIndex];
                             return Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: Container(
                                 decoration: BoxDecoration(
@@ -417,7 +411,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -442,7 +436,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -522,10 +516,10 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                       ),
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, -1.0),
+                                            const AlignmentDirectional(-1.0, -1.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Text(
                                             '# ${() {
@@ -559,7 +553,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 8.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -600,10 +594,10 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                 borderRadius:
                                                     BorderRadius.circular(20.0),
                                               ),
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 0.0, 8.0, 0.0),
                                                 child: Text(
@@ -644,7 +638,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                         ),
                       ),
                     ),
-                ].divide(SizedBox(height: 8.0)),
+                ].divide(const SizedBox(height: 8.0)),
               ),
             ),
           ),

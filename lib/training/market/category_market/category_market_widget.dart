@@ -1,17 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'category_market_model.dart';
@@ -96,14 +92,14 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 24.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 24.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -112,15 +108,15 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
-                    child: Container(
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
+                    child: SizedBox(
                       width: double.infinity,
                       child: TextFormField(
                         controller: _model.searchDomainsTextController,
                         focusNode: _model.searchDomainsFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.searchDomainsTextController',
-                          Duration(milliseconds: 500),
+                          const Duration(milliseconds: 500),
                           () async {
                             setState(() {});
                             setState(() =>
@@ -147,7 +143,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                                 letterSpacing: 0.0,
                               ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
@@ -175,8 +171,8 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                           filled: true,
-                          fillColor: Color(0x15FF5963),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          fillColor: const Color(0x15FF5963),
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 8.0, 0.0, 8.0),
                           prefixIcon: Icon(
                             Icons.search,
@@ -194,7 +190,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                                         ?.refresh());
                                     setState(() {});
                                   },
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.clear,
                                     color: Color(0xFF757575),
                                     size: 22.0,
@@ -214,11 +210,10 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                       ),
                     ),
                   ),
-                  if (_model.searchDomainsTextController.text != null &&
-                      _model.searchDomainsTextController.text != '')
+                  if (_model.searchDomainsTextController.text != '')
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                       child: Text(
                         '#Kết quả tìm kiếm theo bộ lọc',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -231,7 +226,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                       ),
                     ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
                     child: Text(
                       'Top tìm kiếm',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -242,7 +237,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -269,7 +264,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                                 ),
                               }.withoutNulls,
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
+                                kTransitionInfoKey: const TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
@@ -284,11 +279,11 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                               border: Border.all(
                                 color: _model.checkColor == '1'
                                     ? FlutterFlowTheme.of(context).primary
-                                    : Color(0x00000000),
+                                    : const Color(0x00000000),
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 8.0, 16.0, 8.0),
                               child: Text(
                                 'Thiết kế',
@@ -309,7 +304,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                             borderRadius: BorderRadius.circular(2.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 16.0, 8.0),
                             child: Text(
                               'Thời trang',
@@ -329,7 +324,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                             borderRadius: BorderRadius.circular(2.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 16.0, 8.0),
                             child: Text(
                               'Công nghệ ',
@@ -343,12 +338,12 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -360,7 +355,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                             borderRadius: BorderRadius.circular(2.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 16.0, 8.0),
                             child: Text(
                               'Kỹ thuật',
@@ -381,7 +376,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                             borderRadius: BorderRadius.circular(2.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 16.0, 8.0),
                             child: Text(
                               'Xây dựng',
@@ -401,7 +396,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                             borderRadius: BorderRadius.circular(2.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 16.0, 8.0),
                             child: Text(
                               'Marketing',
@@ -415,12 +410,12 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 8.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 8.0),
                     child: Text(
                       'Tất cả lĩnh vực',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -436,11 +431,11 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                         limit: 20,
                         offset: nextPageMarker.nextPageNumber * 20,
                         filter:
-                            '{\"_and\":[${_model.searchDomainsTextController.text != null && _model.searchDomainsTextController.text != '' ? '{\"name\":{\"_icontains\":\"' : ' '}${_model.searchDomainsTextController.text != null && _model.searchDomainsTextController.text != '' ? _model.searchDomainsTextController.text : ' '}${_model.searchDomainsTextController.text != null && _model.searchDomainsTextController.text != '' ? '\"}}' : ' '}]}',
+                            '{\"_and\":[${_model.searchDomainsTextController.text != '' ? '{\"name\":{\"_icontains\":\"' : ' '}${_model.searchDomainsTextController.text != '' ? _model.searchDomainsTextController.text : ' '}${_model.searchDomainsTextController.text != '' ? '\"}}' : ' '}]}',
                       ),
                     ),
                     padding: EdgeInsets.zero,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 20.0,
                       childAspectRatio: 1.0,
@@ -473,12 +468,12 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                           ),
                         ),
                       ),
-                      noItemsFoundIndicatorBuilder: (_) => DataNotFoundWidget(),
+                      noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
                       itemBuilder: (context, _, itemListIndex) {
                         final itemListItem = _model
                             .gridViewPagingController!.itemList![itemListIndex];
                         return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 20.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -507,7 +502,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
+                                  kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -526,10 +521,10 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                                 borderRadius: BorderRadius.circular(4.0),
                               ),
                               child: Stack(
-                                alignment: AlignmentDirectional(0.0, 1.0),
+                                alignment: const AlignmentDirectional(0.0, 1.0),
                                 children: [
                                   Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Container(
                                       width: double.infinity,
                                       height: double.infinity,
@@ -541,10 +536,10 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                                             FlutterFlowTheme.of(context)
                                                 .primaryText
                                           ],
-                                          stops: [0.0, 1.0],
+                                          stops: const [0.0, 1.0],
                                           begin:
-                                              AlignmentDirectional(0.0, -1.0),
-                                          end: AlignmentDirectional(0, 1.0),
+                                              const AlignmentDirectional(0.0, -1.0),
+                                          end: const AlignmentDirectional(0, 1.0),
                                         ),
                                         borderRadius:
                                             BorderRadius.circular(4.0),
@@ -552,7 +547,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         10.0, 0.0, 10.0, 16.0),
                                     child: Text(
                                       itemListItem.name,

@@ -47,8 +47,17 @@ class _CalendarUserState extends State<CalendarUser> {
   }
 
   void _updateDateRange() async {
-    DateTime dateStart = DateTime(selectedDate.year, selectedDate.month, 1);
-    DateTime dateEnd = DateTime(selectedDate.year, selectedDate.month + 1, 1);
+    // Tính ngày đầu tiên của tháng hiện tại
+    DateTime firstDayOfCurrentMonth =
+        DateTime(selectedDate.year, selectedDate.month, 1);
+
+    // Tính ngày cuối cùng của tháng trước
+    DateTime dateStart = firstDayOfCurrentMonth.subtract(Duration(days: 1));
+
+    // Tính ngày cuối cùng của tháng hiện tại
+    DateTime lastDayOfCurrentMonth =
+        DateTime(selectedDate.year, selectedDate.month + 1, 0);
+    DateTime dateEnd = lastDayOfCurrentMonth;
 
     if (widget.dateUpdate != null) {
       await widget.dateUpdate!(dateStart, dateEnd, selectedDate);
@@ -67,6 +76,9 @@ class _CalendarUserState extends State<CalendarUser> {
   Color getColorForDate(DateTime date) {
     for (var entry in widget.json ?? []) {
       DateTime dateCreated = DateTime.parse(entry['date_created']);
+      // Cộng thêm 1 ngày vào ngày được lấy từ `date_created`
+      dateCreated = dateCreated.add(Duration(days: 1));
+
       if (dateCreated.year == date.year &&
           dateCreated.month == date.month &&
           dateCreated.day == date.day) {
@@ -80,6 +92,9 @@ class _CalendarUserState extends State<CalendarUser> {
   Color getTextColorForDate(DateTime date) {
     for (var entry in widget.json ?? []) {
       DateTime dateCreated = DateTime.parse(entry['date_created']);
+      // Cộng thêm 1 ngày vào ngày được lấy từ `date_created`
+      dateCreated = dateCreated.add(Duration(days: 1));
+
       if (dateCreated.year == date.year &&
           dateCreated.month == date.month &&
           dateCreated.day == date.day) {

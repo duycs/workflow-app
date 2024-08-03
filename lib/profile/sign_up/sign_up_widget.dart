@@ -1,15 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'sign_up_model.dart';
 export 'sign_up_model.dart';
 
@@ -64,12 +61,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       body: Align(
-        alignment: AlignmentDirectional(0.0, 0.0),
+        alignment: const AlignmentDirectional(0.0, 0.0),
         child: Container(
-          decoration: BoxDecoration(),
-          alignment: AlignmentDirectional(0.0, 0.0),
+          decoration: const BoxDecoration(),
+          alignment: const AlignmentDirectional(0.0, 0.0),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 36.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 36.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -78,17 +75,17 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: Container(
                       height: 100.0,
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         maxWidth: 750.0,
                       ),
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         borderRadius: BorderRadius.circular(16.0),
                       ),
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Text(
                         'ComOS',
                         style:
@@ -100,10 +97,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     ),
                   ),
                   Container(
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 570.0,
                     ),
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +119,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 4.0, 0.0, 16.0),
                           child: Text(
                             'Chúc ngày mới tốt lành. Chào mừng bạn đến với hệ thống quản lý Workflow',
@@ -139,7 +136,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 24.0),
                               child: Text(
                                 'Bạn đã có tài khoản? Đăng nhập',
@@ -152,7 +149,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 24.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -163,7 +160,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   context.pushNamed(
                                     'Login',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -187,10 +184,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(width: 8.0)),
+                          ].divide(const SizedBox(width: 8.0)),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 16.0),
                           child: Form(
                             key: _model.formKey,
@@ -200,7 +197,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -208,9 +205,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 4.0),
-                                        child: Container(
+                                        child: SizedBox(
                                           width: double.infinity,
                                           child: TextFormField(
                                             controller: _model
@@ -218,7 +215,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             focusNode:
                                                 _model.emailAddressFocusNode,
                                             autofocus: false,
-                                            autofillHints: [
+                                            autofillHints: const [
                                               AutofillHints.email
                                             ],
                                             obscureText: false,
@@ -278,7 +275,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               contentPadding:
-                                                  EdgeInsets.all(24.0),
+                                                  const EdgeInsets.all(24.0),
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyLarge
@@ -299,16 +296,16 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
-                                  child: Container(
+                                  child: SizedBox(
                                     width: double.infinity,
                                     child: TextFormField(
                                       controller: _model.passwordTextController,
                                       focusNode: _model.passwordFocusNode,
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.passwordTextController',
-                                        Duration(milliseconds: 2000),
+                                        const Duration(milliseconds: 2000),
                                         () async {
                                           if (_model.rePasswordTextController
                                                   .text !=
@@ -323,7 +320,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         },
                                       ),
                                       autofocus: false,
-                                      autofillHints: [AutofillHints.password],
+                                      autofillHints: const [AutofillHints.password],
                                       obscureText: !_model.passwordVisibility,
                                       decoration: InputDecoration(
                                         labelText: 'Mật khẩu',
@@ -378,7 +375,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         filled: true,
                                         fillColor: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        contentPadding: EdgeInsets.all(24.0),
+                                        contentPadding: const EdgeInsets.all(24.0),
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
                                             () => _model.passwordVisibility =
@@ -410,14 +407,14 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         width: double.infinity,
                                         child: TextFormField(
                                           controller:
@@ -426,7 +423,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
                                             '_model.rePasswordTextController',
-                                            Duration(milliseconds: 500),
+                                            const Duration(milliseconds: 500),
                                             () async {
                                               if (_model
                                                       .rePasswordTextController
@@ -442,7 +439,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             },
                                           ),
                                           autofocus: false,
-                                          autofillHints: [
+                                          autofillHints: const [
                                             AutofillHints.password
                                           ],
                                           obscureText:
@@ -510,7 +507,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .secondaryBackground,
                                             contentPadding:
-                                                EdgeInsets.all(24.0),
+                                                const EdgeInsets.all(24.0),
                                             suffixIcon: InkWell(
                                               onTap: () => setState(
                                                 () => _model
@@ -547,7 +544,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       if (_model.checkPassword)
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Mật khẩu nhập lại không khớp',
@@ -569,9 +566,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
-                                  child: Container(
+                                  child: SizedBox(
                                     width: double.infinity,
                                     child: TextFormField(
                                       controller:
@@ -626,7 +623,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         filled: true,
                                         fillColor: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        contentPadding: EdgeInsets.all(24.0),
+                                        contentPadding: const EdgeInsets.all(24.0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyLarge
@@ -641,7 +638,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                     ),
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   width: double.infinity,
                                   child: TextFormField(
                                     controller: _model.nameTextController,
@@ -695,7 +692,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       filled: true,
                                       fillColor: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      contentPadding: EdgeInsets.all(24.0),
+                                      contentPadding: const EdgeInsets.all(24.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -715,9 +712,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         ),
                         if ('1' == '2')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
-                            child: Container(
+                            child: SizedBox(
                               width: double.infinity,
                               child: TextFormField(
                                 controller: _model.phoneTextController,
@@ -765,7 +762,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   filled: true,
                                   fillColor: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  contentPadding: EdgeInsets.all(24.0),
+                                  contentPadding: const EdgeInsets.all(24.0),
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
@@ -782,14 +779,14 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           ),
                         if ('1' == '2')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       4.0, 0.0, 0.0, 4.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -797,7 +794,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      final _datePickedDate =
+                                      final datePickedDate =
                                           await showDatePicker(
                                         context: context,
                                         initialDate: getCurrentTimestamp,
@@ -843,12 +840,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         },
                                       );
 
-                                      if (_datePickedDate != null) {
+                                      if (datePickedDate != null) {
                                         safeSetState(() {
                                           _model.datePicked = DateTime(
-                                            _datePickedDate.year,
-                                            _datePickedDate.month,
-                                            _datePickedDate.day,
+                                            datePickedDate.year,
+                                            datePickedDate.month,
+                                            datePickedDate.day,
                                           );
                                         });
                                       }
@@ -864,13 +861,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         ),
                                         Text(
                                           _model.datePicked != null
-                                              ? '${dateTimeFormat(
+                                              ? dateTimeFormat(
                                                   'dd/MM/yyyy',
                                                   _model.datePicked,
                                                   locale: FFLocalizations.of(
                                                           context)
                                                       .languageCode,
-                                                )}'
+                                                )
                                               : 'Ngày sinh',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -883,13 +880,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(SizedBox(width: 4.0)),
+                                      ].divide(const SizedBox(width: 4.0)),
                                     ),
                                   ),
                                 ),
                                 if (_model.checkDob)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Vui lòng nhập ngày sinh',
@@ -911,7 +908,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           ),
                         if ('1' == '2')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 20.0),
                             child: FlutterFlowRadioButton(
                               options: ['Nam', 'Nữ'].toList(),
@@ -937,7 +934,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
-                              textPadding: EdgeInsetsDirectional.fromSTEB(
+                              textPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 24.0, 0.0),
                               buttonPosition: RadioButtonPosition.left,
                               direction: Axis.horizontal,
@@ -951,13 +948,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             ),
                           ),
                         Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                var _shouldSetState = false;
+                                var shouldSetState = false;
                                 if (_model.formKey.currentState == null ||
                                     !_model.formKey.currentState!.validate()) {
                                   return;
@@ -991,83 +988,54 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   },
                                 );
 
-                                _shouldSetState = true;
+                                shouldSetState = true;
                                 if ((_model.apiResultCreateUser?.succeeded ??
                                     true)) {
-                                  if ('${getJsonField(
+                                  if (getJsonField(
                                         (_model.apiResultCreateUser?.jsonBody ??
                                             ''),
                                         r'''$.message''',
-                                      ).toString()}' ==
+                                      ).toString() ==
                                       'Đã tồn tại email user') {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Đã tồn tại email user',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context).error,
-                                      ),
+                                    await actions.showToast(
+                                      context,
+                                      'Đã tồn tại email user',
+                                      FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      FlutterFlowTheme.of(context).error,
                                     );
-                                    if (_shouldSetState) setState(() {});
+                                    if (shouldSetState) setState(() {});
                                     return;
                                   } else {
-                                    if ('${getJsonField(
+                                    if (getJsonField(
                                           (_model.apiResultCreateUser
                                                   ?.jsonBody ??
                                               ''),
                                           r'''$.message''',
-                                        ).toString()}' ==
+                                        ).toString() ==
                                         'Đã tồn tại tổ chức này') {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Đã tồn tại tên tổ chức này',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
-                                          ),
-                                          duration:
-                                              Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .error,
-                                        ),
+                                      await actions.showToast(
+                                        context,
+                                        'Đã tồn tại tên tổ chức này',
+                                        FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        FlutterFlowTheme.of(context).error,
                                       );
-                                      if (_shouldSetState) setState(() {});
+                                      if (shouldSetState) setState(() {});
                                       return;
                                     } else {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Đăng ký thành công',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
-                                          ),
-                                          duration:
-                                              Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                        ),
+                                      await actions.showToast(
+                                        context,
+                                        'Đăng ký thành công',
+                                        FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        FlutterFlowTheme.of(context).secondary,
                                       );
 
                                       context.goNamed(
                                         'Login',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -1076,7 +1044,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         },
                                       );
 
-                                      if (_shouldSetState) setState(() {});
+                                      if (shouldSetState) setState(() {});
                                       return;
                                     }
                                   }
@@ -1086,40 +1054,40 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: Text('yhsdfghsd'),
+                                                title: const Text('yhsdfghsd'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             false),
-                                                    child: Text('Cancel'),
+                                                    child: const Text('Cancel'),
                                                   ),
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             true),
-                                                    child: Text('Confirm'),
+                                                    child: const Text('Confirm'),
                                                   ),
                                                 ],
                                               );
                                             },
                                           ) ??
                                           false;
-                                  if (_shouldSetState) setState(() {});
+                                  if (shouldSetState) setState(() {});
                                   return;
                                 }
 
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                               },
                               text: 'Đăng ký',
                               options: FFButtonOptions(
                                 width: 230.0,
                                 height: 55.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -1131,7 +1099,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),

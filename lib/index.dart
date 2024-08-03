@@ -31,7 +31,7 @@ export '/training/test/test_create/test_create_widget.dart'
     show TestCreateWidget;
 export '/training/lesson/lesson_create/lesson_create_widget.dart'
     show LessonCreateWidget;
-export '/training/training_rank_update/training_rank_update_widget.dart'
+export '/training_rank/training_rank_update/training_rank_update_widget.dart'
     show TrainingRankUpdateWidget;
 export '/training/lesson/lesson_update/lesson_update_widget.dart'
     show LessonUpdateWidget;
