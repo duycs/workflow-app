@@ -7,10 +7,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
+import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'add_workflow_market_model.dart';
 export 'add_workflow_market_model.dart';
@@ -77,17 +77,11 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
               jsonErrors: (_model.apiResultDomain?.jsonBody ?? ''),
             );
             if (!_model.checkRefreshTokenBlocka!) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    FFAppConstants.ErrorLoadData,
-                    style: TextStyle(
-                      color: FlutterFlowTheme.of(context).primaryText,
-                    ),
-                  ),
-                  duration: Duration(milliseconds: 4000),
-                  backgroundColor: FlutterFlowTheme.of(context).error,
-                ),
+              await actions.showToast(
+                context,
+                FFAppConstants.ErrorLoadData,
+                FlutterFlowTheme.of(context).secondaryBackground,
+                FlutterFlowTheme.of(context).error,
               );
             }
             return;
@@ -102,17 +96,11 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
             jsonErrors: (_model.apiResultwkg?.jsonBody ?? ''),
           );
           if (!_model.checkRefreshTokenBlocka!) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  FFAppConstants.ErrorLoadData,
-                  style: TextStyle(
-                    color: FlutterFlowTheme.of(context).primaryText,
-                  ),
-                ),
-                duration: Duration(milliseconds: 4000),
-                backgroundColor: FlutterFlowTheme.of(context).error,
-              ),
+            await actions.showToast(
+              context,
+              FFAppConstants.ErrorLoadData,
+              FlutterFlowTheme.of(context).secondaryBackground,
+              FlutterFlowTheme.of(context).error,
             );
           }
           return;
@@ -137,343 +125,353 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Visibility(
-      visible: _model.isLoad == true,
-      child: Align(
-        alignment: AlignmentDirectional(0.0, 0.0),
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Container(
-            width: double.infinity,
-            constraints: BoxConstraints(
-              maxHeight: 350.0,
-            ),
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 4.0,
-                  color: Color(0x33000000),
-                  offset: Offset(
-                    0.0,
-                    2.0,
-                  ),
-                )
-              ],
-              borderRadius: BorderRadius.circular(12.0),
-            ),
+    return Stack(
+      children: [
+        if (_model.isLoad == true)
+          Align(
+            alignment: const AlignmentDirectional(0.0, 0.0),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: SingleChildScrollView(
-                      primary: false,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 12.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Đưa quy trình lên market',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                width: double.infinity,
+                constraints: const BoxConstraints(
+                  maxHeight: 350.0,
+                ),
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  boxShadow: const [
+                    BoxShadow(
+                      blurRadius: 4.0,
+                      color: Color(0x33000000),
+                      offset: Offset(
+                        0.0,
+                        2.0,
+                      ),
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: SingleChildScrollView(
+                          primary: false,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 12.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Đưa quy trình lên market',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                    ),
+                                    FlutterFlowIconButton(
+                                      borderRadius: 20.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 40.0,
+                                      icon: Icon(
+                                        Icons.close,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 24.0,
+                                      ),
+                                      onPressed: () async {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 20.0, 0.0, 20.0),
+                                  child: FlutterFlowDropDown<String>(
+                                    controller:
+                                        _model.dropDownDomainValueController ??=
+                                            FormFieldController<String>(
+                                      _model.dropDownDomainValue ??= '',
+                                    ),
+                                    options: List<String>.from(_model.domainList
+                                        .map((e) => e.id)
+                                        .toList()),
+                                    optionLabels: _model.domainList
+                                        .map((e) => e.name)
+                                        .toList(),
+                                    onChanged: (val) => setState(
+                                        () => _model.dropDownDomainValue = val),
+                                    width: double.infinity,
+                                    height: 56.0,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    hintText: 'Vui lòng chọn lĩnh vực',
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_down_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    elevation: 2.0,
+                                    borderColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    borderWidth: 2.0,
+                                    borderRadius: 8.0,
+                                    margin: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 4.0, 16.0, 4.0),
+                                    hidesUnderline: true,
+                                    isOverButton: true,
+                                    isSearchable: false,
+                                    isMultiSelect: false,
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: FlutterFlowDropDown<String>(
+                                  controller:
+                                      _model.dropDownCategoryValueController ??=
+                                          FormFieldController<String>(
+                                    _model.dropDownCategoryValue ??= '',
+                                  ),
+                                  options: List<String>.from(_model.categoryList
+                                      .map((e) => e.id)
+                                      .toList()),
+                                  optionLabels: _model.categoryList
+                                      .map((e) => e.name)
+                                      .toList(),
+                                  onChanged: (val) => setState(
+                                      () => _model.dropDownCategoryValue = val),
+                                  width: double.infinity,
+                                  height: 56.0,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
                                       .override(
                                         fontFamily: 'Nunito Sans',
-                                        fontSize: 18.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  hintText: 'Vui lòng chọn danh mục',
+                                  icon: Icon(
+                                    Icons.keyboard_arrow_down_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  elevation: 2.0,
+                                  borderColor:
+                                      FlutterFlowTheme.of(context).alternate,
+                                  borderWidth: 2.0,
+                                  borderRadius: 8.0,
+                                  margin: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 4.0, 16.0, 4.0),
+                                  hidesUnderline: true,
+                                  isOverButton: true,
+                                  isSearchable: false,
+                                  isMultiSelect: false,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  Navigator.pop(context);
+                                },
+                                text: 'Đóng',
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        fontSize: 14.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.normal,
                                       ),
-                                ),
-                                FlutterFlowIconButton(
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  icon: Icon(
-                                    Icons.close,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
                                   ),
-                                  onPressed: () async {
-                                    Navigator.pop(context);
-                                  },
+                                  borderRadius: BorderRadius.circular(20.0),
                                 ),
-                              ],
-                            ),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 20.0, 0.0, 20.0),
-                              child: FlutterFlowDropDown<String>(
-                                controller:
-                                    _model.dropDownDomainValueController ??=
-                                        FormFieldController<String>(
-                                  _model.dropDownDomainValue ??= '',
-                                ),
-                                options: List<String>.from(_model.domainList
-                                    .map((e) => e.id)
-                                    .toList()),
-                                optionLabels: _model.domainList
-                                    .map((e) => e.name)
-                                    .toList(),
-                                onChanged: (val) => setState(
-                                    () => _model.dropDownDomainValue = val),
-                                width: double.infinity,
-                                height: 56.0,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                                hintText: 'Vui lòng chọn lĩnh vực',
-                                icon: Icon(
-                                  Icons.keyboard_arrow_down_rounded,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 24.0,
-                                ),
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                elevation: 2.0,
-                                borderColor:
-                                    FlutterFlowTheme.of(context).alternate,
-                                borderWidth: 2.0,
-                                borderRadius: 8.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 4.0, 16.0, 4.0),
-                                hidesUnderline: true,
-                                isOverButton: true,
-                                isSearchable: false,
-                                isMultiSelect: false,
                               ),
                             ),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: FlutterFlowDropDown<String>(
-                              controller:
-                                  _model.dropDownCategoryValueController ??=
-                                      FormFieldController<String>(
-                                _model.dropDownCategoryValue ??= '',
-                              ),
-                              options: List<String>.from(_model.categoryList
-                                  .map((e) => e.id)
-                                  .toList()),
-                              optionLabels: _model.categoryList
-                                  .map((e) => e.name)
-                                  .toList(),
-                              onChanged: (val) => setState(
-                                  () => _model.dropDownCategoryValue = val),
-                              width: double.infinity,
-                              height: 56.0,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintText: 'Vui lòng chọn danh mục',
-                              icon: Icon(
-                                Icons.keyboard_arrow_down_rounded,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 24.0,
-                              ),
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              elevation: 2.0,
-                              borderColor:
-                                  FlutterFlowTheme.of(context).alternate,
-                              borderWidth: 2.0,
-                              borderRadius: 8.0,
-                              margin: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 4.0, 16.0, 4.0),
-                              hidesUnderline: true,
-                              isOverButton: true,
-                              isSearchable: false,
-                              isMultiSelect: false,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              Navigator.pop(context);
-                            },
-                            text: 'Đóng',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              var _shouldSetState = false;
+                            Expanded(
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  var shouldSetState = false;
 
-                              setState(() {});
-                              if ((_model.dropDownDomainValue != null &&
-                                      _model.dropDownDomainValue != '') &&
-                                  (_model.dropDownCategoryValue != null &&
-                                      _model.dropDownCategoryValue != '') &&
-                                  (_model.dropDownDomainValue != ' ') &&
-                                  (_model.dropDownCategoryValue != ' ')) {
-                                setState(() {});
-                              } else {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      content: Text(
-                                          'Vui lòng chọn lĩnh vực và bộ phận!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
+                                  setState(() {});
+                                  if ((_model.dropDownDomainValue != null &&
+                                          _model.dropDownDomainValue != '') &&
+                                      (_model.dropDownCategoryValue != null &&
+                                          _model.dropDownCategoryValue != '') &&
+                                      (_model.dropDownDomainValue != ' ') &&
+                                      (_model.dropDownCategoryValue != ' ')) {
+                                    setState(() {});
+                                  } else {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          content: const Text(
+                                              'Vui lòng chọn lĩnh vực và bộ phận!'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: const Text('Ok'),
+                                            ),
+                                          ],
+                                        );
+                                      },
                                     );
-                                  },
-                                );
-                                if (_shouldSetState) setState(() {});
-                                return;
-                              }
+                                    if (shouldSetState) setState(() {});
+                                    return;
+                                  }
 
-                              _model.apiResult16g = await ProcedureTemplateGroup
-                                  .workflowMarketCall
-                                  .call(
-                                accessToken: FFAppState().accessToken,
-                                workflowId: widget!.id,
-                                categoryId: _model.dropDownCategoryValue,
-                                domainId: _model.dropDownDomainValue,
-                              );
+                                  _model.apiResult16g =
+                                      await ProcedureTemplateGroup
+                                          .workflowMarketCall
+                                          .call(
+                                    accessToken: FFAppState().accessToken,
+                                    workflowId: widget.id,
+                                    categoryId: _model.dropDownCategoryValue,
+                                    domainId: _model.dropDownDomainValue,
+                                  );
 
-                              _shouldSetState = true;
-                              if ((_model.apiResult16g?.succeeded ?? true)) {
-                                context.pushNamed(
-                                  'ProcedureList',
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
-                                  },
-                                );
+                                  shouldSetState = true;
+                                  if ((_model.apiResult16g?.succeeded ??
+                                      true)) {
+                                    context.pushNamed(
+                                      'ProcedureList',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
 
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
+                                    await actions.showToast(
+                                      context,
                                       'Thêm quy trình vào market thành công!',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                );
-                              } else {
-                                Navigator.pop(context);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
+                                      FlutterFlowTheme.of(context).secondary,
+                                      FlutterFlowTheme.of(context).secondary,
+                                    );
+                                  } else {
+                                    Navigator.pop(context);
+                                    await actions.showToast(
+                                      context,
                                       'Thêm quy trình vào market thành công!',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                );
-                                if (_shouldSetState) setState(() {});
-                                return;
-                              }
+                                      FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      FlutterFlowTheme.of(context).error,
+                                    );
+                                    if (shouldSetState) setState(() {});
+                                    return;
+                                  }
 
-                              if (_shouldSetState) setState(() {});
-                            },
-                            text: 'Xác nhận',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
+                                  if (shouldSetState) setState(() {});
+                                },
+                                text: 'Xác nhận',
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: Colors.white,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
                                   ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
                               ),
-                              borderRadius: BorderRadius.circular(20.0),
                             ),
-                          ),
+                          ].divide(const SizedBox(width: 12.0)),
                         ),
-                      ].divide(SizedBox(width: 12.0)),
-                    ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ),
-        ),
-      ),
+        if (_model.isLoad == false)
+          Container(
+            width: MediaQuery.sizeOf(context).width * 1.0,
+            height: MediaQuery.sizeOf(context).height * 1.0,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+            ),
+            child: SizedBox(
+              width: MediaQuery.sizeOf(context).width * 1.0,
+              height: MediaQuery.sizeOf(context).height * 1.0,
+              child: custom_widgets.LoadingPageWidget(
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 1.0,
+                size: 50.0,
+                color: FlutterFlowTheme.of(context).primary,
+              ),
+            ),
+          ),
+      ],
     );
   }
 }

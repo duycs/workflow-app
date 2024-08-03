@@ -1,21 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/upload_data.dart';
-import '/tasks/popup_see_more/popup_see_more_widget.dart';
-import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'detail_action_type_upload_file_widget.dart'
     show DetailActionTypeUploadFileWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class DetailActionTypeUploadFileModel
     extends FlutterFlowModel<DetailActionTypeUploadFileWidget> {
@@ -56,6 +44,19 @@ class DetailActionTypeUploadFileModel
       listStringId[index] = updateFn(listStringId[index]);
 
   bool isShow = false;
+
+  List<FileIDDataTypeStruct> listFildIdDetail = [];
+  void addToListFildIdDetail(FileIDDataTypeStruct item) =>
+      listFildIdDetail.add(item);
+  void removeFromListFildIdDetail(FileIDDataTypeStruct item) =>
+      listFildIdDetail.remove(item);
+  void removeAtIndexFromListFildIdDetail(int index) =>
+      listFildIdDetail.removeAt(index);
+  void insertAtIndexInListFildIdDetail(int index, FileIDDataTypeStruct item) =>
+      listFildIdDetail.insert(index, item);
+  void updateListFildIdDetailAtIndex(
+          int index, Function(FileIDDataTypeStruct) updateFn) =>
+      listFildIdDetail[index] = updateFn(listFildIdDetail[index]);
 
   ///  State fields for stateful widgets in this component.
 

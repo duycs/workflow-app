@@ -1,37 +1,26 @@
 import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
+import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'training_rank_detail_model.dart';
-export 'training_rank_detail_model.dart';
+import 'training_rank_update_model.dart';
+export 'training_rank_update_model.dart';
 
-class TrainingRankDetailWidget extends StatefulWidget {
-  const TrainingRankDetailWidget({
-    super.key,
-    required this.tenCapBac,
-    required this.moTa,
-    required this.phongBan,
-  });
-
-  final String? tenCapBac;
-  final String? moTa;
-  final String? phongBan;
+class TrainingRankUpdateWidget extends StatefulWidget {
+  const TrainingRankUpdateWidget({super.key});
 
   @override
-  State<TrainingRankDetailWidget> createState() =>
-      _TrainingRankDetailWidgetState();
+  State<TrainingRankUpdateWidget> createState() =>
+      _TrainingRankUpdateWidgetState();
 }
 
-class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
+class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
     with TickerProviderStateMixin {
-  late TrainingRankDetailModel _model;
+  late TrainingRankUpdateModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -40,17 +29,23 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TrainingRankDetailModel());
+    _model = createModel(context, () => TrainingRankUpdateModel());
 
-    _model.textController1 ??= TextEditingController();
+    _model.yourNameTextController ??= TextEditingController();
+    _model.yourNameFocusNode ??= FocusNode();
+
+    _model.myBioTextController ??= TextEditingController();
+    _model.myBioFocusNode ??= FocusNode();
+
+    _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.switchValue1 = true;
-    _model.textController2 ??= TextEditingController();
+    _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
     _model.switchValue2 = true;
-    _model.textController3 ??= TextEditingController();
+    _model.textController5 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
 
     _model.switchValue3 = true;
@@ -70,8 +65,8 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 60.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 60.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -116,7 +111,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
           },
         ),
         title: Text(
-          'Chi tiết cấp bậc đào tạo',
+          'Chỉnh sửa cấp bậc đào tạo',
           style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Nunito Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -124,7 +119,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                 letterSpacing: 0.0,
               ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: true,
         elevation: 1.0,
       ),
@@ -137,17 +132,16 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 0.0),
                             child: Container(
                               width: 100.0,
@@ -157,12 +151,12 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                 shape: BoxShape.circle,
                               ),
                               child: Padding(
-                                padding: EdgeInsets.all(2.0),
+                                padding: const EdgeInsets.all(2.0),
                                 child: Container(
                                   width: 90.0,
                                   height: 90.0,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(
@@ -178,14 +172,14 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
                       child: Container(
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).alternate,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -206,96 +200,190 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
-                            ].divide(SizedBox(width: 8.0)),
+                            ].divide(const SizedBox(width: 8.0)),
                           ),
                         ),
                       ),
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 4.0),
-                      child: Text(
-                        'Tên cấp bậc đào tạo:',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Nunito Sans',
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
+                      child: TextFormField(
+                        controller: _model.yourNameTextController,
+                        focusNode: _model.yourNameFocusNode,
+                        textCapitalization: TextCapitalization.words,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: 'Nhập tên cấc bậc đào tạo',
+                          labelStyle:
+                              FlutterFlowTheme.of(context).bodyLarge.override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                          hintText: 'Vd: cấp bậc tiểu học...',
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              width: 1.0,
                             ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 16.0),
-                      child: Text(
-                        valueOrDefault<String>(
-                          widget!.tenCapBac,
-                          '\" \"',
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          filled: true,
+                          fillColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                              20.0, 24.0, 0.0, 24.0),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        style: FlutterFlowTheme.of(context).labelSmall.override(
                               fontFamily: 'Nunito Sans',
-                              color: FlutterFlowTheme.of(context).secondaryText,
                               fontSize: 14.0,
                               letterSpacing: 0.0,
+                              fontWeight: FontWeight.normal,
                             ),
+                        validator: _model.yourNameTextControllerValidator
+                            .asValidator(context),
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 4.0, 0.0, 0.0),
-                      child: Text(
-                        'Mô tả:',
+                      padding: const EdgeInsets.all(20.0),
+                      child: TextFormField(
+                        controller: _model.myBioTextController,
+                        focusNode: _model.myBioFocusNode,
+                        textCapitalization: TextCapitalization.sentences,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: 'Mô tả',
+                          labelStyle:
+                              FlutterFlowTheme.of(context).bodyLarge.override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                          hintText: 'Nhập mô tả...',
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          filled: true,
+                          fillColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                              20.0, 24.0, 0.0, 24.0),
+                        ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
                             ),
+                        textAlign: TextAlign.start,
+                        maxLines: 3,
+                        validator: _model.myBioTextControllerValidator
+                            .asValidator(context),
                       ),
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 16.0),
-                      child: Text(
-                        valueOrDefault<String>(
-                          widget!.moTa,
-                          '\" \"',
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
+                      child: FlutterFlowDropDown<String>(
+                        controller: _model.stateValueController ??=
+                            FormFieldController<String>(null),
+                        options: const [
+                          'Kinh doanh',
+                          'Marketing',
+                          ' Công nghệ',
+                          'Kế toán',
+                          'Hành chính nhân sự'
+                        ],
+                        onChanged: (val) =>
+                            setState(() => _model.stateValue = val),
+                        width: double.infinity,
+                        height: 56.0,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .bodyMedium
+                            .override(
                               fontFamily: 'Nunito Sans',
                               color: FlutterFlowTheme.of(context).secondaryText,
                               letterSpacing: 0.0,
                             ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 4.0, 0.0, 0.0),
-                      child: Text(
-                        'Phòng ban:',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Nunito Sans',
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 16.0),
-                      child: Text(
-                        valueOrDefault<String>(
-                          widget!.phongBan,
-                          '\" \"',
+                        hintText: 'Chọn phòng ban',
+                        icon: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          size: 15.0,
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Nunito Sans',
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              letterSpacing: 0.0,
-                            ),
+                        fillColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        elevation: 1.0,
+                        borderColor: FlutterFlowTheme.of(context).alternate,
+                        borderWidth: 1.0,
+                        borderRadius: 8.0,
+                        margin: const EdgeInsetsDirectional.fromSTEB(
+                            20.0, 4.0, 12.0, 4.0),
+                        hidesUnderline: true,
+                        isSearchable: false,
+                        isMultiSelect: false,
                       ),
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
@@ -308,12 +396,12 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(2.0),
+                          padding: const EdgeInsets.all(2.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Icon(
                                   Icons.power_settings_new_rounded,
@@ -327,7 +415,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                   value: _model.switchListTileValue ??= true,
                                   onChanged: (newValue) async {
                                     setState(() =>
-                                        _model.switchListTileValue = newValue!);
+                                        _model.switchListTileValue = newValue);
                                   },
                                   title: Text(
                                     'Trạng thái hoạt động',
@@ -348,7 +436,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                   controlAffinity:
                                       ListTileControlAffinity.trailing,
                                   contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
+                                      const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 4.0, 0.0),
                                 ),
                               ),
@@ -359,14 +447,14 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                           animationsMap['containerOnPageLoadAnimation']!),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: Container(
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).alternate,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -384,15 +472,16 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                       fontFamily: 'Nunito Sans',
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
                               ),
-                            ].divide(SizedBox(width: 8.0)),
+                            ].divide(const SizedBox(width: 8.0)),
                           ),
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           20.0, 16.0, 20.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -401,9 +490,9 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                           Expanded(
                             child: Container(
                               width: 200.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: TextFormField(
-                                controller: _model.textController1,
+                                controller: _model.textController3,
                                 focusNode: _model.textFieldFocusNode1,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -461,11 +550,11 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
-                                      color: Color(0xFFDBE2E7),
+                                      color: const Color(0xFFDBE2E7),
                                       letterSpacing: 0.0,
                                     ),
                                 keyboardType: TextInputType.number,
-                                validator: _model.textController1Validator
+                                validator: _model.textController3Validator
                                     .asValidator(context),
                               ),
                             ),
@@ -473,7 +562,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                           Switch.adaptive(
                             value: _model.switchValue1!,
                             onChanged: (newValue) async {
-                              setState(() => _model.switchValue1 = newValue!);
+                              setState(() => _model.switchValue1 = newValue);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -483,11 +572,11 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                             inactiveThumbColor:
                                 FlutterFlowTheme.of(context).secondaryText,
                           ),
-                        ].divide(SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           20.0, 16.0, 20.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -496,9 +585,9 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                           Expanded(
                             child: Container(
                               width: 200.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: TextFormField(
-                                controller: _model.textController2,
+                                controller: _model.textController4,
                                 focusNode: _model.textFieldFocusNode2,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -556,11 +645,11 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
-                                      color: Color(0xFFDBE2E7),
+                                      color: const Color(0xFFDBE2E7),
                                       letterSpacing: 0.0,
                                     ),
                                 keyboardType: TextInputType.number,
-                                validator: _model.textController2Validator
+                                validator: _model.textController4Validator
                                     .asValidator(context),
                               ),
                             ),
@@ -568,7 +657,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                           Switch.adaptive(
                             value: _model.switchValue2!,
                             onChanged: (newValue) async {
-                              setState(() => _model.switchValue2 = newValue!);
+                              setState(() => _model.switchValue2 = newValue);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -578,11 +667,11 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                             inactiveThumbColor:
                                 FlutterFlowTheme.of(context).secondaryText,
                           ),
-                        ].divide(SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           20.0, 16.0, 20.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -591,9 +680,9 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                           Expanded(
                             child: Container(
                               width: 200.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: TextFormField(
-                                controller: _model.textController3,
+                                controller: _model.textController5,
                                 focusNode: _model.textFieldFocusNode3,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -651,11 +740,11 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
-                                      color: Color(0xFFDBE2E7),
+                                      color: const Color(0xFFDBE2E7),
                                       letterSpacing: 0.0,
                                     ),
                                 keyboardType: TextInputType.number,
-                                validator: _model.textController3Validator
+                                validator: _model.textController5Validator
                                     .asValidator(context),
                               ),
                             ),
@@ -663,7 +752,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                           Switch.adaptive(
                             value: _model.switchValue3!,
                             onChanged: (newValue) async {
-                              setState(() => _model.switchValue3 = newValue!);
+                              setState(() => _model.switchValue3 = newValue);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -673,7 +762,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                             inactiveThumbColor:
                                 FlutterFlowTheme.of(context).secondaryText,
                           ),
-                        ].divide(SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
                       ),
                     ),
                   ],
@@ -681,20 +770,20 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.0, 0.05),
+              alignment: const AlignmentDirectional(0.0, 0.05),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
                 child: FFButtonWidget(
                   onPressed: () {
-                    print('ChinhSua pressed ...');
+                    print('Button pressed ...');
                   },
-                  text: 'Chỉnh sửa',
+                  text: 'Lưu',
                   options: FFButtonOptions(
                     width: 270.0,
                     height: 50.0,
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
@@ -704,7 +793,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                               letterSpacing: 0.0,
                             ),
                     elevation: 2.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

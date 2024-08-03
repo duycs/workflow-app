@@ -1,18 +1,17 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/check_box_toggle/check_box_toggle_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dropdown_user_list_model.dart';
 export 'dropdown_user_list_model.dart';
@@ -51,7 +50,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
       _model.tokenReloadDropdownUserList =
           await action_blocks.tokenReload(context);
       if (_model.tokenReloadDropdownUserList!) {
-        if (widget!.dataPar!.length > 0) {
+        if (widget.dataPar!.isNotEmpty) {
           _model.apiResultList = await StaffGroup.getStaffListCall.call(
             accessToken: FFAppState().accessToken,
             filter: () {
@@ -99,9 +98,9 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
           _model.loop = 0;
           setState(() {});
           while (_model.loop < _model.staffList.length) {
-            while (_model.loop2 < widget!.dataPar!.length) {
+            while (_model.loop2 < widget.dataPar!.length) {
               if (_model.staffList[_model.loop].id ==
-                  (widget!.dataPar?[_model.loop2])?.staffsId?.id) {
+                  (widget.dataPar?[_model.loop2])?.staffsId.id) {
                 _model.updateStaffListAtIndex(
                   _model.loop,
                   (e) => e..check = true,
@@ -198,17 +197,17 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
           width: double.infinity,
-          constraints: BoxConstraints(
-            maxHeight: 750.0,
+          constraints: const BoxConstraints(
+            maxHeight: 800.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -221,32 +220,51 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Stack(
-            alignment: AlignmentDirectional(0.0, 1.0),
+            alignment: const AlignmentDirectional(0.0, 1.0),
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 80.0),
-                child: SingleChildScrollView(
-                  primary: false,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 12.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
+              if (_model.checkLoading == false)
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: custom_widgets.LoadingPageWidget(
+                      width: double.infinity,
+                      height: double.infinity,
+                      size: 45.0,
+                      color: FlutterFlowTheme.of(context).primary,
+                    ),
+                  ),
+                ),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 16.0, 0.0, 12.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 0.0, 0.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.textNameTextController,
                                     focusNode: _model.textNameFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.textNameTextController',
-                                      Duration(milliseconds: 2000),
+                                      const Duration(milliseconds: 2000),
                                       () => setState(() {}),
                                     ),
                                     autofocus: false,
@@ -303,9 +321,9 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                       contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               16.0, 0.0, 0.0, 0.0),
-                                      prefixIcon: Icon(
+                                      prefixIcon: const Icon(
                                         Icons.search_rounded,
                                       ),
                                       suffixIcon: _model.textNameTextController!
@@ -316,7 +334,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                     ?.clear();
                                                 setState(() {});
                                               },
-                                              child: Icon(
+                                              child: const Icon(
                                                 Icons.clear,
                                                 size: 22,
                                               ),
@@ -334,128 +352,128 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                         .asValidator(context),
                                   ),
                                 ),
-                                FlutterFlowIconButton(
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  icon: Icon(
-                                    Icons.close,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
-                                  ),
-                                  onPressed: () async {
-                                    Navigator.pop(context);
-                                  },
+                              ),
+                              FlutterFlowIconButton(
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 40.0,
+                                icon: Icon(
+                                  Icons.close,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
                                 ),
-                              ],
-                            ),
+                                onPressed: () async {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 8.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                if (_model.staffList
-                                        .where((e) => e.check == true)
-                                        .toList()
-                                        .length ==
-                                    _model.staffList.length)
-                                  Switch.adaptive(
-                                    value: _model.switch1Value!,
-                                    onChanged: (newValue) async {
-                                      setState(() =>
-                                          _model.switch1Value = newValue!);
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 0.0, 8.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              if (_model.staffList
+                                      .where((e) => e.check == true)
+                                      .toList()
+                                      .length ==
+                                  _model.staffList.length)
+                                Switch.adaptive(
+                                  value: _model.switch1Value!,
+                                  onChanged: (newValue) async {
+                                    setState(
+                                        () => _model.switch1Value = newValue);
 
-                                      if (!newValue!) {
-                                        while (_model.loop <
-                                            _model.staffList.length) {
-                                          _model.updateStaffListAtIndex(
-                                            _model.loop,
-                                            (e) => e..check = false,
-                                          );
-                                          setState(() {});
-                                          _model.loop = _model.loop + 1;
-                                          setState(() {});
-                                        }
-                                        _model.loop = 0;
+                                    if (!newValue) {
+                                      while (_model.loop <
+                                          _model.staffList.length) {
+                                        _model.updateStaffListAtIndex(
+                                          _model.loop,
+                                          (e) => e..check = false,
+                                        );
                                         setState(() {});
-                                        setState(() {
-                                          _model.switch1Value = true;
-                                        });
-                                      }
-                                    },
-                                    activeColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    activeTrackColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    inactiveTrackColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    inactiveThumbColor:
-                                        FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                  ),
-                                if (_model.staffList
-                                        .where((e) => e.check == true)
-                                        .toList()
-                                        .length !=
-                                    _model.staffList.length)
-                                  Switch.adaptive(
-                                    value: _model.switch2Value!,
-                                    onChanged: (newValue) async {
-                                      setState(() =>
-                                          _model.switch2Value = newValue!);
-                                      if (newValue!) {
-                                        while (_model.loop <
-                                            _model.staffList.length) {
-                                          _model.updateStaffListAtIndex(
-                                            _model.loop,
-                                            (e) => e..check = true,
-                                          );
-                                          setState(() {});
-                                          _model.loop = _model.loop + 1;
-                                          setState(() {});
-                                        }
-                                        _model.loop = 0;
+                                        _model.loop = _model.loop + 1;
                                         setState(() {});
-                                        setState(() {
-                                          _model.switch2Value = false;
-                                        });
                                       }
-                                    },
-                                    activeColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    activeTrackColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    inactiveTrackColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    inactiveThumbColor:
-                                        FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                  ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Chọn tất cả',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
+                                      _model.loop = 0;
+                                      setState(() {});
+                                      setState(() {
+                                        _model.switch1Value = true;
+                                      });
+                                    }
+                                  },
+                                  activeColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  activeTrackColor:
+                                      FlutterFlowTheme.of(context).alternate,
+                                  inactiveTrackColor:
+                                      FlutterFlowTheme.of(context).alternate,
+                                  inactiveThumbColor:
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
-                              ],
-                            ),
+                              if (_model.staffList
+                                      .where((e) => e.check == true)
+                                      .toList()
+                                      .length !=
+                                  _model.staffList.length)
+                                Switch.adaptive(
+                                  value: _model.switch2Value!,
+                                  onChanged: (newValue) async {
+                                    setState(
+                                        () => _model.switch2Value = newValue);
+                                    if (newValue) {
+                                      while (_model.loop <
+                                          _model.staffList.length) {
+                                        _model.updateStaffListAtIndex(
+                                          _model.loop,
+                                          (e) => e..check = true,
+                                        );
+                                        setState(() {});
+                                        _model.loop = _model.loop + 1;
+                                        setState(() {});
+                                      }
+                                      _model.loop = 0;
+                                      setState(() {});
+                                      setState(() {
+                                        _model.switch2Value = false;
+                                      });
+                                    }
+                                  },
+                                  activeColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  activeTrackColor:
+                                      FlutterFlowTheme.of(context).alternate,
+                                  inactiveTrackColor:
+                                      FlutterFlowTheme.of(context).alternate,
+                                  inactiveThumbColor:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Chọn tất cả',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                            ],
                           ),
-                          if (_model.isLoad == true)
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 16.0),
+                        ),
+                        if (_model.isLoad == true)
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 8.0, 16.0),
                               child: Builder(
                                 builder: (context) {
                                   final listView = _model.staffList
@@ -469,6 +487,9 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                               _model.textNameTextController.text
                                                   .toLowerCase()))
                                       .toList();
+                                  if (listView.isEmpty) {
+                                    return const DataNotFoundWidget();
+                                  }
 
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
@@ -476,12 +497,12 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                     scrollDirection: Axis.vertical,
                                     itemCount: listView.length,
                                     separatorBuilder: (_, __) =>
-                                        SizedBox(height: 16.0),
+                                        const SizedBox(height: 16.0),
                                     itemBuilder: (context, listViewIndex) {
                                       final listViewItem =
                                           listView[listViewIndex];
                                       return Container(
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -535,7 +556,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 4.0, 0.0),
                                                   child: ClipRRect(
@@ -543,7 +564,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                         BorderRadius.circular(
                                                             40.0),
                                                     child: Image.network(
-                                                      '${FFAppConstants.ApiBaseUrl}/assets/${listViewItem.userId.avatar != null && listViewItem.userId.avatar != '' ? listViewItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                      '${FFAppConstants.ApiBaseUrl}/assets/${listViewItem.userId.avatar != '' ? listViewItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                       width: 32.0,
                                                       height: 32.0,
                                                       fit: BoxFit.cover,
@@ -562,7 +583,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(4.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Column(
@@ -594,7 +615,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       4.0,
@@ -632,179 +653,157 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                 },
                               ),
                             ),
-                          Divider(
-                            height: 1.0,
-                            thickness: 1.0,
-                            color: FlutterFlowTheme.of(context).alternate,
                           ),
-                          if ((_model.staffList
-                                      .where((e) =>
-                                          e.userId.firstName
-                                              .toLowerCase()
-                                              .contains(_model
-                                                  .textNameTextController.text
-                                                  .toLowerCase()) ||
-                                          e.userId.email.toLowerCase().contains(
-                                              _model.textNameTextController.text
-                                                  .toLowerCase()))
-                                      .toList()
-                                      .length <=
-                                  0) &&
-                              (_model.isLoad == true))
-                            Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 100.0, 0.0, 50.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    FaIcon(
-                                      FontAwesomeIcons.database,
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      size: 55.0,
+                        if ((_model.staffList
+                                    .where((e) =>
+                                        e.userId.firstName
+                                            .toLowerCase()
+                                            .contains(_model
+                                                .textNameTextController.text
+                                                .toLowerCase()) ||
+                                        e.userId.email.toLowerCase().contains(
+                                            _model.textNameTextController.text
+                                                .toLowerCase()))
+                                    .toList().isEmpty) &&
+                            (_model.isLoad == true) &&
+                            ('1' == '2'))
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 100.0, 0.0, 50.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  FaIcon(
+                                    FontAwesomeIcons.database,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    size: 55.0,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 15.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Không có dữ liệu !',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 15.0, 0.0, 0.0),
-                                      child: Text(
-                                        'Không có dữ liệu !',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              fontSize: 18.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(15.0, 12.0, 15.0, 24.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          Navigator.pop(context);
-                        },
-                        text: 'Đóng',
-                        options: FFButtonOptions(
-                          height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .titleSmall
-                              .override(
-                                fontFamily: 'Nunito Sans',
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                fontSize: 14.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.normal,
-                              ),
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
                           ),
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                      ),
+                      ],
                     ),
-                    Expanded(
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          setState(() {});
-                          while (_model.loop < _model.staffList.length) {
-                            if (_model.staffList[_model.loop].check == true) {
-                              _model.addToCallBackData(StaffListStruct(
-                                id: _model.staffList[_model.loop].id,
-                                userId: UserStruct(
-                                  firstName: _model
-                                      .staffList[_model.loop].userId.firstName,
-                                ),
-                                departmentId: DepartmentListStruct(
-                                  name: _model
-                                      .staffList[_model.loop].departmentId.name,
-                                ),
-                              ));
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15.0, 12.0, 15.0, 24.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              Navigator.pop(context);
+                            },
+                            text: 'Đóng',
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                              ),
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
                               setState(() {});
-                            }
-                            _model.loop = _model.loop + 1;
-                            setState(() {});
-                          }
-                          _model.loop = 0;
-                          setState(() {});
-                          await widget.callback?.call(
-                            _model.callBackData,
-                          );
-                          Navigator.pop(context);
-                        },
-                        text: 'Xác nhận',
-                        options: FFButtonOptions(
-                          height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
+                              while (_model.loop < _model.staffList.length) {
+                                if (_model.staffList[_model.loop].check ==
+                                    true) {
+                                  _model.addToCallBackData(StaffListStruct(
+                                    id: _model.staffList[_model.loop].id,
+                                    userId: UserStruct(
+                                      firstName: _model.staffList[_model.loop]
+                                          .userId.firstName,
+                                    ),
+                                    departmentId: DepartmentListStruct(
+                                      name: _model.staffList[_model.loop]
+                                          .departmentId.name,
+                                    ),
+                                  ));
+                                  setState(() {});
+                                }
+                                _model.loop = _model.loop + 1;
+                                setState(() {});
+                              }
+                              _model.loop = 0;
+                              setState(() {});
+                              await widget.callback?.call(
+                                _model.callBackData,
+                              );
+                              Navigator.pop(context);
+                            },
+                            text: 'Xác nhận',
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
                                     fontFamily: 'Nunito Sans',
                                     color: Colors.white,
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
-                          elevation: 3.0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
                           ),
-                          borderRadius: BorderRadius.circular(20.0),
                         ),
-                      ),
+                      ].divide(const SizedBox(width: 12.0)),
                     ),
-                  ].divide(SizedBox(width: 12.0)),
-                ),
+                  ),
+                ],
               ),
-              if (_model.checkLoading == false)
-                Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: custom_widgets.LoadingPageWidget(
-                      width: double.infinity,
-                      height: double.infinity,
-                      size: 45.0,
-                      color: FlutterFlowTheme.of(context).primary,
-                    ),
-                  ),
-                ),
             ],
           ),
         ),

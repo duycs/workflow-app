@@ -1,18 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/lesson/filter_lesson/filter_lesson_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'lessons_list_model.dart';
@@ -86,12 +81,12 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                   ParamType.String,
                 ),
                 'checkPage': serializeParam(
-                  widget!.checkpage,
+                  widget.checkpage,
                   ParamType.String,
                 ),
               }.withoutNulls,
               extra: <String, dynamic>{
-                kTransitionInfoKey: TransitionInfo(
+                kTransitionInfoKey: const TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.fade,
                   duration: Duration(milliseconds: 0),
@@ -124,7 +119,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
               context.goNamed(
                 'Home',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
+                  kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -142,7 +137,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -151,27 +146,27 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
           child: Visibility(
             visible: _model.isShow == true,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 12.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 12.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: Container(
+                          child: SizedBox(
                             width: double.infinity,
                             child: TextFormField(
                               controller: _model.nameSearchTextController,
                               focusNode: _model.nameSearchFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.nameSearchTextController',
-                                Duration(milliseconds: 500),
+                                const Duration(milliseconds: 500),
                                 () async {
                                   setState(() => _model.listViewPagingController
                                       ?.refresh());
@@ -228,9 +223,9 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .primaryBackground,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 0.0),
-                                prefixIcon: Icon(
+                                prefixIcon: const Icon(
                                   Icons.search,
                                 ),
                                 suffixIcon: _model.nameSearchTextController!
@@ -331,14 +326,13 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                       ],
                     ),
                   ),
-                  if ((_model.nameSearchTextController.text != null &&
-                          _model.nameSearchTextController.text != '') ||
-                      (_model.status != null && _model.status != '') ||
-                      (_model.dateStart != null && _model.dateStart != '') ||
-                      (_model.dateEnd != null && _model.dateEnd != ''))
+                  if ((_model.nameSearchTextController.text != '') ||
+                      (_model.status != '') ||
+                      (_model.dateStart != '') ||
+                      (_model.dateEnd != ''))
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 24.0, 4.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 24.0, 4.0),
                       child: Text(
                         '#Kết quả tìm kiếm theo bộ lọc',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -358,25 +352,25 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                           filter: '{\"_and\":[${'{\"organization_id\":{\"_eq\":\"${getJsonField(
                             FFAppState().staffLogin,
                             r'''$.organization_id''',
-                          ).toString()}\"}}'}${_model.nameSearchTextController.text != null && _model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}' : ' '}${(_model.status != null && _model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_icontains\":\"${_model.status}\"}}' : ' '}${(_model.dateStart != null && _model.dateStart != '') && (_model.dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${(_model.dateEnd != null && _model.dateEnd != '') && (_model.dateEnd != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
+                          ).toString()}\"}}'}${_model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_icontains\":\"${_model.status}\"}}' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
                               return DateTime.parse(var1)
-                                  .add(Duration(days: 1))
+                                  .add(const Duration(days: 1))
                                   .toString();
-                            }(_model.dateEnd)}\"}}' : ' '}${_model.programId != null && _model.programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"${_model.programId}\"}}}}' : ' '}]}',
+                            }(_model.dateEnd)}\"}}' : ' '}${_model.programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"${_model.programId}\"}}}}' : ' '}]}',
                           offset: nextPageMarker.nextPageNumber * 20,
                           limit: 20,
                         ),
                       ),
-                      padding: EdgeInsets.fromLTRB(
+                      padding: const EdgeInsets.fromLTRB(
                         0,
                         0,
                         0,
-                        30.0,
+                        48.0,
                       ),
                       primary: false,
                       reverse: false,
                       scrollDirection: Axis.vertical,
-                      separatorBuilder: (_, __) => SizedBox(height: 12.0),
+                      separatorBuilder: (_, __) => const SizedBox(height: 12.0),
                       builderDelegate: PagedChildBuilderDelegate<dynamic>(
                         // Customize what your widget looks like when it's loading the first page.
                         firstPageProgressIndicatorBuilder: (_) => Center(
@@ -402,8 +396,8 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                             ),
                           ),
                         ),
-                        noItemsFoundIndicatorBuilder: (_) => Center(
-                          child: Container(
+                        noItemsFoundIndicatorBuilder: (_) => const Center(
+                          child: SizedBox(
                             width: double.infinity,
                             child: DataNotFoundWidget(),
                           ),
@@ -412,7 +406,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                           final listItemsItem = _model.listViewPagingController!
                               .itemList![listItemsIndex];
                           return Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -432,12 +426,12 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                       ParamType.String,
                                     ),
                                     'checkPage': serializeParam(
-                                      widget!.checkpage,
+                                      widget.checkpage,
                                       ParamType.String,
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
+                                    kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -459,7 +453,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.all(5.0),
+                                  padding: const EdgeInsets.all(5.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -467,7 +461,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.all(3.0),
+                                        padding: const EdgeInsets.all(3.0),
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(10.0),
@@ -476,7 +470,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                             width: 100.0,
                                             height: 100.0,
                                             fit: BoxFit.cover,
-                                            alignment: Alignment(0.0, 0.0),
+                                            alignment: const Alignment(0.0, 0.0),
                                             errorBuilder:
                                                 (context, error, stackTrace) =>
                                                     Image.asset(
@@ -484,7 +478,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                               width: 100.0,
                                               height: 100.0,
                                               fit: BoxFit.cover,
-                                              alignment: Alignment(0.0, 0.0),
+                                              alignment: const Alignment(0.0, 0.0),
                                             ),
                                           ),
                                         ),
@@ -493,7 +487,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                         child: Container(
                                           width: double.infinity,
                                           height: double.infinity,
-                                          decoration: BoxDecoration(),
+                                          decoration: const BoxDecoration(),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment:
@@ -503,7 +497,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                             children: [
                                               Expanded(
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 6.0),
                                                   child: Column(
@@ -551,7 +545,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                                             ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(height: 6.0)),
+                                                        const SizedBox(height: 6.0)),
                                                   ),
                                                 ),
                                               ),
@@ -570,7 +564,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -612,12 +606,12 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 2.0)),
+                                                          const SizedBox(width: 2.0)),
                                                     ),
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             1.0, 0.0),
                                                     child: Container(
                                                       height: 30.0,
@@ -636,11 +630,11 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                                                 .circular(20.0),
                                                       ),
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     0.0,
@@ -677,13 +671,13 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                                       ),
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ],
                                           ),
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 8.0)),
+                                    ].divide(const SizedBox(width: 8.0)),
                                   ),
                                 ),
                               ),

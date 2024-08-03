@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '/backend/schema/structs/index.dart';
-import 'backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'dart:convert';
@@ -189,7 +188,7 @@ class FFAppState extends ChangeNotifier {
     _biometricLogin = value;
   }
 
-  bool _IsInDevelopment = false;
+  bool _IsInDevelopment = true;
   bool get IsInDevelopment => _IsInDevelopment;
   set IsInDevelopment(bool value) {
     _IsInDevelopment = value;

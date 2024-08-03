@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -8,7 +7,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'timekeeping_management_list_filter_model.dart';
 export 'timekeeping_management_list_filter_model.dart';
@@ -58,16 +56,16 @@ class _TimekeepingManagementListFilterWidgetState
         await _model.getListBranch(context);
         setState(() {});
       }
-      if (((widget!.idBrand != null && widget!.idBrand != '') &&
-              (widget!.idBrand != 'noData')) ||
+      if (((widget.idBrand != null && widget.idBrand != '') &&
+              (widget.idBrand != 'noData')) ||
           functions.isRoleBranchAdmin(FFAppState().user)) {
         await _model.getListDepartment(context);
         setState(() {});
       }
-      if (((widget!.idBrand != null && widget!.idBrand != '') &&
-              (widget!.idBrand != 'noData') &&
-              (widget!.idDepartment != null && widget!.idDepartment != '') &&
-              (widget!.idDepartment != 'noData')) ||
+      if (((widget.idBrand != null && widget.idBrand != '') &&
+              (widget.idBrand != 'noData') &&
+              (widget.idDepartment != null && widget.idDepartment != '') &&
+              (widget.idDepartment != 'noData')) ||
           functions.isRoleDepartmentAdmin(FFAppState().user)) {
         await _model.getListStaffs(context);
         setState(() {});
@@ -91,11 +89,11 @@ class _TimekeepingManagementListFilterWidgetState
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -105,7 +103,7 @@ class _TimekeepingManagementListFilterWidgetState
               ),
             )
           ],
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
@@ -113,7 +111,7 @@ class _TimekeepingManagementListFilterWidgetState
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -122,7 +120,7 @@ class _TimekeepingManagementListFilterWidgetState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -164,14 +162,14 @@ class _TimekeepingManagementListFilterWidgetState
                 if (functions.isRoleOrgAdmin(FFAppState().user))
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDown1ValueController ??=
                           FormFieldController<String>(
-                        _model.dropDown1Value ??= (widget!.idBrand != null &&
-                                    widget!.idBrand != '') &&
-                                (widget!.idBrand != 'noData')
-                            ? widget!.idBrand
+                        _model.dropDown1Value ??= (widget.idBrand != null &&
+                                    widget.idBrand != '') &&
+                                (widget.idBrand != 'noData')
+                            ? widget.idBrand
                             : '',
                       ),
                       options: List<String>.from(
@@ -207,7 +205,7 @@ class _TimekeepingManagementListFilterWidgetState
                       borderWidth: 2.0,
                       borderRadius: 8.0,
                       margin:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                       hidesUnderline: true,
                       isOverButton: true,
                       isSearchable: false,
@@ -228,15 +226,15 @@ class _TimekeepingManagementListFilterWidgetState
                     functions.isRoleOrgAdmin(FFAppState().user))
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDown2ValueController ??=
                           FormFieldController<String>(
                         _model.dropDown2Value ??=
-                            (widget!.idDepartment != null &&
-                                        widget!.idDepartment != '') &&
-                                    (widget!.idDepartment != 'noData')
-                                ? widget!.idDepartment
+                            (widget.idDepartment != null &&
+                                        widget.idDepartment != '') &&
+                                    (widget.idDepartment != 'noData')
+                                ? widget.idDepartment
                                 : '',
                       ),
                       options: List<String>.from(
@@ -268,7 +266,7 @@ class _TimekeepingManagementListFilterWidgetState
                       borderWidth: 2.0,
                       borderRadius: 8.0,
                       margin:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                       hidesUnderline: true,
                       isOverButton: true,
                       isSearchable: false,
@@ -284,14 +282,14 @@ class _TimekeepingManagementListFilterWidgetState
                       ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.dropDown3ValueController ??=
                         FormFieldController<String>(
                       _model.dropDown3Value ??=
-                          (widget!.idStaff != null && widget!.idStaff != '') &&
-                                  (widget!.idStaff != 'noData')
-                              ? widget!.idStaff
+                          (widget.idStaff != null && widget.idStaff != '') &&
+                                  (widget.idStaff != 'noData')
+                              ? widget.idStaff
                               : '',
                     ),
                     options: List<String>.from(
@@ -319,7 +317,7 @@ class _TimekeepingManagementListFilterWidgetState
                     borderWidth: 2.0,
                     borderRadius: 8.0,
                     margin:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                     hidesUnderline: true,
                     isOverButton: true,
                     isSearchable: false,
@@ -335,7 +333,7 @@ class _TimekeepingManagementListFilterWidgetState
                       ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.dropDown4ValueController ??=
                         FormFieldController<String>(
@@ -364,7 +362,7 @@ class _TimekeepingManagementListFilterWidgetState
                     borderWidth: 2.0,
                     borderRadius: 8.0,
                     margin:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                     hidesUnderline: true,
                     isOverButton: true,
                     isSearchable: false,
@@ -380,7 +378,7 @@ class _TimekeepingManagementListFilterWidgetState
                       ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.dropDown5ValueController ??=
                         FormFieldController<String>(
@@ -388,7 +386,7 @@ class _TimekeepingManagementListFilterWidgetState
                     ),
                     options: List<String>.from(
                         ['Option 1', '1', '2', '3', '4', '5']),
-                    optionLabels: [
+                    optionLabels: const [
                       'Chưa chấm công',
                       'Đi làm',
                       '1/2 ngày',
@@ -416,7 +414,7 @@ class _TimekeepingManagementListFilterWidgetState
                     borderWidth: 2.0,
                     borderRadius: 8.0,
                     margin:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                     hidesUnderline: true,
                     isOverButton: true,
                     isSearchable: false,
@@ -424,7 +422,7 @@ class _TimekeepingManagementListFilterWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -444,9 +442,9 @@ class _TimekeepingManagementListFilterWidgetState
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -497,11 +495,11 @@ class _TimekeepingManagementListFilterWidgetState
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF33BA45),
+                            color: const Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -510,7 +508,7 @@ class _TimekeepingManagementListFilterWidgetState
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -518,10 +516,10 @@ class _TimekeepingManagementListFilterWidgetState
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

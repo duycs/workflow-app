@@ -1,8 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'd_n_f_newsfeed_model.dart';
 export 'd_n_f_newsfeed_model.dart';
 
@@ -44,7 +42,7 @@ class _DNFNewsfeedWidgetState extends State<DNFNewsfeedWidget> {
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 32.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 32.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,

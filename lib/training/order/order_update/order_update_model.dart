@@ -1,20 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/training/order/payment/payment_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'order_update_widget.dart' show OrderUpdateWidget;
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class OrderUpdateModel extends FlutterFlowModel<OrderUpdateWidget> {
   ///  Local state fields for this component.
@@ -91,18 +84,12 @@ class OrderUpdateModel extends FlutterFlowModel<OrderUpdateWidget> {
         },
       );
 
-      if (!(apiResultOrderUpdate?.succeeded ?? true)) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Lỗi cập nhật đơn hàng!',
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
+      if (!(apiResultOrderUpdate.succeeded ?? true)) {
+        await actions.showToast(
+          context,
+          'Lỗi cập nhật đơn hàng!',
+          FlutterFlowTheme.of(context).secondaryBackground,
+          FlutterFlowTheme.of(context).error,
         );
         return;
       }

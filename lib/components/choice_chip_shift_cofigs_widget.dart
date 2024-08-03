@@ -4,8 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'choice_chip_shift_cofigs_model.dart';
 export 'choice_chip_shift_cofigs_model.dart';
 
@@ -50,7 +48,7 @@ class _ChoiceChipShiftCofigsWidgetState
   @override
   Widget build(BuildContext context) {
     return FlutterFlowChoiceChips(
-      options: widget!.departmentListName!
+      options: widget.departmentListName!
           .map((e) => e.name)
           .toList()
           .map((label) => ChipData(label))

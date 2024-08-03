@@ -1,27 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/chip_custom_widget.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
-import '/components/rating_staf_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/market/filter_programs/filter_programs_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
+import '/custom_code/actions/index.dart' as actions;
 import 'dart:async';
 import 'market_place_widget.dart' show MarketPlaceWidget;
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
 
 class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
   ///  Local state fields for this page.
@@ -143,34 +129,28 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
         await GroupMarketLessonGroup.getListMarketLessonCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_eq\":\"0\"}}${searchMarketTextController.text != null && searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${searchMarketTextController.text}\"}}' : ' '}]}',
+          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_eq\":\"0\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${searchMarketTextController.text}\"}}' : ' '}]}',
       offset: 0,
       limit: 11,
     );
 
-    if ((apiResultGetList?.succeeded ?? true)) {
+    if ((apiResultGetList.succeeded ?? true)) {
       listDataProgramsFree = MarketLessonListDataStruct.maybeFromMap(
-              (apiResultGetList?.jsonBody ?? ''))!
+              (apiResultGetList.jsonBody ?? ''))!
           .data
           .toList()
           .cast<MarketLessonListStruct>();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetList?.jsonBody ?? ''),
+        jsonErrors: (apiResultGetList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              FFAppConstants.ErrorLoadData,
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
+        await actions.showToast(
+          context,
+          FFAppConstants.ErrorLoadData,
+          FlutterFlowTheme.of(context).secondaryBackground,
+          FlutterFlowTheme.of(context).error,
         );
       } else {
         await getProgramsMarketFree(context);
@@ -186,34 +166,28 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
         await GroupMarketLessonGroup.getListMarketLessonCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_gt\":\"0\"}}${searchMarketTextController.text != null && searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${searchMarketTextController.text}\"}}' : ' '}]}',
+          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_gt\":\"0\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${searchMarketTextController.text}\"}}' : ' '}]}',
       offset: 0,
       limit: 11,
     );
 
-    if ((apiResultGetListNoFree?.succeeded ?? true)) {
+    if ((apiResultGetListNoFree.succeeded ?? true)) {
       listDataProgramsNoFree = MarketLessonListDataStruct.maybeFromMap(
-              (apiResultGetListNoFree?.jsonBody ?? ''))!
+              (apiResultGetListNoFree.jsonBody ?? ''))!
           .data
           .toList()
           .cast<MarketLessonListStruct>();
     } else {
       checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetListNoFree?.jsonBody ?? ''),
+        jsonErrors: (apiResultGetListNoFree.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock1!) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              FFAppConstants.ErrorLoadData,
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
+        await actions.showToast(
+          context,
+          FFAppConstants.ErrorLoadData,
+          FlutterFlowTheme.of(context).secondaryBackground,
+          FlutterFlowTheme.of(context).error,
         );
       } else {
         await getProgramsMarketNoFree(context);
@@ -229,32 +203,26 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
         await GroupMarketLessonGroup.getListMarketLessonCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${searchMarketTextController.text != null && searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${searchMarketTextController.text}\"}}' : ' '}${(domain != null && domain != '') && (domain != 'noData') ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"${domain}\"}}}' : ' '}${(author != null && author != '') && (author != 'noData') ? ',{\"author_id\":{\"alias\":{\"_icontains\":\"${author}\"}}}' : ' '}${(category != null && category != '') && (category != 'noData') ? ',{\"category_id\":{\"name\":{\"_icontains\":\"${category}\"}}}' : ' '}${(priceMin != null && priceMin != '') && (priceMin != 'noData') ? ',{\"price\":{\"_gte\":\"${priceMin}\"}}' : ' '}${(priceMax != null && priceMax != '') && (priceMax != 'noData') ? ',{\"price\":{\"_lte\":\"${priceMax}\"}}' : ' '}]}',
+          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${searchMarketTextController.text}\"}}' : ' '}${(domain != '') && (domain != 'noData') ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"$domain\"}}}' : ' '}${(author != '') && (author != 'noData') ? ',{\"author_id\":{\"alias\":{\"_icontains\":\"$author\"}}}' : ' '}${(category != '') && (category != 'noData') ? ',{\"category_id\":{\"name\":{\"_icontains\":\"$category\"}}}' : ' '}${(priceMin != '') && (priceMin != 'noData') ? ',{\"price\":{\"_gte\":\"$priceMin\"}}' : ' '}${(priceMax != '') && (priceMax != 'noData') ? ',{\"price\":{\"_lte\":\"$priceMax\"}}' : ' '}]}',
     );
 
-    if ((apiResultGetListAll?.succeeded ?? true)) {
+    if ((apiResultGetListAll.succeeded ?? true)) {
       listDataProgramsAll = MarketLessonListDataStruct.maybeFromMap(
-              (apiResultGetListAll?.jsonBody ?? ''))!
+              (apiResultGetListAll.jsonBody ?? ''))!
           .data
           .toList()
           .cast<MarketLessonListStruct>();
     } else {
       checkRefreshTokenBlock2 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetListAll?.jsonBody ?? ''),
+        jsonErrors: (apiResultGetListAll.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock2!) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              FFAppConstants.ErrorLoadData,
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
+        await actions.showToast(
+          context,
+          FFAppConstants.ErrorLoadData,
+          FlutterFlowTheme.of(context).secondaryBackground,
+          FlutterFlowTheme.of(context).error,
         );
       } else {
         await getProgramsMarketAll(context);
@@ -272,29 +240,23 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
       offset: 0,
     );
 
-    if ((apiResultGetListAuthors?.succeeded ?? true)) {
+    if ((apiResultGetListAuthors.succeeded ?? true)) {
       listDataAuthors = AuthorsListDataStruct.maybeFromMap(
-              (apiResultGetListAuthors?.jsonBody ?? ''))!
+              (apiResultGetListAuthors.jsonBody ?? ''))!
           .data
           .toList()
           .cast<AuthorsListStruct>();
     } else {
       checkRefreshTokenBlock3 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetListAuthors?.jsonBody ?? ''),
+        jsonErrors: (apiResultGetListAuthors.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock3!) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              FFAppConstants.ErrorLoadData,
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
+        await actions.showToast(
+          context,
+          FFAppConstants.ErrorLoadData,
+          FlutterFlowTheme.of(context).secondaryBackground,
+          FlutterFlowTheme.of(context).error,
         );
       } else {
         await getListAuthors(context);
@@ -312,29 +274,23 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
       limit: 8,
     );
 
-    if ((apiResultList?.succeeded ?? true)) {
+    if ((apiResultList.succeeded ?? true)) {
       listDataDomains = DomainsListDataDataStruct.maybeFromMap(
-              (apiResultList?.jsonBody ?? ''))!
+              (apiResultList.jsonBody ?? ''))!
           .data
           .toList()
           .cast<DomainsListListStruct>();
     } else {
       checkRefreshTokenBlock4 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList?.jsonBody ?? ''),
+        jsonErrors: (apiResultList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock4!) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              FFAppConstants.ErrorLoadData,
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
+        await actions.showToast(
+          context,
+          FFAppConstants.ErrorLoadData,
+          FlutterFlowTheme.of(context).secondaryBackground,
+          FlutterFlowTheme.of(context).error,
         );
       } else {
         await getDomains(context);
@@ -349,7 +305,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -390,7 +346,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

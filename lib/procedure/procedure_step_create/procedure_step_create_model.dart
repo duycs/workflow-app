@@ -1,22 +1,8 @@
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/procedure/alert_staff_check_departments/alert_staff_check_departments_widget.dart';
-import '/procedure/dropdown_departments_list/dropdown_departments_list_widget.dart';
-import '/procedure/dropdown_user_list/dropdown_user_list_widget.dart';
-import '/procedure/operations_list_popup/operations_list_popup_widget.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'procedure_step_create_widget.dart' show ProcedureStepCreateWidget;
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class ProcedureStepCreateModel
     extends FlutterFlowModel<ProcedureStepCreateWidget> {
@@ -207,9 +193,9 @@ class ProcedureStepCreateModel
     while (loop! < item!.length) {
       addToStaffsStepNv(StaffsStepStruct(
         staffsId: StaffIdStruct(
-          id: (item?[loop!])?.id,
+          id: (item[loop!]).id,
           userId: UserIdStruct(
-            firstName: (item?[loop!])?.userId?.firstName,
+            firstName: (item[loop!]).userId.firstName,
           ),
         ),
       ));
@@ -231,11 +217,11 @@ class ProcedureStepCreateModel
         context: context,
         builder: (alertDialogContext) {
           return AlertDialog(
-            content: Text('Hành động đã có !'),
+            content: const Text('Hành động đã có !'),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
+                child: const Text('Ok'),
               ),
             ],
           );
@@ -246,12 +232,12 @@ class ProcedureStepCreateModel
         (e) => e
           ..updateOperations(
             (e) => e.add(OperationsStruct(
-              id: item?.id,
-              content: item?.name,
-              actionType: item?.actionType,
+              id: item.id,
+              content: item.name,
+              actionType: item.actionType,
             )),
           )
-          ..actionType = item?.actionType,
+          ..actionType = item.actionType,
       );
     }
   }

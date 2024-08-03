@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'export_excel_get_one_model.dart';
 export 'export_excel_get_one_model.dart';
 
@@ -48,22 +46,22 @@ class _ExportExcelGetOneWidgetState extends State<ExportExcelGetOneWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         width: double.infinity,
         height: 280.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
             topRight: Radius.circular(16.0),
           ),
         ),
-        alignment: AlignmentDirectional(0.0, 1.0),
+        alignment: const AlignmentDirectional(0.0, 1.0),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -75,7 +73,7 @@ class _ExportExcelGetOneWidgetState extends State<ExportExcelGetOneWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
                 child: ListView(
                   padding: EdgeInsets.zero,
                   primary: false,
@@ -91,7 +89,7 @@ class _ExportExcelGetOneWidgetState extends State<ExportExcelGetOneWidget> {
                         _model.checkTab = 1;
                         setState(() {});
                         await actions.exportExcelGetOne(
-                          widget!.json!,
+                          widget.json!,
                         );
                         Navigator.pop(context);
                         _model.checkTab = 0;
@@ -101,11 +99,11 @@ class _ExportExcelGetOneWidgetState extends State<ExportExcelGetOneWidget> {
                         decoration: BoxDecoration(
                           color: _model.checkTab == 1
                               ? FlutterFlowTheme.of(context).primaryBackground
-                              : Color(0x00000000),
+                              : const Color(0x00000000),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -128,7 +126,7 @@ class _ExportExcelGetOneWidgetState extends State<ExportExcelGetOneWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
@@ -142,7 +140,7 @@ class _ExportExcelGetOneWidgetState extends State<ExportExcelGetOneWidget> {
                         _model.checkTab = 2;
                         setState(() {});
                         await actions.exportExcelGetOneLesson(
-                          widget!.json!,
+                          widget.json!,
                         );
                         Navigator.pop(context);
                         _model.checkTab = 0;
@@ -152,11 +150,11 @@ class _ExportExcelGetOneWidgetState extends State<ExportExcelGetOneWidget> {
                         decoration: BoxDecoration(
                           color: _model.checkTab == 2
                               ? FlutterFlowTheme.of(context).primaryBackground
-                              : Color(0x00000000),
+                              : const Color(0x00000000),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -179,7 +177,7 @@ class _ExportExcelGetOneWidgetState extends State<ExportExcelGetOneWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
@@ -193,7 +191,7 @@ class _ExportExcelGetOneWidgetState extends State<ExportExcelGetOneWidget> {
                         _model.checkTab = 3;
                         setState(() {});
                         await actions.exportExcelGetOneTest(
-                          widget!.json!,
+                          widget.json!,
                         );
                         Navigator.pop(context);
                         _model.checkTab = 0;
@@ -203,11 +201,11 @@ class _ExportExcelGetOneWidgetState extends State<ExportExcelGetOneWidget> {
                         decoration: BoxDecoration(
                           color: _model.checkTab == 3
                               ? FlutterFlowTheme.of(context).primaryBackground
-                              : Color(0x00000000),
+                              : const Color(0x00000000),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -230,7 +228,7 @@ class _ExportExcelGetOneWidgetState extends State<ExportExcelGetOneWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                       ),

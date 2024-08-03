@@ -6,11 +6,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'filter_order_list_model.dart';
 export 'filter_order_list_model.dart';
 
@@ -63,22 +60,22 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.dateStart = widget!.dateStart!;
-      _model.dateEnd = widget!.dateEnd!;
+      _model.dateStart = widget.dateStart!;
+      _model.dateEnd = widget.dateEnd!;
       setState(() {});
     });
 
     _model.codeTextController ??= TextEditingController(
-        text: widget!.code != null && widget!.code != '' ? widget!.code : '');
+        text: widget.code != null && widget.code != '' ? widget.code : '');
     _model.codeFocusNode ??= FocusNode();
 
     _model.nameTextController ??= TextEditingController(
-        text: widget!.name != null && widget!.name != '' ? widget!.name : '');
+        text: widget.name != null && widget.name != '' ? widget.name : '');
     _model.nameFocusNode ??= FocusNode();
 
     _model.authorTextController ??= TextEditingController(
-        text: widget!.author != null && widget!.author != ''
-            ? widget!.author
+        text: widget.author != null && widget.author != ''
+            ? widget.author
             : '');
     _model.authorFocusNode ??= FocusNode();
 
@@ -95,11 +92,11 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -109,7 +106,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
               ),
             )
           ],
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
@@ -117,7 +114,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -133,6 +130,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
                             fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
+                            fontWeight: FontWeight.w600,
                           ),
                     ),
                     FlutterFlowIconButton(
@@ -169,7 +167,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                   ),
                         ),
                         FlutterFlowChoiceChips(
-                          options: [ChipData('Nháp'), ChipData('Hoàn thành')],
+                          options: const [ChipData('Nháp'), ChipData('Hoàn thành')],
                           onChanged: (val) => setState(
                               () => _model.statusValue = val?.firstOrNull),
                           selectedChipStyle: ChipStyle(
@@ -213,17 +211,17 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                           controller: _model.statusValueController ??=
                               FormFieldController<List<String>>(
                             [
-                              (widget!.status != null &&
-                                          widget!.status != '') &&
-                                      (widget!.status != '  ') &&
-                                      (widget!.status != '')
-                                  ? widget!.status!
+                              (widget.status != null &&
+                                          widget.status != '') &&
+                                      (widget.status != '  ') &&
+                                      (widget.status != '')
+                                  ? widget.status!
                                   : ''
                             ],
                           ),
                           wrapped: true,
                         ),
-                      ].divide(SizedBox(height: 4.0)),
+                      ].divide(const SizedBox(height: 4.0)),
                     ),
                     Column(
                       mainAxisSize: MainAxisSize.max,
@@ -239,7 +237,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                   ),
                         ),
                         FlutterFlowChoiceChips(
-                          options: [ChipData('Cá nhân'), ChipData('Tổ chức')],
+                          options: const [ChipData('Cá nhân'), ChipData('Tổ chức')],
                           onChanged: (val) => setState(
                               () => _model.privateValue = val?.firstOrNull),
                           selectedChipStyle: ChipStyle(
@@ -283,17 +281,17 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                           controller: _model.privateValueController ??=
                               FormFieldController<List<String>>(
                             [
-                              (widget!.private != null &&
-                                          widget!.private != '') &&
-                                      (widget!.private != '  ') &&
-                                      (widget!.private != '')
-                                  ? widget!.private!
+                              (widget.private != null &&
+                                          widget.private != '') &&
+                                      (widget.private != '  ') &&
+                                      (widget.private != '')
+                                  ? widget.private!
                                   : ''
                             ],
                           ),
                           wrapped: true,
                         ),
-                      ].divide(SizedBox(height: 4.0)),
+                      ].divide(const SizedBox(height: 4.0)),
                     ),
                     Column(
                       mainAxisSize: MainAxisSize.max,
@@ -319,7 +317,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  final _datePicked1Date = await showDatePicker(
+                                  final datePicked1Date = await showDatePicker(
                                     context: context,
                                     initialDate: getCurrentTimestamp,
                                     firstDate: DateTime(1900),
@@ -361,12 +359,12 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                     },
                                   );
 
-                                  if (_datePicked1Date != null) {
+                                  if (datePicked1Date != null) {
                                     safeSetState(() {
                                       _model.datePicked1 = DateTime(
-                                        _datePicked1Date.year,
-                                        _datePicked1Date.month,
-                                        _datePicked1Date.day,
+                                        datePicked1Date.year,
+                                        datePicked1Date.month,
+                                        datePicked1Date.day,
                                       );
                                     });
                                   }
@@ -384,16 +382,15 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                       size: 24.0,
                                     ),
                                     Text(
-                                      _model.dateStart != null &&
-                                              _model.dateStart != ''
-                                          ? '${dateTimeFormat(
+                                      _model.dateStart != ''
+                                          ? dateTimeFormat(
                                               'dd/MM/yyyy',
                                               functions.stringToDateTime(
                                                   _model.dateStart),
                                               locale:
                                                   FFLocalizations.of(context)
                                                       .languageCode,
-                                            )}'
+                                            )
                                           : 'Từ ngày',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
@@ -414,7 +411,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  final _datePicked2Date = await showDatePicker(
+                                  final datePicked2Date = await showDatePicker(
                                     context: context,
                                     initialDate: getCurrentTimestamp,
                                     firstDate: DateTime(1900),
@@ -456,12 +453,12 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                     },
                                   );
 
-                                  if (_datePicked2Date != null) {
+                                  if (datePicked2Date != null) {
                                     safeSetState(() {
                                       _model.datePicked2 = DateTime(
-                                        _datePicked2Date.year,
-                                        _datePicked2Date.month,
-                                        _datePicked2Date.day,
+                                        datePicked2Date.year,
+                                        datePicked2Date.month,
+                                        datePicked2Date.day,
                                       );
                                     });
                                   }
@@ -479,16 +476,15 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                       size: 24.0,
                                     ),
                                     Text(
-                                      _model.dateEnd != null &&
-                                              _model.dateEnd != ''
-                                          ? '${dateTimeFormat(
+                                      _model.dateEnd != ''
+                                          ? dateTimeFormat(
                                               'dd/MM/yyyy',
                                               functions.stringToDateTime(
                                                   _model.dateEnd),
                                               locale:
                                                   FFLocalizations.of(context)
                                                       .languageCode,
-                                            )}'
+                                            )
                                           : 'Đến ngày',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
@@ -504,7 +500,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                             ),
                           ],
                         ),
-                      ].divide(SizedBox(height: 4.0)),
+                      ].divide(const SizedBox(height: 4.0)),
                     ),
                     Column(
                       mainAxisSize: MainAxisSize.max,
@@ -524,7 +520,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                           focusNode: _model.codeFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.codeTextController',
-                            Duration(milliseconds: 500),
+                            const Duration(milliseconds: 500),
                             () => setState(() {}),
                           ),
                           autofocus: false,
@@ -572,9 +568,9 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 12.0, 20.0, 12.0),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.search_sharp,
                             ),
                             suffixIcon:
@@ -603,7 +599,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                           validator: _model.codeTextControllerValidator
                               .asValidator(context),
                         ),
-                      ].divide(SizedBox(height: 4.0)),
+                      ].divide(const SizedBox(height: 4.0)),
                     ),
                     if ('1' == '2')
                       Column(
@@ -625,7 +621,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                             focusNode: _model.nameFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.nameTextController',
-                              Duration(milliseconds: 500),
+                              const Duration(milliseconds: 500),
                               () => setState(() {}),
                             ),
                             autofocus: false,
@@ -673,9 +669,9 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 12.0, 20.0, 12.0),
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.search_sharp,
                               ),
                               suffixIcon:
@@ -705,7 +701,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                             validator: _model.nameTextControllerValidator
                                 .asValidator(context),
                           ),
-                        ].divide(SizedBox(height: 4.0)),
+                        ].divide(const SizedBox(height: 4.0)),
                       ),
                     Column(
                       mainAxisSize: MainAxisSize.max,
@@ -725,7 +721,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                           focusNode: _model.authorFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.authorTextController',
-                            Duration(milliseconds: 500),
+                            const Duration(milliseconds: 500),
                             () => setState(() {}),
                           ),
                           autofocus: false,
@@ -773,9 +769,9 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 12.0, 20.0, 12.0),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.search_sharp,
                             ),
                             suffixIcon:
@@ -804,12 +800,12 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                           validator: _model.authorTextControllerValidator
                               .asValidator(context),
                         ),
-                      ].divide(SizedBox(height: 4.0)),
+                      ].divide(const SizedBox(height: 4.0)),
                     ),
-                  ].divide(SizedBox(height: 12.0)),
+                  ].divide(const SizedBox(height: 12.0)),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -823,16 +819,16 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                             });
                             setState(() {
                               _model.codeTextController?.text =
-                                  widget!.code != null && widget!.code != ''
-                                      ? widget!.code!
+                                  widget.code != null && widget.code != ''
+                                      ? widget.code!
                                       : '';
                               _model.nameTextController?.text =
-                                  widget!.name != null && widget!.name != ''
-                                      ? widget!.name!
+                                  widget.name != null && widget.name != ''
+                                      ? widget.name!
                                       : '';
                               _model.authorTextController?.text =
-                                  widget!.author != null && widget!.author != ''
-                                      ? widget!.author!
+                                  widget.author != null && widget.author != ''
+                                      ? widget.author!
                                       : '';
                             });
                             await widget.callback?.call(
@@ -849,9 +845,9 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -890,11 +886,11 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF33BA45),
+                            color: const Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -904,7 +900,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -912,10 +908,10 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

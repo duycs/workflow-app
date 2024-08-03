@@ -20,7 +20,7 @@ Future showToast(
   // Tạo overlay entry
   OverlayEntry overlayEntry = OverlayEntry(
     builder: (context) => Positioned(
-      bottom: 6,
+      bottom: 10,
       left: 0,
       right: 0,
       child: Material(

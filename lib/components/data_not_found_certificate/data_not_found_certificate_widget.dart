@@ -2,8 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'data_not_found_certificate_model.dart';
 export 'data_not_found_certificate_model.dart';
 
@@ -43,21 +41,21 @@ class _DataNotFoundCertificateWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            FaIcon(
+            const FaIcon(
               FontAwesomeIcons.award,
               color: Color(0x80F9CF58),
               size: 90.0,
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
               child: Text(
                 'Chưa có chứng chỉ nào',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -68,7 +66,7 @@ class _DataNotFoundCertificateWidgetState
                     ),
               ),
             ),
-          ].divide(SizedBox(height: 8.0)),
+          ].divide(const SizedBox(height: 8.0)),
         ),
       ),
     );

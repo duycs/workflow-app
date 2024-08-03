@@ -2,8 +2,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'waiting_process_model.dart';
 export 'waiting_process_model.dart';
 
@@ -44,7 +42,7 @@ class _WaitingProcessWidgetState extends State<WaitingProcessWidget> {
       width: 400.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 4.0,
             color: Color(0x33000000),
@@ -60,7 +58,7 @@ class _WaitingProcessWidgetState extends State<WaitingProcessWidget> {
         ),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -72,7 +70,7 @@ class _WaitingProcessWidgetState extends State<WaitingProcessWidget> {
                 shape: BoxShape.circle,
               ),
               child: Padding(
-                padding: EdgeInsets.all(4.0),
+                padding: const EdgeInsets.all(4.0),
                 child: Icon(
                   Icons.add_task_rounded,
                   color: FlutterFlowTheme.of(context).secondary,
@@ -100,7 +98,7 @@ class _WaitingProcessWidgetState extends State<WaitingProcessWidget> {
                           letterSpacing: 0.0,
                         ),
                   ),
-                ].divide(SizedBox(height: 4.0)),
+                ].divide(const SizedBox(height: 4.0)),
               ),
             ),
             FlutterFlowIconButton(
@@ -117,7 +115,7 @@ class _WaitingProcessWidgetState extends State<WaitingProcessWidget> {
                 print('IconButton pressed ...');
               },
             ),
-          ].divide(SizedBox(width: 8.0)),
+          ].divide(const SizedBox(width: 8.0)),
         ),
       ),
     );

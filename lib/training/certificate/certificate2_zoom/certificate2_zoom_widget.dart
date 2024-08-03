@@ -2,8 +2,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'certificate2_zoom_model.dart';
 export 'certificate2_zoom_model.dart';
 
@@ -47,7 +45,7 @@ class _Certificate2ZoomWidgetState extends State<Certificate2ZoomWidget> {
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
       child: Stack(
-        alignment: AlignmentDirectional(0.0, 0.0),
+        alignment: const AlignmentDirectional(0.0, 0.0),
         children: [
           Opacity(
             opacity: 0.3,
@@ -77,17 +75,17 @@ class _Certificate2ZoomWidgetState extends State<Certificate2ZoomWidget> {
             ),
           ),
           Stack(
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: const AlignmentDirectional(0.0, 0.0),
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Text(
                         'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -107,7 +105,7 @@ class _Certificate2ZoomWidgetState extends State<Certificate2ZoomWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 6.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 6.0),
                       child: Text(
                         'Chứng nhận',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -121,7 +119,7 @@ class _Certificate2ZoomWidgetState extends State<Certificate2ZoomWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
                       child: Text(
                         'Tên nhân viên',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -134,7 +132,7 @@ class _Certificate2ZoomWidgetState extends State<Certificate2ZoomWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
                       child: Text(
                         'Chức vụ: \"Nhân viên\"',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -146,7 +144,7 @@ class _Certificate2ZoomWidgetState extends State<Certificate2ZoomWidget> {
                       ),
                     ),
                     Text(
-                      'Đã hoàn thành \"chương trình đào tạo\"',
+                      'Đã hoàn thành \"Chương trình đào tạo\"',
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Nunito Sans',
@@ -166,13 +164,13 @@ class _Certificate2ZoomWidgetState extends State<Certificate2ZoomWidget> {
                             fontStyle: FontStyle.italic,
                           ),
                     ),
-                  ].divide(SizedBox(height: 3.0)),
+                  ].divide(const SizedBox(height: 3.0)),
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(1.0, 1.0),
+                alignment: const AlignmentDirectional(1.0, 1.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 5.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 5.0),
                   child: FlutterFlowIconButton(
                     borderColor: FlutterFlowTheme.of(context).primaryBackground,
                     borderRadius: 20.0,

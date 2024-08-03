@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_location_update/time_keeping_location_update_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'time_keeping_location_detail_model.dart';
 export 'time_keeping_location_detail_model.dart';
 
@@ -51,24 +49,24 @@ class _TimeKeepingLocationDetailWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(0.0),
             topRight: Radius.circular(0.0),
           ),
         ),
-        alignment: AlignmentDirectional(0.0, 1.0),
+        alignment: const AlignmentDirectional(0.0, 1.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -115,7 +113,7 @@ class _TimeKeepingLocationDetailWidgetState
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
@@ -124,7 +122,7 @@ class _TimeKeepingLocationDetailWidgetState
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 4.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 4.0),
                         child: Text(
                           'Tỉnh/Thành phố',
                           style:
@@ -143,11 +141,11 @@ class _TimeKeepingLocationDetailWidgetState
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.0, 16.0, 16.0),
                           child: Text(
                             valueOrDefault<String>(
-                              widget!.item?.wardId?.districtId?.cityId?.name,
+                              widget.item?.wardId.districtId.cityId.name,
                               'Chưa có thông tin Tỉnh/Thành phố',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -161,7 +159,7 @@ class _TimeKeepingLocationDetailWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 4.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 4.0),
                         child: Text(
                           'Quận/Huyện',
                           style:
@@ -180,11 +178,11 @@ class _TimeKeepingLocationDetailWidgetState
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.0, 16.0, 16.0),
                           child: Text(
                             valueOrDefault<String>(
-                              widget!.item?.wardId?.districtId?.name,
+                              widget.item?.wardId.districtId.name,
                               'Chưa có thông tin Quận/Huyện',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -198,7 +196,7 @@ class _TimeKeepingLocationDetailWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 4.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 4.0),
                         child: Text(
                           'Xã',
                           style:
@@ -217,11 +215,11 @@ class _TimeKeepingLocationDetailWidgetState
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.0, 16.0, 16.0),
                           child: Text(
                             valueOrDefault<String>(
-                              widget!.item?.wardId?.name,
+                              widget.item?.wardId.name,
                               'Chưa có thông tin Xã',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -235,7 +233,7 @@ class _TimeKeepingLocationDetailWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 4.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 4.0),
                         child: Text(
                           'Địa chỉ cụ thể:',
                           style:
@@ -249,7 +247,7 @@ class _TimeKeepingLocationDetailWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                         child: Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
@@ -258,11 +256,11 @@ class _TimeKeepingLocationDetailWidgetState
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 16.0, 16.0, 16.0),
                             child: Text(
                               valueOrDefault<String>(
-                                widget!.item?.detail,
+                                widget.item?.detail,
                                 'Chưa có địa chỉ cụ thể',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -277,7 +275,7 @@ class _TimeKeepingLocationDetailWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 4.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 4.0),
                         child: Text(
                           'Phạm vi áp dụng (m)',
                           style:
@@ -295,11 +293,11 @@ class _TimeKeepingLocationDetailWidgetState
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.0, 16.0, 16.0),
                           child: Text(
                             '${formatNumber(
-                              widget!.item?.meterRange,
+                              widget.item?.meterRange,
                               formatType: FormatType.decimal,
                               decimalType: DecimalType.commaDecimal,
                             )} m',
@@ -314,7 +312,7 @@ class _TimeKeepingLocationDetailWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                         child: Text(
                           '* Trong vòng bán kính phạm vi áp dụng, nhân viên có thể chấm công hợp lệ',
                           style:
@@ -333,7 +331,7 @@ class _TimeKeepingLocationDetailWidgetState
             ),
             Builder(
               builder: (context) => Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     await showDialog(
@@ -343,26 +341,26 @@ class _TimeKeepingLocationDetailWidgetState
                           elevation: 0,
                           insetPadding: EdgeInsets.zero,
                           backgroundColor: Colors.transparent,
-                          alignment: AlignmentDirectional(0.0, 0.0)
+                          alignment: const AlignmentDirectional(0.0, 0.0)
                               .resolve(Directionality.of(context)),
                           child: TimeKeepingLocationUpdateWidget(
-                            item: widget!.item!,
+                            item: widget.item!,
                           ),
                         );
                       },
                     ).then((value) => setState(() {}));
                   },
                   text: 'Chỉnh sửa',
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.edit_outlined,
                     size: 24.0,
                   ),
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Nunito Sans',
@@ -370,7 +368,7 @@ class _TimeKeepingLocationDetailWidgetState
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),
