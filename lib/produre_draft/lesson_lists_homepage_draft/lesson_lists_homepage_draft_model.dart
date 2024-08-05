@@ -1,21 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.dart';
-import '/training/lesson/no_data/no_data_widget.dart';
-import '/backend/schema/structs/index.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'dart:async';
 import 'lesson_lists_homepage_draft_widget.dart'
     show LessonListsHomepageDraftWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
 
 class LessonListsHomepageDraftModel
     extends FlutterFlowModel<LessonListsHomepageDraftWidget> {
@@ -97,14 +87,14 @@ class LessonListsHomepageDraftModel
       ).toString().toString()}\"}},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"id\":{\"_neq\":\"${getJsonField(
         FFAppState().staffDepartment,
         r'''$.id''',
-      ).toString().toString()}\"}}}}}},{\"status\":{\"_icontains\":\"published\"}}'}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}' : ' '}${(status != null && status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"${status}\"}}' : ' '}${(dateStartList != null && dateStartList != '') && (dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"${dateStartList}\"}}' : ' '}${(dateEndList != null && dateEndList != '') && (dateEndList != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
-          return DateTime.parse(var1).add(Duration(days: 1)).toString();
-        }(dateEndList)}\"}}' : ' '}${programsAllId != null && programsAllId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"${programsAllId}\"}}}}' : ' '}]}',
+      ).toString().toString()}\"}}}}}},{\"status\":{\"_icontains\":\"published\"}}'}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"$status\"}}' : ' '}${(dateStartList != '') && (dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"$dateStartList\"}}' : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
+          return DateTime.parse(var1).add(const Duration(days: 1)).toString();
+        }(dateEndList)}\"}}' : ' '}${programsAllId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"$programsAllId\"}}}}' : ' '}]}',
     );
 
-    if ((apiResultList?.succeeded ?? true)) {
+    if ((apiResultList.succeeded ?? true)) {
       listLesson =
-          LessonsListDataStruct.maybeFromMap((apiResultList?.jsonBody ?? ''))!
+          LessonsListDataStruct.maybeFromMap((apiResultList.jsonBody ?? ''))!
               .data
               .toList()
               .cast<LessonsStruct>();
@@ -118,7 +108,7 @@ class LessonListsHomepageDraftModel
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -158,7 +148,7 @@ class LessonListsHomepageDraftModel
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

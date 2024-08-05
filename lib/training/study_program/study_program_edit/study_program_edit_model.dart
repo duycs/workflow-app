@@ -2,25 +2,11 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/lessions_dropdown_widget.dart';
 import '/components/tests_dropdown_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/upload_data.dart';
-import '/training/study_program/created_lession_study/created_lession_study_widget.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'study_program_edit_widget.dart' show StudyProgramEditWidget;
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
   ///  Local state fields for this component.
@@ -153,8 +139,8 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
           .cast<StudyProgramListLessionsIdStruct>();
       addToListLessions(StudyProgramListLessionsIdStruct(
         lessionsId: LessonsStruct(
-          id: lessionsItem?.id,
-          name: lessionsItem?.name,
+          id: lessionsItem.id,
+          name: lessionsItem.name,
         ),
       ));
       updateRequestDataStruct(
@@ -175,15 +161,15 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
       accessToken: FFAppState().accessToken,
     );
 
-    if ((apiResultUploadFileimg?.succeeded ?? true)) {
+    if ((apiResultUploadFileimg.succeeded ?? true)) {
       uploadImageEdit = getJsonField(
-        (apiResultUploadFileimg?.jsonBody ?? ''),
+        (apiResultUploadFileimg.jsonBody ?? ''),
         r'''$.data.id''',
       ).toString().toString();
       updateRequestDataStruct(
         (e) => e
           ..imageCover = () {
-            if (uploadImageEdit != null && uploadImageEdit != '') {
+            if (uploadImageEdit != '') {
               return uploadImageEdit;
             } else if (widget!.dataDetail?.imageCover != null &&
                 widget!.dataDetail?.imageCover != '') {
@@ -196,7 +182,7 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
     } else {
       checkRefreshTokenBlock789 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultUploadFileimg?.jsonBody ?? ''),
+        jsonErrors: (apiResultUploadFileimg.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock789!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -207,7 +193,7 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -234,8 +220,8 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
           .cast<StudyProgramListLessionsIdStruct>();
       addToListLessions(StudyProgramListLessionsIdStruct(
         lessionsId: LessonsStruct(
-          id: itemLession?.id,
-          name: itemLession?.name,
+          id: itemLession.id,
+          name: itemLession.name,
         ),
       ));
       updateRequestDataStruct(

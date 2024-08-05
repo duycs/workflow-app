@@ -1,26 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
-import '/rich_text_editor/mobile_editor_component/mobile_editor_component_widget.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
-import '/training/lesson/quiz_creation_lesson/quiz_creation_lesson_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'lesson_create_widget.dart' show LessonCreateWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
   ///  Local state fields for this page.
@@ -133,16 +120,16 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
       ).toString().toString()}\"}}]}',
     );
 
-    if ((apiResultListIdStaff?.succeeded ?? true)) {
+    if ((apiResultListIdStaff.succeeded ?? true)) {
       list = TestListDataStruct.maybeFromMap(
-              (apiResultListIdStaff?.jsonBody ?? ''))!
+              (apiResultListIdStaff.jsonBody ?? ''))!
           .data
           .toList()
           .cast<TestListStruct>();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultListIdStaff?.jsonBody ?? ''),
+        jsonErrors: (apiResultListIdStaff.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         await actions.showToast(
@@ -168,21 +155,20 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         'description': descriptionTextController.text,
         'content': checkContent,
         'image_cover':
-            uploadImage != null && uploadImage != '' ? uploadImage : null,
-        'video': uploadVideo != null && uploadVideo != '' ? uploadVideo : null,
+            uploadImage != '' ? uploadImage : null,
+        'video': uploadVideo != '' ? uploadVideo : null,
         'duration_hours': durationHoursTextController.text,
         'test_id':
             testIdValue != null && testIdValue != '' ? testIdValue : null,
-        'file': uploadFile != null && uploadFile != '' ? uploadFile : null,
-        'estimate_in_day': estimateInDayTextController.text != null &&
-                estimateInDayTextController.text != ''
+        'file': uploadFile != '' ? uploadFile : null,
+        'estimate_in_day': estimateInDayTextController.text != ''
             ? estimateInDayTextController.text
             : null,
       },
       accessToken: FFAppState().accessToken,
     );
 
-    if ((apiResultCreateLesson?.succeeded ?? true)) {
+    if ((apiResultCreateLesson.succeeded ?? true)) {
       await actions.showToast(
         context,
         'Tạo bài học thành công!',
@@ -190,7 +176,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         FlutterFlowTheme.of(context).secondary,
       );
       listLession = LessonsStruct.maybeFromMap(getJsonField(
-        (apiResultCreateLesson?.jsonBody ?? ''),
+        (apiResultCreateLesson.jsonBody ?? ''),
         r'''$.data''',
       ));
       if (widget!.checkPage == 'studyProgram1') {
@@ -226,7 +212,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         context.pushNamed(
           'LessonsList',
           extra: <String, dynamic>{
-            kTransitionInfoKey: TransitionInfo(
+            kTransitionInfoKey: const TransitionInfo(
               hasTransition: true,
               transitionType: PageTransitionType.fade,
               duration: Duration(milliseconds: 0),
@@ -265,7 +251,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
     } else {
       checkRefreshTokenBlock11 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultCreateLesson?.jsonBody ?? ''),
+        jsonErrors: (apiResultCreateLesson.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock11!) {
         await actions.showToast(
@@ -289,15 +275,15 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
       file: uploadedLocalFile2,
     );
 
-    if ((apiResultUploadVideo?.succeeded ?? true)) {
+    if ((apiResultUploadVideo.succeeded ?? true)) {
       uploadVideo = getJsonField(
-        (apiResultUploadVideo?.jsonBody ?? ''),
+        (apiResultUploadVideo.jsonBody ?? ''),
         r'''$.data.id''',
       ).toString().toString();
     } else {
       checkRefreshTokenBlockgh = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultUploadVideo?.jsonBody ?? ''),
+        jsonErrors: (apiResultUploadVideo.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockgh!) {
         await actions.showToast(
@@ -321,15 +307,15 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
       file: uploadedLocalFile1,
     );
 
-    if ((apiResultUploadImage?.succeeded ?? true)) {
+    if ((apiResultUploadImage.succeeded ?? true)) {
       uploadImage = getJsonField(
-        (apiResultUploadImage?.jsonBody ?? ''),
+        (apiResultUploadImage.jsonBody ?? ''),
         r'''$.data.id''',
       ).toString().toString();
     } else {
       checkRefreshTokenBlockbn = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultUploadImage?.jsonBody ?? ''),
+        jsonErrors: (apiResultUploadImage.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockbn!) {
         await actions.showToast(
@@ -356,15 +342,15 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
       file: uploadedLocalFile3,
     );
 
-    if ((apiResultUploadFileFile?.succeeded ?? true)) {
+    if ((apiResultUploadFileFile.succeeded ?? true)) {
       uploadFile = getJsonField(
-        (apiResultUploadFileFile?.jsonBody ?? ''),
+        (apiResultUploadFileFile.jsonBody ?? ''),
         r'''$.data.id''',
       ).toString().toString();
     } else {
       checkRefreshTokenBlockef = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultUploadFileFile?.jsonBody ?? ''),
+        jsonErrors: (apiResultUploadFileFile.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockef!) {
         await actions.showToast(

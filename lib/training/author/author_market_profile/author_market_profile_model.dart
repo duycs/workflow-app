@@ -1,23 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
-import '/components/rating_bar_widget.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'author_market_profile_widget.dart' show AuthorMarketProfileWidget;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 
 class AuthorMarketProfileModel
     extends FlutterFlowModel<AuthorMarketProfileWidget> {
@@ -83,16 +71,16 @@ class AuthorMarketProfileModel
           '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"author_id\":{\"id\":{\"_eq\":\"${widget!.itemAuthors?.id}\"}}}]}',
     );
 
-    if ((apiResultList?.succeeded ?? true)) {
+    if ((apiResultList.succeeded ?? true)) {
       listDataProgramsMarket = MarketLessonListDataStruct.maybeFromMap(
-              (apiResultList?.jsonBody ?? ''))!
+              (apiResultList.jsonBody ?? ''))!
           .data
           .toList()
           .cast<MarketLessonListStruct>();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList?.jsonBody ?? ''),
+        jsonErrors: (apiResultList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -103,7 +91,7 @@ class AuthorMarketProfileModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -145,7 +133,7 @@ class AuthorMarketProfileModel
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController1?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,
@@ -186,7 +174,7 @@ class AuthorMarketProfileModel
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController2?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

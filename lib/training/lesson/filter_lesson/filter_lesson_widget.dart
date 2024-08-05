@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,11 +5,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'filter_lesson_model.dart';
 export 'filter_lesson_model.dart';
 
@@ -23,9 +19,9 @@ class FilterLessonWidget extends StatefulWidget {
     String? dateEnd,
     String? programId,
     this.page,
-  })  : this.dateStart = dateStart ?? '',
-        this.dateEnd = dateEnd ?? '',
-        this.programId = programId ?? '';
+  })  : dateStart = dateStart ?? '',
+        dateEnd = dateEnd ?? '',
+        programId = programId ?? '';
 
   final Future Function(String? status, DateTime? dateStart, DateTime? dateEnd,
       String? programId)? callBack;
@@ -72,11 +68,11 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -86,7 +82,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
               ),
             )
           ],
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
@@ -94,7 +90,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -131,7 +127,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -147,7 +143,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            final _datePicked1Date = await showDatePicker(
+                            final datePicked1Date = await showDatePicker(
                               context: context,
                               initialDate: getCurrentTimestamp,
                               firstDate: DateTime(1900),
@@ -184,12 +180,12 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                               },
                             );
 
-                            if (_datePicked1Date != null) {
+                            if (datePicked1Date != null) {
                               safeSetState(() {
                                 _model.datePicked1 = DateTime(
-                                  _datePicked1Date.year,
-                                  _datePicked1Date.month,
-                                  _datePicked1Date.day,
+                                  datePicked1Date.year,
+                                  datePicked1Date.month,
+                                  datePicked1Date.day,
                                 );
                               });
                             }
@@ -213,9 +209,8 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                                         locale: FFLocalizations.of(context)
                                             .languageCode,
                                       )
-                                    : (widget!.dateStart != null &&
-                                            widget!.dateStart != ''
-                                        ? widget!.dateStart
+                                    : (widget.dateStart != ''
+                                        ? widget.dateStart
                                         : 'Từ ngày'),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -233,7 +228,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            final _datePicked2Date = await showDatePicker(
+                            final datePicked2Date = await showDatePicker(
                               context: context,
                               initialDate: getCurrentTimestamp,
                               firstDate: DateTime(1900),
@@ -270,12 +265,12 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                               },
                             );
 
-                            if (_datePicked2Date != null) {
+                            if (datePicked2Date != null) {
                               safeSetState(() {
                                 _model.datePicked2 = DateTime(
-                                  _datePicked2Date.year,
-                                  _datePicked2Date.month,
-                                  _datePicked2Date.day,
+                                  datePicked2Date.year,
+                                  datePicked2Date.month,
+                                  datePicked2Date.day,
                                 );
                               });
                             }
@@ -299,9 +294,8 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                                         locale: FFLocalizations.of(context)
                                             .languageCode,
                                       )
-                                    : (widget!.dateEnd != null &&
-                                            widget!.dateEnd != ''
-                                        ? widget!.dateEnd
+                                    : (widget.dateEnd != ''
+                                        ? widget.dateEnd
                                         : 'Đến hết ngày'),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -317,18 +311,18 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                     ),
                   ),
                 ),
-                if (widget!.page != 'LessionNav')
+                if (widget.page != 'LessionNav')
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownStatusValueController ??=
                           FormFieldController<String>(
                         _model.dropDownStatusValue ??=
-                            widget!.status != null && widget!.status != ''
+                            widget.status != null && widget.status != ''
                                 ? () {
-                                    if ('${widget!.status}' == 'published') {
+                                    if ('${widget.status}' == 'published') {
                                       return '2';
-                                    } else if ('${widget!.status}' == 'draft') {
+                                    } else if ('${widget.status}' == 'draft') {
                                       return '1';
                                     } else {
                                       return null;
@@ -337,7 +331,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                                 : null,
                       ),
                       options: List<String>.from(['1', '2']),
-                      optionLabels: ['Không hoạt động', 'Hoạt động'],
+                      optionLabels: const ['Không hoạt động', 'Hoạt động'],
                       onChanged: (val) =>
                           setState(() => _model.dropDownStatusValue = val),
                       width: double.infinity,
@@ -359,7 +353,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                       borderWidth: 2.0,
                       borderRadius: 8.0,
                       margin:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                       hidesUnderline: true,
                       isOverButton: true,
                       isSearchable: false,
@@ -370,8 +364,8 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                   controller: _model.programIdValueController ??=
                       FormFieldController<String>(
                     _model.programIdValue ??=
-                        widget!.programId != null && widget!.programId != ''
-                            ? widget!.programId
+                        widget.programId != ''
+                            ? widget.programId
                             : '',
                   ),
                   options: List<String>.from(
@@ -395,14 +389,14 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                   borderColor: FlutterFlowTheme.of(context).alternate,
                   borderWidth: 2.0,
                   borderRadius: 8.0,
-                  margin: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                  margin: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                   hidesUnderline: true,
                   isOverButton: true,
                   isSearchable: false,
                   isMultiSelect: false,
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -425,9 +419,9 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -464,10 +458,9 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                               () {
                                 if (_model.dateStart != null) {
                                   return _model.dateStart;
-                                } else if (widget!.dateStart != null &&
-                                    widget!.dateStart != '') {
+                                } else if (widget.dateStart != '') {
                                   return functions
-                                      .stringToDateTime(widget!.dateStart);
+                                      .stringToDateTime(widget.dateStart);
                                 } else {
                                   return functions.stringToDateTime('noData');
                                 }
@@ -475,10 +468,9 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                               () {
                                 if (_model.dateEnd != null) {
                                   return _model.dateEnd;
-                                } else if (widget!.dateEnd != null &&
-                                    widget!.dateEnd != '') {
+                                } else if (widget.dateEnd != '') {
                                   return functions
-                                      .stringToDateTime(widget!.dateEnd);
+                                      .stringToDateTime(widget.dateEnd);
                                 } else {
                                   return functions.stringToDateTime('noData');
                                 }
@@ -490,11 +482,11 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF33BA45),
+                            color: const Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -503,7 +495,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -511,10 +503,10 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

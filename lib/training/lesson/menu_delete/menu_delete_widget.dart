@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'menu_delete_model.dart';
 export 'menu_delete_model.dart';
@@ -50,12 +49,12 @@ class _MenuDeleteWidgetState extends State<MenuDeleteWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Container(
         width: 300.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -68,16 +67,22 @@ class _MenuDeleteWidgetState extends State<MenuDeleteWidget> {
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 4.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 4.0),
                 child: MouseRegion(
                   opaque: false,
                   cursor: MouseCursor.defer ?? MouseCursor.defer,
+                  onEnter: ((event) async {
+                    setState(() => _model.mouseRegionHovered = true);
+                  }),
+                  onExit: ((event) async {
+                    setState(() => _model.mouseRegionHovered = false);
+                  }),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -90,18 +95,18 @@ class _MenuDeleteWidgetState extends State<MenuDeleteWidget> {
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                title: Text('Xác nhận'),
-                                content: Text('Xóa bình luận'),
+                                title: const Text('Xác nhận'),
+                                content: const Text('Xóa bình luận'),
                                 actions: [
                                   TextButton(
                                     onPressed: () => Navigator.pop(
                                         alertDialogContext, false),
-                                    child: Text('Hủy'),
+                                    child: const Text('Hủy'),
                                   ),
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext, true),
-                                    child: Text('Xóa'),
+                                    child: const Text('Xóa'),
                                   ),
                                 ],
                               );
@@ -112,7 +117,7 @@ class _MenuDeleteWidgetState extends State<MenuDeleteWidget> {
                         _model.apiResultDeleteComment =
                             await LessonGroup.deleteCommentCall.call(
                           accessToken: FFAppState().accessToken,
-                          id: widget!.id,
+                          id: widget.id,
                         );
 
                         await widget.afterDeleteAction?.call();
@@ -124,7 +129,7 @@ class _MenuDeleteWidgetState extends State<MenuDeleteWidget> {
                       setState(() {});
                     },
                     child: AnimatedContainer(
-                      duration: Duration(milliseconds: 150),
+                      duration: const Duration(milliseconds: 150),
                       curve: Curves.easeInOut,
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -154,15 +159,9 @@ class _MenuDeleteWidgetState extends State<MenuDeleteWidget> {
                       ),
                     ),
                   ),
-                  onEnter: ((event) async {
-                    setState(() => _model.mouseRegionHovered = true);
-                  }),
-                  onExit: ((event) async {
-                    setState(() => _model.mouseRegionHovered = false);
-                  }),
                 ),
               ),
-            ].divide(SizedBox(height: 4.0)),
+            ].divide(const SizedBox(height: 4.0)),
           ),
         ),
       ),

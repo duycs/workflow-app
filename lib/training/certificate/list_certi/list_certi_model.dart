@@ -1,15 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'list_certi_widget.dart' show ListCertiWidget;
-import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class ListCertiModel extends FlutterFlowModel<ListCertiWidget> {
   @override
@@ -29,7 +23,7 @@ class ListCertiModel extends FlutterFlowModel<ListCertiWidget> {
       certificateId: '1ff8e3e4-fc53-4fe6-819a-db98d4785ef3',
     );
 
-    if ((apiResultAdd?.succeeded ?? true)) {
+    if ((apiResultAdd.succeeded ?? true)) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -38,7 +32,7 @@ class ListCertiModel extends FlutterFlowModel<ListCertiWidget> {
               color: FlutterFlowTheme.of(context).primaryText,
             ),
           ),
-          duration: Duration(milliseconds: 4000),
+          duration: const Duration(milliseconds: 4000),
           backgroundColor: FlutterFlowTheme.of(context).secondary,
         ),
       );
@@ -46,7 +40,7 @@ class ListCertiModel extends FlutterFlowModel<ListCertiWidget> {
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultAdd?.jsonBody ?? ''),
+        jsonErrors: (apiResultAdd.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -57,7 +51,7 @@ class ListCertiModel extends FlutterFlowModel<ListCertiWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -77,7 +71,7 @@ class ListCertiModel extends FlutterFlowModel<ListCertiWidget> {
       certificateId: '22e2144b-e206-4bf6-a22e-110088325e14',
     );
 
-    if ((apiResultAdd1?.succeeded ?? true)) {
+    if ((apiResultAdd1.succeeded ?? true)) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -86,7 +80,7 @@ class ListCertiModel extends FlutterFlowModel<ListCertiWidget> {
               color: FlutterFlowTheme.of(context).primaryText,
             ),
           ),
-          duration: Duration(milliseconds: 4000),
+          duration: const Duration(milliseconds: 4000),
           backgroundColor: FlutterFlowTheme.of(context).secondary,
         ),
       );
@@ -94,7 +88,7 @@ class ListCertiModel extends FlutterFlowModel<ListCertiWidget> {
     } else {
       checkRefreshTokenBlock123 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultAdd1?.jsonBody ?? ''),
+        jsonErrors: (apiResultAdd1.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock123!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -105,7 +99,7 @@ class ListCertiModel extends FlutterFlowModel<ListCertiWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

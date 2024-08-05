@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -10,7 +9,6 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/news_feed/action_newsfeed_detail/action_newsfeed_detail_widget.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -20,10 +18,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'newsfeed_detail_model.dart';
 export 'newsfeed_detail_model.dart';
@@ -81,8 +76,8 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, -250.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, -250.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -100,8 +95,8 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-10.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-10.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -119,8 +114,8 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 80.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 80.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -139,8 +134,8 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
             curve: Curves.easeInOut,
             delay: 50.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-20.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-20.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -158,8 +153,8 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 90.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 90.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -200,18 +195,18 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
               size: 30.0,
             ),
             onPressed: () async {
-              if (widget!.checkpage == 'newsfeed') {
+              if (widget.checkpage == 'newsfeed') {
                 context.pushNamed(
                   'Newsfeed',
                   extra: <String, dynamic>{
-                    kTransitionInfoKey: TransitionInfo(
+                    kTransitionInfoKey: const TransitionInfo(
                       hasTransition: true,
                       transitionType: PageTransitionType.fade,
                       duration: Duration(milliseconds: 0),
                     ),
                   },
                 );
-              } else if (widget!.checkpage == 'newsfeedRequire') {
+              } else if (widget.checkpage == 'newsfeedRequire') {
                 context.pushNamed(
                   'NewsfeedListRequire',
                   queryParameters: {
@@ -229,7 +224,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                     ),
                   }.withoutNulls,
                   extra: <String, dynamic>{
-                    kTransitionInfoKey: TransitionInfo(
+                    kTransitionInfoKey: const TransitionInfo(
                       hasTransition: true,
                       transitionType: PageTransitionType.fade,
                       duration: Duration(milliseconds: 0),
@@ -250,7 +245,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -259,7 +254,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
           child: Stack(
             children: [
               if (_model.isLoad == false)
-                Container(
+                SizedBox(
                   width: double.infinity,
                   height: double.infinity,
                   child: custom_widgets.LoadingPageWidget(
@@ -279,7 +274,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Container(
+                            SizedBox(
                               width: double.infinity,
                               child: Stack(
                                 children: [
@@ -297,7 +292,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                               '',
                                             ).image,
                                           ),
-                                          borderRadius: BorderRadius.only(
+                                          borderRadius: const BorderRadius.only(
                                             bottomLeft: Radius.circular(16.0),
                                             bottomRight: Radius.circular(16.0),
                                             topLeft: Radius.circular(0.0),
@@ -306,13 +301,12 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                         ),
                                         child: Visibility(
                                           visible: _model
-                                                  .newsfeedItem!.images.length >
-                                              0,
+                                                  .newsfeedItem!.images.isNotEmpty,
                                           child: Builder(
                                             builder: (context) {
                                               final imageList = _model
                                                       .newsfeedItem?.images
-                                                      ?.toList() ??
+                                                      .toList() ??
                                                   [];
 
                                               return FlutterFlowSwipeableStack(
@@ -389,7 +383,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                 threshold: 1.0,
                                                 maxAngle: 360.0,
                                                 cardPadding:
-                                                    EdgeInsets.all(8.0),
+                                                    const EdgeInsets.all(8.0),
                                                 backCardOffset:
                                                     const Offset(4.0, 0.0),
                                               );
@@ -399,13 +393,13 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                       ),
                                     ).animateOnPageLoad(animationsMap[
                                         'containerOnPageLoadAnimation1']!),
-                                  if (_model.newsfeedItem!.images.length > 0)
+                                  if (_model.newsfeedItem!.images.isNotEmpty)
                                     Container(
                                       height: 230.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        borderRadius: BorderRadius.only(
+                                        borderRadius: const BorderRadius.only(
                                           bottomLeft: Radius.circular(16.0),
                                           bottomRight: Radius.circular(16.0),
                                           topLeft: Radius.circular(0.0),
@@ -414,18 +408,17 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                       ),
                                       child: Visibility(
                                         visible:
-                                            _model.newsfeedItem!.images.length >
-                                                0,
+                                            _model.newsfeedItem!.images.isNotEmpty,
                                         child: Padding(
-                                          padding: EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: Builder(
                                             builder: (context) {
                                               final images = _model
                                                       .newsfeedItem?.images
-                                                      ?.toList() ??
+                                                      .toList() ??
                                                   [];
 
-                                              return Container(
+                                              return SizedBox(
                                                 width: double.infinity,
                                                 height: 500.0,
                                                 child: Stack(
@@ -526,11 +519,11 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               -1.0, 1.0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     16.0,
                                                                     0.0,
@@ -556,7 +549,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                                 .pageViewController!
                                                                 .animateToPage(
                                                               i,
-                                                              duration: Duration(
+                                                              duration: const Duration(
                                                                   milliseconds:
                                                                       500),
                                                               curve:
@@ -599,17 +592,17 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 16.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 2.0, 0.0, 0.0),
                                     child: Text(
-                                      '${_model.newsfeedItem?.images?.length?.toString()} ảnh',
+                                      '${_model.newsfeedItem?.images.length.toString()} ảnh',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -627,7 +620,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                             if (_model.newsfeedItem?.title != null &&
                                 _model.newsfeedItem?.title != '')
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Text(
                                   _model.newsfeedItem!.title,
@@ -642,20 +635,20 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                     animationsMap['textOnPageLoadAnimation1']!),
                               ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 16.0, 16.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 2.0, 0.0),
                                     child: Builder(
                                       builder: (context) {
                                         final readList = _model
                                                 .newsfeedItem?.reads
-                                                ?.toList() ??
+                                                .toList() ??
                                             [];
 
                                         return Row(
@@ -670,17 +663,11 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                 width: 25.0,
                                                 height: 25.0,
                                                 clipBehavior: Clip.antiAlias,
-                                                decoration: BoxDecoration(
+                                                decoration: const BoxDecoration(
                                                   shape: BoxShape.circle,
                                                 ),
                                                 child: Image.network(
                                                   readListItem
-                                                                  .readsId
-                                                                  .staffId
-                                                                  .userId
-                                                                  .avatar !=
-                                                              null &&
-                                                          readListItem
                                                                   .readsId
                                                                   .staffId
                                                                   .userId
@@ -693,7 +680,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                               ),
                                             );
                                           }).divide(
-                                            SizedBox(width: 2.0),
+                                            const SizedBox(width: 2.0),
                                             filterFn: (readListIndex) {
                                               final readListItem =
                                                   readList[readListIndex];
@@ -706,7 +693,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                   ),
                                   if (_model.newsfeedItem!.reads.length > 3)
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 2.0, 0.0),
                                       child: FlutterFlowIconButton(
                                         borderRadius: 20.0,
@@ -726,7 +713,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                       ),
                                     ),
                                   Text(
-                                    '${_model.newsfeedItem?.reads?.length?.toString()} thành viên đã xem',
+                                    '${_model.newsfeedItem?.reads.length.toString()} thành viên đã xem',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -741,23 +728,21 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         if ((_model.newsfeedItem?.reads
-                                                    ?.where((e) =>
+                                                    .where((e) =>
                                                         e.readsId.staffId.userId
                                                             .id ==
                                                         FFAppState().user.id)
-                                                    .toList()
-                                                    ?.length ==
-                                                0) &&
+                                                    .toList().isEmpty) &&
                                             (FFAppState().user.id !=
                                                 _model.newsfeedItem?.userCreated
-                                                    ?.id))
+                                                    .id))
                                           FFButtonWidget(
                                             onPressed: () async {
-                                              var _shouldSetState = false;
+                                              var shouldSetState = false;
                                               _model.confirmReaded =
                                                   await action_blocks
                                                       .tokenReload(context);
-                                              _shouldSetState = true;
+                                              shouldSetState = true;
                                               if (_model.confirmReaded!) {
                                                 _model.apiResultConfirmReaded =
                                                     await NewsfeedGroup
@@ -765,11 +750,11 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                         .call(
                                                   accessToken:
                                                       FFAppState().accessToken,
-                                                  newsId: widget!.newsfeedId,
+                                                  newsId: widget.newsfeedId,
                                                   staffId: FFAppState().staffid,
                                                 );
 
-                                                _shouldSetState = true;
+                                                shouldSetState = true;
                                                 if ((_model
                                                         .apiResultConfirmReaded
                                                         ?.succeeded ??
@@ -789,21 +774,23 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                 }
                                               } else {
                                                 setState(() {});
-                                                if (_shouldSetState)
+                                                if (shouldSetState) {
                                                   setState(() {});
+                                                }
                                                 return;
                                               }
 
-                                              if (_shouldSetState)
+                                              if (shouldSetState) {
                                                 setState(() {});
+                                              }
                                             },
                                             text: 'Xác nhận đã đọc',
                                             options: FFButtonOptions(
                                               height: 32.0,
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       10.0, 0.0, 10.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
+                                              iconPadding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -820,7 +807,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -852,7 +839,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(16.0),
+                                      padding: const EdgeInsets.all(16.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -860,7 +847,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -883,15 +870,15 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                           _model
                                                               .newsfeedItem
                                                               ?.userCreated
-                                                              ?.staffs
-                                                              ?.first
-                                                              ?.id,
+                                                              .staffs
+                                                              .first
+                                                              .id,
                                                           ParamType.String,
                                                         ),
                                                       }.withoutNulls,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
-                                                            TransitionInfo(
+                                                            const TransitionInfo(
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
@@ -907,7 +894,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                         BorderRadius.circular(
                                                             40.0),
                                                     child: Image.network(
-                                                      '${FFAppConstants.ApiBaseUrl}/assets/${_model.newsfeedItem?.userCreated?.avatar}?access_token=${FFAppState().accessToken}',
+                                                      '${FFAppConstants.ApiBaseUrl}/assets/${_model.newsfeedItem?.userCreated.avatar}?access_token=${FFAppState().accessToken}',
                                                       width: 40.0,
                                                       height: 40.0,
                                                       fit: BoxFit.cover,
@@ -926,7 +913,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(12.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Column(
@@ -977,7 +964,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                   ),
                                                 ),
                                                 if (_model.newsfeedItem
-                                                        ?.userCreated?.id ==
+                                                        ?.userCreated.id ==
                                                     FFAppState().user.id)
                                                   FlutterFlowIconButton(
                                                     borderColor:
@@ -1048,7 +1035,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                               _model.newsfeedItem?.content !=
                                                   '')
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 16.0),
                                               child: Text(
@@ -1078,14 +1065,14 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                               builder: (context) {
                                                 final videoList = _model
                                                         .newsfeedItem?.videos
-                                                        ?.toList() ??
+                                                        .toList() ??
                                                     [];
 
                                                 return MasonryGridView.builder(
                                                   physics:
                                                       const NeverScrollableScrollPhysics(),
                                                   gridDelegate:
-                                                      SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                                      const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                                     crossAxisCount: 2,
                                                   ),
                                                   crossAxisSpacing: 6.0,
@@ -1117,10 +1104,9 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                             ),
                                           ),
                                           if (_model
-                                                  .newsfeedItem!.files.length >
-                                              0)
+                                                  .newsfeedItem!.files.isNotEmpty)
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 12.0, 0.0, 8.0),
                                               child: Row(
@@ -1155,7 +1141,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                             builder: (context) {
                                               final fileList = _model
                                                       .newsfeedItem?.files
-                                                      ?.toList() ??
+                                                      .toList() ??
                                                   [];
 
                                               return ListView.builder(
@@ -1564,7 +1550,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       0.0,
@@ -1626,13 +1612,13 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 12.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 if (_model.newsfeedItem?.reacts
-                                                        ?.where((e) =>
+                                                        .where((e) =>
                                                             (_model.newsfeedItem !=
                                                                     null
                                                                 ? e.reactsId
@@ -1640,9 +1626,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                                 : ' ') ==
                                                             FFAppState()
                                                                 .staffid)
-                                                        .toList()
-                                                        ?.length ==
-                                                    0)
+                                                        .toList().isEmpty)
                                                   FlutterFlowIconButton(
                                                     borderRadius: 20.0,
                                                     borderWidth: 1.0,
@@ -1660,7 +1644,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                           .reactNewsfeed(
                                                         context,
                                                         newsId:
-                                                            widget!.newsfeedId,
+                                                            widget.newsfeedId,
                                                       );
                                                       setState(() {});
                                                       await _model
@@ -1678,16 +1662,14 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                                 : ' ') ==
                                                             FFAppState()
                                                                 .staffid)
-                                                        .toList()
-                                                        .length >
-                                                    0)
+                                                        .toList().isNotEmpty)
                                                   FlutterFlowIconButton(
                                                     borderColor:
                                                         Colors.transparent,
                                                     borderRadius: 20.0,
                                                     borderWidth: 1.0,
                                                     buttonSize: 40.0,
-                                                    icon: Icon(
+                                                    icon: const Icon(
                                                       Icons.favorite,
                                                       color: Color(0xFFFF0404),
                                                       size: 24.0,
@@ -1698,14 +1680,14 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                         reactId: _model
                                                             .newsfeedItem
                                                             ?.reacts
-                                                            ?.where((e) =>
+                                                            .where((e) =>
                                                                 e.reactsId
                                                                     .staffId ==
                                                                 FFAppState()
                                                                     .staffid)
                                                             .toList()
-                                                            ?.first
-                                                            ?.id,
+                                                            .first
+                                                            .id,
                                                       );
                                                       setState(() {});
                                                       await _model
@@ -1717,8 +1699,8 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                 Text(
                                                   valueOrDefault<String>(
                                                     _model.newsfeedItem?.reacts
-                                                        ?.length
-                                                        ?.toString(),
+                                                        .length
+                                                        .toString(),
                                                     '0',
                                                   ),
                                                   style: FlutterFlowTheme.of(
@@ -1731,7 +1713,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                       ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           4.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -1747,7 +1729,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           24.0, 0.0, 4.0, 0.0),
                                                   child: Icon(
@@ -1759,14 +1741,14 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           4.0, 0.0, 0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
                                                       _model.newsfeedItem
-                                                          ?.comments?.length
-                                                          ?.toString(),
+                                                          ?.comments.length
+                                                          .toString(),
                                                       '0',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -1780,7 +1762,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           4.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -1802,9 +1784,9 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                       ),
                                     ),
                                   ),
-                                  if (_model.newsfeedItem!.comments.length > 0)
+                                  if (_model.newsfeedItem!.comments.isNotEmpty)
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 16.0, 0.0, 0.0),
                                       child: Text(
                                         'Tất cả bình luận',
@@ -1823,13 +1805,13 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                       ),
                                     ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 12.0, 16.0, 0.0),
                                     child: Builder(
                                       builder: (context) {
                                         final commentList = _model
                                                 .newsfeedItem?.comments
-                                                ?.toList() ??
+                                                .toList() ??
                                             [];
 
                                         return Column(
@@ -1842,7 +1824,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                             final commentListItem =
                                                 commentList[commentListIndex];
                                             return Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 12.0),
                                               child: Row(
@@ -1875,7 +1857,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              TransitionInfo(
+                                                              const TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -1917,7 +1899,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     10.0,
                                                                     0.0,
@@ -1946,7 +1928,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1968,7 +1950,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                                     Expanded(
                                                                       child:
                                                                           Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             12.0,
                                                                             8.0,
                                                                             0.0,
@@ -2019,16 +2001,16 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                                                 context: context,
                                                                                 builder: (alertDialogContext) {
                                                                                   return AlertDialog(
-                                                                                    title: Text('Xác nhận'),
-                                                                                    content: Text('Bạn chắc chắn muốn xóa'),
+                                                                                    title: const Text('Xác nhận'),
+                                                                                    content: const Text('Bạn chắc chắn muốn xóa'),
                                                                                     actions: [
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: Text('Hủy'),
+                                                                                        child: const Text('Hủy'),
                                                                                       ),
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: Text('Xác nhận'),
+                                                                                        child: const Text('Xác nhận'),
                                                                                       ),
                                                                                     ],
                                                                                   );
@@ -2050,7 +2032,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                                   ],
                                                                 ),
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           12.0,
                                                                           0.0,
@@ -2074,13 +2056,9 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                                 if (commentListItem
                                                                             .commentsId
                                                                             .image !=
-                                                                        null &&
-                                                                    commentListItem
-                                                                            .commentsId
-                                                                            .image !=
                                                                         '')
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             6.0,
                                                                             4.0,
@@ -2106,13 +2084,9 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                                 if (commentListItem
                                                                             .commentsId
                                                                             .video !=
-                                                                        null &&
-                                                                    commentListItem
-                                                                            .commentsId
-                                                                            .video !=
                                                                         '')
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             6.0,
                                                                             6.0,
@@ -2245,7 +2219,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                                       Expanded(
                                                                         child:
                                                                             Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               5.0,
                                                                               0.0,
                                                                               0.0,
@@ -2303,7 +2277,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     16.0,
                                                                     4.0,
@@ -2349,14 +2323,13 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                         ),
                       ),
                     ),
-                    if (_model.uploadedLocalFile1 != null &&
-                        (_model.uploadedLocalFile1.bytes?.isNotEmpty ?? false))
+                    if ((_model.uploadedLocalFile1.bytes?.isNotEmpty ?? false))
                       Container(
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 10.0, 10.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -2397,18 +2370,17 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                   });
                                 },
                               ),
-                            ].divide(SizedBox(width: 12.0)),
+                            ].divide(const SizedBox(width: 12.0)),
                           ),
                         ),
                       ),
-                    if (_model.uploadedLocalFile2 != null &&
-                        (_model.uploadedLocalFile2.bytes?.isNotEmpty ?? false))
+                    if ((_model.uploadedLocalFile2.bytes?.isNotEmpty ?? false))
                       Container(
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 10.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -2446,18 +2418,17 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                   });
                                 },
                               ),
-                            ].divide(SizedBox(width: 12.0)),
+                            ].divide(const SizedBox(width: 12.0)),
                           ),
                         ),
                       ),
-                    if (_model.uploadedLocalFile3 != null &&
-                        (_model.uploadedLocalFile3.bytes?.isNotEmpty ?? false))
+                    if ((_model.uploadedLocalFile3.bytes?.isNotEmpty ?? false))
                       Container(
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 10.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -2495,27 +2466,27 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                   });
                                 },
                               ),
-                            ].divide(SizedBox(width: 12.0)),
+                            ].divide(const SizedBox(width: 12.0)),
                           ),
                         ),
                       ),
                     if (_model.checkIcon == true)
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Container(
                           decoration: BoxDecoration(
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 10.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 6.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2577,7 +2548,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 6.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2641,7 +2612,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                 ),
                                 if ('1' == '2')
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 6.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -2718,7 +2689,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                     ],
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                         ),
@@ -2729,10 +2700,10 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                       ),
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         child: Container(
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
@@ -2740,7 +2711,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                             borderRadius: BorderRadius.circular(90.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -2806,38 +2777,31 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                     size: 24.0,
                                   ),
                                   onPressed: () async {
-                                    if (!((_model.textController.text != null &&
-                                            _model.textController.text != '') ||
-                                        (_model.uploadedLocalFile1 != null &&
-                                            (_model.uploadedLocalFile1.bytes
+                                    if (!((_model.textController.text != '') ||
+                                        ((_model.uploadedLocalFile1.bytes
                                                     ?.isNotEmpty ??
                                                 false)) ||
-                                        (_model.uploadedLocalFile2 != null &&
-                                            (_model.uploadedLocalFile2.bytes
+                                        ((_model.uploadedLocalFile2.bytes
                                                     ?.isNotEmpty ??
                                                 false)) ||
-                                        (_model.uploadedLocalFile3 != null &&
-                                            (_model.uploadedLocalFile3.bytes
+                                        ((_model.uploadedLocalFile3.bytes
                                                     ?.isNotEmpty ??
                                                 false)))) {
                                       return;
                                     }
-                                    if (_model.uploadedLocalFile1 != null &&
-                                        (_model.uploadedLocalFile1.bytes
+                                    if ((_model.uploadedLocalFile1.bytes
                                                 ?.isNotEmpty ??
                                             false)) {
                                       await _model.postDataUploadImage(context);
                                       setState(() {});
                                     }
-                                    if (_model.uploadedLocalFile2 != null &&
-                                        (_model.uploadedLocalFile2.bytes
+                                    if ((_model.uploadedLocalFile2.bytes
                                                 ?.isNotEmpty ??
                                             false)) {
                                       await _model.postDataVideo(context);
                                       setState(() {});
                                     }
-                                    if (_model.uploadedLocalFile3 != null &&
-                                        (_model.uploadedLocalFile3.bytes
+                                    if ((_model.uploadedLocalFile3.bytes
                                                 ?.isNotEmpty ??
                                             false)) {
                                       await _model.postDataFile(context);

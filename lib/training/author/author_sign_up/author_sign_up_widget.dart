@@ -13,8 +13,6 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'author_sign_up_model.dart';
 export 'author_sign_up_model.dart';
@@ -69,16 +67,16 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 700.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -94,14 +92,14 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
             key: _model.formKey,
             autovalidateMode: AutovalidateMode.disabled,
             child: Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -139,7 +137,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -273,7 +271,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                             children: [
                               if (_model.checkAvatar == true)
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 21.0, 0.0),
                                   child: Text(
                                     'Vui lòng tải ảnh đại diện',
@@ -292,7 +290,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                             ],
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 8.0, 0.0, 0.0),
                             child: Text(
                               'Tên tác giả',
@@ -310,14 +308,12 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                             focusNode: _model.nameFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.nameTextController',
-                              Duration(milliseconds: 2000),
+                              const Duration(milliseconds: 2000),
                               () async {
                                 if (_model.listAuthorName
                                         .where((e) =>
                                             e == _model.nameTextController.text)
-                                        .toList()
-                                        .length >
-                                    0) {
+                                        .toList().isNotEmpty) {
                                   _model.checkName = true;
                                   setState(() {});
                                 } else {
@@ -387,7 +383,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 20.0, 16.0, 20.0),
                             ),
                             style:
@@ -401,7 +397,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                           ),
                           if (_model.checkName == true)
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Trùng tên tác giả. Vui lòng nhập tên khác!',
@@ -417,7 +413,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                               ),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 16.0, 0.0, 0.0),
                             child: Text(
                               'Giới thiệu về tôi',
@@ -495,7 +491,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 16.0, 16.0, 16.0),
                             ),
                             style:
@@ -511,7 +507,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                 .asValidator(context),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 16.0, 0.0, 0.0),
                             child: Text(
                               'Lĩnh vực',
@@ -572,7 +568,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                 : FlutterFlowTheme.of(context).error,
                             borderWidth: 1.0,
                             borderRadius: 12.0,
-                            margin: EdgeInsetsDirectional.fromSTEB(
+                            margin: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 4.0, 8.0, 4.0),
                             hidesUnderline: true,
                             isOverButton: true,
@@ -583,7 +579,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                           ),
                           if (_model.checkDomain == true)
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 ' Vui lòng chọn lĩnh vực!',
@@ -599,16 +595,16 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                               ),
                             ),
                         ]
-                            .divide(SizedBox(height: 4.0))
-                            .addToEnd(SizedBox(height: 32.0)),
+                            .divide(const SizedBox(height: 4.0))
+                            .addToEnd(const SizedBox(height: 32.0)),
                       ),
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -619,15 +615,15 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                 Navigator.pop(context);
                               },
                               text: 'Đóng',
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.close,
                                 size: 18.0,
                               ),
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -641,7 +637,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -652,10 +648,9 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                           Expanded(
                             child: FFButtonWidget(
                               onPressed: () async {
-                                var _shouldSetState = false;
+                                var shouldSetState = false;
                                 if (_model.checkName == false) {
-                                  if (_model.uploadedLocalFile != null &&
-                                      (_model.uploadedLocalFile.bytes
+                                  if ((_model.uploadedLocalFile.bytes
                                               ?.isNotEmpty ??
                                           false)) {
                                     _model.checkAvatar = false;
@@ -668,7 +663,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                   } else {
                                     _model.checkAvatar = true;
                                     setState(() {});
-                                    if (_shouldSetState) setState(() {});
+                                    if (shouldSetState) setState(() {});
                                     return;
                                   }
 
@@ -678,11 +673,11 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                   } else {
                                     _model.checkDomain = true;
                                     setState(() {});
-                                    if (_shouldSetState) setState(() {});
+                                    if (shouldSetState) setState(() {});
                                     return;
                                   }
                                 } else {
-                                  if (_shouldSetState) setState(() {});
+                                  if (shouldSetState) setState(() {});
                                   return;
                                 }
 
@@ -698,13 +693,13 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                 }
                                 _model.loop = 0;
                                 setState(() {});
-                                if (_model.selectedDomainList.length > 0) {
+                                if (_model.selectedDomainList.isNotEmpty) {
                                   _model.checkDomain = false;
                                   setState(() {});
                                 } else {
                                   _model.checkDomain = true;
                                   setState(() {});
-                                  if (_shouldSetState) setState(() {});
+                                  if (shouldSetState) setState(() {});
                                   return;
                                 }
 
@@ -713,19 +708,19 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
-                                          title: Text('Xác nhận'),
+                                          title: const Text('Xác nhận'),
                                           content:
-                                              Text('Bạn chắc chắn muốn lưu?'),
+                                              const Text('Bạn chắc chắn muốn lưu?'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext, false),
-                                              child: Text('Hủy'),
+                                              child: const Text('Hủy'),
                                             ),
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext, true),
-                                              child: Text('Xác nhận'),
+                                              child: const Text('Xác nhận'),
                                             ),
                                           ],
                                         );
@@ -735,10 +730,10 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                 if (confirmDialogResponse) {
                                   _model.uploadFile =
                                       await action_blocks.tokenReload(context);
-                                  _shouldSetState = true;
+                                  shouldSetState = true;
                                   if (!_model.uploadFile!) {
                                     setState(() {});
-                                    if (_shouldSetState) setState(() {});
+                                    if (shouldSetState) setState(() {});
                                     return;
                                   }
                                   _model.apiResultUploadAvatar =
@@ -747,7 +742,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                     file: _model.uploadedLocalFile,
                                   );
 
-                                  _shouldSetState = true;
+                                  shouldSetState = true;
                                   if ((_model
                                           .apiResultUploadAvatar?.succeeded ??
                                       true)) {
@@ -760,7 +755,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                   }
                                   _model.authorsSignUp =
                                       await action_blocks.tokenReload(context);
-                                  _shouldSetState = true;
+                                  shouldSetState = true;
                                   if (_model.authorsSignUp!) {
                                     _model.apiResultAuthorSignUp =
                                         await GroupAuthorsGroup
@@ -782,7 +777,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                       },
                                     );
 
-                                    _shouldSetState = true;
+                                    shouldSetState = true;
                                     if ((_model
                                             .apiResultAuthorSignUp?.succeeded ??
                                         true)) {
@@ -807,7 +802,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                       context.pushNamed(
                                         'AuthorProfile',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -818,18 +813,18 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                     }
                                   }
                                 }
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                               },
                               text: 'Xác nhận',
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.check,
                                 size: 18.0,
                               ),
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -841,7 +836,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -849,11 +844,11 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                               ),
                             ),
                           ),
-                        ].divide(SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
                       ),
                     ),
                   ),
-                ].divide(SizedBox(height: 8.0)),
+                ].divide(const SizedBox(height: 8.0)),
               ),
             ),
           ),

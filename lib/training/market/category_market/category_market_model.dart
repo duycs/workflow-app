@@ -1,21 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'category_market_widget.dart' show CategoryMarketWidget;
 import 'dart:async';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
 
 class CategoryMarketModel extends FlutterFlowModel<CategoryMarketWidget> {
   ///  Local state fields for this page.
@@ -71,19 +63,19 @@ class CategoryMarketModel extends FlutterFlowModel<CategoryMarketWidget> {
     apiResultList = await GetDomainsGroup.getDomainsCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[${searchDomainsTextController.text != null && searchDomainsTextController.text != '' ? '{\"name\":{\"_icontains\":\"${searchDomainsTextController.text}\"}}' : ' '}]}',
+          '{\"_and\":[${searchDomainsTextController.text != '' ? '{\"name\":{\"_icontains\":\"${searchDomainsTextController.text}\"}}' : ' '}]}',
     );
 
-    if ((apiResultList?.succeeded ?? true)) {
+    if ((apiResultList.succeeded ?? true)) {
       listDataDomains = DomainsListDataDataStruct.maybeFromMap(
-              (apiResultList?.jsonBody ?? ''))!
+              (apiResultList.jsonBody ?? ''))!
           .data
           .toList()
           .cast<DomainsListListStruct>();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList?.jsonBody ?? ''),
+        jsonErrors: (apiResultList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         await actions.showToast(
@@ -105,7 +97,7 @@ class CategoryMarketModel extends FlutterFlowModel<CategoryMarketWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (gridViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -145,7 +137,7 @@ class CategoryMarketModel extends FlutterFlowModel<CategoryMarketWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         gridViewPagingController?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

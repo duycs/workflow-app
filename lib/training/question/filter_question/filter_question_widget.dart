@@ -7,8 +7,6 @@ import '/flutter_flow/form_field_controller.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'filter_question_model.dart';
 export 'filter_question_model.dart';
 
@@ -45,15 +43,15 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.nameSearch =
-          widget!.name != null && widget!.name != '' ? widget!.name : '';
+          widget.name != null && widget.name != '' ? widget.name : '';
       _model.statusSearch =
-          widget!.status != null && widget!.status != '' ? widget!.status : '';
+          widget.status != null && widget.status != '' ? widget.status : '';
       setState(() {});
       _model.isLoad = true;
       setState(() {});
     });
 
-    _model.nameTextController ??= TextEditingController(text: widget!.name);
+    _model.nameTextController ??= TextEditingController(text: widget.name);
     _model.nameFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -71,11 +69,11 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
     return Visibility(
       visible: _model.isLoad == true,
       child: Align(
-        alignment: AlignmentDirectional(0.0, 1.0),
+        alignment: const AlignmentDirectional(0.0, 1.0),
         child: Container(
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -85,7 +83,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                 ),
               )
             ],
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(0.0),
               bottomRight: Radius.circular(0.0),
               topLeft: Radius.circular(16.0),
@@ -93,7 +91,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -132,14 +130,14 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                   if (_model.isLoad == true)
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
                       child: FlutterFlowDropDown<String>(
                         controller: _model.dropStatusValueController ??=
                             FormFieldController<String>(
-                          _model.dropStatusValue ??= widget!.status,
+                          _model.dropStatusValue ??= widget.status,
                         ),
                         options: List<String>.from(['published', 'draft']),
-                        optionLabels: ['Hoạt động', 'Không hoạt động'],
+                        optionLabels: const ['Hoạt động', 'Không hoạt động'],
                         onChanged: (val) async {
                           setState(() => _model.dropStatusValue = val);
                           _model.statusSearch = _model.dropStatusValue;
@@ -164,7 +162,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                         borderColor: FlutterFlowTheme.of(context).alternate,
                         borderWidth: 2.0,
                         borderRadius: 8.0,
-                        margin: EdgeInsetsDirectional.fromSTEB(
+                        margin: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 4.0, 16.0, 4.0),
                         hidesUnderline: true,
                         isOverButton: true,
@@ -174,13 +172,13 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                     ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                     child: TextFormField(
                       controller: _model.nameTextController,
                       focusNode: _model.nameFocusNode,
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.nameTextController',
-                        Duration(milliseconds: 2000),
+                        const Duration(milliseconds: 2000),
                         () => setState(() {}),
                       ),
                       autofocus: false,
@@ -236,7 +234,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -256,9 +254,9 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                             text: 'Xoá bộ lọc',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -288,8 +286,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                                         _model.statusSearch != ''
                                     ? _model.statusSearch
                                     : '',
-                                _model.nameTextController.text != null &&
-                                        _model.nameTextController.text != ''
+                                _model.nameTextController.text != ''
                                     ? _model.nameTextController.text
                                     : '',
                               );
@@ -298,11 +295,11 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                             text: 'Xác nhận',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF33BA45),
+                              color: const Color(0xFF33BA45),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -312,7 +309,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -320,10 +317,10 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
                     ),
                   ),
-                ].divide(SizedBox(height: 8.0)),
+                ].divide(const SizedBox(height: 8.0)),
               ),
             ),
           ),

@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
@@ -10,17 +9,14 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
 import '/training/lesson/menu_delete/menu_delete_widget.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'staffs_programs_lesson_model.dart';
 export 'staffs_programs_lesson_model.dart';
@@ -30,8 +26,8 @@ class StaffsProgramsLessonWidget extends StatefulWidget {
     super.key,
     String? programsId,
     String? lessionId,
-  })  : this.programsId = programsId ?? '',
-        this.lessionId = lessionId ?? '';
+  })  : programsId = programsId ?? '',
+        lessionId = lessionId ?? '';
 
   final String programsId;
   final String lessionId;
@@ -137,7 +133,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                 ),
               ),
               if ((_model.status == 'draft') &&
-                  (_model.status != null && _model.status != '') &&
+                  (_model.status != '') &&
                   (_model.staffsLessionsListOne.length != null))
                 FFButtonWidget(
                   onPressed: () async {
@@ -145,17 +141,17 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                           context: context,
                           builder: (alertDialogContext) {
                             return AlertDialog(
-                              content: Text('Bắt đầu bài học!'),
+                              content: const Text('Bắt đầu bài học!'),
                               actions: [
                                 TextButton(
                                   onPressed: () =>
                                       Navigator.pop(alertDialogContext, false),
-                                  child: Text('Đóng'),
+                                  child: const Text('Đóng'),
                                 ),
                                 TextButton(
                                   onPressed: () =>
                                       Navigator.pop(alertDialogContext, true),
-                                  child: Text('Xác nhận'),
+                                  child: const Text('Xác nhận'),
                                 ),
                               ],
                             );
@@ -203,7 +199,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                           await LessonGroup.updateStaffProgramStatusCall.call(
                         accessToken: FFAppState().accessToken,
                         staffId: FFAppState().staffid,
-                        programId: widget!.programsId,
+                        programId: widget.programsId,
                       );
 
                       if (!(_model
@@ -223,9 +219,9 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                   text: 'Bắt đầu học',
                   options: FFButtonOptions(
                     height: 32.0,
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).secondary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Nunito Sans',
@@ -234,7 +230,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
                         ),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),
@@ -243,7 +239,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                 ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -252,12 +248,12 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if ((_model.staffsLessionsListOne.isNotEmpty) &&
-                (widget!.programsId != null && widget!.programsId != '') &&
-                (widget!.lessionId != null && widget!.lessionId != '') &&
+                (widget.programsId != '') &&
+                (widget.lessionId != '') &&
                 (_model.staffsLessionsListOne.first.lessionId != null))
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -265,9 +261,9 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 12.0, 0.0, 0.0),
                             child: Text(
                               _model.staffsLessionsListOne.isNotEmpty
@@ -286,7 +282,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 12.0, 12.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -295,10 +291,8 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                   .secondaryBackground,
                             ),
                             child: Visibility(
-                              visible: (widget!.programsId != null &&
-                                      widget!.programsId != '') &&
-                                  (widget!.lessionId != null &&
-                                      widget!.lessionId != '') &&
+                              visible: (widget.programsId != '') &&
+                                  (widget.lessionId != '') &&
                                   (_model.staffsLessionsListOne.first
                                           .lessionId !=
                                       null),
@@ -308,9 +302,6 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                 children: [
                                   if ((_model.status != 'draft') &&
                                       (_model.staffsLessionsListOne.first
-                                                  .lessionId.video !=
-                                              null &&
-                                          _model.staffsLessionsListOne.first
                                                   .lessionId.video !=
                                               ''))
                                     FlutterFlowVideoPlayer(
@@ -329,18 +320,12 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                   if ((_model.status == 'draft') &&
                                       (_model.staffsLessionsListOne.first
                                                   .lessionId.video !=
-                                              null &&
-                                          _model.staffsLessionsListOne.first
-                                                  .lessionId.video !=
                                               ''))
                                     Stack(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       children: [
                                         if ((_model.status == 'draft') &&
-                                            (_model.staffsLessionsListOne.first
-                                                        .lessionId.video !=
-                                                    null &&
-                                                _model
+                                            (_model
                                                         .staffsLessionsListOne
                                                         .first
                                                         .lessionId
@@ -368,7 +353,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                         onPressed: () =>
                                                             Navigator.pop(
                                                                 alertDialogContext),
-                                                        child: Text('Ok'),
+                                                        child: const Text('Ok'),
                                                       ),
                                                     ],
                                                   );
@@ -391,16 +376,10 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                 .first
                                                                 .lessionId
                                                                 .video !=
-                                                            null &&
-                                                        _model
-                                                                .staffsLessionsListOne
-                                                                .first
-                                                                .lessionId
-                                                                .video !=
                                                             ''),
                                                 child: Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: FlutterFlowIconButton(
                                                     borderColor:
@@ -434,7 +413,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                   .primaryText,
                                                             ),
                                                           ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   4000),
                                                           backgroundColor:
@@ -452,10 +431,10 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                       ],
                                     ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 12.0),
                                     child: Container(
-                                      decoration: BoxDecoration(),
+                                      decoration: const BoxDecoration(),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -463,7 +442,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Container(
                                               width: double.infinity,
@@ -475,7 +454,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                     BorderRadius.circular(8.0),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsets.all(6.0),
+                                                padding: const EdgeInsets.all(6.0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -495,7 +474,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -613,7 +592,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                                 'heif'))) &&
                                                                     (_model.status != 'draft'))
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             2.0,
                                                                             0.0,
@@ -658,7 +637,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                         .checkFile ==
                                                                     '0')
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             2.0,
                                                                             0.0,
@@ -1216,7 +1195,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                 ),
                                                               Expanded(
                                                                 child: Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -1271,8 +1250,8 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                     },
                                                                     child: Text(
                                                                       (_model.staffsLessionsListOne.first.lessionId.file.toMap() != null) &&
-                                                                              (_model.staffsLessionsListOne.first.lessionId.file.type != null && _model.staffsLessionsListOne.first.lessionId.file.type != '') &&
-                                                                              (_model.staffsLessionsListOne.first.lessionId.file.filenameDownload != null && _model.staffsLessionsListOne.first.lessionId.file.filenameDownload != '')
+                                                                              (_model.staffsLessionsListOne.first.lessionId.file.type != '') &&
+                                                                              (_model.staffsLessionsListOne.first.lessionId.file.filenameDownload != '')
                                                                           ? '${(String name) {
                                                                               return name.toLowerCase().replaceAll(' ', '-');
                                                                             }(_model.staffsLessionsListOne.first.lessionId.name)}.${(String type) {
@@ -1346,14 +1325,14 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                             FFButtonOptions(
                                                           height: 25.0,
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       0.0,
                                                                       8.0,
                                                                       0.0),
                                                           iconPadding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1391,14 +1370,14 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                         ),
                                                       ),
                                                   ].divide(
-                                                      SizedBox(width: 5.0)),
+                                                      const SizedBox(width: 5.0)),
                                                 ),
                                               ),
                                             ),
                                           ),
                                           if (_model.checkFile == '0')
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 16.0, 0.0, 0.0),
                                               child: Container(
@@ -1413,7 +1392,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(4.0),
+                                                  padding: const EdgeInsets.all(4.0),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -1631,7 +1610,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                       ),
                                     ),
                                   ),
-                                ].divide(SizedBox(height: 8.0)),
+                                ].divide(const SizedBox(height: 8.0)),
                               ),
                             ),
                           ),
@@ -1639,7 +1618,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                         if ((_model.staffsLessionsListOne.first != null) &&
                             (_model.status != 'draft'))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 0.0, 4.0),
                             child: RichText(
                               textScaler: MediaQuery.of(context).textScaler,
@@ -1656,7 +1635,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                         ),
                                   ),
                                   TextSpan(
-                                    text: '${() {
+                                    text: () {
                                       if (_model.status == 'draft') {
                                         return 'Chưa học';
                                       } else if (_model.status ==
@@ -1667,7 +1646,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                       } else {
                                         return ' ';
                                       }
-                                    }()}',
+                                    }(),
                                     style: TextStyle(
                                       color: () {
                                         if (_model.status == 'draft') {
@@ -1681,7 +1660,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                           return FlutterFlowTheme.of(context)
                                               .secondary;
                                         } else {
-                                          return Color(0x00000000);
+                                          return const Color(0x00000000);
                                         }
                                       }(),
                                       fontWeight: FontWeight.normal,
@@ -1702,9 +1681,9 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                         Container(
                           width: double.infinity,
                           height: 35.0,
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 4.0, 12.0, 4.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1780,9 +1759,9 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(SizedBox(width: 2.0)),
+                                      ].divide(const SizedBox(width: 2.0)),
                                     ),
-                                  ].divide(SizedBox(width: 4.0)),
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -1816,16 +1795,16 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(SizedBox(width: 2.0)),
+                                      ].divide(const SizedBox(width: 2.0)),
                                     ),
-                                  ].divide(SizedBox(width: 4.0)),
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Align(
-                                      alignment: AlignmentDirectional(1.0, 0.0),
+                                      alignment: const AlignmentDirectional(1.0, 0.0),
                                       child: Text(
                                         dateTimeFormat(
                                           'dd/MM/yyyy',
@@ -1846,16 +1825,16 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                             ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 4.0)),
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
-                              ].divide(SizedBox(width: 24.0)),
+                              ].divide(const SizedBox(width: 24.0)),
                             ),
                           ),
                         ),
-                        if ((_model.testId != null && _model.testId != '') &&
+                        if ((_model.testId != '') &&
                             (_model.status != 'draft'))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 16.0, 12.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1864,7 +1843,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                 if (_model.status == 'inprogress')
                                   Expanded(
                                     child: Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Builder(
                                         builder: (context) => InkWell(
                                           splashColor: Colors.transparent,
@@ -1881,7 +1860,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -1923,12 +1902,12 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                   BorderRadius.circular(12.0),
                                             ),
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 16.0, 0.0),
                                                 child: Row(
@@ -1963,7 +1942,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Icon(
                                                       Icons
@@ -1985,7 +1964,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                   ),
                                 Expanded(
                                   child: Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -2002,7 +1981,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                             ),
                                           }.withoutNulls,
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: TransitionInfo(
+                                            kTransitionInfoKey: const TransitionInfo(
                                               hasTransition: true,
                                               transitionType:
                                                   PageTransitionType.fade,
@@ -2017,7 +1996,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryBackground,
-                                          boxShadow: [
+                                          boxShadow: const [
                                             BoxShadow(
                                               color: Color(0x33000000),
                                             )
@@ -2027,10 +2006,10 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                         ),
                                         child: Align(
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -2063,7 +2042,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                           ),
                                                     ),
                                                   ].divide(
-                                                      SizedBox(width: 4.0)),
+                                                      const SizedBox(width: 4.0)),
                                                 ),
                                                 Icon(
                                                   Icons.chevron_right_rounded,
@@ -2080,11 +2059,11 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 24.0)),
+                              ].divide(const SizedBox(width: 24.0)),
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 16.0, 0.0, 0.0),
                           child: Text(
                             'Nội dung bài học',
@@ -2099,21 +2078,15 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                         if ((_model.staffsLessionsListOne.first != null) &&
                             (_model.staffsLessionsListOne.first.lessionId
                                         .content !=
-                                    null &&
-                                _model.staffsLessionsListOne.first.lessionId
-                                        .content !=
                                     '') &&
-                            (functions.formatHtml(_model.staffsLessionsListOne
-                                        .first.lessionId.content) !=
-                                    null &&
-                                functions.formatHtml(_model
+                            (functions.formatHtml(_model
                                         .staffsLessionsListOne
                                         .first
                                         .lessionId
                                         .content) !=
                                     ''))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -2123,17 +2096,8 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                         null) &&
                                     (_model.staffsLessionsListOne.first
                                                 .lessionId.content !=
-                                            null &&
-                                        _model.staffsLessionsListOne.first
-                                                .lessionId.content !=
                                             '') &&
                                     (functions.formatHtml(_model
-                                                .staffsLessionsListOne
-                                                .first
-                                                .lessionId
-                                                .content) !=
-                                            null &&
-                                        functions.formatHtml(_model
                                                 .staffsLessionsListOne
                                                 .first
                                                 .lessionId
@@ -2152,7 +2116,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.0, 16.0, 16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -2207,15 +2171,15 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                           letterSpacing: 0.0,
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 2.0)),
+                                ].divide(const SizedBox(width: 2.0)),
                               ),
                             ],
                           ),
                         ),
                         Container(
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Visibility(
-                            visible: _model.list.length > 0,
+                            visible: _model.list.isNotEmpty,
                             child: Builder(
                               builder: (context) {
                                 final listItems = _model.list.toList();
@@ -2227,12 +2191,12 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                   scrollDirection: Axis.vertical,
                                   itemCount: listItems.length,
                                   separatorBuilder: (_, __) =>
-                                      SizedBox(height: 5.0),
+                                      const SizedBox(height: 5.0),
                                   itemBuilder: (context, listItemsIndex) {
                                     final listItemsItem =
                                         listItems[listItemsIndex];
                                     return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 12.0, 12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -2244,7 +2208,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                           Container(
                                             width: 40.0,
                                             height: 40.0,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               shape: BoxShape.rectangle,
                                             ),
                                             child: ClipRRect(
@@ -2276,7 +2240,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           12.0, 0.0, 0.0, 2.0),
                                                   child: Container(
@@ -2291,7 +2255,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   12.0,
                                                                   8.0,
@@ -2327,10 +2291,10 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                           0.0,
                                                                     ),
                                                               ),
-                                                              if ('${getJsonField(
+                                                              if (getJsonField(
                                                                     listItemsItem,
                                                                     r'''$.comments_id.staff_id.id''',
-                                                                  ).toString()}' ==
+                                                                  ).toString() ==
                                                                   FFAppState()
                                                                       .staffid)
                                                                 Builder(
@@ -2359,9 +2323,9 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                         avoidOverflow:
                                                                             true,
                                                                         targetAnchor:
-                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         followerAnchor:
-                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         builder:
                                                                             (dialogContext) {
                                                                           return Material(
@@ -2370,7 +2334,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                             child:
                                                                                 GestureDetector(
                                                                               onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                              child: Container(
+                                                                              child: SizedBox(
                                                                                 height: 100.0,
                                                                                 width: 200.0,
                                                                                 child: MenuDeleteWidget(
@@ -2407,7 +2371,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -2437,7 +2401,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 0.0, 0.0, 0.0),
                                                   child: Row(
@@ -2474,7 +2438,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                       0.0,
                                                                 ),
                                                           ),
-                                                        ].divide(SizedBox(
+                                                        ].divide(const SizedBox(
                                                             width: 16.0)),
                                                       ),
                                                       if ('1' == '2')
@@ -2494,17 +2458,17 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                         0.0,
                                                                   ),
                                                             ),
-                                                            Icon(
+                                                            const Icon(
                                                               Icons.favorite,
                                                               color: Color(
                                                                   0xFFFF0202),
                                                               size: 20.0,
                                                             ),
-                                                          ].divide(SizedBox(
+                                                          ].divide(const SizedBox(
                                                               width: 2.0)),
                                                         ),
                                                     ].divide(
-                                                        SizedBox(width: 10.0)),
+                                                        const SizedBox(width: 10.0)),
                                                   ),
                                                 ),
                                               ],
@@ -2527,7 +2491,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
             if ((_model.staffsLessionsListOne.isNotEmpty) &&
                 (_model.status != 'draft'))
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -2544,7 +2508,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                     Flexible(
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                         child: Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
@@ -2557,7 +2521,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.commentsTextController,
@@ -2597,7 +2561,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 4.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -2606,8 +2570,6 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     if (_model.commentsTextController.text !=
-                                            null &&
-                                        _model.commentsTextController.text !=
                                             '') {
                                       await _model.postComment(context);
                                       setState(() {});
@@ -2626,7 +2588,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 6.0)),
+                            ].divide(const SizedBox(width: 6.0)),
                           ),
                         ),
                       ),
@@ -2641,8 +2603,8 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
-                alignment: AlignmentDirectional(0.0, 0.0),
-                child: FaIcon(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: const FaIcon(
                   FontAwesomeIcons.circleNotch,
                   color: Color(0xFF4A39E9),
                   size: 50.0,

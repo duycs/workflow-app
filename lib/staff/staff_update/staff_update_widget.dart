@@ -10,16 +10,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'staff_update_model.dart';
 export 'staff_update_model.dart';
@@ -58,7 +53,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
           accessToken: FFAppState().accessToken,
           filter:
               '{\"_and\":[{},{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-            widget!.staffDetail,
+            widget.staffDetail,
             r'''$.branch_id.id''',
           ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"published\"}}]}',
         );
@@ -71,13 +66,13 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
               .cast<DepartmentListStruct>();
           setState(() {});
           _model.dob = getJsonField(
-                    widget!.staffDetail,
+                    widget.staffDetail,
                     r'''$.dob''',
                   ) ==
                   null
               ? ' '
               : getJsonField(
-                  widget!.staffDetail,
+                  widget.staffDetail,
                   r'''$.dob''',
                 ).toString().toString();
           setState(() {});
@@ -111,47 +106,47 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
 
     _model.nameTextController ??= TextEditingController(
         text: getJsonField(
-      widget!.staffDetail,
+      widget.staffDetail,
       r'''$.user_id.first_name''',
     ).toString().toString());
     _model.nameFocusNode ??= FocusNode();
 
     _model.emailTextController ??= TextEditingController(
         text: getJsonField(
-      widget!.staffDetail,
+      widget.staffDetail,
       r'''$.user_id.email''',
     ).toString().toString());
     _model.emailFocusNode ??= FocusNode();
 
     _model.phoneTextController ??= TextEditingController(
-        text: '${getJsonField(
-                  widget!.staffDetail,
+        text: getJsonField(
+                  widget.staffDetail,
                   r'''$.phone''',
-                ).toString().toString()}' ==
+                ).toString().toString() ==
                 'undefined'
             ? null
             : getJsonField(
-                widget!.staffDetail,
+                widget.staffDetail,
                 r'''$.phone''',
               ).toString().toString());
     _model.phoneFocusNode ??= FocusNode();
 
     _model.cccdTextController ??= TextEditingController(
-        text: '${getJsonField(
-                  widget!.staffDetail,
+        text: getJsonField(
+                  widget.staffDetail,
                   r'''$.cccd''',
-                ).toString().toString()}' ==
+                ).toString().toString() ==
                 'undefined'
             ? ' '
             : getJsonField(
-                widget!.staffDetail,
+                widget.staffDetail,
                 r'''$.cccd''',
               ).toString().toString());
     _model.cccdFocusNode ??= FocusNode();
 
     _model.titleTextTextController ??= TextEditingController(
         text: getJsonField(
-      widget!.staffDetail,
+      widget.staffDetail,
       r'''$.title''',
     ).toString().toString());
     _model.titleTextFocusNode ??= FocusNode();
@@ -172,8 +167,8 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 60.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 60.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -228,7 +223,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                 letterSpacing: 0.0,
               ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: false,
         elevation: 1.0,
       ),
@@ -246,16 +241,15 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          if (_model.uploadedLocalFile == null ||
-                              (_model.uploadedLocalFile.bytes?.isEmpty ?? true))
+                          if ((_model.uploadedLocalFile.bytes?.isEmpty ?? true))
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 0.0),
                               child: Container(
                                 width: 100.0,
@@ -265,7 +259,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   shape: BoxShape.circle,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.all(2.0),
+                                  padding: const EdgeInsets.all(2.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
@@ -279,7 +273,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                           child: FlutterFlowExpandedImageView(
                                             image: Image.network(
                                               '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                                                widget!.staffDetail,
+                                                widget.staffDetail,
                                                 r'''$.user_id.avatar''',
                                               ).toString()}?access_token=${FFAppState().accessToken}',
                                               fit: BoxFit.contain,
@@ -293,7 +287,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                             allowRotation: false,
                                             tag:
                                                 '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                                              widget!.staffDetail,
+                                              widget.staffDetail,
                                               r'''$.user_id.avatar''',
                                             ).toString()}?access_token=${FFAppState().accessToken}',
                                             useHeroAnimation: true,
@@ -304,7 +298,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     child: Hero(
                                       tag:
                                           '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                                        widget!.staffDetail,
+                                        widget.staffDetail,
                                         r'''$.user_id.avatar''',
                                       ).toString()}?access_token=${FFAppState().accessToken}',
                                       transitionOnUserGestures: true,
@@ -312,12 +306,12 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                         width: 90.0,
                                         height: 90.0,
                                         clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.network(
                                           '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                                            widget!.staffDetail,
+                                            widget.staffDetail,
                                             r'''$.user_id.avatar''',
                                           ).toString()}?access_token=${FFAppState().accessToken}',
                                           fit: BoxFit.fitWidth,
@@ -334,11 +328,10 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 ),
                               ),
                             ),
-                          if (_model.uploadedLocalFile != null &&
-                              (_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                          if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
                                   false))
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 0.0),
                               child: Container(
                                 width: 100.0,
@@ -348,7 +341,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   shape: BoxShape.circle,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.all(2.0),
+                                  padding: const EdgeInsets.all(2.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
@@ -368,7 +361,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                             allowRotation: false,
                                             tag:
                                                 'https://workflow-api.pexnic.com/assets/${getJsonField(
-                                              widget!.staffDetail,
+                                              widget.staffDetail,
                                               r'''$.avatar''',
                                             ).toString()}',
                                             useHeroAnimation: true,
@@ -379,7 +372,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     child: Hero(
                                       tag:
                                           'https://workflow-api.pexnic.com/assets/${getJsonField(
-                                        widget!.staffDetail,
+                                        widget.staffDetail,
                                         r'''$.avatar''',
                                       ).toString()}',
                                       transitionOnUserGestures: true,
@@ -387,7 +380,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                         width: 90.0,
                                         height: 90.0,
                                         clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.memory(
@@ -453,14 +446,14 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
                       child: Container(
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).alternate,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -479,7 +472,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                            ].divide(SizedBox(width: 8.0)),
+                            ].divide(const SizedBox(width: 8.0)),
                           ),
                         ),
                       ),
@@ -492,7 +485,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 16.0, 20.0, 20.0),
                             child: TextFormField(
                               controller: _model.nameTextController,
@@ -548,7 +541,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 24.0, 0.0, 24.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -565,7 +558,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           ),
                           if ('1' == '2')
                             Padding(
-                              padding: EdgeInsets.all(20.0),
+                              padding: const EdgeInsets.all(20.0),
                               child: TextFormField(
                                 controller: _model.emailTextController,
                                 focusNode: _model.emailFocusNode,
@@ -622,7 +615,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   fillColor: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                   contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
+                                      const EdgeInsetsDirectional.fromSTEB(
                                           20.0, 24.0, 0.0, 24.0),
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -638,7 +631,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               ),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 20.0),
                             child: TextFormField(
                               controller: _model.phoneTextController,
@@ -694,7 +687,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 24.0, 0.0, 24.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -715,7 +708,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
                       child: TextFormField(
                         controller: _model.cccdTextController,
                         focusNode: _model.cccdFocusNode,
@@ -767,7 +760,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 24.0, 0.0, 24.0),
                         ),
                         style: FlutterFlowTheme.of(context).labelSmall.override(
@@ -793,7 +786,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 10.0),
                                 child: Text(
                                   'Ngày sinh',
@@ -808,7 +801,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     30.0, 0.0, 20.0, 4.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -816,7 +809,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    final _datePickedDate =
+                                    final datePickedDate =
                                         await showDatePicker(
                                       context: context,
                                       initialDate: getCurrentTimestamp,
@@ -859,12 +852,12 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       },
                                     );
 
-                                    if (_datePickedDate != null) {
+                                    if (datePickedDate != null) {
                                       safeSetState(() {
                                         _model.datePicked = DateTime(
-                                          _datePickedDate.year,
-                                          _datePickedDate.month,
-                                          _datePickedDate.day,
+                                          datePickedDate.year,
+                                          datePickedDate.month,
+                                          datePickedDate.day,
                                         );
                                       });
                                     }
@@ -898,7 +891,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                               letterSpacing: 0.0,
                                             ),
                                       ),
-                                    ].divide(SizedBox(width: 8.0)),
+                                    ].divide(const SizedBox(width: 8.0)),
                                   ),
                                 ),
                               ),
@@ -906,7 +899,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           ),
                           if (_model.checkDob == true)
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   30.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Bạn chưa chọn ngày sinh',
@@ -922,7 +915,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               ),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 0.0, 10.0),
                             child: Text(
                               'Giới tính',
@@ -937,23 +930,23 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 30.0, 0.0, 20.0, 20.0),
                             child: FlutterFlowRadioButton(
                               options: ['Nam', 'Nữ'].toList(),
                               onChanged: (val) => setState(() {}),
                               controller: _model.radioButtonValueController ??=
                                   FormFieldController<String>(() {
-                                if ('${getJsonField(
-                                      widget!.staffDetail,
+                                if (getJsonField(
+                                      widget.staffDetail,
                                       r'''$.gender''',
-                                    ).toString()}' ==
+                                    ).toString() ==
                                     'male') {
                                   return 'Nam';
-                                } else if ('${getJsonField(
-                                      widget!.staffDetail,
+                                } else if (getJsonField(
+                                      widget.staffDetail,
                                       r'''$.gender''',
-                                    ).toString()}' ==
+                                    ).toString() ==
                                     'undefined') {
                                   return ' ';
                                 } else {
@@ -974,7 +967,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     fontSize: 13.0,
                                     letterSpacing: 0.0,
                                   ),
-                              textPadding: EdgeInsetsDirectional.fromSTEB(
+                              textPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 32.0, 0.0),
                               buttonPosition: RadioButtonPosition.left,
                               direction: Axis.horizontal,
@@ -990,7 +983,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           if (_model.roleValue !=
                               '82073000-1ba2-43a4-a55c-459d17c23b68')
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 10.0),
                               child: Text(
                                 'Quyền',
@@ -1007,13 +1000,13 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           if (_model.roleValue !=
                               '82073000-1ba2-43a4-a55c-459d17c23b68')
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
                               child: FlutterFlowDropDown<String>(
                                 controller: _model.roleValueController ??=
                                     FormFieldController<String>(
                                   _model.roleValue ??= getJsonField(
-                                    widget!.staffDetail,
+                                    widget.staffDetail,
                                     r'''$.user_id.role''',
                                   ).toString(),
                                 ),
@@ -1022,7 +1015,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   '6a8bc644-cb2d-4a31-b11e-b86e19824725',
                                   '3755a98d-f064-45cd-80e4-5084ab1dd2c4'
                                 ]),
-                                optionLabels: [
+                                optionLabels: const [
                                   'Quản lý chi nhánh',
                                   'Quản lý bộ phận',
                                   'Nhân viên'
@@ -1053,7 +1046,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                                 .primaryText,
                                           ),
                                         ),
-                                        duration: Duration(milliseconds: 4000),
+                                        duration: const Duration(milliseconds: 4000),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context).error,
                                       ),
@@ -1079,7 +1072,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                                 .primaryText,
                                           ),
                                         ),
-                                        duration: Duration(milliseconds: 4000),
+                                        duration: const Duration(milliseconds: 4000),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context).error,
                                       ),
@@ -1115,7 +1108,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 1.0,
                                 borderRadius: 8.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
+                                margin: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 4.0, 12.0, 4.0),
                                 hidesUnderline: true,
                                 disabled: FFAppState().user.role ==
@@ -1125,9 +1118,9 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               ),
                             ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, -1.0),
+                            alignment: const AlignmentDirectional(-1.0, -1.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -1142,7 +1135,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 4.0),
                                           child: Text(
                                             'Chức vụ',
@@ -1157,7 +1150,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 4.0),
                                           child: Text(
                                             '(Có thể chọn chức vụ gợi ý)',
@@ -1185,7 +1178,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     ),
                                     options: List<String>.from(
                                         ['1', '2', '3', '4', '5']),
-                                    optionLabels: [
+                                    optionLabels: const [
                                       'Trưởng chi nhánh',
                                       'Phó chi nhánh',
                                       'Trưởng bộ phận',
@@ -1246,7 +1239,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     borderColor: Colors.transparent,
                                     borderWidth: 1.0,
                                     borderRadius: 8.0,
-                                    margin: EdgeInsetsDirectional.fromSTEB(
+                                    margin: const EdgeInsetsDirectional.fromSTEB(
                                         8.0, 4.0, 8.0, 4.0),
                                     hidesUnderline: true,
                                     isSearchable: false,
@@ -1257,7 +1250,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 4.0, 20.0, 20.0),
                             child: TextFormField(
                               controller: _model.titleTextTextController,
@@ -1312,7 +1305,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 24.0, 0.0, 24.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -1334,18 +1327,18 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       '82073000-1ba2-43a4-a55c-459d17c23b68') &&
                                   (FFAppState().user.role !=
                                       getJsonField(
-                                        widget!.staffDetail,
+                                        widget.staffDetail,
                                         r'''$.user_id.role''',
                                       ).toString())) ||
                               ((FFAppState().user.role ==
                                       '82073000-1ba2-43a4-a55c-459d17c23b68') &&
                                   (FFAppState().user.role !=
                                       getJsonField(
-                                        widget!.staffDetail,
+                                        widget.staffDetail,
                                         r'''$.user_id.role''',
                                       ).toString())))
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 10.0),
                               child: Text(
                                 'Chi nhánh',
@@ -1365,24 +1358,24 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       '82073000-1ba2-43a4-a55c-459d17c23b68') &&
                                   (FFAppState().user.role !=
                                       getJsonField(
-                                        widget!.staffDetail,
+                                        widget.staffDetail,
                                         r'''$.user_id.role''',
                                       ).toString())) ||
                               ((FFAppState().user.role ==
                                       '82073000-1ba2-43a4-a55c-459d17c23b68') &&
                                   (FFAppState().user.role !=
                                       getJsonField(
-                                        widget!.staffDetail,
+                                        widget.staffDetail,
                                         r'''$.user_id.role''',
                                       ).toString())))
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
                               child: FlutterFlowDropDown<String>(
                                 controller: _model.branchValueController ??=
                                     FormFieldController<String>(
                                   _model.branchValue ??= getJsonField(
-                                    widget!.staffDetail,
+                                    widget.staffDetail,
                                     r'''$.branch_id.id''',
                                   ).toString(),
                                 ),
@@ -1427,7 +1420,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 },
                                 width: double.infinity,
                                 height: 56.0,
-                                searchHintTextStyle: TextStyle(
+                                searchHintTextStyle: const TextStyle(
                                   height: 20.0,
                                 ),
                                 searchTextStyle: FlutterFlowTheme.of(context)
@@ -1459,7 +1452,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 1.0,
                                 borderRadius: 8.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
+                                margin: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 4.0, 12.0, 4.0),
                                 hidesUnderline: true,
                                 disabled: FFAppState().user.role ==
@@ -1474,7 +1467,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               (_model.roleValue ==
                                   '3755a98d-f064-45cd-80e4-5084ab1dd2c4'))
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 10.0),
                               child: Text(
                                 'Bộ phận',
@@ -1489,7 +1482,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               ),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 20.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -1501,7 +1494,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     (_model.roleValue ==
                                         '3755a98d-f064-45cd-80e4-5084ab1dd2c4'))
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 4.0),
                                     child: FlutterFlowDropDown<String>(
                                       controller:
@@ -1510,7 +1503,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                         _model.departmentValue ??=
                                             _model.selectRole == false
                                                 ? getJsonField(
-                                                    widget!.staffDetail,
+                                                    widget.staffDetail,
                                                     r'''$.department_id.id''',
                                                   ).toString()
                                                 : null,
@@ -1535,7 +1528,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       },
                                       width: double.infinity,
                                       height: 56.0,
-                                      searchHintTextStyle: TextStyle(),
+                                      searchHintTextStyle: const TextStyle(),
                                       searchTextStyle:
                                           FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -1566,7 +1559,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                           .alternate,
                                       borderWidth: 1.0,
                                       borderRadius: 8.0,
-                                      margin: EdgeInsetsDirectional.fromSTEB(
+                                      margin: const EdgeInsetsDirectional.fromSTEB(
                                           20.0, 4.0, 12.0, 4.0),
                                       hidesUnderline: true,
                                       disabled: FFAppState().user.role ==
@@ -1577,7 +1570,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   ),
                                 if (_model.checkDepartment)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         30.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Vui lòng chọn bộ phận',
@@ -1602,7 +1595,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
@@ -1611,12 +1604,12 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(2.0),
+                          padding: const EdgeInsets.all(2.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Icon(
                                   Icons.power_settings_new_rounded,
@@ -1628,16 +1621,16 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               Expanded(
                                 child: SwitchListTile.adaptive(
                                   value: _model.switchListTileValue ??=
-                                      '${getJsonField(
-                                                widget!.staffDetail,
+                                      getJsonField(
+                                                widget.staffDetail,
                                                 r'''$.status''',
-                                              ).toString()}' ==
+                                              ).toString() ==
                                               'active'
                                           ? true
                                           : false,
                                   onChanged: (newValue) async {
                                     setState(() =>
-                                        _model.switchListTileValue = newValue!);
+                                        _model.switchListTileValue = newValue);
                                   },
                                   title: Text(
                                     'Trạng thái hoạt động',
@@ -1658,7 +1651,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   controlAffinity:
                                       ListTileControlAffinity.trailing,
                                   contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
+                                      const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 4.0, 0.0),
                                 ),
                               ),
@@ -1673,13 +1666,12 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.0, 0.05),
+              alignment: const AlignmentDirectional(0.0, 0.05),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (_model.uploadedLocalFile != null &&
-                        (_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
+                    if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
                       if (_model.formKey2.currentState == null ||
                           !_model.formKey2.currentState!.validate()) {
                         return;
@@ -1688,7 +1680,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           !_model.formKey1.currentState!.validate()) {
                         return;
                       }
-                      if ((_model.dob == null || _model.dob == '') ||
+                      if ((_model.dob == '') ||
                           (_model.dob == ' ')) {
                         _model.checkDob = true;
                         setState(() {});
@@ -1756,10 +1748,10 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   } else if (_model.roleValue ==
                                       '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
                                     return '2';
-                                  } else if ('${getJsonField(
-                                        widget!.staffDetail,
+                                  } else if (getJsonField(
+                                        widget.staffDetail,
                                         r'''$.user_id.role''',
-                                      ).toString()}' ==
+                                      ).toString() ==
                                       '82073000-1ba2-43a4-a55c-459d17c23b68') {
                                     return '0';
                                   } else {
@@ -1828,10 +1820,10 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   } else if (_model.roleValue ==
                                       '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
                                     return '2';
-                                  } else if ('${getJsonField(
-                                        widget!.staffDetail,
+                                  } else if (getJsonField(
+                                        widget.staffDetail,
                                         r'''$.user_id.role''',
-                                      ).toString()}' ==
+                                      ).toString() ==
                                       '82073000-1ba2-43a4-a55c-459d17c23b68') {
                                     return '0';
                                   } else {
@@ -1884,10 +1876,10 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   } else if (_model.roleValue ==
                                       '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
                                     return '2';
-                                  } else if ('${getJsonField(
-                                        widget!.staffDetail,
+                                  } else if (getJsonField(
+                                        widget.staffDetail,
                                         r'''$.user_id.role''',
-                                      ).toString()}' ==
+                                      ).toString() ==
                                       '82073000-1ba2-43a4-a55c-459d17c23b68') {
                                     return '0';
                                   } else {
@@ -1912,7 +1904,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           !_model.formKey1.currentState!.validate()) {
                         return;
                       }
-                      if ((_model.dob == null || _model.dob == '') ||
+                      if ((_model.dob == '') ||
                           (_model.dob == ' ')) {
                         _model.checkDob = true;
                         setState(() {});
@@ -1936,7 +1928,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               'email': _model.emailTextController.text,
                               'role': _model.roleValue,
                               'avatar': getJsonField(
-                                widget!.staffDetail,
+                                widget.staffDetail,
                                 r'''$.user_id.avatar''',
                               ),
                             };
@@ -1965,10 +1957,10 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 } else if (_model.roleValue ==
                                     '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
                                   return '2';
-                                } else if ('${getJsonField(
-                                      widget!.staffDetail,
+                                } else if (getJsonField(
+                                      widget.staffDetail,
                                       r'''$.user_id.role''',
-                                    ).toString()}' ==
+                                    ).toString() ==
                                     '82073000-1ba2-43a4-a55c-459d17c23b68') {
                                   return '0';
                                 } else {
@@ -1988,7 +1980,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               'email': _model.emailTextController.text,
                               'role': _model.roleValue,
                               'avatar': getJsonField(
-                                widget!.staffDetail,
+                                widget.staffDetail,
                                 r'''$.user_id.avatar''',
                               ),
                             };
@@ -2017,10 +2009,10 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 } else if (_model.roleValue ==
                                     '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
                                   return '2';
-                                } else if ('${getJsonField(
-                                      widget!.staffDetail,
+                                } else if (getJsonField(
+                                      widget.staffDetail,
                                       r'''$.user_id.role''',
-                                    ).toString()}' ==
+                                    ).toString() ==
                                     '82073000-1ba2-43a4-a55c-459d17c23b68') {
                                   return '0';
                                 } else {
@@ -2037,7 +2029,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               'email': _model.emailTextController.text,
                               'role': _model.roleValue,
                               'avatar': getJsonField(
-                                widget!.staffDetail,
+                                widget.staffDetail,
                                 r'''$.user_id.avatar''',
                               ),
                             };
@@ -2061,10 +2053,10 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 } else if (_model.roleValue ==
                                     '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
                                   return '2';
-                                } else if ('${getJsonField(
-                                      widget!.staffDetail,
+                                } else if (getJsonField(
+                                      widget.staffDetail,
                                       r'''$.user_id.role''',
-                                    ).toString()}' ==
+                                    ).toString() ==
                                     '82073000-1ba2-43a4-a55c-459d17c23b68') {
                                   return '0';
                                 } else {
@@ -2082,16 +2074,16 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                     setState(() {});
                   },
                   text: 'Lưu',
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.save_outlined,
                     size: 24.0,
                   ),
                   options: FFButtonOptions(
                     width: double.infinity,
                     height: 50.0,
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
@@ -2101,7 +2093,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               letterSpacing: 0.0,
                             ),
                     elevation: 2.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

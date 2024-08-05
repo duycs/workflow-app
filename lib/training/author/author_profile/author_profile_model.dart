@@ -1,26 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/training/author/update_author/update_author_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'author_profile_widget.dart' show AuthorProfileWidget;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 
 class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
   ///  Local state fields for this page.
@@ -98,9 +83,9 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
         id: FFAppState().Author.toString(),
       );
 
-      if ((apiResultGetOneAuthors?.succeeded ?? true)) {
+      if ((apiResultGetOneAuthors.succeeded ?? true)) {
         author = AuthorsListStruct.maybeFromMap(getJsonField(
-          (apiResultGetOneAuthors?.jsonBody ?? ''),
+          (apiResultGetOneAuthors.jsonBody ?? ''),
           r'''$.data''',
         ));
       }
@@ -120,9 +105,9 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
             '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"author_id\":{\"_eq\":\"${FFAppState().Author.toString()}\"}}]}',
       );
 
-      if ((apiResultGetListProgram?.succeeded ?? true)) {
+      if ((apiResultGetListProgram.succeeded ?? true)) {
         programs = MarketLessonListDataStruct.maybeFromMap(
-                (apiResultGetListProgram?.jsonBody ?? ''))!
+                (apiResultGetListProgram.jsonBody ?? ''))!
             .data
             .toList()
             .cast<MarketLessonListStruct>();
@@ -162,7 +147,7 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController1?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,
@@ -203,7 +188,7 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController2?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

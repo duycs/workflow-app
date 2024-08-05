@@ -1,37 +1,17 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/nav_bar_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_video_player.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/news_feed/action_newsfeed/action_newsfeed_widget.dart';
-import '/news_feed/comment_newsfeed/comment_newsfeed_widget.dart';
 import '/news_feed/d_n_f_newsfeed/d_n_f_newsfeed_widget.dart';
-import '/news_feed/newsfeed_create/newsfeed_create_widget.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
-import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'newsfeed_widget.dart' show NewsfeedWidget;
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 
 class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
   ///  Local state fields for this page.
@@ -110,7 +90,7 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
         newsId: newsId,
       );
 
-      if (!(apiResultReact?.succeeded ?? true)) {
+      if (!(apiResultReact.succeeded ?? true)) {
         await actions.showToast(
           context,
           'Lỗi yêu thích',
@@ -138,7 +118,7 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
         id: reactId,
       );
 
-      if (!(apiResultReactDelete?.succeeded ?? true)) {
+      if (!(apiResultReactDelete.succeeded ?? true)) {
         await actions.showToast(
           context,
           'Lỗi yêu thích',
@@ -254,9 +234,9 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
       limit: 6,
     );
 
-    if ((apiResultRepuireList?.succeeded ?? true)) {
+    if ((apiResultRepuireList.succeeded ?? true)) {
       newsfeedPublished = (getJsonField(
-        (apiResultRepuireList?.jsonBody ?? ''),
+        (apiResultRepuireList.jsonBody ?? ''),
         r'''$.data''',
         true,
       )!
@@ -276,7 +256,7 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -323,7 +303,7 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

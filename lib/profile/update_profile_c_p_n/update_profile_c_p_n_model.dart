@@ -1,25 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_video_player.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/upload_data.dart';
-import '/profile/popup_update_profile/popup_update_profile_widget.dart';
-import '/rich_text_editor/mobile_editor_component/mobile_editor_component_widget.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'update_profile_c_p_n_widget.dart' show UpdateProfileCPNWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 
 class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
   ///  Local state fields for this page.
@@ -182,7 +167,7 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
     bool? uploadImageToken2;
     ApiCallResponse? apiResultUploadImage2;
 
-    if (images.length > 0) {
+    if (images.isNotEmpty) {
       uploadImageToken2 = await action_blocks.tokenReload(context);
       if (uploadImageToken2!) {
         apiResultUploadImage2 = await UploadFileGroup.uploadListFileCall.call(
@@ -190,14 +175,14 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
           fileList: images,
         );
 
-        if ((apiResultUploadImage2?.succeeded ?? true)) {
+        if ((apiResultUploadImage2.succeeded ?? true)) {
           if (FileUploadStruct.maybeFromMap(
-                      (apiResultUploadImage2?.jsonBody ?? ''))!
+                      (apiResultUploadImage2.jsonBody ?? ''))!
                   .data
                   .length >=
               2) {
             imagesUpload = FileUploadStruct.maybeFromMap(
-                    (apiResultUploadImage2?.jsonBody ?? ''))!
+                    (apiResultUploadImage2.jsonBody ?? ''))!
                 .data
                 .map((e) => e.id)
                 .toList()
@@ -233,7 +218,7 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
               ).toString().toString(),
               directusFilesId: FileIDDataTypeStruct(
                 id: getJsonField(
-                  (apiResultUploadImage2?.jsonBody ?? ''),
+                  (apiResultUploadImage2.jsonBody ?? ''),
                   r'''$.data.id''',
                 ).toString().toString(),
               ),

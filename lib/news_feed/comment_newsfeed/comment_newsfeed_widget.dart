@@ -15,8 +15,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'comment_newsfeed_model.dart';
 export 'comment_newsfeed_model.dart';
@@ -79,7 +77,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
         width: double.infinity,
         height: 750.0,
         decoration: BoxDecoration(
-          color: Color(0xB20B191E),
+          color: const Color(0xB20B191E),
           borderRadius: BorderRadius.circular(16.0),
         ),
         child: Column(
@@ -90,7 +88,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
               child: Material(
                 color: Colors.transparent,
                 elevation: 5.0,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(0.0),
                     bottomRight: Radius.circular(0.0),
@@ -102,7 +100,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(0.0),
                       bottomRight: Radius.circular(0.0),
                       topLeft: Radius.circular(16.0),
@@ -120,12 +118,12 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 12.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.favorite,
                                         color: Color(0xFFFF0202),
                                         size: 24.0,
@@ -138,8 +136,8 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                           .isNotEmpty) ==
                                                   true
                                               ? _model
-                                                  .dataNewFeed?.reacts?.length
-                                                  ?.toString()
+                                                  .dataNewFeed?.reacts.length
+                                                  .toString()
                                               : '0',
                                           '0',
                                         ),
@@ -150,21 +148,21 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                       ),
-                                    ].divide(SizedBox(width: 4.0)),
+                                    ].divide(const SizedBox(width: 4.0)),
                                   ),
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 16.0, 0.0, 16.0),
                                     child: Builder(
                                       builder: (context) {
                                         final commentList = _model
                                                 .dataNewFeed?.comments
-                                                ?.toList() ??
+                                                .toList() ??
                                             [];
                                         if (commentList.isEmpty) {
-                                          return DataNotFoundCommentWidget();
+                                          return const DataNotFoundCommentWidget();
                                         }
 
                                         return ListView.separated(
@@ -174,13 +172,13 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                           scrollDirection: Axis.vertical,
                                           itemCount: commentList.length,
                                           separatorBuilder: (_, __) =>
-                                              SizedBox(height: 16.0),
+                                              const SizedBox(height: 16.0),
                                           itemBuilder:
                                               (context, commentListIndex) {
                                             final commentListItem =
                                                 commentList[commentListIndex];
                                             return Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 1.0, 16.0, 0.0),
                                               child: Row(
@@ -192,7 +190,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 1.0,
                                                                 0.0, 0.0),
                                                     child: InkWell(
@@ -220,7 +218,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                           extra: <String,
                                                               dynamic>{
                                                             kTransitionInfoKey:
-                                                                TransitionInfo(
+                                                                const TransitionInfo(
                                                               hasTransition:
                                                                   true,
                                                               transitionType:
@@ -265,7 +263,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       12.0,
                                                                       0.0,
@@ -286,7 +284,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -301,7 +299,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                         .stretch,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             12.0,
                                                                             0.0,
@@ -318,7 +316,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                         Expanded(
                                                                           child:
                                                                               Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 8.0,
                                                                                 0.0,
@@ -350,24 +348,24 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                             ),
                                                                             onPressed:
                                                                                 () async {
-                                                                              var _shouldSetState = false;
+                                                                              var shouldSetState = false;
                                                                               _model.checkTokenDeleteComment1 = await action_blocks.tokenReload(context);
-                                                                              _shouldSetState = true;
+                                                                              shouldSetState = true;
                                                                               if (_model.checkTokenDeleteComment1!) {
                                                                                 var confirmDialogResponse = await showDialog<bool>(
                                                                                       context: context,
                                                                                       builder: (alertDialogContext) {
                                                                                         return AlertDialog(
-                                                                                          title: Text('Xác nhận'),
-                                                                                          content: Text('Bạn chắc chắn muốn xóa'),
+                                                                                          title: const Text('Xác nhận'),
+                                                                                          content: const Text('Bạn chắc chắn muốn xóa'),
                                                                                           actions: [
                                                                                             TextButton(
                                                                                               onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                              child: Text('Hủy'),
+                                                                                              child: const Text('Hủy'),
                                                                                             ),
                                                                                             TextButton(
                                                                                               onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                              child: Text('Xác nhận'),
+                                                                                              child: const Text('Xác nhận'),
                                                                                             ),
                                                                                           ],
                                                                                         );
@@ -380,7 +378,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                                     id: commentListItem.id,
                                                                                   );
 
-                                                                                  _shouldSetState = true;
+                                                                                  shouldSetState = true;
                                                                                   if ((_model.apiResultDeleteComment?.succeeded ?? true)) {
                                                                                     await actions.showToast(
                                                                                       context,
@@ -391,26 +389,27 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                                     await widget.callBack?.call();
                                                                                   }
                                                                                 } else {
-                                                                                  if (_shouldSetState) setState(() {});
+                                                                                  if (shouldSetState) setState(() {});
                                                                                   return;
                                                                                 }
                                                                               } else {
                                                                                 setState(() {});
-                                                                                if (_shouldSetState) setState(() {});
+                                                                                if (shouldSetState) setState(() {});
                                                                                 return;
                                                                               }
 
                                                                               await _model.newsFeedGetOne(context);
                                                                               setState(() {});
-                                                                              if (_shouldSetState)
+                                                                              if (shouldSetState) {
                                                                                 setState(() {});
+                                                                              }
                                                                             },
                                                                           ),
                                                                       ],
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             12.0,
                                                                             0.0,
@@ -436,13 +435,9 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                   if (commentListItem
                                                                               .commentsId
                                                                               .image !=
-                                                                          null &&
-                                                                      commentListItem
-                                                                              .commentsId
-                                                                              .image !=
                                                                           '')
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           6.0,
                                                                           4.0,
                                                                           6.0,
@@ -466,8 +461,8 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                               type: PageTransitionType.fade,
                                                                               child: FlutterFlowExpandedImageView(
                                                                                 image: CachedNetworkImage(
-                                                                                  fadeInDuration: Duration(milliseconds: 500),
-                                                                                  fadeOutDuration: Duration(milliseconds: 500),
+                                                                                  fadeInDuration: const Duration(milliseconds: 500),
+                                                                                  fadeOutDuration: const Duration(milliseconds: 500),
                                                                                   imageUrl: '${FFAppConstants.ApiBaseUrl}/assets/${commentListItem.commentsId.image}?access_token=${FFAppState().accessToken}',
                                                                                   fit: BoxFit.contain,
                                                                                 ),
@@ -490,8 +485,8 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                                 BorderRadius.circular(8.0),
                                                                             child:
                                                                                 CachedNetworkImage(
-                                                                              fadeInDuration: Duration(milliseconds: 500),
-                                                                              fadeOutDuration: Duration(milliseconds: 500),
+                                                                              fadeInDuration: const Duration(milliseconds: 500),
+                                                                              fadeOutDuration: const Duration(milliseconds: 500),
                                                                               imageUrl: '${FFAppConstants.ApiBaseUrl}/assets/${commentListItem.commentsId.image}?access_token=${FFAppState().accessToken}',
                                                                               width: double.infinity,
                                                                               height: 150.0,
@@ -504,13 +499,9 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                   if (commentListItem
                                                                               .commentsId
                                                                               .video !=
-                                                                          null &&
-                                                                      commentListItem
-                                                                              .commentsId
-                                                                              .video !=
                                                                           '')
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           6.0,
                                                                           0.0,
                                                                           6.0,
@@ -596,7 +587,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                             }(commentListItem.commentsId.file)) ==
                                                                             'pdf')
                                                                           Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 8.0,
@@ -616,7 +607,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                           child:
                                                                               Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(-1.0, 0.0),
+                                                                                const AlignmentDirectional(-1.0, 0.0),
                                                                             child:
                                                                                 Text(
                                                                               commentListItem.commentsId.file,
@@ -655,7 +646,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                                       elevation: 0,
                                                                                       insetPadding: EdgeInsets.zero,
                                                                                       backgroundColor: Colors.transparent,
-                                                                                      alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                      alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                       child: PopupSeeMoreWidget(
                                                                                         fileName: commentListItem.commentsId.file,
                                                                                         fileId: commentListItem.commentsId.file,
@@ -697,7 +688,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       16.0,
                                                                       0.0,
@@ -736,7 +727,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                               0.0,
                                                                         ),
                                                                   ),
-                                                                ].divide(SizedBox(
+                                                                ].divide(const SizedBox(
                                                                     width:
                                                                         16.0)),
                                                               ),
@@ -758,7 +749,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                                 0.0,
                                                                           ),
                                                                     ),
-                                                                    Icon(
+                                                                    const Icon(
                                                                       Icons
                                                                           .favorite,
                                                                       color: Color(
@@ -766,11 +757,11 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                       size:
                                                                           20.0,
                                                                     ),
-                                                                  ].divide(SizedBox(
+                                                                  ].divide(const SizedBox(
                                                                       width:
                                                                           2.0)),
                                                                 ),
-                                                            ].divide(SizedBox(
+                                                            ].divide(const SizedBox(
                                                                 width: 10.0)),
                                                           ),
                                                         ),
@@ -796,7 +787,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                 ),
                                 child: Visibility(
                                   visible: _model.checkLoading == false,
-                                  child: Container(
+                                  child: SizedBox(
                                     width: double.infinity,
                                     height: double.infinity,
                                     child: custom_widgets.LoadingPageWidget(
@@ -812,11 +803,10 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                           ],
                         ),
                       ),
-                      if (_model.uploadedLocalFile1 != null &&
-                          (_model.uploadedLocalFile1.bytes?.isNotEmpty ??
+                      if ((_model.uploadedLocalFile1.bytes?.isNotEmpty ??
                               false))
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -833,7 +823,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderColor: Colors.transparent,
@@ -859,11 +849,10 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                             ],
                           ),
                         ),
-                      if (_model.uploadedLocalFile2 != null &&
-                          (_model.uploadedLocalFile2.bytes?.isNotEmpty ??
+                      if ((_model.uploadedLocalFile2.bytes?.isNotEmpty ??
                               false))
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -884,7 +873,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                     ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderRadius: 20.0,
@@ -909,11 +898,10 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                             ],
                           ),
                         ),
-                      if (_model.uploadedLocalFile3 != null &&
-                          (_model.uploadedLocalFile3.bytes?.isNotEmpty ??
+                      if ((_model.uploadedLocalFile3.bytes?.isNotEmpty ??
                               false))
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -934,7 +922,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                     ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     11.0, 0.0, 0.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderColor: Colors.transparent,
@@ -960,7 +948,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                             ],
                           ),
                         ),
-                      Divider(
+                      const Divider(
                         height: 4.0,
                         thickness: 1.0,
                         color: Color(0x66E0E3E7),
@@ -971,7 +959,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 0.0, 12.0, 4.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -1036,7 +1024,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 2.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -1153,11 +1141,11 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                         ),
                                       ),
                                     ),
-                                ].divide(SizedBox(width: 10.0)),
+                                ].divide(const SizedBox(width: 10.0)),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 16.0, 0.0),
                               child: FlutterFlowIconButton(
                                 borderRadius: 20.0,
@@ -1178,7 +1166,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                           ],
                         ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             8.0, 4.0, 16.0, 44.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1217,7 +1205,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 0.0, 0.0),
                                         child: TextFormField(
                                           controller: _model.textController,
@@ -1270,44 +1258,33 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                       ),
                                       onPressed: () async {
                                         if (!((_model.textController.text !=
-                                                    null &&
-                                                _model.textController.text !=
                                                     '') ||
-                                            (_model.uploadedLocalFile1 !=
-                                                    null &&
-                                                (_model.uploadedLocalFile1.bytes
+                                            ((_model.uploadedLocalFile1.bytes
                                                         ?.isNotEmpty ??
                                                     false)) ||
-                                            (_model.uploadedLocalFile2 !=
-                                                    null &&
-                                                (_model.uploadedLocalFile2.bytes
+                                            ((_model.uploadedLocalFile2.bytes
                                                         ?.isNotEmpty ??
                                                     false)) ||
-                                            (_model.uploadedLocalFile3 !=
-                                                    null &&
-                                                (_model.uploadedLocalFile3.bytes
+                                            ((_model.uploadedLocalFile3.bytes
                                                         ?.isNotEmpty ??
                                                     false)))) {
                                           return;
                                         }
-                                        if (_model.uploadedLocalFile1 != null &&
-                                            (_model.uploadedLocalFile1.bytes
+                                        if ((_model.uploadedLocalFile1.bytes
                                                     ?.isNotEmpty ??
                                                 false)) {
                                           await _model
                                               .uploadImageComment(context);
                                           setState(() {});
                                         }
-                                        if (_model.uploadedLocalFile2 != null &&
-                                            (_model.uploadedLocalFile2.bytes
+                                        if ((_model.uploadedLocalFile2.bytes
                                                     ?.isNotEmpty ??
                                                 false)) {
                                           await _model
                                               .uploadVideoComment(context);
                                           setState(() {});
                                         }
-                                        if (_model.uploadedLocalFile3 != null &&
-                                            (_model.uploadedLocalFile3.bytes
+                                        if ((_model.uploadedLocalFile3.bytes
                                                     ?.isNotEmpty ??
                                                 false)) {
                                           await _model
@@ -1356,7 +1333,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(width: 6.0)),
+                          ].divide(const SizedBox(width: 6.0)),
                         ),
                       ),
                     ],
