@@ -9,13 +9,16 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/training/study_program/created_lession_study/created_lession_study_widget.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'study_program_edit_model.dart';
 export 'study_program_edit_model.dart';
@@ -61,35 +64,35 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.updateRequestDataStruct(
         (e) => e
-          ..status = widget.dataDetail?.status
-          ..name = widget.dataDetail?.name
-          ..description = widget.dataDetail?.description
-          ..durationHours = widget.dataDetail?.durationHours
-          ..lessions = widget.dataDetail!.lessions.toList()
-          ..tests = widget.dataDetail!.tests.toList()
-          ..estimateInDay = widget.dataDetail?.estimateInDay
-          ..imageCover = widget.dataDetail?.imageCover,
+          ..status = widget!.dataDetail?.status
+          ..name = widget!.dataDetail?.name
+          ..description = widget!.dataDetail?.description
+          ..durationHours = widget!.dataDetail?.durationHours
+          ..lessions = widget!.dataDetail!.lessions.toList()
+          ..tests = widget!.dataDetail!.tests.toList()
+          ..estimateInDay = widget!.dataDetail?.estimateInDay
+          ..imageCover = widget!.dataDetail?.imageCover,
       );
       setState(() {});
     });
 
     _model.programNameTextController ??= TextEditingController(
-        text: widget.dataDetail?.name != null && widget.dataDetail?.name != ''
-            ? widget.dataDetail?.name
+        text: widget!.dataDetail?.name != null && widget!.dataDetail?.name != ''
+            ? widget!.dataDetail?.name
             : '');
     _model.programNameFocusNode ??= FocusNode();
 
     _model.programDescriptionTextController ??= TextEditingController(
-        text: widget.dataDetail?.description != null &&
-                widget.dataDetail?.description != ''
-            ? widget.dataDetail?.description
+        text: widget!.dataDetail?.description != null &&
+                widget!.dataDetail?.description != ''
+            ? widget!.dataDetail?.description
             : '');
     _model.programDescriptionFocusNode ??= FocusNode();
 
     _model.estimateInDayTextController ??= TextEditingController(
-        text: (widget.dataDetail?.estimateInDay != null) &&
-                (widget.dataDetail!.estimateInDay > 0)
-            ? widget.dataDetail?.estimateInDay.toString()
+        text: (widget!.dataDetail?.estimateInDay != null) &&
+                (widget!.dataDetail!.estimateInDay > 0)
+            ? widget!.dataDetail?.estimateInDay?.toString()
             : '');
     _model.estimateInDayFocusNode ??= FocusNode();
 
@@ -109,8 +112,8 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 60.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 60.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -137,7 +140,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: SafeArea(
         child: Container(
           decoration: BoxDecoration(
@@ -157,7 +160,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 24.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -194,13 +197,13 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: EdgeInsets.all(16.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 12.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -221,7 +224,9 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                       ),
                                       child: Stack(
                                         children: [
-                                          if ((_model.uploadedLocalFile.bytes
+                                          if (_model.uploadedLocalFile !=
+                                                  null &&
+                                              (_model.uploadedLocalFile.bytes
                                                       ?.isNotEmpty ??
                                                   false))
                                             ClipRRect(
@@ -236,19 +241,21 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
-                                          if (((_model.uploadedLocalFile
+                                          if ((_model.uploadedLocalFile ==
+                                                      null ||
+                                                  (_model.uploadedLocalFile
                                                           .bytes?.isEmpty ??
                                                       true)) &&
-                                              (widget.dataDetail?.imageCover !=
+                                              (widget!.dataDetail?.imageCover !=
                                                       null &&
-                                                  widget.dataDetail
+                                                  widget!.dataDetail
                                                           ?.imageCover !=
                                                       ''))
                                             ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
                                               child: Image.network(
-                                                '${FFAppConstants.ApiBaseUrl}/assets/${widget.dataDetail?.imageCover}?access_token=${FFAppState().accessToken}',
+                                                '${FFAppConstants.ApiBaseUrl}/assets/${widget!.dataDetail?.imageCover}?access_token=${FFAppState().accessToken}',
                                                 width: 100.0,
                                                 height: 100.0,
                                                 fit: BoxFit.cover,
@@ -329,14 +336,14 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.programNameTextController,
                                   focusNode: _model.programNameFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.programNameTextController',
-                                    const Duration(milliseconds: 2000),
+                                    Duration(milliseconds: 2000),
                                     () async {
                                       _model.updateRequestDataStruct(
                                         (e) => e
@@ -409,7 +416,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 0.0),
                                 child: TextFormField(
                                   controller:
@@ -417,7 +424,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                   focusNode: _model.programDescriptionFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.programDescriptionTextController',
-                                    const Duration(milliseconds: 2000),
+                                    Duration(milliseconds: 2000),
                                     () async {
                                       _model.updateRequestDataStruct(
                                         (e) => e
@@ -496,9 +503,9 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                   updateCallback: () => setState(() {}),
                                   updateOnChange: true,
                                   child: TestsDropdownWidget(
-                                    value: widget.dataDetail!.tests.isNotEmpty
-                                        ? widget.dataDetail?.tests.first
-                                            .testsId.id
+                                    value: widget!.dataDetail!.tests.length > 0
+                                        ? widget!.dataDetail?.tests?.first
+                                            ?.testsId?.id
                                         : ' ',
                                     testCallBack: (testId) async {
                                       _model.updateRequestDataStruct(
@@ -547,7 +554,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
-                                            const TextSpan(
+                                            TextSpan(
                                               text: '(Không bắt buộc)',
                                               style: TextStyle(
                                                 fontSize: 13.0,
@@ -564,6 +571,9 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                         ),
                                       ),
                                       if (((_model.estimateInDayTextController
+                                                          .text !=
+                                                      null &&
+                                                  _model.estimateInDayTextController
                                                           .text !=
                                                       '') &&
                                               (int.parse(_model
@@ -586,14 +596,14 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                                 fontStyle: FontStyle.italic,
                                               ),
                                         ),
-                                    ].divide(const SizedBox(height: 4.0)),
+                                    ].divide(SizedBox(height: 4.0)),
                                   ),
                                   Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 8.0, 0.0),
-                                      child: SizedBox(
+                                      child: Container(
                                         width: 50.0,
                                         child: TextFormField(
                                           controller: _model
@@ -603,11 +613,15 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
                                             '_model.estimateInDayTextController',
-                                            const Duration(milliseconds: 2000),
+                                            Duration(milliseconds: 2000),
                                             () async {
                                               _model.updateRequestDataStruct(
                                                 (e) => e
                                                   ..estimateInDay = (_model
+                                                                      .estimateInDayTextController
+                                                                      .text !=
+                                                                  null &&
+                                                              _model
                                                                       .estimateInDayTextController
                                                                       .text !=
                                                                   '') &&
@@ -652,7 +666,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                                         .alternate,
                                                 width: 1.0,
                                               ),
-                                              borderRadius: const BorderRadius.only(
+                                              borderRadius: BorderRadius.only(
                                                 bottomLeft:
                                                     Radius.circular(0.0),
                                                 bottomRight:
@@ -668,7 +682,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                                         .primary,
                                                 width: 1.0,
                                               ),
-                                              borderRadius: const BorderRadius.only(
+                                              borderRadius: BorderRadius.only(
                                                 bottomLeft:
                                                     Radius.circular(0.0),
                                                 bottomRight:
@@ -684,7 +698,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                                         .error,
                                                 width: 1.0,
                                               ),
-                                              borderRadius: const BorderRadius.only(
+                                              borderRadius: BorderRadius.only(
                                                 bottomLeft:
                                                     Radius.circular(0.0),
                                                 bottomRight:
@@ -701,7 +715,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                                         .error,
                                                 width: 1.0,
                                               ),
-                                              borderRadius: const BorderRadius.only(
+                                              borderRadius: BorderRadius.only(
                                                 bottomLeft:
                                                     Radius.circular(0.0),
                                                 bottomRight:
@@ -762,13 +776,13 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                               context: context,
                                               builder: (alertDialogContext) {
                                                 return AlertDialog(
-                                                  title: const Text('Bài học đã có!'),
+                                                  title: Text('Bài học đã có!'),
                                                   actions: [
                                                     TextButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext),
-                                                      child: const Text('Ok'),
+                                                      child: Text('Ok'),
                                                     ),
                                                   ],
                                                 );
@@ -793,7 +807,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -810,16 +824,16 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                         ).then((value) => setState(() {}));
                                       },
                                       text: 'Bài học',
-                                      icon: const Icon(
+                                      icon: Icon(
                                         Icons.add,
                                         size: 15.0,
                                       ),
                                       options: FFButtonOptions(
                                         height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .secondary,
@@ -834,7 +848,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 1.0,
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),
@@ -843,7 +857,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                       ),
                                     ),
                                   ),
-                                ].divide(const SizedBox(width: 8.0)),
+                                ].divide(SizedBox(width: 8.0)),
                               ),
                               Text(
                                 'Danh sách bài học :',
@@ -856,12 +870,12 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
-                              if (_model.requestData!.lessions.isNotEmpty)
+                              if (_model.requestData!.lessions.length > 0)
                                 Builder(
                                   builder: (context) {
                                     final listView = _model
                                             .requestData?.lessions
-                                            .toList() ??
+                                            ?.toList() ??
                                         [];
 
                                     return ListView.builder(
@@ -875,7 +889,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                             listView[listViewIndex];
                                         return Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 5.0),
                                           child: Container(
                                             width: 100.0,
@@ -896,7 +910,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -966,11 +980,11 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                     );
                                   },
                                 ),
-                            ].divide(const SizedBox(height: 16.0)),
+                            ].divide(SizedBox(height: 16.0)),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -984,12 +998,12 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(2.0),
+                              padding: EdgeInsets.all(2.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Icon(
                                       Icons.power_settings_new_rounded,
@@ -1001,14 +1015,14 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                   Expanded(
                                     child: SwitchListTile.adaptive(
                                       value: _model.switchListTileValue ??=
-                                          widget.dataDetail?.status ==
+                                          widget!.dataDetail?.status ==
                                                   'published'
                                               ? true
                                               : false,
                                       onChanged: (newValue) async {
                                         setState(() => _model
-                                            .switchListTileValue = newValue);
-                                        if (newValue) {
+                                            .switchListTileValue = newValue!);
+                                        if (newValue!) {
                                           _model.updateRequestDataStruct(
                                             (e) => e
                                               ..status =
@@ -1040,7 +1054,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                       controlAffinity:
                                           ListTileControlAffinity.trailing,
                                       contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               12.0, 0.0, 4.0, 0.0),
                                     ),
                                   ),
@@ -1056,24 +1070,26 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      var shouldSetState = false;
+                      var _shouldSetState = false;
                       if (_model.formKey.currentState == null ||
                           !_model.formKey.currentState!.validate()) {
                         return;
                       }
-                      if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                      if (_model.uploadedLocalFile != null &&
+                          (_model.uploadedLocalFile.bytes?.isNotEmpty ??
                               false)) {
                         await _model.uploadImage(context);
                         setState(() {});
                       }
                       _model.tokenStudyProgramEdit =
                           await action_blocks.tokenReload(context);
-                      shouldSetState = true;
+                      _shouldSetState = true;
                       if (_model.tokenStudyProgramEdit!) {
-                        if ((_model.estimateInDayTextController.text !=
+                        if ((_model.estimateInDayTextController.text != null &&
+                                _model.estimateInDayTextController.text !=
                                     '') &&
                             (_model.estimateInDayTextController.text !=
                                 'null') &&
@@ -1087,11 +1103,11 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                 .studyProgramLessionsUpdateCall
                                 .call(
                               accessToken: FFAppState().accessToken,
-                              id: widget.dataDetail?.id,
+                              id: widget!.dataDetail?.id,
                               requestDataJson: _model.requestData?.toMap(),
                             );
 
-                            shouldSetState = true;
+                            _shouldSetState = true;
                             if ((_model.apiResultuus?.succeeded ?? true)) {
                               await actions.showToast(
                                 context,
@@ -1115,10 +1131,10 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                     .synchronizedStaffLessonCall
                                     .call(
                               accessToken: FFAppState().accessToken,
-                              programId: widget.dataDetail?.id,
+                              programId: widget!.dataDetail?.id,
                             );
 
-                            shouldSetState = true;
+                            _shouldSetState = true;
                             if ((_model.apiResultSynchronizedStaffLesson
                                     ?.succeeded ??
                                 true)) {
@@ -1147,7 +1163,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                               .studyProgramLessionsUpdateCall
                               .call(
                             accessToken: FFAppState().accessToken,
-                            id: widget.dataDetail?.id,
+                            id: widget!.dataDetail?.id,
                             requestDataJson: <String, dynamic>{
                               'name': _model.requestData?.name,
                               'description': _model.requestData?.description,
@@ -1164,7 +1180,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                               'tests': getJsonField(
                                 <String, List<dynamic>?>{
                                   'map': _model.requestData?.tests
-                                      .map((e) => e.toMap())
+                                      ?.map((e) => e.toMap())
                                       .toList(),
                                 },
                                 r'''$.map''',
@@ -1175,7 +1191,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                             },
                           );
 
-                          shouldSetState = true;
+                          _shouldSetState = true;
                           if ((_model.apiResultuus111?.succeeded ?? true)) {
                             await actions.showToast(
                               context,
@@ -1197,10 +1213,10 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                   .synchronizedStaffLessonCall
                                   .call(
                             accessToken: FFAppState().accessToken,
-                            programId: widget.dataDetail?.id,
+                            programId: widget!.dataDetail?.id,
                           );
 
-                          shouldSetState = true;
+                          _shouldSetState = true;
                           if ((_model.apiResultSynchronizedStaffLesson1
                                   ?.succeeded ??
                               true)) {
@@ -1218,14 +1234,14 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                         }
                       } else {
                         setState(() {});
-                        if (shouldSetState) setState(() {});
+                        if (_shouldSetState) setState(() {});
                         return;
                       }
 
-                      if (shouldSetState) setState(() {});
+                      if (_shouldSetState) setState(() {});
                     },
                     text: 'Lưu',
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.save_outlined,
                       size: 24.0,
                     ),
@@ -1233,9 +1249,9 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                       width: double.infinity,
                       height: 40.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(

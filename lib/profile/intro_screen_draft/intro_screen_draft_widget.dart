@@ -6,6 +6,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'intro_screen_draft_model.dart';
 export 'intro_screen_draft_model.dart';
@@ -33,7 +34,7 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
         context.pushNamed(
           'Login',
           extra: <String, dynamic>{
-            kTransitionInfoKey: const TransitionInfo(
+            kTransitionInfoKey: TransitionInfo(
               hasTransition: true,
               transitionType: PageTransitionType.fade,
               duration: Duration(milliseconds: 0),
@@ -71,21 +72,21 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                SizedBox(
+                Container(
                   width: double.infinity,
                   height: MediaQuery.sizeOf(context).height * 0.9,
                   child: Stack(
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
                         child: PageView(
                           controller: _model.pageViewController ??=
                               PageController(initialPage: 0),
                           scrollDirection: Axis.horizontal,
                           children: [
                             Stack(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
+                              alignment: AlignmentDirectional(0.0, -1.0),
                               children: [
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
@@ -99,7 +100,7 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -119,7 +120,7 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                                       ),
                                       Container(
                                         width: 300.0,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                                           textAlign: TextAlign.center,
@@ -137,7 +138,7 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                                         borderColor: Colors.transparent,
                                         borderRadius: 12.0,
                                         buttonSize: 40.0,
-                                        fillColor: const Color(0xA04B39EF),
+                                        fillColor: Color(0xA04B39EF),
                                         icon: Icon(
                                           Icons.east,
                                           color: FlutterFlowTheme.of(context)
@@ -148,12 +149,12 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                                           await _model.pageViewController
                                               ?.nextPage(
                                             duration:
-                                                const Duration(milliseconds: 300),
+                                                Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
                                         },
                                       ),
-                                    ].divide(const SizedBox(height: 18.0)),
+                                    ].divide(SizedBox(height: 18.0)),
                                   ),
                                 ),
                               ],
@@ -171,7 +172,7 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -191,7 +192,7 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                                       ),
                                       Container(
                                         width: 300.0,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                                           textAlign: TextAlign.center,
@@ -220,12 +221,12 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                                           await _model.pageViewController
                                               ?.nextPage(
                                             duration:
-                                                const Duration(milliseconds: 300),
+                                                Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
                                         },
                                       ),
-                                    ].divide(const SizedBox(height: 18.0)),
+                                    ].divide(SizedBox(height: 18.0)),
                                   ),
                                 ),
                               ],
@@ -243,7 +244,7 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -261,7 +262,7 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                                       ),
                                       Container(
                                         width: 300.0,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                                           textAlign: TextAlign.center,
@@ -284,7 +285,7 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                                             'Login',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  const TransitionInfo(
+                                                  TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -298,10 +299,10 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -314,7 +315,7 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                           elevation: 3.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -322,7 +323,7 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                                               BorderRadius.circular(14.0),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(height: 18.0)),
+                                    ].divide(SizedBox(height: 18.0)),
                                   ),
                                 ),
                               ],
@@ -331,9 +332,9 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.4),
+                        alignment: AlignmentDirectional(0.0, 0.4),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 0.0, 16.0),
                           child: smooth_page_indicator.SmoothPageIndicator(
                             controller: _model.pageViewController ??=
@@ -343,7 +344,7 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
                             onDotClicked: (i) async {
                               await _model.pageViewController!.animateToPage(
                                 i,
-                                duration: const Duration(milliseconds: 500),
+                                duration: Duration(milliseconds: 500),
                                 curve: Curves.ease,
                               );
                               setState(() {});

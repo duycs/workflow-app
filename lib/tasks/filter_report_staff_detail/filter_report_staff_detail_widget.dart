@@ -5,8 +5,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'filter_report_staff_detail_model.dart';
 export 'filter_report_staff_detail_model.dart';
 
@@ -60,12 +63,12 @@ class _FilterReportStaffDetailWidgetState
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.dateStart1 = widget.dateStart1!;
-      _model.dateStart2 = widget.dateStart2!;
-      _model.type = widget.type!;
-      _model.status = widget.status!;
-      _model.dateEnd1 = widget.dateEnd1!;
-      _model.dateEnd2 = widget.dateEnd2!;
+      _model.dateStart1 = widget!.dateStart1!;
+      _model.dateStart2 = widget!.dateStart2!;
+      _model.type = widget!.type!;
+      _model.status = widget!.status!;
+      _model.dateEnd1 = widget!.dateEnd1!;
+      _model.dateEnd2 = widget!.dateEnd2!;
       setState(() {});
     });
 
@@ -82,11 +85,11 @@ class _FilterReportStaffDetailWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 1.0),
+      alignment: AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -96,7 +99,7 @@ class _FilterReportStaffDetailWidgetState
               ),
             )
           ],
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
@@ -104,7 +107,7 @@ class _FilterReportStaffDetailWidgetState
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -156,7 +159,7 @@ class _FilterReportStaffDetailWidgetState
                             ),
                       ),
                       FlutterFlowChoiceChips(
-                        options: const [
+                        options: [
                           ChipData('Nhập văn bản'),
                           ChipData('Chụp ảnh'),
                           ChipData('Upload File'),
@@ -204,14 +207,14 @@ class _FilterReportStaffDetailWidgetState
                         controller: _model.typeValueController ??=
                             FormFieldController<List<String>>(
                           [
-                            widget.type != null && widget.type != ''
-                                ? widget.type!
+                            widget!.type != null && widget!.type != ''
+                                ? widget!.type!
                                 : ' '
                           ],
                         ),
                         wrapped: true,
                       ),
-                    ].divide(const SizedBox(height: 4.0)),
+                    ].divide(SizedBox(height: 4.0)),
                   ),
                 ),
                 Container(
@@ -231,7 +234,7 @@ class _FilterReportStaffDetailWidgetState
                             ),
                       ),
                       FlutterFlowChoiceChips(
-                        options: const [
+                        options: [
                           ChipData('Chưa thực hiện'),
                           ChipData('Đang thực hiện'),
                           ChipData('Hoàn thành')
@@ -277,14 +280,14 @@ class _FilterReportStaffDetailWidgetState
                         controller: _model.statusValueController ??=
                             FormFieldController<List<String>>(
                           [
-                            widget.status != null && widget.status != ''
-                                ? widget.status!
+                            widget!.status != null && widget!.status != ''
+                                ? widget!.status!
                                 : ' '
                           ],
                         ),
                         wrapped: true,
                       ),
-                    ].divide(const SizedBox(height: 4.0)),
+                    ].divide(SizedBox(height: 4.0)),
                   ),
                 ),
                 Container(
@@ -313,7 +316,7 @@ class _FilterReportStaffDetailWidgetState
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                final datePicked1Date = await showDatePicker(
+                                final _datePicked1Date = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
                                   firstDate: DateTime(1900),
@@ -353,12 +356,12 @@ class _FilterReportStaffDetailWidgetState
                                   },
                                 );
 
-                                if (datePicked1Date != null) {
+                                if (_datePicked1Date != null) {
                                   safeSetState(() {
                                     _model.datePicked1 = DateTime(
-                                      datePicked1Date.year,
-                                      datePicked1Date.month,
-                                      datePicked1Date.day,
+                                      _datePicked1Date.year,
+                                      _datePicked1Date.month,
+                                      _datePicked1Date.day,
                                     );
                                   });
                                 }
@@ -380,7 +383,8 @@ class _FilterReportStaffDetailWidgetState
                                     size: 24.0,
                                   ),
                                   Text(
-                                    _model.dateStart1 != ''
+                                    _model.dateStart1 != null &&
+                                            _model.dateStart1 != ''
                                         ? dateTimeFormat(
                                             'dd/MM/yyyy',
                                             functions.stringToDateTime(
@@ -408,7 +412,7 @@ class _FilterReportStaffDetailWidgetState
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                final datePicked2Date = await showDatePicker(
+                                final _datePicked2Date = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
                                   firstDate: DateTime(1900),
@@ -448,12 +452,12 @@ class _FilterReportStaffDetailWidgetState
                                   },
                                 );
 
-                                if (datePicked2Date != null) {
+                                if (_datePicked2Date != null) {
                                   safeSetState(() {
                                     _model.datePicked2 = DateTime(
-                                      datePicked2Date.year,
-                                      datePicked2Date.month,
-                                      datePicked2Date.day,
+                                      _datePicked2Date.year,
+                                      _datePicked2Date.month,
+                                      _datePicked2Date.day,
                                     );
                                   });
                                 }
@@ -475,7 +479,8 @@ class _FilterReportStaffDetailWidgetState
                                     size: 24.0,
                                   ),
                                   Text(
-                                    _model.dateStart2 != ''
+                                    _model.dateStart2 != null &&
+                                            _model.dateStart2 != ''
                                         ? dateTimeFormat(
                                             'dd/MM/yyyy',
                                             functions.stringToDateTime(
@@ -498,7 +503,7 @@ class _FilterReportStaffDetailWidgetState
                           ),
                         ],
                       ),
-                    ].divide(const SizedBox(height: 4.0)),
+                    ].divide(SizedBox(height: 4.0)),
                   ),
                 ),
                 Container(
@@ -527,7 +532,7 @@ class _FilterReportStaffDetailWidgetState
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                final datePicked3Date = await showDatePicker(
+                                final _datePicked3Date = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
                                   firstDate: DateTime(1900),
@@ -567,12 +572,12 @@ class _FilterReportStaffDetailWidgetState
                                   },
                                 );
 
-                                if (datePicked3Date != null) {
+                                if (_datePicked3Date != null) {
                                   safeSetState(() {
                                     _model.datePicked3 = DateTime(
-                                      datePicked3Date.year,
-                                      datePicked3Date.month,
-                                      datePicked3Date.day,
+                                      _datePicked3Date.year,
+                                      _datePicked3Date.month,
+                                      _datePicked3Date.day,
                                     );
                                   });
                                 }
@@ -594,7 +599,8 @@ class _FilterReportStaffDetailWidgetState
                                     size: 24.0,
                                   ),
                                   Text(
-                                    _model.dateEnd1 != ''
+                                    _model.dateEnd1 != null &&
+                                            _model.dateEnd1 != ''
                                         ? dateTimeFormat(
                                             'dd/MM/yyyy',
                                             functions.stringToDateTime(
@@ -622,7 +628,7 @@ class _FilterReportStaffDetailWidgetState
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                final datePicked4Date = await showDatePicker(
+                                final _datePicked4Date = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
                                   firstDate: DateTime(1900),
@@ -662,12 +668,12 @@ class _FilterReportStaffDetailWidgetState
                                   },
                                 );
 
-                                if (datePicked4Date != null) {
+                                if (_datePicked4Date != null) {
                                   safeSetState(() {
                                     _model.datePicked4 = DateTime(
-                                      datePicked4Date.year,
-                                      datePicked4Date.month,
-                                      datePicked4Date.day,
+                                      _datePicked4Date.year,
+                                      _datePicked4Date.month,
+                                      _datePicked4Date.day,
                                     );
                                   });
                                 }
@@ -689,7 +695,8 @@ class _FilterReportStaffDetailWidgetState
                                     size: 24.0,
                                   ),
                                   Text(
-                                    _model.dateEnd2 != ''
+                                    _model.dateEnd2 != null &&
+                                            _model.dateEnd2 != ''
                                         ? dateTimeFormat(
                                             'dd/MM/yyyy',
                                             functions.stringToDateTime(
@@ -712,11 +719,11 @@ class _FilterReportStaffDetailWidgetState
                           ),
                         ],
                       ),
-                    ].divide(const SizedBox(height: 4.0)),
+                    ].divide(SizedBox(height: 4.0)),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -748,9 +755,9 @@ class _FilterReportStaffDetailWidgetState
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -788,11 +795,11 @@ class _FilterReportStaffDetailWidgetState
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFF33BA45),
+                            color: Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -802,7 +809,7 @@ class _FilterReportStaffDetailWidgetState
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -810,10 +817,10 @@ class _FilterReportStaffDetailWidgetState
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 16.0)),
+                    ].divide(SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(const SizedBox(height: 16.0)),
+              ].divide(SizedBox(height: 16.0)),
             ),
           ),
         ),

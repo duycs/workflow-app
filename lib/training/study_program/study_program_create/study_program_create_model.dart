@@ -2,12 +2,22 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/lessions_dropdown_widget.dart';
 import '/components/tests_dropdown_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
+import '/training/study_program/created_lession_study/created_lession_study_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'study_program_create_widget.dart' show StudyProgramCreateWidget;
+import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class StudyProgramCreateModel
     extends FlutterFlowModel<StudyProgramCreateWidget> {
@@ -141,8 +151,8 @@ class StudyProgramCreateModel
           .cast<StudyProgramListLessionsIdStruct>();
       addToListLessions(StudyProgramListLessionsIdStruct(
         lessionsId: LessonsStruct(
-          id: lessionsItem.id,
-          name: lessionsItem.name,
+          id: lessionsItem?.id,
+          name: lessionsItem?.name,
         ),
       ));
       updateRequestDataStruct(
@@ -163,9 +173,9 @@ class StudyProgramCreateModel
       file: uploadedLocalFile,
     );
 
-    if ((apiResultUploadFilePrograms.succeeded ?? true)) {
+    if ((apiResultUploadFilePrograms?.succeeded ?? true)) {
       uploadImage = getJsonField(
-        (apiResultUploadFilePrograms.jsonBody ?? ''),
+        (apiResultUploadFilePrograms?.jsonBody ?? ''),
         r'''$.data.id''',
       ).toString().toString();
       updateRequestDataStruct(
@@ -178,7 +188,7 @@ class StudyProgramCreateModel
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultUploadFilePrograms.jsonBody ?? ''),
+        jsonErrors: (apiResultUploadFilePrograms?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         await actions.showToast(
@@ -210,8 +220,8 @@ class StudyProgramCreateModel
           .cast<StudyProgramListLessionsIdStruct>();
       addToListLessions(StudyProgramListLessionsIdStruct(
         lessionsId: LessonsStruct(
-          id: itemLesstion.id,
-          name: itemLesstion.name,
+          id: itemLesstion?.id,
+          name: itemLesstion?.name,
         ),
       ));
       updateRequestDataStruct(
