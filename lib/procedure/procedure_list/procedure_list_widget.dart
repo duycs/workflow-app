@@ -353,7 +353,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                       textAlign: TextAlign.start,
                       style: FlutterFlowTheme.of(context).labelMedium.override(
                             fontFamily: 'Nunito Sans',
-                            fontSize: 12.0,
+                            fontSize: 13.0,
                             letterSpacing: 0.0,
                             fontStyle: FontStyle.italic,
                           ),

@@ -408,17 +408,31 @@ class _TimekeepingManagementListWidgetState
                     filter: '{\"_and\":[${'{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                       FFAppState().staffOrganization,
                       r'''$.id''',
-                    ).toString()}\"}}}'}${(widget.checkShowParams == 'check') && ((_model.dateStart == '') && (_model.dateEnd == '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month + 1, 1).toString()}\"}}' : ' '}${(widget.checkShowParams == 'check') && ((_model.dateStart != '') && (_model.dateEnd != '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(_model.dateStart).year, DateTime.parse(_model.dateStart).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(_model.dateEnd).year, DateTime.parse(_model.dateEnd).month + 1, 1).toString()}\"}}' : ' '}${functions.isRoleBranchAdmin(FFAppState().user) ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
+                    ).toString()}\"}}}'}${(widget.checkShowParams == 'check') && ((_model.dateStart == '') && (_model.dateEnd == '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month, 0).toString()}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
+                        return DateTime.parse(var1).month == 12
+                            ? DateTime(DateTime.parse(var1).year + 1, 1, 0)
+                                .toString()
+                            : DateTime(DateTime.parse(var1).year,
+                                    DateTime.parse(var1).month + 1, 0)
+                                .toString();
+                      }(getCurrentTimestamp.toString())}\"}}' : ' '}${(widget.checkShowParams == 'check') && ((_model.dateStart != '') && (_model.dateEnd != '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(_model.dateStart).year, DateTime.parse(_model.dateStart).month, 0).toString()}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
+                        return DateTime.parse(var1).month == 12
+                            ? DateTime(DateTime.parse(var1).year + 1, 1, 0)
+                                .toString()
+                            : DateTime(DateTime.parse(var1).year,
+                                    DateTime.parse(var1).month + 1, 0)
+                                .toString();
+                      }(_model.dateEnd)}\"}}' : ' '}${functions.isRoleBranchAdmin(FFAppState().user) ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
                         FFAppState().staffBranch,
                         r'''$.id''',
                       ).toString()}\"}}}' : ' '}${functions.isRoleDepartmentAdmin(FFAppState().user) ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"${getJsonField(
                         FFAppState().staffDepartment,
                         r'''$.id''',
-                      ).toString()}\"}}}' : ' '}${widget.dateFilter != null && widget.dateFilter != '' ? ',{\"date_created\":{\"_gte\":\"${widget.dateFilter}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
+                      ).toString()}\"}}}' : ' '}${widget.dateFilter != null && widget.dateFilter != '' ? ',{\"date_created\":{\"_gte\":\"${(String var1) {
                         return DateTime.parse(var1)
-                            .add(const Duration(days: 1))
+                            .subtract(const Duration(days: 1))
                             .toString();
-                      }(widget.dateFilter!)}\"}}' : ' '}${(_model.idStaff != '') && (_model.idStaff != 'noData') ? ',{\"staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"${_model.idStaff}\"}}}}' : ' '}${(_model.idBranch != '') && (_model.idBranch != 'noData') ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${_model.idBranch}\"}}}' : ' '}${(_model.idDepartment != '') && (_model.idDepartment != 'noData') ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"${_model.idDepartment}\"}}}' : ' '}${(_model.idShifts != '') && (_model.idShifts != 'noData') ? ',{\"shift_id\":{\"id\":{\"_eq\":\"${_model.idShifts}\"}}}' : ' '}${(_model.idStatus != '') && (_model.idStatus != 'noData') ? ',{\"status\":{\"_eq\":\"${_model.idStatus}\"}}' : ' '}]}',
+                      }(widget.dateFilter!)}\"}},{\"date_created\":{\"_lt\":\"${widget.dateFilter}\"}}' : ' '}${(_model.idStaff != '') && (_model.idStaff != 'noData') ? ',{\"staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"${_model.idStaff}\"}}}}' : ' '}${(_model.idBranch != '') && (_model.idBranch != 'noData') ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${_model.idBranch}\"}}}' : ' '}${(_model.idDepartment != '') && (_model.idDepartment != 'noData') ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"${_model.idDepartment}\"}}}' : ' '}${(_model.idShifts != '') && (_model.idShifts != 'noData') ? ',{\"shift_id\":{\"id\":{\"_eq\":\"${_model.idShifts}\"}}}' : ' '}${(_model.idStatus != '') && (_model.idStatus != 'noData') ? ',{\"status\":{\"_eq\":\"${_model.idStatus}\"}}' : ' '}]}',
                   ),
                 ),
                 padding: const EdgeInsets.fromLTRB(

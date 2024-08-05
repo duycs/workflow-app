@@ -25,6 +25,8 @@ class TimekeepingShiftListModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Custom Action - getCurrentLocationStruct] action in TimekeepingShiftList widget.
+  List<double>? checkEableLocation;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

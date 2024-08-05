@@ -335,7 +335,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     child: PagedListView<ApiPagingParams, dynamic>.separated(
                       pagingController: _model.setListViewController(
                         (nextPageMarker) => BranchGroup.branchListCall.call(

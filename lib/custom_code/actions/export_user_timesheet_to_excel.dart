@@ -54,7 +54,12 @@ Future exportUserTimesheetToExcel(List<dynamic> item) async {
           ? 'Hoạt động'
           : 'Không hoạt động';
       String phone = data["staff_id"]?["phone"] ?? '';
-      String dateCreated = formatDate(data["date_created"], withTime: false);
+
+      // Lấy giá trị dateCreated và cộng thêm 1 ngày
+      DateTime dateCreated =
+          DateTime.parse(data["date_created"]).add(Duration(days: 1));
+      String formattedDateCreated =
+          formatDate(dateCreated.toIso8601String(), withTime: false);
 
       String timesheetStatus;
       switch (data["status"]) {
@@ -103,10 +108,9 @@ Future exportUserTimesheetToExcel(List<dynamic> item) async {
                 email,
                 userStatus,
                 phone,
-                dateCreated.split('-')[2],
-                dateCreated.split('-')[1],
-                // dateCreated.split('-')[0],
-                dateCreated,
+                formattedDateCreated.split('-')[2],
+                formattedDateCreated.split('-')[1],
+                formattedDateCreated,
                 timesheetStatus,
                 shiftName,
                 shiftStartTime,
@@ -124,10 +128,9 @@ Future exportUserTimesheetToExcel(List<dynamic> item) async {
               email,
               userStatus,
               phone,
-              dateCreated.split('-')[2],
-              dateCreated.split('-')[1],
-              // dateCreated.split('-')[0],
-              dateCreated,
+              formattedDateCreated.split('-')[2],
+              formattedDateCreated.split('-')[1],
+              formattedDateCreated,
               timesheetStatus,
               shiftName,
               shiftStartTime,
@@ -146,10 +149,9 @@ Future exportUserTimesheetToExcel(List<dynamic> item) async {
           email,
           userStatus,
           phone,
-          dateCreated.split('-')[2],
-          dateCreated.split('-')[1],
-          // dateCreated.split('-')[0],
-          dateCreated,
+          formattedDateCreated.split('-')[2],
+          formattedDateCreated.split('-')[1],
+          formattedDateCreated,
           timesheetStatus,
           '',
           '',

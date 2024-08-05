@@ -833,7 +833,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                             ),
-                                        elevation: 3.0,
+                                        elevation: 1.0,
                                         borderSide: const BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
@@ -1056,24 +1056,23 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       var shouldSetState = false;
+                      if (_model.formKey.currentState == null ||
+                          !_model.formKey.currentState!.validate()) {
+                        return;
+                      }
                       if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
                               false)) {
                         await _model.uploadImage(context);
                         setState(() {});
                       }
-                      if (_model.formKey.currentState == null ||
-                          !_model.formKey.currentState!.validate()) {
-                        return;
-                      }
                       _model.tokenStudyProgramEdit =
                           await action_blocks.tokenReload(context);
                       shouldSetState = true;
                       if (_model.tokenStudyProgramEdit!) {
-                        setState(() {});
                         if ((_model.estimateInDayTextController.text !=
                                     '') &&
                             (_model.estimateInDayTextController.text !=
@@ -1094,7 +1093,6 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
 
                             shouldSetState = true;
                             if ((_model.apiResultuus?.succeeded ?? true)) {
-                              Navigator.pop(context);
                               await actions.showToast(
                                 context,
                                 'Cập nhật thành công!',
@@ -1103,7 +1101,6 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                 FlutterFlowTheme.of(context).secondary,
                               );
                             } else {
-                              Navigator.pop(context);
                               await actions.showToast(
                                 context,
                                 'Lỗi chỉnh sửa chương trình!',
@@ -1135,6 +1132,8 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                 FlutterFlowTheme.of(context).error,
                               );
                             }
+
+                            Navigator.pop(context);
                           } else {
                             await actions.showToast(
                               context,
@@ -1178,7 +1177,6 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
 
                           shouldSetState = true;
                           if ((_model.apiResultuus111?.succeeded ?? true)) {
-                            Navigator.pop(context);
                             await actions.showToast(
                               context,
                               'Cập nhật thành công!',
@@ -1186,7 +1184,6 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                               FlutterFlowTheme.of(context).secondary,
                             );
                           } else {
-                            Navigator.pop(context);
                             await actions.showToast(
                               context,
                               'Cập nhật thành công!',
@@ -1216,6 +1213,8 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                               FlutterFlowTheme.of(context).error,
                             );
                           }
+
+                          Navigator.pop(context);
                         }
                       } else {
                         setState(() {});
