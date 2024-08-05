@@ -57,15 +57,27 @@ class TimekeepingManagementListModel
       filter: '{\"_and\":[${'{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffOrganization,
         r'''$.id''',
-      ).toString().toString()}\"}}}'}${(widget!.checkShowParams == 'check') && ((dateStart == '') && (dateEnd == '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month + 1, 1).toString()}\"}}' : ' '}${(widget!.checkShowParams == 'check') && ((dateStart != '') && (dateEnd != '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(dateStart).year, DateTime.parse(dateStart).month, 1).toString()}\"}},{\"date_created\":{\"_lt\":\"${DateTime(DateTime.parse(dateEnd).year, DateTime.parse(dateEnd).month + 1, 1).toString()}\"}}' : ' '}${functions.isRoleBranchAdmin(FFAppState().user) ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
+      ).toString().toString()}\"}}}'}${(widget!.checkShowParams == 'check') && ((dateStart == '') && (dateEnd == '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month, 0).toString()}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
+          return DateTime.parse(var1).month == 12
+              ? DateTime(DateTime.parse(var1).year + 1, 1, 0).toString()
+              : DateTime(DateTime.parse(var1).year,
+                      DateTime.parse(var1).month + 1, 0)
+                  .toString();
+        }(getCurrentTimestamp.toString())}\"}}' : ' '}${(widget!.checkShowParams == 'check') && ((dateStart != '') && (dateEnd != '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(dateStart).year, DateTime.parse(dateStart).month, 0).toString()}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
+          return DateTime.parse(var1).month == 12
+              ? DateTime(DateTime.parse(var1).year + 1, 1, 0).toString()
+              : DateTime(DateTime.parse(var1).year,
+                      DateTime.parse(var1).month + 1, 0)
+                  .toString();
+        }(dateEnd)}\"}}' : ' '}${functions.isRoleBranchAdmin(FFAppState().user) ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
           FFAppState().staffBranch,
           r'''$.id''',
         ).toString().toString()}\"}}}' : ' '}${functions.isRoleDepartmentAdmin(FFAppState().user) ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"${getJsonField(
           FFAppState().staffDepartment,
           r'''$.id''',
-        ).toString().toString()}\"}}}' : ' '}${widget!.dateFilter != null && widget!.dateFilter != '' ? ',{\"date_created\":{\"_gte\":\"${widget!.dateFilter}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
-          return DateTime.parse(var1).add(const Duration(days: 1)).toString();
-        }(widget!.dateFilter!)}\"}}' : ' '}${(idStaff != '') && (idStaff != 'noData') ? ',{\"staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"$idStaff\"}}}}' : ' '}${(idBranch != '') && (idBranch != 'noData') ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"$idBranch\"}}}' : ' '}${(idDepartment != '') && (idDepartment != 'noData') ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"$idDepartment\"}}}' : ' '}${(idShifts != '') && (idShifts != 'noData') ? ',{\"shift_id\":{\"id\":{\"_eq\":\"$idShifts\"}}}' : ' '}${(idStatus != '') && (idStatus != 'noData') ? ',{\"status\":{\"_eq\":\"$idStatus\"}}' : ' '}]}',
+        ).toString().toString()}\"}}}' : ' '}${widget!.dateFilter != null && widget!.dateFilter != '' ? ',{\"date_created\":{\"_gte\":\"${(String var1) {
+          return DateTime.parse(var1).subtract(const Duration(days: 1)).toString();
+        }(widget!.dateFilter!)}\"}},{\"date_created\":{\"_lt\":\"${widget!.dateFilter}\"}}' : ' '}${(idStaff != '') && (idStaff != 'noData') ? ',{\"staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"$idStaff\"}}}}' : ' '}${(idBranch != '') && (idBranch != 'noData') ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"$idBranch\"}}}' : ' '}${(idDepartment != '') && (idDepartment != 'noData') ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"$idDepartment\"}}}' : ' '}${(idShifts != '') && (idShifts != 'noData') ? ',{\"shift_id\":{\"id\":{\"_eq\":\"$idShifts\"}}}' : ' '}${(idStatus != '') && (idStatus != 'noData') ? ',{\"status\":{\"_eq\":\"$idStatus\"}}' : ' '}]}',
     );
 
     if ((apiResultGetList.succeeded ?? true)) {

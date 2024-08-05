@@ -600,7 +600,7 @@ class _TimeKeepingShiftCreatedWidgetState
                             },
                             text: 'Lưu',
                             icon: const Icon(
-                              Icons.save_alt,
+                              Icons.save_outlined,
                               size: 24.0,
                             ),
                             options: FFButtonOptions(

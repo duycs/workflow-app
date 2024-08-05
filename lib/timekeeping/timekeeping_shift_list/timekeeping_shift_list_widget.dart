@@ -6,8 +6,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/timekeeping/time_keeping_shift_created/time_keeping_shift_created_widget.dart';
 import '/timekeeping/time_keeping_shift_filter/time_keeping_shift_filter_widget.dart';
 import '/timekeeping/time_keeping_shift_update/time_keeping_shift_update_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +34,18 @@ class _TimekeepingShiftListWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => TimekeepingShiftListModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.checkEableLocation = await actions.getCurrentLocationStruct(
+        context,
+      );
+      if ((_model.checkEableLocation != null &&
+              (_model.checkEableLocation)!.isNotEmpty) ==
+          true) {
+        setState(() {});
+      }
+    });
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();

@@ -52,7 +52,10 @@ Future exportAdminsTimesheetToExcel(List<dynamic> item) async {
       String userStatus = data["staff_id"]?["user_id"]?["status"] == 'active'
           ? 'Hoạt động'
           : 'Không hoạt động';
-      String dateCreated = formatDate(data["date_created"], withTime: false);
+
+      // Tăng thêm 1 ngày cho dateCreated
+      String dateCreated =
+          formatDateWithAddedDays(data["date_created"], 1, withTime: false);
 
       String timesheetStatus;
       switch (data["status"]) {
@@ -124,8 +127,8 @@ Future exportAdminsTimesheetToExcel(List<dynamic> item) async {
           shiftName,
           shiftStartTime,
           shiftEndTime,
+          '',
           ''
-              ''
         ]);
       }
     }
@@ -167,6 +170,23 @@ String formatDate(String date, {bool withTime = false}) {
   if (date == null || date.isEmpty) return '';
   try {
     DateTime parsedDate = DateTime.parse(date);
+    if (withTime) {
+      return DateFormat('dd-MM-yyyy HH:mm:ss').format(parsedDate);
+    } else {
+      return DateFormat('dd-MM-yyyy').format(parsedDate);
+    }
+  } catch (e) {
+    print('Error parsing date: $e');
+    return '';
+  }
+}
+
+// Hàm mới để cộng thêm ngày
+String formatDateWithAddedDays(String date, int daysToAdd,
+    {bool withTime = false}) {
+  if (date == null || date.isEmpty) return '';
+  try {
+    DateTime parsedDate = DateTime.parse(date).add(Duration(days: daysToAdd));
     if (withTime) {
       return DateFormat('dd-MM-yyyy HH:mm:ss').format(parsedDate);
     } else {

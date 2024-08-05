@@ -1864,7 +1864,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                           FontWeight
                                                                               .normal,
                                                                     ),
-                                                            elevation: 3.0,
+                                                            elevation: 1.0,
                                                             borderSide:
                                                                 const BorderSide(
                                                               color: Colors
@@ -2165,7 +2165,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                             FontWeight.normal,
                                                                       ),
                                                                   elevation:
-                                                                      3.0,
+                                                                      1.0,
                                                                   borderSide:
                                                                       const BorderSide(
                                                                     color: Colors

@@ -179,535 +179,548 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                 builder: (context) {
                   final dataList = _model.list.toList();
 
-                  return ListView.separated(
-                    padding: EdgeInsets.zero,
-                    primary: false,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: dataList.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 16.0),
-                    itemBuilder: (context, dataListIndex) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: List.generate(dataList.length, (dataListIndex) {
                       final dataListItem = dataList[dataListIndex];
                       return Stack(
                         children: [
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 20.0, 20.0, 20.0),
-                              child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(0.0),
-                                    topLeft: Radius.circular(0.0),
-                                    topRight: Radius.circular(20.0),
-                                  ),
-                                  border: Border.all(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                  ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 20.0, 20.0, 20.0),
+                            child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(20.0),
+                                  bottomRight: Radius.circular(0.0),
+                                  topLeft: Radius.circular(0.0),
+                                  topRight: Radius.circular(20.0),
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: SingleChildScrollView(
-                                    primary: false,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 0.0, 8.0),
-                                          child: Text(
-                                            dataListItem.name,
-                                            textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  fontSize: 16.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                          ),
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: SingleChildScrollView(
+                                  primary: false,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 0.0, 8.0),
+                                        child: Text(
+                                          dataListItem.name,
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                         ),
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
-                                          children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            90.0),
-                                                    border: Border.all(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                      width: 1.0,
-                                                    ),
-                                                  ),
-                                                  child: Container(
-                                                    width: 40.0,
-                                                    height: 40.0,
-                                                    clipBehavior:
-                                                        Clip.antiAlias,
-                                                    decoration: const BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: Image.network(
-                                                      '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.staffs.first.staffsId.userId.avatar}?access_token=${FFAppState().accessToken}',
-                                                      fit: BoxFit.cover,
-                                                      errorBuilder: (context,
-                                                              error,
-                                                              stackTrace) =>
-                                                          Image.asset(
-                                                        'assets/images/error_image.png',
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    dataListItem
-                                                        .staffs
-                                                        .first
-                                                        .staffsId
-                                                        .userId
-                                                        .firstName,
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 14.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ].divide(const SizedBox(width: 4.0)),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 8.0, 0.0, 0.0),
-                                              child: Container(
-                                                width: double.infinity,
+                                      ),
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              Container(
                                                 decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          8.0),
+                                                          90.0),
                                                   border: Border.all(
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .alternate,
+                                                        .secondary,
                                                     width: 1.0,
                                                   ),
                                                 ),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  child: Text(
-                                                    dataListItem
-                                                                    .operations
-                                                                    .first
-                                                                    .operationsId
-                                                                    .content !=
-                                                                ''
-                                                        ? dataListItem
-                                                            .operations
-                                                            .first
-                                                            .operationsId
-                                                            .content
-                                                        : ' ',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                child: Container(
+                                                  width: 40.0,
+                                                  height: 40.0,
+                                                  clipBehavior: Clip.antiAlias,
+                                                  decoration: const BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Image.network(
+                                                    '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.staffs.first.staffsId.userId.avatar}?access_token=${FFAppState().accessToken}',
+                                                    fit: BoxFit.cover,
+                                                    errorBuilder: (context,
+                                                            error,
+                                                            stackTrace) =>
+                                                        Image.asset(
+                                                      'assets/images/error_image.png',
+                                                      fit: BoxFit.cover,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            if (dataListItem.actionType ==
-                                                'image')
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryBackground,
-                                                ),
-                                                child: ResultWorkGridViewWidget(
-                                                  key: Key(
-                                                      'Keyylz_${dataListIndex}_of_${dataList.length}'),
-                                                  type: dataListItem.actionType,
-                                                  parameter2: dataListItem
-                                                      .operations
+                                              Expanded(
+                                                child: Text(
+                                                  dataListItem
+                                                      .staffs
                                                       .first
-                                                      .operationsId
-                                                      .files
-                                                      .length,
-                                                  operationList:
-                                                      dataListItem.operations,
+                                                      .staffsId
+                                                      .userId
+                                                      .firstName,
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                                 ),
                                               ),
-                                            if ((dataListItem.status ==
-                                                    'done') &&
-                                                (dataListItem.actionType ==
-                                                    'upload_file'))
-                                              Builder(
-                                                builder: (context) {
-                                                  final listFile = dataListItem
-                                                      .operations
-                                                      .toList();
+                                            ].divide(const SizedBox(width: 4.0)),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 8.0, 0.0, 0.0),
+                                            child: Container(
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .alternate,
+                                                  width: 1.0,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  dataListItem
+                                                                  .operations
+                                                                  .first
+                                                                  .operationsId
+                                                                  .content !=
+                                                              ''
+                                                      ? dataListItem
+                                                          .operations
+                                                          .first
+                                                          .operationsId
+                                                          .content
+                                                      : ' ',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          if (dataListItem.actionType ==
+                                              'image')
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                              ),
+                                              child: ResultWorkGridViewWidget(
+                                                key: Key(
+                                                    'Keyylz_${dataListIndex}_of_${dataList.length}'),
+                                                type: dataListItem.actionType,
+                                                parameter2: dataListItem
+                                                    .operations
+                                                    .first
+                                                    .operationsId
+                                                    .files
+                                                    .length,
+                                                operationList:
+                                                    dataListItem.operations,
+                                              ),
+                                            ),
+                                          if ((dataListItem.status == 'done') &&
+                                              (dataListItem.actionType ==
+                                                  'upload_file'))
+                                            Builder(
+                                              builder: (context) {
+                                                final listFile = dataListItem
+                                                    .operations
+                                                    .toList();
 
-                                                  return Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: List.generate(
-                                                        listFile.length,
-                                                        (listFileIndex) {
-                                                      final listFileItem =
-                                                          listFile[
-                                                              listFileIndex];
-                                                      return Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                -1.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      8.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Builder(
-                                                            builder: (context) {
-                                                              final fileItems =
-                                                                  listFileItem
-                                                                      .operationsId
-                                                                      .files
-                                                                      .toList();
+                                                return Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: List.generate(
+                                                      listFile.length,
+                                                      (listFileIndex) {
+                                                    final listFileItem =
+                                                        listFile[listFileIndex];
+                                                    return Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              -1.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    8.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final fileItems =
+                                                                listFileItem
+                                                                    .operationsId
+                                                                    .files
+                                                                    .toList();
 
-                                                              return Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .center,
-                                                                children: List.generate(
-                                                                    fileItems
-                                                                        .length,
-                                                                    (fileItemsIndex) {
-                                                                  final fileItemsItem =
-                                                                      fileItems[
-                                                                          fileItemsIndex];
-                                                                  return Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      if (functions.checkFileLast((String
-                                                                              var1) {
-                                                                            return var1.split('.').last;
-                                                                          }(dataListItem
-                                                                              .operations
-                                                                              .first
-                                                                              .operationsId
-                                                                              .files
-                                                                              .first
-                                                                              .directusFilesId
-                                                                              .filenameDownload)) ==
-                                                                          'exc')
-                                                                        ClipRRect(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8.0),
-                                                                          child:
-                                                                              Image.asset(
-                                                                            'assets/images/excel.png',
-                                                                            width:
-                                                                                35.0,
-                                                                            height:
-                                                                                35.0,
-                                                                            fit:
-                                                                                BoxFit.cover,
-                                                                          ),
+                                                            return Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: List.generate(
+                                                                  fileItems
+                                                                      .length,
+                                                                  (fileItemsIndex) {
+                                                                final fileItemsItem =
+                                                                    fileItems[
+                                                                        fileItemsIndex];
+                                                                return Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    if (functions.checkFileLast((String
+                                                                            var1) {
+                                                                          return var1
+                                                                              .split('.')
+                                                                              .last;
+                                                                        }(dataListItem
+                                                                            .operations
+                                                                            .first
+                                                                            .operationsId
+                                                                            .files
+                                                                            .first
+                                                                            .directusFilesId
+                                                                            .filenameDownload)) ==
+                                                                        'exc')
+                                                                      ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                        child: Image
+                                                                            .asset(
+                                                                          'assets/images/excel.png',
+                                                                          width:
+                                                                              35.0,
+                                                                          height:
+                                                                              35.0,
+                                                                          fit: BoxFit
+                                                                              .cover,
                                                                         ),
-                                                                      if (functions.checkFileLast((String
-                                                                              var1) {
-                                                                            return var1.split('.').last;
-                                                                          }(dataListItem
-                                                                              .operations
-                                                                              .first
-                                                                              .operationsId
-                                                                              .files
-                                                                              .first
-                                                                              .directusFilesId
-                                                                              .filenameDownload)) ==
-                                                                          'word')
-                                                                        ClipRRect(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8.0),
-                                                                          child:
-                                                                              Image.asset(
-                                                                            'assets/images/images.png',
-                                                                            width:
-                                                                                35.0,
-                                                                            height:
-                                                                                35.0,
-                                                                            fit:
-                                                                                BoxFit.cover,
-                                                                          ),
+                                                                      ),
+                                                                    if (functions.checkFileLast((String
+                                                                            var1) {
+                                                                          return var1
+                                                                              .split('.')
+                                                                              .last;
+                                                                        }(dataListItem
+                                                                            .operations
+                                                                            .first
+                                                                            .operationsId
+                                                                            .files
+                                                                            .first
+                                                                            .directusFilesId
+                                                                            .filenameDownload)) ==
+                                                                        'word')
+                                                                      ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                        child: Image
+                                                                            .asset(
+                                                                          'assets/images/images.png',
+                                                                          width:
+                                                                              35.0,
+                                                                          height:
+                                                                              35.0,
+                                                                          fit: BoxFit
+                                                                              .cover,
                                                                         ),
-                                                                      if (functions.checkFileLast((String
-                                                                              var1) {
-                                                                            return var1.split('.').last;
-                                                                          }(dataListItem
-                                                                              .operations
-                                                                              .first
-                                                                              .operationsId
-                                                                              .files
-                                                                              .first
-                                                                              .directusFilesId
-                                                                              .filenameDownload)) ==
-                                                                          'pptx')
-                                                                        ClipRRect(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8.0),
-                                                                          child:
-                                                                              Image.asset(
-                                                                            'assets/images/ppt.png',
-                                                                            width:
-                                                                                35.0,
-                                                                            height:
-                                                                                35.0,
-                                                                            fit:
-                                                                                BoxFit.cover,
-                                                                          ),
+                                                                      ),
+                                                                    if (functions.checkFileLast((String
+                                                                            var1) {
+                                                                          return var1
+                                                                              .split('.')
+                                                                              .last;
+                                                                        }(dataListItem
+                                                                            .operations
+                                                                            .first
+                                                                            .operationsId
+                                                                            .files
+                                                                            .first
+                                                                            .directusFilesId
+                                                                            .filenameDownload)) ==
+                                                                        'pptx')
+                                                                      ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                        child: Image
+                                                                            .asset(
+                                                                          'assets/images/ppt.png',
+                                                                          width:
+                                                                              35.0,
+                                                                          height:
+                                                                              35.0,
+                                                                          fit: BoxFit
+                                                                              .cover,
                                                                         ),
-                                                                      if (functions.checkFileLast((String
-                                                                              var1) {
-                                                                            return var1.split('.').last;
-                                                                          }(dataListItem
-                                                                              .operations
-                                                                              .first
-                                                                              .operationsId
-                                                                              .files
-                                                                              .first
-                                                                              .directusFilesId
-                                                                              .filenameDownload)) ==
-                                                                          'pdf')
-                                                                        Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                              0.0,
-                                                                              0.0,
-                                                                              8.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              ClipRRect(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(8.0),
-                                                                            child:
-                                                                                Image.asset(
-                                                                              'assets/images/pdf.png',
-                                                                              width: 35.0,
-                                                                              height: 35.0,
-                                                                              fit: BoxFit.cover,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      Expanded(
+                                                                      ),
+                                                                    if (functions.checkFileLast((String
+                                                                            var1) {
+                                                                          return var1
+                                                                              .split('.')
+                                                                              .last;
+                                                                        }(dataListItem
+                                                                            .operations
+                                                                            .first
+                                                                            .operationsId
+                                                                            .files
+                                                                            .first
+                                                                            .directusFilesId
+                                                                            .filenameDownload)) ==
+                                                                        'pdf')
+                                                                      Padding(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            8.0,
+                                                                            0.0),
                                                                         child:
-                                                                            Align(
-                                                                          alignment: const AlignmentDirectional(
-                                                                              -1.0,
-                                                                              0.0),
+                                                                            ClipRRect(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
                                                                           child:
-                                                                              Text(
-                                                                            fileItemsItem.directusFilesId.filenameDownload,
-                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  fontFamily: 'Nunito Sans',
-                                                                                  letterSpacing: 0.0,
-                                                                                ),
+                                                                              Image.asset(
+                                                                            'assets/images/pdf.png',
+                                                                            width:
+                                                                                35.0,
+                                                                            height:
+                                                                                35.0,
+                                                                            fit:
+                                                                                BoxFit.cover,
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      if ((functions.checkFileLast((String tail) {
-                                                                                return tail.split('.').last;
-                                                                              }(fileItemsItem.directusFilesId.filenameDownload)) ==
-                                                                              'pdf') &&
-                                                                          (functions.checkFileLast((String tail) {
-                                                                                return tail.split('.').last;
-                                                                              }(fileItemsItem.directusFilesId.filenameDownload)) ==
-                                                                              'img'))
-                                                                        Builder(
-                                                                          builder: (context) =>
-                                                                              FlutterFlowIconButton(
-                                                                            borderRadius:
-                                                                                20.0,
-                                                                            borderWidth:
-                                                                                1.0,
-                                                                            buttonSize:
-                                                                                40.0,
-                                                                            icon:
-                                                                                Icon(
-                                                                              Icons.remove_red_eye,
-                                                                              color: FlutterFlowTheme.of(context).secondaryText,
-                                                                              size: 24.0,
-                                                                            ),
-                                                                            onPressed:
-                                                                                () async {
-                                                                              await showDialog(
-                                                                                context: context,
-                                                                                builder: (dialogContext) {
-                                                                                  return Dialog(
-                                                                                    elevation: 0,
-                                                                                    insetPadding: EdgeInsets.zero,
-                                                                                    backgroundColor: Colors.transparent,
-                                                                                    alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                    child: GestureDetector(
-                                                                                      onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                                      child: PopupSeeMoreWidget(
-                                                                                        fileName: fileItemsItem.directusFilesId.filenameDownload,
-                                                                                        fileId: fileItemsItem.directusFilesId.id,
-                                                                                      ),
-                                                                                    ),
-                                                                                  );
-                                                                                },
-                                                                              ).then((value) => setState(() {}));
-                                                                            },
+                                                                    Expanded(
+                                                                      child:
+                                                                          Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            -1.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Text(
+                                                                          fileItemsItem
+                                                                              .directusFilesId
+                                                                              .filenameDownload,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Nunito Sans',
+                                                                                letterSpacing: 0.0,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    if ((functions.checkFileLast((String
+                                                                                tail) {
+                                                                              return tail.split('.').last;
+                                                                            }(fileItemsItem
+                                                                                .directusFilesId.filenameDownload)) ==
+                                                                            'pdf') &&
+                                                                        (functions.checkFileLast((String
+                                                                                tail) {
+                                                                              return tail.split('.').last;
+                                                                            }(fileItemsItem.directusFilesId.filenameDownload)) ==
+                                                                            'img'))
+                                                                      Builder(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                FlutterFlowIconButton(
+                                                                          borderRadius:
+                                                                              20.0,
+                                                                          borderWidth:
+                                                                              1.0,
+                                                                          buttonSize:
+                                                                              40.0,
+                                                                          icon:
+                                                                              Icon(
+                                                                            Icons.remove_red_eye,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                            size:
+                                                                                24.0,
                                                                           ),
+                                                                          onPressed:
+                                                                              () async {
+                                                                            await showDialog(
+                                                                              context: context,
+                                                                              builder: (dialogContext) {
+                                                                                return Dialog(
+                                                                                  elevation: 0,
+                                                                                  insetPadding: EdgeInsets.zero,
+                                                                                  backgroundColor: Colors.transparent,
+                                                                                  alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  child: GestureDetector(
+                                                                                    onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                    child: PopupSeeMoreWidget(
+                                                                                      fileName: fileItemsItem.directusFilesId.filenameDownload,
+                                                                                      fileId: fileItemsItem.directusFilesId.id,
+                                                                                    ),
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                            ).then((value) =>
+                                                                                setState(() {}));
+                                                                          },
                                                                         ),
-                                                                      FlutterFlowIconButton(
-                                                                        borderRadius:
-                                                                            20.0,
-                                                                        borderWidth:
-                                                                            1.0,
-                                                                        buttonSize:
-                                                                            40.0,
-                                                                        icon:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .file_download_outlined,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryText,
-                                                                          size:
-                                                                              24.0,
-                                                                        ),
-                                                                        onPressed:
-                                                                            () async {
-                                                                          var shouldSetState =
-                                                                              false;
-                                                                          _model.checktokenReloadDowloadFile =
-                                                                              await action_blocks.tokenReload(context);
-                                                                          shouldSetState =
-                                                                              true;
-                                                                          if (_model
-                                                                              .checktokenReloadDowloadFile!) {
-                                                                            await actions.downloadFile(
-                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${fileItemsItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                              dataListItem.name,
-                                                                              fileItemsItem.directusFilesId.filenameDownload,
-                                                                            );
-                                                                          } else {
-                                                                            setState(() {});
-                                                                            if (shouldSetState) {
-                                                                              setState(() {});
-                                                                            }
-                                                                            return;
-                                                                          }
-
+                                                                      ),
+                                                                    FlutterFlowIconButton(
+                                                                      borderRadius:
+                                                                          20.0,
+                                                                      borderWidth:
+                                                                          1.0,
+                                                                      buttonSize:
+                                                                          40.0,
+                                                                      icon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .file_download_outlined,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        var shouldSetState =
+                                                                            false;
+                                                                        _model.checktokenReloadDowloadFile =
+                                                                            await action_blocks.tokenReload(context);
+                                                                        shouldSetState =
+                                                                            true;
+                                                                        if (_model
+                                                                            .checktokenReloadDowloadFile!) {
+                                                                          await actions
+                                                                              .downloadFile(
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${fileItemsItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                            dataListItem.name,
+                                                                            fileItemsItem.directusFilesId.filenameDownload,
+                                                                          );
+                                                                        } else {
+                                                                          setState(
+                                                                              () {});
                                                                           if (shouldSetState) {
                                                                             setState(() {});
                                                                           }
-                                                                        },
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                }).divide(
-                                                                    const SizedBox(
-                                                                        height:
-                                                                            4.0)),
-                                                              );
-                                                            },
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }),
-                                                  );
-                                                },
-                                              ),
-                                            if (dataListItem.actionType ==
-                                                'to_do_list')
-                                              Builder(
-                                                builder: (context) {
-                                                  final dataCheckList =
-                                                      dataListItem.operations
-                                                          .toList();
+                                                                          return;
+                                                                        }
 
-                                                  return ListView.builder(
-                                                    padding: EdgeInsets.zero,
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    itemCount:
-                                                        dataCheckList.length,
-                                                    itemBuilder: (context,
-                                                        dataCheckListIndex) {
-                                                      final dataCheckListItem =
-                                                          dataCheckList[
-                                                              dataCheckListIndex];
-                                                      return CheckboxWorkResultWidget(
-                                                        key: Key(
-                                                            'Keyc8d_${dataCheckListIndex}_of_${dataCheckList.length}'),
-                                                        listData:
-                                                            dataCheckListItem,
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                            if (dataListItem.actionType ==
-                                                'submit_text')
-                                              MobileEditorDisplayComponentWidget(
-                                                key: Key(
-                                                    'Keyoeo_${dataListIndex}_of_${dataList.length}'),
-                                                content: dataListItem.operations
-                                                    .first.operationsId.result,
-                                              ),
-                                          ].divide(const SizedBox(height: 8.0)),
-                                        ),
-                                      ],
-                                    ),
+                                                                        if (shouldSetState) {
+                                                                          setState(
+                                                                              () {});
+                                                                        }
+                                                                      },
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              }).divide(
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          4.0)),
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }),
+                                                );
+                                              },
+                                            ),
+                                          if (dataListItem.actionType ==
+                                              'to_do_list')
+                                            Builder(
+                                              builder: (context) {
+                                                final dataCheckList =
+                                                    dataListItem.operations
+                                                        .toList();
+
+                                                return ListView.builder(
+                                                  padding: EdgeInsets.zero,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  itemCount:
+                                                      dataCheckList.length,
+                                                  itemBuilder: (context,
+                                                      dataCheckListIndex) {
+                                                    final dataCheckListItem =
+                                                        dataCheckList[
+                                                            dataCheckListIndex];
+                                                    return CheckboxWorkResultWidget(
+                                                      key: Key(
+                                                          'Keyc8d_${dataCheckListIndex}_of_${dataCheckList.length}'),
+                                                      listData:
+                                                          dataCheckListItem,
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
+                                          if (dataListItem.actionType ==
+                                              'submit_text')
+                                            MobileEditorDisplayComponentWidget(
+                                              key: Key(
+                                                  'Keyoeo_${dataListIndex}_of_${dataList.length}'),
+                                              content: dataListItem.operations
+                                                  .first.operationsId.result,
+                                            ),
+                                        ].divide(const SizedBox(height: 8.0)),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -752,7 +765,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                           ),
                         ],
                       );
-                    },
+                    }),
                   );
                 },
               ),
