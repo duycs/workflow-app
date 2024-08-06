@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'wait_action_type_submit_text_model.dart';
 export 'wait_action_type_submit_text_model.dart';
 
@@ -71,7 +73,7 @@ class _WaitActionTypeSubmitTextWidgetState
           borderRadius: BorderRadius.circular(8.0),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
+          borderSide: BorderSide(
             color: Color(0x00000000),
             width: 1.0,
           ),
@@ -93,7 +95,7 @@ class _WaitActionTypeSubmitTextWidgetState
         ),
         filled: true,
         fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-        contentPadding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
+        contentPadding: EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
       ),
       style: FlutterFlowTheme.of(context).bodyMedium.override(
             fontFamily: 'Nunito Sans',

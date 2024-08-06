@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'chip_custom_model.dart';
 export 'chip_custom_model.dart';
 
@@ -10,8 +12,8 @@ class ChipCustomWidget extends StatefulWidget {
     Color? backgroundColor,
     this.borderColor,
     String? text,
-  })  : backgroundColor = backgroundColor ?? Colors.white,
-        text = text ?? 'Chip';
+  })  : this.backgroundColor = backgroundColor ?? Colors.white,
+        this.text = text ?? 'Chip';
 
   final Color backgroundColor;
   final Color? borderColor;
@@ -48,14 +50,16 @@ class _ChipCustomWidgetState extends State<ChipCustomWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         decoration: BoxDecoration(
           color: valueOrDefault<Color>(
-            widget.backgroundColor ?? FlutterFlowTheme.of(context).secondaryBackground,
+            widget!.backgroundColor != null
+                ? widget!.backgroundColor
+                : FlutterFlowTheme.of(context).secondaryBackground,
             FlutterFlowTheme.of(context).secondaryBackground,
           ),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -68,17 +72,19 @@ class _ChipCustomWidgetState extends State<ChipCustomWidget> {
           borderRadius: BorderRadius.circular(16.0),
           border: Border.all(
             color: valueOrDefault<Color>(
-              widget.borderColor ?? FlutterFlowTheme.of(context).noColor,
+              widget!.borderColor != null
+                  ? widget!.borderColor
+                  : FlutterFlowTheme.of(context).noColor,
               FlutterFlowTheme.of(context).noColor,
             ),
           ),
         ),
         child: Align(
-          alignment: const AlignmentDirectional(0.0, 0.0),
+          alignment: AlignmentDirectional(0.0, 0.0),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(7.0, 4.0, 7.0, 4.0),
+            padding: EdgeInsetsDirectional.fromSTEB(7.0, 4.0, 7.0, 4.0),
             child: Text(
-              widget.text,
+              widget!.text,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: 'Nunito Sans',
                     letterSpacing: 0.0,

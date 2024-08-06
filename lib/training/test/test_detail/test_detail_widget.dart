@@ -10,10 +10,13 @@ import '/training/test/radio_buton_detail/radio_buton_detail_widget.dart';
 import '/training/test/test_long_text/test_long_text_widget.dart';
 import '/training/test/test_number/test_number_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'test_detail_model.dart';
 export 'test_detail_model.dart';
@@ -29,7 +32,7 @@ class TestDetailWidget extends StatefulWidget {
     String? checkScroll,
     this.status,
     this.idUser,
-  }) : checkScroll = checkScroll ?? '0';
+  }) : this.checkScroll = checkScroll ?? '0';
 
   final String? id;
   final String? name;
@@ -59,7 +62,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
       _model.reloadTokenTestOne1 = await action_blocks.tokenReload(context);
       if (_model.reloadTokenTestOne1!) {
         _model.apiResultlistTest1 = await TestGroup.testOneCall.call(
-          testsId: widget.id,
+          testsId: widget!.id,
           accessToken: FFAppState().accessToken,
         );
 
@@ -131,7 +134,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -152,9 +155,9 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 1.0),
+                            alignment: AlignmentDirectional(0.0, 1.0),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(8.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -169,7 +172,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                         image: Image.asset(
                                           'assets/images/career_center-interview-what_exactly_are_aptitude_tests.jpg',
                                           fit: BoxFit.contain,
-                                          alignment: const Alignment(0.0, 0.0),
+                                          alignment: Alignment(0.0, 0.0),
                                         ),
                                         allowRotation: false,
                                         tag: 'imageTag',
@@ -188,7 +191,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                       width: double.infinity,
                                       height: 200.0,
                                       fit: BoxFit.cover,
-                                      alignment: const Alignment(0.0, 0.0),
+                                      alignment: Alignment(0.0, 0.0),
                                     ),
                                   ),
                                 ),
@@ -196,10 +199,10 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 4.0, 0.0, 0.0),
                             child: Text(
-                              widget.name == 'null' ? ' ' : widget.name!,
+                              widget!.name == 'null' ? ' ' : widget!.name!,
                               style: FlutterFlowTheme.of(context)
                                   .headlineMedium
                                   .override(
@@ -209,9 +212,9 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 4.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -243,12 +246,12 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                           Text(
                                             valueOrDefault<String>(
                                               valueOrDefault<String>(
-                                                        widget.time,
+                                                        widget!.time,
                                                         '0',
                                                       ) ==
                                                       'null'
                                                   ? ' '
-                                                  : widget.time,
+                                                  : widget!.time,
                                               '0',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -269,14 +272,14 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                           ),
                                         ],
                                       ),
-                                    ].divide(const SizedBox(width: 4.0)),
+                                    ].divide(SizedBox(width: 4.0)),
                                   ),
                                 ],
                               ),
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -300,8 +303,8 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                       ),
                                 ),
                                 Text(
-                                  widget.goodScore != null
-                                      ? widget.goodScore!.toString()
+                                  widget!.goodScore != null
+                                      ? widget!.goodScore!.toString()
                                       : '0',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -310,7 +313,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 4.0)),
+                              ].divide(SizedBox(width: 4.0)),
                             ),
                           ),
                           Divider(
@@ -321,7 +324,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                             color: FlutterFlowTheme.of(context).alternate,
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 0.0, 0.0),
                             child: Text(
                               'Nội dung',
@@ -335,12 +338,12 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 4.0, 16.0, 16.0),
                             child: Text(
-                              widget.description == 'null'
+                              widget!.description == 'null'
                                   ? ' '
-                                  : widget.description!,
+                                  : widget!.description!,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -351,15 +354,15 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                           ),
                           if ((_model.detail != null) && (_model.check == true))
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 0.0),
                               child: Builder(
                                 builder: (context) {
                                   final questionList =
-                                      _model.detail?.questions.toList() ?? [];
+                                      _model.detail?.questions?.toList() ?? [];
 
                                   return ListView.separated(
-                                    padding: const EdgeInsets.fromLTRB(
+                                    padding: EdgeInsets.fromLTRB(
                                       0,
                                       0,
                                       0,
@@ -370,7 +373,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                     scrollDirection: Axis.vertical,
                                     itemCount: questionList.length,
                                     separatorBuilder: (_, __) =>
-                                        const SizedBox(height: 12.0),
+                                        SizedBox(height: 12.0),
                                     itemBuilder: (context, questionListIndex) {
                                       final questionListItem =
                                           questionList[questionListIndex];
@@ -388,7 +391,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                                   BorderRadius.circular(8.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 8.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -416,97 +419,98 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                                           launchURL(url!),
                                                     ),
                                                   ),
-                                                ].divide(const SizedBox(width: 4.0)),
+                                                ].divide(SizedBox(width: 4.0)),
                                               ),
                                             ),
                                           ),
-                                          Builder(
-                                            builder: (context) {
-                                              final answers = questionListItem
-                                                  .questionsId.answers
-                                                  .toList();
+                                          if (questionListItem != null)
+                                            Builder(
+                                              builder: (context) {
+                                                final answers = questionListItem
+                                                    .questionsId.answers
+                                                    .toList();
 
-                                              return ListView.builder(
-                                                padding: EdgeInsets.zero,
-                                                primary: false,
-                                                shrinkWrap: true,
-                                                scrollDirection:
-                                                    Axis.vertical,
-                                                itemCount: answers.length,
-                                                itemBuilder:
-                                                    (context, answersIndex) {
-                                                  final answersItem =
-                                                      answers[answersIndex];
-                                                  return Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      if (questionListItem
-                                                              .questionsId
-                                                              .answerType ==
-                                                          'number')
-                                                        TestNumberWidget(
-                                                          key: Key(
-                                                              'Keyw1b_${answersIndex}_of_${answers.length}'),
-                                                          answersId:
-                                                              answersItem,
-                                                        ),
-                                                      if (questionListItem
-                                                              .questionsId
-                                                              .answerType ==
-                                                          'text')
-                                                        TestLongTextWidget(
-                                                          key: Key(
-                                                              'Keypxe_${answersIndex}_of_${answers.length}'),
-                                                          answersId:
-                                                              answersItem,
-                                                        ),
-                                                      Container(
-                                                        decoration:
-                                                            const BoxDecoration(),
-                                                        child: Visibility(
-                                                          visible: questionListItem
-                                                                  .questionsId
-                                                                  .answerType ==
-                                                              'checkbox',
-                                                          child:
-                                                              CheckboxGroupsTestWidget(
+                                                return ListView.builder(
+                                                  padding: EdgeInsets.zero,
+                                                  primary: false,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  itemCount: answers.length,
+                                                  itemBuilder:
+                                                      (context, answersIndex) {
+                                                    final answersItem =
+                                                        answers[answersIndex];
+                                                    return Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        if (questionListItem
+                                                                .questionsId
+                                                                .answerType ==
+                                                            'number')
+                                                          TestNumberWidget(
                                                             key: Key(
-                                                                'Keytp2_${answersIndex}_of_${answers.length}'),
-                                                            parameter1:
+                                                                'Keyw1b_${answersIndex}_of_${answers.length}'),
+                                                            answersId:
                                                                 answersItem,
                                                           ),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        width:
-                                                            double.infinity,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                        ),
-                                                        child: Visibility(
-                                                          visible: questionListItem
-                                                                  .questionsId
-                                                                  .answerType ==
-                                                              'radio',
-                                                          child:
-                                                              RadioButonDetailWidget(
+                                                        if (questionListItem
+                                                                .questionsId
+                                                                .answerType ==
+                                                            'text')
+                                                          TestLongTextWidget(
                                                             key: Key(
-                                                                'Keyh3q_${answersIndex}_of_${answers.length}'),
-                                                            parameter1:
+                                                                'Keypxe_${answersIndex}_of_${answers.length}'),
+                                                            answersId:
                                                                 answersItem,
                                                           ),
+                                                        Container(
+                                                          decoration:
+                                                              BoxDecoration(),
+                                                          child: Visibility(
+                                                            visible: questionListItem
+                                                                    .questionsId
+                                                                    .answerType ==
+                                                                'checkbox',
+                                                            child:
+                                                                CheckboxGroupsTestWidget(
+                                                              key: Key(
+                                                                  'Keytp2_${answersIndex}_of_${answers.length}'),
+                                                              parameter1:
+                                                                  answersItem,
+                                                            ),
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            },
-                                          ),
+                                                        Container(
+                                                          width:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                          ),
+                                                          child: Visibility(
+                                                            visible: questionListItem
+                                                                    .questionsId
+                                                                    .answerType ==
+                                                                'radio',
+                                                            child:
+                                                                RadioButonDetailWidget(
+                                                              key: Key(
+                                                                  'Keyh3q_${answersIndex}_of_${answers.length}'),
+                                                              parameter1:
+                                                                  answersItem,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
                                         ],
                                       );
                                     },
@@ -520,8 +524,8 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                     if (_model.check == false)
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
-                        child: SizedBox(
+                            EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                        child: Container(
                           width: double.infinity,
                           height: double.infinity,
                           child: custom_widgets.LoadingPageWidget(
@@ -535,13 +539,13 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                   ],
                 ),
               ),
-              if ((FFAppState().user.id == widget.idUser) &&
+              if ((FFAppState().user.id == widget!.idUser) &&
                   (_model.check == true))
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 15.0, 16.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 15.0, 16.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         if (Navigator.of(context).canPop()) {
@@ -551,7 +555,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                           'TestUpdate',
                           queryParameters: {
                             'id': serializeParam(
-                              widget.id,
+                              widget!.id,
                               ParamType.String,
                             ),
                             'name': serializeParam(
@@ -559,7 +563,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                               ParamType.String,
                             ),
                             'time': serializeParam(
-                              _model.detail?.durationMinutes.toString(),
+                              _model.detail?.durationMinutes?.toString(),
                               ParamType.String,
                             ),
                             'description': serializeParam(
@@ -572,16 +576,16 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                               isList: true,
                             ),
                             'godScore': serializeParam(
-                              widget.goodScore,
+                              widget!.goodScore,
                               ParamType.int,
                             ),
                             'status': serializeParam(
-                              widget.status,
+                              widget!.status,
                               ParamType.String,
                             ),
                           }.withoutNulls,
                           extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
+                            kTransitionInfoKey: TransitionInfo(
                               hasTransition: true,
                               transitionType: PageTransitionType.fade,
                               duration: Duration(milliseconds: 0),
@@ -590,17 +594,17 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                         );
                       },
                       text: 'Chỉnh sửa',
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.edit_outlined,
                         size: 24.0,
                       ),
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             72.0, 0.0, 72.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -609,7 +613,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),

@@ -13,9 +13,11 @@ import '/training/test/radio_button_add/radio_button_add_widget.dart';
 import '/training/test/test_long_text_add/test_long_text_add_widget.dart';
 import '/training/test/test_number_add/test_number_add_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'test_update_model.dart';
 export 'test_update_model.dart';
@@ -56,7 +58,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.questionItem = widget.questions!
+      _model.questionItem = widget!.questions!
           .map((e) => QuestionObjectStruct.maybeFromMap(e))
           .withoutNulls
           .toList()
@@ -65,17 +67,17 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
       setState(() {});
     });
 
-    _model.textController1 ??= TextEditingController(text: widget.name);
+    _model.textController1 ??= TextEditingController(text: widget!.name);
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??=
-        TextEditingController(text: widget.godScore?.toString());
+        TextEditingController(text: widget!.godScore?.toString());
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController(text: widget.description);
+    _model.textController3 ??= TextEditingController(text: widget!.description);
     _model.textFieldFocusNode3 ??= FocusNode();
 
-    _model.textController4 ??= TextEditingController(text: widget.time);
+    _model.textController4 ??= TextEditingController(text: widget!.time);
     _model.textFieldFocusNode4 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -131,13 +133,13 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
-          child: SizedBox(
+          child: Container(
             width: double.infinity,
             child: Form(
               key: _model.formKey,
@@ -149,7 +151,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: SingleChildScrollView(
                         primary: false,
                         child: Column(
@@ -157,7 +159,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 0.0),
                               child: TextFormField(
                                 controller: _model.textController1,
@@ -223,7 +225,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 8.0, 0.0, 0.0),
                               child: TextFormField(
                                 controller: _model.textController2,
@@ -290,7 +292,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.0, -1.0),
                               child: TextFormField(
                                 controller: _model.textController3,
                                 focusNode: _model.textFieldFocusNode3,
@@ -372,9 +374,9 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
-                                  child: SizedBox(
+                                  child: Container(
                                     width: 50.0,
                                     child: TextFormField(
                                       controller: _model.textController4,
@@ -457,7 +459,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                         ),
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 4.0)),
+                              ].divide(SizedBox(width: 4.0)),
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
@@ -480,7 +482,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   controller:
                                       _model.radioButtonValueController ??=
                                           FormFieldController<String>(
-                                              widget.status == 'published'
+                                              widget!.status == 'published'
                                                   ? 'Hoạt động'
                                                   : 'Không hoạt động'),
                                   optionHeight: 32.0,
@@ -497,7 +499,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
-                                  textPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  textPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 36.0, 0.0),
                                   buttonPosition: RadioButtonPosition.left,
                                   direction: Axis.horizontal,
@@ -510,7 +512,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   horizontalAlignment: WrapAlignment.start,
                                   verticalAlignment: WrapCrossAlignment.start,
                                 ),
-                              ].divide(const SizedBox(height: 4.0)),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                             wrapWithModel(
                               model: _model.questionTestModel,
@@ -532,7 +534,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                                 .primaryText,
                                           ),
                                         ),
-                                        duration: const Duration(milliseconds: 4000),
+                                        duration: Duration(milliseconds: 4000),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context).error,
                                       ),
@@ -556,7 +558,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   scrollDirection: Axis.vertical,
                                   itemCount: questionList.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 8.0),
+                                      SizedBox(height: 8.0),
                                   itemBuilder: (context, questionListIndex) {
                                     final questionListItem =
                                         questionList[questionListIndex];
@@ -574,7 +576,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                            padding: EdgeInsets.all(8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
@@ -624,7 +626,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                                     setState(() {});
                                                   },
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                           ),
                                         ),
@@ -721,13 +723,13 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                 );
                               },
                             ),
-                          ].divide(const SizedBox(height: 16.0)),
+                          ].divide(SizedBox(height: 16.0)),
                         ),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: EdgeInsets.all(16.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -781,16 +783,16 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                               setState(() {});
                             },
                             text: 'Câu hỏi mới',
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.add,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).secondary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -803,7 +805,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -815,7 +817,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var shouldSetState = false;
+                              var _shouldSetState = false;
                               if (_model.formKey.currentState == null ||
                                   !_model.formKey.currentState!.validate()) {
                                 return;
@@ -825,19 +827,19 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: const Text('Xác nhận'),
+                                            title: Text('Xác nhận'),
                                             content:
-                                                const Text('Bạn chắc chắn muốn lưu!'),
+                                                Text('Bạn chắc chắn muốn lưu!'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, false),
-                                                child: const Text('Hủy'),
+                                                child: Text('Hủy'),
                                               ),
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, true),
-                                                child: const Text('Xác nhận'),
+                                                child: Text('Xác nhận'),
                                               ),
                                             ],
                                           );
@@ -859,7 +861,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                 setState(() {});
                                 _model.apiResultCreateTest =
                                     await TestGroup.testUpdateCall.call(
-                                  id: widget.id,
+                                  id: widget!.id,
                                   accessToken: FFAppState().accessToken,
                                   requestDataJson: <String, dynamic>{
                                     'status':
@@ -880,7 +882,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   },
                                 );
 
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if ((_model.apiResultCreateTest?.succeeded ??
                                     true)) {
                                   await actions.showToast(
@@ -898,7 +900,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                         (_model.apiResultCreateTest?.jsonBody ??
                                             ''),
                                   );
-                                  shouldSetState = true;
+                                  _shouldSetState = true;
                                   if (!_model.checkRefreshTokenBlock2!) {
                                     await actions.showToast(
                                       context,
@@ -916,7 +918,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                 context.pushNamed(
                                   'TestList',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -924,22 +926,22 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   },
                                 );
                               } else {
-                                if (shouldSetState) setState(() {});
+                                if (_shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (shouldSetState) setState(() {});
+                              if (_shouldSetState) setState(() {});
                             },
                             text: 'Lưu',
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.save,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -951,7 +953,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -959,7 +961,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                             ),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 16.0)),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                   ),
                 ],

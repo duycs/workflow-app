@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'data_not_found_newsfeed_model.dart';
 export 'data_not_found_newsfeed_model.dart';
 
@@ -9,7 +11,7 @@ class DataNotFoundNewsfeedWidget extends StatefulWidget {
     super.key,
     this.parameter1,
     bool? parameter2,
-  }) : parameter2 = parameter2 ?? false;
+  }) : this.parameter2 = parameter2 ?? false;
 
   final int? parameter1;
   final bool parameter2;
@@ -51,7 +53,7 @@ class _DataNotFoundNewsfeedWidgetState
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 32.0),
+        padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 32.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,

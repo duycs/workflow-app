@@ -1,10 +1,23 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'author_sign_up_widget.dart' show AuthorSignUpWidget;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
   ///  Local state fields for this component.
@@ -123,9 +136,9 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
         accessToken: FFAppState().accessToken,
       );
 
-      if ((apiResultGetLinkDomain.succeeded ?? true)) {
+      if ((apiResultGetLinkDomain?.succeeded ?? true)) {
         listDomain = DomainsListDataStruct.maybeFromMap(
-                (apiResultGetLinkDomain.jsonBody ?? ''))!
+                (apiResultGetLinkDomain?.jsonBody ?? ''))!
             .data
             .toList()
             .cast<DomainsListStruct>();
@@ -145,14 +158,14 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
         accessToken: FFAppState().accessToken,
       );
 
-      if ((apiResultGetListAuthors.succeeded ?? true)) {
+      if ((apiResultGetListAuthors?.succeeded ?? true)) {
         listAuthorName = (getJsonField(
-          (apiResultGetListAuthors.jsonBody ?? ''),
+          (apiResultGetListAuthors?.jsonBody ?? ''),
           r'''$.data[:].alias''',
           true,
         ) as List)
             .map<String>((s) => s.toString())
-            .toList()
+            .toList()!
             .toList()
             .cast<String>();
       }

@@ -1,12 +1,17 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.dart';
 import '/training/lesson/no_data/no_data_widget.dart';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'lesson_lists_homepage_draft_model.dart';
@@ -67,7 +72,7 @@ class _LessonListsHomepageDraftWidgetState
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -84,7 +89,7 @@ class _LessonListsHomepageDraftWidgetState
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 12.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -92,14 +97,14 @@ class _LessonListsHomepageDraftWidgetState
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Expanded(
-                              child: SizedBox(
+                              child: Container(
                                 width: double.infinity,
                                 child: TextFormField(
                                   controller: _model.nameSearchTextController,
                                   focusNode: _model.nameSearchFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.nameSearchTextController',
-                                    const Duration(milliseconds: 500),
+                                    Duration(milliseconds: 500),
                                     () async {
                                       setState(() => _model
                                           .listViewPagingController
@@ -161,9 +166,9 @@ class _LessonListsHomepageDraftWidgetState
                                     fillColor: FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                     contentPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
+                                        EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 0.0, 0.0),
-                                    prefixIcon: const Icon(
+                                    prefixIcon: Icon(
                                       Icons.search,
                                       size: 24.0,
                                     ),
@@ -278,15 +283,18 @@ class _LessonListsHomepageDraftWidgetState
                           ],
                         ),
                       ),
-                      if ((_model.nameSearchTextController.text != '') ||
-                          ((_model.status != '') &&
+                      if ((_model.nameSearchTextController.text != null &&
+                              _model.nameSearchTextController.text != '') ||
+                          ((_model.status != null && _model.status != '') &&
                               (_model.status != 'noData')) ||
-                          ((_model.dateEndList != '') &&
+                          ((_model.dateEndList != null &&
+                                  _model.dateEndList != '') &&
                               (_model.dateEndList != 'noData')) ||
-                          ((_model.dateStartList != '') &&
+                          ((_model.dateStartList != null &&
+                                  _model.dateStartList != '') &&
                               (_model.dateStartList != 'noData')))
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 0.0, 4.0),
                           child: Text(
                             '#Kết quả tìm kiếm theo bộ lọc',
@@ -303,7 +311,7 @@ class _LessonListsHomepageDraftWidgetState
                           ),
                         ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 8.0, 16.0, 16.0),
                         child:
                             PagedListView<ApiPagingParams, dynamic>.separated(
@@ -319,14 +327,14 @@ class _LessonListsHomepageDraftWidgetState
                               ).toString()}\"}},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"id\":{\"_neq\":\"${getJsonField(
                                 FFAppState().staffDepartment,
                                 r'''$.id''',
-                              ).toString()}\"}}}}}},{\"status\":{\"_icontains\":\"published\"}}'}${_model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_eq\":\"${_model.status}\"}}' : ' '}${(_model.dateStartList != '') && (_model.dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStartList}\"}}' : ' '}${(_model.dateEndList != '') && (_model.dateEndList != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
+                              ).toString()}\"}}}}}},{\"status\":{\"_icontains\":\"published\"}}'}${_model.nameSearchTextController.text != null && _model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}' : ' '}${(_model.status != null && _model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_eq\":\"${_model.status}\"}}' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStartList}\"}}' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != 'noData') ? ',{\"date_created\":{\"_lt\":\"${(String var1) {
                                   return DateTime.parse(var1)
-                                      .add(const Duration(days: 1))
+                                      .add(Duration(days: 1))
                                       .toString();
                                 }(_model.dateEndList)}\"}}' : ' '},{\"status\":{\"_eq\":\"published\"}}]}',
                             ),
                           ),
-                          padding: const EdgeInsets.fromLTRB(
+                          padding: EdgeInsets.fromLTRB(
                             0,
                             0,
                             0,
@@ -336,12 +344,12 @@ class _LessonListsHomepageDraftWidgetState
                           shrinkWrap: true,
                           reverse: false,
                           scrollDirection: Axis.vertical,
-                          separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                          separatorBuilder: (_, __) => SizedBox(height: 8.0),
                           builderDelegate: PagedChildBuilderDelegate<dynamic>(
                             // Customize what your widget looks like when it's loading the first page.
                             firstPageProgressIndicatorBuilder: (_) => Center(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 300.0, 0.0, 0.0),
                                 child: SizedBox(
                                   width: 50.0,
@@ -357,7 +365,7 @@ class _LessonListsHomepageDraftWidgetState
                             // Customize what your widget looks like when it's loading another page.
                             newPageProgressIndicatorBuilder: (_) => Center(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 300.0, 0.0, 0.0),
                                 child: SizedBox(
                                   width: 50.0,
@@ -370,7 +378,7 @@ class _LessonListsHomepageDraftWidgetState
                                 ),
                               ),
                             ),
-                            noItemsFoundIndicatorBuilder: (_) => const Center(
+                            noItemsFoundIndicatorBuilder: (_) => Center(
                               child: NoDataWidget(),
                             ),
                             itemBuilder: (context, _, listLessonsIndex) {
@@ -392,7 +400,7 @@ class _LessonListsHomepageDraftWidgetState
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -414,7 +422,7 @@ class _LessonListsHomepageDraftWidgetState
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -428,7 +436,7 @@ class _LessonListsHomepageDraftWidgetState
                                             width: 100.0,
                                             height: double.infinity,
                                             fit: BoxFit.cover,
-                                            alignment: const Alignment(0.0, 0.0),
+                                            alignment: Alignment(0.0, 0.0),
                                             errorBuilder:
                                                 (context, error, stackTrace) =>
                                                     Image.asset(
@@ -436,7 +444,7 @@ class _LessonListsHomepageDraftWidgetState
                                               width: 100.0,
                                               height: double.infinity,
                                               fit: BoxFit.cover,
-                                              alignment: const Alignment(0.0, 0.0),
+                                              alignment: Alignment(0.0, 0.0),
                                             ),
                                           ),
                                         ),
@@ -475,7 +483,7 @@ class _LessonListsHomepageDraftWidgetState
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   4.0,
@@ -536,12 +544,12 @@ class _LessonListsHomepageDraftWidgetState
                                                           ),
                                                     ),
                                                   ),
-                                                ].divide(const SizedBox(width: 4.0)),
+                                                ].divide(SizedBox(width: 4.0)),
                                               ),
                                             ],
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 8.0)),
+                                      ].divide(SizedBox(width: 8.0)),
                                     ),
                                   ),
                                 ),
@@ -552,13 +560,13 @@ class _LessonListsHomepageDraftWidgetState
                       ),
                     ],
                   ),
-                ].addToEnd(const SizedBox(height: 200.0)),
+                ].addToEnd(SizedBox(height: 200.0)),
               ),
             ),
             if (_model.checkLoading == false)
               Container(
-                decoration: const BoxDecoration(),
-                child: SizedBox(
+                decoration: BoxDecoration(),
+                child: Container(
                   width: double.infinity,
                   height: double.infinity,
                   child: custom_widgets.LoadingPageWidget(

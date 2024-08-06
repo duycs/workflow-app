@@ -1,16 +1,21 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_shift_created/time_keeping_shift_created_widget.dart';
 import '/timekeeping/time_keeping_shift_filter/time_keeping_shift_filter_widget.dart';
 import '/timekeeping/time_keeping_shift_update/time_keeping_shift_update_widget.dart';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'timekeeping_shift_list_model.dart';
@@ -81,7 +86,7 @@ class _TimekeepingShiftListWidgetState
                     elevation: 0,
                     insetPadding: EdgeInsets.zero,
                     backgroundColor: Colors.transparent,
-                    alignment: const AlignmentDirectional(0.0, 0.0)
+                    alignment: AlignmentDirectional(0.0, 0.0)
                         .resolve(Directionality.of(context)),
                     child: GestureDetector(
                       onTap: () => _model.unfocusNode.canRequestFocus
@@ -135,7 +140,7 @@ class _TimekeepingShiftListWidgetState
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -145,7 +150,7 @@ class _TimekeepingShiftListWidgetState
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 12.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 12.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,7 +161,7 @@ class _TimekeepingShiftListWidgetState
                         focusNode: _model.textFieldFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.textController',
-                          const Duration(milliseconds: 1000),
+                          Duration(milliseconds: 1000),
                           () async {
                             setState(() {});
                             setState(() =>
@@ -179,7 +184,7 @@ class _TimekeepingShiftListWidgetState
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
@@ -209,9 +214,9 @@ class _TimekeepingShiftListWidgetState
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 0.0, 0.0),
-                          prefixIcon: const Icon(
+                          prefixIcon: Icon(
                             Icons.search_sharp,
                             size: 24.0,
                           ),
@@ -303,7 +308,7 @@ class _TimekeepingShiftListWidgetState
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: PagedListView<ApiPagingParams, dynamic>.separated(
                     pagingController: _model.setListViewController(
                       (nextPageMarker) =>
@@ -314,11 +319,11 @@ class _TimekeepingShiftListWidgetState
                             '{\"_and\":[{},{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                           FFAppState().staffOrganization,
                           r'''$.id''',
-                        ).toString()}\"}}}${_model.nameSearch != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ''}${_model.dateStartCheckIn != '' ? ',{\"start_time\":{\"_gte\":\"${_model.dateStartCheckIn}\"}}' : ''}${_model.dateEndCheckIn != '' ? ',{\"start_time\":{\"_lte\":\"${_model.dateEndCheckIn}\"}}' : ''}${_model.checkOutDateStart != '' ? ',{\"end_time\":{\"_gte\":\"${_model.dateStartCheckIn}\"}}' : ''}${_model.checkOutDateEnd != '' ? ',{\"end_time\":{\"_lte\":\"${_model.dateEndCheckIn}\"}}' : ''}${_model.statusSearch != '' ? ',{\"status\":{\"_lte\":\"${_model.statusSearch}\"}}' : ''}]}',
+                        ).toString()}\"}}}${_model.nameSearch != null && _model.nameSearch != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ''}${_model.dateStartCheckIn != null && _model.dateStartCheckIn != '' ? ',{\"start_time\":{\"_gte\":\"${_model.dateStartCheckIn}\"}}' : ''}${_model.dateEndCheckIn != null && _model.dateEndCheckIn != '' ? ',{\"start_time\":{\"_lte\":\"${_model.dateEndCheckIn}\"}}' : ''}${_model.checkOutDateStart != null && _model.checkOutDateStart != '' ? ',{\"end_time\":{\"_gte\":\"${_model.dateStartCheckIn}\"}}' : ''}${_model.checkOutDateEnd != null && _model.checkOutDateEnd != '' ? ',{\"end_time\":{\"_lte\":\"${_model.dateEndCheckIn}\"}}' : ''}${_model.statusSearch != null && _model.statusSearch != '' ? ',{\"status\":{\"_lte\":\"${_model.statusSearch}\"}}' : ''}]}',
                         offset: nextPageMarker.nextPageNumber * 20,
                       ),
                     ),
-                    padding: const EdgeInsets.fromLTRB(
+                    padding: EdgeInsets.fromLTRB(
                       0,
                       0,
                       0,
@@ -328,7 +333,7 @@ class _TimekeepingShiftListWidgetState
                     shrinkWrap: true,
                     reverse: false,
                     scrollDirection: Axis.vertical,
-                    separatorBuilder: (_, __) => const SizedBox(height: 12.0),
+                    separatorBuilder: (_, __) => SizedBox(height: 12.0),
                     builderDelegate: PagedChildBuilderDelegate<dynamic>(
                       // Customize what your widget looks like when it's loading the first page.
                       firstPageProgressIndicatorBuilder: (_) => Center(
@@ -354,7 +359,7 @@ class _TimekeepingShiftListWidgetState
                           ),
                         ),
                       ),
-                      noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
+                      noItemsFoundIndicatorBuilder: (_) => DataNotFoundWidget(),
                       itemBuilder: (context, _, shiftListIndex) {
                         final shiftListItem = _model.listViewPagingController!
                             .itemList![shiftListIndex];
@@ -362,7 +367,7 @@ class _TimekeepingShiftListWidgetState
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            boxShadow: const [
+                            boxShadow: [
                               BoxShadow(
                                 blurRadius: 1.0,
                                 color: Color(0x33000000),
@@ -399,7 +404,7 @@ class _TimekeepingShiftListWidgetState
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -465,7 +470,7 @@ class _TimekeepingShiftListWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 8.0, 8.0),
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -479,7 +484,7 @@ class _TimekeepingShiftListWidgetState
                                     borderRadius: BorderRadius.circular(20.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 4.0, 8.0, 4.0),
                                     child: Text(
                                       shiftListItem.status == 'published'
@@ -505,7 +510,7 @@ class _TimekeepingShiftListWidgetState
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 4.0)),
+                            ].divide(SizedBox(height: 4.0)),
                           ),
                         );
                       },
