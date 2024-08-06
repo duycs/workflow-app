@@ -18,7 +18,7 @@ class GroupTemplateGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -33,7 +33,7 @@ class TimekeepingShiftConfigsGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -314,7 +314,7 @@ class NewsfeedGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -646,7 +646,7 @@ class ProcedurePublishedGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -782,7 +782,7 @@ class DepartmentGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -997,7 +997,7 @@ class UploadFileGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -1077,7 +1077,7 @@ class UserGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -1219,7 +1219,7 @@ class DeleteAccountCall {
 /// Start Authen Group Code
 
 class AuthenGroup {
-  static String getBaseUrl() => 'https://workflow-api-dev.pexnic.com';
+  static String getBaseUrl() => 'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
   };
@@ -1329,7 +1329,7 @@ class LessonGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -1820,7 +1820,7 @@ class StudyProgramGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2400,7 +2400,7 @@ class DoTestGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2633,7 +2633,7 @@ class TestGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2833,7 +2833,7 @@ class QuestionGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2993,7 +2993,7 @@ class ProcedureTemplateGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -3621,7 +3621,7 @@ class BranchGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -3750,7 +3750,7 @@ class StaffGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4068,7 +4068,7 @@ class OrganizationGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4194,7 +4194,7 @@ class TaskGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4412,7 +4412,7 @@ class OperationGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4542,7 +4542,7 @@ class CategoriesGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4585,7 +4585,7 @@ class DomainGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4628,7 +4628,7 @@ class GroupMarketLessonGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4764,7 +4764,7 @@ class GroupAuthorsGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4963,7 +4963,7 @@ class GetDomainsGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -5022,7 +5022,7 @@ class OrderGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -5281,7 +5281,7 @@ class CheckTransferCall {
 /// Start STHLoginAcounts Group Code
 
 class STHLoginAcountsGroup {
-  static String getBaseUrl() => 'https://workflow-api-dev.pexnic.com';
+  static String getBaseUrl() => 'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
   };
@@ -5357,7 +5357,7 @@ class SettingAcountGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -5443,7 +5443,7 @@ class CertificateGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -5563,7 +5563,7 @@ class NotificationsGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -5646,7 +5646,7 @@ class LocationGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -5730,7 +5730,7 @@ class AddressGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -5829,7 +5829,7 @@ class GroupTimekeepingsGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',

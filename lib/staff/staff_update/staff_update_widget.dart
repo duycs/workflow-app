@@ -367,7 +367,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                             ),
                                             allowRotation: false,
                                             tag:
-                                                'https://workflow-api-dev.pexnic.com/assets/${getJsonField(
+                                                'https://workflow-api.pexnic.com/assets/${getJsonField(
                                               widget!.staffDetail,
                                               r'''$.avatar''',
                                             ).toString()}',
@@ -378,7 +378,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     },
                                     child: Hero(
                                       tag:
-                                          'https://workflow-api-dev.pexnic.com/assets/${getJsonField(
+                                          'https://workflow-api.pexnic.com/assets/${getJsonField(
                                         widget!.staffDetail,
                                         r'''$.avatar''',
                                       ).toString()}',

@@ -19,7 +19,7 @@ Future<String> refreshAccessToken() async {
   final prefs = await SharedPreferences.getInstance();
   final refreshToken = prefs.getString('wf_token') ?? '';
   print(refreshToken);
-  final url = Uri.parse('https://workflow-api-dev.pexnic.com/auth/refresh');
+  final url = Uri.parse('https://workflow-api.pexnic.com/auth/refresh');
   final response = await http.post(
     url,
     headers: {
@@ -41,7 +41,7 @@ Future<String> refreshAccessToken() async {
 
 Future<String> getNotificationId(String code, String accessToken) async {
   final url =
-      Uri.parse('https://workflow-api-dev.pexnic.com/items/notifications');
+      Uri.parse('https://workflow-api.pexnic.com/items/notifications');
   final response = await http.post(
     url,
     headers: {
@@ -76,7 +76,7 @@ Future<String> getNotificationId(String code, String accessToken) async {
 
 Future<void> callApi(String id, String accessToken) async {
   final url =
-      Uri.parse('https://workflow-api-dev.pexnic.com/items/notifications/$id');
+      Uri.parse('https://workflow-api.pexnic.com/items/notifications/$id');
   final response = await http.patch(
     url,
     headers: {
@@ -97,7 +97,7 @@ Future<void> callApi(String id, String accessToken) async {
 //   final prefs = await SharedPreferences.getInstance();
 //   final refreshToken = prefs.getString('wf_token') ?? '';
 //   final url =
-//       Uri.parse('https://workflow-api-dev.pexnic.com/items/notifications/$id');
+//       Uri.parse('https://workflow-api.pexnic.com/items/notifications/$id');
 //   final response = await http.patch(
 //     url,
 //     headers: {
