@@ -1,14 +1,24 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/timekeeping/timekeeping_management_list_filter/timekeeping_management_list_filter_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'timekeeping_management_list_widget.dart'
     show TimekeepingManagementListWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 
 class TimekeepingManagementListModel
     extends FlutterFlowModel<TimekeepingManagementListWidget> {
@@ -57,13 +67,13 @@ class TimekeepingManagementListModel
       filter: '{\"_and\":[${'{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffOrganization,
         r'''$.id''',
-      ).toString().toString()}\"}}}'}${(widget!.checkShowParams == 'check') && ((dateStart == '') && (dateEnd == '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month, 0).toString()}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
+      ).toString().toString()}\"}}}'}${(widget!.checkShowParams == 'check') && ((dateStart == null || dateStart == '') && (dateEnd == null || dateEnd == '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(getCurrentTimestamp.toString()).year, DateTime.parse(getCurrentTimestamp.toString()).month, 0).toString()}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
           return DateTime.parse(var1).month == 12
               ? DateTime(DateTime.parse(var1).year + 1, 1, 0).toString()
               : DateTime(DateTime.parse(var1).year,
                       DateTime.parse(var1).month + 1, 0)
                   .toString();
-        }(getCurrentTimestamp.toString())}\"}}' : ' '}${(widget!.checkShowParams == 'check') && ((dateStart != '') && (dateEnd != '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(dateStart).year, DateTime.parse(dateStart).month, 0).toString()}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
+        }(getCurrentTimestamp.toString())}\"}}' : ' '}${(widget!.checkShowParams == 'check') && ((dateStart != null && dateStart != '') && (dateEnd != null && dateEnd != '')) ? ',{\"date_created\":{\"_gte\":\"${DateTime(DateTime.parse(dateStart).year, DateTime.parse(dateStart).month, 0).toString()}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
           return DateTime.parse(var1).month == 12
               ? DateTime(DateTime.parse(var1).year + 1, 1, 0).toString()
               : DateTime(DateTime.parse(var1).year,
@@ -76,19 +86,19 @@ class TimekeepingManagementListModel
           FFAppState().staffDepartment,
           r'''$.id''',
         ).toString().toString()}\"}}}' : ' '}${widget!.dateFilter != null && widget!.dateFilter != '' ? ',{\"date_created\":{\"_gte\":\"${(String var1) {
-          return DateTime.parse(var1).subtract(const Duration(days: 1)).toString();
-        }(widget!.dateFilter!)}\"}},{\"date_created\":{\"_lt\":\"${widget!.dateFilter}\"}}' : ' '}${(idStaff != '') && (idStaff != 'noData') ? ',{\"staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"$idStaff\"}}}}' : ' '}${(idBranch != '') && (idBranch != 'noData') ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"$idBranch\"}}}' : ' '}${(idDepartment != '') && (idDepartment != 'noData') ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"$idDepartment\"}}}' : ' '}${(idShifts != '') && (idShifts != 'noData') ? ',{\"shift_id\":{\"id\":{\"_eq\":\"$idShifts\"}}}' : ' '}${(idStatus != '') && (idStatus != 'noData') ? ',{\"status\":{\"_eq\":\"$idStatus\"}}' : ' '}]}',
+          return DateTime.parse(var1).subtract(Duration(days: 1)).toString();
+        }(widget!.dateFilter!)}\"}},{\"date_created\":{\"_lt\":\"${widget!.dateFilter}\"}}' : ' '}${(idStaff != null && idStaff != '') && (idStaff != 'noData') ? ',{\"staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"${idStaff}\"}}}}' : ' '}${(idBranch != null && idBranch != '') && (idBranch != 'noData') ? ',{\"staff_id\":{\"branch_id\":{\"_eq\":\"${idBranch}\"}}}' : ' '}${(idDepartment != null && idDepartment != '') && (idDepartment != 'noData') ? ',{\"staff_id\":{\"department_id\":{\"_eq\":\"${idDepartment}\"}}}' : ' '}${(idShifts != null && idShifts != '') && (idShifts != 'noData') ? ',{\"shift_id\":{\"id\":{\"_eq\":\"${idShifts}\"}}}' : ' '}${(idStatus != null && idStatus != '') && (idStatus != 'noData') ? ',{\"status\":{\"_eq\":\"${idStatus}\"}}' : ' '}]}',
     );
 
-    if ((apiResultGetList.succeeded ?? true)) {
+    if ((apiResultGetList?.succeeded ?? true)) {
       json = getJsonField(
-        (apiResultGetList.jsonBody ?? ''),
+        (apiResultGetList?.jsonBody ?? ''),
         r'''$.data''',
       );
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetList.jsonBody ?? ''),
+        jsonErrors: (apiResultGetList?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -99,7 +109,7 @@ class TimekeepingManagementListModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -116,7 +126,7 @@ class TimekeepingManagementListModel
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -162,7 +172,7 @@ class TimekeepingManagementListModel
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.isNotEmpty)
+          (pageItems.length > 0)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

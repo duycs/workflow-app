@@ -1,9 +1,14 @@
+import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/training/certificate/certificate1_zoom/certificate1_zoom_widget.dart';
 import '/training/certificate/certificate2_zoom/certificate2_zoom_widget.dart';
 import 'certificate_list_study_program_widget.dart'
     show CertificateListStudyProgramWidget;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CertificateListStudyProgramModel
     extends FlutterFlowModel<CertificateListStudyProgramWidget> {

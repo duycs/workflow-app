@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/training/order/invite_user/invite_user_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'after_payment_model.dart';
 export 'after_payment_model.dart';
 
@@ -47,16 +49,16 @@ class _AfterPaymentWidgetState extends State<AfterPaymentWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+        padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
         child: Container(
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxHeight: 200.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -69,7 +71,7 @@ class _AfterPaymentWidgetState extends State<AfterPaymentWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -115,7 +117,7 @@ class _AfterPaymentWidgetState extends State<AfterPaymentWidget> {
                         context.pushNamed(
                           'OrderList',
                           extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
+                            kTransitionInfoKey: TransitionInfo(
                               hasTransition: true,
                               transitionType: PageTransitionType.fade,
                               duration: Duration(milliseconds: 0),
@@ -124,7 +126,7 @@ class _AfterPaymentWidgetState extends State<AfterPaymentWidget> {
                         );
                       },
                     ),
-                  ].divide(const SizedBox(width: 8.0)),
+                  ].divide(SizedBox(width: 8.0)),
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -141,12 +143,12 @@ class _AfterPaymentWidgetState extends State<AfterPaymentWidget> {
                             'StudyProgramListMarket',
                             queryParameters: {
                               'checkpage': serializeParam(
-                                widget.private,
+                                widget!.private,
                                 ParamType.String,
                               ),
                             }.withoutNulls,
                             extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
+                              kTransitionInfoKey: TransitionInfo(
                                 hasTransition: true,
                                 transitionType: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
@@ -162,9 +164,9 @@ class _AfterPaymentWidgetState extends State<AfterPaymentWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 8.0, 16.0, 8.0),
                               child: Text(
                                 'Đi đến danh sách khóa học đã mua',
@@ -197,7 +199,7 @@ class _AfterPaymentWidgetState extends State<AfterPaymentWidget> {
                               return Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
                                 child: InviteUserWidget(
-                                  programId: widget.programId!,
+                                  programId: widget!.programId!,
                                 ),
                               );
                             },
@@ -213,9 +215,9 @@ class _AfterPaymentWidgetState extends State<AfterPaymentWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 8.0, 16.0, 8.0),
                               child: Text(
                                 'Chia sẻ khóa học cho thành viên khác',
@@ -232,9 +234,9 @@ class _AfterPaymentWidgetState extends State<AfterPaymentWidget> {
                         ),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 16.0)),
+                  ].divide(SizedBox(width: 16.0)),
                 ),
-              ].divide(const SizedBox(height: 16.0)),
+              ].divide(SizedBox(height: 16.0)),
             ),
           ),
         ),

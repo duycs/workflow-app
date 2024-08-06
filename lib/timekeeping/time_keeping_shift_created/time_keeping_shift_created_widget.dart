@@ -5,7 +5,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'time_keeping_shift_created_model.dart';
 export 'time_keeping_shift_created_model.dart';
@@ -56,16 +58,16 @@ class _TimeKeepingShiftCreatedWidgetState
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Container(
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxHeight: 500.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -78,13 +80,13 @@ class _TimeKeepingShiftCreatedWidgetState
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,7 +126,7 @@ class _TimeKeepingShiftCreatedWidgetState
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 4.0),
                           child: Text(
                             'Tên ca làm việc',
@@ -137,7 +139,7 @@ class _TimeKeepingShiftCreatedWidgetState
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 24.0),
                           child: TextFormField(
                             controller: _model.nameTextController,
@@ -198,7 +200,7 @@ class _TimeKeepingShiftCreatedWidgetState
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 4.0),
                           child: Text(
                             'Thời gian bắt đầu làm việc',
@@ -216,7 +218,7 @@ class _TimeKeepingShiftCreatedWidgetState
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            final datePicked1Time = await showTimePicker(
+                            final _datePicked1Time = await showTimePicker(
                               context: context,
                               initialTime:
                                   TimeOfDay.fromDateTime(getCurrentTimestamp),
@@ -251,14 +253,14 @@ class _TimeKeepingShiftCreatedWidgetState
                                 );
                               },
                             );
-                            if (datePicked1Time != null) {
+                            if (_datePicked1Time != null) {
                               safeSetState(() {
                                 _model.datePicked1 = DateTime(
                                   getCurrentTimestamp.year,
                                   getCurrentTimestamp.month,
                                   getCurrentTimestamp.day,
-                                  datePicked1Time.hour,
-                                  datePicked1Time.minute,
+                                  _datePicked1Time.hour,
+                                  _datePicked1Time.minute,
                                 );
                               });
                             }
@@ -278,7 +280,7 @@ class _TimeKeepingShiftCreatedWidgetState
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -314,7 +316,7 @@ class _TimeKeepingShiftCreatedWidgetState
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 4.0),
                           child: Text(
                             'Thời gian kết thúc làm việc',
@@ -332,7 +334,7 @@ class _TimeKeepingShiftCreatedWidgetState
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            final datePicked2Time = await showTimePicker(
+                            final _datePicked2Time = await showTimePicker(
                               context: context,
                               initialTime:
                                   TimeOfDay.fromDateTime(getCurrentTimestamp),
@@ -367,14 +369,14 @@ class _TimeKeepingShiftCreatedWidgetState
                                 );
                               },
                             );
-                            if (datePicked2Time != null) {
+                            if (_datePicked2Time != null) {
                               safeSetState(() {
                                 _model.datePicked2 = DateTime(
                                   getCurrentTimestamp.year,
                                   getCurrentTimestamp.month,
                                   getCurrentTimestamp.day,
-                                  datePicked2Time.hour,
-                                  datePicked2Time.minute,
+                                  _datePicked2Time.hour,
+                                  _datePicked2Time.minute,
                                 );
                               });
                             }
@@ -394,7 +396,7 @@ class _TimeKeepingShiftCreatedWidgetState
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -434,9 +436,9 @@ class _TimeKeepingShiftCreatedWidgetState
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                  alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -454,9 +456,9 @@ class _TimeKeepingShiftCreatedWidgetState
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -469,7 +471,7 @@ class _TimeKeepingShiftCreatedWidgetState
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -480,7 +482,7 @@ class _TimeKeepingShiftCreatedWidgetState
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var shouldSetState = false;
+                              var _shouldSetState = false;
                               if (_model.formKey.currentState == null ||
                                   !_model.formKey.currentState!.validate()) {
                                 return;
@@ -490,13 +492,13 @@ class _TimeKeepingShiftCreatedWidgetState
                                   context: context,
                                   builder: (alertDialogContext) {
                                     return AlertDialog(
-                                      content: const Text(
+                                      content: Text(
                                           'Vui lòng chọn thời gian bắt đầu'),
                                       actions: [
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
+                                          child: Text('Ok'),
                                         ),
                                       ],
                                     );
@@ -509,13 +511,13 @@ class _TimeKeepingShiftCreatedWidgetState
                                   context: context,
                                   builder: (alertDialogContext) {
                                     return AlertDialog(
-                                      content: const Text(
+                                      content: Text(
                                           'Vui lòng chọn thời gian kết thúc'),
                                       actions: [
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
+                                          child: Text('Ok'),
                                         ),
                                       ],
                                     );
@@ -528,18 +530,18 @@ class _TimeKeepingShiftCreatedWidgetState
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            content: const Text(
+                                            content: Text(
                                                 'Xác nhận tạo mới ca làm việc'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, false),
-                                                child: const Text('Hủy'),
+                                                child: Text('Hủy'),
                                               ),
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, true),
-                                                child: const Text('Xác nhận'),
+                                                child: Text('Xác nhận'),
                                               ),
                                             ],
                                           );
@@ -549,10 +551,10 @@ class _TimeKeepingShiftCreatedWidgetState
                               if (confirmDialogResponse) {
                                 _model.shiftCreate =
                                     await action_blocks.tokenReload(context);
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if (!_model.shiftCreate!) {
                                   setState(() {});
-                                  if (shouldSetState) setState(() {});
+                                  if (_shouldSetState) setState(() {});
                                   return;
                                 }
                                 _model.apiResultShiftCreate =
@@ -578,7 +580,7 @@ class _TimeKeepingShiftCreatedWidgetState
                                   },
                                 );
 
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if ((_model.apiResultShiftCreate?.succeeded ??
                                     true)) {
                                   await actions.showToast(
@@ -592,24 +594,24 @@ class _TimeKeepingShiftCreatedWidgetState
                                   Navigator.pop(context);
                                 }
                               } else {
-                                if (shouldSetState) setState(() {});
+                                if (_shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (shouldSetState) setState(() {});
+                              if (_shouldSetState) setState(() {});
                             },
                             text: 'Lưu',
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.save_outlined,
                               size: 24.0,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: const Color(0xFF33BA45),
+                              color: Color(0xFF33BA45),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -618,7 +620,7 @@ class _TimeKeepingShiftCreatedWidgetState
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -626,11 +628,11 @@ class _TimeKeepingShiftCreatedWidgetState
                             ),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 16.0)),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                   ),
                 ),
-              ].divide(const SizedBox(height: 8.0)),
+              ].divide(SizedBox(height: 8.0)),
             ),
           ),
         ),

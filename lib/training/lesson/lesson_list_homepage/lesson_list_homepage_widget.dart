@@ -1,14 +1,19 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'lesson_list_homepage_model.dart';
@@ -110,7 +115,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -119,7 +124,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
           child: Visibility(
             visible: _model.isShow == true,
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -127,21 +132,21 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
-                          child: SizedBox(
+                          child: Container(
                             width: double.infinity,
                             child: TextFormField(
                               controller: _model.nameSearchTextController,
                               focusNode: _model.nameSearchFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.nameSearchTextController',
-                                const Duration(milliseconds: 500),
+                                Duration(milliseconds: 500),
                                 () async {
                                   setState(() => _model.listViewPagingController
                                       ?.refresh());
@@ -201,9 +206,9 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .primaryBackground,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 0.0),
-                                prefixIcon: const Icon(
+                                prefixIcon: Icon(
                                   Icons.search,
                                   size: 24.0,
                                 ),
@@ -243,7 +248,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,
                             borderRadius: 10.0,
@@ -274,11 +279,11 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                         dateEnd: _model.dateEndList,
                                         lessonFavoriteStatus:
                                             _model.lessonFavoriteStatusList,
-                                        statusLoveFilter: widget.statusLove!,
+                                        statusLoveFilter: widget!.statusLove!,
                                         statusDateToday:
-                                            widget.lessonNewCreate,
+                                            widget!.lessonNewCreate,
                                         statusDateHistory:
-                                            widget.lesonHistory!,
+                                            widget!.lesonHistory!,
                                         programsId: _model.programsId,
                                         checkPrograms: '',
                                         callBack: (dateStart,
@@ -322,19 +327,19 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                   ),
                   Text(
                     () {
-                      if (widget.statusLesson == 'draft') {
+                      if (widget!.statusLesson == 'draft') {
                         return 'Bài học chưa học';
-                      } else if (widget.lessonNewCreate == 'dateToday') {
+                      } else if (widget!.lessonNewCreate == 'dateToday') {
                         return 'Bài học mới đăng';
-                      } else if (widget.lesonHistory == 'lessonHistory') {
+                      } else if (widget!.lesonHistory == 'lessonHistory') {
                         return 'Bài học gần đây';
-                      } else if (widget.statusLesson == 'inprogress') {
+                      } else if (widget!.statusLesson == 'inprogress') {
                         return 'Bài học đang học';
-                      } else if (widget.statusLesson == 'done') {
+                      } else if (widget!.statusLesson == 'done') {
                         return 'Bài học đã hoàn thành';
-                      } else if (widget.statusLove == 'love') {
+                      } else if (widget!.statusLove == 'love') {
                         return 'Bài học yêu thích';
-                      } else if (widget.checkLesson == 'obligatory') {
+                      } else if (widget!.checkLesson == 'obligatory') {
                         return 'Bài học bắt buộc';
                       } else {
                         return '';
@@ -347,17 +352,19 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                           letterSpacing: 0.0,
                         ),
                   ),
-                  if ((_model.nameSearchTextController.text != '') ||
+                  if ((_model.nameSearchTextController.text != null &&
+                          _model.nameSearchTextController.text != '') ||
                       ((_model.dateEndList != null &&
                               _model.dateEndList != '') &&
                           (_model.dateEndList != '0')) ||
                       ((_model.dateStartList != null &&
                               _model.dateStartList != '') &&
                           (_model.dateStartList != '0')) ||
-                      (_model.statusLesson != ''))
+                      (_model.statusLesson != null &&
+                          _model.statusLesson != ''))
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: Text(
                         '#Kết quả tìm kiếm theo bộ lọc',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -372,7 +379,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
                       child: PagedListView<ApiPagingParams, dynamic>.separated(
                         pagingController: _model.setListViewController(
                           (nextPageMarker) =>
@@ -386,18 +393,18 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                 _model.nameSearchTextController.text,
                                 _model.dateStartList,
                                 _model.dateEndList,
-                                widget.statusLesson,
+                                widget!.statusLesson,
                                 _model.lessonFavoriteStatusList,
-                                widget.statusLove,
-                                widget.lessonNewCreate,
-                                widget.lesonHistory,
+                                widget!.statusLove,
+                                widget!.lessonNewCreate,
+                                widget!.lesonHistory,
                                 _model.programsId),
                             limit: 20,
                             accessToken: FFAppState().accessToken,
                             offset: nextPageMarker.nextPageNumber * 20,
                           ),
                         ),
-                        padding: const EdgeInsets.fromLTRB(
+                        padding: EdgeInsets.fromLTRB(
                           0,
                           0,
                           0,
@@ -406,7 +413,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                         primary: false,
                         reverse: false,
                         scrollDirection: Axis.vertical,
-                        separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                        separatorBuilder: (_, __) => SizedBox(height: 10.0),
                         builderDelegate: PagedChildBuilderDelegate<dynamic>(
                           // Customize what your widget looks like when it's loading the first page.
                           firstPageProgressIndicatorBuilder: (_) => Center(
@@ -432,8 +439,8 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                               ),
                             ),
                           ),
-                          noItemsFoundIndicatorBuilder: (_) => const Center(
-                            child: SizedBox(
+                          noItemsFoundIndicatorBuilder: (_) => Center(
+                            child: Container(
                               width: double.infinity,
                               child: DataNotFoundWidget(),
                             ),
@@ -476,7 +483,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -496,7 +503,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
@@ -510,7 +517,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                           width: 100.0,
                                           height: double.infinity,
                                           fit: BoxFit.cover,
-                                          alignment: const Alignment(0.0, 0.0),
+                                          alignment: Alignment(0.0, 0.0),
                                           errorBuilder:
                                               (context, error, stackTrace) =>
                                                   Image.asset(
@@ -518,7 +525,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                             width: 100.0,
                                             height: double.infinity,
                                             fit: BoxFit.cover,
-                                            alignment: const Alignment(0.0, 0.0),
+                                            alignment: Alignment(0.0, 0.0),
                                           ),
                                         ),
                                       ),
@@ -540,7 +547,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 4.0),
                                                     child: Text(
@@ -575,11 +582,11 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  if (widget.checkLesson ==
+                                                  if (widget!.checkLesson ==
                                                       'obligatory')
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   4.0,
@@ -644,12 +651,12 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                         ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(width: 4.0)),
+                                              ].divide(SizedBox(width: 4.0)),
                                             ),
                                           ],
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8.0)),
                                   ),
                                 ),
                               ),

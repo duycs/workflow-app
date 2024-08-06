@@ -1,12 +1,28 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/upload_data.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'staff_update_widget.dart' show StaffUpdateWidget;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
   ///  Local state fields for this page.
@@ -210,7 +226,7 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
         requestDataJson: requestStaff,
       );
 
-      if ((apiResultUpdateStaffTotal.succeeded ?? true)) {
+      if ((apiResultUpdateStaffTotal?.succeeded ?? true)) {
         updateUserStaffTotal = await action_blocks.tokenReload(context);
         if (updateUserStaffTotal!) {
           apiResultUpdateUserStaffTotal =
@@ -223,7 +239,7 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
             requestDataJson: requestUserStaff,
           );
 
-          if ((apiResultUpdateUserStaffTotal.succeeded ?? true)) {
+          if ((apiResultUpdateUserStaffTotal?.succeeded ?? true)) {
             apiCreateProgramStaffTotal =
                 await StaffGroup.createProgramStaffCall.call(
               accessToken: FFAppState().accessToken,
@@ -233,7 +249,7 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
               ).toString().toString(),
             );
 
-            if ((apiCreateProgramStaffTotal.succeeded ?? true)) {
+            if ((apiCreateProgramStaffTotal?.succeeded ?? true)) {
               await actions.showToast(
                 context,
                 'Cập nhật thành công',
@@ -246,7 +262,7 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
               context.pushNamed(
                 'PersonnelList',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),

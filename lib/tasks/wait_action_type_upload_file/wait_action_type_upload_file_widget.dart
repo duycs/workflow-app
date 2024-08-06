@@ -2,6 +2,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'wait_action_type_upload_file_model.dart';
 export 'wait_action_type_upload_file_model.dart';
 
@@ -9,7 +11,7 @@ class WaitActionTypeUploadFileWidget extends StatefulWidget {
   const WaitActionTypeUploadFileWidget({
     super.key,
     String? name,
-  }) : name = name ?? '';
+  }) : this.name = name ?? '';
 
   final String name;
 
@@ -60,15 +62,15 @@ class _WaitActionTypeUploadFileWidgetState
                       print('Button pressed ...');
                     },
               text: 'Upload tài liệu',
-              icon: const Icon(
+              icon: Icon(
                 Icons.attach_file,
                 size: 20.0,
               ),
               options: FFButtonOptions(
                 width: 125.0,
                 height: 35.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).alternate,
                 textStyle: FlutterFlowTheme.of(context).labelLarge.override(
                       fontFamily: 'Nunito Sans',
@@ -80,7 +82,7 @@ class _WaitActionTypeUploadFileWidgetState
             ),
           ],
         ),
-      ].divide(const SizedBox(height: 6.0)),
+      ].divide(SizedBox(height: 6.0)),
     );
   }
 }

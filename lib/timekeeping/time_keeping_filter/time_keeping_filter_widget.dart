@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'time_keeping_filter_model.dart';
 export 'time_keeping_filter_model.dart';
 
@@ -12,8 +14,8 @@ class TimeKeepingFilterWidget extends StatefulWidget {
     String? nameDepartment,
     String? nameStaff,
     this.callBack,
-  })  : nameDepartment = nameDepartment ?? '',
-        nameStaff = nameStaff ?? '';
+  })  : this.nameDepartment = nameDepartment ?? '',
+        this.nameStaff = nameStaff ?? '';
 
   final String nameDepartment;
   final String nameStaff;
@@ -39,14 +41,14 @@ class _TimeKeepingFilterWidgetState extends State<TimeKeepingFilterWidget> {
     _model = createModel(context, () => TimeKeepingFilterModel());
 
     _model.textController1 ??= TextEditingController(
-        text: widget.nameDepartment != ''
-            ? widget.nameDepartment
+        text: widget!.nameDepartment != null && widget!.nameDepartment != ''
+            ? widget!.nameDepartment
             : '');
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??= TextEditingController(
-        text: widget.nameStaff != ''
-            ? widget.nameStaff
+        text: widget!.nameStaff != null && widget!.nameStaff != ''
+            ? widget!.nameStaff
             : '');
     _model.textFieldFocusNode2 ??= FocusNode();
 
@@ -63,23 +65,23 @@ class _TimeKeepingFilterWidgetState extends State<TimeKeepingFilterWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 1.0),
+      alignment: AlignmentDirectional(0.0, 1.0),
       child: Container(
-        constraints: const BoxConstraints(
+        constraints: BoxConstraints(
           maxHeight: 450.0,
         ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
             topRight: Radius.circular(16.0),
           ),
         ),
-        alignment: const AlignmentDirectional(0.0, -1.0),
+        alignment: AlignmentDirectional(0.0, -1.0),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -88,7 +90,7 @@ class _TimeKeepingFilterWidgetState extends State<TimeKeepingFilterWidget> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,7 +120,7 @@ class _TimeKeepingFilterWidgetState extends State<TimeKeepingFilterWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                   child: Text(
                     'Tên bộ phận',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -181,7 +183,7 @@ class _TimeKeepingFilterWidgetState extends State<TimeKeepingFilterWidget> {
                       _model.textController1Validator.asValidator(context),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                   child: Text(
                     'Tên nhân viên',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -244,7 +246,7 @@ class _TimeKeepingFilterWidgetState extends State<TimeKeepingFilterWidget> {
                       _model.textController2Validator.asValidator(context),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -261,9 +263,9 @@ class _TimeKeepingFilterWidgetState extends State<TimeKeepingFilterWidget> {
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -296,11 +298,11 @@ class _TimeKeepingFilterWidgetState extends State<TimeKeepingFilterWidget> {
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFF33BA45),
+                            color: Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -309,7 +311,7 @@ class _TimeKeepingFilterWidgetState extends State<TimeKeepingFilterWidget> {
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -317,10 +319,10 @@ class _TimeKeepingFilterWidgetState extends State<TimeKeepingFilterWidget> {
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 16.0)),
+                    ].divide(SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(const SizedBox(height: 8.0)),
+              ].divide(SizedBox(height: 8.0)),
             ),
           ),
         ),

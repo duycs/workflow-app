@@ -1,9 +1,18 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'newsfeed_create_widget.dart' show NewsfeedCreateWidget;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
   ///  Local state fields for this component.
@@ -135,7 +144,8 @@ class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
     bool? uploadimageToken;
     ApiCallResponse? apiResultUploadImage;
 
-    if ((uploadedLocalFile1.bytes?.isNotEmpty ?? false)) {
+    if (uploadedLocalFile1 != null &&
+        (uploadedLocalFile1.bytes?.isNotEmpty ?? false)) {
       uploadimageToken = await action_blocks.tokenReload(context);
       if (uploadimageToken!) {
         apiResultUploadImage = await UploadFileGroup.uploadListFileCall.call(
@@ -143,12 +153,12 @@ class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
           fileList: listImage,
         );
 
-        if ((apiResultUploadImage.succeeded ?? true)) {
+        if ((apiResultUploadImage?.succeeded ?? true)) {
           if (listImage.length == 1) {
             addToListImageId(FileDataTypeStruct(
               directusFilesId: FileIDDataTypeStruct(
                 id: getJsonField(
-                  (apiResultUploadImage.jsonBody ?? ''),
+                  (apiResultUploadImage?.jsonBody ?? ''),
                   r'''$.data.id''',
                 ).toString().toString(),
               ),
@@ -158,8 +168,8 @@ class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
               addToListImageId(FileDataTypeStruct(
                 directusFilesId: FileIDDataTypeStruct(
                   id: (FileUploadStruct.maybeFromMap(
-                              (apiResultUploadImage.jsonBody ?? ''))
-                          ?.data[loop])
+                              (apiResultUploadImage?.jsonBody ?? ''))
+                          ?.data?[loop])
                       ?.id,
                 ),
               ));
@@ -178,7 +188,8 @@ class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
     bool? uploadVideoToken;
     ApiCallResponse? apiResultUploadVideo;
 
-    if ((uploadedLocalFile3.bytes?.isNotEmpty ?? false)) {
+    if (uploadedLocalFile3 != null &&
+        (uploadedLocalFile3.bytes?.isNotEmpty ?? false)) {
       uploadVideoToken = await action_blocks.tokenReload(context);
       if (uploadVideoToken!) {
         apiResultUploadVideo = await UploadFileGroup.uploadListFileCall.call(
@@ -186,12 +197,12 @@ class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
           fileList: listVideo,
         );
 
-        if ((apiResultUploadVideo.succeeded ?? true)) {
+        if ((apiResultUploadVideo?.succeeded ?? true)) {
           if (listVideo.length == 1) {
             addToListVideoId(FileDataTypeStruct(
               directusFilesId: FileIDDataTypeStruct(
                 id: getJsonField(
-                  (apiResultUploadVideo.jsonBody ?? ''),
+                  (apiResultUploadVideo?.jsonBody ?? ''),
                   r'''$.data.id''',
                 ).toString().toString(),
               ),
@@ -201,8 +212,8 @@ class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
               addToListVideoId(FileDataTypeStruct(
                 directusFilesId: FileIDDataTypeStruct(
                   id: (FileUploadStruct.maybeFromMap(
-                              (apiResultUploadVideo.jsonBody ?? ''))
-                          ?.data[loop])
+                              (apiResultUploadVideo?.jsonBody ?? ''))
+                          ?.data?[loop])
                       ?.id,
                 ),
               ));
@@ -221,7 +232,8 @@ class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
     bool? uploadFileToken;
     ApiCallResponse? apiResultUploadFIle;
 
-    if ((uploadedLocalFile2.bytes?.isNotEmpty ?? false)) {
+    if (uploadedLocalFile2 != null &&
+        (uploadedLocalFile2.bytes?.isNotEmpty ?? false)) {
       uploadFileToken = await action_blocks.tokenReload(context);
       if (uploadFileToken!) {
         apiResultUploadFIle = await UploadFileGroup.uploadListFileCall.call(
@@ -229,12 +241,12 @@ class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
           fileList: listFile,
         );
 
-        if ((apiResultUploadFIle.succeeded ?? true)) {
+        if ((apiResultUploadFIle?.succeeded ?? true)) {
           if (listFile.length == 1) {
             addToListFileId(FileDataTypeStruct(
               directusFilesId: FileIDDataTypeStruct(
                 id: getJsonField(
-                  (apiResultUploadFIle.jsonBody ?? ''),
+                  (apiResultUploadFIle?.jsonBody ?? ''),
                   r'''$.data.id''',
                 ).toString().toString(),
               ),
@@ -244,8 +256,8 @@ class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
               addToListFileId(FileDataTypeStruct(
                 directusFilesId: FileIDDataTypeStruct(
                   id: (FileUploadStruct.maybeFromMap(
-                              (apiResultUploadFIle.jsonBody ?? ''))
-                          ?.data[loop])
+                              (apiResultUploadFIle?.jsonBody ?? ''))
+                          ?.data?[loop])
                       ?.id,
                 ),
               ));
