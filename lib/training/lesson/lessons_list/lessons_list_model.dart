@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/lesson/filter_lesson/filter_lesson_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'dart:async';
 import 'lessons_list_widget.dart' show LessonsListWidget;
@@ -44,7 +43,6 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in LessonsList widget.
   bool? tokenReloadLessonsList;
   // State field(s) for nameSearch widget.
@@ -61,7 +59,6 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     nameSearchFocusNode?.dispose();
     nameSearchTextController?.dispose();
 

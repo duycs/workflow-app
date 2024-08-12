@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_shift_created/time_keeping_shift_created_widget.dart';
 import '/timekeeping/time_keeping_shift_filter/time_keeping_shift_filter_widget.dart';
 import '/timekeeping/time_keeping_shift_update/time_keeping_shift_update_widget.dart';
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'dart:async';
 import 'timekeeping_shift_list_widget.dart' show TimekeepingShiftListWidget;
@@ -38,7 +37,6 @@ class TimekeepingShiftListModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Custom Action - getCurrentLocationStruct] action in TimekeepingShiftList widget.
   List<double>? checkEableLocation;
   // State field(s) for TextField widget.
@@ -55,7 +53,6 @@ class TimekeepingShiftListModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

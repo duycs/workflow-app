@@ -9,9 +9,7 @@ import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.
 import '/training/lesson/no_data/no_data_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -98,9 +96,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -615,14 +611,14 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               listRow1Item.dateStart,
                                                                               listRow1Item.lessionId.estimateInDay,
                                                                               dateTimeFormat(
-                                                                                'yyyy-MM-dd',
+                                                                                "yyyy-MM-dd",
                                                                                 getCurrentTimestamp,
                                                                                 locale: FFLocalizations.of(context).languageCode,
                                                                               ))) {
                                                                             return 'Thời hạn còn: ${(String item1, int item2, String item3) {
                                                                               return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
                                                                             }(listRow1Item.dateStart, listRow1Item.lessionId.estimateInDay, dateTimeFormat(
-                                                                                  'yyyy-MM-dd',
+                                                                                  "yyyy-MM-dd",
                                                                                   getCurrentTimestamp,
                                                                                   locale: FFLocalizations.of(context).languageCode,
                                                                                 ))} ngày';
@@ -633,7 +629,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               listRow1Item.dateStart,
                                                                               listRow1Item.lessionId.estimateInDay,
                                                                               dateTimeFormat(
-                                                                                'yyyy-MM-dd',
+                                                                                "yyyy-MM-dd",
                                                                                 getCurrentTimestamp,
                                                                                 locale: FFLocalizations.of(context).languageCode,
                                                                               ))) {
@@ -670,14 +666,14 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               listRow1Item.dateCreated,
                                                                               listRow1Item.programId.estimateInDay,
                                                                               dateTimeFormat(
-                                                                                'yyyy-MM-dd',
+                                                                                "yyyy-MM-dd",
                                                                                 getCurrentTimestamp,
                                                                                 locale: FFLocalizations.of(context).languageCode,
                                                                               ))) {
                                                                             return 'Thời hạn còn: ${(String item1, int item2, String item3) {
                                                                               return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
                                                                             }(listRow1Item.dateCreated, listRow1Item.programId.estimateInDay, dateTimeFormat(
-                                                                                  'yyyy-MM-dd',
+                                                                                  "yyyy-MM-dd",
                                                                                   getCurrentTimestamp,
                                                                                   locale: FFLocalizations.of(context).languageCode,
                                                                                 ))} ngày';
@@ -688,7 +684,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               listRow1Item.dateCreated,
                                                                               listRow1Item.programId.estimateInDay,
                                                                               dateTimeFormat(
-                                                                                'yyyy-MM-dd',
+                                                                                "yyyy-MM-dd",
                                                                                 getCurrentTimestamp,
                                                                                 locale: FFLocalizations.of(context).languageCode,
                                                                               ))) {
@@ -721,7 +717,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .lessionId
                                                                               .estimateInDay,
                                                                           dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -733,7 +729,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .inDays
                                                                               .toString();
                                                                         }(listRow1Item.dateStart, listRow1Item.lessionId.estimateInDay, dateTimeFormat(
-                                                                              'yyyy-MM-dd',
+                                                                              "yyyy-MM-dd",
                                                                               getCurrentTimestamp,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ))} ngày';
@@ -751,7 +747,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .lessionId
                                                                               .estimateInDay,
                                                                           dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -781,7 +777,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .programId
                                                                               .estimateInDay,
                                                                           dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -793,7 +789,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .inDays
                                                                               .toString();
                                                                         }(listRow1Item.dateCreated, listRow1Item.programId.estimateInDay, dateTimeFormat(
-                                                                              'yyyy-MM-dd',
+                                                                              "yyyy-MM-dd",
                                                                               getCurrentTimestamp,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ))} ngày';
@@ -811,7 +807,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .programId
                                                                               .estimateInDay,
                                                                           dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -841,7 +837,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .programId
                                                                               .estimateInDay,
                                                                           dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -853,7 +849,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .inDays
                                                                               .toString();
                                                                         }(listRow1Item.dateCreated, listRow1Item.programId.estimateInDay, dateTimeFormat(
-                                                                              'yyyy-MM-dd',
+                                                                              "yyyy-MM-dd",
                                                                               getCurrentTimestamp,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ))} ngày';
@@ -871,7 +867,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .programId
                                                                               .estimateInDay,
                                                                           dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -901,7 +897,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .programId
                                                                               .estimateInDay,
                                                                           dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -913,7 +909,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .inDays
                                                                               .toString();
                                                                         }(listRow1Item.dateCreated, listRow1Item.programId.estimateInDay, dateTimeFormat(
-                                                                              'yyyy-MM-dd',
+                                                                              "yyyy-MM-dd",
                                                                               getCurrentTimestamp,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ))} ngày';
@@ -931,7 +927,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .programId
                                                                               .estimateInDay,
                                                                           dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -1564,14 +1560,14 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             listRow2Item.dateStart,
                                                                             listRow2Item.lessionId.estimateInDay,
                                                                             dateTimeFormat(
-                                                                              'yyyy-MM-dd',
+                                                                              "yyyy-MM-dd",
                                                                               getCurrentTimestamp,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ))) {
                                                                           return 'Thời hạn còn: ${(String item1, int item2, String item3) {
                                                                             return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
                                                                           }(listRow2Item.dateStart, listRow2Item.lessionId.estimateInDay, dateTimeFormat(
-                                                                                'yyyy-MM-dd',
+                                                                                "yyyy-MM-dd",
                                                                                 getCurrentTimestamp,
                                                                                 locale: FFLocalizations.of(context).languageCode,
                                                                               ))} ngày';
@@ -1582,7 +1578,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             listRow2Item.dateStart,
                                                                             listRow2Item.lessionId.estimateInDay,
                                                                             dateTimeFormat(
-                                                                              'yyyy-MM-dd',
+                                                                              "yyyy-MM-dd",
                                                                               getCurrentTimestamp,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ))) {
@@ -1623,14 +1619,14 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             listRow2Item.dateCreated,
                                                                             listRow2Item.programId.estimateInDay,
                                                                             dateTimeFormat(
-                                                                              'yyyy-MM-dd',
+                                                                              "yyyy-MM-dd",
                                                                               getCurrentTimestamp,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ))) {
                                                                           return 'Thời hạn còn: ${(String item1, int item2, String item3) {
                                                                             return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
                                                                           }(listRow2Item.dateCreated, listRow2Item.programId.estimateInDay, dateTimeFormat(
-                                                                                'yyyy-MM-dd',
+                                                                                "yyyy-MM-dd",
                                                                                 getCurrentTimestamp,
                                                                                 locale: FFLocalizations.of(context).languageCode,
                                                                               ))} ngày';
@@ -1641,7 +1637,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             listRow2Item.dateCreated,
                                                                             listRow2Item.programId.estimateInDay,
                                                                             dateTimeFormat(
-                                                                              'yyyy-MM-dd',
+                                                                              "yyyy-MM-dd",
                                                                               getCurrentTimestamp,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ))) {
@@ -1677,7 +1673,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .lessionId
                                                                             .estimateInDay,
                                                                         dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           getCurrentTimestamp,
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
@@ -1689,7 +1685,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .inDays
                                                                             .toString();
                                                                       }(listRow2Item.dateStart, listRow2Item.lessionId.estimateInDay, dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -1712,7 +1708,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .lessionId
                                                                             .estimateInDay,
                                                                         dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           getCurrentTimestamp,
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
@@ -1745,7 +1741,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .programId
                                                                             .estimateInDay,
                                                                         dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           getCurrentTimestamp,
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
@@ -1757,7 +1753,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .inDays
                                                                             .toString();
                                                                       }(listRow2Item.dateCreated, listRow2Item.programId.estimateInDay, dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -1780,7 +1776,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .programId
                                                                             .estimateInDay,
                                                                         dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           getCurrentTimestamp,
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
@@ -1813,7 +1809,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .programId
                                                                             .estimateInDay,
                                                                         dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           getCurrentTimestamp,
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
@@ -1825,7 +1821,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .inDays
                                                                             .toString();
                                                                       }(listRow2Item.dateCreated, listRow2Item.programId.estimateInDay, dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -1848,7 +1844,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .programId
                                                                             .estimateInDay,
                                                                         dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           getCurrentTimestamp,
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
@@ -1885,7 +1881,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .programId
                                                                             .estimateInDay,
                                                                         dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           getCurrentTimestamp,
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
@@ -1897,7 +1893,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .inDays
                                                                             .toString();
                                                                       }(listRow2Item.dateCreated, listRow2Item.programId.estimateInDay, dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -1920,7 +1916,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .programId
                                                                             .estimateInDay,
                                                                         dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           getCurrentTimestamp,
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
@@ -2950,7 +2946,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .lessionId
                                                                               .estimateInDay,
                                                                           dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -2962,7 +2958,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .inDays
                                                                               .toString();
                                                                         }(listRow3Item.dateStart, listRow3Item.lessionId.estimateInDay, dateTimeFormat(
-                                                                              'yyyy-MM-dd',
+                                                                              "yyyy-MM-dd",
                                                                               getCurrentTimestamp,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ))} ngày';
@@ -2980,7 +2976,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .lessionId
                                                                               .estimateInDay,
                                                                           dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -3026,7 +3022,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .programId
                                                                               .estimateInDay,
                                                                           dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -3038,7 +3034,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .inDays
                                                                               .toString();
                                                                         }(listRow3Item.dateCreated, listRow3Item.programId.estimateInDay, dateTimeFormat(
-                                                                              'yyyy-MM-dd',
+                                                                              "yyyy-MM-dd",
                                                                               getCurrentTimestamp,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ))} ngày';
@@ -3056,7 +3052,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                               .programId
                                                                               .estimateInDay,
                                                                           dateTimeFormat(
-                                                                            'yyyy-MM-dd',
+                                                                            "yyyy-MM-dd",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -3093,7 +3089,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           .lessionId
                                                                           .estimateInDay,
                                                                       dateTimeFormat(
-                                                                        'yyyy-MM-dd',
+                                                                        "yyyy-MM-dd",
                                                                         getCurrentTimestamp,
                                                                         locale:
                                                                             FFLocalizations.of(context).languageCode,
@@ -3109,7 +3105,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           .inDays
                                                                           .toString();
                                                                     }(listRow3Item.dateStart, listRow3Item.lessionId.estimateInDay, dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           getCurrentTimestamp,
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
@@ -3132,7 +3128,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           .lessionId
                                                                           .estimateInDay,
                                                                       dateTimeFormat(
-                                                                        'yyyy-MM-dd',
+                                                                        "yyyy-MM-dd",
                                                                         getCurrentTimestamp,
                                                                         locale:
                                                                             FFLocalizations.of(context).languageCode,
@@ -3165,7 +3161,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           .programId
                                                                           .estimateInDay,
                                                                       dateTimeFormat(
-                                                                        'yyyy-MM-dd',
+                                                                        "yyyy-MM-dd",
                                                                         getCurrentTimestamp,
                                                                         locale:
                                                                             FFLocalizations.of(context).languageCode,
@@ -3181,7 +3177,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           .inDays
                                                                           .toString();
                                                                     }(listRow3Item.dateCreated, listRow3Item.programId.estimateInDay, dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           getCurrentTimestamp,
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
@@ -3204,7 +3200,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           .programId
                                                                           .estimateInDay,
                                                                       dateTimeFormat(
-                                                                        'yyyy-MM-dd',
+                                                                        "yyyy-MM-dd",
                                                                         getCurrentTimestamp,
                                                                         locale:
                                                                             FFLocalizations.of(context).languageCode,
@@ -3237,7 +3233,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           .programId
                                                                           .estimateInDay,
                                                                       dateTimeFormat(
-                                                                        'yyyy-MM-dd',
+                                                                        "yyyy-MM-dd",
                                                                         getCurrentTimestamp,
                                                                         locale:
                                                                             FFLocalizations.of(context).languageCode,
@@ -3253,7 +3249,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           .inDays
                                                                           .toString();
                                                                     }(listRow3Item.dateCreated, listRow3Item.programId.estimateInDay, dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           getCurrentTimestamp,
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
@@ -3276,7 +3272,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           .programId
                                                                           .estimateInDay,
                                                                       dateTimeFormat(
-                                                                        'yyyy-MM-dd',
+                                                                        "yyyy-MM-dd",
                                                                         getCurrentTimestamp,
                                                                         locale:
                                                                             FFLocalizations.of(context).languageCode,
@@ -3309,7 +3305,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           .programId
                                                                           .estimateInDay,
                                                                       dateTimeFormat(
-                                                                        'yyyy-MM-dd',
+                                                                        "yyyy-MM-dd",
                                                                         getCurrentTimestamp,
                                                                         locale:
                                                                             FFLocalizations.of(context).languageCode,
@@ -3325,7 +3321,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           .inDays
                                                                           .toString();
                                                                     }(listRow3Item.dateCreated, listRow3Item.programId.estimateInDay, dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           getCurrentTimestamp,
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
@@ -3348,7 +3344,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           .programId
                                                                           .estimateInDay,
                                                                       dateTimeFormat(
-                                                                        'yyyy-MM-dd',
+                                                                        "yyyy-MM-dd",
                                                                         getCurrentTimestamp,
                                                                         locale:
                                                                             FFLocalizations.of(context).languageCode,
@@ -3791,13 +3787,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
+                                          onTap: () =>
+                                              FocusScope.of(context).unfocus(),
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
@@ -3818,7 +3809,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                   programsId) async {
                                                 _model.dateStartList =
                                                     dateTimeFormat(
-                                                  'yyyy-MM-dd',
+                                                  "yyyy-MM-dd",
                                                   dateStart,
                                                   locale: FFLocalizations.of(
                                                           context)
@@ -3826,7 +3817,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                 );
                                                 _model.dateEndList =
                                                     dateTimeFormat(
-                                                  'yyyy-MM-dd',
+                                                  "yyyy-MM-dd",
                                                   dateEnd,
                                                   locale: FFLocalizations.of(
                                                           context)

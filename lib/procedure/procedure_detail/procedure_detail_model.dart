@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/procedure_step_detail/procedure_step_detail_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'procedure_detail_widget.dart' show ProcedureDetailWidget;
@@ -42,7 +41,6 @@ class ProcedureDetailModel extends FlutterFlowModel<ProcedureDetailWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in ProcedureDetail widget.
   bool? tokenReloadProcedureDetail;
   // Stores action output result for [Backend Call - API (workflowsOne)] action in ProcedureDetail widget.
@@ -62,7 +60,6 @@ class ProcedureDetailModel extends FlutterFlowModel<ProcedureDetailWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     tabBarController?.dispose();
   }
 }

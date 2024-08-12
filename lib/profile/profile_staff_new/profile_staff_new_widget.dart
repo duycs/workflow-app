@@ -349,7 +349,7 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                                           12.0, 12.0, 0.0, 12.0),
                                       child: Text(
                                         dateTimeFormat(
-                                          'dd/MM/yyyy',
+                                          "dd/MM/yyyy",
                                           functions.stringToDateTime(
                                               widget!.ngaySinh),
                                           locale: FFLocalizations.of(context)

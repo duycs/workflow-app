@@ -42,9 +42,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -359,11 +357,8 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                   context: context,
                                   builder: (context) {
                                     return GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
+                                      onTap: () =>
+                                          FocusScope.of(context).unfocus(),
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
@@ -664,12 +659,8 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                               .resolve(
                                                   Directionality.of(context)),
                                           child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
+                                            onTap: () =>
+                                                FocusScope.of(dialogContext)
                                                     .unfocus(),
                                             child: Container(
                                               height: double.infinity,
@@ -680,7 +671,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                           ),
                                         );
                                       },
-                                    ).then((value) => setState(() {}));
+                                    );
                                   },
                                   child: Container(
                                     width: double.infinity,
@@ -1647,10 +1638,8 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                               alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
+                                onTap: () =>
+                                    FocusScope.of(dialogContext).unfocus(),
                                 child: Container(
                                   height: double.infinity,
                                   width: double.infinity,
@@ -1661,7 +1650,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
                       },
                       child: Container(
                         height: 70.0,
@@ -1794,11 +1783,8 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                 context: context,
                                 builder: (context) {
                                   return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
+                                    onTap: () =>
+                                        FocusScope.of(context).unfocus(),
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
                                       child: ReportPopupWidget(),
@@ -1830,11 +1816,8 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                 context: context,
                                 builder: (context) {
                                   return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
+                                    onTap: () =>
+                                        FocusScope.of(context).unfocus(),
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
                                       child: ReportPopupWidget(),
@@ -1885,11 +1868,8 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                   alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
                                   child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
+                                    onTap: () =>
+                                        FocusScope.of(dialogContext).unfocus(),
                                     child: Container(
                                       height: double.infinity,
                                       width: double.infinity,
@@ -1902,7 +1882,7 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                   ),
                                 );
                               },
-                            ).then((value) => setState(() {}));
+                            );
 
                             setState(() {});
                           },

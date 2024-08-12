@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/tasks/filter_reprot_image/filter_reprot_image_widget.dart';
 import '/tasks/gridview_report_image/gridview_report_image_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'report_image_widget.dart' show ReportImageWidget;
@@ -45,7 +44,6 @@ class ReportImageModel extends FlutterFlowModel<ReportImageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in ReportImage widget.
   bool? reloadTokenTasksCheck;
   // State field(s) for TextField widget.
@@ -62,7 +60,6 @@ class ReportImageModel extends FlutterFlowModel<ReportImageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

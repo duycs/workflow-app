@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/check_box_toggle/check_box_toggle_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -430,11 +429,10 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                 child: Builder(
                                   builder: (context) {
                                     final listView = _model.domainList
-                                        .where((e) => e.name
-                                            .toLowerCase()
-                                            .contains(_model
+                                        .where((e) => (e.name.toLowerCase())
+                                            .contains((_model
                                                 .textNameTextController.text
-                                                .toLowerCase()))
+                                                .toLowerCase())))
                                         .toList();
 
                                     return ListView.separated(

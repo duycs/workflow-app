@@ -10,7 +10,6 @@ import '/training/study_program/certificate_list_study_program/certificate_list_
 import '/training/study_program/study_program_edit/study_program_edit_widget.dart';
 import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'study_program_detail_widget.dart' show StudyProgramDetailWidget;
@@ -34,7 +33,6 @@ class StudyProgramDetailModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Expandable widget.
   late ExpandableController expandableExpandableController1;
 
@@ -46,7 +44,6 @@ class StudyProgramDetailModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     expandableExpandableController1.dispose();
     expandableExpandableController2.dispose();
   }

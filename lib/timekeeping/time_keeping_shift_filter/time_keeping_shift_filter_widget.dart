@@ -208,7 +208,7 @@ class _TimeKeepingShiftFilterWidgetState
                             valueOrDefault<String>(
                               _model.datePicked1 != null
                                   ? dateTimeFormat(
-                                      'Hm',
+                                      "Hm",
                                       _model.datePicked1,
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
@@ -291,7 +291,7 @@ class _TimeKeepingShiftFilterWidgetState
                             valueOrDefault<String>(
                               _model.datePicked2 != null
                                   ? dateTimeFormat(
-                                      'Hm',
+                                      "Hm",
                                       _model.datePicked2,
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
@@ -390,7 +390,7 @@ class _TimeKeepingShiftFilterWidgetState
                             valueOrDefault<String>(
                               _model.datePicked3 != null
                                   ? dateTimeFormat(
-                                      'Hm',
+                                      "Hm",
                                       _model.datePicked3,
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
@@ -473,7 +473,7 @@ class _TimeKeepingShiftFilterWidgetState
                             valueOrDefault<String>(
                               _model.datePicked4 != null
                                   ? dateTimeFormat(
-                                      'Hm',
+                                      "Hm",
                                       _model.datePicked4,
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
@@ -652,7 +652,7 @@ class _TimeKeepingShiftFilterWidgetState
                             await widget.callBack?.call(
                               _model.datePicked1 != null
                                   ? dateTimeFormat(
-                                      'Hm',
+                                      "Hm",
                                       _model.datePicked1,
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
@@ -660,7 +660,7 @@ class _TimeKeepingShiftFilterWidgetState
                                   : widget!.dateStartCheckIn,
                               _model.datePicked2 != null
                                   ? dateTimeFormat(
-                                      'Hm',
+                                      "Hm",
                                       _model.datePicked2,
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
@@ -672,7 +672,7 @@ class _TimeKeepingShiftFilterWidgetState
                                   : 'draft',
                               _model.datePicked4 != null
                                   ? dateTimeFormat(
-                                      'Hm',
+                                      "Hm",
                                       _model.datePicked4,
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
@@ -680,7 +680,7 @@ class _TimeKeepingShiftFilterWidgetState
                                   : widget!.dateEndCheckOut,
                               _model.datePicked3 != null
                                   ? dateTimeFormat(
-                                      'Hm',
+                                      "Hm",
                                       _model.datePicked3,
                                       locale: FFLocalizations.of(context)
                                           .languageCode,

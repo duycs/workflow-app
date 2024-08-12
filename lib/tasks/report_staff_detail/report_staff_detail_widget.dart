@@ -12,7 +12,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/tasks/export_excel_get_one/export_excel_get_one_widget.dart';
 import '/tasks/filter_report_staff_detail/filter_report_staff_detail_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -106,9 +105,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
       FlutterFlowTheme.of(context).accent2
     ];
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -994,7 +991,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                           false;
                                                                       _model
                                                                           .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           functions
                                                                               .stringToDateTime(_model.dateStart1Filter),
                                                                           locale:
@@ -1004,7 +1001,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               .add(Duration(days: 1))
                                                                               .toString();
                                                                         }(dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           functions
                                                                               .stringToDateTime(_model.dateStart2Filter),
                                                                           locale:
@@ -1029,7 +1026,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             return ' ';
                                                                           }
                                                                         }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           functions
                                                                               .stringToDateTime(_model.dateEnd1Filter),
                                                                           locale:
@@ -1039,7 +1036,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               .add(Duration(days: 1))
                                                                               .toString();
                                                                         }(dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           functions
                                                                               .stringToDateTime(_model.dateEnd2Filter),
                                                                           locale:
@@ -1226,7 +1223,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                           false;
                                                                       _model
                                                                           .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           functions
                                                                               .stringToDateTime(_model.dateStart1Filter),
                                                                           locale:
@@ -1236,7 +1233,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               .add(Duration(days: 1))
                                                                               .toString();
                                                                         }(dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           functions
                                                                               .stringToDateTime(_model.dateStart2Filter),
                                                                           locale:
@@ -1261,7 +1258,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             return ' ';
                                                                           }
                                                                         }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           functions
                                                                               .stringToDateTime(_model.dateEnd1Filter),
                                                                           locale:
@@ -1271,7 +1268,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               .add(Duration(days: 1))
                                                                               .toString();
                                                                         }(dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           functions
                                                                               .stringToDateTime(_model.dateEnd2Filter),
                                                                           locale:
@@ -1457,7 +1454,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                           false;
                                                                       _model
                                                                           .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           functions
                                                                               .stringToDateTime(_model.dateStart1Filter),
                                                                           locale:
@@ -1467,7 +1464,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               .add(Duration(days: 1))
                                                                               .toString();
                                                                         }(dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           functions
                                                                               .stringToDateTime(_model.dateStart2Filter),
                                                                           locale:
@@ -1492,7 +1489,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             return ' ';
                                                                           }
                                                                         }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           functions
                                                                               .stringToDateTime(_model.dateEnd1Filter),
                                                                           locale:
@@ -1502,7 +1499,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               .add(Duration(days: 1))
                                                                               .toString();
                                                                         }(dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           functions
                                                                               .stringToDateTime(_model.dateEnd2Filter),
                                                                           locale:
@@ -1726,7 +1723,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           false;
                                                       _model
                                                           .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -1742,7 +1739,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -1776,7 +1773,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             return ' ';
                                                           }
                                                         }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -1792,7 +1789,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -1923,8 +1920,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                 ? valueOrDefault<
                                                                     String>(
                                                                     formatNumber(
-                                                                      double.parse(((_model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length / _model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) *
-                                                                              double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) * 100).toStringAsFixed(2)))
+                                                                      double.parse(((_model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length / (_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length)) *
+                                                                              (double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) * 100).toStringAsFixed(2))))
                                                                           .toStringAsFixed(2)),
                                                                       formatType:
                                                                           FormatType
@@ -2012,7 +2009,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           false;
                                                       _model
                                                           .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -2028,7 +2025,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -2062,7 +2059,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             return ' ';
                                                           }
                                                         }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -2078,7 +2075,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -2207,8 +2204,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                     0
                                                                 ? valueOrDefault<
                                                                     String>(
-                                                                    (double.parse(((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length / _model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) *
-                                                                                double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) * 100).toStringAsFixed(2)))
+                                                                    (double.parse(((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length / (_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length)) *
+                                                                                (double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != null && e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != null && e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) * 100).toStringAsFixed(2))))
                                                                             .toStringAsFixed(2)))
                                                                         .toString(),
                                                                     '0',
@@ -2288,7 +2285,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           false;
                                                       _model
                                                           .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -2304,7 +2301,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -2338,7 +2335,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             return ' ';
                                                           }
                                                         }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -2354,7 +2351,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -2433,7 +2430,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           ?.refresh());
                                                       _model
                                                           .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -2449,7 +2446,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -2483,7 +2480,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             return ' ';
                                                           }
                                                         }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -2499,7 +2496,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   days: 1))
                                                               .toString();
                                                         }(dateTimeFormat(
-                                                          'yyyy-MM-dd',
+                                                          "yyyy-MM-dd",
                                                           functions
                                                               .stringToDateTime(
                                                                   _model
@@ -2627,7 +2624,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                       ?.refresh());
                                                                   _model
                                                                       .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                                      'yyyy-MM-dd',
+                                                                      "yyyy-MM-dd",
                                                                       functions.stringToDateTime(
                                                                           _model
                                                                               .dateStart1Filter),
@@ -2641,7 +2638,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               days: 1))
                                                                           .toString();
                                                                     }(dateTimeFormat(
-                                                                      'yyyy-MM-dd',
+                                                                      "yyyy-MM-dd",
                                                                       functions.stringToDateTime(
                                                                           _model
                                                                               .dateStart2Filter),
@@ -2673,7 +2670,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         return ' ';
                                                                       }
                                                                     }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                                      'yyyy-MM-dd',
+                                                                      "yyyy-MM-dd",
                                                                       functions.stringToDateTime(
                                                                           _model
                                                                               .dateEnd1Filter),
@@ -2687,7 +2684,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               days: 1))
                                                                           .toString();
                                                                     }(dateTimeFormat(
-                                                                      'yyyy-MM-dd',
+                                                                      "yyyy-MM-dd",
                                                                       functions.stringToDateTime(
                                                                           _model
                                                                               .dateEnd2Filter),
@@ -2764,14 +2761,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     context: context,
                                                     builder: (context) {
                                                       return GestureDetector(
-                                                        onTap: () => _model
-                                                                .unfocusNode
-                                                                .canRequestFocus
-                                                            ? FocusScope.of(
-                                                                    context)
-                                                                .requestFocus(_model
-                                                                    .unfocusNode)
-                                                            : FocusScope.of(
+                                                        onTap: () =>
+                                                            FocusScope.of(
                                                                     context)
                                                                 .unfocus(),
                                                         child: Padding(
@@ -2819,7 +2810,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   ?.refresh());
                                                               _model
                                                                   .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                                  'yyyy-MM-dd',
+                                                                  "yyyy-MM-dd",
                                                                   functions
                                                                       .stringToDateTime(
                                                                           _model
@@ -2836,7 +2827,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               1))
                                                                       .toString();
                                                                 }(dateTimeFormat(
-                                                                  'yyyy-MM-dd',
+                                                                  "yyyy-MM-dd",
                                                                   functions
                                                                       .stringToDateTime(
                                                                           _model
@@ -2869,7 +2860,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                     return ' ';
                                                                   }
                                                                 }()}\"}}}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                                  'yyyy-MM-dd',
+                                                                  "yyyy-MM-dd",
                                                                   functions
                                                                       .stringToDateTime(
                                                                           _model
@@ -2886,7 +2877,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                               1))
                                                                       .toString();
                                                                 }(dateTimeFormat(
-                                                                  'yyyy-MM-dd',
+                                                                  "yyyy-MM-dd",
                                                                   functions
                                                                       .stringToDateTime(
                                                                           _model
@@ -3262,7 +3253,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                   FFAppState().staffLogin,
                                                   r'''$.organization_id''',
                                                 ).toString()}\"}}}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                    'yyyy-MM-dd',
+                                                    "yyyy-MM-dd",
                                                     functions.stringToDateTime(
                                                         _model
                                                             .dateStart1Filter),
@@ -3274,7 +3265,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         .add(Duration(days: 1))
                                                         .toString();
                                                   }(dateTimeFormat(
-                                                    'yyyy-MM-dd',
+                                                    "yyyy-MM-dd",
                                                     functions.stringToDateTime(
                                                         _model
                                                             .dateStart2Filter),
@@ -3305,7 +3296,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       return ' ';
                                                     }
                                                   }()}\"}}' : ' '}${_model.textController.text != null && _model.textController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                    'yyyy-MM-dd',
+                                                    "yyyy-MM-dd",
                                                     functions.stringToDateTime(
                                                         _model.dateEnd1Filter),
                                                     locale: FFLocalizations.of(
@@ -3316,7 +3307,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         .add(Duration(days: 1))
                                                         .toString();
                                                   }(dateTimeFormat(
-                                                    'yyyy-MM-dd',
+                                                    "yyyy-MM-dd",
                                                     functions.stringToDateTime(
                                                         _model.dateEnd2Filter),
                                                     locale: FFLocalizations.of(
@@ -3973,7 +3964,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                     ),
                                                                     Text(
                                                                       dateTimeFormat(
-                                                                        'HH:mm dd/MM/yy',
+                                                                        "HH:mm dd/MM/yy",
                                                                         functions
                                                                             .stringToDateTime(dataListItem.dateStart),
                                                                         locale:
@@ -4037,7 +4028,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                     ),
                                                                     Text(
                                                                       dateTimeFormat(
-                                                                        'HH:mm dd/MM/yy',
+                                                                        "HH:mm dd/MM/yy",
                                                                         functions
                                                                             .stringToDateTime(dataListItem.dateEnd),
                                                                         locale:
@@ -4238,15 +4229,9 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   .transparent,
                                                               child:
                                                                   GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
+                                                                onTap: () =>
+                                                                    FocusScope.of(
+                                                                            dialogContext)
                                                                         .unfocus(),
                                                                 child:
                                                                     Container(
@@ -4261,8 +4246,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                               ),
                                                             );
                                                           },
-                                                        ).then((value) =>
-                                                            setState(() {}));
+                                                        );
                                                       },
                                                     ),
                                                   ),
@@ -4293,15 +4277,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           context: context,
                                                           builder: (context) {
                                                             return GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
-                                                                      .canRequestFocus
-                                                                  ? FocusScope.of(
-                                                                          context)
-                                                                      .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
-                                                                  : FocusScope.of(
+                                                              onTap: () =>
+                                                                  FocusScope.of(
                                                                           context)
                                                                       .unfocus(),
                                                               child: Padding(

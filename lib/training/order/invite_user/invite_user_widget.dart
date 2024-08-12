@@ -1217,7 +1217,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                       ),
                                     );
                                   },
-                                ).then((value) => setState(() {}));
+                                );
                               } else {
                                 await showDialog(
                                   context: context,

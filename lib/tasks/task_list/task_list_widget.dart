@@ -17,10 +17,8 @@ import '/tasks/filter_task_list/filter_task_list_widget.dart';
 import '/tasks/popup_task_list/popup_task_list_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -68,9 +66,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
             context: context,
             builder: (context) {
               return GestureDetector(
-                onTap: () => _model.unfocusNode.canRequestFocus
-                    ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                    : FocusScope.of(context).unfocus(),
+                onTap: () => FocusScope.of(context).unfocus(),
                 child: Padding(
                   padding: MediaQuery.viewInsetsOf(context),
                   child: ProcedurePublishedWidget(
@@ -125,9 +121,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -150,10 +144,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                         alignment: AlignmentDirectional(0.0, 0.0)
                             .resolve(Directionality.of(context)),
                         child: GestureDetector(
-                          onTap: () => _model.unfocusNode.canRequestFocus
-                              ? FocusScope.of(context)
-                                  .requestFocus(_model.unfocusNode)
-                              : FocusScope.of(context).unfocus(),
+                          onTap: () => FocusScope.of(dialogContext).unfocus(),
                           child: Container(
                             height: MediaQuery.sizeOf(context).height * 1.0,
                             width: MediaQuery.sizeOf(context).width * 1.0,
@@ -168,7 +159,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                         ),
                       );
                     },
-                  ).then((value) => setState(() {}));
+                  );
                 },
                 backgroundColor: FlutterFlowTheme.of(context).primary,
                 elevation: 1.0,
@@ -422,12 +413,8 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                     context: context,
                                     builder: (context) {
                                       return GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
+                                        onTap: () =>
+                                            FocusScope.of(context).unfocus(),
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
@@ -656,7 +643,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                               FFAppState().staffLogin,
                               r'''$.organization_id''',
                             ).toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}${(_model.dateStartFilter != null && _model.dateStartFilter != '') && (_model.dateStartFilter != ' ') ? ',{\"date_created\":{\"_gte\":\"${dateTimeFormat(
-                                'yyyy-MM-dd',
+                                "yyyy-MM-dd",
                                 functions
                                     .stringToDateTime(_model.dateStartFilter),
                                 locale:
@@ -666,7 +653,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                     .add(Duration(days: 1))
                                     .toString();
                               }(dateTimeFormat(
-                                'yyyy-MM-dd',
+                                "yyyy-MM-dd",
                                 functions
                                     .stringToDateTime(_model.dateEndFilter),
                                 locale:
@@ -1728,7 +1715,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                         ),
                                                         Text(
                                                           dateTimeFormat(
-                                                            'HH:mm dd/MM/yyyy',
+                                                            "HH:mm dd/MM/yyyy",
                                                             functions
                                                                 .stringToDateTime(
                                                                     dataListItem
@@ -1979,7 +1966,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                         ),
                                                         Text(
                                                           '${dateTimeFormat(
-                                                            'HH:mm dd/MM/yyyy',
+                                                            "HH:mm dd/MM/yyyy",
                                                             functions
                                                                 .stringToDateTime(
                                                                     dataListItem
@@ -2724,15 +2711,9 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                             context)),
                                                                 child:
                                                                     GestureDetector(
-                                                                  onTap: () => _model
-                                                                          .unfocusNode
-                                                                          .canRequestFocus
-                                                                      ? FocusScope.of(
-                                                                              context)
-                                                                          .requestFocus(_model
-                                                                              .unfocusNode)
-                                                                      : FocusScope.of(
-                                                                              context)
+                                                                  onTap: () =>
+                                                                      FocusScope.of(
+                                                                              dialogContext)
                                                                           .unfocus(),
                                                                   child:
                                                                       PopupTaskListWidget(
@@ -2745,8 +2726,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                 ),
                                                               );
                                                             },
-                                                          ).then((value) =>
-                                                              setState(() {}));
+                                                          );
                                                         },
                                                         child: Text(
                                                           'Mở rộng',
@@ -2805,15 +2785,9 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                           context)),
                                                               child:
                                                                   GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
+                                                                onTap: () =>
+                                                                    FocusScope.of(
+                                                                            dialogContext)
                                                                         .unfocus(),
                                                                 child:
                                                                     Container(
@@ -2893,8 +2867,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                               ),
                                                             );
                                                           },
-                                                        ).then((value) =>
-                                                            setState(() {}));
+                                                        );
 
                                                         setState(() {});
                                                       },

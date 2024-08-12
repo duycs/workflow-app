@@ -10,7 +10,6 @@ import '/profile/popup_detail_profile/popup_detail_profile_widget.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'detail_profile_c_p_n_widget.dart' show DetailProfileCPNWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

@@ -405,7 +405,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               _model.updateStepsEditStruct(
                                 (e) => e
                                   ..timeOperate = dateTimeFormat(
-                                    'Hm',
+                                    "Hm",
                                     _model.datePicked,
                                     locale: FFLocalizations.of(context)
                                         .languageCode,

@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
 import '/timekeeping/time_keeping_location_update/time_keeping_location_update_widget.dart';
-import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -362,7 +361,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                               ),
                                             );
                                           },
-                                        ).then((value) => setState(() {}));
+                                        );
                                       },
                                       child: Text(
                                         'Chỉnh sửa',
@@ -424,7 +423,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                 ),
                               );
                             },
-                          ).then((value) => setState(() {}));
+                          );
                         },
                         text: 'Thêm địa chỉ',
                         icon: Icon(

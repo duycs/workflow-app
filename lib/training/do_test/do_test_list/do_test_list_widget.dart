@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/do_test/filter_do_test/filter_do_test_widget.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -62,9 +61,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -263,11 +260,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                               context: context,
                               builder: (context) {
                                 return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
+                                  onTap: () => FocusScope.of(context).unfocus(),
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
                                     child: FilterDoTestWidget(
@@ -823,21 +816,21 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                             ),
                                             Text(
                                               '${dateTimeFormat(
-                                                'HH:mm',
+                                                "HH:mm",
                                                 functions.stringToDateTime(
                                                     dataListItem.dateStart),
                                                 locale:
                                                     FFLocalizations.of(context)
                                                         .languageCode,
                                               )}-${dateTimeFormat(
-                                                'HH:mm',
+                                                "HH:mm",
                                                 functions.stringToDateTime(
                                                     dataListItem.dateEnd),
                                                 locale:
                                                     FFLocalizations.of(context)
                                                         .languageCode,
                                               )}  ${dateTimeFormat(
-                                                'dd/MM/yyyy',
+                                                "dd/MM/yyyy",
                                                 functions.stringToDateTime(
                                                     dataListItem.dateEnd),
                                                 locale:

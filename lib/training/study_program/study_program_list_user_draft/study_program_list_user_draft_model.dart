@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
 import '/training/filter_study_program_user/filter_study_program_user_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'study_program_list_user_draft_widget.dart'
     show StudyProgramListUserDraftWidget;
@@ -55,7 +54,6 @@ class StudyProgramListUserDraftModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for TextFieldNameSearch widget.
   FocusNode? textFieldNameSearchFocusNode;
   TextEditingController? textFieldNameSearchTextController;
@@ -67,7 +65,6 @@ class StudyProgramListUserDraftModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldNameSearchFocusNode?.dispose();
     textFieldNameSearchTextController?.dispose();
   }

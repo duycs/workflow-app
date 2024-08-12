@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
 import '/timekeeping/time_keeping_location_detail/time_keeping_location_detail_widget.dart';
 import '/timekeeping/time_keeping_location_update/time_keeping_location_update_widget.dart';
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'dart:async';
 import 'timekeeping_location_list_widget.dart'
@@ -25,7 +24,6 @@ class TimekeepingLocationListModel
     extends FlutterFlowModel<TimekeepingLocationListWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Custom Action - getCurrentLocationStruct] action in TimekeepingLocationList widget.
   List<double>? checkLocation;
   // State field(s) for TextField widget.
@@ -42,7 +40,6 @@ class TimekeepingLocationListModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

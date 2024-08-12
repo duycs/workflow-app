@@ -787,7 +787,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                                 ),
                                               );
                                             },
-                                          ).then((value) => setState(() {}));
+                                          );
 
                                           setState(() {});
                                         },

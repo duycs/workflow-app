@@ -11,7 +11,6 @@ import '/training/study_program/filter_study_program/filter_study_program_widget
 import '/training/study_program/study_program_create/study_program_create_widget.dart';
 import '/training/study_program/study_program_edit/study_program_edit_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -75,9 +74,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                 alignment: AlignmentDirectional(0.0, 1.0)
                     .resolve(Directionality.of(context)),
                 child: GestureDetector(
-                  onTap: () => _model.unfocusNode.canRequestFocus
-                      ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                      : FocusScope.of(context).unfocus(),
+                  onTap: () => FocusScope.of(dialogContext).unfocus(),
                   child: StudyProgramCreateWidget(
                     itemLesstion: widget!.itemLesstion,
                     programsItem: widget!.programsItem,
@@ -105,7 +102,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                 ),
               );
             },
-          ).then((value) => setState(() {}));
+          );
         }
         if (widget!.showModal == 'StudyProgramEdit') {
           await showDialog(
@@ -118,9 +115,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                 alignment: AlignmentDirectional(0.0, 0.0)
                     .resolve(Directionality.of(context)),
                 child: GestureDetector(
-                  onTap: () => _model.unfocusNode.canRequestFocus
-                      ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                      : FocusScope.of(context).unfocus(),
+                  onTap: () => FocusScope.of(dialogContext).unfocus(),
                   child: ActionChinhSuaWidget(
                     dataDetail: widget!.dataProframDeatail,
                     checkpage: 'programEdit',
@@ -178,7 +173,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                 ),
               );
             },
-          ).then((value) => setState(() {}));
+          );
         }
       } else {
         FFAppState().update(() {});
@@ -205,9 +200,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
 
     return Builder(
       builder: (context) => GestureDetector(
-        onTap: () => _model.unfocusNode.canRequestFocus
-            ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-            : FocusScope.of(context).unfocus(),
+        onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -224,10 +217,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                       alignment: AlignmentDirectional(0.0, 1.0)
                           .resolve(Directionality.of(context)),
                       child: GestureDetector(
-                        onTap: () => _model.unfocusNode.canRequestFocus
-                            ? FocusScope.of(context)
-                                .requestFocus(_model.unfocusNode)
-                            : FocusScope.of(context).unfocus(),
+                        onTap: () => FocusScope.of(dialogContext).unfocus(),
                         child: StudyProgramCreateWidget(
                           itemLesstion: widget!.itemLesstion,
                           callBackList: () async {
@@ -252,7 +242,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                       ),
                     );
                   },
-                ).then((value) => setState(() {}));
+                );
               },
               backgroundColor: FlutterFlowTheme.of(context).primary,
               elevation: 8.0,
@@ -542,11 +532,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                               context: context,
                               builder: (context) {
                                 return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
+                                  onTap: () => FocusScope.of(context).unfocus(),
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
                                     child: FilterStudyProgramWidget(
@@ -827,14 +813,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                               builder:
                                                                   (context) {
                                                                 return GestureDetector(
-                                                                  onTap: () => _model
-                                                                          .unfocusNode
-                                                                          .canRequestFocus
-                                                                      ? FocusScope.of(
-                                                                              context)
-                                                                          .requestFocus(_model
-                                                                              .unfocusNode)
-                                                                      : FocusScope.of(
+                                                                  onTap: () =>
+                                                                      FocusScope.of(
                                                                               context)
                                                                           .unfocus(),
                                                                   child:
@@ -975,9 +955,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                       builder:
                                                                           (context) {
                                                                         return GestureDetector(
-                                                                          onTap: () => _model.unfocusNode.canRequestFocus
-                                                                              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                              : FocusScope.of(context).unfocus(),
+                                                                          onTap: () =>
+                                                                              FocusScope.of(context).unfocus(),
                                                                           child:
                                                                               Padding(
                                                                             padding:
@@ -1157,7 +1136,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                                   backgroundColor: Colors.transparent,
                                                                                   alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                   child: GestureDetector(
-                                                                                    onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                    onTap: () => FocusScope.of(dialogContext).unfocus(),
                                                                                     child: AddProgramMarketWidget(
                                                                                       id: dataListViewItem.id,
                                                                                       price: dataListViewItem.price,
@@ -1167,8 +1146,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                                   ),
                                                                                 );
                                                                               },
-                                                                            ).then((value) =>
-                                                                                setState(() {}));
+                                                                            );
                                                                           },
                                                                           text:
                                                                               'Market',
@@ -1248,7 +1226,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                                   backgroundColor: Colors.transparent,
                                                                                   alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                   child: GestureDetector(
-                                                                                    onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                    onTap: () => FocusScope.of(dialogContext).unfocus(),
                                                                                     child: AddProgramMarketWidget(
                                                                                       id: dataListViewItem.id,
                                                                                       price: dataListViewItem.price,
@@ -1260,8 +1238,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                                   ),
                                                                                 );
                                                                               },
-                                                                            ).then((value) =>
-                                                                                setState(() {}));
+                                                                            );
                                                                           },
                                                                           text:
                                                                               'Market',
@@ -1717,7 +1694,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                     ? valueOrDefault<
                                                                         String>(
                                                                         dateTimeFormat(
-                                                                          'dd-MM-yyyy',
+                                                                          "dd-MM-yyyy",
                                                                           functions
                                                                               .stringToDateTime(valueOrDefault<String>(
                                                                             dataListTestsViewItem.testsId.dateCreated,
@@ -2064,7 +2041,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                           ? valueOrDefault<
                                                                               String>(
                                                                               dateTimeFormat(
-                                                                                'dd-MM-yyyy',
+                                                                                "dd-MM-yyyy",
                                                                                 functions.stringToDateTime(valueOrDefault<String>(
                                                                                   dataListLessionsViewItem.lessionsId.dateCreated,
                                                                                   '0',

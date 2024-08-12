@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'author_list_widget.dart' show AuthorListWidget;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -53,7 +52,6 @@ class AuthorListModel extends FlutterFlowModel<AuthorListWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in AuthorList widget.
   bool? checkTokentAuthor;
   // State field(s) for searchAuthors widget.
@@ -70,7 +68,6 @@ class AuthorListModel extends FlutterFlowModel<AuthorListWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     searchAuthorsFocusNode?.dispose();
     searchAuthorsTextController?.dispose();
 

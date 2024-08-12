@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'profile_c_p_n_widget.dart' show ProfileCPNWidget;
 import 'package:flutter/material.dart';
@@ -42,7 +41,6 @@ class ProfileCPNModel extends FlutterFlowModel<ProfileCPNWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for MobileEditorDisplayComponent component.
   late MobileEditorDisplayComponentModel mobileEditorDisplayComponentModel;
 
@@ -54,7 +52,6 @@ class ProfileCPNModel extends FlutterFlowModel<ProfileCPNWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mobileEditorDisplayComponentModel.dispose();
   }
 

@@ -935,7 +935,7 @@ class _OrderUpdateWidgetState extends State<OrderUpdateWidget> {
                                           ),
                                         );
                                       },
-                                    ).then((value) => setState(() {}));
+                                    );
 
                                     Navigator.pop(context);
                                   } else {

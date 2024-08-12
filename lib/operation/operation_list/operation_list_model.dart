@@ -10,9 +10,7 @@ import '/operation/operation_create/operation_create_widget.dart';
 import '/operation/operation_detail/operation_detail_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'operation_list_widget.dart' show OperationListWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/gestures.dart';
@@ -58,7 +56,6 @@ class OperationListModel extends FlutterFlowModel<OperationListWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in OperationList widget.
   bool? tokenReloadOperationListList;
   // State field(s) for TextField widget.
@@ -90,7 +87,6 @@ class OperationListModel extends FlutterFlowModel<OperationListWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

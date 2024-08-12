@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/do_test/long_text_do_test/long_text_do_test_widget.dart';
 import '/training/do_test/select_do_test/select_do_test_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'do_test_detail_widget.dart' show DoTestDetailWidget;
 import 'package:flutter/material.dart';
@@ -39,7 +38,6 @@ class DoTestDetailModel extends FlutterFlowModel<DoTestDetailWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in DoTestDetail widget.
   bool? getStaffAnswerListToken;
   // Stores action output result for [Backend Call - API (StaffAnswerList)] action in DoTestDetail widget.
@@ -64,7 +62,5 @@ class DoTestDetailModel extends FlutterFlowModel<DoTestDetailWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

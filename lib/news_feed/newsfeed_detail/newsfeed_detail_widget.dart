@@ -180,9 +180,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -954,7 +952,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                         ),
                                                         Text(
                                                           dateTimeFormat(
-                                                            'relative',
+                                                            "relative",
                                                             functions.stringToDateTime(
                                                                 _model
                                                                     .newsfeedItem
@@ -1005,15 +1003,8 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                         context: context,
                                                         builder: (context) {
                                                           return GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
+                                                            onTap: () =>
+                                                                FocusScope.of(
                                                                         context)
                                                                     .unfocus(),
                                                             child: Padding(
@@ -2312,7 +2303,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                                     0.0),
                                                         child: Text(
                                                           dateTimeFormat(
-                                                            'relative',
+                                                            "relative",
                                                             functions.stringToDateTime(
                                                                 commentListItem
                                                                     .commentsId

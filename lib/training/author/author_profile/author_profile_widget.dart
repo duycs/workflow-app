@@ -10,7 +10,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/training/author/update_author/update_author_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/gestures.dart';
@@ -78,9 +77,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -1326,15 +1323,9 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                   Directionality.of(
                                                                       context)),
                                                       child: GestureDetector(
-                                                        onTap: () => _model
-                                                                .unfocusNode
-                                                                .canRequestFocus
-                                                            ? FocusScope.of(
-                                                                    context)
-                                                                .requestFocus(_model
-                                                                    .unfocusNode)
-                                                            : FocusScope.of(
-                                                                    context)
+                                                        onTap: () =>
+                                                            FocusScope.of(
+                                                                    dialogContext)
                                                                 .unfocus(),
                                                         child: Container(
                                                           height:
@@ -1378,8 +1369,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                       ),
                                                     );
                                                   },
-                                                ).then(
-                                                    (value) => setState(() {}));
+                                                );
                                               },
                                               text: 'Chỉnh sửa',
                                               icon: Icon(
@@ -2370,12 +2360,8 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
+                                          onTap: () =>
+                                              FocusScope.of(dialogContext)
                                                   .unfocus(),
                                           child: Container(
                                             height: double.infinity,
@@ -2406,7 +2392,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                         ),
                                       );
                                     },
-                                  ).then((value) => setState(() {}));
+                                  );
                                 },
                                 text: 'Chỉnh sửa',
                                 icon: Icon(

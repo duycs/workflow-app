@@ -63,9 +63,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -618,7 +616,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                                   backgroundColor: Colors.transparent,
                                                                                   alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                   child: GestureDetector(
-                                                                                    onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                    onTap: () => FocusScope.of(dialogContext).unfocus(),
                                                                                     child: PopupSeeMoreWidget(
                                                                                       fileName: fileItemsItem.directusFilesId.filenameDownload,
                                                                                       fileId: fileItemsItem.directusFilesId.id,
@@ -626,8 +624,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                                   ),
                                                                                 );
                                                                               },
-                                                                            ).then((value) =>
-                                                                                setState(() {}));
+                                                                            );
                                                                           },
                                                                         ),
                                                                       ),

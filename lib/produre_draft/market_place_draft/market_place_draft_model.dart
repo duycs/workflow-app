@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 class MarketPlaceDraftModel extends FlutterFlowModel<MarketPlaceDraftWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for search widget.
   FocusNode? searchFocusNode;
   TextEditingController? searchTextController;
@@ -56,7 +55,6 @@ class MarketPlaceDraftModel extends FlutterFlowModel<MarketPlaceDraftWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     searchFocusNode?.dispose();
     searchTextController?.dispose();
 

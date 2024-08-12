@@ -10,7 +10,6 @@ import '/training/test/radio_buton_detail/radio_buton_detail_widget.dart';
 import '/training/test/test_long_text/test_long_text_widget.dart';
 import '/training/test/test_number/test_number_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'test_detail_widget.dart' show TestDetailWidget;
 import 'package:flutter/material.dart';
@@ -41,7 +40,6 @@ class TestDetailModel extends FlutterFlowModel<TestDetailWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in TestDetail widget.
   bool? reloadTokenTestOne1;
   // Stores action output result for [Backend Call - API (TestOne)] action in TestDetail widget.
@@ -51,7 +49,5 @@ class TestDetailModel extends FlutterFlowModel<TestDetailWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

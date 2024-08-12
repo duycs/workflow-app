@@ -14,9 +14,7 @@ import '/tasks/wait_action_type_to_do_list/wait_action_type_to_do_list_widget.da
 import '/tasks/wait_action_type_upload_file/wait_action_type_upload_file_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'task_list_wait_widget.dart' show TaskListWaitWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +61,6 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in TaskListWait widget.
   bool? getTaskFailToken;
   // State field(s) for TextField widget.
@@ -85,7 +82,6 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

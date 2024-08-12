@@ -1174,13 +1174,13 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                     _model.datePicked !=
                                                                             null
                                                                         ? dateTimeFormat(
-                                                                            'dd/MM/yyyy',
+                                                                            "dd/MM/yyyy",
                                                                             functions.stringToDateTime(_model.datePicked?.toString()),
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
                                                                           )
                                                                         : dateTimeFormat(
-                                                                            'dd/MM/yyyy',
+                                                                            "dd/MM/yyyy",
                                                                             functions.stringToDateTime(getJsonField(
                                                                               widget!.data,
                                                                               r'''$.dob''',
@@ -1581,14 +1581,14 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                               'phone': _model.hotlineTextController1.text,
                               'dob': _model.datePicked != null
                                   ? dateTimeFormat(
-                                      'yyyy-MM-dd',
+                                      "yyyy-MM-dd",
                                       functions.stringToDateTime(
                                           _model.datePicked?.toString()),
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     )
                                   : dateTimeFormat(
-                                      'yyyy-MM-dd',
+                                      "yyyy-MM-dd",
                                       functions.stringToDateTime(getJsonField(
                                         widget!.data,
                                         r'''$.dob''',
@@ -1671,14 +1671,14 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                             'phone': _model.hotlineTextController1.text,
                             'dob': _model.datePicked != null
                                 ? dateTimeFormat(
-                                    'yyyy-MM-dd',
+                                    "yyyy-MM-dd",
                                     functions.stringToDateTime(
                                         _model.datePicked?.toString()),
                                     locale: FFLocalizations.of(context)
                                         .languageCode,
                                   )
                                 : dateTimeFormat(
-                                    'yyyy-MM-dd',
+                                    "yyyy-MM-dd",
                                     functions.stringToDateTime(getJsonField(
                                       widget!.data,
                                       r'''$.dob''',

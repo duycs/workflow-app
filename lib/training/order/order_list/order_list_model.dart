@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/order/filter_order_list/filter_order_list_widget.dart';
 import '/training/order/order_detail/order_detail_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'order_list_widget.dart' show OrderListWidget;
@@ -51,7 +50,6 @@ class OrderListModel extends FlutterFlowModel<OrderListWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in OrderList widget.
   bool? tokenReloadOrderList;
   // State field(s) for search widget.
@@ -68,7 +66,6 @@ class OrderListModel extends FlutterFlowModel<OrderListWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     searchFocusNode?.dispose();
     searchTextController?.dispose();
 

@@ -14,10 +14,8 @@ import '/tasks/popup_see_more/popup_see_more_widget.dart';
 import '/tasks/popup_task_done/popup_task_done_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'task_list_done_widget.dart' show TaskListDoneWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +65,6 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in TaskListDone widget.
   bool? taskListDoneCaculatorTotalToken;
   // State field(s) for TextField widget.
@@ -93,7 +90,6 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

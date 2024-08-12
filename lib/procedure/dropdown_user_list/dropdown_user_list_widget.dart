@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/check_box_toggle/check_box_toggle_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -480,14 +479,14 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                 builder: (context) {
                                   final listView = _model.staffList
                                       .where((e) =>
-                                          e.userId.firstName
-                                              .toLowerCase()
-                                              .contains(_model
+                                          (e.userId.firstName.toLowerCase())
+                                              .contains((_model
                                                   .textNameTextController.text
-                                                  .toLowerCase()) ||
-                                          e.userId.email.toLowerCase().contains(
-                                              _model.textNameTextController.text
-                                                  .toLowerCase()))
+                                                  .toLowerCase())) ||
+                                          (e.userId.email.toLowerCase())
+                                              .contains((_model
+                                                  .textNameTextController.text
+                                                  .toLowerCase())))
                                       .toList();
                                   if (listView.isEmpty) {
                                     return DataNotFoundWidget();
@@ -658,14 +657,13 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                           ),
                         if ((_model.staffList
                                     .where((e) =>
-                                        e.userId.firstName
-                                            .toLowerCase()
-                                            .contains(_model
+                                        (e.userId.firstName.toLowerCase())
+                                            .contains((_model
                                                 .textNameTextController.text
-                                                .toLowerCase()) ||
-                                        e.userId.email.toLowerCase().contains(
-                                            _model.textNameTextController.text
-                                                .toLowerCase()))
+                                                .toLowerCase())) ||
+                                        (e.userId.email.toLowerCase()).contains(
+                                            (_model.textNameTextController.text
+                                                .toLowerCase())))
                                     .toList()
                                     .length <=
                                 0) &&

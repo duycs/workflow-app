@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'author_market_profile_widget.dart' show AuthorMarketProfileWidget;
 import 'package:flutter/gestures.dart';
@@ -43,7 +42,6 @@ class AuthorMarketProfileModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in AuthorMarketProfile widget.
   bool? tokenReloadProgramsMarket;
   // State field(s) for TabBar widget.
@@ -66,7 +64,6 @@ class AuthorMarketProfileModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     tabBarController?.dispose();
     listViewPagingController1?.dispose();
     listViewPagingController2?.dispose();

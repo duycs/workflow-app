@@ -17,7 +17,6 @@ import 'package:provider/provider.dart';
 class IntroScreenModel extends FlutterFlowModel<IntroScreenWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for PageView widget.
   PageController? pageViewController;
 
@@ -31,7 +30,5 @@ class IntroScreenModel extends FlutterFlowModel<IntroScreenWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

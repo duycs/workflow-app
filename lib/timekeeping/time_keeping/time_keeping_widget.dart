@@ -80,9 +80,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -422,14 +420,14 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                         _model.calendarMonth ==
                                                                 null
                                                             ? dateTimeFormat(
-                                                                'MM/yyyy',
+                                                                "MM/yyyy",
                                                                 getCurrentTimestamp,
                                                                 locale: FFLocalizations.of(
                                                                         context)
                                                                     .languageCode,
                                                               )
                                                             : dateTimeFormat(
-                                                                'MM/yyyy',
+                                                                "MM/yyyy",
                                                                 _model
                                                                     .calendarMonth,
                                                                 locale: FFLocalizations.of(
@@ -908,15 +906,9 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                                   Directionality.of(
                                                                       context)),
                                                       child: GestureDetector(
-                                                        onTap: () => _model
-                                                                .unfocusNode
-                                                                .canRequestFocus
-                                                            ? FocusScope.of(
-                                                                    context)
-                                                                .requestFocus(_model
-                                                                    .unfocusNode)
-                                                            : FocusScope.of(
-                                                                    context)
+                                                        onTap: () =>
+                                                            FocusScope.of(
+                                                                    dialogContext)
                                                                 .unfocus(),
                                                         child: Container(
                                                           height:
@@ -937,8 +929,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                       ),
                                                     );
                                                   },
-                                                ).then(
-                                                    (value) => setState(() {}));
+                                                );
                                               },
                                               child: Container(
                                                 width: double.infinity,
@@ -2406,12 +2397,8 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 .resolve(
                                                     Directionality.of(context)),
                                             child: GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
+                                              onTap: () =>
+                                                  FocusScope.of(dialogContext)
                                                       .unfocus(),
                                               child: Container(
                                                 height: double.infinity,
@@ -2424,7 +2411,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                             ),
                                           );
                                         },
-                                      ).then((value) => setState(() {}));
+                                      );
                                     },
                                     dateUpdate: (dateStart, dateEnd,
                                         calendarMonth) async {
@@ -2855,7 +2842,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                   _model.timeKeepingList
                                       .where((e) =>
                                           dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 (String var1) {
                                               return DateTime.parse(var1)
@@ -2866,7 +2853,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 .languageCode,
                                           ) ==
                                           dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 getCurrentTimestamp.toString()),
                                             locale: FFLocalizations.of(context)
@@ -2882,7 +2869,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                   _model.timeKeepingList
                                       .where((e) =>
                                           dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 (String var1) {
                                               return DateTime.parse(var1)
@@ -2893,7 +2880,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 .languageCode,
                                           ) ==
                                           dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 getCurrentTimestamp.toString()),
                                             locale: FFLocalizations.of(context)
@@ -2909,7 +2896,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                   _model.timeKeepingList
                                       .where((e) =>
                                           dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 (String var1) {
                                               return DateTime.parse(var1)
@@ -2920,7 +2907,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 .languageCode,
                                           ) ==
                                           dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 getCurrentTimestamp.toString()),
                                             locale: FFLocalizations.of(context)
@@ -3064,7 +3051,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                   _model.timeKeepingList
                                       .where((e) =>
                                           dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 (String var1) {
                                               return DateTime.parse(var1)
@@ -3075,7 +3062,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 .languageCode,
                                           ) ==
                                           dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 getCurrentTimestamp.toString()),
                                             locale: FFLocalizations.of(context)
@@ -3091,7 +3078,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                   _model.timeKeepingList
                                       .where((e) =>
                                           dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 (String var1) {
                                               return DateTime.parse(var1)
@@ -3102,7 +3089,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 .languageCode,
                                           ) ==
                                           dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 getCurrentTimestamp.toString()),
                                             locale: FFLocalizations.of(context)
@@ -3118,7 +3105,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                   _model.timeKeepingList
                                       .where((e) =>
                                           dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 (String var1) {
                                               return DateTime.parse(var1)
@@ -3129,7 +3116,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                                 .languageCode,
                                           ) ==
                                           dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 getCurrentTimestamp.toString()),
                                             locale: FFLocalizations.of(context)

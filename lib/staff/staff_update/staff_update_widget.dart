@@ -12,7 +12,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -883,7 +882,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       Text(
                                         valueOrDefault<String>(
                                           dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions
                                                 .stringToDateTime(_model.dob),
                                             locale: FFLocalizations.of(context)

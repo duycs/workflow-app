@@ -10,7 +10,6 @@ import '/procedure_publishing/result_work_grid_view/result_work_grid_view_widget
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/tasks/popup_see_more/popup_see_more_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'work_result_detail_widget.dart' show WorkResultDetailWidget;
@@ -38,7 +37,6 @@ class WorkResultDetailModel extends FlutterFlowModel<WorkResultDetailWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in IconButton widget.
   bool? checktokenReloadDowloadFile;
 
@@ -46,9 +44,7 @@ class WorkResultDetailModel extends FlutterFlowModel<WorkResultDetailWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 
   /// Action blocks.
   Future getTaskToDo(BuildContext context) async {

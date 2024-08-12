@@ -9,7 +9,6 @@ import '/training/order/invite_user/invite_user_widget.dart';
 import '/training/study_program/company_review/company_review_widget.dart';
 import '/training/study_program/filter_study_program_market/filter_study_program_market_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -78,9 +77,7 @@ class _StudyProgramListMarketWidgetState
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -277,10 +274,7 @@ class _StudyProgramListMarketWidgetState
                             context: context,
                             builder: (context) {
                               return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
+                                onTap: () => FocusScope.of(context).unfocus(),
                                 child: Padding(
                                   padding: MediaQuery.viewInsetsOf(context),
                                   child: FilterStudyProgramMarketWidget(
@@ -799,12 +793,8 @@ class _StudyProgramListMarketWidgetState
                                                                 builder:
                                                                     (context) {
                                                                   return GestureDetector(
-                                                                    onTap: () => _model
-                                                                            .unfocusNode
-                                                                            .canRequestFocus
-                                                                        ? FocusScope.of(context).requestFocus(_model
-                                                                            .unfocusNode)
-                                                                        : FocusScope.of(context)
+                                                                    onTap: () =>
+                                                                        FocusScope.of(context)
                                                                             .unfocus(),
                                                                     child:
                                                                         Padding(
@@ -916,9 +906,8 @@ class _StudyProgramListMarketWidgetState
                                                                               Directionality.of(context)),
                                                                       child:
                                                                           GestureDetector(
-                                                                        onTap: () => _model.unfocusNode.canRequestFocus
-                                                                            ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                            : FocusScope.of(context).unfocus(),
+                                                                        onTap: () =>
+                                                                            FocusScope.of(dialogContext).unfocus(),
                                                                         child:
                                                                             Container(
                                                                           height:
@@ -934,9 +923,7 @@ class _StudyProgramListMarketWidgetState
                                                                       ),
                                                                     );
                                                                   },
-                                                                ).then((value) =>
-                                                                    setState(
-                                                                        () {}));
+                                                                );
                                                               },
                                                               text: 'Chia sẻ',
                                                               icon: Icon(
@@ -1152,7 +1139,7 @@ class _StudyProgramListMarketWidgetState
                                                                   ? valueOrDefault<
                                                                       String>(
                                                                       dateTimeFormat(
-                                                                        'dd-MM-yyyy',
+                                                                        "dd-MM-yyyy",
                                                                         functions
                                                                             .stringToDateTime(valueOrDefault<String>(
                                                                           dataListTestsViewItem
@@ -1489,7 +1476,7 @@ class _StudyProgramListMarketWidgetState
                                                                         ? valueOrDefault<
                                                                             String>(
                                                                             dateTimeFormat(
-                                                                              'dd-MM-yyyy',
+                                                                              "dd-MM-yyyy",
                                                                               functions.stringToDateTime(valueOrDefault<String>(
                                                                                 dataListLessionsViewItem.lessionsId.dateCreated,
                                                                                 '0',

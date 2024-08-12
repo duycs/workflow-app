@@ -15,7 +15,6 @@ import 'package:provider/provider.dart';
 class TimekeepingDetailModel extends FlutterFlowModel<TimekeepingDetailWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for RadioButton widget.
   FormFieldController<String>? radioButtonValueController;
   // State field(s) for CheckboxListTile widget.
@@ -43,9 +42,7 @@ class TimekeepingDetailModel extends FlutterFlowModel<TimekeepingDetailWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 
   /// Additional helper methods.
   String? get radioButtonValue => radioButtonValueController?.value;

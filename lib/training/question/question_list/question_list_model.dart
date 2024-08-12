@@ -11,7 +11,6 @@ import '/training/question/question_create/question_create_widget.dart';
 import '/training/question/question_menu/question_menu_widget.dart';
 import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
@@ -45,7 +44,6 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in QuestionList widget.
   bool? tokenReloadQuestionList;
   // State field(s) for questionName widget.
@@ -62,7 +60,6 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     questionNameFocusNode?.dispose();
     questionNameTextController?.dispose();
 

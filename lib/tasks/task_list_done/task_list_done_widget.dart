@@ -14,10 +14,8 @@ import '/tasks/popup_see_more/popup_see_more_widget.dart';
 import '/tasks/popup_task_done/popup_task_done_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -94,9 +92,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -271,13 +267,8 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
+                                          onTap: () =>
+                                              FocusScope.of(context).unfocus(),
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
@@ -520,7 +511,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                           .add(Duration(days: 1))
                                           .toString();
                                     }(',{\"date_created\":{\"_lte\":\"${dateTimeFormat(
-                                      'yyyy-MM-dd',
+                                      "yyyy-MM-dd",
                                       functions.stringToDateTime(
                                           _model.dateEndFilter),
                                       locale: FFLocalizations.of(context)
@@ -1105,7 +1096,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                 Expanded(
                                                                   child: Text(
                                                                     dateTimeFormat(
-                                                                      'HH:mm dd/MM/yyyy',
+                                                                      "HH:mm dd/MM/yyyy",
                                                                       functions.stringToDateTime(
                                                                           dataListItem
                                                                               .dateCreated),
@@ -1332,7 +1323,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                 Expanded(
                                                                   child: Text(
                                                                     dateTimeFormat(
-                                                                      'HH:mm dd/MM/yyyy',
+                                                                      "HH:mm dd/MM/yyyy",
                                                                       functions.stringToDateTime(
                                                                           dataListItem
                                                                               .dateStart),
@@ -1413,7 +1404,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                 Expanded(
                                                                   child: Text(
                                                                     dateTimeFormat(
-                                                                      'HH:mm dd/MM/yyyy',
+                                                                      "HH:mm dd/MM/yyyy",
                                                                       functions.stringToDateTime(
                                                                           dataListItem
                                                                               .dateEnd),
@@ -1814,7 +1805,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                                           backgroundColor: Colors.transparent,
                                                                                           alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                           child: GestureDetector(
-                                                                                            onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                            onTap: () => FocusScope.of(dialogContext).unfocus(),
                                                                                             child: PopupSeeMoreWidget(
                                                                                               fileName: fileItemsItem.directusFilesId.filenameDownload,
                                                                                               fileId: fileItemsItem.directusFilesId.id,
@@ -1822,7 +1813,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                                           ),
                                                                                         );
                                                                                       },
-                                                                                    ).then((value) => setState(() {}));
+                                                                                    );
                                                                                   },
                                                                                 ),
                                                                               ),
@@ -2110,9 +2101,8 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                               Directionality.of(context)),
                                                                       child:
                                                                           GestureDetector(
-                                                                        onTap: () => _model.unfocusNode.canRequestFocus
-                                                                            ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                            : FocusScope.of(context).unfocus(),
+                                                                        onTap: () =>
+                                                                            FocusScope.of(dialogContext).unfocus(),
                                                                         child:
                                                                             PopupTaskDoneWidget(
                                                                           content: dataListItem
@@ -2124,9 +2114,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                       ),
                                                                     );
                                                                   },
-                                                                ).then((value) =>
-                                                                    setState(
-                                                                        () {}));
+                                                                );
                                                               },
                                                               child: Text(
                                                                 'Mở rộng',

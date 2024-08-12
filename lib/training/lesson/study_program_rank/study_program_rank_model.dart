@@ -87,7 +87,6 @@ class StudyProgramRankModel extends FlutterFlowModel<StudyProgramRankWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for nameSearch widget.
   FocusNode? nameSearchFocusNode;
   TextEditingController? nameSearchTextController;
@@ -98,7 +97,6 @@ class StudyProgramRankModel extends FlutterFlowModel<StudyProgramRankWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     nameSearchFocusNode?.dispose();
     nameSearchTextController?.dispose();
   }

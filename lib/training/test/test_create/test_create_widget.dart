@@ -11,7 +11,6 @@ import '/training/test/radio_button_add/radio_button_add_widget.dart';
 import '/training/test/test_long_text_add/test_long_text_add_widget.dart';
 import '/training/test/test_number_add/test_number_add_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -69,9 +68,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -660,11 +657,8 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                     alignment: AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
                                     child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
+                                      onTap: () => FocusScope.of(dialogContext)
+                                          .unfocus(),
                                       child: Container(
                                         height:
                                             MediaQuery.sizeOf(context).height *
@@ -701,7 +695,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                     ),
                                   );
                                 },
-                              ).then((value) => setState(() {}));
+                              );
 
                               setState(() {});
                             },

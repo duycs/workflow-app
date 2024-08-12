@@ -448,8 +448,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             ),
                                                           );
                                                         },
-                                                      ).then((value) =>
-                                                          setState(() {}));
+                                                      );
                                                     },
                                                     text:
                                                         'Đăng ký quyền tác giả',

@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/timekeeping/timekeeping_management_list_filter/timekeeping_management_list_filter_widget.dart';
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -103,7 +102,7 @@ class _TimekeepingManagementListWidgetState
                     widget!.checkShowParams == 'check'
                         ? 'Báo cáo chấm công tháng'
                         : 'Báo cáo chấm công ngày ${dateTimeFormat(
-                            'd/M/y',
+                            "d/M/y",
                             functions.stringToDateTime(widget!.dateFilter),
                             locale: FFLocalizations.of(context).languageCode,
                           )}',
@@ -697,7 +696,7 @@ class _TimekeepingManagementListWidgetState
                                                   0))
                                             Text(
                                               dateTimeFormat(
-                                                'Hm',
+                                                "Hm",
                                                 functions.stringToDateTime(
                                                     listItemItem.shiftChecks
                                                         .where((e) =>
@@ -764,7 +763,7 @@ class _TimekeepingManagementListWidgetState
                                                   0))
                                             Text(
                                               dateTimeFormat(
-                                                'Hm',
+                                                "Hm",
                                                 functions.stringToDateTime(
                                                     listItemItem.shiftChecks
                                                         .where((e) =>
@@ -1040,7 +1039,7 @@ class _TimekeepingManagementListWidgetState
                                                                 ),
                                                                 Text(
                                                                   dateTimeFormat(
-                                                                    'Hm',
+                                                                    "Hm",
                                                                     functions.stringToDateTime(
                                                                         checkInsItem
                                                                             .checkin),
@@ -1114,7 +1113,7 @@ class _TimekeepingManagementListWidgetState
                                                                 ),
                                                                 Text(
                                                                   dateTimeFormat(
-                                                                    'Hm',
+                                                                    "Hm",
                                                                     functions.stringToDateTime(
                                                                         checkOutsItem
                                                                             .checkout),

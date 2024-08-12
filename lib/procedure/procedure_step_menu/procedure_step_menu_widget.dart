@@ -144,7 +144,7 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
 
                         _model.setColor = 0;
                         setState(() {});

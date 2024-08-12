@@ -12,7 +12,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/foundation.dart';
@@ -831,7 +830,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                           });
                                         }
                                         _model.dob = dateTimeFormat(
-                                          'dd/MM/yyyy',
+                                          "dd/MM/yyyy",
                                           _model.datePicked,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
@@ -1877,7 +1876,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                   : 'female',
                               'phone': _model.phoneTextController.text,
                               'dob': '${dateTimeFormat(
-                                'yyyy-MM-dd',
+                                "yyyy-MM-dd",
                                 _model.datePicked,
                                 locale:
                                     FFLocalizations.of(context).languageCode,
@@ -1972,7 +1971,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                 : 'female',
                             'phone': _model.phoneTextController.text,
                             'dob': '${dateTimeFormat(
-                              'yyyy-MM-dd',
+                              "yyyy-MM-dd",
                               _model.datePicked,
                               locale: FFLocalizations.of(context).languageCode,
                             )}',
@@ -2160,7 +2159,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                           'phone':
                                               _model.phoneTextController.text,
                                           'dob': '${dateTimeFormat(
-                                            'yyyy-MM-dd',
+                                            "yyyy-MM-dd",
                                             _model.datePicked,
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,
@@ -2268,7 +2267,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         'phone':
                                             _model.phoneTextController.text,
                                         'dob': '${dateTimeFormat(
-                                          'yyyy-MM-dd',
+                                          "yyyy-MM-dd",
                                           _model.datePicked,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,

@@ -9,7 +9,6 @@ import '/training/order/invite_user/invite_user_widget.dart';
 import '/training/study_program/company_review/company_review_widget.dart';
 import '/training/study_program/filter_study_program_market/filter_study_program_market_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
@@ -57,7 +56,6 @@ class StudyProgramListMarketModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in StudyProgramListMarket widget.
   bool? tokenReloadStudyProgramList;
   // State field(s) for TextFieldNameSearch widget.
@@ -75,7 +73,6 @@ class StudyProgramListMarketModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldNameSearchFocusNode?.dispose();
     textFieldNameSearchTextController?.dispose();
 

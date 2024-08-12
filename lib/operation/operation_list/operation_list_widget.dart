@@ -10,9 +10,7 @@ import '/operation/operation_create/operation_create_widget.dart';
 import '/operation/operation_detail/operation_detail_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -92,9 +90,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -115,10 +111,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                       alignment: AlignmentDirectional(0.0, 0.0)
                           .resolve(Directionality.of(context)),
                       child: GestureDetector(
-                        onTap: () => _model.unfocusNode.canRequestFocus
-                            ? FocusScope.of(context)
-                                .requestFocus(_model.unfocusNode)
-                            : FocusScope.of(context).unfocus(),
+                        onTap: () => FocusScope.of(dialogContext).unfocus(),
                         child: OperationCreateWidget(
                           callBack: () async {
                             _model.seachName = '';
@@ -146,7 +139,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                       ),
                     );
                   },
-                ).then((value) => setState(() {}));
+                );
               },
               backgroundColor: FlutterFlowTheme.of(context).primary,
               elevation: 8.0,
@@ -343,10 +336,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                             context: context,
                             builder: (context) {
                               return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
+                                onTap: () => FocusScope.of(context).unfocus(),
                                 child: Padding(
                                   padding: MediaQuery.viewInsetsOf(context),
                                   child: FilterOperationWidget(
@@ -594,15 +584,9 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                   Directionality.of(
                                                                       context)),
                                                       child: GestureDetector(
-                                                        onTap: () => _model
-                                                                .unfocusNode
-                                                                .canRequestFocus
-                                                            ? FocusScope.of(
-                                                                    context)
-                                                                .requestFocus(_model
-                                                                    .unfocusNode)
-                                                            : FocusScope.of(
-                                                                    context)
+                                                        onTap: () =>
+                                                            FocusScope.of(
+                                                                    dialogContext)
                                                                 .unfocus(),
                                                         child:
                                                             OperationDetailWidget(
@@ -612,8 +596,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       ),
                                                     );
                                                   },
-                                                ).then(
-                                                    (value) => setState(() {}));
+                                                );
                                               },
                                               child: Container(
                                                 decoration: BoxDecoration(
@@ -993,7 +976,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                           Expanded(
                                                             child: Text(
                                                               'Ngày tạo: ${dateTimeFormat(
-                                                                'dd/MM/yyyy',
+                                                                "dd/MM/yyyy",
                                                                 functions.stringToDateTime(
                                                                     itemOperationItem
                                                                         .dateCreated),
@@ -1178,15 +1161,9 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                 Directionality.of(
                                                                     context)),
                                                     child: GestureDetector(
-                                                      onTap: () => _model
-                                                              .unfocusNode
-                                                              .canRequestFocus
-                                                          ? FocusScope.of(
-                                                                  context)
-                                                              .requestFocus(_model
-                                                                  .unfocusNode)
-                                                          : FocusScope.of(
-                                                                  context)
+                                                      onTap: () =>
+                                                          FocusScope.of(
+                                                                  dialogContext)
                                                               .unfocus(),
                                                       child:
                                                           OperationDetailWidget(
@@ -1196,8 +1173,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                     ),
                                                   );
                                                 },
-                                              ).then(
-                                                  (value) => setState(() {}));
+                                              );
                                             },
                                             child: Container(
                                               decoration: BoxDecoration(
@@ -1548,7 +1524,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                         Expanded(
                                                           child: Text(
                                                             dateTimeFormat(
-                                                              'dd/MM/yyyy',
+                                                              "dd/MM/yyyy",
                                                               functions.stringToDateTime(
                                                                   itemUserCreatedItem
                                                                       .dateCreated),
@@ -1732,15 +1708,9 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                 Directionality.of(
                                                                     context)),
                                                     child: GestureDetector(
-                                                      onTap: () => _model
-                                                              .unfocusNode
-                                                              .canRequestFocus
-                                                          ? FocusScope.of(
-                                                                  context)
-                                                              .requestFocus(_model
-                                                                  .unfocusNode)
-                                                          : FocusScope.of(
-                                                                  context)
+                                                      onTap: () =>
+                                                          FocusScope.of(
+                                                                  dialogContext)
                                                               .unfocus(),
                                                       child:
                                                           OperationDetailWidget(
@@ -1750,8 +1720,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                     ),
                                                   );
                                                 },
-                                              ).then(
-                                                  (value) => setState(() {}));
+                                              );
                                             },
                                             child: Container(
                                               decoration: BoxDecoration(
@@ -2042,7 +2011,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                         Expanded(
                                                           child: Text(
                                                             dateTimeFormat(
-                                                              'dd/MM/yyyy',
+                                                              "dd/MM/yyyy",
                                                               functions.stringToDateTime(
                                                                   itemDefaultItem
                                                                       .dateCreated),

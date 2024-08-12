@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'category_market_widget.dart' show CategoryMarketWidget;
 import 'dart:async';
@@ -39,7 +38,6 @@ class CategoryMarketModel extends FlutterFlowModel<CategoryMarketWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in CategoryMarket widget.
   bool? reloadListDomains;
   // State field(s) for searchDomains widget.
@@ -56,7 +54,6 @@ class CategoryMarketModel extends FlutterFlowModel<CategoryMarketWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     searchDomainsFocusNode?.dispose();
     searchDomainsTextController?.dispose();
 

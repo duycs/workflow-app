@@ -10,7 +10,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/training/author/update_author/update_author_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'author_profile_widget.dart' show AuthorProfileWidget;
@@ -46,7 +45,6 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in AuthorProfile widget.
   bool? reloadTockenLesstion;
   // State field(s) for TabBar widget.
@@ -80,7 +78,6 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     tabBarController?.dispose();
     listViewPagingController1?.dispose();
     listViewPagingController2?.dispose();

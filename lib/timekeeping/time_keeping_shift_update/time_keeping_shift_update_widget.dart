@@ -270,7 +270,7 @@ class _TimeKeepingShiftUpdateWidgetState
                             });
                           }
                           _model.startTime = dateTimeFormat(
-                            'Hm',
+                            "Hm",
                             _model.datePicked1,
                             locale: FFLocalizations.of(context).languageCode,
                           );
@@ -294,7 +294,7 @@ class _TimeKeepingShiftUpdateWidgetState
                                   child: Text(
                                     _model.datePicked1 != null
                                         ? dateTimeFormat(
-                                            'Hm',
+                                            "Hm",
                                             _model.datePicked1,
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,
@@ -384,7 +384,7 @@ class _TimeKeepingShiftUpdateWidgetState
                             });
                           }
                           _model.endTime = dateTimeFormat(
-                            'Hm',
+                            "Hm",
                             _model.datePicked2,
                             locale: FFLocalizations.of(context).languageCode,
                           );
@@ -408,7 +408,7 @@ class _TimeKeepingShiftUpdateWidgetState
                                   child: Text(
                                     _model.datePicked2 != null
                                         ? dateTimeFormat(
-                                            'Hm',
+                                            "Hm",
                                             _model.datePicked2,
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,

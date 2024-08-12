@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/add_workflow_market/add_workflow_market_widget.dart';
 import '/procedure/procedure_work_filter/procedure_work_filter_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'procedure_list_widget.dart' show ProcedureListWidget;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -43,7 +42,6 @@ class ProcedureListModel extends FlutterFlowModel<ProcedureListWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in ProcedureList widget.
   bool? checkTokenProcedureList;
   // State field(s) for TextName widget.
@@ -60,7 +58,6 @@ class ProcedureListModel extends FlutterFlowModel<ProcedureListWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textNameFocusNode?.dispose();
     textNameTextController?.dispose();
 

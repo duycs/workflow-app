@@ -13,7 +13,6 @@ import '/training/order/order_create/order_create_widget.dart';
 import 'dart:math';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'program_market_detail_widget.dart' show ProgramMarketDetailWidget;
@@ -58,7 +57,6 @@ class ProgramMarketDetailModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Custom Action - openGoogleInAppPurchases] action in Button widget.
   dynamic? paymentResponseGoogle;
   // Stores action output result for [Custom Action - openAppleInAppPurchases] action in Button widget.
@@ -76,9 +74,7 @@ class ProgramMarketDetailModel
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 
   /// Action blocks.
   Future getOneProgram(BuildContext context) async {

@@ -835,7 +835,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       ),
                                     );
                                   },
-                                ).then((value) => setState(() {}));
+                                );
 
                                 Navigator.pop(context);
                               },
@@ -909,7 +909,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                           ),
                                         );
                                       },
-                                    ).then((value) => setState(() {}));
+                                    );
 
                                     Navigator.pop(context);
                                   } else {

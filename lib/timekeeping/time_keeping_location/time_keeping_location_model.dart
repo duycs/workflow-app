@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
 import '/timekeeping/time_keeping_location_update/time_keeping_location_update_widget.dart';
-import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'time_keeping_location_widget.dart' show TimeKeepingLocationWidget;
 import 'package:flutter/material.dart';

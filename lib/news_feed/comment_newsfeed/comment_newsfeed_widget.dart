@@ -662,7 +662,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                                       ),
                                                                                     );
                                                                                   },
-                                                                                ).then((value) => setState(() {}));
+                                                                                );
                                                                               },
                                                                             ),
                                                                           ),
@@ -718,7 +718,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                 children: [
                                                                   Text(
                                                                     dateTimeFormat(
-                                                                      'relative',
+                                                                      "relative",
                                                                       functions.stringToDateTime(commentListItem
                                                                           .commentsId
                                                                           .dateCreated),

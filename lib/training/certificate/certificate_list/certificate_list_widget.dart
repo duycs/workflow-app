@@ -44,9 +44,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -420,11 +418,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                               context: context,
                               builder: (context) {
                                 return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
+                                  onTap: () => FocusScope.of(context).unfocus(),
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
                                     child: ProgramCertificateWidget(
@@ -473,11 +467,8 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                     alignment: AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
                                     child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
+                                      onTap: () => FocusScope.of(dialogContext)
+                                          .unfocus(),
                                       child: Container(
                                         height: 200.0,
                                         width:
@@ -488,7 +479,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                     ),
                                   );
                                 },
-                              ).then((value) => setState(() {}));
+                              );
                             },
                             text: 'Xem',
                             icon: Icon(
@@ -788,10 +779,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                           context: context,
                           builder: (context) {
                             return GestureDetector(
-                              onTap: () => _model.unfocusNode.canRequestFocus
-                                  ? FocusScope.of(context)
-                                      .requestFocus(_model.unfocusNode)
-                                  : FocusScope.of(context).unfocus(),
+                              onTap: () => FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
                                 child: ProgramCertificateWidget(
@@ -840,10 +828,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                     .resolve(Directionality.of(context)),
                                 child: GestureDetector(
                                   onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
+                                      FocusScope.of(dialogContext).unfocus(),
                                   child: Container(
                                     height: 200.0,
                                     width:
@@ -853,7 +838,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                 ),
                               );
                             },
-                          ).then((value) => setState(() {}));
+                          );
                         },
                         text: 'Xem',
                         icon: Icon(

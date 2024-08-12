@@ -3,7 +3,6 @@ import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/backend/schema/structs/index.dart';
 import 'time_keeping_shift_select_widget.dart'
     show TimeKeepingShiftSelectWidget;
 import 'package:flutter/material.dart';

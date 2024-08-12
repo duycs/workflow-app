@@ -13,7 +13,6 @@ import '/procedure/dropdown_user_list/dropdown_user_list_widget.dart';
 import '/procedure/procedure_step_create/procedure_step_create_widget.dart';
 import '/procedure/procedure_step_menu/procedure_step_menu_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -307,7 +306,6 @@ class ProcedureUpdateModel extends FlutterFlowModel<ProcedureUpdateWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? tokenReloadProcedurUpdate;
@@ -385,7 +383,6 @@ class ProcedureUpdateModel extends FlutterFlowModel<ProcedureUpdateWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     tabBarController?.dispose();
     textNameFocusNode?.dispose();
     textNameTextController?.dispose();

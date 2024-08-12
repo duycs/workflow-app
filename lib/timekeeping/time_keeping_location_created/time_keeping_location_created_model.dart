@@ -10,7 +10,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/place.dart';
 import 'dart:io';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'time_keeping_location_created_widget.dart'
     show TimeKeepingLocationCreatedWidget;

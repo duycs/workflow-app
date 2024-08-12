@@ -8,9 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
-import 'dart:async';
 import 'department_list_widget.dart' show DepartmentListWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +49,6 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in DepartmentList widget.
   bool? tokenReloadDepartmentListList;
   // State field(s) for nameSearch widget.
@@ -68,7 +65,6 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     nameSearchFocusNode?.dispose();
     nameSearchTextController?.dispose();
 

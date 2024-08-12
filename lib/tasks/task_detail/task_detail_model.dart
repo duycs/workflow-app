@@ -12,7 +12,6 @@ import '/tasks/detail_action_type_to_do_list/detail_action_type_to_do_list_widge
 import '/tasks/detail_action_type_upload_file/detail_action_type_upload_file_widget.dart';
 import '/tasks/popup_task_detail_copy/popup_task_detail_copy_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'task_detail_widget.dart' show TaskDetailWidget;
@@ -83,7 +82,6 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? confirmOperationDetail2Token;
   // Stores action output result for [Backend Call - API (ConfirmOperation)] action in Button widget.
@@ -121,9 +119,7 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 
   /// Action blocks.
   Future getDetail(BuildContext context) async {

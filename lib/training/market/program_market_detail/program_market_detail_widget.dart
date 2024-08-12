@@ -11,7 +11,6 @@ import '/payment/waiting_process_component/waiting_process_component_widget.dart
 import '/training/order/order_create/order_create_widget.dart';
 import 'dart:math';
 import 'dart:ui';
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/gestures.dart';
@@ -103,9 +102,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -1355,12 +1352,8 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
+                                          onTap: () =>
+                                              FocusScope.of(dialogContext)
                                                   .unfocus(),
                                           child: Container(
                                             height: MediaQuery.sizeOf(context)
@@ -1375,7 +1368,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                         ),
                                       );
                                     },
-                                  ).then((value) => setState(() {}));
+                                  );
 
                                   // Tạo đơn hàng
                                   _model.apiResultOrderCreate =
@@ -1404,12 +1397,8 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                               .resolve(
                                                   Directionality.of(context)),
                                           child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
+                                            onTap: () =>
+                                                FocusScope.of(dialogContext)
                                                     .unfocus(),
                                             child: Container(
                                               height: MediaQuery.sizeOf(context)
@@ -1428,7 +1417,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                           ),
                                         );
                                       },
-                                    ).then((value) => setState(() {}));
+                                    );
                                   } else {
                                     // Mở dialog tạo đơn thất bại
                                     await showDialog(
@@ -1443,12 +1432,8 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                               .resolve(
                                                   Directionality.of(context)),
                                           child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
+                                            onTap: () =>
+                                                FocusScope.of(dialogContext)
                                                     .unfocus(),
                                             child: Container(
                                               height: MediaQuery.sizeOf(context)
@@ -1463,7 +1448,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                           ),
                                         );
                                       },
-                                    ).then((value) => setState(() {}));
+                                    );
                                   }
                                 } else {
                                   await showDialog(
@@ -1544,11 +1529,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                               context: context,
                               builder: (context) {
                                 return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
+                                  onTap: () => FocusScope.of(context).unfocus(),
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
                                     child: OrderCreateWidget(
@@ -1728,12 +1709,8 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
+                                          onTap: () =>
+                                              FocusScope.of(dialogContext)
                                                   .unfocus(),
                                           child: Container(
                                             height: MediaQuery.sizeOf(context)
@@ -1748,7 +1725,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                         ),
                                       );
                                     },
-                                  ).then((value) => setState(() {}));
+                                  );
 
                                   // Tạo đơn hàng
                                   _model.apiResultOrderCreateOrg =
@@ -1777,12 +1754,8 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                               .resolve(
                                                   Directionality.of(context)),
                                           child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
+                                            onTap: () =>
+                                                FocusScope.of(dialogContext)
                                                     .unfocus(),
                                             child: Container(
                                               height: MediaQuery.sizeOf(context)
@@ -1801,7 +1774,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                           ),
                                         );
                                       },
-                                    ).then((value) => setState(() {}));
+                                    );
                                   } else {
                                     // Mở dialog tạo đơn thất bại
                                     await showDialog(
@@ -1816,12 +1789,8 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                               .resolve(
                                                   Directionality.of(context)),
                                           child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
+                                            onTap: () =>
+                                                FocusScope.of(dialogContext)
                                                     .unfocus(),
                                             child: Container(
                                               height: MediaQuery.sizeOf(context)
@@ -1836,7 +1805,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                           ),
                                         );
                                       },
-                                    ).then((value) => setState(() {}));
+                                    );
                                   }
                                 } else {
                                   await showDialog(

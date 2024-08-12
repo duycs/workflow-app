@@ -9,8 +9,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/lesson/filter_lesson/filter_lesson_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -88,9 +86,7 @@ class _LessonsListNavbarWidgetState extends State<LessonsListNavbarWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -277,11 +273,8 @@ class _LessonsListNavbarWidgetState extends State<LessonsListNavbarWidget> {
                                 context: context,
                                 builder: (context) {
                                   return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
+                                    onTap: () =>
+                                        FocusScope.of(context).unfocus(),
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
                                       child: FilterLessonWidget(
@@ -294,13 +287,13 @@ class _LessonsListNavbarWidgetState extends State<LessonsListNavbarWidget> {
                                             programId) async {
                                           _model.status = status!;
                                           _model.dateStart = dateTimeFormat(
-                                            'yyyy-MM-dd',
+                                            "yyyy-MM-dd",
                                             dateStart,
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,
                                           );
                                           _model.dateEnd = dateTimeFormat(
-                                            'yyyy-MM-dd',
+                                            "yyyy-MM-dd",
                                             dateEnd,
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,

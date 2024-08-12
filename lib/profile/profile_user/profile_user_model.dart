@@ -27,7 +27,6 @@ class ProfileUserModel extends FlutterFlowModel<ProfileUserWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in ProfileUser widget.
   bool? reloadTokenStaffOne;
   // Stores action output result for [Backend Call - API (StaffGetOne)] action in ProfileUser widget.
@@ -37,7 +36,5 @@ class ProfileUserModel extends FlutterFlowModel<ProfileUserWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

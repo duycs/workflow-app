@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/news_feed/action_newsfeed/action_newsfeed_widget.dart';
 import '/news_feed/comment_newsfeed/comment_newsfeed_widget.dart';
 import '/news_feed/d_n_f_newsfeed/d_n_f_newsfeed_widget.dart';
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
@@ -59,9 +58,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -352,7 +349,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                         ),
                                         Text(
                                           dateTimeFormat(
-                                            'relative',
+                                            "relative",
                                             functions.stringToDateTime(
                                                 newsfeedListRequireItem
                                                     .dateCreated),
@@ -395,13 +392,8 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                         context: context,
                                         builder: (context) {
                                           return GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
+                                            onTap: () => FocusScope.of(context)
+                                                .unfocus(),
                                             child: Padding(
                                               padding: MediaQuery.viewInsetsOf(
                                                   context),
@@ -949,13 +941,8 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
+                                          onTap: () =>
+                                              FocusScope.of(context).unfocus(),
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),

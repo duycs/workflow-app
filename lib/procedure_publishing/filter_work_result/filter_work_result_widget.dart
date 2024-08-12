@@ -213,7 +213,7 @@ class _FilterWorkResultWidgetState extends State<FilterWorkResultWidget> {
                             });
                           }
                           _model.dateStart = dateTimeFormat(
-                            'yyyy-MM-dd',
+                            "yyyy-MM-dd",
                             _model.datePicked1,
                             locale: FFLocalizations.of(context).languageCode,
                           );
@@ -299,7 +299,7 @@ class _FilterWorkResultWidgetState extends State<FilterWorkResultWidget> {
                             });
                           }
                           _model.dateEnd = dateTimeFormat(
-                            'yyyy-MM-dd',
+                            "yyyy-MM-dd",
                             _model.datePicked2,
                             locale: FFLocalizations.of(context).languageCode,
                           );

@@ -11,7 +11,6 @@ import '/training/test/radio_button_add/radio_button_add_widget.dart';
 import '/training/test/test_long_text_add/test_long_text_add_widget.dart';
 import '/training/test/test_number_add/test_number_add_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'test_create_widget.dart' show TestCreateWidget;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -56,7 +55,6 @@ class TestCreateModel extends FlutterFlowModel<TestCreateWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
@@ -129,7 +127,6 @@ class TestCreateModel extends FlutterFlowModel<TestCreateWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
 

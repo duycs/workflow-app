@@ -248,6 +248,12 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                     FFAppState().staffOrganization,
                                     r'''$.id''',
                                   ),
+                                  'gmt': getJsonField(
+                                    <String, String>{
+                                      'map': '+7',
+                                    },
+                                    r'''$.map''',
+                                  ),
                                 },
                               );
 
@@ -307,7 +313,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
 
                         if (_shouldSetState) setState(() {});
                       },
@@ -546,13 +552,13 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                 }
                                 _model.addToShiftSelect(ShiftListStruct(
                                   startTime: dateTimeFormat(
-                                    'Hm',
+                                    "Hm",
                                     _model.datePicked1,
                                     locale: FFLocalizations.of(context)
                                         .languageCode,
                                   ),
                                   endTime: dateTimeFormat(
-                                    'Hm',
+                                    "Hm",
                                     _model.datePicked2,
                                     locale: FFLocalizations.of(context)
                                         .languageCode,
@@ -664,7 +670,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                           child: Text(
                                             _model.datePicked1 != null
                                                 ? dateTimeFormat(
-                                                    'Hm',
+                                                    "Hm",
                                                     _model.datePicked1,
                                                     locale: FFLocalizations.of(
                                                             context)
@@ -790,7 +796,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                           child: Text(
                                             _model.datePicked2 != null
                                                 ? dateTimeFormat(
-                                                    'Hm',
+                                                    "Hm",
                                                     _model.datePicked2,
                                                     locale: FFLocalizations.of(
                                                             context)

@@ -12,7 +12,6 @@ import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
 import '/training/lesson/menu_delete/menu_delete_widget.dart';
 import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'staffs_programs_lesson_widget.dart' show StaffsProgramsLessonWidget;
@@ -83,7 +82,6 @@ class StaffsProgramsLessonModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for MobileEditorDisplayComponent component.
   late MobileEditorDisplayComponentModel mobileEditorDisplayComponentModel;
   // State field(s) for comments widget.
@@ -107,7 +105,6 @@ class StaffsProgramsLessonModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mobileEditorDisplayComponentModel.dispose();
     commentsFocusNode?.dispose();
     commentsTextController?.dispose();

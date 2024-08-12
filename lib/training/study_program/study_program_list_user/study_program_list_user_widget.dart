@@ -9,7 +9,6 @@ import '/training/certificate/certificate1_download/certificate1_download_widget
 import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
 import '/training/study_program/filter_study_program_user_copy/filter_study_program_user_copy_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -78,9 +77,7 @@ class _StudyProgramListUserWidgetState
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -247,11 +244,7 @@ class _StudyProgramListUserWidgetState
                               context: context,
                               builder: (context) {
                                 return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
+                                  onTap: () => FocusScope.of(context).unfocus(),
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
                                     child: FilterStudyProgramUserCopyWidget(
@@ -262,13 +255,13 @@ class _StudyProgramListUserWidgetState
                                           dateEnd) async {
                                         _model.lessonName = lessonName!;
                                         _model.dateStart = dateTimeFormat(
-                                          'yyyy-MM-dd',
+                                          "yyyy-MM-dd",
                                           dateStart,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
                                         );
                                         _model.dateEnd = dateTimeFormat(
-                                          'yyyy-MM-dd',
+                                          "yyyy-MM-dd",
                                           dateEnd,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
@@ -613,7 +606,7 @@ class _StudyProgramListUserWidgetState
                                                                             .inDays
                                                                             .toString();
                                                                       }(itemProgramIdTilteItem.dateCreated, itemProgramIdTilteItem.programId.estimateInDay, dateTimeFormat(
-                                                                          'yyyy-MM-dd',
+                                                                          "yyyy-MM-dd",
                                                                           getCurrentTimestamp,
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
@@ -796,9 +789,8 @@ class _StudyProgramListUserWidgetState
                                                                               AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
                                                                               GestureDetector(
-                                                                            onTap: () => _model.unfocusNode.canRequestFocus
-                                                                                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                                : FocusScope.of(context).unfocus(),
+                                                                            onTap: () =>
+                                                                                FocusScope.of(dialogContext).unfocus(),
                                                                             child:
                                                                                 ConfirmDoTestWidget(
                                                                               testId: itemProgramIdTilteItem.programId.tests.first.testsId.id,
@@ -808,9 +800,7 @@ class _StudyProgramListUserWidgetState
                                                                           ),
                                                                         );
                                                                       },
-                                                                    ).then((value) =>
-                                                                        setState(
-                                                                            () {}));
+                                                                    );
                                                                   },
                                                                   text:
                                                                       'Bài thi tổng kết chương',
@@ -898,9 +888,8 @@ class _StudyProgramListUserWidgetState
                                                                               AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
                                                                               GestureDetector(
-                                                                            onTap: () => _model.unfocusNode.canRequestFocus
-                                                                                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                                : FocusScope.of(context).unfocus(),
+                                                                            onTap: () =>
+                                                                                FocusScope.of(dialogContext).unfocus(),
                                                                             child:
                                                                                 Container(
                                                                               height: 200.0,
@@ -915,9 +904,7 @@ class _StudyProgramListUserWidgetState
                                                                           ),
                                                                         );
                                                                       },
-                                                                    ).then((value) =>
-                                                                        setState(
-                                                                            () {}));
+                                                                    );
                                                                   },
                                                                   text:
                                                                       'Chứng chỉ',
@@ -1264,7 +1251,7 @@ class _StudyProgramListUserWidgetState
                                                                   ),
                                                                   Text(
                                                                     dateTimeFormat(
-                                                                      'dd/MM/yyyy',
+                                                                      "dd/MM/yyyy",
                                                                       functions.stringToDateTime(dataLessonItem
                                                                           .lessionsId
                                                                           .dateCreated),
