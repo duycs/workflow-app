@@ -12,7 +12,6 @@ import '/flutter_flow/upload_data.dart';
 import '/news_feed/action_newsfeed_detail/action_newsfeed_detail_widget.dart';
 import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -48,7 +47,6 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for SwipeableStack widget.
   late CardSwiperController swipeableStackController;
   // State field(s) for PageView widget.
@@ -87,7 +85,6 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
   }

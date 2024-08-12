@@ -12,7 +12,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/tasks/export_excel_get_one/export_excel_get_one_widget.dart';
 import '/tasks/filter_report_staff_detail/filter_report_staff_detail_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -110,7 +109,6 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -145,7 +143,6 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     tabBarController?.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();

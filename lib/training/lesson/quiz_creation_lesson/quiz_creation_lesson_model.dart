@@ -11,7 +11,6 @@ import '/training/test/radio_button_add/radio_button_add_widget.dart';
 import '/training/test/test_long_text_add/test_long_text_add_widget.dart';
 import '/training/test/test_number_add/test_number_add_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'quiz_creation_lesson_widget.dart' show QuizCreationLessonWidget;
 import 'package:easy_debounce/easy_debounce.dart';

@@ -9,7 +9,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/author/author_sign_up/author_sign_up_widget.dart';
 import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -34,7 +33,6 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in Profile widget.
   bool? reloadTokenStaffGetOne;
   // Stores action output result for [Backend Call - API (StaffGetOne)] action in Profile widget.
@@ -51,7 +49,6 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     navBarModel.dispose();
   }
 }

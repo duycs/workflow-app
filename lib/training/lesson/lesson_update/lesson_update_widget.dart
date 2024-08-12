@@ -111,9 +111,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -438,12 +436,8 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                               .resolve(
                                                   Directionality.of(context)),
                                           child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
+                                            onTap: () =>
+                                                FocusScope.of(dialogContext)
                                                     .unfocus(),
                                             child: Container(
                                               height: MediaQuery.sizeOf(context)
@@ -472,7 +466,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           ),
                                         );
                                       },
-                                    ).then((value) => setState(() {}));
+                                    );
                                   },
                                   text: 'Bài thi',
                                   icon: Icon(
@@ -1486,12 +1480,8 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
+                                          onTap: () =>
+                                              FocusScope.of(dialogContext)
                                                   .unfocus(),
                                           child: Container(
                                             height: MediaQuery.sizeOf(context)
@@ -1513,7 +1503,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                         ),
                                       );
                                     },
-                                  ).then((value) => setState(() {}));
+                                  );
                                 },
                                 child: Container(
                                   width: 180.0,

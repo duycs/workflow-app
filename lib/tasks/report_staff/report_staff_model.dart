@@ -9,7 +9,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/tasks/export_excel/export_excel_widget.dart';
 import '/tasks/filter_report_staff/filter_report_staff_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
@@ -42,7 +41,6 @@ class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in ReportStaff widget.
   bool? getStaffList2Token;
   // State field(s) for TextField widget.
@@ -63,7 +61,6 @@ class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

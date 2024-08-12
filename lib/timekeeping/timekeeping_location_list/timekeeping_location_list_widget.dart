@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
 import '/timekeeping/time_keeping_location_detail/time_keeping_location_detail_widget.dart';
 import '/timekeeping/time_keeping_location_update/time_keeping_location_update_widget.dart';
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -65,9 +64,7 @@ class _TimekeepingLocationListWidgetState
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -84,10 +81,7 @@ class _TimekeepingLocationListWidgetState
                     alignment: AlignmentDirectional(0.0, 0.0)
                         .resolve(Directionality.of(context)),
                     child: GestureDetector(
-                      onTap: () => _model.unfocusNode.canRequestFocus
-                          ? FocusScope.of(context)
-                              .requestFocus(_model.unfocusNode)
-                          : FocusScope.of(context).unfocus(),
+                      onTap: () => FocusScope.of(dialogContext).unfocus(),
                       child: Container(
                         height: double.infinity,
                         width: double.infinity,
@@ -101,7 +95,7 @@ class _TimekeepingLocationListWidgetState
                     ),
                   );
                 },
-              ).then((value) => setState(() {}));
+              );
             },
             backgroundColor: FlutterFlowTheme.of(context).primary,
             elevation: 8.0,
@@ -360,12 +354,8 @@ class _TimekeepingLocationListWidgetState
                                                 .resolve(
                                                     Directionality.of(context)),
                                             child: GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
+                                              onTap: () =>
+                                                  FocusScope.of(dialogContext)
                                                       .unfocus(),
                                               child: Container(
                                                 height: double.infinity,
@@ -378,7 +368,7 @@ class _TimekeepingLocationListWidgetState
                                             ),
                                           );
                                         },
-                                      ).then((value) => setState(() {}));
+                                      );
                                     },
                                     child: Slidable(
                                       endActionPane: ActionPane(
@@ -410,15 +400,9 @@ class _TimekeepingLocationListWidgetState
                                                                   Directionality.of(
                                                                       context)),
                                                       child: GestureDetector(
-                                                        onTap: () => _model
-                                                                .unfocusNode
-                                                                .canRequestFocus
-                                                            ? FocusScope.of(
-                                                                    context)
-                                                                .requestFocus(_model
-                                                                    .unfocusNode)
-                                                            : FocusScope.of(
-                                                                    context)
+                                                        onTap: () =>
+                                                            FocusScope.of(
+                                                                    dialogContext)
                                                                 .unfocus(),
                                                         child:
                                                             TimeKeepingLocationUpdateWidget(
@@ -427,8 +411,7 @@ class _TimekeepingLocationListWidgetState
                                                       ),
                                                     );
                                                   },
-                                                ).then(
-                                                    (value) => setState(() {}));
+                                                );
                                               },
                                             ),
                                           ),

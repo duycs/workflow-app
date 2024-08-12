@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure_publishing/filter_procedure_published/filter_procedure_published_widget.dart';
 import '/procedure_publishing/procedure_published/procedure_published_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -73,9 +72,7 @@ class _ProcedurePublishedListWidgetState
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -92,10 +89,7 @@ class _ProcedurePublishedListWidgetState
                     alignment: AlignmentDirectional(0.0, 0.0)
                         .resolve(Directionality.of(context)),
                     child: GestureDetector(
-                      onTap: () => _model.unfocusNode.canRequestFocus
-                          ? FocusScope.of(context)
-                              .requestFocus(_model.unfocusNode)
-                          : FocusScope.of(context).unfocus(),
+                      onTap: () => FocusScope.of(dialogContext).unfocus(),
                       child: ProcedurePublishedWidget(
                         callback: () async {
                           setState(
@@ -107,7 +101,7 @@ class _ProcedurePublishedListWidgetState
                     ),
                   );
                 },
-              ).then((value) => setState(() {}));
+              );
             },
             backgroundColor: FlutterFlowTheme.of(context).primary,
             elevation: 1.0,
@@ -293,10 +287,7 @@ class _ProcedurePublishedListWidgetState
                             context: context,
                             builder: (context) {
                               return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
+                                onTap: () => FocusScope.of(context).unfocus(),
                                 child: Padding(
                                   padding: MediaQuery.viewInsetsOf(context),
                                   child: FilterProcedurePublishedWidget(
@@ -789,7 +780,7 @@ class _ProcedurePublishedListWidgetState
                                                                           ),
                                                                           Text(
                                                                             'T.gian tạo: ${dateTimeFormat(
-                                                                              'dd/MM/yyyy',
+                                                                              "dd/MM/yyyy",
                                                                               functions.stringToDateTime(itemPublishedListItem.dateCreated),
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             )}',

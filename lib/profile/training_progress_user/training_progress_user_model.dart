@@ -15,15 +15,9 @@ import 'package:provider/provider.dart';
 
 class TrainingProgressUserModel
     extends FlutterFlowModel<TrainingProgressUserWidget> {
-  ///  State fields for stateful widgets in this page.
-
-  final unfocusNode = FocusNode();
-
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

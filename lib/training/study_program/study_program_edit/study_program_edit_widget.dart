@@ -775,7 +775,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                               ),
                                             );
                                           },
-                                        ).then((value) => setState(() {}));
+                                        );
                                       },
                                       text: 'Bài học',
                                       icon: Icon(

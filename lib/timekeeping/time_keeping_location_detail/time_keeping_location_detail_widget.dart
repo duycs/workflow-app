@@ -350,7 +350,7 @@ class _TimeKeepingLocationDetailWidgetState
                           ),
                         );
                       },
-                    ).then((value) => setState(() {}));
+                    );
                   },
                   text: 'Chỉnh sửa',
                   icon: Icon(

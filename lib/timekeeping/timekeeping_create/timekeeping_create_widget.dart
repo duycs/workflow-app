@@ -57,9 +57,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -139,10 +137,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           context: context,
                           builder: (context) {
                             return GestureDetector(
-                              onTap: () => _model.unfocusNode.canRequestFocus
-                                  ? FocusScope.of(context)
-                                      .requestFocus(_model.unfocusNode)
-                                  : FocusScope.of(context).unfocus(),
+                              onTap: () => FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
                                 child: AlertStaffCheckDepartmentsWidget(
@@ -181,10 +176,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           alignment: AlignmentDirectional(0.0, 0.0)
                               .resolve(Directionality.of(context)),
                           child: GestureDetector(
-                            onTap: () => _model.unfocusNode.canRequestFocus
-                                ? FocusScope.of(context)
-                                    .requestFocus(_model.unfocusNode)
-                                : FocusScope.of(context).unfocus(),
+                            onTap: () => FocusScope.of(dialogContext).unfocus(),
                             child: TimekeepingShiftWidget(
                               shiftSelect: _model.shiftSelect,
                               address: _model.address,
@@ -238,7 +230,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           ),
                         );
                       },
-                    ).then((value) => setState(() {}));
+                    );
                   },
                   child: Text(
                     'Tiếp tục',
@@ -1496,10 +1488,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           context: context,
                           builder: (context) {
                             return GestureDetector(
-                              onTap: () => _model.unfocusNode.canRequestFocus
-                                  ? FocusScope.of(context)
-                                      .requestFocus(_model.unfocusNode)
-                                  : FocusScope.of(context).unfocus(),
+                              onTap: () => FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
                                 child: TimeKeepingSelectDateWidget(),
@@ -1586,10 +1575,8 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                               alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
+                                onTap: () =>
+                                    FocusScope.of(dialogContext).unfocus(),
                                 child: DropdownDepartmentsListWidget(
                                   dataPar: _model.departmentSelectList,
                                   callback: (item) async {
@@ -1629,7 +1616,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
                       },
                       child: Container(
                         width: 100.0,
@@ -1765,10 +1752,8 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                               alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
+                                onTap: () =>
+                                    FocusScope.of(dialogContext).unfocus(),
                                 child: DropdownUserListWidget(
                                   dataPar: _model.staffSelectList,
                                   callback: (item) async {
@@ -1783,7 +1768,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
                       },
                       child: Container(
                         width: 100.0,

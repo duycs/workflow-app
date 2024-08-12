@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/profile/confirm_password/confirm_password_widget.dart';
 import '/training/do_test/delete_account/delete_account_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'profile_user_setting_widget.dart' show ProfileUserSettingWidget;
 import 'package:flutter/material.dart';
@@ -41,7 +40,6 @@ class ProfileUserSettingModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Custom Action - biometricGetPublicKey] action in ProfileUserSetting widget.
   String? biometricPublicKey;
   // State field(s) for SwitchListTile widget.
@@ -71,7 +69,5 @@ class ProfileUserSettingModel
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

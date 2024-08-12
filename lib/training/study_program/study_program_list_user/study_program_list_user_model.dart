@@ -9,7 +9,6 @@ import '/training/certificate/certificate1_download/certificate1_download_widget
 import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
 import '/training/study_program/filter_study_program_user_copy/filter_study_program_user_copy_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
@@ -51,7 +50,6 @@ class StudyProgramListUserModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in StudyProgramListUser widget.
   bool? tokenReloadStudyProgramListUserList;
   // State field(s) for TextFieldNameSearch widget.
@@ -69,7 +67,6 @@ class StudyProgramListUserModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldNameSearchFocusNode?.dispose();
     textFieldNameSearchTextController?.dispose();
 

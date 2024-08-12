@@ -12,7 +12,6 @@ import '/tasks/detail_action_type_to_do_list/detail_action_type_to_do_list_widge
 import '/tasks/detail_action_type_upload_file/detail_action_type_upload_file_widget.dart';
 import '/tasks/popup_task_detail_copy/popup_task_detail_copy_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/gestures.dart';
@@ -71,9 +70,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -467,7 +464,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                 Expanded(
                                   child: Text(
                                     dateTimeFormat(
-                                      'HH:mm dd/MM/yyyy',
+                                      "HH:mm dd/MM/yyyy",
                                       functions.stringToDateTime(
                                           _model.list.first.dateCreated),
                                       locale: FFLocalizations.of(context)
@@ -1438,7 +1435,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                       Expanded(
                                                         child: Text(
                                                           dateTimeFormat(
-                                                            'HH:mm dd/MM/yyyy',
+                                                            "HH:mm dd/MM/yyyy",
                                                             functions
                                                                 .stringToDateTime(
                                                                     dataListItem
@@ -1516,7 +1513,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                       Expanded(
                                                         child: Text(
                                                           dateTimeFormat(
-                                                            'HH:mm dd/MM/yyyy',
+                                                            "HH:mm dd/MM/yyyy",
                                                             functions
                                                                 .stringToDateTime(
                                                                     dataListItem
@@ -2097,7 +2094,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                               backgroundColor: Colors.transparent,
                                                                               alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                               child: GestureDetector(
-                                                                                onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                onTap: () => FocusScope.of(dialogContext).unfocus(),
                                                                                 child: Container(
                                                                                   height: MediaQuery.sizeOf(context).height * 1.0,
                                                                                   width: MediaQuery.sizeOf(context).width * 1.0,
@@ -2111,8 +2108,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                               ),
                                                                             );
                                                                           },
-                                                                        ).then((value) =>
-                                                                            setState(() {}));
+                                                                        );
                                                                       },
                                                                       child:
                                                                           Text(
@@ -2217,7 +2213,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                                 AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
                                                                                 GestureDetector(
-                                                                              onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                              onTap: () => FocusScope.of(dialogContext).unfocus(),
                                                                               child: Container(
                                                                                 height: MediaQuery.sizeOf(context).height * 1.0,
                                                                                 width: MediaQuery.sizeOf(context).width * 1.0,
@@ -2228,9 +2224,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                             ),
                                                                           );
                                                                         },
-                                                                      ).then((value) =>
-                                                                          setState(
-                                                                              () {}));
+                                                                      );
                                                                     },
                                                                     child: Text(
                                                                       'Mở rộng',
@@ -2296,7 +2290,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                                 AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
                                                                                 GestureDetector(
-                                                                              onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                              onTap: () => FocusScope.of(dialogContext).unfocus(),
                                                                               child: Container(
                                                                                 height: MediaQuery.sizeOf(context).height * 1.0,
                                                                                 width: MediaQuery.sizeOf(context).width * 1.0,
@@ -2342,9 +2336,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                             ),
                                                                           );
                                                                         },
-                                                                      ).then((value) =>
-                                                                          setState(
-                                                                              () {}));
+                                                                      );
 
                                                                       setState(
                                                                           () {});

@@ -1006,9 +1006,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                   ),
                                                                 );
                                                               },
-                                                            ).then((value) =>
-                                                                setState(
-                                                                    () {}));
+                                                            );
                                                           },
                                                           child: Row(
                                                             mainAxisSize:
@@ -1152,9 +1150,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                   ),
                                                                 );
                                                               },
-                                                            ).then((value) =>
-                                                                setState(
-                                                                    () {}));
+                                                            );
                                                           },
                                                           text:
                                                               'Cập nhật mô tả',

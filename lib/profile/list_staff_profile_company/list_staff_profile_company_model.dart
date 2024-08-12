@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'list_staff_profile_company_widget.dart'
     show ListStaffProfileCompanyWidget;
@@ -41,7 +40,6 @@ class ListStaffProfileCompanyModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in ListStaffProfileCompany widget.
   bool? reloadTokenListStaffProfileCompanyApp;
   // State field(s) for TextField widget.
@@ -63,7 +61,6 @@ class ListStaffProfileCompanyModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

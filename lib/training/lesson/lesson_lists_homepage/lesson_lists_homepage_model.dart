@@ -9,11 +9,9 @@ import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.
 import '/training/lesson/no_data/no_data_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'lesson_lists_homepage_widget.dart' show LessonListsHomepageWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -115,7 +113,6 @@ class LessonListsHomepageModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in LessonLists_Homepage widget.
   bool? tokenReloadLessonListsHomepageList;
   // State field(s) for nameSearch widget.
@@ -137,7 +134,6 @@ class LessonListsHomepageModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     nameSearchFocusNode?.dispose();
     nameSearchTextController?.dispose();
 
@@ -195,7 +191,7 @@ class LessonListsHomepageModel
           '{\"_and\":[${'{\"status\":{\"_eq\":\"draft\"}},{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
         return DateTime.parse(var1).add(Duration(days: 1)).toString();
       }(dateTimeFormat(
-        'yyyy-MM-dd',
+        "yyyy-MM-dd",
         getCurrentTimestamp,
         locale: FFLocalizations.of(context).languageCode,
       ))}\"}},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}'}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}}' : ' '}]}',
@@ -240,7 +236,7 @@ class LessonListsHomepageModel
           '{\"_and\":[${'{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"_and\":[{\"_and\":[{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
         return DateTime.parse(var1).add(Duration(days: 1)).toString();
       }(dateTimeFormat(
-        'yyyy-MM-dd',
+        "yyyy-MM-dd",
         getCurrentTimestamp,
         locale: FFLocalizations.of(context).languageCode,
       ))}\"}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}]},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}'}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}}' : ' '}]}',

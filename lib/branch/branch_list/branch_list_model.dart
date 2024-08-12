@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'branch_list_widget.dart' show BranchListWidget;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -59,7 +58,6 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
@@ -74,7 +72,6 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

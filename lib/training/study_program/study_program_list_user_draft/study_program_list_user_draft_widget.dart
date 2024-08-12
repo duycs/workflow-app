@@ -56,9 +56,7 @@ class _StudyProgramListUserDraftWidgetState
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -257,11 +255,7 @@ class _StudyProgramListUserDraftWidgetState
                               context: context,
                               builder: (context) {
                                 return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
+                                  onTap: () => FocusScope.of(context).unfocus(),
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
                                     child: FilterStudyProgramUserWidget(
@@ -460,15 +454,9 @@ class _StudyProgramListUserDraftWidgetState
                                                                           context)),
                                                               child:
                                                                   GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
+                                                                onTap: () =>
+                                                                    FocusScope.of(
+                                                                            dialogContext)
                                                                         .unfocus(),
                                                                 child:
                                                                     ConfirmDoTestWidget(
@@ -485,8 +473,7 @@ class _StudyProgramListUserDraftWidgetState
                                                               ),
                                                             );
                                                           },
-                                                        ).then((value) =>
-                                                            setState(() {}));
+                                                        );
                                                       },
                                                       text:
                                                           'Bài thi tổng kết chương',
@@ -710,7 +697,7 @@ class _StudyProgramListUserDraftWidgetState
                                                         ),
                                                         Text(
                                                           dateTimeFormat(
-                                                            'dd-MM-yyyy',
+                                                            "dd-MM-yyyy",
                                                             functions.stringToDateTime(
                                                                 dataListTestsViewItem
                                                                     .dateCreated),
@@ -926,7 +913,7 @@ class _StudyProgramListUserDraftWidgetState
                                                                     ? valueOrDefault<
                                                                         String>(
                                                                         dateTimeFormat(
-                                                                          'dd-MM-yyyy',
+                                                                          "dd-MM-yyyy",
                                                                           functions.stringToDateTime(dataListLessionsViewItem
                                                                               .lessionsId
                                                                               .dateCreated),

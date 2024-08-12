@@ -9,7 +9,6 @@ import '/news_feed/action_newsfeed/action_newsfeed_widget.dart';
 import '/news_feed/comment_newsfeed/comment_newsfeed_widget.dart';
 import '/news_feed/d_n_f_newsfeed/d_n_f_newsfeed_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
@@ -25,7 +24,6 @@ class NewsfeedListRequireModel
     extends FlutterFlowModel<NewsfeedListRequireWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for ListView widget.
 
   PagingController<ApiPagingParams, dynamic>? listViewPagingController;
@@ -36,7 +34,6 @@ class NewsfeedListRequireModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     listViewPagingController?.dispose();
   }
 

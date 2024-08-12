@@ -9,9 +9,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/staff/filter_personnel_list/filter_personnel_list_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'personnel_list_widget.dart' show PersonnelListWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +48,6 @@ class PersonnelListModel extends FlutterFlowModel<PersonnelListWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in PersonnelList widget.
   bool? getStaffListToken;
   // State field(s) for TextField widget.
@@ -71,7 +68,6 @@ class PersonnelListModel extends FlutterFlowModel<PersonnelListWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

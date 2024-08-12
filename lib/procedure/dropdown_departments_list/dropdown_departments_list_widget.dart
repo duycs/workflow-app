@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/check_box_toggle/check_box_toggle_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -491,11 +490,10 @@ class _DropdownDepartmentsListWidgetState
                               child: Builder(
                                 builder: (context) {
                                   final listView = _model.data
-                                      .where((e) => e.name
-                                          .toLowerCase()
-                                          .contains(_model
+                                      .where((e) => (e.name.toLowerCase())
+                                          .contains((_model
                                               .textNameTextController.text
-                                              .toLowerCase()))
+                                              .toLowerCase())))
                                       .toList();
 
                                   return ListView.separated(
@@ -615,11 +613,10 @@ class _DropdownDepartmentsListWidgetState
                             color: FlutterFlowTheme.of(context).alternate,
                           ),
                           if ((_model.data
-                                      .where((e) => e.name
-                                          .toLowerCase()
-                                          .contains(_model
+                                      .where((e) => (e.name.toLowerCase())
+                                          .contains((_model
                                               .textNameTextController.text
-                                              .toLowerCase()))
+                                              .toLowerCase())))
                                       .toList()
                                       .length <=
                                   0) &&

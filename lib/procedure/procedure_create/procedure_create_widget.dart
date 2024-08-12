@@ -13,7 +13,6 @@ import '/procedure/dropdown_user_list/dropdown_user_list_widget.dart';
 import '/procedure/procedure_step_create/procedure_step_create_widget.dart';
 import '/procedure/procedure_step_menu/procedure_step_menu_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -94,9 +93,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -1026,15 +1023,8 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                         context: context,
                                                         builder: (context) {
                                                           return GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
+                                                            onTap: () =>
+                                                                FocusScope.of(
                                                                         context)
                                                                     .unfocus(),
                                                             child: Padding(
@@ -1072,15 +1062,8 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                         context: context,
                                                         builder: (context) {
                                                           return GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
+                                                            onTap: () =>
+                                                                FocusScope.of(
                                                                         context)
                                                                     .unfocus(),
                                                             child: Padding(
@@ -1204,14 +1187,8 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                               builder:
                                                                   (context) {
                                                                 return GestureDetector(
-                                                                  onTap: () => _model
-                                                                          .unfocusNode
-                                                                          .canRequestFocus
-                                                                      ? FocusScope.of(
-                                                                              context)
-                                                                          .requestFocus(_model
-                                                                              .unfocusNode)
-                                                                      : FocusScope.of(
+                                                                  onTap: () =>
+                                                                      FocusScope.of(
                                                                               context)
                                                                           .unfocus(),
                                                                   child:
@@ -1423,14 +1400,8 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                               builder:
                                                                   (context) {
                                                                 return GestureDetector(
-                                                                  onTap: () => _model
-                                                                          .unfocusNode
-                                                                          .canRequestFocus
-                                                                      ? FocusScope.of(
-                                                                              context)
-                                                                          .requestFocus(_model
-                                                                              .unfocusNode)
-                                                                      : FocusScope.of(
+                                                                  onTap: () =>
+                                                                      FocusScope.of(
                                                                               context)
                                                                           .unfocus(),
                                                                   child:
@@ -3648,15 +3619,9 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                   Directionality.of(
                                                                       context)),
                                                       child: GestureDetector(
-                                                        onTap: () => _model
-                                                                .unfocusNode
-                                                                .canRequestFocus
-                                                            ? FocusScope.of(
-                                                                    context)
-                                                                .requestFocus(_model
-                                                                    .unfocusNode)
-                                                            : FocusScope.of(
-                                                                    context)
+                                                        onTap: () =>
+                                                            FocusScope.of(
+                                                                    dialogContext)
                                                                 .unfocus(),
                                                         child: Container(
                                                           height:
@@ -3702,8 +3667,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                       ),
                                                     );
                                                   },
-                                                ).then(
-                                                    (value) => setState(() {}));
+                                                );
                                               },
                                               text: 'Bước',
                                               icon: Icon(
@@ -4030,7 +3994,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                             builder:
                                                                                 (context) {
                                                                               return GestureDetector(
-                                                                                onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                onTap: () => FocusScope.of(context).unfocus(),
                                                                                 child: Padding(
                                                                                   padding: MediaQuery.viewInsetsOf(context),
                                                                                   child: ProcedureStepMenuWidget(

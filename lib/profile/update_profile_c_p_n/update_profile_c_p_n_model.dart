@@ -12,7 +12,6 @@ import '/rich_text_editor/mobile_editor_component/mobile_editor_component_widget
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'update_profile_c_p_n_widget.dart' show UpdateProfileCPNWidget;
 import 'package:flutter/material.dart';

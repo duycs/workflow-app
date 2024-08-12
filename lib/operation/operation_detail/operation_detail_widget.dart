@@ -501,7 +501,7 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                       ),
                                     );
                                   },
-                                ).then((value) => setState(() {}));
+                                );
 
                                 Navigator.pop(context);
                               },

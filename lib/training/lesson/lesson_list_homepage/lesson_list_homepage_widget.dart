@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -83,9 +82,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -267,11 +264,8 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                 context: context,
                                 builder: (context) {
                                   return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
+                                    onTap: () =>
+                                        FocusScope.of(context).unfocus(),
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
                                       child: FilterLessonHomePageWidget(
@@ -292,13 +286,13 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                             lessonFavoriteStatus,
                                             programsId) async {
                                           _model.dateStartList = dateTimeFormat(
-                                            'yyyy-MM-dd',
+                                            "yyyy-MM-dd",
                                             dateStart,
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,
                                           );
                                           _model.dateEndList = dateTimeFormat(
-                                            'yyyy-MM-dd',
+                                            "yyyy-MM-dd",
                                             dateEnd,
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,

@@ -461,7 +461,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                     Expanded(
                                       child: Text(
                                         dateTimeFormat(
-                                          'dd/MM/yyyy',
+                                          "dd/MM/yyyy",
                                           functions
                                               .stringToDateTime(getJsonField(
                                             widget!.staffDetail,

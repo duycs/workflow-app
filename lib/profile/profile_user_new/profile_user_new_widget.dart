@@ -68,9 +68,7 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).alternate,
@@ -704,12 +702,8 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                               context)),
                                                                   child:
                                                                       GestureDetector(
-                                                                    onTap: () => _model
-                                                                            .unfocusNode
-                                                                            .canRequestFocus
-                                                                        ? FocusScope.of(context).requestFocus(_model
-                                                                            .unfocusNode)
-                                                                        : FocusScope.of(context)
+                                                                    onTap: () =>
+                                                                        FocusScope.of(dialogContext)
                                                                             .unfocus(),
                                                                     child:
                                                                         ProfileStaffNewWidget(
@@ -738,9 +732,7 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                   ),
                                                                 );
                                                               },
-                                                            ).then((value) =>
-                                                                setState(
-                                                                    () {}));
+                                                            );
                                                           },
                                                           child: Row(
                                                             mainAxisSize:
@@ -1161,11 +1153,11 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                                         ),
                                                                                         Text(
                                                                                           'Từ ngày ${dateTimeFormat(
-                                                                                            'dd-MM-yyyy',
+                                                                                            "dd-MM-yyyy",
                                                                                             functions.stringToDateTime(listProgramsItem.dateCreated),
                                                                                             locale: FFLocalizations.of(context).languageCode,
                                                                                           )} đến ngày ${dateTimeFormat(
-                                                                                            'dd-MM-yyyy',
+                                                                                            "dd-MM-yyyy",
                                                                                             functions.stringToDateTime(listProgramsItem.dateUpdated),
                                                                                             locale: FFLocalizations.of(context).languageCode,
                                                                                           )}',
@@ -1287,12 +1279,12 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                                               'Stack',
                                                                                               listProgramsItem.programId.name,
                                                                                               dateTimeFormat(
-                                                                                                'dd-MM-yyyy',
+                                                                                                "dd-MM-yyyy",
                                                                                                 functions.stringToDateTime(listProgramsItem.dateCreated),
                                                                                                 locale: FFLocalizations.of(context).languageCode,
                                                                                               ),
                                                                                               dateTimeFormat(
-                                                                                                'dd-MM-yyyy',
+                                                                                                "dd-MM-yyyy",
                                                                                                 functions.stringToDateTime(listProgramsItem.dateUpdated),
                                                                                                 locale: FFLocalizations.of(context).languageCode,
                                                                                               ),
@@ -1522,11 +1514,11 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                             ),
                                                                             Text(
                                                                               'Từ ngày ${dateTimeFormat(
-                                                                                'dd-MM-yyyy',
+                                                                                "dd-MM-yyyy",
                                                                                 functions.stringToDateTime(listProgramsItem.dateCreated),
                                                                                 locale: FFLocalizations.of(context).languageCode,
                                                                               )} đến ngày ${dateTimeFormat(
-                                                                                'dd-MM-yyyy',
+                                                                                "dd-MM-yyyy",
                                                                                 functions.stringToDateTime(listProgramsItem.dateUpdated),
                                                                                 locale: FFLocalizations.of(context).languageCode,
                                                                               )}',
@@ -1562,12 +1554,12 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                                 'Stack',
                                                                                 listProgramsItem.programId.name,
                                                                                 dateTimeFormat(
-                                                                                  'dd-MM-yyyy',
+                                                                                  "dd-MM-yyyy",
                                                                                   functions.stringToDateTime(listProgramsItem.dateCreated),
                                                                                   locale: FFLocalizations.of(context).languageCode,
                                                                                 ),
                                                                                 dateTimeFormat(
-                                                                                  'dd-MM-yyyy',
+                                                                                  "dd-MM-yyyy",
                                                                                   functions.stringToDateTime(listProgramsItem.dateUpdated),
                                                                                   locale: FFLocalizations.of(context).languageCode,
                                                                                 ),
@@ -2110,16 +2102,9 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                       context)),
                                                           child:
                                                               GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
+                                                            onTap: () =>
+                                                                FocusScope.of(
+                                                                        dialogContext)
                                                                     .unfocus(),
                                                             child: Container(
                                                               height: MediaQuery
@@ -2160,8 +2145,7 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                           ),
                                                         );
                                                       },
-                                                    ).then((value) =>
-                                                        setState(() {}));
+                                                    );
                                                   },
                                                   child: Row(
                                                     mainAxisSize:
@@ -2552,11 +2536,11 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                                 ),
                                                                                 Text(
                                                                                   'Từ ngày ${dateTimeFormat(
-                                                                                    'dd-MM-yyyy',
+                                                                                    "dd-MM-yyyy",
                                                                                     functions.stringToDateTime(listProgramsItem.dateCreated),
                                                                                     locale: FFLocalizations.of(context).languageCode,
                                                                                   )} đến ngày ${dateTimeFormat(
-                                                                                    'dd-MM-yyyy',
+                                                                                    "dd-MM-yyyy",
                                                                                     functions.stringToDateTime(listProgramsItem.dateUpdated),
                                                                                     locale: FFLocalizations.of(context).languageCode,
                                                                                   )}',
@@ -2692,12 +2676,12 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                                       'Stack',
                                                                                       listProgramsItem.programId.name,
                                                                                       dateTimeFormat(
-                                                                                        'dd-MM-yyyy',
+                                                                                        "dd-MM-yyyy",
                                                                                         functions.stringToDateTime(listProgramsItem.dateCreated),
                                                                                         locale: FFLocalizations.of(context).languageCode,
                                                                                       ),
                                                                                       dateTimeFormat(
-                                                                                        'dd-MM-yyyy',
+                                                                                        "dd-MM-yyyy",
                                                                                         functions.stringToDateTime(listProgramsItem.dateUpdated),
                                                                                         locale: FFLocalizations.of(context).languageCode,
                                                                                       ),
@@ -2986,13 +2970,13 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                     ),
                                                                     Text(
                                                                       'Từ ngày ${dateTimeFormat(
-                                                                        'dd-MM-yyyy',
+                                                                        "dd-MM-yyyy",
                                                                         functions
                                                                             .stringToDateTime(listProgramsItem.dateCreated),
                                                                         locale:
                                                                             FFLocalizations.of(context).languageCode,
                                                                       )} đến ngày ${dateTimeFormat(
-                                                                        'dd-MM-yyyy',
+                                                                        "dd-MM-yyyy",
                                                                         functions
                                                                             .stringToDateTime(listProgramsItem.dateUpdated),
                                                                         locale:
@@ -3046,14 +3030,14 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                             .programId
                                                                             .name,
                                                                         dateTimeFormat(
-                                                                          'dd-MM-yyyy',
+                                                                          "dd-MM-yyyy",
                                                                           functions
                                                                               .stringToDateTime(listProgramsItem.dateCreated),
                                                                           locale:
                                                                               FFLocalizations.of(context).languageCode,
                                                                         ),
                                                                         dateTimeFormat(
-                                                                          'dd-MM-yyyy',
+                                                                          "dd-MM-yyyy",
                                                                           functions
                                                                               .stringToDateTime(listProgramsItem.dateUpdated),
                                                                           locale:

@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
@@ -52,7 +51,6 @@ class LessonListHomepageModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in LessonList_Homepage widget.
   bool? tokenReloadLessonListHomepage;
   // State field(s) for nameSearch widget.
@@ -69,7 +67,6 @@ class LessonListHomepageModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     nameSearchFocusNode?.dispose();
     nameSearchTextController?.dispose();
 

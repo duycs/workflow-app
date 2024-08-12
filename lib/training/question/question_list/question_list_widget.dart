@@ -11,7 +11,6 @@ import '/training/question/question_create/question_create_widget.dart';
 import '/training/question/question_menu/question_menu_widget.dart';
 import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -72,9 +71,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -91,10 +88,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                     alignment: AlignmentDirectional(0.0, 1.0)
                         .resolve(Directionality.of(context)),
                     child: GestureDetector(
-                      onTap: () => _model.unfocusNode.canRequestFocus
-                          ? FocusScope.of(context)
-                              .requestFocus(_model.unfocusNode)
-                          : FocusScope.of(context).unfocus(),
+                      onTap: () => FocusScope.of(dialogContext).unfocus(),
                       child: Container(
                         height: MediaQuery.sizeOf(context).height * 1.0,
                         width: MediaQuery.sizeOf(context).width * 1.0,
@@ -116,7 +110,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                     ),
                   );
                 },
-              ).then((value) => setState(() {}));
+              );
             },
             backgroundColor: FlutterFlowTheme.of(context).primary,
             elevation: 8.0,
@@ -285,10 +279,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                             context: context,
                             builder: (context) {
                               return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
+                                onTap: () => FocusScope.of(context).unfocus(),
                                 child: Padding(
                                   padding: MediaQuery.viewInsetsOf(context),
                                   child: FilterQuestionWidget(
@@ -484,13 +475,8 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                 context: context,
                                                 builder: (context) {
                                                   return GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
+                                                    onTap: () =>
+                                                        FocusScope.of(context)
                                                             .unfocus(),
                                                     child: Padding(
                                                       padding: MediaQuery
@@ -573,7 +559,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                           children: [
                                             Text(
                                               dateTimeFormat(
-                                                'dd-MM-yyyy',
+                                                "dd-MM-yyyy",
                                                 functions.stringToDateTime(
                                                     detailViewItem.dateCreated),
                                                 locale:

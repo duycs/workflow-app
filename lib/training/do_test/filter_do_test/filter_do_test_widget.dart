@@ -201,7 +201,7 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                               });
                             }
                             _model.dateStart = dateTimeFormat(
-                              'yyyy-MM-dd',
+                              "yyyy-MM-dd",
                               _model.datePicked1,
                               locale: FFLocalizations.of(context).languageCode,
                             );
@@ -288,7 +288,7 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                               });
                             }
                             _model.dateEnd = dateTimeFormat(
-                              'yyyy-MM-dd',
+                              "yyyy-MM-dd",
                               _model.datePicked2,
                               locale: FFLocalizations.of(context).languageCode,
                             );

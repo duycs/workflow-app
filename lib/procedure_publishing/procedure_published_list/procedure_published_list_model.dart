@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure_publishing/filter_procedure_published/filter_procedure_published_widget.dart';
 import '/procedure_publishing/procedure_published/procedure_published_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'procedure_published_list_widget.dart' show ProcedurePublishedListWidget;
@@ -51,7 +50,6 @@ class ProcedurePublishedListModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in ProcedurePublishedList widget.
   bool? reloadTokenPublishedListApp;
   // State field(s) for TextField widget.
@@ -68,7 +66,6 @@ class ProcedurePublishedListModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

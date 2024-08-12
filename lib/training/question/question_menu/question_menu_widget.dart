@@ -118,7 +118,7 @@ class _QuestionMenuWidgetState extends State<QuestionMenuWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
 
                         Navigator.pop(context);
                         _model.setColor = 0;
@@ -196,7 +196,7 @@ class _QuestionMenuWidgetState extends State<QuestionMenuWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
 
                         Navigator.pop(context);
                         _model.setColor = 0;

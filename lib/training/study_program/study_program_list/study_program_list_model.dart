@@ -11,7 +11,6 @@ import '/training/study_program/filter_study_program/filter_study_program_widget
 import '/training/study_program/study_program_create/study_program_create_widget.dart';
 import '/training/study_program/study_program_edit/study_program_edit_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
@@ -59,7 +58,6 @@ class StudyProgramListModel extends FlutterFlowModel<StudyProgramListWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in StudyProgramList widget.
   bool? tokenReloadStudyProgramList;
   // State field(s) for TextFieldNameSearch widget.
@@ -77,7 +75,6 @@ class StudyProgramListModel extends FlutterFlowModel<StudyProgramListWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldNameSearchFocusNode?.dispose();
     textFieldNameSearchTextController?.dispose();
 

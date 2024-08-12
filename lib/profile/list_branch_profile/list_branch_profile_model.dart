@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'list_branch_profile_widget.dart' show ListBranchProfileWidget;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -36,7 +35,6 @@ class ListBranchProfileModel extends FlutterFlowModel<ListBranchProfileWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in ListBranchProfile widget.
   bool? checkTokenListBranchProfile;
   // State field(s) for TextField widget.
@@ -53,7 +51,6 @@ class ListBranchProfileModel extends FlutterFlowModel<ListBranchProfileWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

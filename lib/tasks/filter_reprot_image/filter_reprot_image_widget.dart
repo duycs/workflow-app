@@ -224,7 +224,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                             });
                           }
                           _model.dateStart = dateTimeFormat(
-                            'yyyy-MM-dd',
+                            "yyyy-MM-dd",
                             _model.datePicked1,
                             locale: FFLocalizations.of(context).languageCode,
                           );
@@ -310,7 +310,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                             });
                           }
                           _model.dateEnd = dateTimeFormat(
-                            'yyyy-MM-dd',
+                            "yyyy-MM-dd",
                             _model.datePicked2,
                             locale: FFLocalizations.of(context).languageCode,
                           );

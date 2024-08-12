@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -325,12 +324,11 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                               .where((e) =>
                                                   (e.flowId == null ||
                                                       e.flowId == '') &&
-                                                  (e.name
-                                                      .toLowerCase()
-                                                      .contains(_model
+                                                  ((e.name.toLowerCase())
+                                                      .contains((_model
                                                           .textNameTextController
                                                           .text
-                                                          .toLowerCase())))
+                                                          .toLowerCase()))))
                                               .toList();
 
                                           return ListView.builder(
@@ -499,12 +497,11 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                               .where((e) =>
                                                   (e.flowId == null ||
                                                       e.flowId == '') &&
-                                                  (e.name
-                                                      .toLowerCase()
-                                                      .contains(_model
+                                                  ((e.name.toLowerCase())
+                                                      .contains((_model
                                                           .textNameTextController
                                                           .text
-                                                          .toLowerCase())))
+                                                          .toLowerCase()))))
                                               .toList()
                                               .length <=
                                           0) &&

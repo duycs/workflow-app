@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -583,7 +582,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                         _model.limitPublished =
                                             functions.totalLimitPublished(
                                                 dateTimeFormat(
-                                                  'dd/MM/yyyy',
+                                                  "dd/MM/yyyy",
                                                   _model.datePicked2,
                                                   locale: FFLocalizations.of(
                                                           context)
@@ -615,7 +614,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                             child: Text(
                                               _model.datePicked2 != null
                                                   ? 'Kết thúc chạy lặp: ${dateTimeFormat(
-                                                      'dd/MM/yyyy',
+                                                      "dd/MM/yyyy",
                                                       _model.datePicked2,
                                                       locale:
                                                           FFLocalizations.of(

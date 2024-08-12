@@ -866,7 +866,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         Text(
                                           _model.datePicked != null
                                               ? '${dateTimeFormat(
-                                                  'dd/MM/yyyy',
+                                                  "dd/MM/yyyy",
                                                   _model.datePicked,
                                                   locale: FFLocalizations.of(
                                                           context)

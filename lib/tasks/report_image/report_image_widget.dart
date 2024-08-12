@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/tasks/filter_reprot_image/filter_reprot_image_widget.dart';
 import '/tasks/gridview_report_image/gridview_report_image_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -67,9 +66,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -132,10 +129,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                       context: context,
                       builder: (context) {
                         return GestureDetector(
-                          onTap: () => _model.unfocusNode.canRequestFocus
-                              ? FocusScope.of(context)
-                                  .requestFocus(_model.unfocusNode)
-                              : FocusScope.of(context).unfocus(),
+                          onTap: () => FocusScope.of(context).unfocus(),
                           child: Padding(
                             padding: MediaQuery.viewInsetsOf(context),
                             child: FilterReprotImageWidget(
@@ -308,10 +302,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                             context: context,
                             builder: (context) {
                               return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
+                                onTap: () => FocusScope.of(context).unfocus(),
                                 child: Padding(
                                   padding: MediaQuery.viewInsetsOf(context),
                                   child: FilterReprotImageWidget(
@@ -722,7 +713,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                                     .dateUpdated !=
                                                                 '')
                                                     ? dateTimeFormat(
-                                                        'dd/MM/yyyy hh:MM',
+                                                        "dd/MM/yyyy hh:MM",
                                                         functions.stringToDateTime(
                                                             reportImagesItem
                                                                 .operations

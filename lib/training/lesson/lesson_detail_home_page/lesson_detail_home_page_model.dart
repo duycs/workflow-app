@@ -64,7 +64,6 @@ class LessonDetailHomePageModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for MobileEditorDisplayComponent component.
   late MobileEditorDisplayComponentModel mobileEditorDisplayComponentModel;
   // State field(s) for comments widget.
@@ -80,7 +79,6 @@ class LessonDetailHomePageModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mobileEditorDisplayComponentModel.dispose();
     commentsFocusNode?.dispose();
     commentsTextController?.dispose();

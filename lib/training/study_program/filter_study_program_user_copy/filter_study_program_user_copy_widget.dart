@@ -217,7 +217,7 @@ class _FilterStudyProgramUserCopyWidgetState
                               Text(
                                 _model.dateStart != null
                                     ? dateTimeFormat(
-                                        'yyyy-MM-dd',
+                                        "yyyy-MM-dd",
                                         _model.dateStart,
                                         locale: FFLocalizations.of(context)
                                             .languageCode,
@@ -307,7 +307,7 @@ class _FilterStudyProgramUserCopyWidgetState
                               Text(
                                 _model.dateEnd != null
                                     ? dateTimeFormat(
-                                        'yyyy-MM-dd',
+                                        "yyyy-MM-dd",
                                         _model.dateEnd,
                                         locale: FFLocalizations.of(context)
                                             .languageCode,

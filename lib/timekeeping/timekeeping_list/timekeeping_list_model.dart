@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_filter/time_keeping_filter_widget.dart';
-import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'timekeeping_list_widget.dart' show TimekeepingListWidget;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -29,7 +28,6 @@ class TimekeepingListModel extends FlutterFlowModel<TimekeepingListWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
@@ -44,7 +42,6 @@ class TimekeepingListModel extends FlutterFlowModel<TimekeepingListWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

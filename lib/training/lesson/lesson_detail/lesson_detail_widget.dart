@@ -71,9 +71,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -1582,7 +1580,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                     alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       dateTimeFormat(
-                                        'dd/MM/yyyy',
+                                        "dd/MM/yyyy",
                                         functions.stringToDateTime(getJsonField(
                                           _model.listDetail,
                                           r'''$.date_created''',
@@ -1987,9 +1985,8 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                                               Colors.transparent,
                                                                           child:
                                                                               GestureDetector(
-                                                                            onTap: () => _model.unfocusNode.canRequestFocus
-                                                                                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                                : FocusScope.of(context).unfocus(),
+                                                                            onTap: () =>
+                                                                                FocusScope.of(dialogContext).unfocus(),
                                                                             child:
                                                                                 Container(
                                                                               height: 120.0,
@@ -2009,9 +2006,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                                           ),
                                                                         );
                                                                       },
-                                                                    ).then((value) =>
-                                                                        setState(
-                                                                            () {}));
+                                                                    );
                                                                   },
                                                                   child: Icon(
                                                                     Icons
@@ -2073,7 +2068,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                       children: [
                                                         Text(
                                                           dateTimeFormat(
-                                                            'HH:mm dd/MM/yyyy',
+                                                            "HH:mm dd/MM/yyyy",
                                                             functions
                                                                 .stringToDateTime(
                                                                     getJsonField(

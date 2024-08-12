@@ -13,7 +13,6 @@ import 'package:provider/provider.dart';
 class TimekeepingReportModel extends FlutterFlowModel<TimekeepingReportWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Calendar widget.
   DateTimeRange? calendarSelectedDay;
 
@@ -26,7 +25,5 @@ class TimekeepingReportModel extends FlutterFlowModel<TimekeepingReportWidget> {
   }
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

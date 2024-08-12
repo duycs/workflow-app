@@ -353,7 +353,7 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                               _model.updateStepsEditStruct(
                                 (e) => e
                                   ..timeOperate = dateTimeFormat(
-                                    'Hm',
+                                    "Hm",
                                     _model.datePicked,
                                     locale: FFLocalizations.of(context)
                                         .languageCode,
@@ -386,7 +386,7 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                       ),
                                       Text(
                                         'Bắt đầu ${(_model.datePicked != null) && (_model.stepsEdit?.timeOperate != null && _model.stepsEdit?.timeOperate != '') ? dateTimeFormat(
-                                            'Hm',
+                                            "Hm",
                                             _model.datePicked,
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,

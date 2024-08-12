@@ -130,7 +130,6 @@ class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // State field(s) for name widget.
   FocusNode? nameFocusNode;
@@ -178,7 +177,6 @@ class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     nameFocusNode?.dispose();
     nameTextController?.dispose();
 

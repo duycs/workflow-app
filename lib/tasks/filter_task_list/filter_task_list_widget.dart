@@ -297,7 +297,7 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                   });
                                 }
                                 _model.dateStart = dateTimeFormat(
-                                  'yyyy-MM-dd',
+                                  "yyyy-MM-dd",
                                   _model.datePicked1,
                                   locale:
                                       FFLocalizations.of(context).languageCode,
@@ -317,7 +317,7 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                     _model.dateStart != null &&
                                             _model.dateStart != ''
                                         ? dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 _model.dateStart),
                                             locale: FFLocalizations.of(context)
@@ -393,7 +393,7 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                   });
                                 }
                                 _model.dateEnd = dateTimeFormat(
-                                  'yyyy-MM-dd',
+                                  "yyyy-MM-dd",
                                   _model.datePicked2,
                                   locale:
                                       FFLocalizations.of(context).languageCode,
@@ -413,7 +413,7 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                     _model.dateEnd != null &&
                                             _model.dateEnd != ''
                                         ? dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 _model.dateEnd),
                                             locale: FFLocalizations.of(context)

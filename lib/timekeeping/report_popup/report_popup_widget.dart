@@ -163,7 +163,7 @@ class _ReportPopupWidgetState extends State<ReportPopupWidget> {
                                 ),
                               );
                             },
-                          ).then((value) => setState(() {}));
+                          );
                         },
                         child: Container(
                           decoration: BoxDecoration(

@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/timekeeping/individual_timekeeping_details/individual_timekeeping_details_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -83,7 +82,6 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for DropDown1 widget.
   String? dropDown1Value;
   FormFieldController<String>? dropDown1ValueController;
@@ -118,9 +116,7 @@ class TimeKeepingModel extends FlutterFlowModel<TimeKeepingWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 
   /// Action blocks.
   Future getTimekeepings(BuildContext context) async {

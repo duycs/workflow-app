@@ -193,13 +193,13 @@ class _Certificate1DownloadWidgetState
                                       ),
                                       Text(
                                         'Từ ngày ${dateTimeFormat(
-                                          'dd-MM-yyyy',
+                                          "dd-MM-yyyy",
                                           functions.stringToDateTime(
                                               widget!.dateStart),
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
                                         )} đến ngày ${dateTimeFormat(
-                                          'dd-MM-yyyy',
+                                          "dd-MM-yyyy",
                                           functions.stringToDateTime(
                                               widget!.dateEnd),
                                           locale: FFLocalizations.of(context)
@@ -361,7 +361,7 @@ class _Certificate1DownloadWidgetState
                                             'Stack',
                                             widget!.program!,
                                             dateTimeFormat(
-                                              'dd-MM-yyyy',
+                                              "dd-MM-yyyy",
                                               functions.stringToDateTime(
                                                   widget!.dateStart),
                                               locale:
@@ -369,7 +369,7 @@ class _Certificate1DownloadWidgetState
                                                       .languageCode,
                                             ),
                                             dateTimeFormat(
-                                              'dd-MM-yyyy',
+                                              "dd-MM-yyyy",
                                               functions.stringToDateTime(
                                                   widget!.dateEnd),
                                               locale:
@@ -595,11 +595,11 @@ class _Certificate1DownloadWidgetState
                           ),
                           Text(
                             'Từ ngày ${dateTimeFormat(
-                              'dd-MM-yyyy',
+                              "dd-MM-yyyy",
                               functions.stringToDateTime(widget!.dateStart),
                               locale: FFLocalizations.of(context).languageCode,
                             )} đến ngày ${dateTimeFormat(
-                              'dd-MM-yyyy',
+                              "dd-MM-yyyy",
                               functions.stringToDateTime(widget!.dateEnd),
                               locale: FFLocalizations.of(context).languageCode,
                             )}',
@@ -629,13 +629,13 @@ class _Certificate1DownloadWidgetState
                               'Stack',
                               widget!.program!,
                               dateTimeFormat(
-                                'dd-MM-yyyy',
+                                "dd-MM-yyyy",
                                 functions.stringToDateTime(widget!.dateStart),
                                 locale:
                                     FFLocalizations.of(context).languageCode,
                               ),
                               dateTimeFormat(
-                                'dd-MM-yyyy',
+                                "dd-MM-yyyy",
                                 functions.stringToDateTime(widget!.dateEnd),
                                 locale:
                                     FFLocalizations.of(context).languageCode,

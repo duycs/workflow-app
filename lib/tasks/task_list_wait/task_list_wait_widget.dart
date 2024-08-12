@@ -14,9 +14,7 @@ import '/tasks/wait_action_type_to_do_list/wait_action_type_to_do_list_widget.da
 import '/tasks/wait_action_type_upload_file/wait_action_type_upload_file_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -90,9 +88,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -267,13 +263,8 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
+                                          onTap: () =>
+                                              FocusScope.of(context).unfocus(),
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
@@ -510,7 +501,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                     FFAppState().staffLogin,
                                     r'''$.organization_id''',
                                   ).toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}${(_model.dateStartFilter != null && _model.dateStartFilter != '') && (_model.dateStartFilter != ' ') ? ',{\"date_created\":{\"_gte\":\"${dateTimeFormat(
-                                      'yyyy-MM-dd',
+                                      "yyyy-MM-dd",
                                       functions.stringToDateTime(
                                           _model.dateStartFilter),
                                       locale: FFLocalizations.of(context)
@@ -520,7 +511,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                           .add(Duration(days: 1))
                                           .toString();
                                     }(',{\"date_created\":{\"_lte\":\"${dateTimeFormat(
-                                      'yyyy-MM-dd',
+                                      "yyyy-MM-dd",
                                       functions.stringToDateTime(
                                           _model.dateEndFilter),
                                       locale: FFLocalizations.of(context)
@@ -1100,7 +1091,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                               Expanded(
                                                                 child: Text(
                                                                   dateTimeFormat(
-                                                                    'HH:mm dd/MM/yyyy',
+                                                                    "HH:mm dd/MM/yyyy",
                                                                     functions.stringToDateTime(
                                                                         dataListItem
                                                                             .dateCreated),

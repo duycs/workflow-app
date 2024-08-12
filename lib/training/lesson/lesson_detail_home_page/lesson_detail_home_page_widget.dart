@@ -86,9 +86,7 @@ class _LessonDetailHomePageWidgetState
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -1753,7 +1751,7 @@ class _LessonDetailHomePageWidgetState
                                       alignment: AlignmentDirectional(1.0, 0.0),
                                       child: Text(
                                         dateTimeFormat(
-                                          'dd/MM/yyyy',
+                                          "dd/MM/yyyy",
                                           functions
                                               .stringToDateTime(getJsonField(
                                             widget!.listItems,
@@ -1813,14 +1811,9 @@ class _LessonDetailHomePageWidgetState
                                                               Directionality.of(
                                                                   context)),
                                                   child: GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
                                                     child: ConfirmDoTestWidget(
                                                       testId: _model.testId,
                                                       lessionId: getJsonField(
@@ -1835,7 +1828,7 @@ class _LessonDetailHomePageWidgetState
                                                   ),
                                                 );
                                               },
-                                            ).then((value) => setState(() {}));
+                                            );
                                           },
                                           child: Container(
                                             height: 45.0,
@@ -2317,7 +2310,7 @@ class _LessonDetailHomePageWidgetState
                                                                                 Colors.transparent,
                                                                             child:
                                                                                 GestureDetector(
-                                                                              onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                              onTap: () => FocusScope.of(dialogContext).unfocus(),
                                                                               child: Container(
                                                                                 height: 100.0,
                                                                                 width: 200.0,
@@ -2336,9 +2329,7 @@ class _LessonDetailHomePageWidgetState
                                                                             ),
                                                                           );
                                                                         },
-                                                                      ).then((value) =>
-                                                                          setState(
-                                                                              () {}));
+                                                                      );
                                                                     },
                                                                     child: Icon(
                                                                       Icons
@@ -2401,7 +2392,7 @@ class _LessonDetailHomePageWidgetState
                                                         children: [
                                                           Text(
                                                             dateTimeFormat(
-                                                              'HH:mm dd/MM/yyyy',
+                                                              "HH:mm dd/MM/yyyy",
                                                               functions
                                                                   .stringToDateTime(
                                                                       getJsonField(

@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure_publishing/filter_work_result/filter_work_result_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'work_result_list_widget.dart' show WorkResultListWidget;
@@ -64,7 +63,6 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in WorkResultList widget.
   bool? tokenReloadWorkResultListList;
   // State field(s) for TextField widget.
@@ -81,7 +79,6 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

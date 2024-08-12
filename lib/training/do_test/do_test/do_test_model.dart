@@ -10,7 +10,6 @@ import '/training/do_test/long_text_list_question/long_text_list_question_widget
 import '/training/do_test/number_list_question/number_list_question_widget.dart';
 import '/training/do_test/select_list_question/select_list_question_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'do_test_widget.dart' show DoTestWidget;
@@ -96,7 +95,6 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in DoTest widget.
   bool? getLessionTestToken;
   // Stores action output result for [Backend Call - API (TestOne)] action in DoTest widget.
@@ -153,7 +151,6 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     instantTimer?.cancel();
     timerController.dispose();
     oneSelectAnswerModels.dispose();

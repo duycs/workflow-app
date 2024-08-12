@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure_publishing/filter_work_result/filter_work_result_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -70,9 +69,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -277,10 +274,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                           context: context,
                           builder: (context) {
                             return GestureDetector(
-                              onTap: () => _model.unfocusNode.canRequestFocus
-                                  ? FocusScope.of(context)
-                                      .requestFocus(_model.unfocusNode)
-                                  : FocusScope.of(context).unfocus(),
+                              onTap: () => FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
                                 child: FilterWorkResultWidget(
@@ -564,7 +558,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                       (itemsItem.steps.length >
                                                           0) &&
                                                       (dateTimeFormat(
-                                                            'dd/MM/yyyy',
+                                                            "dd/MM/yyyy",
                                                             functions.stringToDateTime(itemsItem
                                                                 .steps
                                                                 .where((e) =>
@@ -582,7 +576,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                 .languageCode,
                                                           ) ==
                                                           dateTimeFormat(
-                                                            'dd/MM/yyyy',
+                                                            "dd/MM/yyyy",
                                                             getCurrentTimestamp,
                                                             locale: FFLocalizations
                                                                     .of(context)
@@ -612,7 +606,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                     .length >
                                                                 0) &&
                                                             (dateTimeFormat(
-                                                                  'dd/MM/yyyy',
+                                                                  "dd/MM/yyyy",
                                                                   functions.stringToDateTime(itemsItem
                                                                       .steps
                                                                       .where((e) =>
@@ -630,7 +624,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                       .languageCode,
                                                                 ) ==
                                                                 dateTimeFormat(
-                                                                  'dd/MM/yyyy',
+                                                                  "dd/MM/yyyy",
                                                                   getCurrentTimestamp,
                                                                   locale: FFLocalizations.of(
                                                                           context)
@@ -652,13 +646,13 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                   ((e.status ==
                                                                           'done') &&
                                                                       (dateTimeFormat(
-                                                                            'dd/MM/yyyy',
+                                                                            "dd/MM/yyyy",
                                                                             functions.stringToDateTime(itemsItem.steps.where((e) => e.number == itemsItem.steps.length).toList().first.tasks.first.dateEnd),
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
                                                                           ) ==
                                                                           dateTimeFormat(
-                                                                            'dd/MM/yyyy',
+                                                                            "dd/MM/yyyy",
                                                                             getCurrentTimestamp,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
@@ -755,7 +749,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                               itemsItem.steps
                                                                   .length) &&
                                                           (dateTimeFormat(
-                                                                'dd/MM/yyyy',
+                                                                "dd/MM/yyyy",
                                                                 functions.stringToDateTime(itemsItem
                                                                     .steps
                                                                     .where((e) =>
@@ -773,7 +767,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                     .languageCode,
                                                               ) ==
                                                               dateTimeFormat(
-                                                                'dd/MM/yyyy',
+                                                                "dd/MM/yyyy",
                                                                 getCurrentTimestamp,
                                                                 locale: FFLocalizations.of(
                                                                         context)
@@ -907,7 +901,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                               ),
                                                                               Text(
                                                                                 'T.gian tạo: ${dateTimeFormat(
-                                                                                  'dd/MM/yyyy',
+                                                                                  "dd/MM/yyyy",
                                                                                   functions.stringToDateTime(itemTaskDoneItem.dateCreated),
                                                                                   locale: FFLocalizations.of(context).languageCode,
                                                                                 )}',
@@ -935,7 +929,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                               Expanded(
                                                                                 child: Text(
                                                                                   'T.gian hoàn thành: ${dateTimeFormat(
-                                                                                    'dd/MM/yyyy',
+                                                                                    "dd/MM/yyyy",
                                                                                     functions.stringToDateTime(itemsItem.steps.where((e) => e.number == itemsItem.steps.length).toList().first.tasks.first.dateEnd),
                                                                                     locale: FFLocalizations.of(context).languageCode,
                                                                                   )}',
@@ -1274,7 +1268,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                           ),
                                                                           Text(
                                                                             'Thời gian tạo: ${dateTimeFormat(
-                                                                              'dd/MM/yyyy',
+                                                                              "dd/MM/yyyy",
                                                                               functions.stringToDateTime(itemPublishedListItem.dateCreated),
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             )}',

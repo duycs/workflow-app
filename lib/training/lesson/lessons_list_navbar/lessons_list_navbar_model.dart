@@ -9,9 +9,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/lesson/filter_lesson/filter_lesson_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
-import 'dart:async';
 import 'lessons_list_navbar_widget.dart' show LessonsListNavbarWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +45,6 @@ class LessonsListNavbarModel extends FlutterFlowModel<LessonsListNavbarWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in LessonsListNavbar widget.
   bool? tokenReloadLessonsList;
   // State field(s) for nameSearch widget.
@@ -69,7 +66,6 @@ class LessonsListNavbarModel extends FlutterFlowModel<LessonsListNavbarWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     nameSearchFocusNode?.dispose();
     nameSearchTextController?.dispose();
 

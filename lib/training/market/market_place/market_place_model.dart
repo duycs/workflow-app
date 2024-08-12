@@ -9,7 +9,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/market/filter_programs/filter_programs_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -111,7 +110,6 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in MarketPlace widget.
   bool? reloadTokenProgramLession;
   // State field(s) for searchMarket widget.
@@ -128,7 +126,6 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     searchMarketFocusNode?.dispose();
     searchMarketTextController?.dispose();
 

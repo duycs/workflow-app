@@ -366,7 +366,7 @@ class _FilterReportStaffDetailWidgetState
                                   });
                                 }
                                 _model.dateStart1 = dateTimeFormat(
-                                  'yyyy-MM-dd',
+                                  "yyyy-MM-dd",
                                   _model.datePicked1,
                                   locale:
                                       FFLocalizations.of(context).languageCode,
@@ -386,7 +386,7 @@ class _FilterReportStaffDetailWidgetState
                                     _model.dateStart1 != null &&
                                             _model.dateStart1 != ''
                                         ? dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 _model.dateStart1),
                                             locale: FFLocalizations.of(context)
@@ -462,7 +462,7 @@ class _FilterReportStaffDetailWidgetState
                                   });
                                 }
                                 _model.dateStart2 = dateTimeFormat(
-                                  'yyyy-MM-dd',
+                                  "yyyy-MM-dd",
                                   _model.datePicked2,
                                   locale:
                                       FFLocalizations.of(context).languageCode,
@@ -482,7 +482,7 @@ class _FilterReportStaffDetailWidgetState
                                     _model.dateStart2 != null &&
                                             _model.dateStart2 != ''
                                         ? dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 _model.dateStart2),
                                             locale: FFLocalizations.of(context)
@@ -582,7 +582,7 @@ class _FilterReportStaffDetailWidgetState
                                   });
                                 }
                                 _model.dateEnd1 = dateTimeFormat(
-                                  'yyyy-MM-dd',
+                                  "yyyy-MM-dd",
                                   _model.datePicked3,
                                   locale:
                                       FFLocalizations.of(context).languageCode,
@@ -602,7 +602,7 @@ class _FilterReportStaffDetailWidgetState
                                     _model.dateEnd1 != null &&
                                             _model.dateEnd1 != ''
                                         ? dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 _model.dateEnd1),
                                             locale: FFLocalizations.of(context)
@@ -678,7 +678,7 @@ class _FilterReportStaffDetailWidgetState
                                   });
                                 }
                                 _model.dateEnd2 = dateTimeFormat(
-                                  'yyyy-MM-dd',
+                                  "yyyy-MM-dd",
                                   _model.datePicked4,
                                   locale:
                                       FFLocalizations.of(context).languageCode,
@@ -698,7 +698,7 @@ class _FilterReportStaffDetailWidgetState
                                     _model.dateEnd2 != null &&
                                             _model.dateEnd2 != ''
                                         ? dateTimeFormat(
-                                            'dd/MM/yyyy',
+                                            "dd/MM/yyyy",
                                             functions.stringToDateTime(
                                                 _model.dateEnd2),
                                             locale: FFLocalizations.of(context)

@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_shift_created/time_keeping_shift_created_widget.dart';
 import '/timekeeping/time_keeping_shift_filter/time_keeping_shift_filter_widget.dart';
 import '/timekeeping/time_keeping_shift_update/time_keeping_shift_update_widget.dart';
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -70,9 +69,7 @@ class _TimekeepingShiftListWidgetState
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -89,10 +86,7 @@ class _TimekeepingShiftListWidgetState
                     alignment: AlignmentDirectional(0.0, 0.0)
                         .resolve(Directionality.of(context)),
                     child: GestureDetector(
-                      onTap: () => _model.unfocusNode.canRequestFocus
-                          ? FocusScope.of(context)
-                              .requestFocus(_model.unfocusNode)
-                          : FocusScope.of(context).unfocus(),
+                      onTap: () => FocusScope.of(dialogContext).unfocus(),
                       child: TimeKeepingShiftCreatedWidget(
                         callback: () async {
                           setState(
@@ -103,7 +97,7 @@ class _TimekeepingShiftListWidgetState
                     ),
                   );
                 },
-              ).then((value) => setState(() {}));
+              );
             },
             backgroundColor: FlutterFlowTheme.of(context).primary,
             elevation: 8.0,
@@ -266,10 +260,7 @@ class _TimekeepingShiftListWidgetState
                           context: context,
                           builder: (context) {
                             return GestureDetector(
-                              onTap: () => _model.unfocusNode.canRequestFocus
-                                  ? FocusScope.of(context)
-                                      .requestFocus(_model.unfocusNode)
-                                  : FocusScope.of(context).unfocus(),
+                              onTap: () => FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
                                 child: TimeKeepingShiftFilterWidget(
@@ -409,14 +400,9 @@ class _TimekeepingShiftListWidgetState
                                                     .resolve(Directionality.of(
                                                         context)),
                                                 child: GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
+                                                  onTap: () => FocusScope.of(
+                                                          dialogContext)
+                                                      .unfocus(),
                                                   child:
                                                       TimeKeepingShiftUpdateWidget(
                                                     item: shiftListItem,
@@ -431,7 +417,7 @@ class _TimekeepingShiftListWidgetState
                                                 ),
                                               );
                                             },
-                                          ).then((value) => setState(() {}));
+                                          );
                                         },
                                       ),
                                     ),

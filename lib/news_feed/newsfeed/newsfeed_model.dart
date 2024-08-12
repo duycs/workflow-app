@@ -16,7 +16,6 @@ import '/news_feed/d_n_f_newsfeed/d_n_f_newsfeed_widget.dart';
 import '/news_feed/newsfeed_create/newsfeed_create_widget.dart';
 import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -53,7 +52,6 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for ChoiceChips widget.
   FormFieldController<List<String>>? choiceChipsValueController;
   String? get choiceChipsValue =>
@@ -87,7 +85,6 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     tabBarController?.dispose();
     dNFNewsfeedModel.dispose();
     listViewPagingController?.dispose();

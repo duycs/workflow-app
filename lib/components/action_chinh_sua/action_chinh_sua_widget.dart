@@ -567,7 +567,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                                   ),
                                 );
                               },
-                            ).then((value) => setState(() {}));
+                            );
 
                             Navigator.pop(context);
                           },

@@ -213,7 +213,7 @@ class _FilterStudyProgramMarketWidgetState
                             });
                           }
                           _model.dateStartFilter = dateTimeFormat(
-                            'yyyy-MM-dd',
+                            "yyyy-MM-dd",
                             _model.datePicked1,
                             locale: FFLocalizations.of(context).languageCode,
                           );
@@ -299,7 +299,7 @@ class _FilterStudyProgramMarketWidgetState
                             });
                           }
                           _model.dateEndFilter = dateTimeFormat(
-                            'yyyy-MM-dd',
+                            "yyyy-MM-dd",
                             _model.datePicked2,
                             locale: FFLocalizations.of(context).languageCode,
                           );

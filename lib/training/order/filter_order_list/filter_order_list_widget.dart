@@ -388,7 +388,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                       _model.dateStart != null &&
                                               _model.dateStart != ''
                                           ? '${dateTimeFormat(
-                                              'dd/MM/yyyy',
+                                              "dd/MM/yyyy",
                                               functions.stringToDateTime(
                                                   _model.dateStart),
                                               locale:
@@ -483,7 +483,7 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                       _model.dateEnd != null &&
                                               _model.dateEnd != ''
                                           ? '${dateTimeFormat(
-                                              'dd/MM/yyyy',
+                                              "dd/MM/yyyy",
                                               functions.stringToDateTime(
                                                   _model.dateEnd),
                                               locale:

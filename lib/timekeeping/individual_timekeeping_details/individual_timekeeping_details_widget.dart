@@ -4,7 +4,6 @@ import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -84,7 +83,7 @@ class _IndividualTimekeepingDetailsWidgetState
               ),
               Text(
                 'Chấm công ngày ${dateTimeFormat(
-                  'd/M/y',
+                  "d/M/y",
                   functions.stringToDateTime(widget!.dateFilter),
                   locale: FFLocalizations.of(context).languageCode,
                 )}',
@@ -108,11 +107,11 @@ class _IndividualTimekeepingDetailsWidgetState
                       '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"organization_id\":{\"_eq\":\"${getJsonField(
                     FFAppState().staffOrganization,
                     r'''$.id''',
-                  ).toString()}\"}},{\"date_created\":{\"_gte\":\"${widget!.dateFilter}\"}},{\"date_created\":{\"_lt\":\"${(String var1) {
+                  ).toString()}\"}},{\"date_created\":{\"_gte\":\"${(String var1) {
                     return DateTime.parse(var1)
-                        .add(Duration(days: 1))
+                        .subtract(Duration(days: 1))
                         .toString();
-                  }(widget!.dateFilter!)}\"}}]}',
+                  }(widget!.dateFilter!)}\"}},{\"date_created\":{\"_lt\":\"${widget!.dateFilter}\"}}]}',
                 ),
               ),
               padding: EdgeInsets.fromLTRB(
@@ -337,7 +336,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                                 0))
                                           Text(
                                             dateTimeFormat(
-                                              'Hm',
+                                              "Hm",
                                               functions.stringToDateTime(
                                                   listItemItem.shiftChecks
                                                       .where((e) =>
@@ -402,7 +401,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                                 0))
                                           Text(
                                             dateTimeFormat(
-                                              'Hm',
+                                              "Hm",
                                               functions.stringToDateTime(
                                                   listItemItem.shiftChecks
                                                       .where((e) =>
@@ -662,7 +661,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                                               ),
                                                               Text(
                                                                 dateTimeFormat(
-                                                                  'Hm',
+                                                                  "Hm",
                                                                   functions.stringToDateTime(
                                                                       checkInsItem
                                                                           .checkin),
@@ -737,7 +736,7 @@ class _IndividualTimekeepingDetailsWidgetState
                                                               ),
                                                               Text(
                                                                 dateTimeFormat(
-                                                                  'Hm',
+                                                                  "Hm",
                                                                   functions.stringToDateTime(
                                                                       checkOutsItem
                                                                           .checkout),

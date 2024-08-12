@@ -99,9 +99,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -1828,7 +1826,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                       alignment: AlignmentDirectional(1.0, 0.0),
                                       child: Text(
                                         dateTimeFormat(
-                                          'dd/MM/yyyy',
+                                          "dd/MM/yyyy",
                                           functions.stringToDateTime(_model
                                               .staffsLessionsListOne
                                               .first
@@ -1887,14 +1885,9 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                               Directionality.of(
                                                                   context)),
                                                   child: GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
                                                     child: ConfirmDoTestWidget(
                                                       testId: _model.testId,
                                                       lessionId: _model
@@ -1911,7 +1904,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                   ),
                                                 );
                                               },
-                                            ).then((value) => setState(() {}));
+                                            );
                                           },
                                           child: Container(
                                             height: 45.0,
@@ -2369,7 +2362,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                                 Colors.transparent,
                                                                             child:
                                                                                 GestureDetector(
-                                                                              onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                              onTap: () => FocusScope.of(dialogContext).unfocus(),
                                                                               child: Container(
                                                                                 height: 100.0,
                                                                                 width: 200.0,
@@ -2388,9 +2381,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                             ),
                                                                           );
                                                                         },
-                                                                      ).then((value) =>
-                                                                          setState(
-                                                                              () {}));
+                                                                      );
                                                                     },
                                                                     child: Icon(
                                                                       Icons
@@ -2453,7 +2444,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                         children: [
                                                           Text(
                                                             dateTimeFormat(
-                                                              'HH:mm dd/MM/yyyy',
+                                                              "HH:mm dd/MM/yyyy",
                                                               functions
                                                                   .stringToDateTime(
                                                                       getJsonField(
